@@ -92,6 +92,7 @@
     <Compile Include="Modules\Alarm\AlarmList.xaml.cs">
       <DependentUpon>AlarmList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\BingMaps\ChinaMode.cs" />
     <Compile Include="Modules\BingMaps\MapIndex.xaml.cs">
       <DependentUpon>MapIndex.xaml</DependentUpon>
     </Compile>

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCADA.UI", "SCADA.UI\SCADA.UI.csproj", "{42182A32-0855-4E79-BF9B-FCCC555A510E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCADA.Web", "SCADA.Web\SCADA.Web.csproj", "{F88B5108-B116-4EC0-8F8C-9E42944ED5B5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42182A32-0855-4E79-BF9B-FCCC555A510E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42182A32-0855-4E79-BF9B-FCCC555A510E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42182A32-0855-4E79-BF9B-FCCC555A510E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42182A32-0855-4E79-BF9B-FCCC555A510E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F88B5108-B116-4EC0-8F8C-9E42944ED5B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F88B5108-B116-4EC0-8F8C-9E42944ED5B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F88B5108-B116-4EC0-8F8C-9E42944ED5B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F88B5108-B116-4EC0-8F8C-9E42944ED5B5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

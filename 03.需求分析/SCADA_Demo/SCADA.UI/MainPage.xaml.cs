@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using SCADA.UI.Modules.BingMaps;
 using SCADA.UI.Modules.Device;
 using SCADA.UI.Modules.Alarm;
+using SCADA.UI.SampleData;
 
 namespace SCADA.UI
 {
@@ -50,10 +51,18 @@ namespace SCADA.UI
                         break;
                         //设备告警
                     case "menu3":
-                        this.ViewHost.Child =new  AlarmList();
+                        //温度计
+                        //this.ViewHost.Child = new Thermometer();
+                        //当天曲线图
+                        //this.ViewHost.Child = new DaysGraph();
+                        //历史平均值
+                        //this.ViewHost.Child = new HistoryAvgValue();
+
+                        //树型结构
+                        this.ViewHost.Child = new TreeviewGrid();
+
                         break;
                     case "menu4":
-                       
                         break;
                     case "menu5":
                        

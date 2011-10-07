@@ -74,6 +74,7 @@
     </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot" Background="#FFECF6FE">
+        
         <Border x:Name="ViewHost" BorderThickness="1" Margin="5,118,5,5" RenderTransformOrigin="0.5,0.5">
             <Border.RenderTransform>
                 <CompositeTransform/>
@@ -84,5 +85,7 @@
                 <CompositeTransform/>
             </local:Header.RenderTransform>
         </local:Header>
+        
     </Grid>
+  
 </UserControl>

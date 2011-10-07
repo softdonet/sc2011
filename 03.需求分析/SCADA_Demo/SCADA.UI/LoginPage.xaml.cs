@@ -19,21 +19,17 @@ namespace SCADA.UI
         public LoginPage()
         {
             InitializeComponent();
-            
             login = new Login();
             this.MasterContainer.Child = login;
-           
-           // login.btnLogin.Click += new RoutedEventHandler(btnLogin_Click);
-            login.myKeyDowmEvent += new Login.myKeyDownHandle(login_myKeyDowmEvent);
+            login.myKeyDowmEvent += new RoutedEventHandler(login_myKeyDowmEvent);
         }
 
-        void login_myKeyDowmEvent()
+        void login_myKeyDowmEvent(object sender, RoutedEventArgs e)
         {
             if (login.txbName.Text == "admin" && login.txtPassWord.Password == "admin")
             {
                 this.MasterContainer.Child = new MainPage();
             }
         }
-      
     }
 }

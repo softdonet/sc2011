@@ -108,6 +108,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
         <ControlTemplate x:Key="ValidationToolTipTemplate">
             <Grid x:Name="Root" Margin="5,0" Opacity="0" RenderTransformOrigin="0,0">
                 <Grid.RenderTransform>
@@ -219,34 +220,154 @@
         <ItemsPanelTemplate x:Key="ItemsPanelTemplate1">
             <StackPanel Orientation="Horizontal"/>
         </ItemsPanelTemplate>
-        <Storyboard x:Name="ShowSecMenuStory">
-            <DoubleAnimation Duration="0:0:0.2" To="-9.44" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="border" d:IsOptimized="True"/>
-            <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="border" d:IsOptimized="True"/>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="border">
-                <DiscreteObjectKeyFrame KeyTime="0">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Visible</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Visible</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-            </ObjectAnimationUsingKeyFrames>
+
+        <!--Start:查询导航子菜单动画-->
+        <Storyboard x:Name="ShowSearchSecMenuStory">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="bdSearch">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="-4.454"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="-4.581"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-8.9"/>
+        	</DoubleAnimationUsingKeyFrames>
+            <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="bdSearch" d:IsOptimized="True"/>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="bdSearch">
+        		<DiscreteObjectKeyFrame KeyTime="0">
+        			<DiscreteObjectKeyFrame.Value>
+        				<Visibility>Visible</Visibility>
+        			</DiscreteObjectKeyFrame.Value>
+        		</DiscreteObjectKeyFrame>
+        		<DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+        			<DiscreteObjectKeyFrame.Value>
+        				<Visibility>Visible</Visibility>
+        			</DiscreteObjectKeyFrame.Value>
+        		</DiscreteObjectKeyFrame>
+        	</ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="bdSearch">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="-3"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="-3.501"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-3.415"/>
+        	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Name="HidSecMenuStory">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="border">
+        <Storyboard x:Name="HidSearchSecMenuStory">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="bdSearch">
                 <EasingDoubleKeyFrame KeyTime="0" Value="-7.08"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="2.1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="2.1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="-5.125"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-5.1"/>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="border">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="bdSearch">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="border">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="bdSearch">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+                    <DiscreteObjectKeyFrame.Value>
+                		<Visibility>Collapsed</Visibility>
+                	</DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="bdSearch">
+            	<EasingDoubleKeyFrame KeyTime="0" Value="-1"/>
+            	<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="-1.32"/>
+            	<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-1.3"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--End:查询导航子菜单动画-->
+        <!--Start:对比分析子菜单动画-->
+        <Storyboard x:Name="ShowCompareSecMenuStory">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="bdCompare">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="-4.454"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="-4.581"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-8.9"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="bdCompare" d:IsOptimized="True"/>
+        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="bdCompare">
+        		<DiscreteObjectKeyFrame KeyTime="0">
+        			<DiscreteObjectKeyFrame.Value>
+        				<Visibility>Visible</Visibility>
+        			</DiscreteObjectKeyFrame.Value>
+        		</DiscreteObjectKeyFrame>
+        		<DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+        			<DiscreteObjectKeyFrame.Value>
+        				<Visibility>Visible</Visibility>
+        			</DiscreteObjectKeyFrame.Value>
+        		</DiscreteObjectKeyFrame>
+        	</ObjectAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="bdCompare">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="77.8"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="76.934"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="77.8718"/>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="HidCompareSecMenuStory">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="bdCompare">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-7.08"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="-3.168"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-4.5"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="bdCompare">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="bdCompare">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+                    <DiscreteObjectKeyFrame.Value>
+                		<Visibility>Collapsed</Visibility>
+                	</DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="bdCompare">
+            	<EasingDoubleKeyFrame KeyTime="0" Value="77.8718"/>
+            	<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="77.8718"/>
+            	<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="77.8"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--end:对比分析子菜单动画-->
+        <!--Start:系统设置子菜单动画-->
+        <Storyboard x:Name="ShowSysSettingsSecMenuStory">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="bdSysSettings">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-4.454"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="-4.581"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-8.9"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="bdSysSettings" d:IsOptimized="True"/>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="bdSysSettings">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="bdSysSettings">
+                <EasingDoubleKeyFrame KeyTime="0" Value="235.8"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="237.012"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="236.872"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="HidSysSettingsSecMenuStory">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="bdSysSettings">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-7.08"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="-4.745"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-4.5"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="bdSysSettings">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="bdSysSettings">
                 <DiscreteObjectKeyFrame KeyTime="0">
                     <DiscreteObjectKeyFrame.Value>
                         <Visibility>Visible</Visibility>
@@ -257,13 +378,14 @@
                         <Visibility>Collapsed</Visibility>
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.3">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Collapsed</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="bdSysSettings">
+                <EasingDoubleKeyFrame KeyTime="0" Value="237.872"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="237.765"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="238.8"/>
+            </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <!--end:系统设置子菜单动画-->
     </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot" Height="350">
@@ -276,64 +398,77 @@
         <Border BorderBrush="Black" Background="{StaticResource header_bg1}" Grid.RowSpan="4"/>
         <Image HorizontalAlignment="Left" Grid.Row="2" Source="/SCADA.UI;component/Images/logo.png" Stretch="Fill" Width="456" Height="56" VerticalAlignment="Center" Margin="6,6,0,0"/>
         <StackPanel Grid.Row="2" HorizontalAlignment="Right" Width="545" Height="60" Margin="0,0,6,0" Orientation="Horizontal">
-            <RadioButton x:Name="menu1" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MenuBtnStyle}" Height="57" Margin="6,0" Tag="地图信息" Width="65" Cursor="Hand" GroupName="menu" IsChecked="True">
+
+            <RadioButton x:Name="menuMap" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MenuBtnStyle}" Height="57" Margin="6,0" Tag="地图信息" Width="65" Cursor="Hand" GroupName="menu" IsChecked="True">
                 <Image Height="27" Source="/SCADA.UI;component/Images/menu4.png" Stretch="Fill" Width="28"/>
             </RadioButton>
             <Image Source="/SCADA.UI;component/Images/line.png" Stretch="Fill" Width="2" Height="38"/>
-            <RadioButton x:Name="menu2" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="设备列表" Width="65" Cursor="Hand" GroupName="menu" >
-                <Image Height="26" Source="/SCADA.UI;component/Images/Money.png" Stretch="Fill" Width="27"/>
-            </RadioButton>
-            <Image Source="/SCADA.UI;component/Images/line.png" Stretch="Fill" Width="2" Height="38" Margin="0,9.5"/>
-            <RadioButton x:Name="menu3" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="设备告警" Width="65" Cursor="Hand" GroupName="menu">
-                <Image Height="27" Source="/SCADA.UI;component/Images/menu2.png" Stretch="Fill" Width="25"/>
-            </RadioButton>
-            <Image Source="/SCADA.UI;component/Images/line.png" Stretch="Fill" Width="2" Height="38" Margin="0,9.5"/>
-            <RadioButton x:Name="menu4" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="查  询" Width="65" Cursor="Hand" GroupName="menu">
+            
+           
+            <RadioButton x:Name="menuSearch" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="查  询" Width="65" Cursor="Hand" GroupName="menu">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseEnter">
-                        <ei:ControlStoryboardAction Storyboard="{StaticResource ShowSecMenuStory}"/>
+                        <ei:ControlStoryboardAction Storyboard="{StaticResource ShowSearchSecMenuStory}"/>
                     </i:EventTrigger>
                     <i:EventTrigger EventName="MouseLeave">
-                        <ei:ControlStoryboardAction Storyboard="{StaticResource HidSecMenuStory}"/>
+                        <ei:ControlStoryboardAction Storyboard="{StaticResource HidSearchSecMenuStory}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                 <Image Height="34" Source="/SCADA.UI;component/Images/menu1.png" Stretch="Fill" Width="31"/>
             </RadioButton>
             <Image Source="/SCADA.UI;component/Images/line.png" Stretch="Fill" Width="2" Height="38" Margin="0,9.5"/>
-            <RadioButton x:Name="menu5" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="对比分析" Width="65" Cursor="Hand" GroupName="menu">
+            <RadioButton x:Name="menuCompare" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="对比分析" Width="65" Cursor="Hand" GroupName="menu">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseEnter">
+                        <ei:ControlStoryboardAction Storyboard="{StaticResource ShowCompareSecMenuStory}"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="MouseLeave">
+                        <ei:ControlStoryboardAction Storyboard="{StaticResource HidCompareSecMenuStory}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <Image Height="27" Source="/SCADA.UI;component/Images/menu3.png" Stretch="Fill" Width="24"/>
             </RadioButton>
             <Image Source="/SCADA.UI;component/Images/line.png" Stretch="Fill" Width="2" Height="38" Margin="0,6"/>
-            <RadioButton x:Name="menu6" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="统计分析" Width="65" Cursor="Hand" GroupName="menu">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseEnter">
-                        <ei:ControlStoryboardAction Storyboard="{StaticResource ShowSecMenuStory}"/>
-                    </i:EventTrigger>
-                    <i:EventTrigger EventName="MouseLeave">
-                        <ei:ControlStoryboardAction Storyboard="{StaticResource HidSecMenuStory}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
+            <RadioButton x:Name="menuStatistics" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="统计分析" Width="65" Cursor="Hand" GroupName="menu">
                 <Image Height="27" Source="/SCADA.UI;component/Images/menu5.png" Stretch="Fill" Width="24"/>
             </RadioButton>
             <Image Source="/SCADA.UI;component/Images/line.png" Stretch="Fill" Width="2" Height="38" Margin="0,6"/>
-            <RadioButton x:Name="menu7" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="系统设置" Width="65" Cursor="Hand" GroupName="menu">
+            <RadioButton x:Name="menuSysSettings" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="系统设置" Width="65" Cursor="Hand" GroupName="menu">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseEnter">
+                        <ei:ControlStoryboardAction Storyboard="{StaticResource ShowSysSettingsSecMenuStory}"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="MouseLeave">
+                        <ei:ControlStoryboardAction Storyboard="{StaticResource HidSysSettingsSecMenuStory}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <Image Height="27" Source="/SCADA.UI;component/Images/line-chart.png" Stretch="Fill" Width="24"/>
             </RadioButton>
+            <Image Source="/SCADA.UI;component/Images/line.png" Stretch="Fill" Width="2" Height="38" Margin="0,9.5"/>
+            <RadioButton x:Name="menuDeviceList" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="设备列表" Width="65" Cursor="Hand" GroupName="menu" >
+                <Image Height="26" Source="/SCADA.UI;component/Images/Money.png" Stretch="Fill" Width="27"/>
+            </RadioButton>
+            <Image Source="/SCADA.UI;component/Images/line.png" Stretch="Fill" Width="2" Height="38" Margin="0,9.5"/>
+            <RadioButton x:Name="menuAlertList" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="设备告警" Width="65" Cursor="Hand" GroupName="menu">
+                <Image Height="27" Source="/SCADA.UI;component/Images/menu2.png" Stretch="Fill" Width="25"/>
+            </RadioButton>
+           
         </StackPanel>
         <StackPanel HorizontalAlignment="Right" Height="26" Grid.Row="3" VerticalAlignment="Center" Width="90" Margin="0,0,20,0" Orientation="Horizontal"/>
-        <Border x:Name="border" HorizontalAlignment="Right" Height="36" Margin="0,0,280,-4" Grid.Row="3" VerticalAlignment="Bottom" Width="303" Background="{StaticResource header_senmenu}" RenderTransformOrigin="0.5,0.5" Opacity="0" Visibility="Collapsed" >
+        <!--查询子菜单-->
+        <Border x:Name="bdSearch" HorizontalAlignment="Right" Height="36" Margin="0,0,280,-4" Grid.Row="3" VerticalAlignment="Bottom" Width="303" Background="{StaticResource header_senmenu}" RenderTransformOrigin="0.5,0.5" Opacity="0" Visibility="Collapsed" >
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseEnter">
-                    <ei:ControlStoryboardAction Storyboard="{StaticResource ShowSecMenuStory}"/>
+                    <ei:ControlStoryboardAction Storyboard="{StaticResource ShowSearchSecMenuStory}"/>
                 </i:EventTrigger>
                 <i:EventTrigger EventName="MouseLeave">
-                    <ei:ControlStoryboardAction Storyboard="{StaticResource HidSecMenuStory}"/>
+                    <ei:ControlStoryboardAction Storyboard="{StaticResource HidSearchSecMenuStory}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <Border.RenderTransform>
                 <CompositeTransform/>
             </Border.RenderTransform>
-            <ListBox x:Name="Secmenu" Background="{x:Null}" BorderBrush="{x:Null}" ItemsPanel="{StaticResource ItemsPanelTemplate1}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="10,10,10,0" BorderThickness="0">
+            <ListBox x:Name="lstbSearch" Background="{x:Null}" BorderBrush="{x:Null}" ItemsPanel="{StaticResource ItemsPanelTemplate1}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="10,10,10,0" BorderThickness="0">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="Template">
@@ -368,10 +503,114 @@
                         <Grid/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
-                <ListBoxItem x:Name="SecMenu1" Content="业务" VerticalAlignment="Center" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="SecMenu1"/>
-                <ListBoxItem x:Name="SecMenu2" Content="客户" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="SecMenu2"/>
-                <ListBoxItem x:Name="SecMenu3" Content="欠费增长" VerticalAlignment="Center" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="SecMenu3"/>
-                <ListBoxItem x:Name="SecMenu4" Content="欠费归属部门" VerticalAlignment="Center" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="SecMenu4"/>
+                <ListBoxItem x:Name="childMenuDataSearch" Content="数据查询" VerticalAlignment="Center" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiDataSearch"/>
+                <ListBoxItem x:Name="childMenuAlertSearch" Content="告警查询" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiAlertSearch"/>
+                <ListBoxItem x:Name="childMenuRepairLogSearch" Content="日志查询" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiAlertSearch"/>
+            </ListBox>
+        </Border>
+        <!--对比分析子菜单-->
+        <Border x:Name="bdCompare" HorizontalAlignment="Right" Height="36" Margin="0,0,280,-4" Grid.Row="3" VerticalAlignment="Bottom" Width="303" Background="{StaticResource header_senmenu}" RenderTransformOrigin="0.5,0.5" Opacity="0" Visibility="Collapsed" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseEnter">
+                    <ei:ControlStoryboardAction Storyboard="{StaticResource ShowCompareSecMenuStory}"/>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="MouseLeave">
+                    <ei:ControlStoryboardAction Storyboard="{StaticResource HidCompareSecMenuStory}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <Border.RenderTransform>
+                <CompositeTransform/>
+            </Border.RenderTransform>
+            <ListBox x:Name="lstbCompare" Background="{x:Null}" BorderBrush="{x:Null}" ItemsPanel="{StaticResource ItemsPanelTemplate1}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="10,10,10,0" BorderThickness="0">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Grid Margin="0">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="VisualStateGroup">
+                                                <VisualState x:Name="Normal">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0" To="#00000000" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border" d:IsOptimized="True"/>
+                                                    </Storyboard>
+                                                </VisualState>
+                                                <VisualState x:Name="MouseOver">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0" To="#FF9DD4D0" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border" d:IsOptimized="True"/>
+                                                    </Storyboard>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <Border x:Name="border" CornerRadius="4" BorderThickness="1" VerticalAlignment="Center" Padding="10,0" HorizontalAlignment="Center" Background="#00000000" >
+                                            <ContentPresenter VerticalAlignment="Bottom"/>
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBoxItem x:Name="childMenuByDateCompare" Content="按时间对比" VerticalAlignment="Center" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDateCompare"/>
+                <ListBoxItem x:Name="childMenuDeviceCompare" Content="按设备对比" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDeviceCompare"/>
+            </ListBox>
+        </Border>
+        <!--系统设置子菜单-->
+        <Border x:Name="bdSysSettings" HorizontalAlignment="Right" Height="36" Margin="0,0,280,-4" Grid.Row="3" VerticalAlignment="Bottom" Width="303" Background="{StaticResource header_senmenu}" RenderTransformOrigin="0.5,0.5" Opacity="0" Visibility="Collapsed" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseEnter">
+                    <ei:ControlStoryboardAction Storyboard="{StaticResource ShowSysSettingsSecMenuStory}"/>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="MouseLeave">
+                    <ei:ControlStoryboardAction Storyboard="{StaticResource HidSysSettingsSecMenuStory}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <Border.RenderTransform>
+                <CompositeTransform/>
+            </Border.RenderTransform>
+            <ListBox x:Name="lstbSysSettings" Background="{x:Null}" BorderBrush="{x:Null}" ItemsPanel="{StaticResource ItemsPanelTemplate1}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="10,10,10,0" BorderThickness="0">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Grid Margin="0">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="VisualStateGroup">
+                                                <VisualState x:Name="Normal">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0" To="#00000000" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border" d:IsOptimized="True"/>
+                                                    </Storyboard>
+                                                </VisualState>
+                                                <VisualState x:Name="MouseOver">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0" To="#FF9DD4D0" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border" d:IsOptimized="True"/>
+                                                    </Storyboard>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <Border x:Name="border" CornerRadius="4" BorderThickness="1" VerticalAlignment="Center" Padding="10,0" HorizontalAlignment="Center" Background="#00000000" >
+                                            <ContentPresenter VerticalAlignment="Bottom"/>
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBoxItem x:Name="childMenuDeviceManage" Content="设备管理" VerticalAlignment="Center" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDateCompare"/>
+                <ListBoxItem x:Name="childMenuRepairUserManage" Content="维护人员管理" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDeviceCompare"/>
+                <ListBoxItem x:Name="childMenuSysConfig" Content="系统配置" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDeviceCompare"/>
             </ListBox>
         </Border>
     </Grid>

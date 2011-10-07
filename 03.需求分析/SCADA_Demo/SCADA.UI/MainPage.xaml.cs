@@ -22,84 +22,128 @@ namespace SCADA.UI
         {
             InitializeComponent();
             //初始页面加载地图
-            this.ViewHost.Child = new  MapIndex();
-            //注册导航点击事件
-            Header.Secmenu.SelectionChanged += new SelectionChangedEventHandler(Secmenu_SelectionChanged);
-            Header.menu1.Checked += new RoutedEventHandler(menu_Checked);
-            Header.menu2.Checked += new RoutedEventHandler(menu_Checked);
-            Header.menu3.Checked += new RoutedEventHandler(menu_Checked);
-            Header.menu4.Checked += new RoutedEventHandler(menu_Checked);
-            Header.menu5.Checked += new RoutedEventHandler(menu_Checked);
-            Header.menu6.Checked += new RoutedEventHandler(menu_Checked);
-            Header.menu7.Checked += new RoutedEventHandler(menu_Checked);
+            this.ViewHost.Child = new MapIndex();
+            //注册主导航菜单点击事件
+            Header.menuMap.Checked += new RoutedEventHandler(menu_Checked);
+            Header.menuSearch.Checked += new RoutedEventHandler(menu_Checked);
+            Header.menuCompare.Checked += new RoutedEventHandler(menu_Checked);
+            Header.menuAlertList.Checked += new RoutedEventHandler(menu_Checked);
+            Header.menuStatistics.Checked += new RoutedEventHandler(menu_Checked);
+            Header.menuSysSettings.Checked += new RoutedEventHandler(menu_Checked);
+            Header.menuDeviceList.Checked += new RoutedEventHandler(menu_Checked);
+            //注册子菜单点击事件
+            Header.lstbCompare.SelectionChanged += new SelectionChangedEventHandler(lstbCompare_SelectionChanged);
+            Header.lstbSysSettings.SelectionChanged += new SelectionChangedEventHandler(lstbSysSettings_SelectionChanged);
+            Header.lstbSearch.SelectionChanged += new SelectionChangedEventHandler(lstbSearch_SelectionChanged);
         }
 
+        /// <summary>
+        /// 主菜单选择事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void menu_Checked(object sender, RoutedEventArgs e)
         {
-            var rdo = sender as RadioButton;
-            if (rdo != null)
+            var rdoButton = sender as RadioButton;
+            if (rdoButton != null)
             {
-                switch (rdo.Name)
+                switch (rdoButton.Name)
                 {
-                        //地图信息
-                    case "menu1":
+                    //地图信息
+                    case "menuMap":
                         this.ViewHost.Child = new MapIndex();
                         break;
-                        //设备列表
-                    case "menu2":
+                    //设备列表
+                    case "menuDeviceList":
                         this.ViewHost.Child = new DeviceList();
                         break;
-                        //设备告警
-                    case "menu3":
+                    //设备告警
+                    case "menuAlertList":
+                        //this.ViewHost.Child = new AlarmList();
                         //温度计
                         //this.ViewHost.Child = new Thermometer();
                         //当天曲线图
                         //this.ViewHost.Child = new DaysGraph();
                         //历史平均值
                         //this.ViewHost.Child = new HistoryAvgValue();
-
                         //树型结构
                         this.ViewHost.Child = new TreeviewGrid();
-
                         break;
-                    case "menu4":
+                    //统计分析
+                    case "menuStatistics":
                         break;
-                    case "menu5":
-                       
-                        break;
-                    case "menu6":
-                       
-                        break;
-                    case "menu7":
-                        
-                        break;
-
-                   
                 }
             }
         }
 
-        void Secmenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        #region 子菜单选择事件
+
+        /// <summary>
+        /// 查询子菜单点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void lstbSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string link = (Header.Secmenu.SelectedItem as ListBoxItem).Tag.ToString().Trim();
-            Header.menu2.IsChecked = true;
+            string link = (Header.lstbSearch.SelectedItem as ListBoxItem).Name.ToString().Trim();
+            Header.menuSearch.IsChecked = true;
             switch (link)
             {
-                case "SecMenu1":
-                    this.ViewHost.Child = new MapIndex();
+                //数据分析
+                case "childMenuDataSearch":
                     break;
-                case "SecMenu2":
-                    //this.ViewHost.Child = new CustomersIndex();
+                //系统告警日志
+                case "childMenuAlertSearch":
                     break;
-                case "SecMenu3":
-                    //this.ViewHost.Child = new ArrearChangeIndex();
+                //维护日志
+                case "childMenuRepairLogSearch":
                     break;
-                case "SecMenu4":
-                    //this.ViewHost.Child = new DepartmentView();
-                    break;
-
-                    //RadioButton
             }
         }
+
+        /// <summary>
+        /// 系统配置子菜单点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void lstbSysSettings_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string link = (Header.lstbSysSettings.SelectedItem as ListBoxItem).Name.ToString().Trim();
+            Header.menuSysSettings.IsChecked = true;
+            switch (link)
+            {
+                //设备管理
+                case "childMenuDeviceManage":
+                    break;
+                //维护人员管理
+                case "childMenuRepairUserManage":
+                    break;
+                //系统配置
+                case "childMenuSysConfig":
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 分析比较子菜单点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void lstbCompare_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string link = (Header.lstbCompare.SelectedItem as ListBoxItem).Name.ToString().Trim();
+            Header.menuCompare.IsChecked = true;
+            switch (link)
+            {
+                //按日期对比
+                case "childMenuByDateCompare":
+                    break;
+                //按设备对比
+                case "childMenuDeviceCompare":
+                    break;
+            }
+        }
+
+        #endregion
     }
 }

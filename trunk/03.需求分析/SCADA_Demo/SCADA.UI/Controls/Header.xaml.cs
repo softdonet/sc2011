@@ -17,6 +17,7 @@ namespace SCADA.UI.Controls
         public Header()
         {
             InitializeComponent();
+          
         }
     }
 }

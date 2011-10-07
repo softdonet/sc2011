@@ -19,6 +19,14 @@ namespace SCADA.UI.Modules.BingMaps
         public MapIndex()
         {
             InitializeComponent();
+            InitMap();
+        }
+
+        /// <summary>
+        /// 初始化地图（自定义导航、加载中文地图瓦片）
+        /// </summary>
+        private void InitMap()
+        {
             //自定义导航
             map.MapForeground.TemplateApplied += delegate(object sender, EventArgs args)
             {
@@ -27,39 +35,21 @@ namespace SCADA.UI.Modules.BingMaps
                     //清除导航菜单上现有项
                     NavigationBar navBar = map.MapForeground.NavigationBar;
                     navBar.HorizontalPanel.Children.Clear();
-                    //navBar.VerticalPanel.Children.Clear();
                     //添加自定义导航菜单项
-
                     ChangeMapModeButton btnRoad = new ChangeMapModeButton(new RoadMode(), "路况模式", "点击导航到路况模式");
                     btnRoad.IsChecked = false;
                     navBar.HorizontalPanel.Children.Add(btnRoad);
                     ChangeMapModeButton btnAerial = new ChangeMapModeButton(new AerialMode(true), "卫星模式", "点击导航到卫星模式");
                     btnAerial.IsChecked = true;
                     navBar.HorizontalPanel.Children.Add(btnAerial);
-
-                    //分割线
-                    //navBar.HorizontalPanel.Children.Add(new CommandSeparator());
-                    //CommandToggleButton btnCQ = new CommandToggleButton(new CustomCommand("重庆"), "重庆", "地图定位到重庆");
-                    //navBar.HorizontalPanel.Children.Add(btnCQ);
-                    //Microsoft.Maps.MapControl.Navigation.ZoomSlider sliZool = new ZoomSlider();
-
-                    //navBar.HorizontalPanel .Children.Add(sliZool);
                 };
             };
-
-            //将鸟瞰图模式添加到地图导航菜单
-            //BirdseyeMode.AddModeToNavigationBar(map);
-            //将街道模式添加到地图导航菜单(对中国地区支持的不好)
-            //StreetsideMode.AddModeToNavigationBar(map);
-
             //初始化中文地图模式
             ChinaMode chinaMode = new ChinaMode();
             MapTileLayer tileChinaLayer = chinaMode.GetChinaTileLayer();
             map.Children.Add(tileChinaLayer);
             this.map.Mode = chinaMode;
-
             map.ZoomLevel = 4;
-
             //使中文地图适应模式的切换
             map.ModeChanged += delegate(object sender, Microsoft.Maps.MapControl.MapEventArgs e)
             {

@@ -15,15 +15,12 @@ namespace SCADA.UI.Controls
 {
     public partial class Login : UserControl
     {
-       public delegate void myKeyDownHandle();
-       public event myKeyDownHandle myKeyDowmEvent;
-
+        public event RoutedEventHandler myKeyDowmEvent;
         public Login()
         {
             InitializeComponent();
             txtTile.Text = "管网SCADA系统";
             this.Loaded += new RoutedEventHandler(Login_Loaded);
-            
         }
 
         void Login_Loaded(object sender, RoutedEventArgs e)
@@ -31,11 +28,12 @@ namespace SCADA.UI.Controls
             HtmlPage.Plugin.Focus();
             txbName.Focus();
         }
+
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             if (myKeyDowmEvent != null)
             {
-                this.myKeyDowmEvent();
+                this.myKeyDowmEvent(this, new RoutedEventArgs());
             }
         }
 
@@ -45,7 +43,7 @@ namespace SCADA.UI.Controls
             {
                 if (myKeyDowmEvent != null)
                 {
-                    this.myKeyDowmEvent();
+                    this.myKeyDowmEvent(this, new RoutedEventArgs());
                 }
             }
         }

@@ -15,7 +15,7 @@ namespace SCADA.UI.Controls
 {
     public partial class Login : UserControl
     {
-        public event RoutedEventHandler myKeyDowmEvent;
+        public event RoutedEventHandler myKeyDownEvent;
         public Login()
         {
             InitializeComponent();
@@ -31,9 +31,9 @@ namespace SCADA.UI.Controls
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            if (myKeyDowmEvent != null)
+            if (myKeyDownEvent != null)
             {
-                this.myKeyDowmEvent(this, new RoutedEventArgs());
+                this.myKeyDownEvent(this, new RoutedEventArgs());
             }
         }
 
@@ -41,9 +41,9 @@ namespace SCADA.UI.Controls
         {
             if (e.Key == Key.Enter)
             {
-                if (myKeyDowmEvent != null)
+                if (myKeyDownEvent != null)
                 {
-                    this.myKeyDowmEvent(this, new RoutedEventArgs());
+                    this.myKeyDownEvent(this, new RoutedEventArgs());
                 }
             }
         }

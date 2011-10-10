@@ -13,6 +13,7 @@ using SCADA.UI.Modules.BingMaps;
 using SCADA.UI.Modules.Device;
 using SCADA.UI.Modules.Alarm;
 using SCADA.UI.SampleData;
+using SCADA.UI.Modules.AnalyseCompare;
 
 namespace SCADA.UI
 {
@@ -137,6 +138,7 @@ namespace SCADA.UI
             {
                 //按日期对比
                 case "childMenuByDateCompare":
+                    this.ViewHost.Child = new CompareByTime();
                     break;
                 //按设备对比
                 case "childMenuDeviceCompare":

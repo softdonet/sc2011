@@ -21,7 +21,7 @@ namespace SCADA.UI
             InitializeComponent();
             login = new Login();
             this.MasterContainer.Child = login;
-            login.myKeyDowmEvent += new RoutedEventHandler(login_myKeyDowmEvent);
+            login.myKeyDownEvent += new RoutedEventHandler(login_myKeyDowmEvent);
         }
 
         void login_myKeyDowmEvent(object sender, RoutedEventArgs e)
@@ -29,6 +29,13 @@ namespace SCADA.UI
             if (login.txbName.Text == "admin" && login.txtPassWord.Password == "admin")
             {
                 this.MasterContainer.Child = new MainPage();
+            }
+            else
+            {
+                MessageBox.Show("用户名或密码错误!，请重新输入");
+                login.txbName.Text = string.Empty;
+                login.txtPassWord.Password = string.Empty;
+                return;
             }
         }
     }

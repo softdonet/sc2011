@@ -60,6 +60,7 @@ namespace SCADA.UI
                         break;
                     //设备告警
                     case "menuAlertList":
+                        this.ViewHost.Child=new AlarmList();
                         //this.ViewHost.Child = new AlarmList();
                         //温度计
                         //this.ViewHost.Child = new Thermometer();
@@ -68,7 +69,7 @@ namespace SCADA.UI
                         //历史平均值
                         //this.ViewHost.Child = new HistoryAvgValue();
                         //树型结构
-                        this.ViewHost.Child = new TreeviewGrid();
+                        //this.ViewHost.Child = new TreeviewGrid();
                         break;
                     //统计分析
                     case "menuStatistics":
@@ -139,6 +140,7 @@ namespace SCADA.UI
                 //按日期对比
                 case "childMenuByDateCompare":
                     this.ViewHost.Child = new CompareByTime();
+                    //this.ViewHost.Child = new SCADA.UI.Controls.TreeListCheckBox();
                     break;
                 //按设备对比
                 case "childMenuDeviceCompare":

@@ -8,7 +8,7 @@
     x:Class="SCADA.UI.Modules.Device.DeviceList"
     mc:Ignorable="d"
    	d:DesignWidth="1024" 
-    d:DesignHeight="768 " >
+    d:DesignHeight="768 " xmlns:my="clr-namespace:SCADA.UI.Controls">
 
     <UserControl.Resources>
         <SampleData:DataGridViewSampleDataSource x:Key="DataGridViewSampleDataSource" d:IsDataSource="True"/>
@@ -39,7 +39,7 @@
         </DataTemplate>
         <DataTemplate x:Key="DataTemplate6">
             <Grid>
-                <Image Source="{Binding qushi}" Width="18" Height="18"/>
+                <Image Source="{Binding Signal}" Width="18" Height="18"/>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="DataTemplate11">
@@ -153,6 +153,8 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <sdk:TreeView  Name="treeView" Grid.Column="0" Background="Beige" />
+                        <!--<my:TreeListCheckBox x:Name="treeListCheckBox1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,-10,0,0" Width="169" Height="416" />-->
+
                         <Grid x:Name="LayoutRoot" DataContext="{Binding Source={StaticResource DataGridViewSampleDataSource}}" ShowGridLines="True" Grid.Column="1">
                         <sdk:DataGrid ItemsSource="{Binding Collection}" AutoGenerateColumns="False" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" >
                             <sdk:DataGrid.Columns>
@@ -170,7 +172,6 @@
                             </sdk:DataGrid.Columns>
                             </sdk:DataGrid>
                         </Grid>
-
                     </Grid>
                 </Border>
             </Grid>

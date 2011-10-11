@@ -257,12 +257,30 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\down_ico.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\headerbg.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\headerbg2.png" />
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\image01.png" />
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\image02.png" />
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\image03.png" />
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\image04.png" />
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\image05.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\line-chart.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\line.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\Login.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\LoginBg.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\logo.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\mapbg.png" />
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\menu1.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\menu2.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\menu3.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\menu4.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\menu5.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\Money.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\red.gif" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\red.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\s3.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\senmenu.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\signal5.png" />
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\up_ico.png" />
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\xh1.png" />
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\xh2.png" />
@@ -307,6 +325,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\LoginBg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\red.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\signal1.png" />
+    <Resource Include="Images\signal2.png" />
+    <Resource Include="Images\signal3.png" />
+    <Resource Include="Images\xh4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

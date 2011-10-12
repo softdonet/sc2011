@@ -7,7 +7,7 @@
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     mc:Ignorable="d"
     xmlns:my="clr-namespace:SCADA.UI.Controls"
-    d:DesignWidth="1024" d:DesignHeight="768 " >
+    d:DesignWidth="1024" d:DesignHeight="500 " >
 
     <Grid x:Name="LayoutRoot">
         <Border x:Name="content_Border" BorderBrush="#FF4A91BB" BorderThickness="1" Margin="5" CornerRadius="5">
@@ -28,13 +28,13 @@
                         <SolidColorBrush Color="White"></SolidColorBrush>
                     </Border.Background>
                     <Border BorderThickness="1" CornerRadius="5" Margin="1" >
-                        <Grid  ShowGridLines="True" >
+                        <Grid  ShowGridLines="True" Background="AliceBlue"  >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="61" />
                                 <RowDefinition Height="63" />
-                                <RowDefinition Height="492" />
-                                <RowDefinition Height="70" />
-                                <RowDefinition Height="10" />
+                                <RowDefinition Height="10*" />
+                                <RowDefinition Height="60" />
+                                <!--<RowDefinition Height="0" />-->
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"  />

@@ -127,8 +127,18 @@
       <DependentUpon>CompareByTime.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\BingMaps\ChinaMode.cs" />
+    <Compile Include="Modules\BingMaps\Comm.cs" />
+    <Compile Include="Modules\BingMaps\DayGraphSmall.xaml.cs">
+      <DependentUpon>DayGraphSmall.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\BingMaps\MapIndex.xaml.cs">
       <DependentUpon>MapIndex.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\BingMaps\pushPinDevice.xaml.cs">
+      <DependentUpon>pushPinDevice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\BingMaps\WeatherBar.xaml.cs">
+      <DependentUpon>WeatherBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\Device\DeviceList.xaml.cs">
       <DependentUpon>DeviceList.xaml</DependentUpon>
@@ -197,9 +207,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modules\BingMaps\DayGraphSmall.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Modules\BingMaps\MapIndex.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\BingMaps\pushPinDevice.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modules\BingMaps\WeatherBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Modules\Device\DeviceList.xaml">
       <SubType>Designer</SubType>
@@ -334,6 +356,43 @@
     <Resource Include="Images\signal2.png" />
     <Resource Include="Images\signal3.png" />
     <Resource Include="Images\xh4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modules\BingMaps\Image\Alert.gif" />
+    <Resource Include="Modules\BingMaps\Image\BLUE-base.png" />
+    <Resource Include="Modules\BingMaps\Image\GRAY-base.png" />
+    <Resource Include="Modules\BingMaps\Image\pic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modules\BingMaps\Resources\1.png" />
+    <Resource Include="Modules\BingMaps\Resources\13.png" />
+    <Resource Include="Modules\BingMaps\Resources\17.png" />
+    <Resource Include="Modules\BingMaps\Resources\19.png" />
+    <Resource Include="Modules\BingMaps\Resources\23.png" />
+    <Resource Include="Modules\BingMaps\Resources\26.png" />
+    <Resource Include="Modules\BingMaps\Resources\29.png" />
+    <Resource Include="Modules\BingMaps\Resources\31.png" />
+    <Resource Include="Modules\BingMaps\Resources\5.png" />
+    <Resource Include="Modules\BingMaps\Resources\8.png" />
+    <Resource Include="Modules\BingMaps\Resources\BLACK-highlight-01.png" />
+    <Resource Include="Modules\BingMaps\Resources\BLUE-base.png" />
+    <Resource Include="Modules\BingMaps\Resources\divider-horizontal.png" />
+    <Resource Include="Modules\BingMaps\Resources\divider-vertical.png" />
+    <Resource Include="Modules\BingMaps\Resources\GRAY-base.png" />
+    <Resource Include="Modules\BingMaps\Resources\undocked_cloudy.png" />
+    <Resource Include="Modules\BingMaps\Resources\undocked_few-showers.png" />
+    <Resource Include="Modules\BingMaps\Resources\undocked_foggy.png" />
+    <Resource Include="Modules\BingMaps\Resources\undocked_hail.png" />
+    <Resource Include="Modules\BingMaps\Resources\undocked_moon-full.png" />
+    <Resource Include="Modules\BingMaps\Resources\undocked_partly-cloudy.png" />
+    <Resource Include="Modules\BingMaps\Resources\undocked_rainy.png" />
+    <Resource Include="Modules\BingMaps\Resources\undocked_snow.png" />
+    <Resource Include="Modules\BingMaps\Resources\undocked_sun.png" />
+    <Resource Include="Modules\BingMaps\Resources\undocked_thunderstorm.png" />
+    <Resource Include="Modules\BingMaps\Resources\undocked_windy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

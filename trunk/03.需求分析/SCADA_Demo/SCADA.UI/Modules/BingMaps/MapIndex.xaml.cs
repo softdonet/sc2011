@@ -64,5 +64,72 @@ namespace SCADA.UI.Modules.BingMaps
                 }
             };
         }
+
+        MapLayer myMapLayerDevice = null;
+        MapLayer myMapLayerDeviceAvg = null;
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            map.ZoomLevel = 10;
+            map.Center = new Location(34.27, 108.95);
+            myMapLayerDevice = new MapLayer();
+            myMapLayerDeviceAvg = new MapLayer();
+            map.Children.Add(myMapLayerDevice);
+            map.Children.Add(myMapLayerDeviceAvg);
+
+            pushPinDevice myPushPin0 = new pushPinDevice();
+            myPushPin0.DevState = DeviceState.Escape;
+            myPushPin0.DeviceName = "P0000";
+            myPushPin0.DeviceTemp = "29℃";
+            myMapLayerDevice.Children.Add(myPushPin0);
+            MapLayer.SetPosition(myPushPin0, new Location(34.27, 108.95));
+
+            pushPinDevice myPushPin1 = new pushPinDevice();
+            myPushPin1.DevState = DeviceState.Normal;
+            myPushPin1.DeviceName = "P0001";
+            myPushPin1.DeviceTemp = "25℃";
+            myMapLayerDevice.Children.Add(myPushPin1);
+            MapLayer.SetPosition(myPushPin1, new Location(34.37, 108.11));
+
+            pushPinDevice myPushPin2 = new pushPinDevice();
+            myPushPin2.DevState = DeviceState.Normal;
+            myPushPin2.DeviceName = "P0002";
+            myPushPin2.DeviceTemp = "45℃";
+            myMapLayerDevice.Children.Add(myPushPin2);
+            myPushPin2.DevState = DeviceState.Escape;
+            MapLayer.SetPosition(myPushPin2, new Location(34.25, 108.23));
+
+            pushPinDevice myPushPin3= new pushPinDevice();
+            myPushPin3.DevState = DeviceState.Escape;
+            myPushPin3.DeviceName = "P0003";
+            myPushPin3.DeviceTemp = "41℃";
+            myMapLayerDevice.Children.Add(myPushPin3);
+            MapLayer.SetPosition(myPushPin3, new Location(34.10, 108.35));
+
+            pushPinDevice myPushPin4 = new pushPinDevice();
+            myPushPin4.DevState = DeviceState.Alert;
+            myPushPin4.DeviceName = "P0004";
+            myPushPin4.DeviceTemp = "65℃";
+            myMapLayerDevice.Children.Add(myPushPin4);
+            MapLayer.SetPosition(myPushPin4, new Location(34.09, 108.65));
+        }
+
+        /// <summary>
+        /// 图例折叠效果
+        /// </summary>
+        public bool flag = false;
+        private void picbtn_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            //if (!flag)
+            //{
+            //    this.PicHiddenStoryboard.Begin();
+            //}
+            //else
+            //{
+            //    this.PicShowStoryboard.Begin();
+
+            //}
+            //flag = !flag;
+        }
+
     }
 }

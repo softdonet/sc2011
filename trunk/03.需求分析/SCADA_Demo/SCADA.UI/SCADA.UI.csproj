@@ -358,9 +358,6 @@
     <Resource Include="Images\xh4.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Modules\BingMaps\Image\Alert.gif" />
-    <Resource Include="Modules\BingMaps\Image\BLUE-base.png" />
-    <Resource Include="Modules\BingMaps\Image\GRAY-base.png" />
     <Resource Include="Modules\BingMaps\Image\pic.png" />
   </ItemGroup>
   <ItemGroup>
@@ -393,6 +390,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modules\BingMaps\Image\ALERT-base1.PNG" />
+    <Resource Include="Modules\BingMaps\Image\GRAY-base1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modules\BingMaps\Image\BLUE-base1.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

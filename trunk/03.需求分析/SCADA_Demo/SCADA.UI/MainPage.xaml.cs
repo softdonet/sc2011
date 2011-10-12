@@ -14,7 +14,6 @@ using SCADA.UI.Modules.Device;
 using SCADA.UI.Modules.Alarm;
 using SCADA.UI.SampleData;
 using SCADA.UI.Modules.AnalyseCompare;
-//using SCADA.UI.Modules.AnalyseCompare;
 
 namespace SCADA.UI
 {

@@ -46,15 +46,15 @@ namespace SCADA.UI.Modules.BingMaps
                 switch (value)
                 {
                     case DeviceState.Normal:
-                        brush.ImageSource = new BitmapImage(new Uri("Image/BLUE-base.png", UriKind.Relative));
+                        brush.ImageSource = new BitmapImage(new Uri("Image/BLUE-base1.png", UriKind.Relative));
 
                         break;
                     case DeviceState.Escape:
-                        brush.ImageSource = new BitmapImage(new Uri("Image/GRAY-base.png", UriKind.Relative));
+                        brush.ImageSource = new BitmapImage(new Uri("Image/GRAY-base1.png", UriKind.Relative));
 
                         break;
                     case DeviceState.Alert:
-                        brush.ImageSource = new BitmapImage(new Uri("Image/BLUE-base.png", UriKind.Relative));
+                        brush.ImageSource = new BitmapImage(new Uri("Image/ALERT-base1.png", UriKind.Relative));
 
                         break;
 

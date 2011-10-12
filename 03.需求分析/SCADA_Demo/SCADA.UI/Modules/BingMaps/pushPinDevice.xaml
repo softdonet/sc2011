@@ -7,8 +7,9 @@
     d:DesignHeight="200" d:DesignWidth="300">
 
     <UserControl.Resources>
-        <ImageBrush ImageSource="Image/BLUE-base.png" x:Key="blueBase" />
-        <ImageBrush ImageSource="Image/GRAY-base.png" x:Key="grayBase" />
+        <ImageBrush ImageSource="Image/BLUE-base1.png" x:Key="blueBase" />
+        <ImageBrush ImageSource="Image/GRAY-base1.png" x:Key="grayBase" />
+        <ImageBrush ImageSource="Image/AlERT-base1.png" x:Key="alertBase" />
     </UserControl.Resources>
     <Grid >
         <!--视觉状态定义区-->
@@ -46,7 +47,7 @@ Storyboard.TargetProperty="(UIElement.Visibility)">
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Canvas x:Name="LayoutRoot" Width="47" Background="{StaticResource blueBase}" HorizontalAlignment="Left"  Height="51" VerticalAlignment="Top" Cursor="Hand" MouseLeave="GoToLeave" MouseEnter="GoToEnter" Margin="7,15,0,0">
+        <Canvas x:Name="LayoutRoot" Width="47" Background="{StaticResource alertBase}" HorizontalAlignment="Left"  Height="51" VerticalAlignment="Top" Cursor="Hand" MouseLeave="GoToLeave" MouseEnter="GoToEnter" Margin="7,15,0,0">
             <Canvas.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -57,7 +58,7 @@ Storyboard.TargetProperty="(UIElement.Visibility)">
             </Canvas.RenderTransform>
             <Canvas >
                 <Canvas Canvas.Top="0" Canvas.Left="3" >
-                    <StackPanel x:Name="ConditionsScreen1"  Height="14" Background="#FFE8F1F1" >
+                    <StackPanel x:Name="ConditionsScreen1"  Height="14" Width="43" >
                         <TextBlock Width="40"   Height="14"   TextAlignment="Center"   FontSize="10" x:Name="txtDeviceName"  Text="P001" VerticalAlignment="Top" Margin="0" />
                       
                     </StackPanel>

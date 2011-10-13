@@ -69,7 +69,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="2*" />
                 </Grid.ColumnDefinitions>-->
-                <controls:TreeView Background="Gainsboro"  
+        <controls:TreeView Background="AliceBlue"  
                 ItemTemplate="{StaticResource NodeTemplate}"
                 ItemsSource="{StaticResource CorporationFeatures}" FontSize="14" >
 

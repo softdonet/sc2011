@@ -14,7 +14,7 @@ using SCADA.UI.Controls;
 namespace SCADA.UI
 {
     public partial class LoginPage : UserControl
-    {
+    { 
         Login login;
         public LoginPage()
         {

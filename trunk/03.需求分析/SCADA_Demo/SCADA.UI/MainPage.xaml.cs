@@ -140,10 +140,10 @@ namespace SCADA.UI
                 //按日期对比
                 case "childMenuByDateCompare":
                     this.ViewHost.Child = new CompareByTime();
-                    //this.ViewHost.Child = new SCADA.UI.Controls.TreeListCheckBox();
                     break;
                 //按设备对比
                 case "childMenuDeviceCompare":
+                    this.ViewHost.Child = new CompareByDevice();
                     break;
             }
         }

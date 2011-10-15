@@ -125,12 +125,12 @@ namespace SCADA.UI
                     break;
                 //系统参数配置
                 case "childMenuSysConfig":
-                    this.ViewHost.Child = new DevideLog();
+                    this.ViewHost.Child = new SysConfig();
                     break;
 
                 //设备日志管理
                 case "childMenuDevideLog":
-                    this.ViewHost.Child = new RepairUserManage();
+                    this.ViewHost.Child = new DevideLog();
                     break;
             }
         }

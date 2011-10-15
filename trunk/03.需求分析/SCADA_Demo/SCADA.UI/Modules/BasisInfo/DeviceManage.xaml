@@ -27,7 +27,7 @@
                     <Grid  Name="gridContoaner"  Background="Pink">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="240" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="520" />
                         </Grid.ColumnDefinitions>
 
 
@@ -74,8 +74,8 @@
 
 
 
-                        <CheckBox Content="SIM卡号：" Grid.Column="1" HorizontalAlignment="Left" Margin="12,38,0,487" Name="checkBox1" />
-                        <CheckBox Content="管理分区：" Grid.Column="1" Height="16" Margin="12,63,438,0" Name="checkBox2" VerticalAlignment="Top" Width="75" />
+                        <CheckBox Content="SIM卡号：" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,38,0,0" Name="checkBox1" />
+                        <CheckBox Content="管理分区：" Grid.Column="1" Height="16" Margin="12,63,0,0"  HorizontalAlignment="Left"   Name="checkBox2" VerticalAlignment="Top" Width="75" />
                         <CheckBox Content="安装位置：" Grid.Column="1" Height="16" HorizontalAlignment="Left" Margin="13,88,0,0" Name="checkBox3" VerticalAlignment="Top" />
                         <CheckBox Content="备     注：" Height="16" HorizontalAlignment="Left" Margin="12,115,0,0" Name="checkBox4" VerticalAlignment="Top" Grid.Column="1" />
                         <CheckBox Content="采集频率：" Height="16" HorizontalAlignment="Left" Margin="12,141,0,0" Name="checkBox5" VerticalAlignment="Top" Grid.Column="1" />
@@ -109,8 +109,10 @@
                         <TextBox Height="23" HorizontalAlignment="Left" Margin="88,394,0,0" Name="textBox14" Text="" VerticalAlignment="Top" Width="142" Grid.Column="1" />
                         <TextBox Height="23" HorizontalAlignment="Left" Margin="88,420,0,0" Name="textBox15" Text="" VerticalAlignment="Top" Width="142" Grid.Column="1" />
                         <TextBox Height="23" HorizontalAlignment="Left" Margin="89,446,0,0" Name="textBox16" Text="" VerticalAlignment="Top" Width="142" Grid.Column="1" />
-                        <CheckBox Content="接入点：" HorizontalAlignment="Left" Margin="12,346,0,179" Name="checkBox10" Grid.Column="1" />
-                        <CheckBox Content="用户名：" Height="16" Margin="12,371,438,0" Name="checkBox11" VerticalAlignment="Top" Width="75" Grid.Column="1" />
+                        
+                        
+                        <CheckBox Content="接入点：" Height="16" HorizontalAlignment="Left" Margin="12,346,0,0"  VerticalAlignment="Top" Name="checkBox10" Grid.Column="1" />
+                        <CheckBox Content="用户名：" Height="16" HorizontalAlignment="Left" Margin="12,371,0,0" Name="checkBox11" VerticalAlignment="Top" Grid.Column="1" />
                         <CheckBox Content="密    码：" Height="16" HorizontalAlignment="Left" Margin="12,396,0,0" Name="checkBox12" VerticalAlignment="Top" Grid.Column="1" />
                         <CheckBox Content="坐    标：" Height="16" HorizontalAlignment="Left" Margin="12,423,0,0" Name="checkBox13" VerticalAlignment="Top" Grid.Column="1" />
                         <CheckBox Content="连接方式：" Height="16" HorizontalAlignment="Left" Margin="12,450,0,0" Name="checkBox14" VerticalAlignment="Top" Grid.Column="1" />
@@ -119,8 +121,8 @@
                         <TextBox Height="23" HorizontalAlignment="Left" Margin="339,390,0,0" Name="textBox19" Text="" VerticalAlignment="Top" Width="142" Grid.Column="1" />
                         <TextBox Height="23" HorizontalAlignment="Left" Margin="339,416,0,0" Name="textBox20" Text="" VerticalAlignment="Top" Width="142" Grid.Column="1" />
                         <TextBox Height="23" HorizontalAlignment="Left" Margin="340,442,0,0" Name="textBox21" Text="" VerticalAlignment="Top" Width="142" Grid.Column="1" />
-                        <CheckBox Content="主DNS：" HorizontalAlignment="Left" Margin="263,342,0,183" Name="checkBox15" Grid.Column="1" />
-                        <CheckBox Content="从DNS：" Height="16" Margin="264,367,187,0" Name="checkBox16" VerticalAlignment="Top" Width="75" Grid.Column="1" />
+                        <CheckBox Content="主DNS：" Height="16"  HorizontalAlignment="Left" Margin="263,342,0,0" VerticalAlignment="Top" Name="checkBox15" Grid.Column="1" />
+                        <CheckBox Content="从DNS：" Height="16"  HorizontalAlignment="Left" Margin="264,367,0,0" Name="checkBox16" VerticalAlignment="Top" Width="75" Grid.Column="1" />
                         <CheckBox Content="中心IP：" Height="16" HorizontalAlignment="Left" Margin="263,392,0,0" Name="checkBox17" VerticalAlignment="Top" Grid.Column="1" />
                         <CheckBox Content="域名：" Height="16" HorizontalAlignment="Left" Margin="263,419,0,0" Name="checkBox18" VerticalAlignment="Top" Grid.Column="1" />
                         <CheckBox Content="端口：" Height="16" HorizontalAlignment="Left" Margin="263,446,0,0" Name="checkBox19" VerticalAlignment="Top" Grid.Column="1" />

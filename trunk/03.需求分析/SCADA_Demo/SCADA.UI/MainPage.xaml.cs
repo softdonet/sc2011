@@ -123,6 +123,8 @@ namespace SCADA.UI
                 //系统配置
                 case "childMenuSysConfig":
                     break;
+                case "childMenuDevideLog":
+                    break;
             }
         }
 

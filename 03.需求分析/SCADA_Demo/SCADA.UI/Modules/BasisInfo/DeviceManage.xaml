@@ -1,0 +1,137 @@
+﻿<UserControl x:Class="SCADA.UI.Modules.BasisInfo.DeviceManage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="600" d:DesignWidth="800" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/datagrid" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation">
+
+    <Grid x:Name="LayoutRoot">
+        <Border x:Name="content_Border" BorderBrush="#FF4A91BB" BorderThickness="1" Margin="5" CornerRadius="5">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF5BB5E3" Offset="0"/>
+                    <GradientStop Color="#FF2C5273" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <TextBlock x:Name="title_TextBlock" HorizontalAlignment="Left" Height="25" Margin="22,5,0,0" TextWrapping="Wrap" Text="设备信息管理" VerticalAlignment="Top" Width="247" FontSize="16" Foreground="White"/>
+                <Border BorderBrush="#FF4A91BB" BorderThickness="1" Margin="10,35,10,10" CornerRadius="5">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFE3E2E2" Offset="0"/>
+                            <GradientStop Color="#FFCDCCCC" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid  Name="gridContoaner"  Background="Pink">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="240" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+
+
+                        <sdk:TreeView HorizontalAlignment="Left" x:Name="treeListCheckBox1" VerticalAlignment="Top"  ScrollViewer.VerticalScrollBarVisibility="Auto" Height="541" Width="235">
+                            <sdk:TreeViewItem Header="总区域"    IsExpanded="True">
+                                <sdk:TreeViewItem Header="区域1"  IsExpanded="True">
+                                    <sdk:TreeViewItem Header="管理分区1" IsExpanded="True">
+                                        <sdk:TreeViewItem Header="片区1" IsExpanded="True">
+                                            <sdk:TreeViewItem Header="设备G1-01"  />
+                                            <sdk:TreeViewItem Header="设备G1-02"  />
+                                            <sdk:TreeViewItem Header="设备G1-03" />
+                                        </sdk:TreeViewItem>
+                                    </sdk:TreeViewItem>
+                                </sdk:TreeViewItem>
+                                <sdk:TreeViewItem Header="区域2" IsExpanded="True">
+                                    <sdk:TreeViewItem Header="管理分区2" IsExpanded="True">
+                                        <sdk:TreeViewItem Header="片区2" IsExpanded="True">
+                                            <sdk:TreeViewItem Header="设备G2-01"  />
+                                            <sdk:TreeViewItem Header="设备G2-02"  />
+                                            <sdk:TreeViewItem Header="设备G2-03" />
+                                        </sdk:TreeViewItem>
+                                    </sdk:TreeViewItem>
+                                </sdk:TreeViewItem>
+                            </sdk:TreeViewItem>
+                        </sdk:TreeView>
+
+
+
+                        <sdk:Label Grid.Column="1" Height="18" HorizontalAlignment="Left" Margin="32,12,0,0" Name="label1" VerticalAlignment="Top" Width="50" Content="设备MAC：" />
+                        
+                        
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="88,8,0,0" Name="textBox1" VerticalAlignment="Top" Width="204" Text="00-43-45-54-35-42" Grid.Column="1" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="88,34,0,0" Name="textBox2" VerticalAlignment="Top" Width="204" Grid.Column="1" Text="543523525523523532" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="88,60,0,0" Name="textBox3" VerticalAlignment="Top" Width="204" Grid.Column="1" Text="东湖一区" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="88,86,0,0" Name="textBox4" VerticalAlignment="Top" Width="204" Grid.Column="1" Text="东湖419-3-212" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="88,112,0,0" Name="textBox5" VerticalAlignment="Top" Width="204" Grid.Column="1" Text="23" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="88,138,0,0" Name="textBox6" Text="60" VerticalAlignment="Top" Width="94" Grid.Column="1" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="88,164,0,0" Name="textBox7" Text="240" VerticalAlignment="Top" Width="94" Grid.Column="1" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="88,190,0,0" Name="textBox8" Text="35.0" VerticalAlignment="Top" Width="94" Grid.Column="1" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="88,216,0,0" Name="textBox9" Text="10.0" VerticalAlignment="Top" Width="94" Grid.Column="1" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="88,242,0,0" Name="textBox10" Text="0.0" VerticalAlignment="Top" Width="94" Grid.Column="1" />
+
+
+
+
+                        <CheckBox Content="SIM卡号：" Grid.Column="1" HorizontalAlignment="Left" Margin="12,38,0,487" Name="checkBox1" />
+                        <CheckBox Content="管理分区：" Grid.Column="1" Height="16" Margin="12,63,438,0" Name="checkBox2" VerticalAlignment="Top" Width="75" />
+                        <CheckBox Content="安装位置：" Grid.Column="1" Height="16" HorizontalAlignment="Left" Margin="13,88,0,0" Name="checkBox3" VerticalAlignment="Top" />
+                        <CheckBox Content="备     注：" Height="16" HorizontalAlignment="Left" Margin="12,115,0,0" Name="checkBox4" VerticalAlignment="Top" Grid.Column="1" />
+                        <CheckBox Content="采集频率：" Height="16" HorizontalAlignment="Left" Margin="12,141,0,0" Name="checkBox5" VerticalAlignment="Top" Grid.Column="1" />
+                        <CheckBox Content="上报间隔：" Height="16" HorizontalAlignment="Left" Margin="12,166,0,0" Name="checkBox6" VerticalAlignment="Top" Grid.Column="1" />
+                        <CheckBox Content="报警上限：" Height="16" HorizontalAlignment="Left" Margin="12,192,0,0" Name="checkBox7" VerticalAlignment="Top" Grid.Column="1" />
+                        <CheckBox Content="报警下限：" Height="16" HorizontalAlignment="Left" Margin="12,218,0,0" Name="checkBox8" VerticalAlignment="Top" Grid.Column="1" />
+                        <CheckBox Content="偏     差：" Height="16" HorizontalAlignment="Left" Margin="12,245,0,0" Name="checkBox9" VerticalAlignment="Top" Grid.Column="1" />
+
+
+                        <Button Content="导出" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="40,279,0,0" Name="button1" VerticalAlignment="Top" Width="75" />
+                        <Button Content="删除" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="123,279,0,0" Name="button2" VerticalAlignment="Top" Width="75" />
+                        <Button Content="保存" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="204,279,0,0" Name="button3" VerticalAlignment="Top" Width="75" />
+
+
+                        <sdk:DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Collection}" RowHeight="20" Grid.Column="1" Margin="297,7,6,233" Height="301">
+                            <sdk:DataGrid.Columns>
+                                <sdk:DataGridTemplateColumn Header="定时表" Width="60" />
+                                <sdk:DataGridTemplateColumn Header="时" Width="60"/>
+                                <sdk:DataGridTemplateColumn Header="分" Width="60"/>
+                            </sdk:DataGrid.Columns>
+                        </sdk:DataGrid>
+                        <RadioButton Content="自定义" Grid.Column="1" Height="16" HorizontalAlignment="Left" Margin="184,143,0,0" Name="radioButton1" VerticalAlignment="Top" />
+                        <RadioButton Content="定时表" Height="16" HorizontalAlignment="Left" Margin="239,143,0,0" Name="radioButton2" VerticalAlignment="Top" Grid.Column="1" />
+                        <RadioButton Content="仅按定时表采集" Height="16" HorizontalAlignment="Left" Margin="180,169,0,0" Name="radioButton3" VerticalAlignment="Top" Grid.Column="1" />
+                        <RadioButton Content="仅按定时表上传" Height="16" HorizontalAlignment="Left" Margin="180,193,0,0" Name="radioButton4" VerticalAlignment="Top" Grid.Column="1" />
+                        <RadioButton Content="按定时表采集并上报" Height="16" HorizontalAlignment="Left" Margin="180,219,0,0" Name="radioButton5" VerticalAlignment="Top" Grid.Column="1" />
+                        <sdk:Label Content="硬件版本：" Height="18" HorizontalAlignment="Left" Margin="186,244,0,0" Name="label2" VerticalAlignment="Top" Width="50" Grid.Column="1" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="239,240,0,0" Name="textBox11" Text="V.10" VerticalAlignment="Top" Width="53" Grid.Column="1" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="88,342,0,0" Name="textBox12" Text="cmnet" VerticalAlignment="Top" Width="142" Grid.Column="1" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="88,368,0,0" Name="textBox13" Text="" VerticalAlignment="Top" Width="142" Grid.Column="1" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="88,394,0,0" Name="textBox14" Text="" VerticalAlignment="Top" Width="142" Grid.Column="1" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="88,420,0,0" Name="textBox15" Text="" VerticalAlignment="Top" Width="142" Grid.Column="1" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="89,446,0,0" Name="textBox16" Text="" VerticalAlignment="Top" Width="142" Grid.Column="1" />
+                        <CheckBox Content="接入点：" HorizontalAlignment="Left" Margin="12,346,0,179" Name="checkBox10" Grid.Column="1" />
+                        <CheckBox Content="用户名：" Height="16" Margin="12,371,438,0" Name="checkBox11" VerticalAlignment="Top" Width="75" Grid.Column="1" />
+                        <CheckBox Content="密    码：" Height="16" HorizontalAlignment="Left" Margin="12,396,0,0" Name="checkBox12" VerticalAlignment="Top" Grid.Column="1" />
+                        <CheckBox Content="坐    标：" Height="16" HorizontalAlignment="Left" Margin="12,423,0,0" Name="checkBox13" VerticalAlignment="Top" Grid.Column="1" />
+                        <CheckBox Content="连接方式：" Height="16" HorizontalAlignment="Left" Margin="12,450,0,0" Name="checkBox14" VerticalAlignment="Top" Grid.Column="1" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="339,338,0,0" Name="textBox17" Text="cmnet" VerticalAlignment="Top" Width="142" Grid.Column="1" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="339,364,0,0" Name="textBox18" Text="" VerticalAlignment="Top" Width="142" Grid.Column="1" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="339,390,0,0" Name="textBox19" Text="" VerticalAlignment="Top" Width="142" Grid.Column="1" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="339,416,0,0" Name="textBox20" Text="" VerticalAlignment="Top" Width="142" Grid.Column="1" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="340,442,0,0" Name="textBox21" Text="" VerticalAlignment="Top" Width="142" Grid.Column="1" />
+                        <CheckBox Content="主DNS：" HorizontalAlignment="Left" Margin="263,342,0,183" Name="checkBox15" Grid.Column="1" />
+                        <CheckBox Content="从DNS：" Height="16" Margin="264,367,187,0" Name="checkBox16" VerticalAlignment="Top" Width="75" Grid.Column="1" />
+                        <CheckBox Content="中心IP：" Height="16" HorizontalAlignment="Left" Margin="263,392,0,0" Name="checkBox17" VerticalAlignment="Top" Grid.Column="1" />
+                        <CheckBox Content="域名：" Height="16" HorizontalAlignment="Left" Margin="263,419,0,0" Name="checkBox18" VerticalAlignment="Top" Grid.Column="1" />
+                        <CheckBox Content="端口：" Height="16" HorizontalAlignment="Left" Margin="263,446,0,0" Name="checkBox19" VerticalAlignment="Top" Grid.Column="1" />
+                    </Grid>
+
+
+
+
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+
+</UserControl>

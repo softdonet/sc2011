@@ -92,6 +92,9 @@
     <Reference Include="Telerik.Windows.Controls, Version=2010.2.714.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.Charting, Version=2010.2.714.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.GridView, Version=2010.2.714.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2010.2.714.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7" />
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2010.2.714.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7" />
+    <Reference Include="Telerik.Windows.Controls.RibbonBar, Version=2010.2.714.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7" />
     <Reference Include="Telerik.Windows.Data, Version=2010.2.714.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
@@ -117,7 +120,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Alarm\AlarmList.xaml.cs">
+    <Compile Include="Images\Alarm\AlarmList.xaml.cs">
       <DependentUpon>AlarmList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\AnalyseCompare\CompareByDevice.xaml.cs">
@@ -125,6 +128,18 @@
     </Compile>
     <Compile Include="Modules\AnalyseCompare\CompareByTime.xaml.cs">
       <DependentUpon>CompareByTime.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\BasisInfo\DeviceManage.xaml.cs">
+      <DependentUpon>DeviceManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\BasisInfo\DevideLog.xaml.cs">
+      <DependentUpon>DevideLog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\BasisInfo\RepairUserManage.xaml.cs">
+      <DependentUpon>RepairUserManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\BasisInfo\SysConfig.xaml.cs">
+      <DependentUpon>SysConfig.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\BingMaps\ChinaMode.cs" />
     <Compile Include="Modules\BingMaps\Comm.cs" />
@@ -195,7 +210,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Modules\Alarm\AlarmList.xaml">
+    <Page Include="Images\Alarm\AlarmList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -204,6 +219,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modules\AnalyseCompare\CompareByTime.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\BasisInfo\DeviceManage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\BasisInfo\DevideLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\BasisInfo\RepairUserManage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\BasisInfo\SysConfig.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -14,6 +14,7 @@ using SCADA.UI.Modules.Device;
 using SCADA.UI.Modules.Alarm;
 using SCADA.UI.SampleData;
 using SCADA.UI.Modules.AnalyseCompare;
+using SCADA.UI.Modules.BasisInfo;
 
 namespace SCADA.UI
 {
@@ -60,7 +61,7 @@ namespace SCADA.UI
                         break;
                     //设备告警
                     case "menuAlertList":
-                        this.ViewHost.Child=new AlarmList();
+                        this.ViewHost.Child = new AlarmList();
                         //this.ViewHost.Child = new AlarmList();
                         //温度计
                         //this.ViewHost.Child = new Thermometer();
@@ -114,16 +115,22 @@ namespace SCADA.UI
             Header.menuSysSettings.IsChecked = true;
             switch (link)
             {
-                //设备管理
+                //设备信息管理
                 case "childMenuDeviceManage":
+                    this.ViewHost.Child = new DeviceManage();
                     break;
                 //维护人员管理
                 case "childMenuRepairUserManage":
+                    this.ViewHost.Child = new RepairUserManage();
                     break;
-                //系统配置
+                //系统参数配置
                 case "childMenuSysConfig":
+                    this.ViewHost.Child = new DevideLog();
                     break;
+
+                //设备日志管理
                 case "childMenuDevideLog":
+                    this.ViewHost.Child = new RepairUserManage();
                     break;
             }
         }

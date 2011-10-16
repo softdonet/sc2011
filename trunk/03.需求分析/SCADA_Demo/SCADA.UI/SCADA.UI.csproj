@@ -129,6 +129,9 @@
     <Compile Include="Modules\AnalyseCompare\CompareByTime.xaml.cs">
       <DependentUpon>CompareByTime.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\BasisInfo\DatabaseBackUp.xaml.cs">
+      <DependentUpon>DatabaseBackUp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\BasisInfo\DeviceManage.xaml.cs">
       <DependentUpon>DeviceManage.xaml</DependentUpon>
     </Compile>
@@ -157,6 +160,15 @@
     </Compile>
     <Compile Include="Modules\Device\DeviceList.xaml.cs">
       <DependentUpon>DeviceList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Query\QueryAlarm.xaml.cs">
+      <DependentUpon>QueryAlarm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Query\QueryDevice.xaml.cs">
+      <DependentUpon>QueryDevice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Query\QueryLog.xaml.cs">
+      <DependentUpon>QueryLog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource.xaml.cs">
@@ -222,6 +234,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modules\BasisInfo\DatabaseBackUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\BasisInfo\DeviceManage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -257,6 +273,23 @@
     <Page Include="Modules\Device\DeviceList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Query\QueryAlarm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Query\QueryDevice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Query\QueryLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Properties\DesignTimeResources.xaml" Condition="'$(DesignTime)'=='true' OR ('$(SolutionPath)'!='' AND Exists('$(SolutionPath)') AND '$(BuildingInsideVisualStudio)'!='true' AND '$(BuildingInsideExpressionBlend)'!='true')">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
     </Page>
     <Page Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource.xaml">
       <Generator>MSBuild:Compile</Generator>

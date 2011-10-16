@@ -94,12 +94,15 @@ namespace SCADA.UI
             {
                 //数据分析
                 case "childMenuDataSearch":
+                    this.ViewHost.Child = new SCADA.UI.Modules.Query.QueryDevice();
                     break;
                 //系统告警日志
                 case "childMenuAlertSearch":
+                    this.ViewHost.Child = new SCADA.UI.Modules.Query.QueryAlarm();
                     break;
                 //维护日志
                 case "childMenuRepairLogSearch":
+                    this.ViewHost.Child = new SCADA.UI.Modules.Query.QueryLog();
                     break;
             }
         }
@@ -131,6 +134,9 @@ namespace SCADA.UI
                 //设备日志管理
                 case "childMenuDevideLog":
                     this.ViewHost.Child = new DevideLog();
+                    break;
+                case "DatabaseBackUp":
+                    this.ViewHost.Child = new DatabaseBackUp();
                     break;
             }
         }

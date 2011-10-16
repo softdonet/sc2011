@@ -120,7 +120,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Images\Alarm\AlarmList.xaml.cs">
+    <Compile Include="Modules\Alarm\AlarmList.xaml.cs">
       <DependentUpon>AlarmList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\AnalyseCompare\CompareByDevice.xaml.cs">
@@ -210,9 +210,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Images\Alarm\AlarmList.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Modules\Alarm\AlarmList.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Modules\AnalyseCompare\CompareByDevice.xaml">
       <SubType>Designer</SubType>

@@ -15,6 +15,7 @@ using SCADA.UI.Modules.Alarm;
 using SCADA.UI.SampleData;
 using SCADA.UI.Modules.AnalyseCompare;
 using SCADA.UI.Modules.BasisInfo;
+using SCADA.UI.Modules.Statistics;
 
 namespace SCADA.UI
 {
@@ -74,6 +75,8 @@ namespace SCADA.UI
                         break;
                     //统计分析
                     case "menuStatistics":
+                        this.ViewHost.Child = new StatisticsAnalyse();
+
                         break;
                 }
             }

@@ -17,6 +17,7 @@ using SCADA.UI.Modules.AnalyseCompare;
 using SCADA.UI.Modules.BasisInfo;
 using SCADA.UI.Modules.Statistics;
 
+
 namespace SCADA.UI
 {
     public partial class MainPage : UserControl
@@ -58,7 +59,7 @@ namespace SCADA.UI
                         break;
                     //设备列表
                     case "menuDeviceList":
-                        this.ViewHost.Child = new DeviceList();
+                        this.ViewHost.Child = new  DeviceList();
                         break;
                     //设备告警
                     case "menuAlertList":

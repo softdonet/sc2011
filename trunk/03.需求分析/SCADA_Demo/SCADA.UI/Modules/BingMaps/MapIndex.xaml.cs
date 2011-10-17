@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Maps.MapControl;
 using Microsoft.Maps.MapControl.Navigation;
+using SCADA.UI.Modules.Device;
 
 namespace SCADA.UI.Modules.BingMaps
 {
@@ -20,8 +21,14 @@ namespace SCADA.UI.Modules.BingMaps
         {
             InitializeComponent();
             InitMap();
+            MyContent.CloseBtn += new EventHandler(MyContent_CloseBtn);
         }
 
+        void MyContent_CloseBtn(object sender, EventArgs e)
+        {
+            Storyboard2.Begin();
+            ViewHost.Visibility = Visibility.Collapsed;
+        }
         /// <summary>
         /// 初始化地图（自定义导航、加载中文地图瓦片）
         /// </summary>
@@ -82,6 +89,7 @@ namespace SCADA.UI.Modules.BingMaps
             myPushPin0.DeviceTemp = "29℃";
             myMapLayerDevice.Children.Add(myPushPin0);
             MapLayer.SetPosition(myPushPin0, new Location(34.27, 108.95));
+            myPushPin0.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
 
             pushPinDevice myPushPin1 = new pushPinDevice();
             myPushPin1.DevState = DeviceState.Normal;
@@ -89,6 +97,7 @@ namespace SCADA.UI.Modules.BingMaps
             myPushPin1.DeviceTemp = "25℃";
             myMapLayerDevice.Children.Add(myPushPin1);
             MapLayer.SetPosition(myPushPin1, new Location(34.37, 108.11));
+            myPushPin1.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
 
             pushPinDevice myPushPin2 = new pushPinDevice();
             myPushPin2.DevState = DeviceState.Normal;
@@ -97,6 +106,7 @@ namespace SCADA.UI.Modules.BingMaps
             myMapLayerDevice.Children.Add(myPushPin2);
             myPushPin2.DevState = DeviceState.Escape;
             MapLayer.SetPosition(myPushPin2, new Location(34.25, 108.23));
+            myPushPin2.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
 
             pushPinDevice myPushPin3= new pushPinDevice();
             myPushPin3.DevState = DeviceState.Escape;
@@ -104,6 +114,7 @@ namespace SCADA.UI.Modules.BingMaps
             myPushPin3.DeviceTemp = "41℃";
             myMapLayerDevice.Children.Add(myPushPin3);
             MapLayer.SetPosition(myPushPin3, new Location(34.10, 108.35));
+            myPushPin3.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
 
             pushPinDevice myPushPin4 = new pushPinDevice();
             myPushPin4.DevState = DeviceState.Alert;
@@ -111,6 +122,14 @@ namespace SCADA.UI.Modules.BingMaps
             myPushPin4.DeviceTemp = "65℃";
             myMapLayerDevice.Children.Add(myPushPin4);
             MapLayer.SetPosition(myPushPin4, new Location(34.09, 108.65));
+            myPushPin4.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
+        }
+
+        void myPushPin_onclickDetails(object sender, RoutedEventArgs e)
+        {
+            Storyboard1.Begin();
+            MyContent.Content = new DetailsPage();
+            MyContent.Title = "设备详细信息";
         }
 
         /// <summary>

@@ -114,6 +114,8 @@
     <Compile Include="Controls\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MyContent.cs" />
+    <Compile Include="Controls\MyWin.cs" />
     <Compile Include="Controls\TreeListCheckBox.xaml.cs">
       <DependentUpon>TreeListCheckBox.xaml</DependentUpon>
     </Compile>
@@ -160,6 +162,12 @@
     </Compile>
     <Compile Include="Modules\BingMaps\WeatherBar.xaml.cs">
       <DependentUpon>WeatherBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Device\DetailsPage.xaml.cs">
+      <DependentUpon>DetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Device\DeviceDetails.xaml.cs">
+      <DependentUpon>DeviceDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\Device\DeviceList.xaml.cs">
       <DependentUpon>DeviceList.xaml</DependentUpon>
@@ -275,6 +283,14 @@
     <Page Include="Modules\BingMaps\WeatherBar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modules\Device\DetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Device\DeviceDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modules\Device\DeviceList.xaml">
       <SubType>Designer</SubType>

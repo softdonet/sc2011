@@ -90,7 +90,7 @@ Storyboard.TargetProperty="(UIElement.Visibility)">
                         <TextBlock  x:Name="txtProjectInfor"   TextWrapping="Wrap" Text ="维护人员：刘征占"  FontSize="11" Foreground="Black" Margin="0,0,10,0"/>
                        
                     </StackPanel>
-                    <HyperlinkButton x:Name="hlUrl"    HorizontalAlignment="Right"  Content="查看详情" FontSize="11" TargetName = "_blank" Foreground="#FF0000CC" Margin="0,0,12,15" VerticalAlignment="Bottom" d:LayoutOverrides="VerticalAlignment"/>
+                    <HyperlinkButton x:Name="hlUrl"    HorizontalAlignment="Right"  Content="查看详情" FontSize="11" TargetName = "_blank" Foreground="#FF0000CC" Margin="0,0,12,15" VerticalAlignment="Bottom" d:LayoutOverrides="VerticalAlignment" Click="hlUrl_Click" />
                 </Grid>
             </Border>
         </Canvas>

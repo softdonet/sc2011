@@ -104,5 +104,13 @@ namespace SCADA.UI.Modules.BingMaps
         {
             VisualStateManager.GoToState(this, "Leave", false);
         }
+        public event RoutedEventHandler onclickDetails;
+        private void hlUrl_Click(object sender, RoutedEventArgs e)
+        {
+            if (onclickDetails != null)
+            {
+                this.onclickDetails(this, new RoutedEventArgs());
+            }
+        }
     }
 }

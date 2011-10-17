@@ -44,12 +44,12 @@ namespace SCADA.Web
 
 
 
-            string sername = "故障";
+            string sername = "故障1";
             this.Chart1.Series.Add(sername);
             this.Chart1.Series[sername].Type = SeriesChartType.Gantt;
 
 
-            this.Chart1.Series[sername].Points.AddXY(0, dateValue.AddDays(0), dateValue.AddDays(5));
+            this.Chart1.Series[sername].Points.AddXY(0, dateValue.AddDays(0), dateValue.AddDays(0.3));
             this.Chart1.Series[sername].Points[0].Color = 故障;
 
             this.Chart1.Series[sername].Points.AddXY(0, dateValue.AddDays(13), dateValue.AddDays(15));

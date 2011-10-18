@@ -51,15 +51,15 @@
                             </telerik:GridViewDataColumn.AggregateFunctions>-->
                         </telerik:GridViewDataColumn>
                         <telerik:GridViewDataColumn Header="ProductName" DataMemberBinding="{Binding ProductName}" />
-                        <telerik:GridViewDataColumn Header="UnitPrice" DataMemberBinding="{Binding UnitPrice}" DataFormatString="{}{0:c}">
-                            <!--<telerik:GridViewDataColumn.AggregateFunctions>
-                                <telerik:AverageFunction SourceField="UnitPrice" ResultFormatString="{}Average price: {0:c}" FunctionName="UnitPrice" />
-                            </telerik:GridViewDataColumn.AggregateFunctions>-->
+                        <telerik:GridViewDataColumn Header="平均价格" DataMemberBinding="{Binding UnitPrice}" DataFormatString="{}{0:c}">
+                            <telerik:GridViewDataColumn.AggregateFunctions>
+                                <telerik:AverageFunction SourceField="UnitPrice" ResultFormatString="{}Average price: {0:c}" FunctionName="平均价格" />
+                            </telerik:GridViewDataColumn.AggregateFunctions>
                         </telerik:GridViewDataColumn>
                         <telerik:GridViewDataColumn Header="UnitsInStock" DataMemberBinding="{Binding UnitsInStock}">
-                            <!--<telerik:GridViewDataColumn.AggregateFunctions>
+                            <telerik:GridViewDataColumn.AggregateFunctions>
                                 <telerik:SumFunction SourceField="UnitsInStock" ResultFormatString="{}Total units: {0}" />
-                            </telerik:GridViewDataColumn.AggregateFunctions>-->
+                            </telerik:GridViewDataColumn.AggregateFunctions>
                         </telerik:GridViewDataColumn>
                     </telerik:RadGridView.Columns>
                 </telerik:RadGridView>

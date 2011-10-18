@@ -198,9 +198,9 @@ namespace Expression.Blend.SampleData.DataGridViewSampleDataSource
 			}
 		}
 
-		private string _Temperature = string.Empty;
+		private double _Temperature = 0;
 
-		public string Temperature
+		public double Temperature
 		{
 			get
 			{
@@ -270,6 +270,44 @@ namespace Expression.Blend.SampleData.DataGridViewSampleDataSource
 				{
 					this._Operation = value;
 					this.OnPropertyChanged("Operation");
+				}
+			}
+		}
+
+		private string _Area = string.Empty;
+
+		public string Area
+		{
+			get
+			{
+				return this._Area;
+			}
+
+			set
+			{
+				if (this._Area != value)
+				{
+					this._Area = value;
+					this.OnPropertyChanged("Area");
+				}
+			}
+		}
+
+		private string _Distance = string.Empty;
+
+		public string Distance
+		{
+			get
+			{
+				return this._Distance;
+			}
+
+			set
+			{
+				if (this._Distance != value)
+				{
+					this._Distance = value;
+					this.OnPropertyChanged("Distance");
 				}
 			}
 		}

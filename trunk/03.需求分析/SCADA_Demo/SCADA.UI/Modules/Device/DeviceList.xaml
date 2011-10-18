@@ -17,7 +17,12 @@
 
     <UserControl.Resources>
         <SampleData:DataGridViewSampleDataSource x:Key="DataGridViewSampleDataSource" d:IsDataSource="True"/>
-        <DataTemplate x:Key="DataTemplate1">
+        <DataTemplate x:Key="DataTemplate0">
+            <Grid Height="28">
+                <TextBlock Margin="2,0" Text="{Binding Area}"  HorizontalAlignment="Center" d:LayoutOverrides="Width, Height" VerticalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+	    <DataTemplate x:Key="DataTemplate1">
             <Grid Height="28">
                 <TextBlock Margin="2,0" Text="{Binding Number}"  HorizontalAlignment="Center" d:LayoutOverrides="Width, Height" VerticalAlignment="Center"/>
             </Grid>
@@ -192,8 +197,9 @@
                             <telerik:RadGridView x:Name="RadGridView1" ItemsSource="{Binding Collection}" AutoExpandGroups="True" AutoGenerateColumns="False"
                              ShowColumnFooters="True"  ShowGroupFooters="True" ShowGroupPanel="False"   CanUserSortColumns="True"   > 
                                 <telerik:RadGridView.GroupDescriptors>
-                                    <telerik:GroupDescriptor Member="Device" />
+                                    <telerik:GroupDescriptor Member="Area"/>
                                     <telerik:GroupDescriptor Member="ManageArea" />
+									<telerik:GroupDescriptor Member="Distance"/>
                                 </telerik:RadGridView.GroupDescriptors>
                                 <telerik:RadGridView.GroupRowStyle>
                                     <Style TargetType="telerik:GridViewGroupRow">
@@ -201,21 +207,22 @@
                                     </Style>
                                 </telerik:RadGridView.GroupRowStyle>
                                 <telerik:RadGridView.Columns>
-                                    <telerik:GridViewDataColumn  Width="80" Header="设备名"  CellTemplate="{StaticResource DataTemplate5}"/>
-                                    <telerik:GridViewDataColumn Width="80" Header="管理分区"  CellTemplate="{StaticResource DataTemplate3}" />
+                                    <telerik:GridViewDataColumn  Width="80" Header="设备名"  CellTemplate="{StaticResource DataTemplate5}" SortMemberPath="Device"/>
+                                    <!--<telerik:GridViewDataColumn Width="80" Header="管理分区"  CellTemplate="{StaticResource DataTemplate3}" />-->
                                     <telerik:GridViewDataColumn Width="*" Header="安装地点" CellTemplate="{StaticResource DataTemplate2}" />
                                     <telerik:GridViewDataColumn Width="80" Header="更新时间" CellTemplate="{StaticResource DataTemplate4}" />
-                                    
+
                                     <telerik:GridViewDataColumn Width="80" Header="温度"  CellTemplate="{StaticResource DataTemplate8}">
-                                        <!--<telerik:GridViewDataColumn.AggregateFunctions>
-                                <telerik:SumFunction SourceField="UnitsInStock" ResultFormatString="{}Total units: {0}" />
-                            </telerik:GridViewDataColumn.AggregateFunctions>-->
+                                        <telerik:GridViewDataColumn.AggregateFunctions>
+                                            <telerik:AverageFunction SourceField="Temperature" ResultFormatString="{}平均温度: {0}"/>
+                                        </telerik:GridViewDataColumn.AggregateFunctions>
+                                       
                                     </telerik:GridViewDataColumn>
 
                                     <telerik:GridViewDataColumn Width="80" Header="压强"  CellTemplate="{StaticResource DataTemplate9}">
                                         <!--<telerik:GridViewDataColumn.AggregateFunctions>
-                                <telerik:SumFunction SourceField="UnitsInStock" ResultFormatString="{}Total units: {0}" />
-                            </telerik:GridViewDataColumn.AggregateFunctions>-->
+                                             <telerik:AverageFunction SourceField="Pressure" ResultFormatString="{}Total units: {0}" />
+                                        </telerik:GridViewDataColumn.AggregateFunctions>-->
                                     </telerik:GridViewDataColumn>
 
                                     <telerik:GridViewDataColumn Width="50" Header="状态"  CellTemplate="{StaticResource DataTemplate10}">

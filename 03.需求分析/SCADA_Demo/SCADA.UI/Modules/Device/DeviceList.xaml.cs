@@ -20,6 +20,11 @@ namespace SCADA.UI.Modules.Device
         {
             InitializeComponent();
         }
+
+        private void GridViewDataColumn_SortingStateChanged(object sender, Telerik.Windows.RadRoutedPropertyChangedEventArgs<Telerik.Windows.Controls.SortingState> e)
+        {
+
+        }
     }
 
 

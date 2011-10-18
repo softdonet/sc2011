@@ -123,51 +123,60 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid>
-        <TextBlock x:Name="title_TextBlock" HorizontalAlignment="Left" Height="25" Margin="22,5,0,0" TextWrapping="Wrap" Text="模板页" VerticalAlignment="Top" Width="247" FontSize="16" Foreground="White"/>
+    <Grid x:Name="LayoutRoot1">
+        <Border x:Name="content_Border" BorderBrush="#FF4A91BB" BorderThickness="1" Margin="5" CornerRadius="5">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF5BB5E3" Offset="0"/>
+                    <GradientStop Color="#FF2C5273" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+        <TextBlock x:Name="title_TextBlock" HorizontalAlignment="Left" Height="25" Margin="22,5,0,0" TextWrapping="Wrap" Text="日志查询" VerticalAlignment="Top" Width="247" FontSize="16" Foreground="White"/>
         <Border BorderBrush="#FF4A91BB" BorderThickness="1" Margin="10,35,10,10" CornerRadius="5">
             <Border.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFE3E2E2" Offset="0"/>
-                    <GradientStop Color="#FFCDCCCC" Offset="1"/>
+                    <GradientStop Color="#FF5BB5E3" Offset="0"/>
+                    <GradientStop Color="#FF2C5273" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
             <Border BorderThickness="1" CornerRadius="5" Margin="1" Background="AliceBlue">
-                <Grid  Name="gridContoaner"  Background="AliceBlue">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                        <Grid  Name="gridContoaner"  Background="AliceBlue">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                    <Grid x:Name="LayoutRoot" DataContext="{Binding Source={StaticResource DataGridViewSampleDataSource}}" ShowGridLines="False" Grid.Column="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="112*" />
-                            <ColumnDefinition Width="160*" />
-                            <ColumnDefinition Width="110*" />
-                            <ColumnDefinition Width="153*" />
-                            <ColumnDefinition Width="132*" />
-                            <ColumnDefinition Width="160*" />
-                            <ColumnDefinition Width="171*" />
-                        </Grid.ColumnDefinitions>
-                        <sdk:DataGrid ItemsSource="{Binding Collection}" AutoGenerateColumns="False" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" Height="484" VerticalAlignment="Top" Grid.ColumnSpan="7" Margin="0,37,0,0">
-                            <sdk:DataGrid.Columns>
-                                <sdk:DataGridTemplateColumn Header="设备名称" Width="80" DisplayIndex="1" CellTemplate="{StaticResource DataTemplate1}" />
-                                <sdk:DataGridTemplateColumn Header="安装地点" Width="320" CellTemplate="{StaticResource DataTemplate3}" />
-                                <sdk:DataGridTemplateColumn Header="操作人" Width="80" CellTemplate="{StaticResource DataTemplate4}" />
-                                <sdk:DataGridTemplateColumn Width="*" Header="备注" CellTemplate="{StaticResource DataTemplate5}" />
-                            </sdk:DataGrid.Columns>
-                        </sdk:DataGrid>
-                        <sdk:Label Height="20" HorizontalAlignment="Left" Margin="10,6,0,0" Name="label1" Content="设备名称：" VerticalAlignment="Top" Width="80" />
-                        <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="11,7,0,0" Name="textBox1" VerticalAlignment="Top" Width="120" />
-                        <sdk:Label Grid.Column="2" Height="28" HorizontalAlignment="Left" Margin="9,8,0,0" Name="label2" Content="安装地点:" VerticalAlignment="Top" Width="80" />
-                        <TextBox Grid.Column="3" Height="23" HorizontalAlignment="Left" Margin="21,10,0,0" Name="textBox2" VerticalAlignment="Top" Width="120" />
-                        <sdk:Label Grid.Column="4" Height="20" HorizontalAlignment="Left" Margin="13,10,0,0" Name="label3" Content="操作人:"  VerticalAlignment="Top" Width="80" />
-                        <TextBox Grid.Column="5" Height="23" HorizontalAlignment="Left" Margin="22,10,0,0" Name="textBox3" VerticalAlignment="Top" Width="120" />
-                        <Button Content="查询" Grid.Column="6" Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" Name="btnCheck" VerticalAlignment="Top" Width="75" />
-                    </Grid>
-                </Grid>
-
-            </Border>
+                            <Grid x:Name="LayoutRoot" DataContext="{Binding Source={StaticResource DataGridViewSampleDataSource}}" ShowGridLines="False" Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="112*" />
+                                    <ColumnDefinition Width="160*" />
+                                    <ColumnDefinition Width="110*" />
+                                    <ColumnDefinition Width="153*" />
+                                    <ColumnDefinition Width="132*" />
+                                    <ColumnDefinition Width="160*" />
+                                    <ColumnDefinition Width="171*" />
+                                </Grid.ColumnDefinitions>
+                                <sdk:DataGrid ItemsSource="{Binding Collection}" AutoGenerateColumns="False" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" Height="484" VerticalAlignment="Top" Grid.ColumnSpan="7" Margin="0,37,0,0">
+                                    <sdk:DataGrid.Columns>
+                                        <sdk:DataGridTemplateColumn Header="设备名称" Width="80" DisplayIndex="1" CellTemplate="{StaticResource DataTemplate1}" />
+                                        <sdk:DataGridTemplateColumn Header="安装地点" Width="320" CellTemplate="{StaticResource DataTemplate3}" />
+                                        <sdk:DataGridTemplateColumn Header="操作人" Width="80" CellTemplate="{StaticResource DataTemplate4}" />
+                                        <sdk:DataGridTemplateColumn Width="*" Header="备注" CellTemplate="{StaticResource DataTemplate5}" />
+                                    </sdk:DataGrid.Columns>
+                                </sdk:DataGrid>
+                                <sdk:Label Height="20" HorizontalAlignment="Left" Margin="10,6,0,0" Name="label1" Content="设备名称：" VerticalAlignment="Top" Width="80" />
+                                <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="11,10,0,0" Name="textBox1" VerticalAlignment="Top" Width="120" />
+                                <sdk:Label Grid.Column="2" Height="22" HorizontalAlignment="Left" Margin="9,8,0,0" Name="label2" Content="安装地点:" VerticalAlignment="Top" Width="80" />
+                                <TextBox Grid.Column="3" Height="23" HorizontalAlignment="Left" Margin="21,10,0,0" Name="textBox2" VerticalAlignment="Top" Width="120" />
+                                <sdk:Label Grid.Column="4" Height="20" HorizontalAlignment="Left" Margin="13,10,0,0" Name="label3" Content="操作人:"  VerticalAlignment="Top" Width="80" />
+                                <TextBox Grid.Column="5" Height="23" HorizontalAlignment="Left" Margin="22,10,0,0" Name="textBox3" VerticalAlignment="Top" Width="120" />
+                                <Button Content="查询" Grid.Column="6" Height="23" HorizontalAlignment="Left" Margin="49,10,0,0" Name="btnCheck" VerticalAlignment="Top" Width="75" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+        </Border>
+    </Grid>
         </Border>
     </Grid>
 </UserControl>

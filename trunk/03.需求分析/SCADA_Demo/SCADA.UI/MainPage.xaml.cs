@@ -139,7 +139,7 @@ namespace SCADA.UI
                 case "childMenuDevideLog":
                     this.ViewHost.Child = new DevideLog();
                     break;
-                case "DatabaseBackUp":
+                case "childMenuDatabaseBak":
                     this.ViewHost.Child = new DatabaseBackUp();
                     break;
             }

@@ -19,11 +19,23 @@ namespace SCADA.UI.Modules.Device
         public DeviceList()
         {
             InitializeComponent();
+            MyContent.CloseBtn += new EventHandler(MyContent_CloseBtn);
         }
-
+        void MyContent_CloseBtn(object sender, EventArgs e)
+        {
+            Storyboard2.Begin();
+            ViewHost.Visibility = Visibility.Collapsed;
+        }
         private void GridViewDataColumn_SortingStateChanged(object sender, Telerik.Windows.RadRoutedPropertyChangedEventArgs<Telerik.Windows.Controls.SortingState> e)
         {
 
+        }
+
+        private void RadGridView1_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangeEventArgs e)
+        {
+            Storyboard1.Begin();
+            MyContent.Content = new DetailsPage();
+            MyContent.Title = "设备详细信息";
         }
     }
 

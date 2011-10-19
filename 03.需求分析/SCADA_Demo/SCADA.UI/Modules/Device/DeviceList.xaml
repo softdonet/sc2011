@@ -302,7 +302,7 @@
                             </telerik:GridViewDataColumn.AggregateFunctions>-->
                                     </telerik:GridViewDataColumn>
 
-                                    <telerik:GridViewDataColumn Width="80" Header="操作"  CellTemplate="{StaticResource DataTemplate13}"/>
+                                    <telerik:GridViewDataColumn Width="80" Header="操作"   CellTemplate="{StaticResource DataTemplate13}"/>
                                     
                                 </telerik:RadGridView.Columns>
                             </telerik:RadGridView>

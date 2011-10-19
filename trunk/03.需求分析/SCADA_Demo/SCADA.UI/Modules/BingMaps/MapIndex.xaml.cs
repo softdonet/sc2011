@@ -76,8 +76,10 @@ namespace SCADA.UI.Modules.BingMaps
         MapLayer myMapLayerDeviceAvg = null;
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            map.ZoomLevel = 10;
-            map.Center = new Location(34.27, 108.95);
+            map.ZoomLevel = 12;
+            double  weidu = (39.9487 + 39.90705 + 39.98698 + 39.96754 + 39.88405) / 5.0;
+            double jindu = (116.45072 + 116.37995 + 116.36773 + 116.36932 + 116.33072) / 5.0;
+            map.Center = new Location(weidu, jindu);
             myMapLayerDevice = new MapLayer();
             myMapLayerDeviceAvg = new MapLayer();
             map.Children.Add(myMapLayerDevice);
@@ -88,7 +90,7 @@ namespace SCADA.UI.Modules.BingMaps
             myPushPin0.DeviceName = "P0000";
             myPushPin0.DeviceTemp = "29℃";
             myMapLayerDevice.Children.Add(myPushPin0);
-            MapLayer.SetPosition(myPushPin0, new Location(34.27, 108.95));
+            MapLayer.SetPosition(myPushPin0, new Location(39.9487, 116.45072));
             myPushPin0.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
 
             pushPinDevice myPushPin1 = new pushPinDevice();
@@ -96,7 +98,7 @@ namespace SCADA.UI.Modules.BingMaps
             myPushPin1.DeviceName = "P0001";
             myPushPin1.DeviceTemp = "25℃";
             myMapLayerDevice.Children.Add(myPushPin1);
-            MapLayer.SetPosition(myPushPin1, new Location(34.37, 108.11));
+            MapLayer.SetPosition(myPushPin1, new Location(39.90705, 116.37995));
             myPushPin1.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
 
             pushPinDevice myPushPin2 = new pushPinDevice();
@@ -105,7 +107,7 @@ namespace SCADA.UI.Modules.BingMaps
             myPushPin2.DeviceTemp = "45℃";
             myMapLayerDevice.Children.Add(myPushPin2);
             myPushPin2.DevState = DeviceState.Escape;
-            MapLayer.SetPosition(myPushPin2, new Location(34.25, 108.23));
+            MapLayer.SetPosition(myPushPin2, new Location(39.98698, 116.36773));
             myPushPin2.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
 
             pushPinDevice myPushPin3= new pushPinDevice();
@@ -113,7 +115,7 @@ namespace SCADA.UI.Modules.BingMaps
             myPushPin3.DeviceName = "P0003";
             myPushPin3.DeviceTemp = "41℃";
             myMapLayerDevice.Children.Add(myPushPin3);
-            MapLayer.SetPosition(myPushPin3, new Location(34.10, 108.35));
+            MapLayer.SetPosition(myPushPin3, new Location(39.96754, 116.36932));
             myPushPin3.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
 
             pushPinDevice myPushPin4 = new pushPinDevice();
@@ -121,7 +123,7 @@ namespace SCADA.UI.Modules.BingMaps
             myPushPin4.DeviceName = "P0004";
             myPushPin4.DeviceTemp = "65℃";
             myMapLayerDevice.Children.Add(myPushPin4);
-            MapLayer.SetPosition(myPushPin4, new Location(34.09, 108.65));
+            MapLayer.SetPosition(myPushPin4, new Location(39.92405, 116.33072));
             myPushPin4.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
         }
 

@@ -93,6 +93,12 @@
                 <TextBlock Margin="2,0" Text="{Binding Operation}"  HorizontalAlignment="Center" d:LayoutOverrides="Width, Height" VerticalAlignment="Center"/>
             </Grid>
         </DataTemplate>
+        <DataTemplate x:Key="DataTemplate14">
+            <Grid>
+                <Image Source="{Binding DeviceStatus}" Width="18" Height="18" />
+            </Grid>
+        </DataTemplate>
+		
 
 
         <Style x:Key="DataGridColumnHeaderStyle1" TargetType="sdk:DataGridColumnHeader">
@@ -254,7 +260,7 @@
                         <Grid x:Name="LayoutRoot1" DataContext="{Binding Source={StaticResource DataGridViewSampleDataSource}}" ShowGridLines="True">
 
                             <telerik:RadGridView x:Name="RadGridView1" ItemsSource="{Binding Collection}" AutoExpandGroups="True" AutoGenerateColumns="False"
-                             ShowColumnFooters="True"  ShowGroupFooters="True" ShowGroupPanel="False"   CanUserSortColumns="True" SelectionChanged="RadGridView1_SelectionChanged"> 
+                             ShowColumnFooters="True"  ShowGroupFooters="True" ShowGroupPanel="False"   CanUserSortColumns="True" SelectionChanged="RadGridView1_SelectionChanged" Margin="0,-23,0,23"> 
                                 <telerik:RadGridView.GroupDescriptors>
                                     <telerik:GroupDescriptor Member="Area"/>
                                     <telerik:GroupDescriptor Member="ManageArea" />
@@ -284,7 +290,7 @@
                                         </telerik:GridViewDataColumn.AggregateFunctions>-->
                                     </telerik:GridViewDataColumn>
 
-                                    <telerik:GridViewDataColumn Width="50" Header="状态"  CellTemplate="{StaticResource DataTemplate10}">
+                                    <telerik:GridViewDataColumn Width="50" Header="状态"  CellTemplate="{StaticResource DataTemplate14}">
                                         <!--<telerik:GridViewDataColumn.AggregateFunctions>
                                 <telerik:SumFunction SourceField="UnitsInStock" ResultFormatString="{}Total units: {0}" />
                             </telerik:GridViewDataColumn.AggregateFunctions>-->

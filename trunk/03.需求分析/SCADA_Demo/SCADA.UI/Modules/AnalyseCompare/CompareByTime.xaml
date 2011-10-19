@@ -28,7 +28,7 @@
                         <SolidColorBrush Color="White"></SolidColorBrush>
                     </Border.Background>
                     <Border BorderThickness="1" CornerRadius="5" Margin="1" >
-                        <Grid  ShowGridLines="True" Background="AliceBlue"  >
+                        <Grid  ShowGridLines="False" Background="AliceBlue"  >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="61" />
                                 <RowDefinition Height="63" />

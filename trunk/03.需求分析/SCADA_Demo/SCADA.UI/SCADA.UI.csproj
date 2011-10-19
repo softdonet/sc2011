@@ -441,9 +441,6 @@
     <Resource Include="Images\LoginBg.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\red.gif" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\signal1.png" />
     <Resource Include="Images\signal2.png" />
     <Resource Include="Images\signal3.png" />
@@ -495,6 +492,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\whry.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\grayer.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

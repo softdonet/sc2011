@@ -311,6 +311,196 @@ namespace Expression.Blend.SampleData.DataGridViewSampleDataSource
 				}
 			}
 		}
+
+		private System.Windows.Media.ImageSource _DeviceStatus = null;
+
+		public System.Windows.Media.ImageSource DeviceStatus
+		{
+			get
+			{
+				return this._DeviceStatus;
+			}
+
+			set
+			{
+				if (this._DeviceStatus != value)
+				{
+					this._DeviceStatus = value;
+					this.OnPropertyChanged("DeviceStatus");
+				}
+			}
+		}
+
+		private string _GroupName = string.Empty;
+
+		public string GroupName
+		{
+			get
+			{
+				return this._GroupName;
+			}
+
+			set
+			{
+				if (this._GroupName != value)
+				{
+					this._GroupName = value;
+					this.OnPropertyChanged("GroupName");
+				}
+			}
+		}
+
+		private string _EventType = string.Empty;
+
+		public string EventType
+		{
+			get
+			{
+				return this._EventType;
+			}
+
+			set
+			{
+				if (this._EventType != value)
+				{
+					this._EventType = value;
+					this.OnPropertyChanged("EventType");
+				}
+			}
+		}
+
+		private string _StartTime = string.Empty;
+
+		public string StartTime
+		{
+			get
+			{
+				return this._StartTime;
+			}
+
+			set
+			{
+				if (this._StartTime != value)
+				{
+					this._StartTime = value;
+					this.OnPropertyChanged("StartTime");
+				}
+			}
+		}
+
+		private string _EndTime = string.Empty;
+
+		public string EndTime
+		{
+			get
+			{
+				return this._EndTime;
+			}
+
+			set
+			{
+				if (this._EndTime != value)
+				{
+					this._EndTime = value;
+					this.OnPropertyChanged("EndTime");
+				}
+			}
+		}
+
+		private string _SureTime = string.Empty;
+
+		public string SureTime
+		{
+			get
+			{
+				return this._SureTime;
+			}
+
+			set
+			{
+				if (this._SureTime != value)
+				{
+					this._SureTime = value;
+					this.OnPropertyChanged("SureTime");
+				}
+			}
+		}
+
+		private string _OperateMan = string.Empty;
+
+		public string OperateMan
+		{
+			get
+			{
+				return this._OperateMan;
+			}
+
+			set
+			{
+				if (this._OperateMan != value)
+				{
+					this._OperateMan = value;
+					this.OnPropertyChanged("OperateMan");
+				}
+			}
+		}
+
+		private string _Remark = string.Empty;
+
+		public string Remark
+		{
+			get
+			{
+				return this._Remark;
+			}
+
+			set
+			{
+				if (this._Remark != value)
+				{
+					this._Remark = value;
+					this.OnPropertyChanged("Remark");
+				}
+			}
+		}
+
+		private string _DealWith = string.Empty;
+
+		public string DealWith
+		{
+			get
+			{
+				return this._DealWith;
+			}
+
+			set
+			{
+				if (this._DealWith != value)
+				{
+					this._DealWith = value;
+					this.OnPropertyChanged("DealWith");
+				}
+			}
+		}
+
+		private string _EventProprity = string.Empty;
+
+		public string EventProprity
+		{
+			get
+			{
+				return this._EventProprity;
+			}
+
+			set
+			{
+				if (this._EventProprity != value)
+				{
+					this._EventProprity = value;
+					this.OnPropertyChanged("EventProprity");
+				}
+			}
+		}
 	}
 #endif
 }

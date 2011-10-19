@@ -70,6 +70,23 @@ namespace SCADA.UI.Modules.BingMaps
                     tileChinaLayer.Visibility = Visibility.Visible;
                 }
             };
+            //根据不同放大级别 显示相应图层,放大级别大于4，显示标注，否则显示星星
+            this.map.ViewChangeEnd += (s, e) =>
+            {
+                if (map.ZoomLevel > 10)
+                {
+                    this.myMapLayerDevice.Visibility = Visibility.Visible;
+                    this.myMapLayerDeviceAvg.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+
+                    this.myMapLayerDeviceAvg.Visibility = Visibility.Visible;
+                    this.myMapLayerDevice.Visibility = Visibility.Collapsed;
+                }
+             
+            };
+           
         }
 
         MapLayer myMapLayerDevice = null;
@@ -125,6 +142,14 @@ namespace SCADA.UI.Modules.BingMaps
             myMapLayerDevice.Children.Add(myPushPin4);
             MapLayer.SetPosition(myPushPin4, new Location(39.92405, 116.33072));
             myPushPin4.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
+
+            pushPinDevice myPushPin5 = new pushPinDevice();
+            myPushPin5.DevState = DeviceState.Alert;
+            myPushPin5.DeviceName = "片区1";
+            myPushPin5.DeviceTemp = "65℃";
+            myMapLayerDeviceAvg.Children.Add(myPushPin5);
+            MapLayer.SetPosition(myPushPin5, new Location(39.92405, 116.33072));
+            myPushPin5.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
         }
 
         void myPushPin_onclickDetails(object sender, RoutedEventArgs e)

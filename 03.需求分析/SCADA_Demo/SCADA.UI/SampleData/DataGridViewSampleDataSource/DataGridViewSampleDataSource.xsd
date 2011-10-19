@@ -30,6 +30,16 @@
     <xs:attribute name="Operation" type="xs:string" />
     <xs:attribute name="Area" type="xs:string" />
     <xs:attribute name="Distance" type="xs:string" />
+    <xs:attribute name="DeviceStatus" type="tns:Basic-Image" />
+    <xs:attribute name="GroupName" type="xs:string" />
+    <xs:attribute name="EventType" type="xs:string" />
+    <xs:attribute name="StartTime" type="xs:string" />
+    <xs:attribute name="EndTime" type="xs:string" />
+    <xs:attribute name="SureTime" type="xs:string" />
+    <xs:attribute name="OperateMan" type="xs:string" />
+    <xs:attribute name="Remark" type="xs:string" />
+    <xs:attribute name="DealWith" type="xs:string" />
+    <xs:attribute name="EventProprity" type="xs:string" />
   </xs:complexType>
   <xs:simpleType name="Basic-Image">
     <xs:restriction base="xs:anyURI" />

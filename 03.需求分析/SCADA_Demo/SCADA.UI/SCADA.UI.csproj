@@ -490,6 +490,12 @@
   <ItemGroup>
     <Resource Include="Modules\BingMaps\Image\BLUE-base1.PNG" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fj.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\whry.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

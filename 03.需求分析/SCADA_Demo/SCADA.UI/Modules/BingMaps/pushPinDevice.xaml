@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:SCADA.UI.SampleData"
     mc:Ignorable="d"
     d:DesignHeight="200" d:DesignWidth="300">
 
@@ -60,18 +61,18 @@ Storyboard.TargetProperty="(UIElement.Visibility)">
                 <Canvas Canvas.Top="0" Canvas.Left="3" >
                     <StackPanel x:Name="ConditionsScreen1"  Height="14" Width="43" >
                         <TextBlock Width="40"   Height="14"   TextAlignment="Center"   FontSize="10" x:Name="txtDeviceName"  Text="P001" VerticalAlignment="Top" Margin="0" />
-                      
+
                     </StackPanel>
                 </Canvas>
                 <Canvas Canvas.Top="18" Canvas.Left="3" >
                     <StackPanel x:Name="ConditionsScreen"  >
                         <TextBlock Width="40"  Height="25" TextAlignment="Center"  HorizontalAlignment="Center"   FontSize="15" x:Name="txtTemp"  Text="29℃" />
-					</StackPanel>
+                    </StackPanel>
                 </Canvas>
             </Canvas>
             <!--tip显示区-->
-            <Border x:Name="itemsTip" Canvas.Top="-4" CornerRadius="5" Visibility="Collapsed">
-                <Grid Height="160" Width="180" Margin="42,-6,78,46">
+            <Border x:Name="itemsTip" Canvas.Top="-22" CornerRadius="5" Canvas.Left="2" Visibility="Collapsed">
+                <Grid Height="250" Width="400" Margin="42,-6,78,46">
                     <Path Data="M14.705536,59.666668 L1.0003262,71.666344 L14.666832,85.332474 L14.666832,339.68463 L359.71591,339.6864 L359.71539,0.28714284 L14.578614,0.29503277 z" Margin="0.7,0,4,4" Stretch="Fill" Stroke="#FF999999" StrokeLineJoin="Round" UseLayoutRounding="False">
                         <Path.Effect>
                             <DropShadowEffect Direction="322" BlurRadius="0" Opacity="0.35"/>
@@ -83,14 +84,18 @@ Storyboard.TargetProperty="(UIElement.Visibility)">
                             </LinearGradientBrush>
                         </Path.Fill>
                     </Path>
-                    <StackPanel x:Name="sp" Orientation="Vertical" Margin="21,0,0,0"  >
-                        <TextBlock  x:Name="txtTitle"   Text ="P0001"  FontSize="12"  HorizontalAlignment="Left" Margin="0,6,0,2" FontWeight="Bold"/>
-                        <TextBlock  x:Name="txtProjectCode"   TextWrapping="Wrap" Text ="设备名称：采集仪"  FontSize="11" Foreground="Black" Margin="0,0,10,0"/>
-                        <TextBlock  x:Name="txtProjectManagerName"   TextWrapping="Wrap" Text ="安装地点：北京天安门"  FontSize="11" Foreground="Black" Margin="0,0,10,0"/>
-                        <TextBlock  x:Name="txtProjectInfor"   TextWrapping="Wrap" Text ="维护人员：刘征占"  FontSize="11" Foreground="Black" Margin="0,0,10,0"/>
-                       
+                    <StackPanel >
+                        <StackPanel x:Name="sp" Orientation="Horizontal" Margin="21,0,0,0"  >
+                            <TextBlock  x:Name="txtTitle"   Text ="设备编号：P0001"  FontSize="12"  HorizontalAlignment="Left" Margin="5,10,5,5" FontWeight="Bold" Height="18" VerticalAlignment="Center"/>
+                            <TextBlock  x:Name="txtProjectCode"   TextWrapping="Wrap" Text ="设备名称：采集仪"  FontSize="11" Foreground="Black" Margin="5,10,5,5" Height="18" VerticalAlignment="Center"/>
+                            <TextBlock  x:Name="txtProjectManagerName"   TextWrapping="Wrap" Text ="安装地点：北京天安门"  FontSize="11" Foreground="Black" Margin="5,10,5,5" Height="18" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel >
+                            <Image Source="/SCADA.UI;component/Images/temp.jpg" Margin="20,5,10,5"></Image>
+                            
+                        </StackPanel>
                     </StackPanel>
-                    <HyperlinkButton x:Name="hlUrl"    HorizontalAlignment="Right"  Content="查看详情" FontSize="11" TargetName = "_blank" Foreground="#FF0000CC" Margin="0,0,12,15" VerticalAlignment="Bottom" d:LayoutOverrides="VerticalAlignment" Click="hlUrl_Click" />
+                    <HyperlinkButton x:Name="hlUrl"    HorizontalAlignment="Right"  Content="查看详情" FontSize="11" TargetName = "_blank" Foreground="#FF0000CC" Margin="0,0,25,24" VerticalAlignment="Bottom" d:LayoutOverrides="VerticalAlignment" Click="hlUrl_Click" />
                 </Grid>
             </Border>
         </Canvas>

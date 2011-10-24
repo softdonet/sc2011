@@ -36,7 +36,7 @@ namespace SCADA.UI.SampleData
 
             // Create a Needle Indicator
             NeedleIndicator indicator = new NeedleIndicator();
-            indicator.Value = 87;
+            indicator.Value = 25;
 
             // Add indicator to Indicators collection of gauge
             gauge.Indicators.Add(indicator);

@@ -37,7 +37,7 @@
             </vg:Gauge.LinearScales>
 
             <vg:Gauge.Indicators>
-                <vg:BarIndicator Value="65" BorderThickness="0" BorderBrush="White" ShadowEnabled="False">
+                <vg:BarIndicator Value="25" BorderThickness="0" BorderBrush="White" ShadowEnabled="False">
                     <vg:BarIndicator.Background>
                         <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
                             <GradientStop Color="#d2e9ff" Offset="0.15"/>

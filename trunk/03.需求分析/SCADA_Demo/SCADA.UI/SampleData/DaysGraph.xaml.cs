@@ -24,8 +24,8 @@ namespace SCADA.UI.SampleData
 
             RadChart1.DefaultView.ChartArea.AxisX.AutoRange = false;
             RadChart1.DefaultView.ChartArea.AxisX.MinValue = startTime.ToOADate();
-            RadChart1.DefaultView.ChartArea.AxisX.MaxValue = startTime.AddSeconds(201).ToOADate();
-            RadChart1.DefaultView.ChartArea.AxisX.Step = 1d / 24d / 360d;
+            RadChart1.DefaultView.ChartArea.AxisX.MaxValue = startTime.AddSeconds(86500).ToOADate();
+            RadChart1.DefaultView.ChartArea.AxisX.Step = 1d / 24d ;
 
             this.RadChart1.ItemsSource = GenerateData(startTime);
         }
@@ -37,13 +37,13 @@ namespace SCADA.UI.SampleData
 
             Random rand = new Random();
 
-            data.Add(new TestData(startTime, 800));
-            for (int i = 1; i < 101; i++)
+            data.Add(new TestData(startTime, 18));
+            for (int i = 1; i < 864; i += 60)
             {
-                if ((i < 20) || (i > 30 && i < 50) || i > 70)
-                    data.Add(new TestData(startTime.AddSeconds(i * 2), rand.Next(6400, 8800)));
-                else
-                    data.Add(new TestData(startTime.AddSeconds(i * 2), rand.Next(4000, 6800)));
+                //if ((i < 20) || (i > 30 && i < 50) || i > 70)
+                    data.Add(new TestData(startTime.AddSeconds(i * 100), rand.Next(15, 30)));
+                //else
+                //    data.Add(new TestData(startTime.AddSeconds(i * 100), rand.Next(15, 30)));
             }
 
             return data;

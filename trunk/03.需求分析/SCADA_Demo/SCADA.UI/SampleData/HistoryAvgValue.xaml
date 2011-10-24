@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="400">
+    d:DesignHeight="300" d:DesignWidth="500">
 
     <Grid x:Name="LayoutRoot">
         <Border x:Name="content_Border" BorderBrush="#FF4A91BB" BorderThickness="1" Margin="5" CornerRadius="5">
@@ -43,7 +43,7 @@
                     </vc:Chart.PlotArea>
 
                     <vc:Chart.AxesX>
-                        <vc:Axis Title="">
+                        <vc:Axis Title="" AxisMaximum="24"   AxisMinimum="0">
                             <vc:Axis.AxisLabels>
                                 <vc:AxisLabels Interval="1"  />
                             </vc:Axis.AxisLabels>
@@ -51,7 +51,7 @@
                     </vc:Chart.AxesX>
 
                     <vc:Chart.AxesY>
-                        <vc:Axis AxisMinimum="-45" AxisMaximum="70" Interval="10"  Title="温度平均值"/>
+                        <vc:Axis AxisMinimum="-10" AxisMaximum="30" Interval="5"  />
                     </vc:Chart.AxesY>
 
                     <vc:Chart.Series>
@@ -62,48 +62,33 @@
                                 </SolidColorBrush>
                             </vc:DataSeries.Color>
                             <vc:DataSeries.DataPoints>
-                                <vc:DataPoint AxisXLabel="1" YValue="20" Cursor="Hand" />
-                                <vc:DataPoint AxisXLabel="2" YValue="30"  Cursor="Hand"/>
-                                <vc:DataPoint AxisXLabel="3" YValue="42" Cursor="Hand" />
-                                <vc:DataPoint AxisXLabel="4" YValue="44" Cursor="Hand" />
-                                <vc:DataPoint AxisXLabel="5" YValue="47" Cursor="Hand" />
-                                <vc:DataPoint AxisXLabel="6" YValue="-30" Cursor="Hand" Color="limeGreen"  />
-                                <vc:DataPoint AxisXLabel="7" YValue="35" Cursor="Hand"/>
-                                <vc:DataPoint AxisXLabel="8" YValue="57" Cursor="Hand" />
-                                <vc:DataPoint AxisXLabel="9" YValue="-10" Cursor="Hand"  Color="limeGreen"/>
-                                <vc:DataPoint AxisXLabel="10" YValue="20" Cursor="Hand"/>
-                                <vc:DataPoint AxisXLabel="1" YValue="-20" Cursor="Hand" Color="limeGreen"/>
-                                <vc:DataPoint AxisXLabel="2" YValue="30"  Cursor="Hand"/>
-                                <vc:DataPoint AxisXLabel="3" YValue="42" Cursor="Hand" />
-                                <vc:DataPoint AxisXLabel="4" YValue="44" Cursor="Hand" />
-                                <vc:DataPoint AxisXLabel="5" YValue="47" Cursor="Hand" />
-                                <vc:DataPoint AxisXLabel="6" YValue="-40" Cursor="Hand" Color="limeGreen" />
-                                <vc:DataPoint AxisXLabel="7" YValue="35" Cursor="Hand"/>
-                                <vc:DataPoint AxisXLabel="8" YValue="57" Cursor="Hand" />
-                                <vc:DataPoint AxisXLabel="9" YValue="63" Cursor="Hand"  />
-                                <vc:DataPoint AxisXLabel="10" YValue="20" Cursor="Hand"/>
-                                <vc:DataPoint AxisXLabel="1" YValue="-20" Cursor="Hand" Color="limeGreen"/>
-                                <vc:DataPoint AxisXLabel="2" YValue="30"  Cursor="Hand"/>
-                                <vc:DataPoint AxisXLabel="3" YValue="-42" Cursor="Hand" Color="limeGreen"/>
-                                <vc:DataPoint AxisXLabel="4" YValue="44" Cursor="Hand" />
-                                <vc:DataPoint AxisXLabel="5" YValue="47" Cursor="Hand" />
-                                <vc:DataPoint AxisXLabel="6" YValue="-6" Cursor="Hand" Color="limeGreen" />
-                                <vc:DataPoint AxisXLabel="7" YValue="35" Cursor="Hand"/>
-                                <vc:DataPoint AxisXLabel="8" YValue="57" Cursor="Hand" />
-                                <vc:DataPoint AxisXLabel="9" YValue="63" Cursor="Hand"  />
-                                <vc:DataPoint AxisXLabel="10" YValue="20" Cursor="Hand"/>
-                                <vc:DataPoint AxisXLabel="9" YValue="63" Cursor="Hand"  />
-                                <vc:DataPoint AxisXLabel="10" YValue="20" Cursor="Hand"/>
-                                <vc:DataPoint AxisXLabel="1" YValue="-20" Cursor="Hand" Color="limeGreen"/>
-                                <vc:DataPoint AxisXLabel="2" YValue="30"  Cursor="Hand"/>
-                                <vc:DataPoint AxisXLabel="3" YValue="-42" Cursor="Hand" Color="limeGreen"/>
-                                <vc:DataPoint AxisXLabel="4" YValue="44" Cursor="Hand" />
-                                <vc:DataPoint AxisXLabel="5" YValue="47" Cursor="Hand" />
-                                <vc:DataPoint AxisXLabel="6" YValue="-6" Cursor="Hand" Color="limeGreen" />
-                                <vc:DataPoint AxisXLabel="7" YValue="35" Cursor="Hand"/>
-                                <vc:DataPoint AxisXLabel="8" YValue="57" Cursor="Hand" />
-                                <vc:DataPoint AxisXLabel="9" YValue="63" Cursor="Hand"  />
-                                <vc:DataPoint AxisXLabel="10" YValue="20" Cursor="Hand"/>
+                                <vc:DataPoint AxisXLabel="0" YValue="20" Cursor="Hand" />
+                                <vc:DataPoint AxisXLabel="1" YValue="24"  Cursor="Hand"/>
+                                <vc:DataPoint AxisXLabel="2" YValue="13" Cursor="Hand" />
+                                <vc:DataPoint AxisXLabel="3" YValue="18" Cursor="Hand" />
+                                <vc:DataPoint AxisXLabel="4" YValue="21" Cursor="Hand" />
+                                <vc:DataPoint AxisXLabel="5" YValue="-5" Cursor="Hand" Color="limeGreen"  />
+                                <vc:DataPoint AxisXLabel="6" YValue="15" Cursor="Hand"/>
+                                <vc:DataPoint AxisXLabel="7" YValue="10" Cursor="Hand" />
+                                <vc:DataPoint AxisXLabel="8" YValue="-8" Cursor="Hand"  Color="limeGreen"/>
+                                <vc:DataPoint AxisXLabel="9" YValue="20" Cursor="Hand"/>
+                                <vc:DataPoint AxisXLabel="10" YValue="-2" Cursor="Hand" Color="limeGreen"/>
+                                <vc:DataPoint AxisXLabel="11" YValue="20"  Cursor="Hand"/>
+                                <vc:DataPoint AxisXLabel="12" YValue="4" Cursor="Hand" />
+                                <vc:DataPoint AxisXLabel="13" YValue="8" Cursor="Hand" />
+                                <vc:DataPoint AxisXLabel="14" YValue="9" Cursor="Hand" />
+                                <vc:DataPoint AxisXLabel="15" YValue="-4" Cursor="Hand" Color="limeGreen" />
+                                <vc:DataPoint AxisXLabel="16" YValue="23" Cursor="Hand"/>
+                                <vc:DataPoint AxisXLabel="17" YValue="23" Cursor="Hand" />
+                                <vc:DataPoint AxisXLabel="18" YValue="26" Cursor="Hand"  />
+                                <vc:DataPoint AxisXLabel="19" YValue="20" Cursor="Hand"/>
+                                <vc:DataPoint AxisXLabel="20" YValue="-3" Cursor="Hand" Color="limeGreen"/>
+                                <vc:DataPoint AxisXLabel="21" YValue="30"  Cursor="Hand"/>
+                                <vc:DataPoint AxisXLabel="22" YValue="-4" Cursor="Hand" Color="limeGreen"/>
+                                <vc:DataPoint AxisXLabel="23" YValue="23" Cursor="Hand" />
+                                <vc:DataPoint AxisXLabel="24" YValue="21" Cursor="Hand" />
+                                <vc:DataPoint AxisXLabel="24" YValue="17" Cursor="Hand" />
+
                             </vc:DataSeries.DataPoints>
                         </vc:DataSeries>
 

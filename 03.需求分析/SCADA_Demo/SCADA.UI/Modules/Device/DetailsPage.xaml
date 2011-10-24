@@ -7,7 +7,7 @@
     mc:Ignorable="d"
     d:DesignHeight="642" d:DesignWidth="999">
 
-    <Grid x:Name="LayoutRoot" Background="White" Height="630"  ShowGridLines="True" >
+    <Grid x:Name="LayoutRoot" Background="White" Height="630"   >
         <Grid.RowDefinitions>
             <RowDefinition Height="240" />
             <RowDefinition Height="240" />
@@ -19,46 +19,61 @@
 
         </Grid.ColumnDefinitions>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  >
-            <TextBlock  Text="当天温度变化趋势" FontSize="14"  Foreground="Blue" TextAlignment="Center" FontWeight="Bold" ></TextBlock>
+        	<StackPanel.Background>
+        		<ImageBrush Stretch="Fill" ImageSource="/SCADA.UI;component/Images/bg.jpg"/>
+        	</StackPanel.Background>
+            <TextBlock  Text="当天温度变化趋势" FontSize="14"  Foreground="#FFF5F5F7" TextAlignment="Center" FontWeight="Bold" ></TextBlock>
             <local:DaysGraph  Margin="0,0,0,0" Height="200" VerticalAlignment="Bottom"></local:DaysGraph>
         </StackPanel>
         <StackPanel  Grid.Column="1"   VerticalAlignment="Center"  HorizontalAlignment="Center" >
-            <TextBlock FontSize="14"  Foreground="Blue"  TextAlignment="Center" FontWeight="Bold"  Margin="0,0,0,10"  Text="当前温度"/>
+        	<StackPanel.Background>
+        		<ImageBrush Stretch="Fill" ImageSource="/SCADA.UI;component/Images/bg.jpg"/>
+        	</StackPanel.Background>
+            <TextBlock FontSize="14"  Foreground="#FFF7F7F9"  TextAlignment="Center" FontWeight="Bold"  Margin="0,0,0,10"  Text="当前温度"/>
             <local:Thermometer Margin="0,0,0,0"  />
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Top"  HorizontalAlignment="Left"  >
-            <TextBlock FontSize="14"  Foreground="Blue"  TextAlignment="Center" FontWeight="Bold" Text="历史平均温度"/>
+        	<StackPanel.Background>
+        		<ImageBrush Stretch="Fill" ImageSource="/SCADA.UI;component/Images/bg.jpg"/>
+        	</StackPanel.Background>
+            <TextBlock FontSize="14"  Foreground="#FFF6F6F9"  TextAlignment="Center" FontWeight="Bold" Text="历史平均温度"/>
             <local:HistoryAvgValue Height="200" Width="518" HorizontalAlignment="Left"></local:HistoryAvgValue>
         </StackPanel>
-        <StackPanel  Grid.Row="0" Grid.Column="3"   Orientation="Vertical" >
-            <TextBlock  Text="详细信息" FontWeight="Bold" FontSize="14"  Foreground="Blue" Margin="5"></TextBlock>
+        <StackPanel  Grid.Row="0" Grid.Column="3"   Orientation="Vertical" Margin="10,10,10,9" >
+        	<StackPanel.Background>
+        		<ImageBrush Stretch="Fill" ImageSource="/SCADA.UI;component/Images/bg.jpg"/>
+        	</StackPanel.Background>
+            <TextBlock  Text="详细信息" FontWeight="Bold" FontSize="14"  Foreground="#FFF8F9F9" Margin="5"></TextBlock>
             <StackPanel Orientation="Horizontal" >
                 <StackPanel  Margin="0" >
-                    <TextBlock  Text="设备编号：D00001" Margin="3"></TextBlock>
-                    <TextBlock  Text="设备名称：温度采集仪" Margin="3"></TextBlock>
-                    <TextBlock  Text="安装地点：北京海淀区祁家豁子" Margin="3"></TextBlock>
-                    <TextBlock  Text="所属分区：分区1" Margin="3"></TextBlock>
-                    <TextBlock  Text="实时温度：50摄氏度" Margin="3"></TextBlock>
-                    <TextBlock  Text="实时压强：78千帕" Margin="3"></TextBlock>
-                    <TextBlock  Text="坐标信息：78,45" Margin="3"></TextBlock>
+                    <TextBlock  Text="设备编号：D00001" Margin="3" Foreground="#FFF6F9F9"></TextBlock>
+                    <TextBlock  Text="设备名称：温度采集仪" Margin="3" Foreground="#FFE8F5F5"></TextBlock>
+                    <TextBlock  Text="安装地点：北京海淀区祁家豁子" Margin="3" Foreground="#FFE8F3F3"></TextBlock>
+                    <TextBlock  Text="所属分区：分区1" Margin="3" Foreground="#FFEFF5F5"></TextBlock>
+                    <TextBlock  Text="实时温度：50摄氏度" Margin="3" Foreground="#FFDCE7E7"></TextBlock>
+                    <TextBlock  Text="实时压强：78千帕" Margin="3" Foreground="#FFEDF3F3"></TextBlock>
+                    <TextBlock  Text="坐标信息：78,45" Margin="3" Foreground="#FFE6EDED"></TextBlock>
                 </StackPanel>
                 <StackPanel Width="318" Margin="5">
-                    <Image Source="/SCADA.UI;component/Images/fj.jpg" Height="191"></Image>
+                    <Image Source="/SCADA.UI;component/Images/fj.jpg" Height="176" Margin="-31,0,51,20"></Image>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        <StackPanel  Grid.Row="1" Grid.Column="3"   Orientation="Vertical" >
-            <TextBlock  Text="设备维护人员信息" FontWeight="Bold" FontSize="14"  Foreground="Blue" Margin="5"></TextBlock>
+        <StackPanel  Grid.Row="1" Grid.Column="3"   Orientation="Vertical" Margin="10" >
+        	<StackPanel.Background>
+        		<ImageBrush Stretch="Fill" ImageSource="/SCADA.UI;component/Images/bg.jpg"/>
+        	</StackPanel.Background>
+            <TextBlock  Text="设备维护人员信息" FontWeight="Bold" FontSize="14"  Foreground="#FFF1F1F7" Margin="5"></TextBlock>
             <StackPanel Orientation="Horizontal" >
                 <StackPanel  Margin="0" Width="163" Height="180">
-                    <TextBlock  Text="姓名：刘征占" Margin="3"></TextBlock>
-                    <TextBlock  Text="电话：13800138000" Margin="3"></TextBlock>
-                    <TextBlock  Text="邮件：lzz@hotmail.com" Margin="3"></TextBlock>
-                    <TextBlock  Text="住址：北京体育大学" Margin="3"></TextBlock>
+                    <TextBlock  Text="姓名：刘征占" Margin="3" Foreground="#FFF0F0F7"></TextBlock>
+                    <TextBlock  Text="电话：13800138000" Margin="3" Foreground="#FFEDEDF7"></TextBlock>
+                    <TextBlock  Text="邮件：lzz@hotmail.com" Margin="3" Foreground="#FFEBEBF5"></TextBlock>
+                    <TextBlock  Text="住址：北京体育大学" Margin="3" Foreground="#FFEBEBF5"></TextBlock>
                     
                 </StackPanel>
                 <StackPanel Width="318" Margin="5">
-                    <Image Source="/SCADA.UI;component/Images/whry.jpg" Height="161" Width="254"></Image>
+                    <Image Source="/SCADA.UI;component/Images/whry.jpg" Height="152" Width="258" Margin="2,0,0,0" HorizontalAlignment="Left"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

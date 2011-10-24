@@ -7,7 +7,7 @@
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
   
     mc:Ignorable="d"
-   	d:DesignWidth="1024" d:DesignHeight="768 ">
+   	d:DesignWidth="1024" d:DesignHeight="500 ">
     
     <UserControl.Resources>
         <SampleData:DataGridViewSampleDataSource x:Key="DataGridViewSampleDataSource" d:IsDataSource="True"/>
@@ -32,8 +32,8 @@
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="DataTemplate5">
-            <Grid>
-                <TextBlock HorizontalAlignment="Left" Text="{Binding Device}" VerticalAlignment="Center" Margin="2,0"/>
+            <Grid Height="28">
+                <TextBlock Margin="2,0"  Text="{Binding Device}" HorizontalAlignment="Center" VerticalAlignment="Center" d:LayoutOverrides="Width, Height"/>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="DataTemplate6">
@@ -225,26 +225,22 @@
                     <Border BorderThickness="1" CornerRadius="5" Margin="1">
                         <Grid x:Name="LayoutRoot1" DataContext="{Binding Source={StaticResource DataGridViewSampleDataSource}}" ShowGridLines="True">
                             <sdk:DataGrid ItemsSource="{Binding Collection}" AutoGenerateColumns="False" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" CanUserSortColumns="True" >
-                            <sdk:DataGrid.Columns>
-                                <sdk:DataGridTemplateColumn Header="序号" Width="80" DisplayIndex="1" CellTemplate="{StaticResource DataTemplate1}" />
-                                <sdk:DataGridTemplateColumn Header="设备名" Width="80" CellTemplate="{StaticResource DataTemplate5}"  />
-                                <sdk:DataGridTemplateColumn Header="组名" Width="80" CellTemplate="{StaticResource DataTemplate14}" />
-                                <sdk:DataGridTemplateColumn Width="*" Header="安装地点"  CellTemplate="{StaticResource DataTemplate2}" SortMemberPath="InstallPlace" />
-
-								<sdk:DataGridTemplateColumn Header="事件类型" Width="80" CellTemplate="{StaticResource DataTemplate15}" />
-								<sdk:DataGridTemplateColumn Header="事件等级" Width="80" CellTemplate="{StaticResource DataTemplate22}" />
-                                <sdk:DataGridTemplateColumn Header="开始时间" Width="80" CellTemplate="{StaticResource DataTemplate16}" />
-								<sdk:DataGridTemplateColumn Header="完成时间" Width="80" CellTemplate="{StaticResource DataTemplate17}" />
-								<sdk:DataGridTemplateColumn Header="确认时间" Width="80" CellTemplate="{StaticResource DataTemplate18}" />
-                                <!--<sdk:DataGridTemplateColumn Header="温度" Width="80" CanUserResize="False"  CellTemplate="{StaticResource DataTemplate8}" SortMemberPath="Temperature" />-->
-                                <sdk:DataGridTemplateColumn Header="操作员" Width="50" CanUserResize="False" CellTemplate="{StaticResource DataTemplate19}" />
-								 <sdk:DataGridTemplateColumn Header="备注" Width="100" CanUserResize="False" CellTemplate="{StaticResource DataTemplate20}" />
-                                <sdk:DataGridTemplateColumn Header="状态" Width="50" CanUserResize="False" CellTemplate="{StaticResource DataTemplate10}" />
-                                <!--<sdk:DataGridTemplateColumn Header="百分比" Width="50" CanUserSort="True" CanUserResize="False" CellTemplate="{StaticResource DataTemplate11}" />-->
-                                <!--<sdk:DataGridTemplateColumn Header="信号强度" Width="50" CanUserResize="False" CellTemplate="{StaticResource DataTemplate6}" />-->
-                                <sdk:DataGridTemplateColumn Header="操作"  Width="80" CanUserReorder="True" CellTemplate="{StaticResource DataTemplate21}" />
-                            </sdk:DataGrid.Columns>
-                        </sdk:DataGrid>
+                                <sdk:DataGrid.Columns>
+                                    <!--<sdk:DataGridTemplateColumn Header="序号" Width="80" DisplayIndex="1" CellTemplate="{StaticResource DataTemplate1}" />-->
+                                    <sdk:DataGridTemplateColumn Header="设备名" Width="100" DisplayIndex="1" CellTemplate="{StaticResource DataTemplate5}"  />
+                                    <sdk:DataGridTemplateColumn Header="事件类型" Width="60" CellTemplate="{StaticResource DataTemplate15}" />
+                                    <sdk:DataGridTemplateColumn Header="事件等级" Width="60" CellTemplate="{StaticResource DataTemplate22}" />
+                                    <sdk:DataGridTemplateColumn Header="开始时间" Width="140" CellTemplate="{StaticResource DataTemplate16}" />
+                                    <sdk:DataGridTemplateColumn Header="完成时间" Width="140" CellTemplate="{StaticResource DataTemplate17}" />
+                                    <sdk:DataGridTemplateColumn Header="确认时间" Width="140" CellTemplate="{StaticResource DataTemplate18}" />
+                                    <sdk:DataGridTemplateColumn Header="确认人" Width="80" CanUserResize="True" CellTemplate="{StaticResource DataTemplate19}" />
+                                    <sdk:DataGridTemplateColumn Header="备注" Width="10*" CanUserResize="True" CellTemplate="{StaticResource DataTemplate20}" />
+                                    <sdk:DataGridTemplateColumn Header="状态" Width="50" CanUserResize="True" CellTemplate="{StaticResource DataTemplate10}" />
+                                    <!--<sdk:DataGridTemplateColumn Header="百分比" Width="50" CanUserSort="True" CanUserResize="False" CellTemplate="{StaticResource DataTemplate11}" />-->
+                                    <!--<sdk:DataGridTemplateColumn Header="信号强度" Width="50" CanUserResize="False" CellTemplate="{StaticResource DataTemplate6}" />-->
+                                    <sdk:DataGridTemplateColumn Header="处理"  Width="90" CanUserReorder="True" CellTemplate="{StaticResource DataTemplate21}" />
+                                </sdk:DataGrid.Columns>
+                            </sdk:DataGrid>
                         </Grid>
                     </Border>
                 </Border>

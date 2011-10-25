@@ -371,6 +371,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\down_ico.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\electric0.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\electric1.png" />
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\electric2.png" />
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\electric3.png" />
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\electric4.png" />
@@ -397,6 +399,9 @@
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\red.png" />
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\s3.png" />
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\senmenu.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\signal1.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\signal2.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\signal3.png" />
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\signal5.png" />
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\up_ico.png" />
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\xh1.png" />

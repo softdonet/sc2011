@@ -501,6 +501,25 @@ namespace Expression.Blend.SampleData.DataGridViewSampleDataSource
 				}
 			}
 		}
+
+		private System.Windows.Media.ImageSource _Electric = null;
+
+		public System.Windows.Media.ImageSource Electric
+		{
+			get
+			{
+				return this._Electric;
+			}
+
+			set
+			{
+				if (this._Electric != value)
+				{
+					this._Electric = value;
+					this.OnPropertyChanged("Electric");
+				}
+			}
+		}
 	}
 #endif
 }

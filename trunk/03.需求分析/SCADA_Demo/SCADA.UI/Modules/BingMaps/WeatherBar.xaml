@@ -68,7 +68,7 @@
                     </Canvas>
                 </StackPanel>
                 <StackPanel Height="17" Background="{StaticResource dividerHorizontal}" Orientation="Horizontal" >
-                    <TextBlock Text="报警设备：1个" Margin="5, 0, 5, 0" Width="105" Foreground="red" Opacity="0.5"  />
+                    <TextBlock Text="报警设备：1个" Margin="5, 0, 5, 0" Width="105" Foreground="red" Opacity="0.5"  Visibility="Collapsed"  />
                     <TextBlock Text="Change ZIP" Margin="5, 0, 5, 0" Width="105" TextAlignment="Right" Foreground="White" Opacity="0.5" Visibility="Collapsed"  />
                 </StackPanel>
             </StackPanel>

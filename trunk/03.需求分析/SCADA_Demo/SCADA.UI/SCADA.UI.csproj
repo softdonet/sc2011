@@ -371,6 +371,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\down_ico.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\electric2.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\electric3.png" />
+    <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\electric4.png" />
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\headerbg.png" />
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\headerbg2.png" />
     <Resource Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource_Files\image01.png" />

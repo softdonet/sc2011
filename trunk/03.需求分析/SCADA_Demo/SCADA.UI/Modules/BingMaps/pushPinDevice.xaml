@@ -95,7 +95,7 @@ Storyboard.TargetProperty="(UIElement.Visibility)">
                             
                         </StackPanel>
                     </StackPanel>
-                    <HyperlinkButton x:Name="hlUrl"    HorizontalAlignment="Right"  Content="查看详情" FontSize="11" TargetName = "_blank" Foreground="#FF0000CC" Margin="0,0,25,24" VerticalAlignment="Bottom" d:LayoutOverrides="VerticalAlignment" Click="hlUrl_Click" />
+                    <HyperlinkButton x:Name="hlUrl"    HorizontalAlignment="Right"  Content="查看" FontSize="11" TargetName = "_blank" Foreground="#FF0000CC" Margin="0,0,25,24" VerticalAlignment="Bottom" d:LayoutOverrides="VerticalAlignment" Click="hlUrl_Click" />
                 </Grid>
             </Border>
         </Canvas>

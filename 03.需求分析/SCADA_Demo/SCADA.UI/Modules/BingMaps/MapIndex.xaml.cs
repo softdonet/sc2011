@@ -99,8 +99,9 @@ namespace SCADA.UI.Modules.BingMaps
             map.Center = new Location(weidu, jindu);
             myMapLayerDevice = new MapLayer();
             myMapLayerDeviceAvg = new MapLayer();
-            map.Children.Add(myMapLayerDevice);
+           
             map.Children.Add(myMapLayerDeviceAvg);
+            map.Children.Add(myMapLayerDevice);
 
             pushPinDevice myPushPin0 = new pushPinDevice();
             myPushPin0.DevState = DeviceState.Escape;

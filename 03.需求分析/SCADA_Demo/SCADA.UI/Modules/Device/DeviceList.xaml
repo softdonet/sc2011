@@ -17,6 +17,7 @@
     d:DesignHeight="768 " >
 
     <UserControl.Resources>
+        
         <SampleData:DataGridViewSampleDataSource x:Key="DataGridViewSampleDataSource" d:IsDataSource="True"/>
         <DataTemplate x:Key="DataTemplate0">
             <Grid Height="28">
@@ -80,7 +81,7 @@
         </DataTemplate>
         <DataTemplate x:Key="DataTemplate11">
             <Grid Height="28">
-                <TextBlock Margin="2,0" Text="{Binding Percent}"  HorizontalAlignment="Center" d:LayoutOverrides="Width, Height" VerticalAlignment="Center"/>
+                <TextBlock Margin="2,0" Text="{Binding Electric}"  HorizontalAlignment="Center" d:LayoutOverrides="Width, Height" VerticalAlignment="Center"/>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="DataTemplate12">
@@ -99,7 +100,11 @@
             </Grid>
         </DataTemplate>
 		
-
+        <DataTemplate x:Key="DataTemplate15">
+            <Grid>
+                <Image Source="{Binding Electric}" Width="18" Height="18"/>
+            </Grid>
+        </DataTemplate>
 
         <Style x:Key="DataGridColumnHeaderStyle1" TargetType="sdk:DataGridColumnHeader">
             <Setter Property="Foreground" Value="#FF000000"/>
@@ -260,11 +265,17 @@
                         <Grid x:Name="LayoutRoot1" DataContext="{Binding Source={StaticResource DataGridViewSampleDataSource}}" ShowGridLines="True">
 
                             <telerik:RadGridView x:Name="RadGridView1" ItemsSource="{Binding Collection}" AutoExpandGroups="True" AutoGenerateColumns="False"
-                             ShowColumnFooters="True"  ShowGroupFooters="True" ShowGroupPanel="False"   CanUserSortColumns="True" SelectionChanged="RadGridView1_SelectionChanged" Margin="0,-23,0,23"> 
+                             ShowColumnFooters="True"  ShowGroupFooters="True" ShowGroupPanel="False"  
+                                CanUserSortColumns="True" SelectionChanged="RadGridView1_SelectionChanged" Margin="-1,-1,1,1">
                                 <telerik:RadGridView.GroupDescriptors>
-                                    <telerik:GroupDescriptor Member="Area"/>
+                                    <telerik:GroupDescriptor Member="Area">
+                                    </telerik:GroupDescriptor>
                                     <telerik:GroupDescriptor Member="ManageArea" />
-									<telerik:GroupDescriptor Member="Distance"/>
+                                    <telerik:GroupDescriptor Member="Distance">
+                                        <telerik:GroupDescriptor.AggregateFunctions>
+                                            <telerik:CountFunction Caption="Total customers:" />
+                                        </telerik:GroupDescriptor.AggregateFunctions>
+                                    </telerik:GroupDescriptor>
                                 </telerik:RadGridView.GroupDescriptors>
                                 <telerik:RadGridView.GroupRowStyle>
                                     <Style TargetType="telerik:GridViewGroupRow">
@@ -275,28 +286,28 @@
                                     <telerik:GridViewDataColumn  Width="80" Header="设备名"  CellTemplate="{StaticResource DataTemplate5}" SortMemberPath="Device"/>
                                     <!--<telerik:GridViewDataColumn Width="80" Header="管理分区"  CellTemplate="{StaticResource DataTemplate3}" />-->
                                     <telerik:GridViewDataColumn Width="*" Header="安装地点" CellTemplate="{StaticResource DataTemplate2}" />
-                                    <telerik:GridViewDataColumn Width="80" Header="更新时间" CellTemplate="{StaticResource DataTemplate4}" />
+                                    <telerik:GridViewDataColumn Width="130" Header="更新时间" CellTemplate="{StaticResource DataTemplate4}" />
 
-                                    <telerik:GridViewDataColumn Width="80" Header="温度"  CellTemplate="{StaticResource DataTemplate8}">
-                                        <telerik:GridViewDataColumn.AggregateFunctions>
+                                    <telerik:GridViewDataColumn Width="80" Header="温度" CellTemplate="{StaticResource DataTemplate8}">
+                                        <!--<telerik:GridViewDataColumn.AggregateFunctions>
                                             <telerik:AverageFunction SourceField="Temperature" ResultFormatString="{}平均温度: {0}"/>
-                                        </telerik:GridViewDataColumn.AggregateFunctions>
+                                        </telerik:GridViewDataColumn.AggregateFunctions>-->
                                        
                                     </telerik:GridViewDataColumn>
 
-                                    <telerik:GridViewDataColumn Width="80" Header="压强"  CellTemplate="{StaticResource DataTemplate9}">
-                                        <!--<telerik:GridViewDataColumn.AggregateFunctions>
+                                    <!--<telerik:GridViewDataColumn Width="80" Header="压强"  CellTemplate="{StaticResource DataTemplate9}">
+                                        <telerik:GridViewDataColumn.AggregateFunctions>
                                              <telerik:AverageFunction SourceField="Pressure" ResultFormatString="{}Total units: {0}" />
-                                        </telerik:GridViewDataColumn.AggregateFunctions>-->
-                                    </telerik:GridViewDataColumn>
+                                        </telerik:GridViewDataColumn.AggregateFunctions>
+                                    </telerik:GridViewDataColumn>-->
 
-                                    <telerik:GridViewDataColumn Width="50" Header="状态"  CellTemplate="{StaticResource DataTemplate14}">
+                                    <telerik:GridViewDataColumn Width="50" Header="状态"   CellTemplate="{StaticResource DataTemplate14}">
                                         <!--<telerik:GridViewDataColumn.AggregateFunctions>
                                 <telerik:SumFunction SourceField="UnitsInStock" ResultFormatString="{}Total units: {0}" />
                             </telerik:GridViewDataColumn.AggregateFunctions>-->
                                     </telerik:GridViewDataColumn>
 
-                                    <telerik:GridViewDataColumn Width="50" Header="百分比"  CellTemplate="{StaticResource DataTemplate11}">
+                                    <telerik:GridViewDataColumn Width="60" Header="电量"  CellTemplate="{StaticResource DataTemplate15}">
                                         <!--<telerik:GridViewDataColumn.AggregateFunctions>
                                 <telerik:SumFunction SourceField="UnitsInStock" ResultFormatString="{}Total units: {0}" />
                             </telerik:GridViewDataColumn.AggregateFunctions>-->
@@ -308,7 +319,7 @@
                             </telerik:GridViewDataColumn.AggregateFunctions>-->
                                     </telerik:GridViewDataColumn>
 
-                                    <telerik:GridViewDataColumn Width="80" Header="操作"   CellTemplate="{StaticResource DataTemplate13}"/>
+                                    <telerik:GridViewDataColumn Width="80" Header="详情" CellTemplate="{StaticResource DataTemplate13}"/>
                                     
                                 </telerik:RadGridView.Columns>
                             </telerik:RadGridView>

@@ -13,8 +13,8 @@
     
     <Grid x:Name="LayoutRoot" Background="AliceBlue" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" ShowGridLines="True" Width="300" Height="250" >
 
-            <Grid.Resources>
-                <!-- 用于安置的示例Features -->
+        <Grid.Resources>
+            <!-- 用于安置的示例Features -->
                 <toolkit:ObjectCollection x:Key="CorporationFeatures">
                     <samplesCommon:Feature FeatureName="总区域" Description="总区域结构">
                         <samplesCommon:Feature FeatureName="区域1" Description="区域1的结构">
@@ -70,7 +70,7 @@
                     <ColumnDefinition Width="2*" />
                 </Grid.ColumnDefinitions>-->
         <controls:TreeView Background="AliceBlue"   ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" ItemTemplate="{StaticResource NodeTemplate}"
-                ItemsSource="{StaticResource CorporationFeatures}" FontSize="14" Margin="0,0,0,0">
+                ItemsSource="{StaticResource CorporationFeatures}" FontSize="14" Margin="0,0,0,0" VerticalAlignment="Top">
 
                     <!-- 用来一次展开TreeView所有结点 -->
                     <controls:TreeView.ItemContainerStyle>

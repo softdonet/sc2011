@@ -1,10 +1,240 @@
 ﻿<UserControl x:Class="SCADA.UI.Modules.Query.QueryDevice"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:SampleData="clr-namespace:Expression.Blend.SampleData.DataGridViewSampleDataSource"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="500" d:DesignWidth="1024">
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    d:DesignHeight="768" d:DesignWidth="1024">
+
+
+    <UserControl.Resources>
+
+        <SampleData:DataGridViewSampleDataSource x:Key="DataGridViewSampleDataSource" d:IsDataSource="True"/>
+        <DataTemplate x:Key="DataTemplate0">
+            <Grid Height="28">
+                <TextBlock Margin="2,0" Text="{Binding Area}"  HorizontalAlignment="Center" d:LayoutOverrides="Width, Height" VerticalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="DataTemplate1">
+            <Grid Height="28">
+                <TextBlock Margin="2,0" Text="{Binding Number}"  HorizontalAlignment="Center" d:LayoutOverrides="Width, Height" VerticalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="DataTemplate2">
+            <Grid>
+                <TextBlock Text="{Binding InstallPlace}" VerticalAlignment="Center" d:LayoutOverrides="Width" HorizontalAlignment="Center" Margin="2,0"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="DataTemplate3">
+            <Grid>
+                <TextBlock HorizontalAlignment="Center" Text="{Binding ManageArea}" VerticalAlignment="Center" Margin="2,0"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="DataTemplate4">
+            <Grid>
+                <TextBlock TextWrapping="Wrap" Text="{Binding Update}" VerticalAlignment="Center" d:LayoutOverrides="Width" HorizontalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="DataTemplate5">
+            <Grid>
+                <TextBlock HorizontalAlignment="Left" Text="{Binding Device}" VerticalAlignment="Center" Margin="2,0"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="DataTemplate6">
+            <Grid>
+                <Image Source="{Binding Signal}" Width="18" Height="18"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="DataTemplate7">
+            <Grid>
+                <Image Source="{Binding ManageArea}" Width="18" Height="18"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="DataTemplate8">
+            <Grid Height="28">
+                <TextBlock Margin="2,0" Text="{Binding Temperature}"  HorizontalAlignment="Center" d:LayoutOverrides="Width, Height" VerticalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="DataTemplate9">
+            <Grid Height="28">
+                <TextBlock Margin="2,0" Text="{Binding Pressure}"  HorizontalAlignment="Center" d:LayoutOverrides="Width, Height" VerticalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="DataTemplate10">
+            <Grid>
+                <Image Source="{Binding State}" Width="18" Height="18" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="DataTemplate100">
+            <Grid>
+                <Image Source="{Binding State}" Width="18" Height="18" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="DataTemplate11">
+            <Grid Height="28">
+                <TextBlock Margin="2,0" Text="{Binding Electric}"  HorizontalAlignment="Center" d:LayoutOverrides="Width, Height" VerticalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="DataTemplate12">
+            <Grid Height="28">
+                <TextBlock Margin="2,0" Text="{Binding Signal}"  HorizontalAlignment="Center" d:LayoutOverrides="Width, Height" VerticalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="DataTemplate13">
+            <Grid Height="28">
+                <TextBlock Margin="2,0" Text="{Binding Operation}"  HorizontalAlignment="Center" d:LayoutOverrides="Width, Height" VerticalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="DataTemplate14">
+            <Grid>
+                <Image Source="{Binding DeviceStatus}" Width="18" Height="18" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="DataTemplate15">
+            <Grid>
+                <Image Source="{Binding Electric}" Width="18" Height="18"/>
+            </Grid>
+        </DataTemplate>
+
+        <Style x:Key="DataGridColumnHeaderStyle1" TargetType="sdk:DataGridColumnHeader">
+            <Setter Property="Foreground" Value="#FF000000"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="SeparatorBrush" Value="#FFC9CACA"/>
+            <Setter Property="Padding" Value="4"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="sdk:DataGridColumnHeader">
+                        <Grid x:Name="Root">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FF448DCA" Storyboard.TargetProperty="(Fill).Color" Storyboard.TargetName="BackgroundRectangle"/>
+                                            <ColorAnimation Duration="0" To="#7FFFFFFF" Storyboard.TargetProperty="(Fill).(GradientStops)[3].Color" Storyboard.TargetName="BackgroundGradient"/>
+                                            <ColorAnimation Duration="0" To="#CCFFFFFF" Storyboard.TargetProperty="(Fill).(GradientStops)[2].Color" Storyboard.TargetName="BackgroundGradient"/>
+                                            <ColorAnimation Duration="0" To="#F2FFFFFF" Storyboard.TargetProperty="(Fill).(GradientStops)[1].Color" Storyboard.TargetName="BackgroundGradient"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FF448DCA" Storyboard.TargetProperty="(Fill).Color" Storyboard.TargetName="BackgroundRectangle"/>
+                                            <ColorAnimation Duration="0" To="#D8FFFFFF" Storyboard.TargetProperty="(Fill).(GradientStops)[0].Color" Storyboard.TargetName="BackgroundGradient"/>
+                                            <ColorAnimation Duration="0" To="#C6FFFFFF" Storyboard.TargetProperty="(Fill).(GradientStops)[1].Color" Storyboard.TargetName="BackgroundGradient"/>
+                                            <ColorAnimation Duration="0" To="#8CFFFFFF" Storyboard.TargetProperty="(Fill).(GradientStops)[2].Color" Storyboard.TargetName="BackgroundGradient"/>
+                                            <ColorAnimation Duration="0" To="#3FFFFFFF" Storyboard.TargetProperty="(Fill).(GradientStops)[3].Color" Storyboard.TargetName="BackgroundGradient"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="SortStates">
+                                    <VisualState x:Name="Unsorted"/>
+                                    <VisualState x:Name="SortAscending">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To="1.0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SortIcon"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="SortDescending">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To="1.0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SortIcon"/>
+                                            <DoubleAnimation Duration="0" To="-.9" Storyboard.TargetProperty="(RenderTransform).ScaleY" Storyboard.TargetName="SortIcon"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Rectangle x:Name="BackgroundRectangle" Grid.ColumnSpan="2" Fill="#FF1F3B53" Stretch="Fill"/>
+                            <Rectangle x:Name="BackgroundGradient" Grid.ColumnSpan="2" Stretch="Fill">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush EndPoint=".7,1" StartPoint=".7,0">
+                                        <GradientStop Color="#FCFFFFFF" Offset="0.015"/>
+                                        <GradientStop Color="#F7FFFFFF" Offset="0.375"/>
+                                        <GradientStop Color="#E5FFFFFF" Offset="0.6"/>
+                                        <GradientStop Color="#D1FFFFFF" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <Grid VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="Center" Margin="0,4" Height="24">
+                                <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Path x:Name="SortIcon" Grid.Column="1" Data="F1 M -5.215,6.099L 5.215,6.099L 0,0L -5.215,6.099 Z " Fill="#FF444444" HorizontalAlignment="Left" Margin="4,0,0,0" Opacity="0" RenderTransformOrigin=".5,.5" Stretch="Uniform" VerticalAlignment="Center" Width="8">
+                                    <Path.RenderTransform>
+                                        <ScaleTransform ScaleY=".9" ScaleX=".9"/>
+                                    </Path.RenderTransform>
+                                </Path>
+                            </Grid>
+                            <Rectangle x:Name="VerticalSeparator" Grid.Column="1" Fill="{TemplateBinding SeparatorBrush}" Visibility="{TemplateBinding SeparatorVisibility}" VerticalAlignment="Stretch" Width="1"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Storyboard x:Name="Storyboard1">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ViewHost">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="ViewHost">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.4"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="ViewHost">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.4"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ViewHost">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="Storyboard2">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ViewHost">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="ViewHost">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.6"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="ViewHost">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.6"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ViewHost">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+
 
     <Grid x:Name="LayoutRoot">
         <Border x:Name="content_Border" BorderBrush="#FF4A91BB" BorderThickness="1" Margin="5" CornerRadius="5">
@@ -24,7 +254,46 @@
                         </LinearGradientBrush>
                     </Border.Background>
                     <Border BorderThickness="1" CornerRadius="5" Margin="1" Background="AliceBlue">
+                        <Grid x:Name="LayoutRoot1" DataContext="{Binding Source={StaticResource DataGridViewSampleDataSource}}" ShowGridLines="False">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="140" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="140" />
+                                <ColumnDefinition Width="90" />
+                                <ColumnDefinition Width="90*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="268*" />
+                            </Grid.RowDefinitions>
+                            <sdk:Label Content="设备名称:" Grid.Column="0" Height="28"  Margin="10,10,5,8" Name="label1" Width="50" />
+                            <TextBox Height="23" Grid.Column="1" Margin="0,10,0,11" Name="TxtDevice"  Width="120" />
+                            <sdk:Label Content="开始时间:" Grid.Column="2" Height="28"  Margin="10,10,10,16" Name="lblSat" Width="50"  />
+                            <sdk:DatePicker Height="23"  Grid.Column="3" HorizontalAlignment="Left" Margin="0,10,0,0" Name="datePicker1" VerticalAlignment="Top" Width="120" />
+                            <sdk:Label Content="结束时间:" Grid.Column="4" Height="28"  Margin="6,10,10,8" Name="lblEnd" Width="50"   />
+                            <sdk:DatePicker Grid.Column="5" Height="23" HorizontalAlignment="Left" Margin="0,10,0,0" Name="datePicker2" VerticalAlignment="Top" Width="120" />
+                            <Button Content="查询" Grid.Column="6" Height="23" HorizontalAlignment="Left" Margin="5,12,0,0" Name="btnCheck" VerticalAlignment="Top" Width="75" />
+                            <Button Content="导出" Grid.Column="7" Height="23" HorizontalAlignment="Left" Margin="11,12,0,0" Name="btnExport" VerticalAlignment="Top" Width="75" />
 
+                            <sdk:DataGrid ItemsSource="{Binding Collection}" AutoGenerateColumns="False" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" CanUserSortColumns="True" Grid.Row="1" Grid.ColumnSpan="10" >
+                                <sdk:DataGrid.Columns>
+                                    
+                                    <sdk:DataGridTemplateColumn Header="设备名" Width="80" DisplayIndex="1" CellTemplate="{StaticResource DataTemplate5}"  />
+                                    <sdk:DataGridTemplateColumn Header="安装地点" Width="160" CellTemplate="{StaticResource DataTemplate2}" />
+                                    <sdk:DataGridTemplateColumn Header="更新时间" Width="130" CellTemplate="{StaticResource DataTemplate4}" />
+                                    <sdk:DataGridTemplateColumn Header="温度" Width="80" CellTemplate="{StaticResource DataTemplate8}" />
+                                    <sdk:DataGridTemplateColumn Header="状态" Width="50" CellTemplate="{StaticResource DataTemplate14}" />
+                                    <sdk:DataGridTemplateColumn Header="电量" Width="60" CellTemplate="{StaticResource DataTemplate15}" />
+                                    <sdk:DataGridTemplateColumn Header="信号强度" Width="60" CellTemplate="{StaticResource DataTemplate6}" />
+                                </sdk:DataGrid.Columns>
+                            </sdk:DataGrid>
+
+                        </Grid>
                     </Border>
                 </Border>
             </Grid>

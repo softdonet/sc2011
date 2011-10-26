@@ -59,7 +59,7 @@ namespace SCADA.UI
                         break;
                     //设备列表
                     case "menuDeviceList":
-                        this.ViewHost.Child = new  DeviceList();
+                        this.ViewHost.Child = new  DeviceListNew();
                         break;
                     //设备告警
                     case "menuAlertList":

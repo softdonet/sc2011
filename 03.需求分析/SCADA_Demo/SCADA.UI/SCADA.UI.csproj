@@ -93,6 +93,7 @@
     <Reference Include="System.Windows.Interactivity, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
+    <Reference Include="System.Xml.Serialization, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls, Version=2010.2.714.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.Charting, Version=2010.2.714.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.GridView, Version=2010.2.714.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
@@ -167,6 +168,8 @@
     <Compile Include="Modules\BingMaps\WeatherBar.xaml.cs">
       <DependentUpon>WeatherBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Device\Class.cs" />
+    <Compile Include="Modules\Device\CoverageItemBase.cs" />
     <Compile Include="Modules\Device\DetailsPage.xaml.cs">
       <DependentUpon>DetailsPage.xaml</DependentUpon>
     </Compile>
@@ -176,6 +179,14 @@
     <Compile Include="Modules\Device\DeviceList.xaml.cs">
       <DependentUpon>DeviceList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Device\DeviceListNew.xaml.cs">
+      <DependentUpon>DeviceListNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Device\Method.cs" />
+    <Compile Include="Modules\Device\Module.cs" />
+    <Compile Include="Modules\Device\NamespaceTable.cs" />
+    <Compile Include="Modules\Device\RadTreeListXmlDataSource.cs" />
+    <Compile Include="Modules\Device\TestCoverageItemsList.cs" />
     <Compile Include="Modules\Query\QueryAlarm.xaml.cs">
       <DependentUpon>QueryAlarm.xaml</DependentUpon>
     </Compile>
@@ -301,6 +312,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modules\Device\DeviceList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Device\DeviceListNew.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -523,6 +538,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\bg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modules\Device\RadRibbonBarCodeCoverage.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

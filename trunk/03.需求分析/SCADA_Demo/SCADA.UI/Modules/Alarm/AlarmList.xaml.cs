@@ -17,19 +17,30 @@ namespace SCADA.UI.Modules.Alarm
         public AlarmList()
         {
             InitializeComponent();
-          //  MyContent.CloseBtn += new EventHandler(MyContent_CloseBtn);
+            MyContent.CloseBtn += new EventHandler(MyContent_CloseBtn);
 
         }
 
         void MyContent_CloseBtn(object sender, EventArgs e)
         {
             Storyboard2.Begin();
-          //  ViewHost.Visibility = Visibility.Collapsed;
+            ViewHost.Visibility = Visibility.Collapsed;
         }
 
         private void dgrdList_LoadingRow(object sender, DataGridRowEventArgs e)
         {
  
+           Expression.Blend.SampleData.DataGridViewSampleDataSource.Item item=
+               e.Row.DataContext as Expression.Blend.SampleData.DataGridViewSampleDataSource.Item;
+
+           if (item.DealWith== "未确认")
+           {
+               e.Row.Background = new SolidColorBrush(Colors.Red);
+           }
+           #region bg
+           
+           //(Expression.Blend.SampleData.DataGridViewSampleDataSource.Item)
+            //string aa = ((this.dgrdList.Columns[1].GetCellContent(e.Row)) as TextBlock).Text;
             //------------------------------
             //设置行背景色
 
@@ -42,9 +53,10 @@ namespace SCADA.UI.Modules.Alarm
            //// (this.dgrdList.Columns[1].GetCellContent(e.Row)).Foreground = r;
            // foreach (var item in dgrdList.Columns)
            // {
-                
+
            // }
-//-----------------------------------------------------
+           #endregion
+           //-----------------------------------------------------
             e.Row.MouseLeftButtonUp -= new System.Windows.Input.MouseButtonEventHandler(Row_MouseLeftButtonUp);
             e.Row.MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(Row_MouseLeftButtonUp);
         }
@@ -59,11 +71,11 @@ namespace SCADA.UI.Modules.Alarm
             //string sColumnValue = ((TextBlock)this.dgrdList.Columns[1].GetCellContent(this.dgrdList.SelectedItem)).Text.Trim();
 
             string columnValue = ((Expression.Blend.SampleData.DataGridViewSampleDataSource.Item)(this.dgrdList.SelectedItem)).DealWith;
-            if (columnValue == "确认")
+            if (columnValue == "未确认")
             {
                 Storyboard1.Begin();
-             //   MyContent.Content = new ConfirmPage();
-              //  MyContent.Title = "确认信息";
+                MyContent.Content = new ConfirmPage();
+                MyContent.Title = "确认信息";
             }
 
         }

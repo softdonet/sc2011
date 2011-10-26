@@ -304,11 +304,11 @@
                 </Border>
             </Grid>
         </Border>
-        <!--<Border x:Name="ViewHost" BorderBrush="Black" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed">
+        <Border x:Name="ViewHost" BorderBrush="Black" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed">
             <Border.RenderTransform>
                 <CompositeTransform/>
             </Border.RenderTransform>
             <local:MyContent x:Name="MyContent" Content="MyContent"/>
-        </Border>-->
+        </Border>
     </Grid>
 </UserControl>

@@ -18,6 +18,7 @@ namespace SCADA.UI.Modules.Alarm
         public ConfirmPage()
         {
             InitializeComponent();
+            txtConform.Text = "请输入您的的确认信息...";
         }
 
         // Executes when the user navigates to this page.

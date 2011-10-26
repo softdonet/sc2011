@@ -285,7 +285,7 @@
                             <sdk:DataGrid Name="dgrdList" SelectionMode="Single" ItemsSource="{Binding Collection}" AutoGenerateColumns="False" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" CanUserSortColumns="True" LoadingRow="dgrdList_LoadingRow">
                                 <sdk:DataGrid.Columns>
                                     <!--<sdk:DataGridTemplateColumn Header="序号" Width="80" DisplayIndex="1" CellTemplate="{StaticResource DataTemplate1}" />-->
-                                    <sdk:DataGridTemplateColumn Header="设备名" Width="100" DisplayIndex="1" CellTemplate="{StaticResource DataTemplate5}"  />
+                                    <sdk:DataGridTemplateColumn Header="设备名" Width="100" DisplayIndex="1" CellTemplate="{StaticResource DataTemplate5}" />
                                     <sdk:DataGridTemplateColumn Header="事件类型" Width="60" CellTemplate="{StaticResource DataTemplate15}" />
                                     <sdk:DataGridTemplateColumn Header="事件等级" Width="60" CellTemplate="{StaticResource DataTemplate22}" />
                                     <sdk:DataGridTemplateColumn Header="开始时间" Width="140" CellTemplate="{StaticResource DataTemplate16}" />
@@ -304,11 +304,11 @@
                 </Border>
             </Grid>
         </Border>
-        <Border x:Name="ViewHost" BorderBrush="Black" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed">
+        <!--<Border x:Name="ViewHost" BorderBrush="Black" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed">
             <Border.RenderTransform>
                 <CompositeTransform/>
             </Border.RenderTransform>
             <local:MyContent x:Name="MyContent" Content="MyContent"/>
-        </Border>
+        </Border>-->
     </Grid>
 </UserControl>

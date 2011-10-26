@@ -24,7 +24,7 @@
     <xs:attribute name="Update" type="xs:string" />
     <xs:attribute name="Signal" type="tns:Basic-Image" />
     <xs:attribute name="ManageArea" type="xs:string" />
-    <xs:attribute name="Temperature" type="xs:double" />
+    <xs:attribute blend:Format="Lorem ipsum" blend:FormatParameters="4,8" name="Temperature" type="xs:string" />
     <xs:attribute name="Percent" type="xs:string" />
     <xs:attribute blend:FormatParameters="Images" name="State" type="tns:Basic-Image" />
     <xs:attribute name="Operation" type="xs:string" />

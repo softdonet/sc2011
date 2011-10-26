@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="SCADA.UI.Modules.Device.DeviceListNew"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:local="clr-namespace:SCADA.UI.Modules.Device"
+    mc:Ignorable="d"
+    d:DesignHeight="768" d:DesignWidth="800">
+    <UserControl.Resources>
+        <local:RadTreeListXmlDataSource x:Key="TreeListSource"  Source="RadRibbonBarCodeCoverage.xml" />
+        <local:RelativeBlocksValueConverter x:Key="RelativeBlocksValueConverter1" />
+        <local:ItemImageSourceValueConverter x:Key="ItemImageSourceValueConverter1" />
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" Background="White">
+        <telerik:RadTreeListView x:Name="RadTreeListView1" 
+								 AutoGenerateColumns="False"
+								 IsReadOnly="True"
+								 ItemsSource="{StaticResource TreeListSource}">
+            <telerik:RadTreeListView.ChildTableDefinitions>
+                <telerik:TreeListViewTableDefinition ItemsSource="{Binding Items}" />
+            </telerik:RadTreeListView.ChildTableDefinitions>
+            <telerik:RadTreeListView.Columns>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Name}" Width="300" Header="设备名" HeaderTextAlignment="Center" />
+                <!--<telerik:GridViewDataColumn DataMemberBinding="{Binding BlocksNotCovered}"  Width="200" Header="设备名" HeaderTextAlignment="Center" />-->
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Converter={StaticResource RelativeBlocksValueConverter1}, ConverterParameter=0}"  Width="200"
+											Header="安装地点" HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn   DataMemberBinding="{Binding BlocksCovered}" Header="更新时间" HeaderTextAlignment="Center"  Width="100"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Converter={StaticResource RelativeBlocksValueConverter1}, ConverterParameter=1}"  Width="100"
+											Header="温度(℃)" HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Converter={StaticResource RelativeBlocksValueConverter1}, ConverterParameter=1}"  Width="100"
+											Header="状态" HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Converter={StaticResource RelativeBlocksValueConverter1}, ConverterParameter=1}"  Width="100"
+											Header="电量" HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Converter={StaticResource RelativeBlocksValueConverter1}, ConverterParameter=1}"  Width="100"
+											Header="信号强度" HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Converter={StaticResource RelativeBlocksValueConverter1}, ConverterParameter=1}"  Width="100"
+											Header="详情" HeaderTextAlignment="Center"/>
+            </telerik:RadTreeListView.Columns>
+            
+        </telerik:RadTreeListView>
+     
+    </Grid>
+</UserControl>

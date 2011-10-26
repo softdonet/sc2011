@@ -17,18 +17,34 @@ namespace SCADA.UI.Modules.Alarm
         public AlarmList()
         {
             InitializeComponent();
-            MyContent.CloseBtn += new EventHandler(MyContent_CloseBtn);
+          //  MyContent.CloseBtn += new EventHandler(MyContent_CloseBtn);
 
         }
 
         void MyContent_CloseBtn(object sender, EventArgs e)
         {
             Storyboard2.Begin();
-            ViewHost.Visibility = Visibility.Collapsed;
+          //  ViewHost.Visibility = Visibility.Collapsed;
         }
 
         private void dgrdList_LoadingRow(object sender, DataGridRowEventArgs e)
         {
+ 
+            //------------------------------
+            //设置行背景色
+
+           // SolidColorBrush r = new SolidColorBrush(Color.FromArgb(180, 180, 0, 0));
+
+           // e.Row.Background = r;
+
+           // //设置列颜色
+
+           //// (this.dgrdList.Columns[1].GetCellContent(e.Row)).Foreground = r;
+           // foreach (var item in dgrdList.Columns)
+           // {
+                
+           // }
+//-----------------------------------------------------
             e.Row.MouseLeftButtonUp -= new System.Windows.Input.MouseButtonEventHandler(Row_MouseLeftButtonUp);
             e.Row.MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(Row_MouseLeftButtonUp);
         }
@@ -46,8 +62,8 @@ namespace SCADA.UI.Modules.Alarm
             if (columnValue == "确认")
             {
                 Storyboard1.Begin();
-                MyContent.Content = new ConfirmPage();
-                MyContent.Title = "确认信息";
+             //   MyContent.Content = new ConfirmPage();
+              //  MyContent.Title = "确认信息";
             }
 
         }

@@ -198,9 +198,9 @@ namespace Expression.Blend.SampleData.DataGridViewSampleDataSource
 			}
 		}
 
-		private double _Temperature = 0;
+		private string _Temperature = string.Empty;
 
-		public double Temperature
+		public string Temperature
 		{
 			get
 			{

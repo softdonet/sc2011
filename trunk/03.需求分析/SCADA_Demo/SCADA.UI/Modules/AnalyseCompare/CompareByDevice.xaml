@@ -142,7 +142,13 @@
                                             <vc:DataPoint AxisXLabel="12" YValue="62" Cursor="Hand" />
                                         </vc:DataSeries.DataPoints>
                                     </vc:DataSeries>
+                                    
                                 </vc:Chart.Series>
+                                <vc:Chart.Legends>
+                                    <vc:Legend  >
+                                    
+                                    </vc:Legend>
+                                </vc:Chart.Legends>
                             </vc:Chart>
                          
                         </Grid>

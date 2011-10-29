@@ -73,6 +73,7 @@ namespace SCADA.UI
                         //this.ViewHost.Child = new HistoryAvgValue();
                         //树型结构
                         //this.ViewHost.Child = new TreeviewGrid();
+                       // this.ViewHost.Child = new SCADA.UI.Controls.TreeListCheckBox();
                         break;
                        
                         ///统计分析移到对比分析的子菜单下

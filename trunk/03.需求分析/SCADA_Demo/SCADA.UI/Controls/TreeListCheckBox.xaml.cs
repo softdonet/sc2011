@@ -18,6 +18,30 @@ namespace SCADA.UI.Controls
         public TreeListCheckBox()
         {
             InitializeComponent();
+
+            //this.Loaded += new RoutedEventHandler(TreeListCheckBox_Loaded);
+        }
+     
+        void TreeListCheckBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            TreeViewItem item = GetParentTreeViewItem((DependencyObject)sender);
+
+            if (item != null)
+            {
+
+                Feature feature = item.DataContext as Feature;
+                
+                if (feature != null)
+                {
+                    if (feature.FeatureName == "片区1")
+                    {
+                        UpdateChildrenCheckedState(feature);//更新子组件选中状态
+
+                       // UpdateParentCheckedState(item);//更新父组件选中状态
+                    }
+                }
+
+            }
         }
         //处理Checkbox点击事件
 
@@ -100,7 +124,6 @@ namespace SCADA.UI.Controls
                     }
 
 
-
                     //将父组件的选中状态与子组件置为相同
 
                     feature.ShouldInstall = childrenCheckedState;
@@ -143,6 +166,7 @@ namespace SCADA.UI.Controls
 
             }
         }
+       
 
     }
 }

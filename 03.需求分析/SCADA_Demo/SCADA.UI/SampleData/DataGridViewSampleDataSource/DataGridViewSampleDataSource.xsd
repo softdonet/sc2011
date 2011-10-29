@@ -41,6 +41,7 @@
     <xs:attribute name="DealWith" type="xs:string" />
     <xs:attribute name="EventProprity" type="xs:string" />
     <xs:attribute name="Electric" type="tns:Basic-Image" />
+    <xs:attribute name="ObligateField" type="xs:string" />
   </xs:complexType>
   <xs:simpleType name="Basic-Image">
     <xs:restriction base="xs:anyURI" />

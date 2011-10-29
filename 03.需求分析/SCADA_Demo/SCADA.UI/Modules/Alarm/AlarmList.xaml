@@ -293,7 +293,7 @@
                                     <sdk:DataGridTemplateColumn Header="确认时间" Width="140" CellTemplate="{StaticResource DataTemplate18}" />
                                     <sdk:DataGridTemplateColumn Header="确认人" Width="80" CanUserResize="True" CellTemplate="{StaticResource DataTemplate19}" />
                                     <sdk:DataGridTemplateColumn Header="备注" Width="10*" CanUserResize="True" CellTemplate="{StaticResource DataTemplate20}" />
-                                    <sdk:DataGridTemplateColumn Header="状态" Width="50" CanUserResize="True" CellTemplate="{StaticResource DataTemplate10}" />
+                                    <!--<sdk:DataGridTemplateColumn Header="状态" Width="50" CanUserResize="True" CellTemplate="{StaticResource DataTemplate10}" />-->
                                     <!--<sdk:DataGridTemplateColumn Header="百分比" Width="50" CanUserSort="True" CanUserResize="False" CellTemplate="{StaticResource DataTemplate11}" />-->
                                     <!--<sdk:DataGridTemplateColumn Header="信号强度" Width="50" CanUserResize="False" CellTemplate="{StaticResource DataTemplate6}" />-->
                                     <sdk:DataGridTemplateColumn Header="处理"  Width="90" CanUserReorder="True" CellTemplate="{StaticResource DataTemplate21}" />

@@ -40,9 +40,6 @@
     <Reference Include="Divelements.SilverlightTools">
       <HintPath>..\Lib\Divelements.SilverlightTools.dll</HintPath>
     </Reference>
-    <Reference Include="DundasWebChart">
-      <HintPath>..\Lib\DundasWebChart.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -63,13 +60,13 @@
   <ItemGroup>
     <Content Include="bin\App_Licenses.dll" />
     <Content Include="bin\DundasWebChart.dll" />
-    <Content Include="bin\DundasWebChart.xml" />
     <Content Include="ClientBin\SCADA.UI.xap" />
     <Content Include="Images\analysis.PNG" />
     <Content Include="SCADA.UITestPage.aspx" />
     <Content Include="SCADA.UITestPage.html" />
     <Content Include="Silverlight.js" />
     <Content Include="StatisticsPage.aspx" />
+    <Content Include="StatisticsPage.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

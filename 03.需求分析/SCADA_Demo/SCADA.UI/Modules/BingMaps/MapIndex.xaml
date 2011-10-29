@@ -204,7 +204,7 @@
     <Grid x:Name="LayoutRoot" Background="White">
         <m:Map  x:Name="map"   Language="Chinese" CredentialsProvider="AurhvxU11uUw9lp-3TelW7ZCmHiqAIebMcR1vq-lO0ThwhTPjGpbPXmr0RqW_l6Q"  
         			ZoomLevel="4" NavigationVisibility="Visible" Mode="Road"  Center="34.27, 108.95"/>
-        <StackPanel Orientation="Vertical"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-54,0,0" d:LayoutOverrides="VerticalAlignment" >
+        <StackPanel Orientation="Vertical"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-54,0,0" d:LayoutOverrides="VerticalAlignment" Visibility="Collapsed">
             <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Top" Width="259" Margin="0,2,-1,0" Height="200">
                 <Button	x:Name="picbtn" Width="23" Height="20" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"  Click="picbtn_Click"  Style="{StaticResource picButtonStyle1}" Cursor="Hand">
                     <Button.Projection

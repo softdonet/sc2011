@@ -5,40 +5,101 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              xmlns:local="clr-namespace:SCADA.UI.Modules.Device"
+               xmlns:local1="clr-namespace:SCADA.UI.Controls" 
     mc:Ignorable="d"
-    d:DesignHeight="768" d:DesignWidth="800">
+    d:DesignHeight="768" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <local:RadTreeListXmlDataSource x:Key="TreeListSource"  Source="RadRibbonBarCodeCoverage.xml" />
         <local:RelativeBlocksValueConverter x:Key="RelativeBlocksValueConverter1" />
         <local:ItemImageSourceValueConverter x:Key="ItemImageSourceValueConverter1" />
+        <Storyboard x:Name="Storyboard1">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ViewHost">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="ViewHost">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.4"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="ViewHost">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.4"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ViewHost">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="Storyboard2">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ViewHost">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="ViewHost">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.6"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="ViewHost">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.6"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ViewHost">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Background="White">
         <telerik:RadTreeListView x:Name="RadTreeListView1" 
 								 AutoGenerateColumns="False"
 								 IsReadOnly="True"
                                  
-								 ItemsSource="{StaticResource TreeListSource}">
+								 ItemsSource="{StaticResource TreeListSource}" AutoExpandGroups="True" RowHeight="25" RowActivated="RadTreeListView1_RowActivated_1">
             <telerik:RadTreeListView.ChildTableDefinitions>
                 <telerik:TreeListViewTableDefinition ItemsSource="{Binding Items}" />
             </telerik:RadTreeListView.ChildTableDefinitions>
             <telerik:RadTreeListView.Columns>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding Name}" Width="300" Header="设备名" HeaderTextAlignment="Center" />
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding Converter={StaticResource RelativeBlocksValueConverter1}, ConverterParameter=0}"  Width="200"
-											Header="安装地点" HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn   DataMemberBinding="{Binding BlocksCovered}" Header="更新时间" HeaderTextAlignment="Center"  Width="100"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding Converter={StaticResource RelativeBlocksValueConverter1}, ConverterParameter=1}"  Width="100"
-											Header="温度(℃)" HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding Converter={StaticResource RelativeBlocksValueConverter1}, ConverterParameter=1}"  Width="100"
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Name}" Width="250" Header="设备名" HeaderTextAlignment="Center" />
+                <telerik:GridViewDataColumn   DataMemberBinding="{Binding BlocksCovered}" Header="安装地点" HeaderTextAlignment="Center"  Width="150"/>
+                <telerik:GridViewDataColumn   DataMemberBinding="{Binding BlocksNotCovered}" Header="更新时间" HeaderTextAlignment="Center"  Width="150"/>
+                <telerik:GridViewDataColumn   DataMemberBinding="{Binding LinesCovered}" Header="温度(℃)"  HeaderTextAlignment="Center" TextAlignment="Center"  Width="150"/>
+                <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=2}"  Width="100" ImageHeight="20" ImageWidth="20"
+											Header="电量" HeaderTextAlignment="Center"/>
+                <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=3}"  Width="100" ImageHeight="20" ImageWidth="20"
+											Header="信号强度" HeaderTextAlignment="Center"/>
+                <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=1}"  Width="100" ImageHeight="20" ImageWidth="20"
 											Header="状态" HeaderTextAlignment="Center"/>
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding Converter={StaticResource RelativeBlocksValueConverter1}, ConverterParameter=1}"  Width="100"
-											Header="电量" HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding Converter={StaticResource RelativeBlocksValueConverter1}, ConverterParameter=1}"  Width="100"
-											Header="信号强度" HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding Converter={StaticResource RelativeBlocksValueConverter1}, ConverterParameter=1}"  Width="100"
-											Header="详情" HeaderTextAlignment="Center"/>
+											Header="详情" HeaderTextAlignment="Center" TextAlignment="Center" />
             </telerik:RadTreeListView.Columns>
-            
+
         </telerik:RadTreeListView>
-     
+        <Border x:Name="ViewHost" BorderBrush="Black" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed" VerticalAlignment="Bottom">
+            <Border.RenderTransform>
+                <CompositeTransform/>
+            </Border.RenderTransform>
+            <local1:MyContent x:Name="MyContent" Content="MyContent"/>
+        </Border>
     </Grid>
 </UserControl>

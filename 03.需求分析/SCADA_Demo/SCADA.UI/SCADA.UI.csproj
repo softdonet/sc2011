@@ -509,6 +509,7 @@
     <Resource Include="Modules\BingMaps\Resources\undocked_windy.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Modules\BingMaps\New Folder1\" />
     <Folder Include="Service References\" />
   </ItemGroup>
   <ItemGroup>

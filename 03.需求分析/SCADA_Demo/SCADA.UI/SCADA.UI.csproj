@@ -121,6 +121,12 @@
     <Compile Include="Controls\TreeListCheckBox.xaml.cs">
       <DependentUpon>TreeListCheckBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataStore\TimeTableDataStore\TimeTableDataStore.xaml.cs">
+      <DependentUpon>TimeTableDataStore.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataStore\Timetable\Timetable.xaml.cs">
+      <DependentUpon>Timetable.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -212,8 +218,14 @@
     <Compile Include="SampleData\ListSampleDataSource\ListSampleDataSource.xaml.cs">
       <DependentUpon>ListSampleDataSource.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SampleData\SampleDataSource\SampleDataSource.xaml.cs">
+      <DependentUpon>SampleDataSource.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SampleData\Thermometer.xaml.cs">
       <DependentUpon>Thermometer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SampleData\TimeTableSampleDataSource\TimeTableSampleDataSource.xaml.cs">
+      <DependentUpon>TimeTableSampleDataSource.xaml</DependentUpon>
     </Compile>
     <Compile Include="SampleData\Top10DataSource\Top10DataSource.xaml.cs">
       <DependentUpon>Top10DataSource.xaml</DependentUpon>
@@ -242,6 +254,14 @@
     <Page Include="Controls\TreeListCheckBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataStore\TimeTableDataStore\TimeTableDataStore.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataStore\Timetable\Timetable.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="LoginPage.xaml">
       <SubType>Designer</SubType>
@@ -356,9 +376,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="SampleData\SampleDataSource\SampleDataSource.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="SampleData\Thermometer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SampleData\TimeTableSampleDataSource\TimeTableSampleDataSource.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="SampleData\Top10DataSource\Top10DataSource.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -378,6 +406,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <DesignTimeOnly Include="DataStore\Timetable\Timetable.xsd" />
+    <DesignTimeOnly Include="DataStore\TimeTableDataStore\TimeTableDataStore.xsd" />
     <None Include="Properties\AppManifest.xml">
       <SubType>Designer</SubType>
     </None>
@@ -388,6 +418,8 @@
     <None Include="SampleData\ListSampleDataSource\ListSampleDataSource.xsd">
       <SubType>Designer</SubType>
     </None>
+    <DesignTimeOnly Include="SampleData\SampleDataSource\SampleDataSource.xsd" />
+    <DesignTimeOnly Include="SampleData\TimeTableSampleDataSource\TimeTableSampleDataSource.xsd" />
     <None Include="SampleData\Top10DataSource\Top10DataSource.xsd">
       <SubType>Designer</SubType>
     </None>

@@ -24,7 +24,7 @@
         </DataTemplate>
         <DataTemplate x:Key="DataTemplate2">
             <Grid>
-                <TextBlock Text="{Binding InstallPlace}" VerticalAlignment="Center" d:LayoutOverrides="Width" HorizontalAlignment="Center" Margin="2,0"/>
+                <TextBlock Text="{Binding InstallPlace}" VerticalAlignment="Center" d:LayoutOverrides="Width" HorizontalAlignment="Left" Margin="2,0"/>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="DataTemplate3">
@@ -304,9 +304,10 @@
                                     <sdk:DataGridTemplateColumn Header="温度" Width="80" CellTemplate="{StaticResource DataTemplate8}" />
                                     <!--<sdk:DataGridTemplateColumn Header="状态" Width="50" CellTemplate="{StaticResource DataTemplate14}" />-->
                                     <sdk:DataGridTemplateColumn Header="电量" Width="60" CellTemplate="{StaticResource DataTemplate15}" />
+                                    <sdk:DataGridTemplateColumn Header="预留字段1"  Width="100" CellTemplate="{StaticResource DataTemplate16}" />
+                                    <sdk:DataGridTemplateColumn Header="预留字段2" Width="100"  CellTemplate="{StaticResource DataTemplate16}" />
                                     <sdk:DataGridTemplateColumn Header="信号强度" Width="60" CellTemplate="{StaticResource DataTemplate6}" />
-                                    <sdk:DataGridTemplateColumn Header="预留字段1"  Width="120" CellTemplate="{StaticResource DataTemplate16}" />
-                                    <sdk:DataGridTemplateColumn Header="预留字段2" Width="120"  CellTemplate="{StaticResource DataTemplate16}" />
+                                    
                                 </sdk:DataGrid.Columns>
                             </sdk:DataGrid>
 

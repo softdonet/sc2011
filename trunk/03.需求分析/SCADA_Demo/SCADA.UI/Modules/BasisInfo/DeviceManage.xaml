@@ -15,9 +15,21 @@
 		<SampleData:TimeTableSampleDataSource x:Key="TimeTableSampleDataSource" d:IsDataSource="True"/>
         <DataTemplate x:Key="dtTimeTable">
             <Grid>
-                <Image Source="{Binding TimeTable}" Width="18" Height="18"/>
+                <TextBlock HorizontalAlignment="Center" Text="{Binding TimeTable}" VerticalAlignment="Center" Margin="2,0"/>
             </Grid>
         </DataTemplate>
+
+        <DataTemplate x:Key="dtHour">
+            <Grid>
+                <TextBlock HorizontalAlignment="Center" Text="{Binding Hour}" VerticalAlignment="Center" Margin="2,0"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="dtMinute">
+            <Grid>
+                <TextBlock HorizontalAlignment="Center" Text="{Binding Minute}" VerticalAlignment="Center" Margin="2,0"/>
+            </Grid>
+        </DataTemplate>
+
     </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot">
@@ -93,22 +105,6 @@
                         <CheckBox Content="报警上限：" Height="16" HorizontalAlignment="Left" Margin="322,338,0,0" x:Name="checkBox7" VerticalAlignment="Top" Grid.Column="1" />
                         <CheckBox Content="报警下限：" Height="16" HorizontalAlignment="Left" Margin="322,364,0,0" x:Name="checkBox8" VerticalAlignment="Top" Grid.Column="1" />
                         <CheckBox Content="偏     差：" Height="16" HorizontalAlignment="Left" Margin="322,391,0,0" x:Name="checkBox9" VerticalAlignment="Top" Grid.Column="1" />
-
-                            <sdk:DataGrid AutoGenerateColumns="False"  HorizontalAlignment="Left" VerticalAlignment="Top" ItemsSource="{Binding Collection}" RowHeight="20" Grid.Column="1" Margin="537,9,0,0" Height="253" Width="207" DataContext="{Binding}">
-                            <!--<sdk:DataGrid.Columns>
-                                <sdk:DataGridTemplateColumn Header="定时表" Width="80" DisplayIndex="1" CellTemplate="{StaticResource dtTimeTable}" />
-                                <sdk:DataGridTemplateColumn Header="时" Width="60" DisplayIndex="1" CellTemplate="{StaticResource dtTimeTable}" />
-                                <sdk:DataGridTemplateColumn Header="分" Width="60" DisplayIndex="1" CellTemplate="{StaticResource dtTimeTable}" />
-                            </sdk:DataGrid.Columns>-->
-                        </sdk:DataGrid>
-                       
-                            <RadioButton Content="自定义" Grid.Column="1" HorizontalAlignment="Left" Margin="410,58,0,467" x:Name="radioButton1" />
-                        <RadioButton Content="定时表" Height="16" HorizontalAlignment="Left" Margin="410,35,0,0" x:Name="radioButton2" VerticalAlignment="Top" Grid.Column="1" />
-                        <RadioButton Content="仅按定时表采集" Height="16" HorizontalAlignment="Left" Margin="410,81,0,0" x:Name="radioButton3" VerticalAlignment="Top" Grid.Column="1" />
-                        <RadioButton Content="仅按定时表上传" Height="16" HorizontalAlignment="Left" Margin="410,105,0,0" x:Name="radioButton4" VerticalAlignment="Top" Grid.Column="1" />
-                        <RadioButton Content="按定时表采集并上报" Height="16" HorizontalAlignment="Left" Margin="410,131,0,0" x:Name="radioButton5" VerticalAlignment="Top" Grid.Column="1" />
-                        <sdk:Label Content="硬件版本：" Height="18" HorizontalAlignment="Left" Margin="414,156,0,0" x:Name="label2" VerticalAlignment="Top" Width="50" Grid.Column="1" />
-                        <TextBox Height="23" HorizontalAlignment="Left" Margin="476,152,0,0" x:Name="textBox11" Text="V.10" VerticalAlignment="Top" Width="53" Grid.Column="1" />
                         <TextBox Height="23" HorizontalAlignment="Left" Margin="87,138,0,0" x:Name="textBox12" Text="cmnet" VerticalAlignment="Top" Width="205" Grid.Column="1" />
                         <TextBox Height="23" HorizontalAlignment="Left" Margin="87,164,0,0" x:Name="textBox13" Text="" VerticalAlignment="Top" Width="205" Grid.Column="1" />
                         <TextBox Height="23" HorizontalAlignment="Left" Margin="87,190,0,0" x:Name="textBox14" Text="" VerticalAlignment="Top" Width="205" Grid.Column="1" />
@@ -121,11 +117,11 @@
                         <CheckBox Content="密    码：" Height="16" HorizontalAlignment="Left" Margin="11,192,0,0" x:Name="checkBox12" VerticalAlignment="Top" Grid.Column="1" />
                         <CheckBox Content="坐    标：" Height="16" HorizontalAlignment="Left" Margin="11,219,0,0" x:Name="checkBox13" VerticalAlignment="Top" Grid.Column="1" />
                         <CheckBox Content="连接方式：" Height="16" HorizontalAlignment="Left" Margin="11,246,0,0" x:Name="checkBox14" VerticalAlignment="Top" Grid.Column="1" />
-                        <TextBox Height="23" HorizontalAlignment="Left" Margin="86,280,0,0" x:Name="textBox17" Text="cmnet" VerticalAlignment="Top" Width="142" Grid.Column="1" />
-                        <TextBox Height="23" HorizontalAlignment="Left" Margin="86,306,0,0" x:Name="textBox18" Text="" VerticalAlignment="Top" Width="142" Grid.Column="1" />
-                        <TextBox Height="23" HorizontalAlignment="Left" Margin="86,332,0,0" x:Name="textBox19" Text="" VerticalAlignment="Top" Width="142" Grid.Column="1" />
-                        <TextBox Height="23" HorizontalAlignment="Left" Margin="86,358,0,0" x:Name="textBox20" Text="" VerticalAlignment="Top" Width="142" Grid.Column="1" />
-                        <TextBox Height="23" HorizontalAlignment="Left" Margin="87,384,0,0" x:Name="textBox21" Text="" VerticalAlignment="Top" Width="142" Grid.Column="1" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="86,280,0,0" x:Name="textBox17" Text="cmnet" VerticalAlignment="Top" Width="206" Grid.Column="1" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="86,306,0,0" x:Name="textBox18" Text="" VerticalAlignment="Top" Width="206" Grid.Column="1" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="86,332,0,0" x:Name="textBox19" Text="" VerticalAlignment="Top" Width="206" Grid.Column="1" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="86,358,0,0" x:Name="textBox20" Text="" VerticalAlignment="Top" Width="206" Grid.Column="1" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="87,384,0,0" x:Name="textBox21" Text="" VerticalAlignment="Top" Width="205" Grid.Column="1" />
                         <CheckBox Content="主DNS：" Height="16"  HorizontalAlignment="Left" Margin="10,284,0,0" VerticalAlignment="Top" x:Name="checkBox15" Grid.Column="1" />
                         <CheckBox Content="从DNS：" Height="16"  HorizontalAlignment="Left" Margin="11,309,0,0" x:Name="checkBox16" VerticalAlignment="Top" Width="75" Grid.Column="1" />
                         <CheckBox Content="中心IP：" Height="16" HorizontalAlignment="Left" Margin="10,334,0,0" x:Name="checkBox17" VerticalAlignment="Top" Grid.Column="1" />
@@ -136,13 +132,33 @@
                         <Button Content="删除" Height="23" HorizontalAlignment="Left" Margin="66,454,0,0" x:Name="button2" VerticalAlignment="Top" Width="51" />
                         <Button Content="保存" Height="23" HorizontalAlignment="Left" Margin="121,454,0,0" x:Name="button3" VerticalAlignment="Top" Width="51" />
                         <Button Content="导出" Height="23" HorizontalAlignment="Left" Margin="178,454,0,0" x:Name="button1" VerticalAlignment="Top" Width="51" />
-                        <sdk:DataGrid AutoGenerateColumns="False" Height="138" HorizontalAlignment="Left" VerticalAlignment="Top" ItemsSource="{Binding Collection}" Margin="537,287,0,0"  Width="211" Grid.Column="1">
+                        <sdk:DataGrid AutoGenerateColumns="False" Height="138" HorizontalAlignment="Right" VerticalAlignment="Top" ItemsSource="{Binding Collection}" Margin="537,287,0,0"  Width="211" Grid.Column="1">
                             <sdk:DataGrid.Columns>
                                 <sdk:DataGridTemplateColumn Header="操作人员信息" Width="400" />
                             </sdk:DataGrid.Columns>
                         </sdk:DataGrid>
                         <Button Content="增加操作人" Height="23" HorizontalAlignment="Left" Margin="537,452,0,0" x:Name="button5" VerticalAlignment="Top" Width="82" Grid.Column="1" />
                         <Button Content="删除操作人" Height="23" HorizontalAlignment="Left" Margin="648,451,0,0" x:Name="button6" VerticalAlignment="Top" Width="82" Grid.Column="1" />
+                        <StackPanel Grid.Column="1" Height="275" HorizontalAlignment="Right"  Name="stackPanel3" VerticalAlignment="Top" Width="423" Orientation="Horizontal" >
+                                <StackPanel Height="271" Name="stackPanel1" Width="200" Margin="0,0,5,0" >
+                                <RadioButton Content="自定义" x:Name="radioButton1" Margin="3" />
+                                <RadioButton Content="定时表" Height="16" x:Name="radioButton2" Margin="3" />
+                                <RadioButton Content="仅按定时表采集" Height="16" x:Name="radioButton3" Margin="3" />
+                                <RadioButton Content="仅按定时表上传" Height="16" x:Name="radioButton4" Margin="3" />
+                                <RadioButton Content="按定时表采集并上报" Height="16" x:Name="radioButton5" Margin="3" />
+                                <StackPanel Height="36" Name="stackPanel2" Width="194" Orientation="Horizontal" Margin="3">
+                                    <sdk:Label Content="硬件版本：" Height="18" x:Name="label2" Width="50" Margin="3" />
+                                    <TextBox Height="23" x:Name="textBox11" Text="V.10" Width="53" Margin="3" />
+                                </StackPanel>
+                            </StackPanel>
+                            <sdk:DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Collection}" RowHeight="20" Height="271" Width="217" DataContext="{Binding}">
+                                <sdk:DataGrid.Columns>
+                                    <sdk:DataGridTemplateColumn Header="定时表" Width="80" DisplayIndex="1" CellTemplate="{StaticResource dtTimeTable}" />
+                                    <sdk:DataGridTemplateColumn Header="时" Width="60" CellTemplate="{StaticResource dtHour}" />
+                                    <sdk:DataGridTemplateColumn Header="分" Width="60" CellTemplate="{StaticResource dtMinute}" />
+                                </sdk:DataGrid.Columns>
+                            </sdk:DataGrid>
+                        </StackPanel>
                     </Grid>
                 </Border>
             </Grid>

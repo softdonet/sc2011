@@ -18,7 +18,7 @@
                 </LinearGradientBrush>
             </Border.Background>
             <Grid>
-                <TextBlock x:Name="title_TextBlock" HorizontalAlignment="Left" Height="25" Margin="22,5,0,0" TextWrapping="Wrap" Text="不同设备同一时间段的对比" VerticalAlignment="Top" Width="247" FontSize="16" Foreground="White"/>
+                <TextBlock x:Name="title_TextBlock" HorizontalAlignment="Left" Height="25" Margin="22,5,0,0" TextWrapping="Wrap" Text="时间对比" VerticalAlignment="Top" Width="247" FontSize="16" Foreground="White"/>
                 <Border BorderBrush="#FF4A91BB" BorderThickness="1" Margin="10,35,10,20" CornerRadius="5">
                     <Border.Background>
                         <!--<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -61,7 +61,7 @@
                                 </vc:Chart.Titles>
                                     
                                 <vc:Chart.Legends>
-                                    <vc:Legend  DockInsidePlotArea="True" ></vc:Legend>
+                                    <vc:Legend  DockInsidePlotArea="True" HorizontalAlignment="Center" ></vc:Legend>
                                 </vc:Chart.Legends>
                                 
                                 <vc:Chart.PlotArea>

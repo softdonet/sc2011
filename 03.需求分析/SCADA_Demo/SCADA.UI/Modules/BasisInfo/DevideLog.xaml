@@ -151,11 +151,7 @@
                         
 
                         <Grid x:Name="LayoutRoot" DataContext="{Binding Source={StaticResource DataGridViewSampleDataSource}}" ShowGridLines="True" Grid.Column="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20*" />
-                                <ColumnDefinition Width="746*" />
-                            </Grid.ColumnDefinitions>
-
+                            
                             <Button Content="添加设备" Grid.Column="1" Height="25" HorizontalAlignment="Left" Margin="270,8,0,0" Name="button1" VerticalAlignment="Top" Width="75" />
                             <Button Content="更换设备" Grid.Column="1" Height="25" HorizontalAlignment="Left" Margin="380,8,0,0" Name="button2" VerticalAlignment="Top" Width="75" />
 

@@ -124,7 +124,7 @@
                             <GradientStop Color="#FFCDCCCC" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.Background>
-                    <Grid  x:Name="gridContoaner"  Background="AliceBlue" ShowGridLines="True">
+                    <Grid  x:Name="gridContoaner"  Background="AliceBlue" ShowGridLines="False">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="240" />
                             <ColumnDefinition Width="385" />

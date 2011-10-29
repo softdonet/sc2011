@@ -223,7 +223,7 @@
                             <GradientStop Color="#FFCDCCCC" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.Background>
-                    <Border BorderThickness="1" CornerRadius="5" Margin="1">
+                    <Border BorderThickness="1" CornerRadius="5" Margin="1" Background="AliceBlue">
                         <Grid x:Name="LayoutRoot1" DataContext="{Binding Source={StaticResource DataGridViewSampleDataSource}}" ShowGridLines="False">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="80" />

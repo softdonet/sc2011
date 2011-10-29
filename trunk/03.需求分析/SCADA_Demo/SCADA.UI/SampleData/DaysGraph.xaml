@@ -5,86 +5,68 @@
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="400">
+    d:DesignHeight="157" d:DesignWidth="420">
 
     <Grid x:Name="LayoutRoot">
-        <Border x:Name="content_Border" BorderBrush="#FF4A91BB" BorderThickness="1" Margin="5" CornerRadius="5">
-            <Border.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF5BB5E3" Offset="0"/>
-                    <GradientStop Color="#FF2C5273" Offset="1"/>
-                </LinearGradientBrush>
-            </Border.Background>
-            <Grid>
-                <TextBlock x:Name="title_TextBlock" HorizontalAlignment="Left" Height="25" Margin="22,5,0,0" TextWrapping="Wrap"
-                           Text="当天曲线图" VerticalAlignment="Top" Width="247" FontSize="16" Foreground="White"/>
-                <Border BorderBrush="#FF4A91BB" BorderThickness="1" Margin="0,0,0,0" CornerRadius="5">
-                    <Border.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#FFE3E2E2" Offset="0"/>
-                            <GradientStop Color="#FFCDCCCC" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
-                    <Border BorderThickness="1" CornerRadius="5" Margin="1" Opacity="0.2">
-                        <Border.Background>
-                            <ImageBrush Stretch="Fill" ImageSource="/SCADA.UI;component/Images/mapbg.png"/>
-                        </Border.Background>
-                    </Border>
-                </Border>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=" auto" />
+            <RowDefinition Height="5*" />
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="title_TextBlock" HorizontalAlignment="Center"  Margin="0,5,0,0" TextWrapping="Wrap"
+                           Text="当天温度曲线图" VerticalAlignment="Center" FontSize="14"    />
 
 
-                <telerik:RadChart x:Name="RadChart1" Grid.Row="1" BorderThickness="1,0,1,1" BorderBrush="Black">
-                    <telerik:RadChart.PaletteBrushes>
-                        <SolidColorBrush Color="Black" />
-                    </telerik:RadChart.PaletteBrushes>
-                    <telerik:RadChart.SeriesMappings>
-                        <telerik:SeriesMapping LegendLabel="Audi R10">
-                            <telerik:SeriesMapping.SeriesDefinition>
-                                <telerik:SplineSeriesDefinition ShowItemLabels="False" ShowPointMarks="False" />
-                            </telerik:SeriesMapping.SeriesDefinition>
-                            <telerik:SeriesMapping.ItemMappings>
-                                <telerik:ItemMapping FieldName="Time" DataPointMember="XValue"/>
-                                <telerik:ItemMapping FieldName="RPM" DataPointMember="YValue"/>
-                            </telerik:SeriesMapping.ItemMappings>
-                        </telerik:SeriesMapping>
-                    </telerik:RadChart.SeriesMappings>
-                    <telerik:RadChart.DefaultView>
-                        <telerik:ChartDefaultView>
-                            <telerik:ChartDefaultView.ChartArea>
-                                <telerik:ChartArea LegendName="CustomLegend">
-                                    <telerik:ChartArea.Annotations>
-                                        <telerik:MarkedZone StartY="15" EndY="20" Background="#FF9AD846" />
-                                        <telerik:MarkedZone StartY="20" EndY="25" Background="#FFEAF451" />
-                                        <telerik:MarkedZone StartY="25" EndY="31" Background="#FFF86D5A" />
-                                    </telerik:ChartArea.Annotations>
-                                    <telerik:ChartArea.AxisX>
-                                        <telerik:AxisX Title=""
+
+        <telerik:RadChart x:Name="RadChart1"   Grid.Row="1" BorderThickness="0,0,0,0" Margin="0,0,0,0" >
+            
+                <telerik:RadChart.PaletteBrushes>
+                    <SolidColorBrush Color="Black" />
+                </telerik:RadChart.PaletteBrushes>
+                <telerik:RadChart.SeriesMappings>
+                    <telerik:SeriesMapping LegendLabel="Audi R10">
+                        <telerik:SeriesMapping.SeriesDefinition>
+                        <telerik:SplineSeriesDefinition ShowItemLabels="false" ShowPointMarks="false" />
+                        </telerik:SeriesMapping.SeriesDefinition>
+                        <telerik:SeriesMapping.ItemMappings>
+                            <telerik:ItemMapping FieldName="Time" DataPointMember="XValue"/>
+                            <telerik:ItemMapping FieldName="RPM" DataPointMember="YValue"/>
+                        </telerik:SeriesMapping.ItemMappings>
+                    </telerik:SeriesMapping>
+                </telerik:RadChart.SeriesMappings>
+                <telerik:RadChart.DefaultView>
+                    <telerik:ChartDefaultView>
+                        <telerik:ChartDefaultView.ChartArea>
+                           
+                            <telerik:ChartArea LegendName="CustomLegend">
+                            
+                                <telerik:ChartArea.Annotations>
+                                    <telerik:MarkedZone StartY="15" EndY="20" Background="#FF9AD846" />
+                                    <telerik:MarkedZone StartY="20" EndY="25" Background="#FFEAF451" />
+                                    <telerik:MarkedZone StartY="25" EndY="31" Background="#FFF86D5A" />
+                                </telerik:ChartArea.Annotations>
+                                <telerik:ChartArea.AxisX>
+                                    <telerik:AxisX Title=""
                                                DefaultLabelFormat="#VAL{HH}"
                                                        />
-                                    </telerik:ChartArea.AxisX>
-                                    <telerik:ChartArea.AxisY>
-                                        <telerik:AxisY MajorGridLinesVisibility="Visible"
+                                </telerik:ChartArea.AxisX>
+                                <telerik:ChartArea.AxisY>
+                                    <telerik:AxisY MajorGridLinesVisibility="Visible"
                                                MinorTicksVisibility="Visible"
                                                Title=""
                                                AutoRange="False"
                                                MinValue="15"
                                                MaxValue="31"
                                                Step="2" >
-                                        </telerik:AxisY>
-                                    </telerik:ChartArea.AxisY>
-                                </telerik:ChartArea>
-                            </telerik:ChartDefaultView.ChartArea>
-                            <telerik:ChartDefaultView.ChartLegend>
-                                <telerik:ChartLegend x:Name="CustomLegend"  Visibility="Collapsed"  UseAutoGeneratedItems="True" BorderThickness="1,0,0,0" />
-                            </telerik:ChartDefaultView.ChartLegend>
-                        </telerik:ChartDefaultView>
-                    </telerik:RadChart.DefaultView>
-                </telerik:RadChart>
-
-
-
-            </Grid>
-        </Border>
+                                    </telerik:AxisY>
+                                </telerik:ChartArea.AxisY>
+                            </telerik:ChartArea>
+                        </telerik:ChartDefaultView.ChartArea>
+                        <telerik:ChartDefaultView.ChartLegend>
+                            <telerik:ChartLegend x:Name="CustomLegend"  Visibility="Collapsed"  UseAutoGeneratedItems="True" BorderThickness="1,0,0,0" />
+                        </telerik:ChartDefaultView.ChartLegend>
+                    </telerik:ChartDefaultView>
+                </telerik:RadChart.DefaultView>
+            </telerik:RadChart>
+        
     </Grid>
-
 </UserControl>

@@ -112,7 +112,7 @@
                                             <vc:DataPoint AxisXLabel="200807" YValue="22" Cursor="Hand" />
                                             <vc:DataPoint AxisXLabel="200808" YValue="23" Cursor="Hand" />
                                             <vc:DataPoint AxisXLabel="200809" YValue="19" Cursor="Hand" />
-                                            <vc:DataPoint AxisXLabel="200810" YValue="20" Cursor="Hand" />
+                                            <vc:DataPoint AxisXLabel="200810" YValue="30" Cursor="Hand" />
                                             <vc:DataPoint AxisXLabel="200811" YValue="21" Cursor="Hand" />
                                             <vc:DataPoint AxisXLabel="200812" YValue="22" Cursor="Hand" />
                                             <vc:DataPoint AxisXLabel="200901" YValue="23" Cursor="Hand"/>
@@ -133,7 +133,7 @@
                                             <vc:DataPoint AxisXLabel="200808" YValue="19" Cursor="Hand" />
                                             <vc:DataPoint AxisXLabel="200809" YValue="20" Cursor="Hand" />
                                             <vc:DataPoint AxisXLabel="200810" YValue="21" Cursor="Hand" />
-                                            <vc:DataPoint AxisXLabel="200811" YValue="22" Cursor="Hand" />
+                                            <vc:DataPoint AxisXLabel="200811" YValue="28" Cursor="Hand" />
                                             <vc:DataPoint AxisXLabel="200812" YValue="23" Cursor="Hand" />
                                             <vc:DataPoint AxisXLabel="200901" YValue="19" Cursor="Hand"/>
                                             <vc:DataPoint AxisXLabel="200902" YValue="19" Cursor="Hand" />

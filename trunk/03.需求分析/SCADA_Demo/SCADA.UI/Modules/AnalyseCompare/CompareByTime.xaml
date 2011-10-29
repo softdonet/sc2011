@@ -54,7 +54,7 @@
                                                       ScrollViewer.HorizontalScrollBarVisibility="Auto" Width="300" Height="380" />
                             </StackPanel>
                             <!--图表-->
-                            <vc:Chart  Margin="5,5,5,5" Name="chart1" Grid.Column="2" Grid.RowSpan="3"   >
+                            <vc:Chart  Margin="5,5,5,5" Name="chart1" Grid.Column="2" Grid.RowSpan="3" >
                                 <vc:Chart.Titles>
                                     <vc:Title Text="设备对比走势图" FontFamily="Arial" FontSize="14"/>
                                 </vc:Chart.Titles>
@@ -72,12 +72,12 @@
                                 </vc:Chart.AxesX>
 
                                 <vc:Chart.AxesY>
-                                    <vc:Axis AxisMinimum="15" AxisMaximum="30" Title="温度"/>
+                                    <vc:Axis AxisMinimum="15" AxisMaximum="32" Title="温度"/>
                                 </vc:Chart.AxesY>
 
                                 <vc:Chart.Series>
 
-                                    <vc:DataSeries RenderAs="Line" LabelEnabled="True" LegendText="设备1">
+                                    <vc:DataSeries RenderAs="Spline" LabelEnabled="True" LegendText="设备1">
                                         <vc:DataSeries.Color>
                                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                                 <GradientStop Color="Red" Offset="0"/>
@@ -97,7 +97,7 @@
                                             <vc:DataPoint AxisXLabel="200902" YValue="19" Cursor="Hand" />
                                         </vc:DataSeries.DataPoints>
                                     </vc:DataSeries>
-                                    <vc:DataSeries RenderAs="Line" LabelEnabled="false" LegendText="设备2">
+                                    <vc:DataSeries RenderAs="Spline" LabelEnabled="false" LegendText="设备2">
                                         <vc:DataSeries.Color>
                                             <SolidColorBrush Color="DodgerBlue"></SolidColorBrush>
                                         </vc:DataSeries.Color>
@@ -114,7 +114,7 @@
                                             <vc:DataPoint AxisXLabel="200902" YValue="16" Cursor="Hand" />
                                         </vc:DataSeries.DataPoints>
                                     </vc:DataSeries>
-                                    <vc:DataSeries RenderAs="Line" LabelEnabled="false" LegendText="设备3">
+                                    <vc:DataSeries RenderAs="Spline" LabelEnabled="false" LegendText="设备3">
                                         <vc:DataSeries.Color>
                                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                                 <GradientStop Color="GreenYellow" Offset="1"/>
@@ -134,7 +134,7 @@
                                             <vc:DataPoint AxisXLabel="200902" YValue="30" Cursor="Hand" />
                                         </vc:DataSeries.DataPoints>
                                     </vc:DataSeries>
-                                    <vc:DataSeries RenderAs="Line" LabelEnabled="false" LegendText="设备4">
+                                    <vc:DataSeries RenderAs="Spline" LabelEnabled="false" LegendText="设备4">
                                         <vc:DataSeries.Color>
                                             <SolidColorBrush Color="Silver"></SolidColorBrush>
                                         </vc:DataSeries.Color>

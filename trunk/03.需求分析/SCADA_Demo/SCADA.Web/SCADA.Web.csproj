@@ -65,6 +65,7 @@
     <Content Include="bin\DundasWebChart.dll" />
     <Content Include="bin\DundasWebChart.xml" />
     <Content Include="ClientBin\SCADA.UI.xap" />
+    <Content Include="Images\analysis.PNG" />
     <Content Include="SCADA.UITestPage.aspx" />
     <Content Include="SCADA.UITestPage.html" />
     <Content Include="Silverlight.js" />
@@ -92,7 +93,9 @@
   <ItemGroup>
     <None Include="bin\dundas.charting.webcontrol.chart.lic" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

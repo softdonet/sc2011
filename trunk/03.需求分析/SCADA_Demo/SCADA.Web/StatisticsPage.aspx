@@ -5,6 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <style type="text/css">
+        #imgdev {
+            width: 1024;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -37,7 +42,10 @@
         <asp:Button ID="Button1" runat="server" Text="统计" />
     </div>
     <div>
-     <DCWC:Chart ID="Chart1" runat="server" Width="1200px">
+    
+    <img src="Images/analysis.PNG" id="imgdev" />
+
+    <%-- <DCWC:Chart ID="Chart1" runat="server" Width="1200px">
         <legends>
             <DCWC:Legend Name="Default">
             </DCWC:Legend>
@@ -51,7 +59,9 @@
             </DCWC:ChartArea>
         </chartareas>
     </DCWC:Chart>
+    --%>
     </div>
+    
     </form>
 </body>
 </html>

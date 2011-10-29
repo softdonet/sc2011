@@ -401,7 +401,7 @@
         <Image HorizontalAlignment="Left" Grid.Row="2" Source="/SCADA.UI;component/Images/logo.png" Stretch="Fill" Width="456" Height="56" VerticalAlignment="Center" Margin="6,6,0,0"/>
         <StackPanel Grid.Row="2" HorizontalAlignment="Right" Width="545" Height="60" Margin="0,0,6,0" Orientation="Horizontal">
 
-            <RadioButton x:Name="menuMap" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MenuBtnStyle}" Height="57" Margin="6,0" Tag="地图信息" Width="65" Cursor="Hand" GroupName="menu" IsChecked="True">
+            <RadioButton x:Name="menuMap" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MenuBtnStyle}" Height="57" Margin="6,0" Tag="信息地图" Width="65" Cursor="Hand" GroupName="menu" IsChecked="True">
                 <Image Height="27" Source="/SCADA.UI;component/Images/menu4.png" Stretch="Fill" Width="28"/>
             </RadioButton>
             <Image Source="/SCADA.UI;component/Images/line.png" Stretch="Fill" Width="2" Height="38"/>
@@ -427,7 +427,7 @@
                 <Image Height="34" Source="/SCADA.UI;component/Images/menu1.png" Stretch="Fill" Width="31"/>
             </RadioButton>
             <Image Source="/SCADA.UI;component/Images/line.png" Stretch="Fill" Width="2" Height="38" Margin="0,9.5"/>
-            <RadioButton x:Name="menuCompare" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="对比分析" Width="65" Cursor="Hand" GroupName="menu">
+            <RadioButton x:Name="menuCompare" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="图表分析" Width="65" Cursor="Hand" GroupName="menu">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseEnter">
                         <ei:ControlStoryboardAction Storyboard="{StaticResource ShowCompareSecMenuStory}"/>
@@ -436,13 +436,13 @@
                         <ei:ControlStoryboardAction Storyboard="{StaticResource HidCompareSecMenuStory}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-                <Image Height="27" Source="/SCADA.UI;component/Images/menu3.png" Stretch="Fill" Width="24"/>
-            </RadioButton>
-            <Image Source="/SCADA.UI;component/Images/line.png" Stretch="Fill" Width="2" Height="38" Margin="0,6"/>
-            <RadioButton x:Name="menuStatistics" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="统计分析" Width="65" Cursor="Hand" GroupName="menu">
                 <Image Height="27" Source="/SCADA.UI;component/Images/menu5.png" Stretch="Fill" Width="24"/>
             </RadioButton>
             <Image Source="/SCADA.UI;component/Images/line.png" Stretch="Fill" Width="2" Height="38" Margin="0,6"/>
+            <!--<RadioButton x:Name="menuStatistics" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="统计分析" Width="65" Cursor="Hand" GroupName="menu">
+                <Image Height="27" Source="/SCADA.UI;component/Images/menu5.png" Stretch="Fill" Width="24"/>
+            </RadioButton>-->
+            <!--<Image Source="/SCADA.UI;component/Images/line.png" Stretch="Fill" Width="2" Height="38" Margin="0,6"/>-->
             <RadioButton x:Name="menuSysSettings" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="系统配置" Width="65" Cursor="Hand" GroupName="menu">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseEnter">
@@ -458,7 +458,7 @@
            
         </StackPanel>
         <StackPanel HorizontalAlignment="Right" Height="26" Grid.Row="3" VerticalAlignment="Center" Width="90" Margin="0,0,20,0" Orientation="Horizontal">
-            <TextBlock Text="欢迎 管理员 登录 "  Foreground="White"  VerticalAlignment="Center" ></TextBlock>
+            <!--<TextBlock Text="欢迎 管理员 登录 "  Foreground="White"  VerticalAlignment="Center" ></TextBlock>-->
         </StackPanel>
         <!--查询子菜单-->
         <Border x:Name="bdSearch" HorizontalAlignment="Right" Height="36" Margin="0,0,280,-4" Grid.Row="3" VerticalAlignment="Bottom" Width="303" Background="{StaticResource header_senmenu}" RenderTransformOrigin="0.5,0.5" Opacity="0" Visibility="Collapsed" >
@@ -513,7 +513,7 @@
                 <ListBoxItem x:Name="childMenuRepairLogSearch" Content="日志查询" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiAlertSearch"/>
             </ListBox>
         </Border>
-        <!--对比分析子菜单-->
+        <!--图表分析子菜单-->
         <Border x:Name="bdCompare" HorizontalAlignment="Right" Height="36" Margin="0,0,280,-4" Grid.Row="3" VerticalAlignment="Bottom" Width="303" Background="{StaticResource header_senmenu}" RenderTransformOrigin="0.5,0.5" Opacity="0" Visibility="Collapsed" >
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseEnter">
@@ -561,8 +561,9 @@
                         <Grid/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
-                <ListBoxItem x:Name="childMenuByDateCompare" Content="按时间对比" VerticalAlignment="Center" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDateCompare"/>
-                <ListBoxItem x:Name="childMenuDeviceCompare" Content="按设备对比" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDeviceCompare"/>
+                <ListBoxItem x:Name="childMenuByDateCompare" Content="时间对比" VerticalAlignment="Center" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDateCompare"/>
+                <ListBoxItem x:Name="childMenuDeviceCompare" Content="设备对比" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDeviceCompare"/>
+                <ListBoxItem x:Name="childMenuStatistics" Content="统计分析" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDeviceCompare"/>
             </ListBox>
         </Border>
         <!--系统配置子菜单-->

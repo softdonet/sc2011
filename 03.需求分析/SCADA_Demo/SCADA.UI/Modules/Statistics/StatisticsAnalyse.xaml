@@ -8,7 +8,6 @@
     d:DesignHeight="300" d:DesignWidth="400">
 
     <Grid x:Name="LayoutRoot" Background="White">
-        <divtools:HtmlHost x:Name="htmlPlaceholderHost1"  
-SourceUri="StatisticsPage.aspx" Margin="-4,21,-1,0"/>
+        <divtools:HtmlHost x:Name="htmlPlaceholderHost1"  SourceUri="StatisticsPage.html" Margin="-4,21,-1,0"/>
     </Grid>
 </UserControl>

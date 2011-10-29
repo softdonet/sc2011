@@ -16,13 +16,13 @@
         <telerik:RadTreeListView x:Name="RadTreeListView1" 
 								 AutoGenerateColumns="False"
 								 IsReadOnly="True"
+                                 
 								 ItemsSource="{StaticResource TreeListSource}">
             <telerik:RadTreeListView.ChildTableDefinitions>
                 <telerik:TreeListViewTableDefinition ItemsSource="{Binding Items}" />
             </telerik:RadTreeListView.ChildTableDefinitions>
             <telerik:RadTreeListView.Columns>
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding Name}" Width="300" Header="设备名" HeaderTextAlignment="Center" />
-                <!--<telerik:GridViewDataColumn DataMemberBinding="{Binding BlocksNotCovered}"  Width="200" Header="设备名" HeaderTextAlignment="Center" />-->
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding Converter={StaticResource RelativeBlocksValueConverter1}, ConverterParameter=0}"  Width="200"
 											Header="安装地点" HeaderTextAlignment="Center"/>
                 <telerik:GridViewDataColumn   DataMemberBinding="{Binding BlocksCovered}" Header="更新时间" HeaderTextAlignment="Center"  Width="100"/>

@@ -520,6 +520,27 @@ namespace Expression.Blend.SampleData.DataGridViewSampleDataSource
 				}
 			}
 		}
+
+        private string _ObligateField = string.Empty;
+
+        public string ObligateField
+        {
+            get
+            {
+                return this._ObligateField;
+            }
+
+            set
+            {
+                if (this._ObligateField != value)
+                {
+                    this._ObligateField = value;
+                    this.OnPropertyChanged("ObligateField");
+                }
+            }
+        }
+
+
 	}
 #endif
 }

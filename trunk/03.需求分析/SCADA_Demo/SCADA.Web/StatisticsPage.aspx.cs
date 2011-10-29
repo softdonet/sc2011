@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Drawing;
-using Dundas.Charting.WebControl;
+
 
 namespace SCADA.Web
 {

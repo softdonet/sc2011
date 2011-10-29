@@ -204,8 +204,8 @@
     <Grid x:Name="LayoutRoot" Background="White">
         <m:Map  x:Name="map"   Language="Chinese" CredentialsProvider="AurhvxU11uUw9lp-3TelW7ZCmHiqAIebMcR1vq-lO0ThwhTPjGpbPXmr0RqW_l6Q"  
         			ZoomLevel="4" NavigationVisibility="Visible" Mode="Road"  Center="34.27, 108.95"/>
-        <StackPanel Orientation="Vertical"  HorizontalAlignment="Right" VerticalAlignment="Top">
-            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Top" Width="259" Margin="0,2,-1,0" Height="205">
+        <StackPanel Orientation="Vertical"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-54,0,0" d:LayoutOverrides="VerticalAlignment" >
+            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Top" Width="259" Margin="0,2,-1,0" Height="200">
                 <Button	x:Name="picbtn" Width="23" Height="20" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"  Click="picbtn_Click"  Style="{StaticResource picButtonStyle1}" Cursor="Hand">
                     <Button.Projection
             >
@@ -217,11 +217,11 @@
                         <CompositeTransform
             />
                     </Button.RenderTransform>
-                    <Image Source="/SCADA.UI;component/Modules/BingMaps/Image/pic.png" Stretch="None"/>
+                    <Image  Source="/SCADA.UI;component/Modules/BingMaps/Image/pic.png" Stretch="None"/>
                 </Button>
-                <Border Background="#7F000000" CornerRadius="0,0,0,6" BorderThickness="0" Width="235" Margin="0,0,0,44" >
-                    <StackPanel x:Name="stackPanel"  Orientation="Horizontal" VerticalAlignment="Top" Height="164">
-                        <local:WeatherBar HorizontalAlignment="Left" Width="255" Margin="-10,-13,0,-2"/>
+                <Border Background="#7F000000" CornerRadius="0,0,0,6" BorderThickness="0" Width="255"    Margin="0,0,0,0" >
+                    <StackPanel x:Name="stackPanel"  Orientation="Horizontal" VerticalAlignment="Top" Height="241">
+                        <local:WeatherBar HorizontalAlignment="Left" Width="255" Margin="-10,0,0,-7" Height="253" VerticalAlignment="Bottom"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -231,7 +231,7 @@
                 </StackPanel>
                 <TextBlock  Text="系统管理员。" Foreground="#FFBCB73C" HorizontalAlignment="Left"></TextBlock>
             </StackPanel>
-            <StackPanel Background="Black" Opacity="0.8" Width="235" Margin="0,2,0,0" Height="120" HorizontalAlignment="Right">
+            <StackPanel Background="Black" Opacity="0.8" Width="235" Margin="0,0,0,0" Height="120" HorizontalAlignment="Right">
                 <StackPanel  Background="#FF321BA1" >
                     <TextBlock  Text="设备告警信息" Foreground="White" HorizontalAlignment="Center"></TextBlock>
                 </StackPanel>

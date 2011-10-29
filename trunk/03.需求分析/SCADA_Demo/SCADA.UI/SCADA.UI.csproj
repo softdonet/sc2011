@@ -559,6 +559,21 @@
   <ItemGroup>
     <Resource Include="Modules\Device\RadRibbonBarCodeCoverage.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modules\Device\Image\grayer.png" />
+    <Resource Include="Modules\Device\Image\green.png" />
+    <Resource Include="Modules\Device\Image\red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modules\Device\Image\electric0.png" />
+    <Resource Include="Modules\Device\Image\electric1.png" />
+    <Resource Include="Modules\Device\Image\electric2.png" />
+    <Resource Include="Modules\Device\Image\electric3.png" />
+    <Resource Include="Modules\Device\Image\electric4.png" />
+    <Resource Include="Modules\Device\Image\signal1.png" />
+    <Resource Include="Modules\Device\Image\signal2.png" />
+    <Resource Include="Modules\Device\Image\signal3.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

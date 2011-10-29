@@ -4,8 +4,8 @@ namespace SCADA.UI.Modules.Device
 {
     public class CoverageItemBase
     {
-        private int blocksCovered;
-        private int blocksNotCovered;
+        private string  blocksCovered;
+        private string blocksNotCovered;
         private int linesCovered;
         private int linesNotCovered;
         private int linesPartiallyCovered;
@@ -16,7 +16,7 @@ namespace SCADA.UI.Modules.Device
         }
 
         [XmlElement(ElementName = "BlocksCovered")]
-        public int BlocksCovered
+        public string BlocksCovered
         {
             get
 			{
@@ -29,7 +29,7 @@ namespace SCADA.UI.Modules.Device
         }
 
         [XmlElement(ElementName = "BlocksNotCovered")]
-        public int BlocksNotCovered
+        public string  BlocksNotCovered
         {
 			get
 			{

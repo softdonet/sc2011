@@ -11,7 +11,7 @@ using System.Windows.Shapes;
 
 namespace SCADA.UI.Modules.BingMaps
 {
-    public  enum DeviceState
+    public enum DeviceState
     {
         Normal,
         Escape,

@@ -35,16 +35,16 @@
         <BitmapImage UriSource="Resources/23.png" x:Key="Windy" />
         <SolidColorBrush Color="White" Opacity="0.5" x:Key="zipCodeBackground" />
     </UserControl.Resources>
-    <Canvas x:Name="LayoutRoot" Width="264" Height="194" Background="{StaticResource grayBase}">
+    <Canvas x:Name="LayoutRoot" Width="264" Height="194" Background="Black" Opacity="0.7">
         <Canvas Canvas.Top="13" Canvas.Left="13" Width="230" Height="160">
             <StackPanel x:Name="ConditionsScreen" >
                 <Canvas Height="90">
                     <Image x:Name="ConditionsOverlay" Margin="-13,-13,0,0" />
                     <StackPanel>
-                        <TextBlock Width="225" Height="37" TextAlignment="Right" FontSize="34" x:Name="TodayTemp"  />
-                        <TextBlock Width="225" Height="14" TextAlignment="Right" x:Name="TodayDescription"   />
-                        <TextBlock Width="225" Height="14" TextAlignment="Right" x:Name="TodayRange" />
-                        <TextBlock Width="225" Height="14" TextAlignment="Right" x:Name="City" Text="正在更新数据..." />
+                        <TextBlock  Foreground="White" Opacity="0.5" Width="225" Height="37" TextAlignment="Right" FontSize="34" x:Name="TodayTemp"  />
+                        <TextBlock  Foreground="White" Opacity="0.5" Width="225" Height="14" TextAlignment="Right" x:Name="TodayDescription"   />
+                        <TextBlock  Foreground="White" Opacity="0.5" Width="225" Height="14" TextAlignment="Right" x:Name="TodayRange" />
+                        <TextBlock  Foreground="White" Opacity="0.5" Width="225" Height="14" TextAlignment="Right" x:Name="City" Text="正在更新数据..." />
                     </StackPanel>
                 </Canvas>
                 <StackPanel Orientation="Horizontal" Height="53" Loaded="StackPanel_Loaded">
@@ -80,7 +80,7 @@
                 </StackPanel>
                 <TextBlock Margin="0, 20, 0, 0" Width="220" Text="Weather data courtesy of WeatherBug."  />
             </StackPanel>
-            <Image IsHitTestVisible="false" Source="{StaticResource blackHighlight}" />
+            
         </Canvas>
     </Canvas>
 </UserControl>

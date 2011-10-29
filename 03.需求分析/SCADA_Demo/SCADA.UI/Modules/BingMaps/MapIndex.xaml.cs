@@ -84,9 +84,9 @@ namespace SCADA.UI.Modules.BingMaps
                     this.myMapLayerDeviceAvg.Visibility = Visibility.Visible;
                     this.myMapLayerDevice.Visibility = Visibility.Collapsed;
                 }
-             
+
             };
-           
+
         }
 
         MapLayer myMapLayerDevice = null;
@@ -94,12 +94,12 @@ namespace SCADA.UI.Modules.BingMaps
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             map.ZoomLevel = 12;
-            double  weidu = (39.9487 + 39.90705 + 39.98698 + 39.96754 + 39.88405) / 5.0;
+            double weidu = (39.9487 + 39.90705 + 39.98698 + 39.96754 + 39.88405) / 5.0;
             double jindu = (116.45072 + 116.37995 + 116.36773 + 116.36932 + 116.33072) / 5.0;
             map.Center = new Location(weidu, jindu);
             myMapLayerDevice = new MapLayer();
             myMapLayerDeviceAvg = new MapLayer();
-           
+
             map.Children.Add(myMapLayerDeviceAvg);
             map.Children.Add(myMapLayerDevice);
 
@@ -128,7 +128,7 @@ namespace SCADA.UI.Modules.BingMaps
             MapLayer.SetPosition(myPushPin2, new Location(39.98698, 116.36773));
             myPushPin2.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
 
-            pushPinDevice myPushPin3= new pushPinDevice();
+            pushPinDevice myPushPin3 = new pushPinDevice();
             myPushPin3.DevState = DeviceState.Normal;
             myPushPin3.DeviceName = "P0003";
             myPushPin3.DeviceTemp = "23℃";
@@ -153,6 +153,23 @@ namespace SCADA.UI.Modules.BingMaps
             MapLayer.SetPosition(myPushPin6, new Location(39.99205, 116.31072));
             myPushPin6.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
 
+
+
+            pushPinDevice myPushPin7 = new pushPinDevice();
+            myPushPin7.DevState = DeviceState.Normal;
+            myPushPin7.DeviceName = "P0007";
+            myPushPin7.DeviceTemp = "23℃";
+            myMapLayerDevice.Children.Add(myPushPin7);
+            MapLayer.SetPosition(myPushPin7, new Location(39.97405, 116.39972));
+            myPushPin7.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
+
+            pushPinDevice myPushPin8 = new pushPinDevice();
+            myPushPin8.DevState = DeviceState.Normal;
+            myPushPin8.DeviceName = "P0008";
+            myPushPin8.DeviceTemp = "28℃";
+            myMapLayerDevice.Children.Add(myPushPin8);
+            MapLayer.SetPosition(myPushPin8, new Location(39.9687, 116.42072));
+            myPushPin8.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
 
             pushPinDevice myPushPin5 = new pushPinDevice();
             myPushPin5.DevState = DeviceState.Alert;

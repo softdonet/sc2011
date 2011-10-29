@@ -32,7 +32,7 @@ namespace SCADA.UI
             Header.menuSearch.Checked += new RoutedEventHandler(menu_Checked);
             Header.menuCompare.Checked += new RoutedEventHandler(menu_Checked);
             Header.menuAlertList.Checked += new RoutedEventHandler(menu_Checked);
-            Header.menuStatistics.Checked += new RoutedEventHandler(menu_Checked);
+           // Header.menuStatistics.Checked += new RoutedEventHandler(menu_Checked);
             Header.menuSysSettings.Checked += new RoutedEventHandler(menu_Checked);
             Header.menuDeviceList.Checked += new RoutedEventHandler(menu_Checked);
             //注册子菜单点击事件
@@ -74,11 +74,14 @@ namespace SCADA.UI
                         //树型结构
                         //this.ViewHost.Child = new TreeviewGrid();
                         break;
-                    //统计分析
-                    case "menuStatistics":
-                        this.ViewHost.Child = new StatisticsAnalyse();
+                       
+                        ///统计分析移到对比分析的子菜单下
 
-                        break;
+                    ////统计分析
+                    //case "menuStatistics":
+                    //    this.ViewHost.Child = new StatisticsAnalyse();
+
+                    //    break;
                 }
             }
         }
@@ -147,6 +150,7 @@ namespace SCADA.UI
 
         /// <summary>
         /// 分析比较子菜单点击事件
+        /// 图表分析子菜单点击事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -163,6 +167,11 @@ namespace SCADA.UI
                 //按设备对比
                 case "childMenuDeviceCompare":
                     this.ViewHost.Child = new CompareByDevice();
+                    break;
+                //统计分析
+                case "childMenuStatistics":
+                    this.ViewHost.Child = new StatisticsAnalyse();
+
                     break;
             }
         }

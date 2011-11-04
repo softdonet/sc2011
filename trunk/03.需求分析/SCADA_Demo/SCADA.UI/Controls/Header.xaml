@@ -405,8 +405,6 @@
                 <Image Height="27" Source="/SCADA.UI;component/Images/menu4.png" Stretch="Fill" Width="28"/>
             </RadioButton>
             <Image Source="/SCADA.UI;component/Images/line.png" Stretch="Fill" Width="2" Height="38"/>
-
-           
             <RadioButton x:Name="menuDeviceList" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="设备列表" Width="65" Cursor="Hand" GroupName="menu" >
                 <Image Height="26" Source="/SCADA.UI;component/Images/Money.png" Stretch="Fill" Width="27"/>
             </RadioButton>

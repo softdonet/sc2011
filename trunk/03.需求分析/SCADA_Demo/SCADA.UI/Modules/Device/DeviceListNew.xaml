@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:SCADA.UI.Modules.Device"
                xmlns:local1="clr-namespace:SCADA.UI.Controls" 
     mc:Ignorable="d"
-    d:DesignHeight="768" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    d:DesignHeight="768" d:DesignWidth="800" Loaded="UserControl_Loaded" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk">
     <UserControl.Resources>
         <local:RadTreeListXmlDataSource x:Key="TreeListSource"  Source="RadRibbonBarCodeCoverage.xml" />
         <local:RelativeBlocksValueConverter x:Key="RelativeBlocksValueConverter1" />
@@ -75,20 +75,31 @@
 								 AutoGenerateColumns="False"
 								 IsReadOnly="True"
                                  
-								 ItemsSource="{StaticResource TreeListSource}" AutoExpandGroups="True" RowHeight="25" RowActivated="RadTreeListView1_RowActivated_1">
+								 ItemsSource="{StaticResource TreeListSource}" AutoExpandGroups="True" RowHeight="25" RowActivated="RadTreeListView1_RowActivated_1" RowLoaded="RadTreeListView1_RowLoaded">
             <telerik:RadTreeListView.ChildTableDefinitions>
                 <telerik:TreeListViewTableDefinition ItemsSource="{Binding Items}" />
             </telerik:RadTreeListView.ChildTableDefinitions>
             <telerik:RadTreeListView.Columns>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding Name}" Width="250" Header="设备名" HeaderTextAlignment="Center" />
+                <telerik:GridViewDataColumn   Header="设备名" HeaderTextAlignment="Center" >
+                    <telerik:GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel   Orientation="Horizontal" >
+                                <Image  Name="lDevice" Height="18"  Width="18" Source="/SCADA.UI;component/Modules/Device/Image/ldevice.jpg"></Image>
+                                <Image  Name="pDevice" Height="18"  Width="18" Source="/SCADA.UI;component/Modules/Device/Image/device.jpg"></Image>
+                                <sdk:Label   Name="lblDevName"  Content ="{Binding Name}" VerticalAlignment="Center" Width="240">
+                                </sdk:Label>
+                            </StackPanel>
+                        </DataTemplate>
+                    </telerik:GridViewColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
                 <telerik:GridViewDataColumn   DataMemberBinding="{Binding BlocksCovered}" Header="安装地点" HeaderTextAlignment="Center"  Width="150"/>
                 <telerik:GridViewDataColumn   DataMemberBinding="{Binding BlocksNotCovered}" Header="更新时间" HeaderTextAlignment="Center"  Width="150"/>
                 <telerik:GridViewDataColumn   DataMemberBinding="{Binding LinesCovered}" Header="温度(℃)"  HeaderTextAlignment="Center" TextAlignment="Center"  Width="150"/>
-                <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=2}"  Width="100" ImageHeight="20" ImageWidth="20"
+                <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=2}"  Width="100" ImageHeight="18" ImageWidth="18"
 											Header="电量" HeaderTextAlignment="Center"/>
-                <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=3}"  Width="100" ImageHeight="20" ImageWidth="20"
+                <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=3}"  Width="100" ImageHeight="18" ImageWidth="18"
 											Header="信号强度" HeaderTextAlignment="Center"/>
-                <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=1}"  Width="100" ImageHeight="20" ImageWidth="20"
+                <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=1}"  Width="100" ImageHeight="18" ImageWidth="18"
 											Header="状态" HeaderTextAlignment="Center"/>
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding Converter={StaticResource RelativeBlocksValueConverter1}, ConverterParameter=1}"  Width="100"
 											Header="详情" HeaderTextAlignment="Center" TextAlignment="Center" />
@@ -101,5 +112,6 @@
             </Border.RenderTransform>
             <local1:MyContent x:Name="MyContent" Content="MyContent"/>
         </Border>
+
     </Grid>
 </UserControl>

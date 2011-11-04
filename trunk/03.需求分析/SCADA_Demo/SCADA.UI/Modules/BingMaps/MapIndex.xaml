@@ -147,19 +147,20 @@
         </Style>
       
         <Storyboard x:Name="showWeather">
-        	<DoubleAnimation Duration="0:0:0.5" To="-235" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="stackPanel1" d:IsOptimized="True"/>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="stackPanel1">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="235"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="picbtn">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="180"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Name="hidWeather">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="stackPanel1">
-        		<EasingDoubleKeyFrame KeyTime="0" Value="-235"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="236"/>
         	</DoubleAnimationUsingKeyFrames>
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="picbtn">
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
@@ -171,7 +172,7 @@
     <Grid x:Name="LayoutRoot" Background="White">
         <m:Map  x:Name="map"   Language="Chinese" CredentialsProvider="AurhvxU11uUw9lp-3TelW7ZCmHiqAIebMcR1vq-lO0ThwhTPjGpbPXmr0RqW_l6Q"  
         			ZoomLevel="4" NavigationVisibility="Visible" Mode="Road"  Center="34.27, 108.95"/>
-        <StackPanel x:Name="stackPanel1" Orientation="Vertical"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-54,-235,0" d:LayoutOverrides="VerticalAlignment" RenderTransformOrigin="0.5,0.5" >
+        <StackPanel x:Name="stackPanel1" Orientation="Vertical"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-54,0,0" d:LayoutOverrides="VerticalAlignment" RenderTransformOrigin="0.5,0.5" >
         	<StackPanel.RenderTransform>
         		<CompositeTransform/>
         	</StackPanel.RenderTransform>
@@ -187,7 +188,7 @@
                     </Button.Projection>
                     <Button.RenderTransform
             >
-                        <CompositeTransform Rotation="180"
+                        <CompositeTransform
             />
                     </Button.RenderTransform>
                     <Image x:Name="image"  Source="/SCADA.UI;component/Modules/BingMaps/Image/pic.png" Stretch="None" RenderTransformOrigin="0.5,0.5">

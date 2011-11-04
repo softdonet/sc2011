@@ -193,7 +193,7 @@ namespace SCADA.UI.Modules.BingMaps
         public bool flag = false;
         private void picbtn_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (!flag)
+            if (flag)
             {
                 this.showWeather.Begin();
             }

@@ -40,6 +40,26 @@ namespace SCADA.UI.Modules.Device
             MyContent.Content = new DetailsPage();
             MyContent.Title = "设备详细信息";
         }
+
+        private void RadTreeListView1_RowLoaded(object sender, Telerik.Windows.Controls.GridView.RowLoadedEventArgs e)
+        {
+            var obj = e.Row.Cells[0].Content as FrameworkElement;
+            var lbl = obj.FindName("lblDevName") as Label;
+            var imgL = obj.FindName("lDevice") as Image;
+            var imgP = obj.FindName("pDevice") as Image;
+            if (lbl != null)
+            {
+                if (lbl.Content.ToString().Trim().IndexOf("设备") > -1)
+                {
+                    imgL.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    imgP.Visibility = Visibility.Collapsed;
+                }
+            }
+
+        }
     }
 
     public class RelativeBlocksValueConverter : IValueConverter
@@ -105,7 +125,7 @@ namespace SCADA.UI.Modules.Device
                             img = "signal3.png";
                             break;
                     }
-                   
+
                     break;
                 case 5:
                     switch (type)
@@ -135,7 +155,7 @@ namespace SCADA.UI.Modules.Device
                             img = "signal1.png";
                             break;
                     }
-                  
+
                     break;
 
             }

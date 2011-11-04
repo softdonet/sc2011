@@ -70,7 +70,7 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
-    <Grid x:Name="LayoutRoot" Background="White">
+    <Grid x:Name="LayoutRoot" Background="White" >
         <telerik:RadTreeListView x:Name="RadTreeListView1" 
 								 AutoGenerateColumns="False"
 								 IsReadOnly="True"
@@ -85,7 +85,7 @@
                         <DataTemplate>
                             <StackPanel   Orientation="Horizontal" >
                                 <Image  Name="lDevice" Height="18"  Width="18" Source="/SCADA.UI;component/Modules/Device/Image/ldevice.jpg"></Image>
-                                <Image  Name="pDevice" Height="18"  Width="18" Source="/SCADA.UI;component/Modules/Device/Image/device.jpg"></Image>
+                                <Image  Name="pDevice" Height="18"  Width="18" Source="/SCADA.UI;component/Modules/Device/Image/pdevice.png"></Image>
                                 <sdk:Label   Name="lblDevName"  Content ="{Binding Name}" VerticalAlignment="Center" Width="240">
                                 </sdk:Label>
                             </StackPanel>
@@ -101,8 +101,16 @@
 											Header="信号强度" HeaderTextAlignment="Center"/>
                 <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=1}"  Width="100" ImageHeight="18" ImageWidth="18"
 											Header="状态" HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn DataMemberBinding="{Binding Converter={StaticResource RelativeBlocksValueConverter1}, ConverterParameter=1}"  Width="100"
-											Header="详情" HeaderTextAlignment="Center" TextAlignment="Center" />
+                <telerik:GridViewDataColumn    Width="100"
+											Header="详情" HeaderTextAlignment="Center" TextAlignment="Center" >
+                    <telerik:GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            
+                                <HyperlinkButton x:Name="hlUrl"      HorizontalAlignment="Center"  Content="查看"  Foreground="#FF0000CC"    />
+                           
+                        </DataTemplate>
+                    </telerik:GridViewColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
             </telerik:RadTreeListView.Columns>
 
         </telerik:RadTreeListView>

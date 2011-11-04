@@ -84,7 +84,7 @@
                     <telerik:GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel   Orientation="Horizontal" >
-                                <Image  Name="lDevice" Height="18"  Width="18" Source="/SCADA.UI;component/Modules/Device/Image/ldevice.jpg"></Image>
+                                <Image  Name="lDevice" Height="14"  Width="14" Source="/SCADA.UI;component/Modules/Device/Image/ldevice.png"></Image>
                                 <Image  Name="pDevice" Height="18"  Width="18" Source="/SCADA.UI;component/Modules/Device/Image/pdevice.png"></Image>
                                 <sdk:Label   Name="lblDevName"  Content ="{Binding Name}" VerticalAlignment="Center" Width="240">
                                 </sdk:Label>

@@ -193,16 +193,16 @@ namespace SCADA.UI.Modules.BingMaps
         public bool flag = false;
         private void picbtn_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            //if (!flag)
-            //{
-            //    this.PicHiddenStoryboard.Begin();
-            //}
-            //else
-            //{
-            //    this.PicShowStoryboard.Begin();
+            if (!flag)
+            {
+                this.showWeather.Begin();
+            }
+            else
+            {
+                this.hidWeather.Begin();
 
-            //}
-            //flag = !flag;
+            }
+            flag = !flag;
         }
 
     }

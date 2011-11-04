@@ -525,7 +525,6 @@
     <Resource Include="Modules\BingMaps\Resources\undocked_windy.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Modules\BingMaps\New Folder1\" />
     <Folder Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
@@ -575,10 +574,10 @@
     <Resource Include="Modules\Device\Image\signal3.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Modules\Device\Image\ldevice.jpg" />
+    <Resource Include="Modules\Device\Image\pdevice.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Modules\Device\Image\pdevice.png" />
+    <Resource Include="Modules\Device\Image\ldevice.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

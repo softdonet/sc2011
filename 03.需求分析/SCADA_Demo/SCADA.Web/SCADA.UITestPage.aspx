@@ -7,8 +7,8 @@
     <style type="text/css">
         html, body
         {
-            height: 100%;
-            overflow: auto;
+            overflow-x: hidden;
+            overflow-y: hidden;
         }
         body
         {
@@ -21,8 +21,26 @@
             text-align: center;
         }
     </style>
+    <script src="jquery-1.3.2.js" type="text/javascript"></script>
     <script type="text/javascript" src="Silverlight.js"></script>
     <script type="text/javascript">
+    
+
+        function setSize() {
+            var obj = document.getElementById("cicObj");
+            obj.width = document.documentElement.clientWidth ;
+            obj.height = document.documentElement.clientHeight ;
+        }
+
+        $(document).ready(function() {
+            setSize();
+        });
+
+        $(window).resize(function() {
+            setSize();
+        })
+   
+
         function onSilverlightError(sender, args) {
             var appSource = "";
             if (sender != null && sender != 0) {
@@ -62,7 +80,7 @@
 <body>
     <form id="form1" runat="server" style="height: 100%">
     <div id="silverlightControlHost">
-        <object data="data:application/x-silverlight-2," type="application/x-silverlight-2"
+        <object id="cicObj" data="data:application/x-silverlight-2," type="application/x-silverlight-2"
             width="100%" height="100%">
             <param name="source" value="ClientBin/SCADA.UI.xap" />
             <param name="onError" value="onSilverlightError" />

@@ -575,10 +575,10 @@
     <Resource Include="Modules\Device\Image\signal3.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Modules\Device\Image\device.jpg" />
+    <Resource Include="Modules\Device\Image\ldevice.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Modules\Device\Image\ldevice.jpg" />
+    <Resource Include="Modules\Device\Image\pdevice.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

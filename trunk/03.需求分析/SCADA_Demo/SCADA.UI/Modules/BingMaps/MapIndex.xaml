@@ -145,37 +145,26 @@
                 </Setter.Value>
             </Setter>
         </Style>
+      
+        <Storyboard x:Name="showWeather">
+        	<DoubleAnimation Duration="0:0:0.5" To="-235" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="stackPanel1" d:IsOptimized="True"/>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="picbtn">
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
         <Storyboard x:Name="hidWeather">
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="stackPanel1">
         		<EasingDoubleKeyFrame KeyTime="0" Value="-235"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="-191"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-153"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="-93.429"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:1" Value="-40.429"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="1.342"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
         	</DoubleAnimationUsingKeyFrames>
         	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="picbtn">
         		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
         		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="180"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="180"/>
-        	</DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-        <Storyboard x:Name="showWeather">
-        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="stackPanel1">
-        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-62.526"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-87.526"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="-119.526"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:1" Value="-140.526"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="-159.486"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="-190.486"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:1.7" Value="-208.45"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:2" Value="-234.45"/>
-        	</DoubleAnimationUsingKeyFrames>
-        	<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="image" d:IsOptimized="True"/>
-        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="picbtn">
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
-        		<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="180"/>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
@@ -186,7 +175,10 @@
         	<StackPanel.RenderTransform>
         		<CompositeTransform/>
         	</StackPanel.RenderTransform>
-            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Top" Width="259" Margin="0,2,-1,0" Height="200">
+            <StackPanel x:Name="stackPanel2" Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Top" Width="259" Margin="0,2,-1,0" Height="200" RenderTransformOrigin="0.5,0.5">
+            	<StackPanel.RenderTransform>
+            		<CompositeTransform/>
+            	</StackPanel.RenderTransform>
                 <Button	x:Name="picbtn" Width="23" Height="20" RenderTransformOrigin="0.5,0.5"  Click="picbtn_Click"  Style="{StaticResource picButtonStyle1}" Cursor="Hand" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,52,0,0">
                     <Button.Projection
             >

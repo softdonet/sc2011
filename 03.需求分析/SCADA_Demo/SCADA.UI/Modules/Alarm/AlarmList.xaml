@@ -10,7 +10,9 @@
    	d:DesignWidth="1024" d:DesignHeight="500 ">
     
     <UserControl.Resources>
-        <SampleData:DataGridViewSampleDataSource x:Key="DataGridViewSampleDataSource" d:IsDataSource="True"/>
+        <Storyboard x:Name="timer" Completed="timer_Tick" />
+
+        <SampleData:DataGridViewSampleDataSource x:Key="DataGridViewSampleDataSource"  d:IsDataSource="True"/>
         <DataTemplate x:Key="DataTemplate1">
             <Grid Height="28">
                 <TextBlock Margin="2,0" Text="{Binding Number}"  HorizontalAlignment="Center" d:LayoutOverrides="Width, Height" VerticalAlignment="Center"/>

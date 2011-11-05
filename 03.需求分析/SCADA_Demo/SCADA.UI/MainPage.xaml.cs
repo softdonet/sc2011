@@ -63,7 +63,7 @@ namespace SCADA.UI
                         break;
                     //设备告警
                     case "menuAlertList":
-                        this.ViewHost.Child = new AlarmList();
+                        this.ViewHost.Child = new AlertListNew();
                         //this.ViewHost.Child = new AlarmList();
                         //温度计
                         //this.ViewHost.Child = new Thermometer();

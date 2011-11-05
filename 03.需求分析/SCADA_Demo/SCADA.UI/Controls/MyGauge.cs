@@ -1,24 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Visifire.Gauges;
 
-namespace SCADA.UI.SampleData
+namespace SCADA.UI.Controls
 {
-    public partial class HistoryAvgValue : UserControl
+    public class MyGauge : Gauge
     {
-        public HistoryAvgValue()
+        protected override void LoadWm(GaugeTypes type)
         {
-            InitializeComponent();
+            //base.LoadWm(type);
+            CreateWmElement(GaugeTypes.Circular, string.Empty, string.Empty);
         }
     }
-   
 }

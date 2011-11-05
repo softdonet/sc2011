@@ -33,20 +33,13 @@ namespace SCADA.UI.Modules.Device
             this.RadTreeListView1.ExpandAllHierarchyItems();
         }
 
-
-        private void RadTreeListView1_RowActivated_1(object sender, Telerik.Windows.Controls.GridView.RowEventArgs e)
-        {
-            Storyboard1.Begin();
-            MyContent.Content = new DetailsPage();
-            MyContent.Title = "设备详细信息";
-        }
-
         private void RadTreeListView1_RowLoaded(object sender, Telerik.Windows.Controls.GridView.RowLoadedEventArgs e)
         {
             var obj = e.Row.Cells[0].Content as FrameworkElement;
             var lbl = obj.FindName("lblDevName") as Label;
             var imgL = obj.FindName("lDevice") as Image;
             var imgP = obj.FindName("pDevice") as Image;
+            var hlUrl = obj.FindName("hlUrl") as Button;
             if (lbl != null)
             {
                 if (lbl.Content.ToString().Trim().IndexOf("设备") > -1)
@@ -58,9 +51,19 @@ namespace SCADA.UI.Modules.Device
                     imgP.Visibility = Visibility.Collapsed;
                 }
             }
-
         }
+
+        private void hlUrl_Click(object sender, RoutedEventArgs e)
+        {
+            Storyboard1.Begin();
+            MyContent.Content = new DetailsPage();
+            MyContent.Title = "设备详细信息";
+        }
+
     }
+
+
+     
 
     public class RelativeBlocksValueConverter : IValueConverter
     {

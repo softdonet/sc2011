@@ -117,6 +117,7 @@
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MyContent.cs" />
+    <Compile Include="Controls\MyGauge.cs" />
     <Compile Include="Controls\MyWin.cs" />
     <Compile Include="Controls\TreeListCheckBox.xaml.cs">
       <DependentUpon>TreeListCheckBox.xaml</DependentUpon>

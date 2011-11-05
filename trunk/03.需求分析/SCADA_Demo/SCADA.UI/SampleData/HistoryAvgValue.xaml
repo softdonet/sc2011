@@ -9,8 +9,8 @@
     <Grid x:Name="LayoutRoot">
        
        
-        <vc:Chart  xmlns:vc="clr-namespace:Visifire.Charts;assembly=SLVisifire.Charts" Theme="Theme2" 
-                                ShadowEnabled="True" BorderThickness="0.5" Grid.Row="1" BorderBrush="Gray" Watermark="False"  >
+        <vc:Chart  Watermark="False" xmlns:vc="clr-namespace:Visifire.Charts;assembly=SLVisifire.Charts" Theme="Theme2" 
+                                ShadowEnabled="True" BorderThickness="0.5" Grid.Row="1" BorderBrush="Gray"   >
             <vc:Chart.Titles>
                 <vc:Title Text="历史平均温度统计图 " FontFamily="Arial" FontSize="14"/>
             </vc:Chart.Titles>

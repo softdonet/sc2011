@@ -75,7 +75,7 @@
 								 AutoGenerateColumns="False"
 								 IsReadOnly="True"
                                  
-								 ItemsSource="{StaticResource TreeListSource}" AutoExpandGroups="True" RowHeight="25" RowActivated="RadTreeListView1_RowActivated_1" RowLoaded="RadTreeListView1_RowLoaded">
+								 ItemsSource="{StaticResource TreeListSource}" AutoExpandGroups="True" RowHeight="25"  RowLoaded="RadTreeListView1_RowLoaded">
             <telerik:RadTreeListView.ChildTableDefinitions>
                 <telerik:TreeListViewTableDefinition ItemsSource="{Binding Items}" />
             </telerik:RadTreeListView.ChildTableDefinitions>
@@ -105,8 +105,8 @@
 											Header="详情" HeaderTextAlignment="Center" TextAlignment="Center" >
                     <telerik:GridViewColumn.CellTemplate>
                         <DataTemplate>
-                            
-                                <HyperlinkButton x:Name="hlUrl"      HorizontalAlignment="Center"  Content="查看"  Foreground="#FF0000CC"    />
+
+                            <HyperlinkButton x:Name="hlUrl"   Click="hlUrl_Click"    HorizontalAlignment="Center"  Content="查看"  Foreground="#FF0000CC"    />
                            
                         </DataTemplate>
                     </telerik:GridViewColumn.CellTemplate>

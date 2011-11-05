@@ -5,59 +5,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:vg="clr-namespace:Visifire.Gauges;assembly=SLVisifire.Gauges"
+    xmlns:MyVg="clr-namespace:SCADA.UI.Controls"
+             
    	d:DesignWidth="500" d:DesignHeight="180 ">
 
     <Grid x:Name="LayoutRoot">
-        <!--<vg:Gauge Type="Linear" DefaultTemplate="Thermometer"   CornerRadius="5"  
-                          BorderThickness="1.5" BorderBrush="#092f4a" OuterBorderThickness="1" OuterBorderBrush="#1a678c"  
-                          OuterBackground="#FFC4C4C1">
-            <vg:Gauge.Background>
-                <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-                    <GradientStop Color="#3680b6" Offset="0"/>
-                    <GradientStop Color="#5fade7" Offset="0.1"/>
-                    <GradientStop Color="#1266a5" Offset="0.5"/>
-                    <GradientStop Color="#1a86d7" Offset="0.9"/>
-                    <GradientStop Color="#135688" Offset="1"/>
-                </LinearGradientBrush>
-            </vg:Gauge.Background>
-
-            <vg:Gauge.LinearScales>
-                <vg:LinearScale BorderThickness="0.3" StartMargin="0.05" EndMargin="0.05" ShadowEnabled="false">
-
-                    <vg:LinearScale.MajorTicks>
-                        <vg:MajorTicks Background="White" TickWidth="0.04"/>
-                    </vg:LinearScale.MajorTicks>
-                    <vg:LinearScale.MinorTicks>
-                        <vg:MinorTicks Background="White" TickWidth="0.04"/>
-                    </vg:LinearScale.MinorTicks>
-                    <vg:LinearScale.ScaleLabels>
-                        <vg:ScaleLabels FontColor="White"/>
-                    </vg:LinearScale.ScaleLabels>
-                </vg:LinearScale>
-            </vg:Gauge.LinearScales>
-
-            <vg:Gauge.Indicators>
-                <vg:BarIndicator Value="25" BorderThickness="0" BorderBrush="White" ShadowEnabled="False">
-                    <vg:BarIndicator.Background>
-                        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-                            <GradientStop Color="#d2e9ff" Offset="0.15"/>
-                            <GradientStop Color="#FF619FCE" Offset="0.397"/>
-                            <GradientStop Color="#FF87B8E9" Offset="0.7"/>
-                            <GradientStop Color="#FF75B25F" Offset="1"/>
-                        </LinearGradientBrush>
-                    </vg:BarIndicator.Background>
-                    <vg:BarIndicator.ThermometerBulbBackground>
-                        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-                            <GradientStop Color="#d2e9ff" Offset="0"/>
-                            <GradientStop Color="#FF619FCE" Offset="0.39"/>
-                            <GradientStop Color="#FF70AAE4" Offset="0.7"/>
-                            <GradientStop Color="#84bbf2" Offset="1"/>
-                        </LinearGradientBrush>
-                    </vg:BarIndicator.ThermometerBulbBackground>
-                </vg:BarIndicator>
-            </vg:Gauge.Indicators>
-        </vg:Gauge>-->
-        <vg:Gauge xmlns:vg="clr-namespace:Visifire.Gauges;assembly=SLVisifire.Gauges" Type="Circular"  
+        <MyVg:MyGauge Type="Circular"  
            DefaultTemplate="LinearGaugeBasic" Background="Transparent" OuterCornerRadius="5"  
          >
             <vg:Gauge.OuterBackground>
@@ -142,7 +95,7 @@
                 </vg:Range>
             </vg:Gauge.Ranges>
 
-        </vg:Gauge>
+        </MyVg:MyGauge>
 
     </Grid>
 </UserControl>

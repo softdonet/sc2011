@@ -90,6 +90,7 @@
     <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System.Windows.Controls.Navigation, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Toolkit, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Data, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
@@ -130,6 +131,9 @@
     </Compile>
     <Compile Include="Modules\Alarm\AlarmList.xaml.cs">
       <DependentUpon>AlarmList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Alarm\AlertListNew.xaml.cs">
+      <DependentUpon>AlertListNew.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\Alarm\ConfirmPage.xaml.cs">
       <DependentUpon>ConfirmPage.xaml</DependentUpon>
@@ -262,9 +266,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Modules\Alarm\ConfirmPage.xaml">
+    <Page Include="Modules\Alarm\AlertListNew.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Alarm\ConfirmPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Modules\AnalyseCompare\CompareByDevice.xaml">
       <SubType>Designer</SubType>

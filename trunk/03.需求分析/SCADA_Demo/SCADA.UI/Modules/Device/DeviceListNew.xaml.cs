@@ -13,6 +13,7 @@ using System.Windows.Data;
 using System.Globalization;
 using System.Windows.Media.Imaging;
 using System.Reflection;
+using Telerik.Windows.Controls.GridView;
 
 namespace SCADA.UI.Modules.Device
 {
@@ -53,13 +54,13 @@ namespace SCADA.UI.Modules.Device
             }
         }
 
+     
         private void hlUrl_Click(object sender, RoutedEventArgs e)
         {
             Storyboard1.Begin();
             MyContent.Content = new DetailsPage();
             MyContent.Title = "设备详细信息";
         }
-
     }
 
 
@@ -101,7 +102,7 @@ namespace SCADA.UI.Modules.Device
         {
             int type = System.Convert.ToInt32(parameter);
             Random rd = new Random();
-
+           
             int i = rd.Next(1, 10);
             string imgState = string.Empty;
             string imgElectric = string.Empty;

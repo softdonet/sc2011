@@ -112,7 +112,7 @@
                                             </LinearGradientBrush>
                                         </vc:DataSeries.Color>
                                         <vc:DataSeries.DataPoints>
-                                            <vc:DataPoint AxisXLabel="01" YValue="93" Cursor="Hand"  />
+                                            <vc:DataPoint AxisXLabel="01" YValue="93" Cursor="Hand"   />
                                             <vc:DataPoint AxisXLabel="02" YValue="33" Cursor="Hand"  />
                                             <vc:DataPoint AxisXLabel="03" YValue="73" Cursor="Hand"  />
                                             <vc:DataPoint AxisXLabel="04" YValue="144" Cursor="Hand" />

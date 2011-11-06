@@ -61,7 +61,7 @@
                                 </vc:Chart.Titles>
                                     
                                 <vc:Chart.Legends>
-                                    <vc:Legend  DockInsidePlotArea="True" HorizontalAlignment="Center" ></vc:Legend>
+                                    <vc:Legend  DockInsidePlotArea="False" HorizontalAlignment="Center" ></vc:Legend>
                                 </vc:Chart.Legends>
                                 
                                 <vc:Chart.PlotArea>
@@ -69,7 +69,7 @@
                                 </vc:Chart.PlotArea>
 
                                 <vc:Chart.AxesX>
-                                    <vc:Axis Title="时间" Interval="3" IntervalType="Hours" ValueFormatString="hh 08 25 2011"  AxisMinimum="15:25 08 08 2011" >
+                                    <vc:Axis Title="时间轴" Interval="3" IntervalType="Hours" ValueFormatString="hh 08 25 2011"  AxisMinimum="15:25 08 08 2011" >
                                         <vc:Axis.AxisLabels>
                                             <vc:AxisLabels  Angle="0"/>
                                         </vc:Axis.AxisLabels>

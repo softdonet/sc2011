@@ -33,7 +33,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"  />
                                 <ColumnDefinition Width="200" />
-                                <ColumnDefinition Width="686" />
+                                <ColumnDefinition Width="686*" />
                             </Grid.ColumnDefinitions>
                             <sdk:Label Height="28"  Content="选择周期：" HorizontalAlignment="Left" Margin="21,19,0,0" x:Name="label1" VerticalAlignment="Top"  />
                             <ComboBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="10,15,0,0" x:Name="comboBox1" VerticalAlignment="Top" Width="97" SelectedIndex="0">

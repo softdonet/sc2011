@@ -52,7 +52,7 @@
                             <StackPanel Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="3"> 
                                 <my:TreeListCheckBox  HorizontalAlignment="Left" x:Name="treeListCheckBox1" 
                                                       VerticalAlignment="Top"  ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                                                      ScrollViewer.HorizontalScrollBarVisibility="Auto" Width="300" Height="380" />
+                                                      ScrollViewer.HorizontalScrollBarVisibility="Auto" Width="300" Height="333" />
                             </StackPanel>
                             <!--图表-->
                             <vc:Chart  Margin="5,5,5,5" Name="chart1" IndicatorEnabled="True"  Grid.Column="2" Grid.RowSpan="3" >
@@ -73,6 +73,9 @@
                                         <vc:Axis.AxisLabels>
                                             <vc:AxisLabels Interval="1"/>
                                         </vc:Axis.AxisLabels>
+                                        <vc:Axis.Grids>
+                                            <vc:ChartGrid LineThickness="0.25" InterlacedColor="#f9f9f9"/>
+                                        </vc:Axis.Grids>
                                     </vc:Axis>
                                 </vc:Chart.AxesX>
 

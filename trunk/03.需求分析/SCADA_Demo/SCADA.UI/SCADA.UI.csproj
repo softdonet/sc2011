@@ -204,6 +204,9 @@
     <Compile Include="Modules\Statistics\StatisticsAnalyse.xaml.cs">
       <DependentUpon>StatisticsAnalyse.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Statistics\StatisticsAnalyseNew.xaml.cs">
+      <DependentUpon>StatisticsAnalyseNew.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleData\DataGridViewSampleDataSource\DataGridViewSampleDataSource.xaml.cs">
       <DependentUpon>DataGridViewSampleDataSource.xaml</DependentUpon>
@@ -347,6 +350,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modules\Statistics\StatisticsAnalyse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Statistics\StatisticsAnalyseNew.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -587,6 +594,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Modules\Device\Image\ldevice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modules\Statistics\Image\tuli.JPG" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

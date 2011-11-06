@@ -171,7 +171,7 @@ namespace SCADA.UI
                     break;
                 //统计分析
                 case "childMenuStatistics":
-                    this.ViewHost.Child = new StatisticsAnalyse();
+                    this.ViewHost.Child = new StatisticsAnalyseNew();
 
                     break;
             }

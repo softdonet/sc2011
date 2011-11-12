@@ -57,7 +57,7 @@
                             <!--图表-->
                             <vc:Chart  Margin="5,5,5,5" Name="chart1" IndicatorEnabled="True"  Grid.Column="2" Grid.RowSpan="3" >
                                 <vc:Chart.Titles>
-                                    <vc:Title Text="设备对比走势图" FontFamily="Arial" FontSize="14"/>
+                                    <vc:Title Text="同一时段不同设备对比走势图" FontFamily="Arial" FontSize="14"/>
                                 </vc:Chart.Titles>
                                     
                                 <vc:Chart.Legends>

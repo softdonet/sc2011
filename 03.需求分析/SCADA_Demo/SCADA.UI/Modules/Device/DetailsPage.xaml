@@ -16,7 +16,7 @@
             <ColumnDefinition Width="300*" />
             <ColumnDefinition Width="300*" />
         </Grid.ColumnDefinitions>
-        <local:DaysGraph   Grid.Row="0"  ></local:DaysGraph>
+        <local:DaysGraphNew   Grid.Row="0"  ></local:DaysGraphNew>
         <local:HistoryAvgValue   Margin="5" Grid.Row="1"  ></local:HistoryAvgValue>
         <StackPanel  Grid.Row="0" Grid.Column="1"   Orientation="Vertical" Margin="10,10,10,9" >
         	<StackPanel.Background>

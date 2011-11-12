@@ -215,6 +215,9 @@
     <Compile Include="SampleData\DaysGraph.xaml.cs">
       <DependentUpon>DaysGraph.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SampleData\DaysGraphNew.xaml.cs">
+      <DependentUpon>DaysGraphNew.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SampleData\HistoryAvgValue.xaml.cs">
       <DependentUpon>HistoryAvgValue.xaml</DependentUpon>
     </Compile>
@@ -371,6 +374,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SampleData\DaysGraph.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SampleData\DaysGraphNew.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -36,39 +36,37 @@
         <SolidColorBrush Color="White" Opacity="0.5" x:Key="zipCodeBackground" />
     </UserControl.Resources>
 	
-    <Canvas x:Name="LayoutRoot" Width="264" Height="172" Background="Black" Opacity="0.7">
-        <Canvas Canvas.Top="13" Canvas.Left="13" Width="230" Height="147">
+    <Canvas x:Name="LayoutRoot" Width="232" Height="149" Background="White" Opacity="0.7">
+        <Canvas Width="230" Height="147">
             <StackPanel x:Name="ConditionsScreen" >
                 <Canvas Height="90">
                     <Image x:Name="ConditionsOverlay" Margin="-13,-13,0,0" />
                     <StackPanel>
-                    	   <StackPanel Background="#FF321BA1" > 
-                <TextBlock  Text="气象信息" Foreground="White" HorizontalAlignment="Center"></TextBlock>
-                </StackPanel>
-                        <TextBlock  Foreground="White" Opacity="0.5" Width="225" Height="37" TextAlignment="Right" FontSize="34" x:Name="TodayTemp"  />
-                        <TextBlock  Foreground="White" Opacity="0.5" Width="225" Height="14" TextAlignment="Right" x:Name="TodayDescription"   />
-                        <TextBlock  Foreground="White" Opacity="0.5" Width="225" Height="14" TextAlignment="Right" x:Name="TodayRange" />
-                        <TextBlock  Foreground="White" Opacity="0.5" Width="225" Height="14" TextAlignment="Right" x:Name="City" Text="正在更新数据..." />
+                    	   
+                        <TextBlock  Foreground="Black" Opacity="0.5" Width="225" Height="37" TextAlignment="Right" FontSize="34" x:Name="TodayTemp"  />
+                        <TextBlock  Foreground="Black" Opacity="0.5" Width="225" Height="14" TextAlignment="Right" x:Name="TodayDescription"   />
+                        <TextBlock  Foreground="Black" Opacity="0.5" Width="225" Height="14" TextAlignment="Right" x:Name="TodayRange" />
+                        <TextBlock  Foreground="Black" Opacity="0.5" Width="225" Height="14" TextAlignment="Right" x:Name="City" Text="正在更新数据..." />
                     </StackPanel>
                 </Canvas>
                 <StackPanel Orientation="Horizontal" Height="53" Loaded="StackPanel_Loaded">
                     <Canvas Width="71" Background="{StaticResource dividerVertical}" Margin="5, 0, 0, 0">
-                        <TextBlock FontSize="11" x:Name="TomorrowName" Foreground="White" Opacity="0.5" />
+                        <TextBlock FontSize="11" x:Name="TomorrowName" Foreground="Black" Opacity="0.5" />
                         <Image x:Name="TomorrowImage" Canvas.Top="17" Canvas.Left="23" />
-                        <TextBlock Canvas.Top="20" x:Name="TomorrowHi" Foreground="White" />
-                        <TextBlock Canvas.Top="35" x:Name="TomorrowLo" Foreground="White" Opacity="0.5" />
+                        <TextBlock Canvas.Top="20" x:Name="TomorrowHi" Foreground="Black" />
+                        <TextBlock Canvas.Top="35" x:Name="TomorrowLo" Foreground="Black" Opacity="0.5" />
                     </Canvas>
                     <Canvas Width="71" Background="{StaticResource dividerVertical}" Margin="5, 0, 0, 0">
-                        <TextBlock FontSize="11" x:Name="DayAfterName" Foreground="White" Opacity="0.5" />
+                        <TextBlock FontSize="11" x:Name="DayAfterName" Foreground="Black" Opacity="0.5" />
                         <Image x:Name="DayAfterImage" Canvas.Top="17" Canvas.Left="23" />
-                        <TextBlock Canvas.Top="20" x:Name="DayAfterHi" Foreground="White" />
-                        <TextBlock Canvas.Top="35" x:Name="DayAfterLo" Foreground="White" Opacity="0.5" />
+                        <TextBlock Canvas.Top="20" x:Name="DayAfterHi" Foreground="Black" />
+                        <TextBlock Canvas.Top="35" x:Name="DayAfterLo" Foreground="Black" Opacity="0.5" />
                     </Canvas>
                     <Canvas Width="71"  Margin="5, 0, 0, 0">
-                        <TextBlock FontSize="11" x:Name="TwoDaysAwayName" Foreground="White" Opacity="0.5" />
+                        <TextBlock FontSize="11" x:Name="TwoDaysAwayName" Foreground="Black" Opacity="0.5" />
                         <Image x:Name="TwoDaysAwayImage" Canvas.Top="17" Canvas.Left="23" />
-                        <TextBlock Canvas.Top="20" x:Name="TwoDaysAwayHi" Foreground="White" />
-                        <TextBlock Canvas.Top="35" x:Name="TwoDaysAwayLo" Foreground="White" Opacity="0.5" />
+                        <TextBlock Canvas.Top="20" x:Name="TwoDaysAwayHi" Foreground="Black" />
+                        <TextBlock Canvas.Top="35" x:Name="TwoDaysAwayLo" Foreground="Black" Opacity="0.5" />
                     </Canvas>
                 </StackPanel>
                 <!--<StackPanel Height="17" Background="{StaticResource dividerHorizontal}" Orientation="Horizontal" >

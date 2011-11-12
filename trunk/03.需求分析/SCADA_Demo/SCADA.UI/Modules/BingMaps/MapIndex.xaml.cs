@@ -205,5 +205,22 @@ namespace SCADA.UI.Modules.BingMaps
             flag = !flag;
         }
 
+        private void zhedie_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.MainGrid.ColumnDefinitions[2].Width == new GridLength(240))
+            {
+                this.ZheDieStoryboardHidden.Begin();
+              
+                this.MainGrid.ColumnDefinitions[2].Width = new GridLength(0);
+            }
+            else
+            {
+                this.MainGrid.ColumnDefinitions[2].Width = new GridLength(240);
+                this.ZheDieStoryboardShow.Begin();
+              
+               
+            }
+        }
+
     }
 }

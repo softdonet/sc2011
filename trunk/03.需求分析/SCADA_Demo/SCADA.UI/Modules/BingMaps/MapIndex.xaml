@@ -18,13 +18,13 @@
         <SampleData:SampleDataAlarm x:Key="TimeTableSampleDataSource" d:IsDataSource="True"/>
         <DataTemplate x:Key="DeviceNum">
             <Grid>
-                <TextBlock HorizontalAlignment="Left" Text="{Binding 设备编号}" VerticalAlignment="Center" />
+                <TextBlock HorizontalAlignment="Left" Text="{Binding 设备编号}" VerticalAlignment="Center" Opacity="0.8" />
             </Grid>
         </DataTemplate>
 
         <DataTemplate x:Key="AlarmTime">
             <Grid>
-                <TextBlock HorizontalAlignment="Left" Text="{Binding 告警时间}" VerticalAlignment="Center" />
+                <TextBlock HorizontalAlignment="Left" Text="{Binding 告警时间}" VerticalAlignment="Center" Opacity="0.8"/>
             </Grid>
         </DataTemplate>
         <Style x:Key="ZheDieButtonStyle" TargetType="Button">
@@ -310,8 +310,8 @@
                 </StackPanel>
                 <toolkit:WrapPanel x:Name="wpTypeSearch" Orientation="Vertical">
                     <!-- 工程类型显示区-->
-                    <TextBlock    Text ="用户名：杨红康"  FontSize=" 12"   VerticalAlignment="Center"  Margin="0,5,0,0" />
-                    <TextBlock Text ="登录时间：2011-11-11 11:11:11"  FontSize=" 12"   VerticalAlignment="Center"  Margin="1" />
+                    <TextBlock    Text ="用户名：杨红康"  FontSize=" 12"   VerticalAlignment="Center"  Margin="0,5,0,0" Opacity="0.8"/>
+                    <TextBlock Text ="登录时间：2011-11-11 11:11:11"  FontSize=" 12"   VerticalAlignment="Center"  Margin="1" Opacity="0.8"/>
                 </toolkit:WrapPanel>
                 <StackPanel  Background="#FFD5DDF3" Margin="0,5,0,5" Orientation="Vertical">
                     <TextBlock Text ="告警信息"  FontSize=" 12"   VerticalAlignment="Center"   Margin=" 5"/>
@@ -371,7 +371,7 @@
                 <TextBlock  Text="最后告警时间：2011-10-29 18:23:20" Foreground="#FFE92020" HorizontalAlignment="Left" Height="19"></TextBlock>
             </StackPanel>
         </StackPanel>-->
-        <Border x:Name="ViewHost" BorderBrush="Black" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed" VerticalAlignment="Bottom">
+        <Border x:Name="ViewHost" BorderBrush="Black" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed" >
             <Border.RenderTransform>
                 <CompositeTransform/>
             </Border.RenderTransform>

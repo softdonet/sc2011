@@ -17,7 +17,7 @@ using SCADA.UI.Modules.AnalyseCompare;
 using SCADA.UI.Modules.BasisInfo;
 using SCADA.UI.Modules.Statistics;
 
-
+//todo:不能每次都New
 namespace SCADA.UI
 {
     public partial class MainPage : UserControl

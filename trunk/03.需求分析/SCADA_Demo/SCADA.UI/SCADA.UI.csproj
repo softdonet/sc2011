@@ -614,6 +614,24 @@
   <ItemGroup>
     <Resource Include="Modules\Statistics\Image\tuli.JPG" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modules\AnalyseCompare\Image\d2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modules\AnalyseCompare\Image\d1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modules\AnalyseCompare\Image\d3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modules\AnalyseCompare\Image\d4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modules\AnalyseCompare\Image\lastPage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Modules\AnalyseCompare\Image\nextPage.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

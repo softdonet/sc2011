@@ -48,7 +48,7 @@
                                 <StackPanel  Margin="20,10,10,10"  Orientation="Horizontal" >
 
                                     <sdk:Label Height="28"  Content="选择周期：" HorizontalAlignment="Left"  Name="labe34l1" VerticalAlignment="Center"  />
-                                    <ComboBox  Height="23" HorizontalAlignment="Left"  Name="comb34oBox1" VerticalAlignment="Center" Width="146" SelectedIndex="0">
+                                    <ComboBox  Height="23" HorizontalAlignment="Left"  Name="comb34oBox1" VerticalAlignment="Center" Width="174" SelectedIndex="0">
                                         <ComboBoxItem Content="日" />
                                         <ComboBoxItem Content="周" />
                                         <ComboBoxItem Content="月" />
@@ -57,10 +57,12 @@
                                 <StackPanel  Margin="20,10,10,10"  Orientation="Horizontal" >
 
                                     <sdk:Label  Content="选择时间：" Grid.Row="1" Height="26" HorizontalAlignment="Left"  Name="lab3434el2" VerticalAlignment="Center"  />
-                                    <sdk:DatePicker  Height="23" HorizontalAlignment="Left" Name="datePicker未1" VerticalAlignment="Center" Width="167"  />
+                                    <sdk:DatePicker  Height="23" HorizontalAlignment="Left" Name="datePicker未1" VerticalAlignment="Center" Width="174"  />
                                 </StackPanel>
                                 <StackPanel  Margin="20,10,10,10"  Orientation="Horizontal" >
-                                    <CheckBox VerticalAlignment="Center"></CheckBox>
+                                   
+                                    <CheckBox VerticalAlignment="Center" IsChecked="True" ></CheckBox>
+                                    <Image Source="/SCADA.UI;component/Modules/AnalyseCompare/Image/d1.jpg"></Image>
                                     <sdk:Label Height="28"  Content="设备1：" HorizontalAlignment="Left"  Name="label11" VerticalAlignment="Center"  />
                                     <ComboBox  Height="23" HorizontalAlignment="Left"  Name="comboBox11" VerticalAlignment="Center" Width="146" SelectedIndex="2">
                                         <ComboBoxItem Content="总区域" />
@@ -75,9 +77,11 @@
                                         <ComboBoxItem Content="----设备G2-0003" />
                                         <ComboBoxItem Content="----设备G2-0004" />
                                     </ComboBox>
+                                  
                                 </StackPanel>
                                 <StackPanel  Margin="20,10,10,10"  Orientation="Horizontal" >
-                                    <CheckBox VerticalAlignment="Center"></CheckBox>
+                                    <CheckBox VerticalAlignment="Center" IsChecked="True"></CheckBox>
+                                    <Image Source="/SCADA.UI;component/Modules/AnalyseCompare/Image/d2.jpg"></Image>
                                     <sdk:Label Height="28"  Content="设备2：" HorizontalAlignment="Left"  Name="label14" VerticalAlignment="Center"  />
                                     <ComboBox  Height="23" HorizontalAlignment="Left"  Name="comboBox14" VerticalAlignment="Center" Width="146" SelectedIndex="3">
                                         <ComboBoxItem Content="总区域" />
@@ -92,10 +96,12 @@
                                         <ComboBoxItem Content="----设备G2-0003" />
                                         <ComboBoxItem Content="----设备G2-0004" />
                                     </ComboBox>
+                                  
                                 </StackPanel>
                                 <StackPanel  Margin="20,10,10,10"  Orientation="Horizontal" >
-                                    <CheckBox VerticalAlignment="Center"></CheckBox>
-                                    <sdk:Label Height="28"  Content="设备2：" HorizontalAlignment="Left"  Name="label12" VerticalAlignment="Center"  />
+                                    <CheckBox VerticalAlignment="Center" IsChecked="True"></CheckBox>
+                                    <Image Source="/SCADA.UI;component/Modules/AnalyseCompare/Image/d3.jpg"></Image>
+                                    <sdk:Label Height="28"  Content="设备3：" HorizontalAlignment="Left"  Name="label12" VerticalAlignment="Center"  />
                                     <ComboBox  Height="23" HorizontalAlignment="Left"  Name="comboBox12" VerticalAlignment="Center" Width="146" SelectedIndex="4">
                                         <ComboBoxItem Content="总区域" />
                                         <ComboBoxItem Content="--管理分区1" />
@@ -109,9 +115,11 @@
                                         <ComboBoxItem Content="----设备G2-0003" />
                                         <ComboBoxItem Content="----设备G2-0004" />
                                     </ComboBox>
+                                    
                                 </StackPanel>
                                 <StackPanel  Margin="20,10,10,10"  Orientation="Horizontal" >
-                                    <CheckBox VerticalAlignment="Center"></CheckBox>
+                                    <CheckBox VerticalAlignment="Center" IsChecked="True"></CheckBox>
+                                    <Image Source="/SCADA.UI;component/Modules/AnalyseCompare/Image/d4.jpg"></Image>
                                     <sdk:Label Height="28"  Content="设备4：" HorizontalAlignment="Left"  Name="label13" VerticalAlignment="Center"  />
                                     <ComboBox  Height="23" HorizontalAlignment="Left"  Name="comboBox13" VerticalAlignment="Center" Width="146" SelectedIndex="5">
                                         <ComboBoxItem Content="总区域" />
@@ -126,9 +134,10 @@
                                         <ComboBoxItem Content="----设备G2-0003" />
                                         <ComboBoxItem Content="----设备G2-0004" />
                                     </ComboBox>
+                                  
                                 </StackPanel>
-                                <StackPanel  Margin="0,10,40,10"  Orientation="Horizontal" HorizontalAlignment="Right" >
-                                    <Button    Content=" 查看对比" VerticalAlignment="Top" Width="131"/>
+                                <StackPanel  Margin="0,10,20,10"  Orientation="Horizontal" HorizontalAlignment="Right" >
+                                    <Button    Content=" 查看对比" VerticalAlignment="Top" Width="129"/>
                                 </StackPanel>
                             </StackPanel>
                             
@@ -148,7 +157,7 @@
 
                                     </vc:Chart.TrendLines>
                                     <vc:Chart.AxesX>
-                                        <vc:Axis Title=""  ValueFormatString="HH" IntervalType="Hours" AxisMaximum="2011/08/09 00:00:00"   AxisMinimum="2011/08/08 00:00:00" >
+                                        <vc:Axis Title="小时"  ValueFormatString="HH" IntervalType="Hours" AxisMaximum="2011/08/09 00:00:00"   AxisMinimum="2011/08/08 00:00:00" >
                                             <vc:Axis.Grids>
                                                 <vc:ChartGrid Interval="1" InterlacedColor="#0efCff6e"  />
                                             </vc:Axis.Grids>
@@ -167,9 +176,9 @@
                                         <vc:PlotArea BorderThickness="1" />
                                     </vc:Chart.PlotArea>
 
-                                    <vc:Chart.Series>
+                                    <vc:Chart.Series >
 
-                                        <vc:DataSeries RenderAs="Spline" XValueFormatString="yyyy/MM/dd HH:mm:ss"  SelectionEnabled="true"  XValueType="DateTime"  MarkerEnabled="false"   LabelEnabled="false" LegendText="设备1">
+                                    <vc:DataSeries RenderAs="Spline" XValueFormatString="yyyy/MM/dd HH:mm:ss"  ShowInLegend="false"   SelectionEnabled="true"  XValueType="DateTime"  MarkerEnabled="false"   LabelEnabled="false" LegendText="设备1">
                                             <vc:DataSeries.Color>
                                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                                     <GradientStop Color="Red" Offset="0"/>
@@ -202,7 +211,7 @@
                                                 <vc:DataPoint XValue="2011/08/08 23:15:35" YValue="28"  Cursor="Hand"/>
                                             </vc:DataSeries.DataPoints>
                                         </vc:DataSeries>
-                                        <vc:DataSeries RenderAs="Spline" XValueFormatString="yyyy/MM/dd HH:mm:ss"  XValueType="DateTime"  LabelEnabled="false"  MarkerEnabled="false" LegendText="设备2">
+                                    <vc:DataSeries RenderAs="Spline" ShowInLegend="false" XValueFormatString="yyyy/MM/dd HH:mm:ss"  XValueType="DateTime"  LabelEnabled="false"  MarkerEnabled="false" LegendText="设备2">
                                             <vc:DataSeries.Color>
                                                 <SolidColorBrush Color="DodgerBlue"></SolidColorBrush>
                                             </vc:DataSeries.Color>
@@ -233,7 +242,7 @@
                                             </vc:DataSeries.DataPoints>
 
                                         </vc:DataSeries>
-                                        <vc:DataSeries RenderAs="Spline"  XValueFormatString="yyyy/MM/dd HH:mm:ss"  XValueType="DateTime" MarkerEnabled="false" LabelEnabled="false" LegendText="设备3">
+                                    <vc:DataSeries RenderAs="Spline" ShowInLegend="false"  XValueFormatString="yyyy/MM/dd HH:mm:ss"  XValueType="DateTime" MarkerEnabled="false" LabelEnabled="false" LegendText="设备3">
                                             <vc:DataSeries.Color>
                                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                                     <GradientStop Color="GreenYellow" Offset="1"/>
@@ -267,7 +276,7 @@
                                             </vc:DataSeries.DataPoints>
 
                                         </vc:DataSeries>
-                                        <vc:DataSeries RenderAs="Spline" XValueFormatString="yyyy/MM/dd HH:mm:ss"  XValueType="DateTime"  MarkerEnabled="false" LabelEnabled="false" LegendText="设备4">
+                                    <vc:DataSeries RenderAs="Spline" ShowInLegend="false"  XValueFormatString="yyyy/MM/dd HH:mm:ss"  XValueType="DateTime"  MarkerEnabled="false" LabelEnabled="false" LegendText="设备4">
                                             <vc:DataSeries.Color>
                                                 <SolidColorBrush Color="Silver"></SolidColorBrush>
                                             </vc:DataSeries.Color>
@@ -303,7 +312,8 @@
 
                             <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" >
                                 <Button   Content="&lt;" Height="23" HorizontalAlignment="Left" 
-                                     Name="button1" VerticalAlignment="Top" Width="40" Margin="5,0"  />
+                                     Name="button1" VerticalAlignment="Top" Width="40" Margin="5,0"  >
+                                </Button>
 
                                     <Button    Content="+" Height="23" HorizontalAlignment="Left" 
                                      Name="button2" VerticalAlignment="Top" Width="40" Margin="5,0"  />

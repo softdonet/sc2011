@@ -409,7 +409,7 @@
                             </vc:Chart>
                           
 
-                            <Button  Grid.Column="2" Grid.Row="3"  Content="《《" Height="23" HorizontalAlignment="Left" 
+                            <Button  Grid.Column="2" Grid.Row="3"  Content="&lt;" Height="23" HorizontalAlignment="Left" 
                                      Name="button1" VerticalAlignment="Top" Width="40" Margin="300,0,0,0" />
 
                             <Button  Grid.Column="2" Grid.Row="3"  Content="+" Height="23" HorizontalAlignment="Left" 
@@ -418,7 +418,7 @@
                             <Button  Grid.Column="2" Grid.Row="3"  Content="-" Height="23" HorizontalAlignment="Left" 
                                      Name="button3" VerticalAlignment="Top" Width="40" Margin="400,0,0,0" />
 
-                            <Button  Grid.Column="2" Grid.Row="3"  Content="》》" Height="23" HorizontalAlignment="Left" 
+                            <Button  Grid.Column="2" Grid.Row="3"  Content="&gt;" Height="23" HorizontalAlignment="Left" 
                                      Name="button4" VerticalAlignment="Top" Width="40" Margin="450,0,0,0" />
                             <Image  HorizontalAlignment="Left" VerticalAlignment="Top"  Height="20" Width="180" Margin="550,3,0,0" Source="/SCADA.UI;component/Modules/Statistics/Image/tuli.JPG" Grid.Column="2" Grid.Row="3" Stretch="None"></Image>
                         </Grid>

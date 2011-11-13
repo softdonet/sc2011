@@ -24,7 +24,7 @@
             <vc:Chart.AxesX>
                 <vc:Axis Title=""  ValueFormatString="HH" IntervalType="Hours" AxisMaximum="2011-11-12 00:00:00"   AxisMinimum="2011-11-11 00:00:00" >
                     <vc:Axis.Grids>
-                        <vc:ChartGrid Interval="1" InterlacedColor="#0efCff6e"  />
+                        <vc:ChartGrid Interval="4" InterlacedColor="#0efCff6e"  />
                     </vc:Axis.Grids>
                 </vc:Axis>
             </vc:Chart.AxesX>

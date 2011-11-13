@@ -28,6 +28,8 @@ namespace SCADA.UI.Modules.BingMaps
                 plane.Children.Remove(item);
                 plane.Children.Add(item);
             };
+
+            //chart1.Title  ="";
         }
 
         /// <summary>

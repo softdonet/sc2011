@@ -159,7 +159,7 @@
                                     <vc:Chart.AxesX>
                                         <vc:Axis Title="小时"  ValueFormatString="HH" IntervalType="Hours" AxisMaximum="2011/08/09 00:00:00"   AxisMinimum="2011/08/08 00:00:00" >
                                             <vc:Axis.Grids>
-                                                <vc:ChartGrid Interval="1" InterlacedColor="#0efCff6e"  />
+                                                <vc:ChartGrid Interval="4" InterlacedColor="#0efCff6e"  />
                                             </vc:Axis.Grids>
                                         </vc:Axis>
                                     </vc:Chart.AxesX>

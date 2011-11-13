@@ -559,8 +559,8 @@
                         <Grid/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
-                <ListBoxItem x:Name="childMenuByDateCompare" Content="时间对比" VerticalAlignment="Center" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDateCompare"/>
-                <ListBoxItem x:Name="childMenuDeviceCompare" Content="设备对比" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDeviceCompare"/>
+                <ListBoxItem x:Name="childMenuByDateCompare" Content="设备对比" VerticalAlignment="Center" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDateCompare"/>
+                <ListBoxItem x:Name="childMenuDeviceCompare" Content="时间对比" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDeviceCompare"/>
                 <ListBoxItem x:Name="childMenuStatistics" Content="统计分析" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDeviceCompare"/>
             </ListBox>
         </Border>

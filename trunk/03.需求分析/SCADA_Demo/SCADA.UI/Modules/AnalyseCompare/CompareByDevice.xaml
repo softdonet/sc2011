@@ -117,9 +117,9 @@
 
                                 </vc:Chart.TrendLines>
                                 <vc:Chart.AxesX>
-                                    <vc:Axis Title="小时"  ValueFormatString="HH" IntervalType="Hours" AxisMaximum="2011/08/09 00:00:00"   AxisMinimum="2011/08/08 00:00:00" >
+                                    <vc:Axis Title="小时"     ValueFormatString="HH"  >
                                         <vc:Axis.Grids>
-                                            <vc:ChartGrid Interval="1" InterlacedColor="#0efCff6e"  />
+                                            <vc:ChartGrid Interval="8" InterlacedColor="#0efCff6e"  />
                                         </vc:Axis.Grids>
                                     </vc:Axis>
                                 </vc:Chart.AxesX>
@@ -137,7 +137,7 @@
                                 </vc:Chart.PlotArea>
 
                                 <vc:Chart.Series>
-                                    <vc:DataSeries RenderAs="Spline" XValueFormatString="yyyy/MM/dd HH:mm:ss"  ShowInLegend="false"   SelectionEnabled="true"  XValueType="DateTime"  MarkerEnabled="false"   LabelEnabled="false" LegendText="设备1">
+                                    <vc:DataSeries RenderAs="Spline"     ShowInLegend="false"   SelectionEnabled="true"    MarkerEnabled="false"   LabelEnabled="false" LegendText="设备1">
                                         <vc:DataSeries.Color>
                                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                                 <GradientStop Color="Red" Offset="0"/>
@@ -145,59 +145,207 @@
                                             </LinearGradientBrush>
                                         </vc:DataSeries.Color>
                                         <vc:DataSeries.DataPoints>
-                                            <vc:DataPoint XValue="2011/08/08 00:15:35" YValue="19"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 02:15:35" YValue="19"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 03:15:35" YValue="20"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 04:15:35" YValue="20"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 05:15:35" YValue="21"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 06:15:35" YValue="21"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 07:15:35" YValue="21"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 08:15:35" YValue="22"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 09:15:35" YValue="22"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 10:15:35" YValue="22"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 11:15:35" YValue="23"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 12:15:35" YValue="23"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 13:15:35" YValue="23"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 14:15:35" YValue="24"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 15:15:35" YValue="24"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 16:15:35" YValue="23"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 17:15:35" YValue="23"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 18:15:35" YValue="24"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 19:15:35" YValue="24"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 20:15:35" YValue="25"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 21:15:35" YValue="26"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 22:15:35" YValue="27"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 23:15:35" YValue="28"  Cursor="Hand"/>
+                                            <vc:DataPoint AxisXLabel="0:00" YValue="16"/>
+                                            <vc:DataPoint AxisXLabel="0:15" YValue="17.5"/>
+                                            <vc:DataPoint AxisXLabel="0:30" YValue="18"/>
+                                            <vc:DataPoint AxisXLabel="0:45" YValue="18.5"/>
+                                            <vc:DataPoint AxisXLabel="1:00" YValue="18"/>
+                                            <vc:DataPoint AxisXLabel="1:15" YValue="18.5"/>
+                                            <vc:DataPoint AxisXLabel="1:30" YValue="19"/>
+                                            <vc:DataPoint AxisXLabel="1:45" YValue="19"/>
+                                            <vc:DataPoint AxisXLabel="2:00" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="2:15" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="2:30" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="2:45" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="3:00" YValue="21"/>
+                                            <vc:DataPoint AxisXLabel="3:15" YValue="21"/>
+                                            <vc:DataPoint AxisXLabel="3:30" YValue="19"/>
+                                            <vc:DataPoint AxisXLabel="3:45" YValue="19"/>
+                                            <vc:DataPoint AxisXLabel="4:00" YValue="19"/>
+                                            <vc:DataPoint AxisXLabel="4:15" YValue="19"/>
+                                            <vc:DataPoint AxisXLabel="4:30" YValue="19"/>
+                                            <vc:DataPoint AxisXLabel="4:45" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="5:00" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="5:15" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="5:30" YValue="21"/>
+                                            <vc:DataPoint AxisXLabel="5:45" YValue="21"/>
+                                            <vc:DataPoint AxisXLabel="6:00" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="6:15" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="6:30" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="6:45" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="7:00" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="7:15" YValue="22.5"/>
+                                            <vc:DataPoint AxisXLabel="7:30" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="7:45" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="8:00" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="8:15" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="8:30" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="8:45" YValue="23.9"/>
+                                            <vc:DataPoint AxisXLabel="9:00" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="9:15" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="9:30" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="9:45" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="10:00" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="10:15" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="10:30" YValue="21.8"/>
+                                            <vc:DataPoint AxisXLabel="10:45" YValue="19"/>
+                                            <vc:DataPoint AxisXLabel="11:00" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="11:15" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="11:30" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="11:45" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="12:00" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="12:15" YValue="21"/>
+                                            <vc:DataPoint AxisXLabel="12:30" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="12:45" YValue="21"/>
+                                            <vc:DataPoint AxisXLabel="13:00" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="13:15" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="13:30" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="13:45" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="14:00" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="14:15" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="14:30" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="14:45" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="15:00" YValue="24"/>
+                                            <vc:DataPoint AxisXLabel="15:15" YValue="24"/>
+                                            <vc:DataPoint AxisXLabel="15:30" YValue="24.7"/>
+                                            <vc:DataPoint AxisXLabel="15:45" YValue="25"/>
+                                            <vc:DataPoint AxisXLabel="16:00" YValue="25"/>
+                                            <vc:DataPoint AxisXLabel="16:15" YValue="25"/>
+                                            <vc:DataPoint AxisXLabel="16:30" YValue="25.5"/>
+                                            <vc:DataPoint AxisXLabel="16:45" YValue="26"/>
+                                            <vc:DataPoint AxisXLabel="17:00" YValue="26"/>
+                                            <vc:DataPoint AxisXLabel="17:15" YValue="26.7"/>
+                                            <vc:DataPoint AxisXLabel="17:30" YValue="26"/>
+                                            <vc:DataPoint AxisXLabel="17:45" YValue="27"/>
+                                            <vc:DataPoint AxisXLabel="18:00" YValue="26"/>
+                                            <vc:DataPoint AxisXLabel="18:15" YValue="25"/>
+                                            <vc:DataPoint AxisXLabel="18:30" YValue="24"/>
+                                            <vc:DataPoint AxisXLabel="18:45" YValue="24"/>
+                                            <vc:DataPoint AxisXLabel="19:00" YValue="24"/>
+                                            <vc:DataPoint AxisXLabel="19:15" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="19:30" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="19:45" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="20:00" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="20:15" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="20:30" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="20:45" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="21:00" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="21:15" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="21:30" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="21:45" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="22:00" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="22:15" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="22:30" YValue="21"/>
+                                            <vc:DataPoint AxisXLabel="22:45" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="23:00" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="23:15" YValue="21"/>
+                                            <vc:DataPoint AxisXLabel="23:30" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="23:45" YValue="23"/>
+
                                         </vc:DataSeries.DataPoints>
                                     </vc:DataSeries>
-                                    <vc:DataSeries RenderAs="Spline" ShowInLegend="false" XValueFormatString="yyyy/MM/dd HH:mm:ss"  XValueType="DateTime"  LabelEnabled="false"  MarkerEnabled="false" LegendText="设备2">
+                                    <vc:DataSeries RenderAs="Spline" ShowInLegend="false"    LabelEnabled="false"  MarkerEnabled="false" LegendText="设备2">
                                         <vc:DataSeries.Color>
                                             <SolidColorBrush Color="DodgerBlue"></SolidColorBrush>
                                         </vc:DataSeries.Color>
                                         <vc:DataSeries.DataPoints>
-                                            <vc:DataPoint XValue="2011/08/08 00:15:35" YValue="17"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 02:15:35" YValue="17"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 03:15:35" YValue="17"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 04:15:35" YValue="18"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 05:15:35" YValue="18"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 06:15:35" YValue="18"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 07:15:35" YValue="19"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 08:15:35" YValue="19"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 09:15:35" YValue="19"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 10:15:35" YValue="20"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 11:15:35" YValue="21"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 12:15:35" YValue="21"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 13:15:35" YValue="22"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 14:15:35" YValue="22"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 15:15:35" YValue="23"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 16:15:35" YValue="22"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 17:15:35" YValue="20"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 18:15:35" YValue="22"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 19:15:35" YValue="25"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 20:15:35" YValue="23"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 21:15:35" YValue="23"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 22:15:35" YValue="25"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 23:15:35" YValue="25"  Cursor="Hand"/>
+                                            <vc:DataPoint AxisXLabel="0:00" YValue="17"/>
+                                            <vc:DataPoint AxisXLabel="0:15" YValue="17"/>
+                                            <vc:DataPoint AxisXLabel="0:30" YValue="16"/>
+                                            <vc:DataPoint AxisXLabel="0:45" YValue="16"/>
+                                            <vc:DataPoint AxisXLabel="1:00" YValue="17"/>
+                                            <vc:DataPoint AxisXLabel="1:15" YValue="18"/>
+                                            <vc:DataPoint AxisXLabel="1:30" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="1:45" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="2:00" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="2:15" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="2:30" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="2:45" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="3:00" YValue="25"/>
+                                            <vc:DataPoint AxisXLabel="3:15" YValue="25"/>
+                                            <vc:DataPoint AxisXLabel="3:30" YValue="25"/>
+                                            <vc:DataPoint AxisXLabel="3:45" YValue="25"/>
+                                            <vc:DataPoint AxisXLabel="4:00" YValue="25"/>
+                                            <vc:DataPoint AxisXLabel="4:15" YValue="25"/>
+                                            <vc:DataPoint AxisXLabel="4:30" YValue="26"/>
+                                            <vc:DataPoint AxisXLabel="4:45" YValue="26"/>
+                                            <vc:DataPoint AxisXLabel="5:00" YValue="26"/>
+                                            <vc:DataPoint AxisXLabel="5:15" YValue="26"/>
+                                            <vc:DataPoint AxisXLabel="5:30" YValue="26"/>
+                                            <vc:DataPoint AxisXLabel="5:45" YValue="26"/>
+                                            <vc:DataPoint AxisXLabel="6:00" YValue="24"/>
+                                            <vc:DataPoint AxisXLabel="6:15" YValue="24"/>
+                                            <vc:DataPoint AxisXLabel="6:30" YValue="24"/>
+                                            <vc:DataPoint AxisXLabel="6:45" YValue="24"/>
+                                            <vc:DataPoint AxisXLabel="7:00" YValue="24"/>
+                                            <vc:DataPoint AxisXLabel="7:15" YValue="23.5"/>
+                                            <vc:DataPoint AxisXLabel="7:30" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="7:45" YValue="21"/>
+                                            <vc:DataPoint AxisXLabel="8:00" YValue="21"/>
+                                            <vc:DataPoint AxisXLabel="8:15" YValue="21"/>
+                                            <vc:DataPoint AxisXLabel="8:30" YValue="25"/>
+                                            <vc:DataPoint AxisXLabel="8:45" YValue="25"/>
+                                            <vc:DataPoint AxisXLabel="9:00" YValue="25"/>
+                                            <vc:DataPoint AxisXLabel="9:15" YValue="25"/>
+                                            <vc:DataPoint AxisXLabel="9:30" YValue="25"/>
+                                            <vc:DataPoint AxisXLabel="9:45" YValue="25"/>
+                                            <vc:DataPoint AxisXLabel="10:00" YValue="26"/>
+                                            <vc:DataPoint AxisXLabel="10:15" YValue="26"/>
+                                            <vc:DataPoint AxisXLabel="10:30" YValue="26"/>
+                                            <vc:DataPoint AxisXLabel="10:45" YValue="24"/>
+                                            <vc:DataPoint AxisXLabel="11:00" YValue="24"/>
+                                            <vc:DataPoint AxisXLabel="11:15" YValue="24"/>
+                                            <vc:DataPoint AxisXLabel="11:30" YValue="24"/>
+                                            <vc:DataPoint AxisXLabel="11:45" YValue="24"/>
+                                            <vc:DataPoint AxisXLabel="12:00" YValue="24"/>
+                                            <vc:DataPoint AxisXLabel="12:15" YValue="25"/>
+                                            <vc:DataPoint AxisXLabel="12:30" YValue="26"/>
+                                            <vc:DataPoint AxisXLabel="12:45" YValue="26"/>
+                                            <vc:DataPoint AxisXLabel="13:00" YValue="25"/>
+                                            <vc:DataPoint AxisXLabel="13:15" YValue="25"/>
+                                            <vc:DataPoint AxisXLabel="13:30" YValue="25"/>
+                                            <vc:DataPoint AxisXLabel="13:45" YValue="25"/>
+                                            <vc:DataPoint AxisXLabel="14:00" YValue="23"/>
+                                            <vc:DataPoint AxisXLabel="14:15" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="14:30" YValue="21"/>
+                                            <vc:DataPoint AxisXLabel="14:45" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="15:00" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="15:15" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="15:30" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="15:45" YValue="18"/>
+                                            <vc:DataPoint AxisXLabel="16:00" YValue="18"/>
+                                            <vc:DataPoint AxisXLabel="16:15" YValue="18"/>
+                                            <vc:DataPoint AxisXLabel="16:30" YValue="18"/>
+                                            <vc:DataPoint AxisXLabel="16:45" YValue="18"/>
+                                            <vc:DataPoint AxisXLabel="17:00" YValue="18"/>
+                                            <vc:DataPoint AxisXLabel="17:15" YValue="18"/>
+                                            <vc:DataPoint AxisXLabel="17:30" YValue="18"/>
+                                            <vc:DataPoint AxisXLabel="17:45" YValue="18"/>
+                                            <vc:DataPoint AxisXLabel="18:00" YValue="18"/>
+                                            <vc:DataPoint AxisXLabel="18:15" YValue="18"/>
+                                            <vc:DataPoint AxisXLabel="18:30" YValue="19"/>
+                                            <vc:DataPoint AxisXLabel="18:45" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="19:00" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="19:15" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="19:30" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="19:45" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="20:00" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="20:15" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="20:30" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="20:45" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="21:00" YValue="20"/>
+                                            <vc:DataPoint AxisXLabel="21:15" YValue="19"/>
+                                            <vc:DataPoint AxisXLabel="21:30" YValue="19"/>
+                                            <vc:DataPoint AxisXLabel="21:45" YValue="19"/>
+                                            <vc:DataPoint AxisXLabel="22:00" YValue="19"/>
+                                            <vc:DataPoint AxisXLabel="22:15" YValue="19"/>
+                                            <vc:DataPoint AxisXLabel="22:30" YValue="19"/>
+                                            <vc:DataPoint AxisXLabel="22:45" YValue="19"/>
+                                            <vc:DataPoint AxisXLabel="23:00" YValue="19"/>
+                                            <vc:DataPoint AxisXLabel="23:15" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="23:30" YValue="22"/>
+                                            <vc:DataPoint AxisXLabel="23:45" YValue="23"/>
+
                                         </vc:DataSeries.DataPoints>
 
                                     </vc:DataSeries>

@@ -168,6 +168,7 @@ namespace SCADA.UI
                 //按设备对比
                 case "childMenuDeviceCompare":
                     this.ViewHost.Child = new CompareByDevice();
+                   
                     break;
                 //统计分析
                 case "childMenuStatistics":

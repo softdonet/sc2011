@@ -18,5 +18,10 @@ namespace SCADA.UI.SampleData
         {
             InitializeComponent();
         }
+        public string Title
+        {
+            get { return this.chart1.Titles[0].Text ; }
+            set { this.chart1.Titles[0].Text = value; }
+        }
     }
 }

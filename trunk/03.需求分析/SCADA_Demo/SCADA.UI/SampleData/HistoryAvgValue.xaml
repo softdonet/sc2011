@@ -10,7 +10,7 @@
        
        
         <vc:Chart  Watermark="False" xmlns:vc="clr-namespace:Visifire.Charts;assembly=SLVisifire.Charts" Theme="Theme2" 
-                                ShadowEnabled="True" BorderThickness="0.5" Grid.Row="1" BorderBrush="Gray"   >
+                              ScrollingEnabled="False"  ShadowEnabled="True" BorderThickness="0.5" Grid.Row="1" BorderBrush="Gray"   >
             <vc:Chart.Titles>
                 <vc:Title Text="历史平均温度统计图 " FontFamily="Arial" FontSize="14"/>
             </vc:Chart.Titles>
@@ -18,17 +18,17 @@
                 <vc:PlotArea BorderThickness="0,1,1,0" BorderColor="LightGray" />
             </vc:Chart.PlotArea>
             <vc:Chart.AxesX>
-                <vc:Axis Title="" AxisMaximum="24"   AxisMinimum="0">
+                <vc:Axis Title="" >
                     <vc:Axis.AxisLabels>
                         <vc:AxisLabels Interval="1"  />
                     </vc:Axis.AxisLabels>
                 </vc:Axis>
             </vc:Chart.AxesX>
             <vc:Chart.AxesY>
-                <vc:Axis AxisMinimum="-10" AxisMaximum="30" Interval="5"  />
+                <vc:Axis  Title="温度（℃）"  AxisMinimum="-10" AxisMaximum="30" Interval="5"  />
             </vc:Chart.AxesY>
             <vc:Chart.Series>
-                <vc:DataSeries RenderAs="Column" LabelEnabled="True" LegendText="平均">
+                <vc:DataSeries RenderAs="Column"   LabelEnabled="true" >
                     <vc:DataSeries.Color>
                         <SolidColorBrush  Color="Red">
                         </SolidColorBrush>
@@ -58,10 +58,10 @@
                         <vc:DataPoint AxisXLabel="21" YValue="30"  Cursor="Hand"/>
                         <vc:DataPoint AxisXLabel="22" YValue="-4" Cursor="Hand" Color="limeGreen"/>
                         <vc:DataPoint AxisXLabel="23" YValue="23" Cursor="Hand" />
-                        <vc:DataPoint AxisXLabel="24" YValue="21" Cursor="Hand" />
-                        <vc:DataPoint AxisXLabel="24" YValue="17" Cursor="Hand" />
                     </vc:DataSeries.DataPoints>
                 </vc:DataSeries>
+              
+               
             </vc:Chart.Series>
         </vc:Chart>
     </Grid>

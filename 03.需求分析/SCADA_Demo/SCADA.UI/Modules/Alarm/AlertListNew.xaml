@@ -188,7 +188,7 @@
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Background="White" DataContext="{Binding Source={StaticResource DataGridViewSampleDataSource}}">
         <telerik:RadGridView x:Name="RadGridView1" 
-							ShowGroupPanel="False" AutoGenerateColumns="False"  IsReadOnly="True"  ItemsSource="{Binding Collection}" RowLoaded="RadGridView1_RowLoaded">
+							ShowGroupPanel="False" AutoGenerateColumns="False"  IsReadOnly="True"  ItemsSource="{Binding Collection}" RowLoaded="RadGridView1_RowLoaded" RowActivated="RadGridView1_RowActivated">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Header="设备名" Width="100"   HeaderTextAlignment="Center" DisplayIndex="1" CellTemplate="{StaticResource DataTemplate5}" />
                 <telerik:GridViewDataColumn Header="事件类型" Width="60" HeaderTextAlignment="Center" CellTemplate="{StaticResource DataTemplate15}" />
@@ -204,7 +204,6 @@
                     <telerik:GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel  Orientation="Horizontal"   HorizontalAlignment="Center">
-                                <HyperlinkButton x:Name="hlLook"  Click="hlLook_Click"   HorizontalAlignment="Center"  Content="查看"  Foreground="#FF0000CC"    />
                                 <HyperlinkButton x:Name="hlUrl"  Click="hlUrl_Click" IsEnabled="False"   HorizontalAlignment="Center"  Content="处理"  Foreground="#FF0000CC"    />
                             </StackPanel>
                         </DataTemplate>
@@ -212,7 +211,7 @@
                 </telerik:GridViewDataColumn>
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>
-        <Border x:Name="ViewHost" BorderBrush="Black" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed" VerticalAlignment="Bottom">
+        <Border x:Name="ViewHost" BorderBrush="Black" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed" >
             <Border.RenderTransform>
                 <CompositeTransform/>
             </Border.RenderTransform>

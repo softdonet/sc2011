@@ -241,81 +241,50 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
+    <Grid x:Name="LayoutRoot1" DataContext="{Binding Source={StaticResource DataGridViewSampleDataSource}}" ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="268*" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
+            <sdk:Label Content="设备名称:"  Height="28"   Name="label1" Width="50" />
+            <ComboBox  Height="23" HorizontalAlignment="Left"  Name="comboBox11"  Width="146" SelectedIndex="2">
+                <ComboBoxItem Content="总区域" />
+                <ComboBoxItem Content="--管理分区1" />
+                <ComboBoxItem Content="----设备G1-0001" />
+                <ComboBoxItem Content="----设备G1-0002" />
+                <ComboBoxItem Content="----设备G1-0003" />
+                <ComboBoxItem Content="----设备G1-0004" />
+                <ComboBoxItem Content="--管理分区2" />
+                <ComboBoxItem Content="----设备G2-0001" />
+                <ComboBoxItem Content="----设备G2-0002" />
+                <ComboBoxItem Content="----设备G2-0003" />
+                <ComboBoxItem Content="----设备G2-0004" />
+            </ComboBox>
+            <sdk:Label Content="开始时间:"  Margin="20,0,0,0" Height="28"  Name="lblSat" Width="50"  />
+            <sdk:DatePicker Height="23"   Name="datePicker1"  Width="120" />
+            <sdk:Label Content="结束时间:" Margin="20,0,0,0" Height="28"   Name="lblEnd" Width="50"   />
+            <sdk:DatePicker  Height="23"  Name="datePicker2"  Width="120" />
+            <Button Content="查询" Margin="20,0,0,0" Height="23" Name="btnCheck"  Width="75" />
+            <Button Content="导出" Margin="20,0,0,0"  Height="23" Name="btnExport"  Width="75" />
+        </StackPanel>
+        <sdk:DataGrid ItemsSource="{Binding Collection}" AutoGenerateColumns="False" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" CanUserSortColumns="True" Grid.Row="1"  >
+            <sdk:DataGrid.Columns>
 
+                <sdk:DataGridTemplateColumn Header="设备名" Width="120" DisplayIndex="1" CellTemplate="{StaticResource DataTemplate5}"  />
+                <sdk:DataGridTemplateColumn Header="安装地点" Width="*" CellTemplate="{StaticResource DataTemplate2}" />
+                <sdk:DataGridTemplateColumn Header="更新时间" Width="160" CellTemplate="{StaticResource DataTemplate4}" />
+                <sdk:DataGridTemplateColumn Header="温度" Width="80" CellTemplate="{StaticResource DataTemplate8}" />
+                <!--<sdk:DataGridTemplateColumn Header="状态" Width="50" CellTemplate="{StaticResource DataTemplate14}" />-->
+                <sdk:DataGridTemplateColumn Header="电量" Width="60" CellTemplate="{StaticResource DataTemplate15}" />
+                <sdk:DataGridTemplateColumn Header="预留字段1"  Width="100" CellTemplate="{StaticResource DataTemplate16}" />
+                <sdk:DataGridTemplateColumn Header="预留字段2" Width="100"  CellTemplate="{StaticResource DataTemplate16}" />
+                <sdk:DataGridTemplateColumn Header="信号强度" Width="60" CellTemplate="{StaticResource DataTemplate6}" />
 
-    <Grid x:Name="LayoutRoot">
-        <Border x:Name="content_Border" BorderBrush="#FF4A91BB" BorderThickness="1" Margin="5" CornerRadius="5">
-            <Border.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF5BB5E3" Offset="0"/>
-                    <GradientStop Color="#FF2C5273" Offset="1"/>
-                </LinearGradientBrush>
-            </Border.Background>
-            <Grid>
-                <TextBlock x:Name="title_TextBlock" HorizontalAlignment="Left" Height="25" Margin="22,5,0,0" TextWrapping="Wrap" Text="按设备查询" VerticalAlignment="Top" Width="247" FontSize="16" Foreground="White"/>
-                <Border BorderBrush="#FF4A91BB" BorderThickness="1" Margin="10,35,10,10" CornerRadius="5">
-                    <Border.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#FFE3E2E2" Offset="0"/>
-                            <GradientStop Color="#FFCDCCCC" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
-                    <Border BorderThickness="1" CornerRadius="5" Margin="1" Background="AliceBlue">
-                        <Grid x:Name="LayoutRoot1" DataContext="{Binding Source={StaticResource DataGridViewSampleDataSource}}" ShowGridLines="False">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="80" />
-                                <ColumnDefinition Width="140" />
-                                <ColumnDefinition Width="80" />
-                                <ColumnDefinition Width="120" />
-                                <ColumnDefinition Width="80" />
-                                <ColumnDefinition Width="120" />
-                                <ColumnDefinition Width="80" />
-                                <ColumnDefinition Width="140" />
-                                <ColumnDefinition Width="90" />
-                                <ColumnDefinition Width="90*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50" />
-                                <RowDefinition Height="268*" />
-                            </Grid.RowDefinitions>
-                            <sdk:Label Content="设备名称:" Grid.Column="0" Height="28"  Margin="10,10,5,8" Name="label1" Width="50" />
-                            <ComboBox  Name="cmbDriver" Height="23" Grid.Column="1" Margin="0,10,0,11"  Width="120"   >
-                                <ComboBoxItem Content="设备G1-01" IsSelected="True" />
-                                <ComboBoxItem Content="设备G1-02"/>
-                                <ComboBoxItem Content="设备G1-03"/>
-                                <ComboBoxItem Content="设备G1-04"/>
-                                <ComboBoxItem Content="设备G1-05" />
-                            </ComboBox>
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
 
-
-                            <sdk:Label Content="开始时间:" Grid.Column="2" Height="28"  Margin="10,10,10,16" Name="lblSat" Width="50"  />
-                            <sdk:DatePicker Height="23"  Grid.Column="3" HorizontalAlignment="Left" Margin="0,10,0,0" Name="datePicker1" VerticalAlignment="Top" Width="120" />
-                            <sdk:Label Content="结束时间:" Grid.Column="4" Height="28"  Margin="6,10,10,8" Name="lblEnd" Width="50"   />
-                            <sdk:DatePicker Grid.Column="5" Height="23" HorizontalAlignment="Left" Margin="0,10,0,0" Name="datePicker2" VerticalAlignment="Top" Width="120" />
-                            <Button Content="查询" Grid.Column="6" Height="23" HorizontalAlignment="Left" Margin="5,12,0,0" Name="btnCheck" VerticalAlignment="Top" Width="75" />
-                            <Button Content="导出" Grid.Column="7" Height="23" HorizontalAlignment="Left" Margin="11,12,0,0" Name="btnExport" VerticalAlignment="Top" Width="75" />
-
-                            <sdk:DataGrid ItemsSource="{Binding Collection}" AutoGenerateColumns="False" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" CanUserSortColumns="True" Grid.Row="1" Grid.ColumnSpan="10" >
-                                <sdk:DataGrid.Columns>
-
-                                    <sdk:DataGridTemplateColumn Header="设备名" Width="120" DisplayIndex="1" CellTemplate="{StaticResource DataTemplate5}"  />
-                                    <sdk:DataGridTemplateColumn Header="安装地点" Width="*" CellTemplate="{StaticResource DataTemplate2}" />
-                                    <sdk:DataGridTemplateColumn Header="更新时间" Width="160" CellTemplate="{StaticResource DataTemplate4}" />
-                                    <sdk:DataGridTemplateColumn Header="温度" Width="80" CellTemplate="{StaticResource DataTemplate8}" />
-                                    <!--<sdk:DataGridTemplateColumn Header="状态" Width="50" CellTemplate="{StaticResource DataTemplate14}" />-->
-                                    <sdk:DataGridTemplateColumn Header="电量" Width="60" CellTemplate="{StaticResource DataTemplate15}" />
-                                    <sdk:DataGridTemplateColumn Header="预留字段1"  Width="100" CellTemplate="{StaticResource DataTemplate16}" />
-                                    <sdk:DataGridTemplateColumn Header="预留字段2" Width="100"  CellTemplate="{StaticResource DataTemplate16}" />
-                                    <sdk:DataGridTemplateColumn Header="信号强度" Width="60" CellTemplate="{StaticResource DataTemplate6}" />
-                                    
-                                </sdk:DataGrid.Columns>
-                            </sdk:DataGrid>
-
-                        </Grid>
-                    </Border>
-                </Border>
-            </Grid>
-        </Border>
     </Grid>
+   
 
 </UserControl>

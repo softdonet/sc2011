@@ -10,43 +10,37 @@
     xmlns:samplesCommon="clr-namespace:SCADA.UI.CommClass"
     mc:Ignorable="d"
     d:DesignHeight="250" d:DesignWidth="300">
-    
+
     <Grid x:Name="LayoutRoot" Background="AliceBlue" ScrollViewer.HorizontalScrollBarVisibility="Auto" 
           ScrollViewer.VerticalScrollBarVisibility="Auto" ShowGridLines="True">
 
         <Grid.Resources>
             <!-- 用于安置的示例Features -->
-                <toolkit:ObjectCollection x:Key="CorporationFeatures">
-                    <samplesCommon:Feature FeatureName="总区域" Description="总区域结构">
-                        <samplesCommon:Feature FeatureName="区域1" Description="区域1的结构">
-                            <samplesCommon:Feature FeatureName="管理分区1" Description="负责管理分区1的工程">
-
-                                <samplesCommon:Feature FeatureName="片区1" Description="负责管理片区1的工程">
-                                    <samplesCommon:Feature FeatureName="设备G1-01" Description="设备1的详细情况" />
-                                    <samplesCommon:Feature FeatureName="设备G2-02" Description="设备2的详细情况" />
-                                    <samplesCommon:Feature FeatureName="设备G3-03" Description="设备3的详细情况" />
-                                </samplesCommon:Feature>
-                            </samplesCommon:Feature>
-                        </samplesCommon:Feature>
-
-                        <samplesCommon:Feature FeatureName="区域2" Description="区域2的结构">
-                            <samplesCommon:Feature FeatureName="管理分区2" Description="负责管理分区2的工程">
-                                <samplesCommon:Feature FeatureName="片区2" Description="负责管理片区1的工程">
-                                    <samplesCommon:Feature FeatureName="设备G2-01" Description="设备3的详细情况" />
-                                    <samplesCommon:Feature FeatureName="设备G2-02" Description="设备4的详细情况" />
-                                    <samplesCommon:Feature FeatureName="设备G3-03" Description="设备5的详细情况" />
-                                </samplesCommon:Feature>
-                            </samplesCommon:Feature>
+            <toolkit:ObjectCollection x:Key="CorporationFeatures">
+                <samplesCommon:Feature FeatureName="总区域" Description="总区域结构">
+                    <samplesCommon:Feature FeatureName="区域1" Description="区域1的结构">
+                        <samplesCommon:Feature FeatureName="管理分区1" Description="负责管理分区1的工程">
+                            <samplesCommon:Feature FeatureName="设备G1-01" Description="设备1的详细情况" />
+                            <samplesCommon:Feature FeatureName="设备G2-02" Description="设备2的详细情况" />
+                            <samplesCommon:Feature FeatureName="设备G3-03" Description="设备3的详细情况" />
                         </samplesCommon:Feature>
                     </samplesCommon:Feature>
-                </toolkit:ObjectCollection>
+                    <samplesCommon:Feature FeatureName="区域2" Description="区域2的结构">
+                        <samplesCommon:Feature FeatureName="管理分区2" Description="负责管理分区2的工程">
+                            <samplesCommon:Feature FeatureName="设备G2-01" Description="设备3的详细情况" />
+                            <samplesCommon:Feature FeatureName="设备G2-02" Description="设备4的详细情况" />
+                            <samplesCommon:Feature FeatureName="设备G3-03" Description="设备5的详细情况" />
+                        </samplesCommon:Feature>
+                    </samplesCommon:Feature>
+                </samplesCommon:Feature>
+            </toolkit:ObjectCollection>
 
-                <!-- 代表一个Feature项的模板 -->
-                <common:HierarchicalDataTemplate x:Key="NodeTemplate" ItemsSource="{Binding Subcomponents}">
+            <!-- 代表一个Feature项的模板 -->
+            <common:HierarchicalDataTemplate x:Key="NodeTemplate" ItemsSource="{Binding Subcomponents}">
 
-                    <StackPanel Orientation="Horizontal" ToolTipService.ToolTip="{Binding Description}">
+                <StackPanel Orientation="Horizontal" ToolTipService.ToolTip="{Binding Description}">
 
-                        <CheckBox
+                    <CheckBox
 
                         IsTabStop="False"                        
 
@@ -58,15 +52,15 @@
 
                         />
 
-                        <ContentPresenter Content="{Binding FeatureName}" />
+                    <ContentPresenter Content="{Binding FeatureName}" />
 
-                    </StackPanel>
+                </StackPanel>
 
-                </common:HierarchicalDataTemplate>
+            </common:HierarchicalDataTemplate>
 
-            </Grid.Resources>
-            <!--<Grid x:Name="LayoutRootContainer">-->
-                <!--<Grid.ColumnDefinitions>
+        </Grid.Resources>
+        <!--<Grid x:Name="LayoutRootContainer">-->
+        <!--<Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="2*" />
                 </Grid.ColumnDefinitions>-->
@@ -74,13 +68,13 @@
                            ItemTemplate="{StaticResource NodeTemplate}"
                 ItemsSource="{StaticResource CorporationFeatures}" FontSize="14" Margin="0,0,0,0" VerticalAlignment="Top" Name="treeView">
 
-                    <!-- 用来一次展开TreeView所有结点 -->
-                    <controls:TreeView.ItemContainerStyle>
-                        <Style TargetType="controls:TreeViewItem">
-                            <Setter Property="IsExpanded" Value="True" />
-                        </Style>
-                    </controls:TreeView.ItemContainerStyle>
-                </controls:TreeView>
+            <!-- 用来一次展开TreeView所有结点 -->
+            <controls:TreeView.ItemContainerStyle>
+                <Style TargetType="controls:TreeViewItem">
+                    <Setter Property="IsExpanded" Value="True" />
+                </Style>
+            </controls:TreeView.ItemContainerStyle>
+        </controls:TreeView>
         <!--</Grid>-->
     </Grid>
 </UserControl>

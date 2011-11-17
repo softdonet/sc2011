@@ -86,7 +86,9 @@ namespace SCADA.UI.Modules.Alarm
         {
             //RadWindow.Alert(String.Format("DialogResult: {0}, PromptResult: {1}", e.DialogResult, e.PromptResult));
         }
-        private void hlLook_Click(object sender, RoutedEventArgs e)
+      
+
+        private void RadGridView1_RowActivated(object sender, RowEventArgs e)
         {
             Storyboard1.Begin();
             MyContent.Content = new DetailsPage();

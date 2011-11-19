@@ -27,6 +27,7 @@ namespace MES
         public frmMain()
         {
             InitializeComponent();
+            this.KeyPreview = true;
 
             recvmessagefuns = new MessageFuns();
             moduleSettings = ModuleConfig.GetSettings();
@@ -183,6 +184,15 @@ namespace MES
         {
             frmSettings fs = new frmSettings();
             fs.ShowDialog();
+        }
+
+        private void frmMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+            if (e.KeyCode == Keys.F1)
+            {
+
+            }
         }
 
     }

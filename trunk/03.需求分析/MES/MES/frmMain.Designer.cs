@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.panelTop = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -50,7 +51,6 @@
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.panelContainer = new System.Windows.Forms.Panel();
             this.dataGrdView = new System.Windows.Forms.DataGridView();
-            this.button4 = new System.Windows.Forms.Button();
             this.panelTop.SuspendLayout();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -71,6 +71,16 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(712, 83);
             this.panelTop.TabIndex = 0;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(23, 57);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "系统设置";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -197,7 +207,7 @@
             // 
             this.toolStripLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel1.Image")));
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(63, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(83, 22);
             this.toolStripLabel1.Text = "DB CONN";
             // 
             // toolStripSeparator2
@@ -208,7 +218,7 @@
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(47, 22);
+            this.toolStripLabel2.Size = new System.Drawing.Size(66, 22);
             this.toolStripLabel2.Text = "BR CONN";
             // 
             // toolStripSeparator3
@@ -220,7 +230,7 @@
             // 
             this.toolStripLabel3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel3.Image")));
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(63, 22);
+            this.toolStripLabel3.Size = new System.Drawing.Size(80, 22);
             this.toolStripLabel3.Text = "LA CONN";
             // 
             // toolStripSeparator4
@@ -232,7 +242,7 @@
             // 
             this.toolStripLabel4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel4.Image")));
             this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(45, 22);
+            this.toolStripLabel4.Size = new System.Drawing.Size(55, 22);
             this.toolStripLabel4.Text = "WAIT";
             // 
             // panelContainer
@@ -252,16 +262,6 @@
             this.dataGrdView.Size = new System.Drawing.Size(240, 150);
             this.dataGrdView.TabIndex = 0;
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(23, 57);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 9;
-            this.button4.Text = "系统设置";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -275,6 +275,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.SizeChanged += new System.EventHandler(this.frmMain_SizeChanged);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
             this.panel1.ResumeLayout(false);

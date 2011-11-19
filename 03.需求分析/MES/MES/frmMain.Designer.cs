@@ -30,8 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.panelTop = new System.Windows.Forms.Panel();
-            this.btnChangepage = new System.Windows.Forms.Button();
-            this.btnF1 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.lblCenter = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblCurrentTime = new System.Windows.Forms.Label();
@@ -48,20 +47,19 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.panelContainer = new System.Windows.Forms.Panel();
-            this.ucGridView1 = new MES.UserControls.ucGridView();
             this.dataGrdView = new System.Windows.Forms.DataGridView();
+            this.button2 = new System.Windows.Forms.Button();
             this.panelTop.SuspendLayout();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.panelContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrdView)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTop
             // 
             this.panelTop.BackColor = System.Drawing.Color.MidnightBlue;
-            this.panelTop.Controls.Add(this.btnChangepage);
-            this.panelTop.Controls.Add(this.btnF1);
+            this.panelTop.Controls.Add(this.button2);
+            this.panelTop.Controls.Add(this.button1);
             this.panelTop.Controls.Add(this.lblCenter);
             this.panelTop.Controls.Add(this.panel1);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
@@ -70,25 +68,15 @@
             this.panelTop.Size = new System.Drawing.Size(712, 83);
             this.panelTop.TabIndex = 0;
             // 
-            // btnChangepage
+            // button1
             // 
-            this.btnChangepage.Location = new System.Drawing.Point(148, 40);
-            this.btnChangepage.Name = "btnChangepage";
-            this.btnChangepage.Size = new System.Drawing.Size(75, 23);
-            this.btnChangepage.TabIndex = 5;
-            this.btnChangepage.Text = "Success";
-            this.btnChangepage.UseVisualStyleBackColor = true;
-            this.btnChangepage.Click += new System.EventHandler(this.btnChangepage_Click);
-            // 
-            // btnF1
-            // 
-            this.btnF1.Location = new System.Drawing.Point(30, 41);
-            this.btnF1.Name = "btnF1";
-            this.btnF1.Size = new System.Drawing.Size(75, 23);
-            this.btnF1.TabIndex = 4;
-            this.btnF1.Text = "F1";
-            this.btnF1.UseVisualStyleBackColor = true;
-            this.btnF1.Click += new System.EventHandler(this.btnF1_Click);
+            this.button1.Location = new System.Drawing.Point(23, 31);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "OK";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // lblCenter
             // 
@@ -185,7 +173,7 @@
             // 
             this.toolStripLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel1.Image")));
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(83, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(63, 22);
             this.toolStripLabel1.Text = "DB CONN";
             // 
             // toolStripSeparator2
@@ -196,7 +184,7 @@
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(66, 22);
+            this.toolStripLabel2.Size = new System.Drawing.Size(47, 22);
             this.toolStripLabel2.Text = "BR CONN";
             // 
             // toolStripSeparator3
@@ -208,7 +196,7 @@
             // 
             this.toolStripLabel3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel3.Image")));
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(80, 22);
+            this.toolStripLabel3.Size = new System.Drawing.Size(63, 22);
             this.toolStripLabel3.Text = "LA CONN";
             // 
             // toolStripSeparator4
@@ -220,25 +208,16 @@
             // 
             this.toolStripLabel4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel4.Image")));
             this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(55, 22);
+            this.toolStripLabel4.Size = new System.Drawing.Size(45, 22);
             this.toolStripLabel4.Text = "WAIT";
             // 
             // panelContainer
             // 
-            this.panelContainer.Controls.Add(this.ucGridView1);
             this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContainer.Location = new System.Drawing.Point(0, 83);
             this.panelContainer.Name = "panelContainer";
             this.panelContainer.Size = new System.Drawing.Size(712, 348);
             this.panelContainer.TabIndex = 4;
-            // 
-            // ucGridView1
-            // 
-            this.ucGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucGridView1.Location = new System.Drawing.Point(0, 0);
-            this.ucGridView1.Name = "ucGridView1";
-            this.ucGridView1.Size = new System.Drawing.Size(712, 348);
-            this.ucGridView1.TabIndex = 1;
             // 
             // dataGrdView
             // 
@@ -248,6 +227,16 @@
             this.dataGrdView.RowTemplate.Height = 23;
             this.dataGrdView.Size = new System.Drawing.Size(240, 150);
             this.dataGrdView.TabIndex = 0;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(125, 31);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Error";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // frmMain
             // 
@@ -261,14 +250,12 @@
             this.Text = "MTTR07P01";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.SizeChanged += new System.EventHandler(this.frmMain_SizeChanged);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.panelContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrdView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -293,11 +280,10 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripLabel toolStripLabel4;
-        private System.Windows.Forms.Button btnF1;
-        private System.Windows.Forms.Button btnChangepage;
         private System.Windows.Forms.Panel panelContainer;
         private System.Windows.Forms.DataGridView dataGrdView;
-        private UserControls.ucGridView ucGridView1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.btnChangepage = new System.Windows.Forms.Button();
             this.btnF1 = new System.Windows.Forms.Button();
             this.lblCenter = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -52,7 +53,6 @@
             this.lblNote = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblScanNumber = new System.Windows.Forms.Label();
-            this.btnChangepage = new System.Windows.Forms.Button();
             this.panelTop.SuspendLayout();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -72,6 +72,16 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(712, 83);
             this.panelTop.TabIndex = 0;
+            // 
+            // btnChangepage
+            // 
+            this.btnChangepage.Location = new System.Drawing.Point(148, 40);
+            this.btnChangepage.Name = "btnChangepage";
+            this.btnChangepage.Size = new System.Drawing.Size(75, 23);
+            this.btnChangepage.TabIndex = 5;
+            this.btnChangepage.Text = "Success";
+            this.btnChangepage.UseVisualStyleBackColor = true;
+            this.btnChangepage.Click += new System.EventHandler(this.btnChangepage_Click);
             // 
             // btnF1
             // 
@@ -178,7 +188,7 @@
             // 
             this.toolStripLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel1.Image")));
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(83, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(63, 22);
             this.toolStripLabel1.Text = "DB CONN";
             // 
             // toolStripSeparator2
@@ -190,7 +200,7 @@
             // 
             this.toolStripLabel2.Image = global::MES.Properties.Resources.green;
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(82, 22);
+            this.toolStripLabel2.Size = new System.Drawing.Size(63, 22);
             this.toolStripLabel2.Text = "BR CONN";
             // 
             // toolStripSeparator3
@@ -202,7 +212,7 @@
             // 
             this.toolStripLabel3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel3.Image")));
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(80, 22);
+            this.toolStripLabel3.Size = new System.Drawing.Size(63, 22);
             this.toolStripLabel3.Text = "LA CONN";
             // 
             // toolStripSeparator4
@@ -214,7 +224,7 @@
             // 
             this.toolStripLabel4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel4.Image")));
             this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(55, 22);
+            this.toolStripLabel4.Size = new System.Drawing.Size(45, 22);
             this.toolStripLabel4.Text = "WAIT";
             // 
             // dataGrdView
@@ -294,16 +304,6 @@
             this.lblScanNumber.Size = new System.Drawing.Size(105, 59);
             this.lblScanNumber.TabIndex = 4;
             this.lblScanNumber.Text = "NG";
-            // 
-            // btnChangepage
-            // 
-            this.btnChangepage.Location = new System.Drawing.Point(148, 40);
-            this.btnChangepage.Name = "btnChangepage";
-            this.btnChangepage.Size = new System.Drawing.Size(75, 23);
-            this.btnChangepage.TabIndex = 5;
-            this.btnChangepage.Text = "Success";
-            this.btnChangepage.UseVisualStyleBackColor = true;
-            this.btnChangepage.Click += new System.EventHandler(this.btnChangepage_Click);
             // 
             // frmMain
             // 

@@ -111,6 +111,12 @@ namespace MES
                 fs.Close();
             }
         }
+        int i = 0;
+        private void btnChangepage_Click(object sender, EventArgs e)
+        {
+            
+            dataGrdView.BringToFront();
+        }
         
        
     }

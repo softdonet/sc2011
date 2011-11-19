@@ -23,35 +23,36 @@ namespace MES
             #region 申请读取数据，并绑定
             //Timer timerReadData = myTimer.GetTimer(500);
             //timerReadData.Tick += new EventHandler(timerReadData_Tick);
-            dataGrdView.DataSource = new ScanDatas().GetScanData();
+            ucGridView1.dataGrdView.DataSource = new ScanDatas().GetScanData();
             #endregion
             SetGridViewStyle();
         }
 
         private void SetGridViewStyle()
         {
-            dataGrdView.ReadOnly = true;
-            dataGrdView.EnableHeadersVisualStyles = false;
-            dataGrdView.ColumnHeadersDefaultCellStyle.BackColor = Color.Red;
-            dataGrdView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGrdView.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Verdana", 25F, FontStyle.Bold);
-            dataGrdView.AllowUserToResizeColumns = true;
-            dataGrdView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGrdView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+           
+             ucGridView1.dataGrdView.ReadOnly = true;
+             ucGridView1.dataGrdView.EnableHeadersVisualStyles = false;
+             ucGridView1.dataGrdView.ColumnHeadersDefaultCellStyle.BackColor = Color.Red;
+             ucGridView1.dataGrdView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+             ucGridView1.dataGrdView.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Verdana", 25F, FontStyle.Bold);
+             ucGridView1.dataGrdView.AllowUserToResizeColumns = true;
+             ucGridView1.dataGrdView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+             ucGridView1.dataGrdView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ColorDialog cd = new ColorDialog();
-            dataGrdView.RowsDefaultCellStyle.Font = new Font("Verdana", 20F, FontStyle.Bold | FontStyle.Bold);
+            ucGridView1.dataGrdView.RowsDefaultCellStyle.Font = new Font("Verdana", 20F, FontStyle.Bold | FontStyle.Bold);
 
 
-            this.dataGrdView.AllowUserToResizeRows = true;
-            this.dataGrdView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;// .DisplayedCellsExceptHeaders;
+            ucGridView1.dataGrdView.AllowUserToResizeRows = true;
+            ucGridView1.dataGrdView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;// .DisplayedCellsExceptHeaders;
             //this.dataGrdView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCellsExceptHeader;
           //  this.dataGrdView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
         }
         void timerReadData_Tick(object sender, EventArgs e)
         {
-           
-            dataGrdView.DataSource = new ScanDatas().GetScanData();
+
+            ucGridView1.dataGrdView.DataSource = new ScanDatas().GetScanData();
 
         }
 
@@ -115,7 +116,7 @@ namespace MES
         private void btnChangepage_Click(object sender, EventArgs e)
         {
             
-            dataGrdView.BringToFront();
+          //  dataGrdView1.BringToFront();
         }
         
        

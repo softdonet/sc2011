@@ -89,7 +89,6 @@ namespace MES
                     myucGridView.InsertNewData(sdm);
                     myucSuccess.lblScanNumber.Text = str;
                     ShowUc(myucSuccess);
-
                 }
                 else
                 {
@@ -164,9 +163,6 @@ namespace MES
             timerShow.Start();
         }
 
-
-
-
         private void frmMain_Load(object sender, EventArgs e)
         {
             ShowUc(myucGridView);
@@ -181,6 +177,12 @@ namespace MES
             code++;
             myucGridView.InsertNewData(sdm);
             ShowUc(myucGridView);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            frmSettings fs = new frmSettings();
+            fs.ShowDialog();
         }
 
     }

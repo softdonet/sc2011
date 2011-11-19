@@ -20,6 +20,7 @@ namespace MES.UserControls
         }
       
         Queue queue=new Queue();
+
         public void GetNewData(ScanDataModel newScanData)
         {
             if (queue.Count >= 5)

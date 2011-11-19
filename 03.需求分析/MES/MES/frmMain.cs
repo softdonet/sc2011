@@ -23,6 +23,7 @@ namespace MES
         ucSuccess myucSuccess = null;
         ucGridView myucGridView = null;
         Timer timerShow = null;
+        int code = 1;
         public frmMain()
         {
             InitializeComponent();
@@ -80,15 +81,13 @@ namespace MES
             {
                 if (result)
                 {
-                    // TODO:更新GrdView数据（这征占加）
-                    //---------------------------------
                     ScanDataModel sdm = new ScanDataModel();
                     sdm.ScanTime = DateTime.Now.ToString();
-                    sdm.BODYNO = "0002";
-                    sdm.SEQ = 0002;
+                    sdm.BODYNO = str;
+                    sdm.SEQ = code.ToString("0000");
+                    code++;
                     myucGridView.GetNewData(sdm);
-                    //-------------------------------------
-                    myucSuccess.lblScanNumber.Text = "0002";
+                    myucSuccess.lblScanNumber.Text = str;
                     ShowUc(myucSuccess);
 
                 }
@@ -134,9 +133,9 @@ namespace MES
 
             ScanDataModel sdm=new ScanDataModel();
             sdm.ScanTime =DateTime.Now.ToString();
-            sdm.BODYNO ="0001";
-            sdm.SEQ +=0001;
-
+            sdm.BODYNO ="barRedae";
+            sdm.SEQ = code.ToString("0000");
+            code++;
             myucGridView.GetNewData(sdm);
             //----------------------------------------
             myucSuccess.lblScanNumber.Text = "0001";
@@ -173,15 +172,13 @@ namespace MES
             ShowUc(myucGridView);
         }
 
-
-       
-
         private void button3_Click_1(object sender, EventArgs e)
         {
             ScanDataModel sdm = new ScanDataModel();
             sdm.ScanTime = DateTime.Now.ToString();
-            sdm.BODYNO = "0001";
-            sdm.SEQ += 0001;
+            sdm.BODYNO = "00ewrwr01";
+            sdm.SEQ = code.ToString("0000");
+            code++;
             myucGridView.GetNewData(sdm);
             ShowUc(myucGridView);
         }

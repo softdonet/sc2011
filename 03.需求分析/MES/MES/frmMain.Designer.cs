@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelTop = new System.Windows.Forms.Panel();
             this.btnChangepage = new System.Windows.Forms.Button();
             this.btnF1 = new System.Windows.Forms.Button();
@@ -48,10 +47,13 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
+            this.panelContainer = new System.Windows.Forms.Panel();
+            this.ucGridView1 = new MES.UserControls.ucGridView();
             this.dataGrdView = new System.Windows.Forms.DataGridView();
             this.panelTop.SuspendLayout();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.panelContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrdView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -193,9 +195,8 @@
             // 
             // toolStripLabel2
             // 
-            this.toolStripLabel2.Image = global::MES.Properties.Resources.green;
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(82, 22);
+            this.toolStripLabel2.Size = new System.Drawing.Size(66, 22);
             this.toolStripLabel2.Text = "BR CONN";
             // 
             // toolStripSeparator3
@@ -222,34 +223,38 @@
             this.toolStripLabel4.Size = new System.Drawing.Size(55, 22);
             this.toolStripLabel4.Text = "WAIT";
             // 
+            // panelContainer
+            // 
+            this.panelContainer.Controls.Add(this.ucGridView1);
+            this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContainer.Location = new System.Drawing.Point(0, 83);
+            this.panelContainer.Name = "panelContainer";
+            this.panelContainer.Size = new System.Drawing.Size(712, 348);
+            this.panelContainer.TabIndex = 4;
+            // 
+            // ucGridView1
+            // 
+            this.ucGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucGridView1.Location = new System.Drawing.Point(0, 0);
+            this.ucGridView1.Name = "ucGridView1";
+            this.ucGridView1.Size = new System.Drawing.Size(712, 348);
+            this.ucGridView1.TabIndex = 1;
+            // 
             // dataGrdView
             // 
-            this.dataGrdView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGrdView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGrdView.ColumnHeadersHeight = 30;
-            this.dataGrdView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGrdView.Location = new System.Drawing.Point(0, 83);
+            this.dataGrdView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGrdView.Location = new System.Drawing.Point(327, 59);
             this.dataGrdView.Name = "dataGrdView";
-            this.dataGrdView.RowHeadersWidth = 40;
             this.dataGrdView.RowTemplate.Height = 23;
-            this.dataGrdView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGrdView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGrdView.Size = new System.Drawing.Size(712, 348);
-            this.dataGrdView.TabIndex = 1;
+            this.dataGrdView.Size = new System.Drawing.Size(240, 150);
+            this.dataGrdView.TabIndex = 0;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(712, 456);
-            this.Controls.Add(this.dataGrdView);
+            this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.panelTop);
             this.Controls.Add(this.toolStrip1);
             this.Name = "frmMain";
@@ -263,6 +268,7 @@
             this.panel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.panelContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrdView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -287,9 +293,11 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripLabel toolStripLabel4;
-        private System.Windows.Forms.DataGridView dataGrdView;
         private System.Windows.Forms.Button btnF1;
         private System.Windows.Forms.Button btnChangepage;
+        private System.Windows.Forms.Panel panelContainer;
+        private System.Windows.Forms.DataGridView dataGrdView;
+        private UserControls.ucGridView ucGridView1;
     }
 }
 

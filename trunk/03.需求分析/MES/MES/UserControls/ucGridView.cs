@@ -19,24 +19,24 @@ namespace MES.UserControls
             SetGridViewStyle();
         }
       
-        Queue queue=new Queue();
-        List<ScanDataModel> listScanDataModel = new List<ScanDataModel>();
+        Queue<ScanDataModel> queue=new Queue<ScanDataModel>();
+        //List<ScanDataModel> listScanDataModel = new List<ScanDataModel>();
 
         public void GetNewData(ScanDataModel newScanData)
         {
-            //if (queue.Count > 4)
-            //{
-            //    queue.Dequeue();
-            //}
-            //queue.Enqueue(newScanData);
-            //this.dataGrdView.DataSource = queue.ToArray().ToList();
-
-            if (listScanDataModel.Count > 4)
+            if (queue.Count > 4)
             {
-                listScanDataModel.RemoveAt(4);
+                queue.Dequeue();
             }
-            listScanDataModel.Add(newScanData);
-            this.dataGrdView.DataSource = listScanDataModel.ToList();
+            queue.Enqueue(newScanData);
+            this.dataGrdView.DataSource = queue.OrderByDescending(e=>e.ScanTime).ToList();
+
+            //if (listScanDataModel.Count > 4)
+            //{
+            //    listScanDataModel.RemoveAt(4);
+            //}
+            //listScanDataModel.Add(newScanData);
+            //this.dataGrdView.DataSource = listScanDataModel.ToList().OrderByDescending(e=>e.ScanTime).ToList();
         }
 
         private void SetGridViewStyle()

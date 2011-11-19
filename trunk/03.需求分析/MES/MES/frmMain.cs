@@ -13,6 +13,12 @@ namespace MES
 {
     public partial class frmMain : Form
     {
+        delegate void SetTextHandle(string str, bool result);
+        ModuleSettings moduleSettings;
+
+        private MessageFuns recvmessagefuns;
+        private SeriesMsg seriesMsg;
+
         ucError myucError = null;
         ucSuccess myucSuccess = null;
         ucGridView myucGridView = null;
@@ -20,6 +26,12 @@ namespace MES
         public frmMain()
         {
             InitializeComponent();
+
+            recvmessagefuns = new MessageFuns();
+            moduleSettings = ModuleConfig.GetSettings();
+            seriesMsg = new SeriesMsg(moduleSettings);
+            seriesMsg.OnUserDataReceived += new SeriesMsg.UserDataReceived(seriesMsg_OnUserDataReceived);
+
             myucError = new ucError();
             myucSuccess = new ucSuccess();
             myucGridView = new ucGridView();
@@ -35,6 +47,60 @@ namespace MES
             timerShow.Tick += new EventHandler(timerShow_Tick);
         }
 
+        /// <summary>
+        /// 串口数据到达处理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void seriesMsg_OnUserDataReceived(object sender, byte[] e)
+        {
+            recvmessagefuns.InputData(e);
+            if (recvmessagefuns.Verify())
+            {
+                string strMsg = recvmessagefuns.GetBarCode();
+                SetText(strMsg, true);
+            }
+            else
+            {
+                SetText("Error", false);
+            }
+        }
+
+        /// <summary>
+        /// 异步数据显示在界面
+        /// </summary>
+        /// <param name="str"></param>
+        private void SetText(string str, bool result)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new SetTextHandle(SetText), str, result);
+            }
+            else
+            {
+                if (result)
+                {
+                    // TODO:更新GrdView数据（这征占加）
+                    //---------------------------------
+                    ScanDataModel sdm = new ScanDataModel();
+                    sdm.ScanTime = DateTime.Now.ToString();
+                    sdm.BODYNO = "0002";
+                    sdm.SEQ = 0002;
+                    myucGridView.GetNewData(sdm);
+                    //-------------------------------------
+                    myucSuccess.lblScanNumber.Text = "0002";
+                    ShowUc(myucSuccess);
+
+                }
+                else
+                {
+                    ShowUc(myucError);
+                }
+
+            }
+        }
+
+ 
         int count = 0;
         void timerShow_Tick(object sender, EventArgs e)
         {
@@ -63,12 +129,14 @@ namespace MES
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
-        {   
+        {
             //测试GridView代码------------------------
+
             ScanDataModel sdm=new ScanDataModel();
             sdm.ScanTime =DateTime.Now.ToString();
             sdm.BODYNO ="0001";
             sdm.SEQ +=0001;
+
             myucGridView.GetNewData(sdm);
             //----------------------------------------
             myucSuccess.lblScanNumber.Text = "0001";
@@ -84,6 +152,7 @@ namespace MES
         {
             ShowUc(myucError);
         }
+
         /// <summary>
         /// 显示五秒钟的窗体
         /// </summary>
@@ -96,6 +165,15 @@ namespace MES
             timerShow.Start();
         }
 
+
+
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            ShowUc(myucGridView);
+        }
+
+
         private void button3_Click(object sender, EventArgs e)
         {
             ScanDataModel sdm = new ScanDataModel();
@@ -105,5 +183,6 @@ namespace MES
             myucGridView.GetNewData(sdm);
             ShowUc(myucGridView);
         }
+
     }
 }

@@ -31,10 +31,6 @@ namespace MES.CommClass
         /// <returns></returns>
         public string GetBarCode()
         {
-            if (data.Length == 15)
-            {
-                return "Error";
-            }
             byte[] tmpbyte = new byte[13];
             for (int i = 0; i < 13; i++)
             {
@@ -42,6 +38,19 @@ namespace MES.CommClass
             }
             return System.Text.ASCIIEncoding.Default.GetString(tmpbyte);
            
+        }
+
+        /// <summary>
+        /// 数据校验
+        /// </summary>
+        /// <returns></returns>
+        public bool Verify()
+        {
+            if (data.Length == 15)
+            {
+                return false;
+            }
+            return true;
         }
 
         /// <summary>
@@ -62,27 +71,27 @@ namespace MES.CommClass
             return data.Length;
         }
        
-        /// <summary>
-        /// 计算校验位
-        /// </summary>
-        /// <returns></returns>
-        public byte CountVerifyCode()
-        {
-            byte b = 0;
-            for (int i = 2; i < data.Length - 2; i++)
-            {
-                b = Convert.ToByte(b ^ data[i]);
-            }
-            return b;
-        }
+        ///// <summary>
+        ///// 计算校验位
+        ///// </summary>
+        ///// <returns></returns>
+        //public byte CountVerifyCode()
+        //{
+        //    byte b = 0;
+        //    for (int i = 2; i < data.Length - 2; i++)
+        //    {
+        //        b = Convert.ToByte(b ^ data[i]);
+        //    }
+        //    return b;
+        //}
 
-        /// <summary>
-        /// 从数据中取出校验码
-        /// </summary>
-        /// <returns></returns>
-        public byte GetVerifyCode()
-        {
-            return data[data.Length - 2];
-        }
+        ///// <summary>
+        ///// 从数据中取出校验码
+        ///// </summary>
+        ///// <returns></returns>
+        //public byte GetVerifyCode()
+        //{
+        //    return data[data.Length - 2];
+        //}
     }
 }

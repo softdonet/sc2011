@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MES.CommClass
 {
-    class ScanDataModel
+   public class ScanDataModel
     {
         public int SEQ { get; set; }
         public string BODYNO { get; set; }

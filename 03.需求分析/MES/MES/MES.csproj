@@ -53,6 +53,7 @@
     <Compile Include="CommClass\ModuleConfig.cs" />
     <Compile Include="CommClass\ModuleSettings.cs" />
     <Compile Include="CommClass\myTimer.cs" />
+    <Compile Include="CommClass\ScanDataModel.cs" />
     <Compile Include="CommClass\ScanDatas.cs" />
     <Compile Include="CommClass\SeriesMsg.cs" />
     <Compile Include="CommClass\StaticStrings.cs" />

@@ -64,6 +64,15 @@ namespace MES
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {   
+            //测试GridView代码
+
+            ScanDataModel sdm=new ScanDataModel();
+            sdm.ScanTime =DateTime.Now.ToString();
+            sdm.BODYNO ="0001";
+            sdm.SEQ =0001;
+            myucGridView.GetNewData(sdm);
+
+            myucSuccess.lblScanNumber.Text = "0001";
             ShowUc(myucSuccess);
         }
 

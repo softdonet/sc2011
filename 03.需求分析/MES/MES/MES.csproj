@@ -46,12 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommClass\MessageFuns.cs" />
-    <Compile Include="CommClass\ModuleConfig.cs" />
-    <Compile Include="CommClass\ModuleSettings.cs" />
     <Compile Include="CommClass\myTimer.cs" />
     <Compile Include="CommClass\ScanDatas.cs" />
-    <Compile Include="CommClass\SeriesMsg.cs" />
     <Compile Include="CommClass\StaticStrings.cs" />
     <Compile Include="frmError.cs">
       <SubType>Form</SubType>
@@ -73,12 +69,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="frmSettings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmSettings.designer.cs">
-      <DependentUpon>frmSettings.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="frmError.resx">
       <DependentUpon>frmError.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,9 +88,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="frmSettings.resx">
-      <DependentUpon>frmSettings.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -112,14 +99,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Config.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Images\grayer.png" />
     <Content Include="Images\green.png" />
     <Content Include="Images\red.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -22,7 +22,7 @@ namespace MES.UserControls
         Queue<ScanDataModel> queue=new Queue<ScanDataModel>();
         //List<ScanDataModel> listScanDataModel = new List<ScanDataModel>();
 
-        public void GetNewData(ScanDataModel newScanData)
+        public void InsertNewData(ScanDataModel newScanData)
         {
             if (queue.Count > 4)
             {

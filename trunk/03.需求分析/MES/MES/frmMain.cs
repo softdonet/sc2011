@@ -86,7 +86,7 @@ namespace MES
                     sdm.BODYNO = str;
                     sdm.SEQ = code.ToString("0000");
                     code++;
-                    myucGridView.GetNewData(sdm);
+                    myucGridView.InsertNewData(sdm);
                     myucSuccess.lblScanNumber.Text = str;
                     ShowUc(myucSuccess);
 
@@ -136,7 +136,7 @@ namespace MES
             sdm.BODYNO ="barRedae";
             sdm.SEQ = code.ToString("0000");
             code++;
-            myucGridView.GetNewData(sdm);
+            myucGridView.InsertNewData(sdm);
             //----------------------------------------
             myucSuccess.lblScanNumber.Text = "0001";
             ShowUc(myucSuccess);
@@ -179,7 +179,7 @@ namespace MES
             sdm.BODYNO = "00ewrwr01";
             sdm.SEQ = code.ToString("0000");
             code++;
-            myucGridView.GetNewData(sdm);
+            myucGridView.InsertNewData(sdm);
             ShowUc(myucGridView);
         }
 

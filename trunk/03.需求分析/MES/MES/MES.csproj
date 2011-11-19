@@ -46,14 +46,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommClass\MessageFuns.cs" />
+    <Compile Include="CommClass\ModuleConfig.cs" />
+    <Compile Include="CommClass\ModuleSettings.cs" />
     <Compile Include="CommClass\myTimer.cs" />
     <Compile Include="CommClass\ScanDatas.cs" />
+    <Compile Include="CommClass\SeriesMsg.cs" />
     <Compile Include="CommClass\StaticStrings.cs" />
     <Compile Include="frmError.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmError.Designer.cs">
       <DependentUpon>frmError.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSettings.cs" />
+    <Compile Include="frmSettings.designer.cs">
+      <DependentUpon>frmSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSuccess.cs">
       <SubType>Form</SubType>
@@ -71,6 +79,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmError.resx">
       <DependentUpon>frmError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSettings.resx">
+      <DependentUpon>frmSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSuccess.resx">
       <DependentUpon>frmSuccess.cs</DependentUpon>
@@ -99,6 +110,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Config.xml" />
     <Content Include="Images\grayer.png" />
     <Content Include="Images\green.png" />
     <Content Include="Images\red.png" />

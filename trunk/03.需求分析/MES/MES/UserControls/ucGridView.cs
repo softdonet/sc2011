@@ -23,16 +23,13 @@ namespace MES.UserControls
 
         public void GetNewData(ScanDataModel newScanData)
         {
-            if (queue.Count >= 5)
+            if (queue.Count > 4)
             {
                 queue.Dequeue();
             }
-            else
-            {
-                queue.Enqueue(newScanData);
-            }
+            queue.Enqueue(newScanData);
 
-            this.dataGrdView.DataSource = queue;
+            this.dataGrdView.DataSource = queue.ToArray().ToList();
         }
 
         private void SetGridViewStyle()

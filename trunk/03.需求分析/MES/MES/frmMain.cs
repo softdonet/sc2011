@@ -68,7 +68,7 @@ namespace MES
             ScanDataModel sdm=new ScanDataModel();
             sdm.ScanTime =DateTime.Now.ToString();
             sdm.BODYNO ="0001";
-            sdm.SEQ =0001;
+            sdm.SEQ +=0001;
             myucGridView.GetNewData(sdm);
             //----------------------------------------
             myucSuccess.lblScanNumber.Text = "0001";
@@ -94,6 +94,16 @@ namespace MES
             panelContainer.Controls.Add(ctl);
             ctl.Dock = DockStyle.Fill;
             timerShow.Start();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ScanDataModel sdm = new ScanDataModel();
+            sdm.ScanTime = DateTime.Now.ToString();
+            sdm.BODYNO = "0001";
+            sdm.SEQ += 0001;
+            myucGridView.GetNewData(sdm);
+            ShowUc(myucGridView);
         }
     }
 }

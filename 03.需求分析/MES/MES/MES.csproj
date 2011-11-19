@@ -82,7 +82,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-<<<<<<< .mine
     <Compile Include="UserControls\ucError.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -101,20 +100,6 @@
     <Compile Include="UserControls\ucSuccess.Designer.cs">
       <DependentUpon>ucSuccess.cs</DependentUpon>
     </Compile>
-=======
-    <Compile Include="UserControls\ucError.cs" />
-    <Compile Include="UserControls\ucError.Designer.cs">
-      <DependentUpon>ucError.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\ucGridView.cs" />
-    <Compile Include="UserControls\ucGridView.Designer.cs">
-      <DependentUpon>ucGridView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\ucSuccess.cs" />
-    <Compile Include="UserControls\ucSuccess.Designer.cs">
-      <DependentUpon>ucSuccess.cs</DependentUpon>
-    </Compile>
->>>>>>> .r152
     <EmbeddedResource Include="frmError.resx">
       <DependentUpon>frmError.cs</DependentUpon>
     </EmbeddedResource>
@@ -137,7 +122,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-<<<<<<< .mine
     <EmbeddedResource Include="UserControls\ucError.resx">
       <DependentUpon>ucError.cs</DependentUpon>
     </EmbeddedResource>
@@ -147,11 +131,6 @@
     <EmbeddedResource Include="UserControls\ucSuccess.resx">
       <DependentUpon>ucSuccess.cs</DependentUpon>
     </EmbeddedResource>
-=======
-    <EmbeddedResource Include="UserControls\ucGridView.resx">
-      <DependentUpon>ucGridView.cs</DependentUpon>
-    </EmbeddedResource>
->>>>>>> .r152
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -13,48 +13,38 @@ namespace MES
 {
     public partial class frmMain : Form
     {
+        ucError myucError = null;
+        ucSuccess myucSuccess = null;
+        ucGridView myucGridView = null;
+        Timer timerShow = null;
         public frmMain()
         {
             InitializeComponent();
+            myucError = new ucError();
+            myucSuccess = new ucSuccess();
+            myucGridView = new ucGridView();
+            //窗口标题
             this.Text = StaticStrings.GetFrmTitle();
-
-            Timer timer = myTimer.GetTimer(1000, true);//new Timer() { Enabled = true, Interval = 1000 };
+            //系统启动时间
+            lblScanTime.Text = myTimer.CurrentTime();
+            //实时时间
+            Timer timer = myTimer.GetTimer(1000, true);
             timer.Tick += new EventHandler(timer_Tick);
-
-            #region 申请读取数据，并绑定
-            //Timer timerReadData = myTimer.GetTimer(500);
-            //timerReadData.Tick += new EventHandler(timerReadData_Tick);
-            ucGridView1.dataGrdView.DataSource = new ScanDatas().GetScanData();
-            #endregion
-            SetGridViewStyle();
+            //五秒钟窗体显示控制
+            timerShow = myTimer.GetTimer(1000, true);
+            timerShow.Tick += new EventHandler(timerShow_Tick);
         }
 
-        private void SetGridViewStyle()
+        int count = 0;
+        void timerShow_Tick(object sender, EventArgs e)
         {
-           
-             ucGridView1.dataGrdView.ReadOnly = true;
-             ucGridView1.dataGrdView.EnableHeadersVisualStyles = false;
-             ucGridView1.dataGrdView.ColumnHeadersDefaultCellStyle.BackColor = Color.Red;
-             ucGridView1.dataGrdView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-             ucGridView1.dataGrdView.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Verdana", 25F, FontStyle.Bold);
-             ucGridView1.dataGrdView.AllowUserToResizeColumns = true;
-             ucGridView1.dataGrdView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-             ucGridView1.dataGrdView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ColorDialog cd = new ColorDialog();
-            ucGridView1.dataGrdView.RowsDefaultCellStyle.Font = new Font("Verdana", 20F, FontStyle.Bold | FontStyle.Bold);
-
-
-            ucGridView1.dataGrdView.AllowUserToResizeRows = true;
-            ucGridView1.dataGrdView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;// .DisplayedCellsExceptHeaders;
-            //this.dataGrdView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCellsExceptHeader;
-          //  this.dataGrdView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-
-        }
-        void timerReadData_Tick(object sender, EventArgs e)
-        {
-
-            ucGridView1.dataGrdView.DataSource = new ScanDatas().GetScanData();
-
+            count++;
+            if (count > 5)
+            {
+                timerShow.Stop();
+                count = 0;
+                ShowUc(myucGridView);
+            }
         }
 
         void timer_Tick(object sender, EventArgs e)
@@ -64,65 +54,38 @@ namespace MES
 
         private void frmMain_SizeChanged(object sender, EventArgs e)
         {
-            lblCenter.Location = new Point((panelTop.Width -lblCenter.Width)/2, lblCenter.Height);
+            lblCenter.Location = new Point((panelTop.Width - lblCenter.Width) / 2, lblCenter.Height);
         }
-        //protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        //{
-        //    if (keyData==Keys.F5)
-        //    {
-                
-        //    }
-        //    return base.ProcessCmdKey(ref msg, keyData);
-        //}
-        public bool gettrue;
-        private void frmMain_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode==Keys.Escape)
-            {
-                this.Visible = false;
-                frmSuccess fs = new frmSuccess();
-              //  fs.delReturnClosedInfo = new frmSuccess.DelReturnClosedInfo(GetBoolValue);
 
-                if (gettrue)
-                {
-                    this.Visible = true;
-                    fs.Close();
-                }
-            }
+        /// <summary>
+        /// 读取成功时
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button1_Click(object sender, EventArgs e)
+        {   
+            ShowUc(myucSuccess);
         }
-        
-        private void GetBoolValue(bool bflag)
-        {
-            gettrue = bflag;
-            if (gettrue)
-            {
-                this.Visible = true;
-                gettrue = false;
-            }
-        }
-        private void btnF1_Click(object sender, EventArgs e)
-        {
-            this.Visible = false;
-            frmSuccess fs = new frmSuccess();
-            fs.Show();
-            fs.delReturnClosedInfo = new frmSuccess.DelReturnClosedInfo(GetBoolValue);// new frmSuccess.DelReturnClosedInfo(GetBoolValue);
 
-            if (gettrue)
-            {
-                this.Visible = true;
-                fs.Close();
-            }
+        /// <summary>
+        /// 读取失败时
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ShowUc(myucError);
         }
-        int i = 0;
-        private void btnChangepage_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 显示五秒钟的窗体
+        /// </summary>
+        /// <param name="ctl"></param>
+        private void ShowUc(Control ctl)
         {
             panelContainer.Controls.Clear();
-            ucSuccess us = new ucSuccess();
-            panelContainer.Controls.Add(us);
-            us.Dock = DockStyle.Fill;
-          //  dataGrdView1.BringToFront();
+            panelContainer.Controls.Add(ctl);
+            ctl.Dock = DockStyle.Fill;
+            timerShow.Start();
         }
-        
-       
     }
 }

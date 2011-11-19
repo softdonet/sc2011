@@ -7,7 +7,7 @@ namespace MES.CommClass
 {
    public class ScanDataModel
     {
-        public int SEQ { get; set; }
+        public string SEQ { get; set; }
         public string BODYNO { get; set; }
         public string ScanTime { get; set; }
     }

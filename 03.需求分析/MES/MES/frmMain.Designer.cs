@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.btnF1 = new System.Windows.Forms.Button();
             this.lblCenter = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblCurrentTime = new System.Windows.Forms.Label();
@@ -47,16 +48,22 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.dataGrdView = new System.Windows.Forms.DataGridView();
-            this.btnF1 = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblNote = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.lblScanNumber = new System.Windows.Forms.Label();
+            this.btnChangepage = new System.Windows.Forms.Button();
             this.panelTop.SuspendLayout();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrdView)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
             // 
             this.panelTop.BackColor = System.Drawing.Color.MidnightBlue;
+            this.panelTop.Controls.Add(this.btnChangepage);
             this.panelTop.Controls.Add(this.btnF1);
             this.panelTop.Controls.Add(this.lblCenter);
             this.panelTop.Controls.Add(this.panel1);
@@ -65,6 +72,16 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(712, 83);
             this.panelTop.TabIndex = 0;
+            // 
+            // btnF1
+            // 
+            this.btnF1.Location = new System.Drawing.Point(30, 41);
+            this.btnF1.Name = "btnF1";
+            this.btnF1.Size = new System.Drawing.Size(75, 23);
+            this.btnF1.TabIndex = 4;
+            this.btnF1.Text = "F1";
+            this.btnF1.UseVisualStyleBackColor = true;
+            this.btnF1.Click += new System.EventHandler(this.btnF1_Click);
             // 
             // lblCenter
             // 
@@ -213,33 +230,90 @@
             this.dataGrdView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGrdView.ColumnHeadersHeight = 30;
             this.dataGrdView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGrdView.Location = new System.Drawing.Point(0, 83);
+            this.dataGrdView.Location = new System.Drawing.Point(0, 0);
             this.dataGrdView.Name = "dataGrdView";
             this.dataGrdView.RowHeadersWidth = 40;
             this.dataGrdView.RowTemplate.Height = 23;
             this.dataGrdView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGrdView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGrdView.Size = new System.Drawing.Size(712, 348);
+            this.dataGrdView.Size = new System.Drawing.Size(712, 456);
             this.dataGrdView.TabIndex = 1;
             // 
-            // btnF1
+            // tableLayoutPanel1
             // 
-            this.btnF1.Location = new System.Drawing.Point(30, 41);
-            this.btnF1.Name = "btnF1";
-            this.btnF1.Size = new System.Drawing.Size(75, 23);
-            this.btnF1.TabIndex = 4;
-            this.btnF1.Text = "F1";
-            this.btnF1.UseVisualStyleBackColor = true;
-            this.btnF1.Click += new System.EventHandler(this.btnF1_Click);
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.ForestGreen;
+            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.lblNote, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lblStatus, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblScanNumber, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.88235F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 54.11765F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 82F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(712, 456);
+            this.tableLayoutPanel1.TabIndex = 13;
+            // 
+            // lblNote
+            // 
+            this.lblNote.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblNote.AutoSize = true;
+            this.lblNote.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNote.ForeColor = System.Drawing.Color.White;
+            this.lblNote.Location = new System.Drawing.Point(236, 399);
+            this.lblNote.Name = "lblNote";
+            this.lblNote.Size = new System.Drawing.Size(240, 29);
+            this.lblNote.TabIndex = 6;
+            this.lblNote.Text = "READING ERROR";
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Verdana", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.ForeColor = System.Drawing.Color.Red;
+            this.lblStatus.Location = new System.Drawing.Point(251, 213);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(209, 116);
+            this.lblStatus.TabIndex = 5;
+            this.lblStatus.Text = "NG";
+            // 
+            // lblScanNumber
+            // 
+            this.lblScanNumber.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblScanNumber.AutoSize = true;
+            this.lblScanNumber.Font = new System.Drawing.Font("Verdana", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScanNumber.ForeColor = System.Drawing.Color.White;
+            this.lblScanNumber.Location = new System.Drawing.Point(303, 56);
+            this.lblScanNumber.Name = "lblScanNumber";
+            this.lblScanNumber.Size = new System.Drawing.Size(105, 59);
+            this.lblScanNumber.TabIndex = 4;
+            this.lblScanNumber.Text = "NG";
+            // 
+            // btnChangepage
+            // 
+            this.btnChangepage.Location = new System.Drawing.Point(148, 40);
+            this.btnChangepage.Name = "btnChangepage";
+            this.btnChangepage.Size = new System.Drawing.Size(75, 23);
+            this.btnChangepage.TabIndex = 5;
+            this.btnChangepage.Text = "Success";
+            this.btnChangepage.UseVisualStyleBackColor = true;
+            this.btnChangepage.Click += new System.EventHandler(this.btnChangepage_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(712, 456);
-            this.Controls.Add(this.dataGrdView);
             this.Controls.Add(this.panelTop);
             this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.dataGrdView);
             this.Name = "frmMain";
             this.Text = "MTTR07P01";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -252,6 +326,8 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrdView)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -277,6 +353,11 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel4;
         private System.Windows.Forms.DataGridView dataGrdView;
         private System.Windows.Forms.Button btnF1;
+        private System.Windows.Forms.Button btnChangepage;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label lblNote;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Label lblScanNumber;
     }
 }
 

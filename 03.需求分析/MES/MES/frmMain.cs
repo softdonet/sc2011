@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MES.CommClass;
+using MES.UserControls;
 
 namespace MES
 {
@@ -115,7 +116,10 @@ namespace MES
         int i = 0;
         private void btnChangepage_Click(object sender, EventArgs e)
         {
-            
+            panelContainer.Controls.Clear();
+            ucSuccess us = new ucSuccess();
+            panelContainer.Controls.Add(us);
+            us.Dock = DockStyle.Fill;
           //  dataGrdView1.BringToFront();
         }
         

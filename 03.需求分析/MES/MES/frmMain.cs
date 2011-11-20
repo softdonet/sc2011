@@ -36,7 +36,7 @@ namespace MES
 
             myucError = new ucError();
             myucSuccess = new ucSuccess();
-            myucGridView = new ucGridView(this);
+            myucGridView = new ucGridView();
             //窗口标题
             this.Text = StaticStrings.GetFrmTitle();
             //系统启动时间
@@ -47,7 +47,6 @@ namespace MES
             //五秒钟窗体显示控制
             timerShow = myTimer.GetTimer(1000, true);
             timerShow.Tick += new EventHandler(timerShow_Tick);
-            timerShow.Stop();
         }
 
         /// <summary>
@@ -65,8 +64,7 @@ namespace MES
             }
             else
             {
-                //暂时不用
-                //SetText("Error", false);
+                SetText("Error", false);
             }
         }
 
@@ -88,22 +86,20 @@ namespace MES
                     sdm.ScanTime = DateTime.Now.ToString();
                     sdm.BODYNO = str;
                     sdm.SEQ = code.ToString("0000");
-                    if (sdm != null && myucGridView.queue.SingleOrDefault(e => e.BODYNO == sdm.BODYNO) != null)
-                    {
-                        code++;
-                        myucGridView.InsertNewData(sdm);
-                        myucSuccess.lblScanNumber.Text = str;
-                        ShowUc(myucSuccess, true);
-                    }
+                    code++;
+                    myucGridView.InsertNewData(sdm);
+                    myucSuccess.lblScanNumber.Text = str;
+                    ShowUc(myucSuccess);
                 }
                 else
                 {
-                    ShowUc(myucError, true);
+                    ShowUc(myucError);
                 }
+
             }
         }
 
-
+ 
         int count = 0;
         void timerShow_Tick(object sender, EventArgs e)
         {
@@ -112,7 +108,7 @@ namespace MES
             {
                 timerShow.Stop();
                 count = 0;
-                ShowUc(myucGridView, false);
+                ShowUc(myucGridView);
             }
         }
 
@@ -134,6 +130,7 @@ namespace MES
         private void button1_Click(object sender, EventArgs e)
         {
             //测试GridView代码------------------------
+
             ScanDataModel sdm=new ScanDataModel();
             sdm.ScanTime =DateTime.Now.ToString();
             code += 1;
@@ -143,7 +140,7 @@ namespace MES
             myucGridView.InsertNewData(sdm);
             //----------------------------------------
             myucSuccess.lblScanNumber.Text = sdm.SEQ;// "0001";
-            ShowUc(myucSuccess, true);
+            ShowUc(myucSuccess);
         }
 
         /// <summary>
@@ -153,32 +150,27 @@ namespace MES
         /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
-            ShowUc(myucError, true);
+            ShowUc(myucError);
         }
 
         /// <summary>
         /// 显示五秒钟的窗体
         /// </summary>
-        /// <param name="ctl">要呈现的窗体</param>
-        /// <param name="RequireWait">是否需要停留几秒再返回</param>
-        private void ShowUc(Control ctl, bool RequireWait)
+        /// <param name="ctl"></param>
+        private void ShowUc(Control ctl)
         {
             panelContainer.Controls.Clear();
             panelContainer.Controls.Add(ctl);
             ctl.Dock = DockStyle.Fill;
-            if (RequireWait)
-            {
-                timerShow.Start();
-            }
+            timerShow.Start();
         }
-
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            ShowUc(myucGridView, false);
+            ShowUc(myucGridView);
         }
 
-
+       
         private void frmMain_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -199,7 +191,7 @@ namespace MES
                     break;
                 //default:
             }
-
+            
         }
 
     }

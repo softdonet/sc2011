@@ -60,7 +60,7 @@ namespace MES
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // Setting_Form
+            // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -70,10 +70,11 @@ namespace MES
             this.Controls.Add(this.propertyGrid1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Setting_Form";
+            this.Name = "frmSettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "œµÕ≥…Ë÷√";
             this.Load += new System.EventHandler(this.Setting_Form_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSettings_KeyDown);
             this.ResumeLayout(false);
 
         }

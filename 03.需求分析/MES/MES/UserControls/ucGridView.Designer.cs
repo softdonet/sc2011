@@ -49,7 +49,7 @@
             this.dataGrdView.Location = new System.Drawing.Point(0, 0);
             this.dataGrdView.Name = "dataGrdView";
             this.dataGrdView.RowHeadersWidth = 40;
-            this.dataGrdView.RowTemplate.Height = 23;
+            this.dataGrdView.RowTemplate.Height = 30;
             this.dataGrdView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGrdView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGrdView.Size = new System.Drawing.Size(491, 290);

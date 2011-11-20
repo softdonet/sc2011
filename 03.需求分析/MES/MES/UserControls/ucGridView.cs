@@ -52,13 +52,17 @@ namespace MES.UserControls
             dataGrdView.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Verdana", 25F, FontStyle.Bold);
             dataGrdView.AllowUserToResizeColumns = true;
             dataGrdView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGrdView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGrdView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.dataGrdView.ColumnHeadersHeight = 50;
 
             dataGrdView.RowsDefaultCellStyle.Font = new Font("Verdana", 20F, FontStyle.Bold | FontStyle.Bold);
 
-
             dataGrdView.AllowUserToResizeRows = true;
             dataGrdView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;// .DisplayedCellsExceptHeaders;
+            dataGrdView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            //dataGrdView.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; ;
+            dataGrdView.RowTemplate.Height = 80;
+            dataGrdView.RowTemplate.MinimumHeight = 80;
             //this.dataGrdView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCellsExceptHeader;
             //  this.dataGrdView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 

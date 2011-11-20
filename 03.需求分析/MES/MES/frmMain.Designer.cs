@@ -93,7 +93,7 @@
             this.lblCenter.AutoSize = true;
             this.lblCenter.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCenter.ForeColor = System.Drawing.Color.White;
-            this.lblCenter.Location = new System.Drawing.Point(308, 31);
+            this.lblCenter.Location = new System.Drawing.Point(270, 24);
             this.lblCenter.Name = "lblCenter";
             this.lblCenter.Size = new System.Drawing.Size(132, 29);
             this.lblCenter.TabIndex = 3;
@@ -246,6 +246,8 @@
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.panelTop);
             this.Controls.Add(this.toolStrip1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmMain";
             this.Text = "MTTR07P01";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

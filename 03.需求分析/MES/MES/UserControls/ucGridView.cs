@@ -18,18 +18,22 @@ namespace MES.UserControls
             InitializeComponent();
             SetGridViewStyle();
         }
-      
-        Queue<ScanDataModel> queue=new Queue<ScanDataModel>();
+
+        Queue<ScanDataModel> queue = new Queue<ScanDataModel>();
         //List<ScanDataModel> listScanDataModel = new List<ScanDataModel>();
 
         public void InsertNewData(ScanDataModel newScanData)
         {
+            if (newScanData != null && queue.SingleOrDefault(e => e.BODYNO == newScanData.BODYNO) != null)
+            {
+                return;
+            }
             if (queue.Count > 4)
             {
                 queue.Dequeue();
             }
             queue.Enqueue(newScanData);
-            this.dataGrdView.DataSource = queue.OrderByDescending(e=>e.ScanTime).ToList();
+            this.dataGrdView.DataSource = queue.OrderByDescending(e => e.ScanTime).ToList();
             //if (listScanDataModel.Count > 4)
             //{
             //    listScanDataModel.RemoveAt(4);
@@ -49,7 +53,7 @@ namespace MES.UserControls
             dataGrdView.AllowUserToResizeColumns = true;
             dataGrdView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGrdView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-         
+
             dataGrdView.RowsDefaultCellStyle.Font = new Font("Verdana", 20F, FontStyle.Bold | FontStyle.Bold);
 
 

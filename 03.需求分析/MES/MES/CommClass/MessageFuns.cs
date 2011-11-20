@@ -31,8 +31,8 @@ namespace MES.CommClass
         /// <returns></returns>
         public string GetBarCode()
         {
-            byte[] tmpbyte = new byte[13];
-            for (int i = 0; i < 13; i++)
+            byte[] tmpbyte = new byte[10];
+            for (int i = 0; i < 10; i++)
             {
                 tmpbyte[i] = data[i];
             }

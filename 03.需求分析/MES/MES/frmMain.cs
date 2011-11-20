@@ -119,7 +119,7 @@ namespace MES
 
         private void frmMain_SizeChanged(object sender, EventArgs e)
         {
-            lblCenter.Location = new Point((panelTop.Width - lblCenter.Width) / 2, lblCenter.Height);
+            lblCenter.Location = new Point((panelTop.Width - lblCenter.Width) / 2, (panelTop.Height-lblCenter.Height)/2);
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace MES
             ScanDataModel sdm=new ScanDataModel();
             sdm.ScanTime =DateTime.Now.ToString();
             code += 1;
-            sdm.BODYNO = code.ToString("0000");//"barRedae";
+            sdm.BODYNO = code.ToString("0000000000");//"barRedae";
             sdm.SEQ = code.ToString("0000");
             
             myucGridView.InsertNewData(sdm);

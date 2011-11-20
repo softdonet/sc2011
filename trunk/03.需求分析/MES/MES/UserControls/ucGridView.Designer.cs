@@ -51,7 +51,7 @@
             this.dataGrdView.RowHeadersWidth = 40;
             this.dataGrdView.RowTemplate.Height = 30;
             this.dataGrdView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGrdView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGrdView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGrdView.Size = new System.Drawing.Size(491, 290);
             this.dataGrdView.TabIndex = 2;
             // 

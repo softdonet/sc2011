@@ -62,7 +62,7 @@ namespace MES.UserControls
             dataGrdView.RowHeadersVisible = false;
             //this.dataGrdView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCellsExceptHeader;
             //  this.dataGrdView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-
+            dataGrdView.SelectionMode = DataGridViewSelectionMode.CellSelect;
         }
     }
 }

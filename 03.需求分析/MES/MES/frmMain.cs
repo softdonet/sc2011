@@ -138,7 +138,7 @@ namespace MES
 
             ScanDataModel sdm = new ScanDataModel();
             sdm.ScanTime = DateTime.Now.ToString();
-            code += 1;
+            code++;
             sdm.BODYNO = "SOF 0123456";
             sdm.SEQ = code.ToString("0000");
 

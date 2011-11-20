@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.panelTop = new System.Windows.Forms.Panel();
+            this.panelLogo = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.lblCenter = new System.Windows.Forms.Label();
@@ -49,14 +51,12 @@
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.panelContainer = new System.Windows.Forms.Panel();
             this.dataGrdView = new System.Windows.Forms.DataGridView();
-            this.panelLogo = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelTop.SuspendLayout();
+            this.panelLogo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrdView)).BeginInit();
-            this.panelLogo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTop
@@ -72,6 +72,27 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(758, 92);
             this.panelTop.TabIndex = 0;
+            // 
+            // panelLogo
+            // 
+            this.panelLogo.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panelLogo.Controls.Add(this.pictureBox1);
+            this.panelLogo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelLogo.Location = new System.Drawing.Point(0, 0);
+            this.panelLogo.Name = "panelLogo";
+            this.panelLogo.Size = new System.Drawing.Size(231, 92);
+            this.panelLogo.TabIndex = 8;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(3, 14);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(233, 56);
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
             // 
             // button2
             // 
@@ -97,11 +118,11 @@
             // 
             this.lblCenter.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblCenter.AutoSize = true;
-            this.lblCenter.Font = new System.Drawing.Font("KaiTi", 50F, System.Drawing.FontStyle.Bold);
+            this.lblCenter.Font = new System.Drawing.Font("SimSun", 45F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCenter.ForeColor = System.Drawing.Color.White;
             this.lblCenter.Location = new System.Drawing.Point(74, 14);
             this.lblCenter.Name = "lblCenter";
-            this.lblCenter.Size = new System.Drawing.Size(305, 67);
+            this.lblCenter.Size = new System.Drawing.Size(269, 60);
             this.lblCenter.TabIndex = 3;
             this.lblCenter.Text = "下线序列";
             // 
@@ -121,46 +142,46 @@
             // lblCurrentTime
             // 
             this.lblCurrentTime.AutoSize = true;
-            this.lblCurrentTime.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentTime.Font = new System.Drawing.Font("Times New Roman", 16F);
             this.lblCurrentTime.ForeColor = System.Drawing.Color.White;
-            this.lblCurrentTime.Location = new System.Drawing.Point(54, 49);
+            this.lblCurrentTime.Location = new System.Drawing.Point(184, 55);
             this.lblCurrentTime.Name = "lblCurrentTime";
-            this.lblCurrentTime.Size = new System.Drawing.Size(338, 32);
+            this.lblCurrentTime.Size = new System.Drawing.Size(198, 25);
             this.lblCurrentTime.TabIndex = 3;
             this.lblCurrentTime.Text = "2011-11-19 20:18:36";
             // 
             // lblScanTime
             // 
             this.lblScanTime.AutoSize = true;
-            this.lblScanTime.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScanTime.Font = new System.Drawing.Font("Times New Roman", 16F);
             this.lblScanTime.ForeColor = System.Drawing.Color.White;
-            this.lblScanTime.Location = new System.Drawing.Point(51, 8);
+            this.lblScanTime.Location = new System.Drawing.Point(184, 13);
             this.lblScanTime.Name = "lblScanTime";
-            this.lblScanTime.Size = new System.Drawing.Size(338, 32);
+            this.lblScanTime.Size = new System.Drawing.Size(198, 25);
             this.lblScanTime.TabIndex = 2;
             this.lblScanTime.Text = "2011-11-19 17:25:16";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("SimSun", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(18, 8);
+            this.label1.Location = new System.Drawing.Point(129, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 32);
+            this.label1.Size = new System.Drawing.Size(73, 21);
             this.label1.TabIndex = 0;
-            this.label1.Text = "S";
+            this.label1.Text = "启动：";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("SimSun", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(18, 50);
+            this.label2.Location = new System.Drawing.Point(129, 57);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 32);
+            this.label2.Size = new System.Drawing.Size(73, 21);
             this.label2.TabIndex = 1;
-            this.label2.Text = "C";
+            this.label2.Text = "当前：";
             // 
             // toolStrip1
             // 
@@ -189,7 +210,7 @@
             // 
             this.toolStripLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel1.Image")));
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(83, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(63, 22);
             this.toolStripLabel1.Text = "DB CONN";
             // 
             // toolStripSeparator2
@@ -200,7 +221,7 @@
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(66, 22);
+            this.toolStripLabel2.Size = new System.Drawing.Size(47, 22);
             this.toolStripLabel2.Text = "BR CONN";
             // 
             // toolStripSeparator3
@@ -212,7 +233,7 @@
             // 
             this.toolStripLabel3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel3.Image")));
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(80, 22);
+            this.toolStripLabel3.Size = new System.Drawing.Size(63, 22);
             this.toolStripLabel3.Text = "LA CONN";
             // 
             // toolStripSeparator4
@@ -224,7 +245,7 @@
             // 
             this.toolStripLabel4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel4.Image")));
             this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(55, 22);
+            this.toolStripLabel4.Size = new System.Drawing.Size(45, 22);
             this.toolStripLabel4.Text = "WAIT";
             // 
             // panelContainer
@@ -243,27 +264,6 @@
             this.dataGrdView.RowTemplate.Height = 23;
             this.dataGrdView.Size = new System.Drawing.Size(240, 150);
             this.dataGrdView.TabIndex = 0;
-            // 
-            // panelLogo
-            // 
-            this.panelLogo.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.panelLogo.Controls.Add(this.pictureBox1);
-            this.panelLogo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelLogo.Location = new System.Drawing.Point(0, 0);
-            this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(231, 92);
-            this.panelLogo.TabIndex = 8;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(3, 14);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(233, 56);
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
             // 
             // frmMain
             // 
@@ -284,13 +284,13 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
+            this.panelLogo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrdView)).EndInit();
-            this.panelLogo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

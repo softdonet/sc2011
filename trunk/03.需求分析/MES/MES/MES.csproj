@@ -54,23 +54,11 @@
     <Compile Include="CommClass\ScanDatas.cs" />
     <Compile Include="CommClass\SeriesMsg.cs" />
     <Compile Include="CommClass\StaticStrings.cs" />
-    <Compile Include="frmError.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmError.Designer.cs">
-      <DependentUpon>frmError.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmSettings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmSettings.designer.cs">
       <DependentUpon>frmSettings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmSuccess.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmSuccess.Designer.cs">
-      <DependentUpon>frmSuccess.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -98,14 +86,8 @@
     <Compile Include="UserControls\ucSuccess.Designer.cs">
       <DependentUpon>ucSuccess.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="frmError.resx">
-      <DependentUpon>frmError.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmSettings.resx">
       <DependentUpon>frmSettings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmSuccess.resx">
-      <DependentUpon>frmSuccess.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

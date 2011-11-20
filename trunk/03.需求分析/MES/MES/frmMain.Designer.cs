@@ -183,7 +183,7 @@
             // 
             this.toolStripLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel1.Image")));
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(83, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(63, 22);
             this.toolStripLabel1.Text = "DB CONN";
             // 
             // toolStripSeparator2
@@ -194,7 +194,7 @@
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(66, 22);
+            this.toolStripLabel2.Size = new System.Drawing.Size(47, 22);
             this.toolStripLabel2.Text = "BR CONN";
             // 
             // toolStripSeparator3
@@ -206,7 +206,7 @@
             // 
             this.toolStripLabel3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel3.Image")));
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(80, 22);
+            this.toolStripLabel3.Size = new System.Drawing.Size(63, 22);
             this.toolStripLabel3.Text = "LA CONN";
             // 
             // toolStripSeparator4
@@ -218,7 +218,7 @@
             // 
             this.toolStripLabel4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel4.Image")));
             this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(55, 22);
+            this.toolStripLabel4.Size = new System.Drawing.Size(45, 22);
             this.toolStripLabel4.Text = "WAIT";
             // 
             // panelContainer
@@ -248,8 +248,6 @@
             this.Controls.Add(this.panelTop);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MTTR07P01";

@@ -104,7 +104,7 @@ namespace MES
             }
         }
 
- 
+
         int count = 0;
         void timerShow_Tick(object sender, EventArgs e)
         {
@@ -113,7 +113,7 @@ namespace MES
             {
                 timerShow.Stop();
                 count = 0;
-                ShowUc(myucGridView,false);
+                ShowUc(myucGridView, false);
             }
         }
 
@@ -124,7 +124,7 @@ namespace MES
 
         private void frmMain_SizeChanged(object sender, EventArgs e)
         {
-            lblCenter.Location = new Point((panelTop.Width - lblCenter.Width) / 2, (panelTop.Height-lblCenter.Height)/2);
+            lblCenter.Location = new Point((panelTop.Width - lblCenter.Width) / 2, (panelTop.Height - lblCenter.Height) / 2);
         }
 
         /// <summary>
@@ -136,16 +136,16 @@ namespace MES
         {
             //测试GridView代码------------------------
 
-            ScanDataModel sdm=new ScanDataModel();
-            sdm.ScanTime =DateTime.Now.ToString();
+            ScanDataModel sdm = new ScanDataModel();
+            sdm.ScanTime = DateTime.Now.ToString();
             code += 1;
             sdm.BODYNO = "SOF 0123456";
             sdm.SEQ = code.ToString("0000");
-            
+
             myucGridView.InsertNewData(sdm);
             //----------------------------------------
             myucSuccess.lblScanNumber.Text = sdm.SEQ;
-            ShowUc(myucSuccess,true);
+            ShowUc(myucSuccess, true);
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace MES
         /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
-            ShowUc(myucError,true);
+            ShowUc(myucError, true);
         }
 
         /// <summary>
@@ -175,10 +175,10 @@ namespace MES
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            ShowUc(myucGridView,false);
+            ShowUc(myucGridView, false);
         }
 
-       
+
         private void frmMain_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -199,7 +199,7 @@ namespace MES
                     break;
                 //default:
             }
-            
+
         }
 
     }

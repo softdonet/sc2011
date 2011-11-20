@@ -57,7 +57,7 @@
             // 
             // panelTop
             // 
-            this.panelTop.BackColor = System.Drawing.Color.MidnightBlue;
+            this.panelTop.BackColor = System.Drawing.Color.DarkBlue;
             this.panelTop.Controls.Add(this.button2);
             this.panelTop.Controls.Add(this.button1);
             this.panelTop.Controls.Add(this.lblCenter);
@@ -65,12 +65,12 @@
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(712, 92);
+            this.panelTop.Size = new System.Drawing.Size(758, 92);
             this.panelTop.TabIndex = 0;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(125, 31);
+            this.button2.Location = new System.Drawing.Point(23, 60);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 7;
@@ -90,14 +90,15 @@
             // 
             // lblCenter
             // 
+            this.lblCenter.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblCenter.AutoSize = true;
-            this.lblCenter.Font = new System.Drawing.Font("Verdana", 30F, System.Drawing.FontStyle.Bold);
+            this.lblCenter.Font = new System.Drawing.Font("KaiTi", 50F, System.Drawing.FontStyle.Bold);
             this.lblCenter.ForeColor = System.Drawing.Color.White;
-            this.lblCenter.Location = new System.Drawing.Point(248, 14);
+            this.lblCenter.Location = new System.Drawing.Point(74, 14);
             this.lblCenter.Name = "lblCenter";
-            this.lblCenter.Size = new System.Drawing.Size(219, 48);
+            this.lblCenter.Size = new System.Drawing.Size(305, 67);
             this.lblCenter.TabIndex = 3;
-            this.lblCenter.Text = "Sign OFF";
+            this.lblCenter.Text = "下线序列";
             // 
             // panel1
             // 
@@ -107,52 +108,52 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.panel1.Location = new System.Drawing.Point(463, 0);
+            this.panel1.Location = new System.Drawing.Point(367, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(249, 92);
+            this.panel1.Size = new System.Drawing.Size(391, 92);
             this.panel1.TabIndex = 2;
             // 
             // lblCurrentTime
             // 
             this.lblCurrentTime.AutoSize = true;
-            this.lblCurrentTime.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblCurrentTime.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentTime.ForeColor = System.Drawing.Color.White;
             this.lblCurrentTime.Location = new System.Drawing.Point(54, 49);
             this.lblCurrentTime.Name = "lblCurrentTime";
-            this.lblCurrentTime.Size = new System.Drawing.Size(179, 16);
+            this.lblCurrentTime.Size = new System.Drawing.Size(338, 32);
             this.lblCurrentTime.TabIndex = 3;
             this.lblCurrentTime.Text = "2011-11-19 20:18:36";
             // 
             // lblScanTime
             // 
             this.lblScanTime.AutoSize = true;
-            this.lblScanTime.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblScanTime.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScanTime.ForeColor = System.Drawing.Color.White;
-            this.lblScanTime.Location = new System.Drawing.Point(54, 14);
+            this.lblScanTime.Location = new System.Drawing.Point(51, 8);
             this.lblScanTime.Name = "lblScanTime";
-            this.lblScanTime.Size = new System.Drawing.Size(179, 16);
+            this.lblScanTime.Size = new System.Drawing.Size(338, 32);
             this.lblScanTime.TabIndex = 2;
             this.lblScanTime.Text = "2011-11-19 17:25:16";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(18, 14);
+            this.label1.Location = new System.Drawing.Point(18, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(17, 16);
+            this.label1.Size = new System.Drawing.Size(34, 32);
             this.label1.TabIndex = 0;
             this.label1.Text = "S";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(18, 50);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(17, 16);
+            this.label2.Size = new System.Drawing.Size(35, 32);
             this.label2.TabIndex = 1;
             this.label2.Text = "C";
             // 
@@ -168,9 +169,9 @@
             this.toolStripLabel3,
             this.toolStripSeparator4,
             this.toolStripLabel4});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 431);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 459);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(712, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(758, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -226,7 +227,7 @@
             this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContainer.Location = new System.Drawing.Point(0, 92);
             this.panelContainer.Name = "panelContainer";
-            this.panelContainer.Size = new System.Drawing.Size(712, 339);
+            this.panelContainer.Size = new System.Drawing.Size(758, 367);
             this.panelContainer.TabIndex = 4;
             // 
             // dataGrdView
@@ -243,7 +244,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(712, 456);
+            this.ClientSize = new System.Drawing.Size(758, 484);
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.panelTop);
             this.Controls.Add(this.toolStrip1);

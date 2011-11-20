@@ -169,23 +169,7 @@ namespace MES
             ShowUc(myucGridView);
         }
 
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-            ScanDataModel sdm = new ScanDataModel();
-            sdm.ScanTime = DateTime.Now.ToString();
-            sdm.BODYNO = "00ewrwr01";
-            sdm.SEQ = code.ToString("0000");
-            code++;
-            myucGridView.InsertNewData(sdm);
-            ShowUc(myucGridView);
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            frmSettings fs = new frmSettings();
-            fs.ShowDialog();
-        }
-
+       
         private void frmMain_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)

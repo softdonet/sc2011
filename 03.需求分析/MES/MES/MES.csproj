@@ -141,7 +141,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="UserControls\Config.xml">
+    <Content Include="Config.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\grayer.png" />

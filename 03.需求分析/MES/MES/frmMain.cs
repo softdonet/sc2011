@@ -188,11 +188,25 @@ namespace MES
 
         private void frmMain_KeyDown(object sender, KeyEventArgs e)
         {
-            
-            if (e.KeyCode == Keys.F1)
+            switch (e.KeyCode)
             {
-
+                case Keys.Escape:
+                    {
+                        if (MessageBox.Show("确定要退出系统吗？", "提示", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                        {
+                            this.Close();
+                        }
+                    }
+                    break;
+                case Keys.F1:
+                    {
+                        frmSettings fs = new frmSettings();
+                        fs.ShowDialog();
+                    }
+                    break;
+                //default:
             }
+            
         }
 
     }

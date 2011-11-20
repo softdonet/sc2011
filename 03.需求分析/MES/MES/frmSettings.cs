@@ -16,6 +16,7 @@ namespace MES
         public frmSettings()
         {
             InitializeComponent();
+            this.KeyPreview = true;
             settings = new ModuleSettings();
             settings = ModuleConfig.GetSettings();
             
@@ -35,6 +36,14 @@ namespace MES
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmSettings_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode==Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

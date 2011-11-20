@@ -23,7 +23,7 @@ namespace MES
         ucSuccess myucSuccess = null;
         ucGridView myucGridView = null;
         Timer timerShow = null;
-        int code = 1;
+        int code = 0;
         public frmMain()
         {
             InitializeComponent();
@@ -133,12 +133,13 @@ namespace MES
 
             ScanDataModel sdm=new ScanDataModel();
             sdm.ScanTime =DateTime.Now.ToString();
-            sdm.BODYNO ="barRedae";
+            code += 1;
+            sdm.BODYNO = code.ToString("0000");//"barRedae";
             sdm.SEQ = code.ToString("0000");
-            code++;
+            
             myucGridView.InsertNewData(sdm);
             //----------------------------------------
-            myucSuccess.lblScanNumber.Text = "0001";
+            myucSuccess.lblScanNumber.Text = sdm.SEQ;// "0001";
             ShowUc(myucSuccess);
         }
 

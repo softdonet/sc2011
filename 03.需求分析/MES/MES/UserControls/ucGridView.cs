@@ -13,13 +13,16 @@ namespace MES.UserControls
 {
     public partial class ucGridView : UserControl
     {
-        public ucGridView()
+
+        Control mainForm = null;
+        public ucGridView(Control ctl)
         {
             InitializeComponent();
+            mainForm = ctl;
             SetGridViewStyle();
         }
 
-        Queue<ScanDataModel> queue = new Queue<ScanDataModel>();
+        public Queue<ScanDataModel> queue = new Queue<ScanDataModel>();
         //List<ScanDataModel> listScanDataModel = new List<ScanDataModel>();
 
         public void InsertNewData(ScanDataModel newScanData)
@@ -34,6 +37,12 @@ namespace MES.UserControls
             }
             queue.Enqueue(newScanData);
             this.dataGrdView.DataSource = queue.OrderByDescending(e => e.ScanTime).ToList();
+            //dataGrdView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.None;
+
+            this.dataGrdView.Columns["SEQ"].Width = Convert.ToInt32(mainForm.Width * 0.5 * 6 / 18);
+            this.dataGrdView.Columns["BODYNO"].Width = Convert.ToInt32(mainForm.Width * 0.5 * 12 / 18);
+            this.dataGrdView.Columns["ScanTime"].Width = Convert.ToInt32(mainForm.Width * 0.5);
+          
             //if (listScanDataModel.Count > 4)
             //{
             //    listScanDataModel.RemoveAt(4);
@@ -54,10 +63,10 @@ namespace MES.UserControls
             dataGrdView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGrdView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dataGrdView.ColumnHeadersHeight = 80;
-           
-            
 
-            dataGrdView.RowsDefaultCellStyle.Font = new Font("Verdana", 50F, FontStyle.Bold | FontStyle.Bold);
+
+
+            dataGrdView.RowsDefaultCellStyle.Font = new Font("Verdana", 40F, FontStyle.Bold | FontStyle.Bold);
 
             dataGrdView.AllowUserToResizeRows = true;
             dataGrdView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;// .DisplayedCellsExceptHeaders;

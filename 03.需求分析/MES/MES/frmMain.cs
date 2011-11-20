@@ -87,10 +87,13 @@ namespace MES
                     sdm.ScanTime = DateTime.Now.ToString();
                     sdm.BODYNO = str;
                     sdm.SEQ = code.ToString("0000");
-                    code++;
-                    myucGridView.InsertNewData(sdm);
-                    myucSuccess.lblScanNumber.Text = str;
-                    ShowUc(myucSuccess,true);
+                    if (myucGridView.queue.SingleOrDefault(e => e.BODYNO == sdm.BODYNO) != null)
+                    {
+                        code++;
+                        myucGridView.InsertNewData(sdm);
+                        myucSuccess.lblScanNumber.Text = str;
+                        ShowUc(myucSuccess, true);
+                    }
                 }
                 else
                 {
@@ -164,7 +167,10 @@ namespace MES
             panelContainer.Controls.Clear();
             panelContainer.Controls.Add(ctl);
             ctl.Dock = DockStyle.Fill;
-            timerShow.Start();
+            if (requireWait)
+            {
+                timerShow.Start();
+            }
         }
 
         private void frmMain_Load(object sender, EventArgs e)

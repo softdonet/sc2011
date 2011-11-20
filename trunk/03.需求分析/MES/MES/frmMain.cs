@@ -23,7 +23,7 @@ namespace MES
         ucSuccess myucSuccess = null;
         ucGridView myucGridView = null;
         Timer timerShow = null;
-        int code = 0;
+        int code = 1;
         public frmMain()
         {
             InitializeComponent();
@@ -87,7 +87,7 @@ namespace MES
                     sdm.ScanTime = DateTime.Now.ToString();
                     sdm.BODYNO = str;
                     sdm.SEQ = code.ToString("0000");
-                    if (myucGridView.queue.SingleOrDefault(e => e.BODYNO == sdm.BODYNO) != null)
+                    if (myucGridView.queue.SingleOrDefault(e => e.BODYNO == sdm.BODYNO) == null)
                     {
                         code++;
                         myucGridView.InsertNewData(sdm);

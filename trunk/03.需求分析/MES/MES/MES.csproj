@@ -146,6 +146,7 @@
     </Content>
     <Content Include="Images\grayer.png" />
     <Content Include="Images\green.png" />
+    <Content Include="Images\logo.gif" />
     <Content Include="Images\red.png" />
   </ItemGroup>
   <ItemGroup />

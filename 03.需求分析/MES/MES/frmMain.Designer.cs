@@ -65,7 +65,7 @@
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(712, 83);
+            this.panelTop.Size = new System.Drawing.Size(712, 92);
             this.panelTop.TabIndex = 0;
             // 
             // button2
@@ -91,11 +91,11 @@
             // lblCenter
             // 
             this.lblCenter.AutoSize = true;
-            this.lblCenter.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCenter.Font = new System.Drawing.Font("Verdana", 30F, System.Drawing.FontStyle.Bold);
             this.lblCenter.ForeColor = System.Drawing.Color.White;
-            this.lblCenter.Location = new System.Drawing.Point(270, 24);
+            this.lblCenter.Location = new System.Drawing.Point(248, 14);
             this.lblCenter.Name = "lblCenter";
-            this.lblCenter.Size = new System.Drawing.Size(132, 29);
+            this.lblCenter.Size = new System.Drawing.Size(219, 48);
             this.lblCenter.TabIndex = 3;
             this.lblCenter.Text = "Sign OFF";
             // 
@@ -109,7 +109,7 @@
             this.panel1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.panel1.Location = new System.Drawing.Point(463, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(249, 83);
+            this.panel1.Size = new System.Drawing.Size(249, 92);
             this.panel1.TabIndex = 2;
             // 
             // lblCurrentTime
@@ -183,7 +183,7 @@
             // 
             this.toolStripLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel1.Image")));
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(63, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(83, 22);
             this.toolStripLabel1.Text = "DB CONN";
             // 
             // toolStripSeparator2
@@ -194,7 +194,7 @@
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(47, 22);
+            this.toolStripLabel2.Size = new System.Drawing.Size(66, 22);
             this.toolStripLabel2.Text = "BR CONN";
             // 
             // toolStripSeparator3
@@ -206,7 +206,7 @@
             // 
             this.toolStripLabel3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel3.Image")));
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(63, 22);
+            this.toolStripLabel3.Size = new System.Drawing.Size(80, 22);
             this.toolStripLabel3.Text = "LA CONN";
             // 
             // toolStripSeparator4
@@ -218,15 +218,15 @@
             // 
             this.toolStripLabel4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel4.Image")));
             this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(45, 22);
+            this.toolStripLabel4.Size = new System.Drawing.Size(55, 22);
             this.toolStripLabel4.Text = "WAIT";
             // 
             // panelContainer
             // 
             this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContainer.Location = new System.Drawing.Point(0, 83);
+            this.panelContainer.Location = new System.Drawing.Point(0, 92);
             this.panelContainer.Name = "panelContainer";
-            this.panelContainer.Size = new System.Drawing.Size(712, 348);
+            this.panelContainer.Size = new System.Drawing.Size(712, 339);
             this.panelContainer.TabIndex = 4;
             // 
             // dataGrdView

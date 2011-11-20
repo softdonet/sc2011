@@ -49,21 +49,21 @@
             this.tbLoutPanelError.Location = new System.Drawing.Point(0, 0);
             this.tbLoutPanelError.Name = "tbLoutPanelError";
             this.tbLoutPanelError.RowCount = 3;
-            this.tbLoutPanelError.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.88235F));
-            this.tbLoutPanelError.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 54.11765F));
+            this.tbLoutPanelError.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 54.92958F));
+            this.tbLoutPanelError.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.07042F));
             this.tbLoutPanelError.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 82F));
-            this.tbLoutPanelError.Size = new System.Drawing.Size(407, 286);
+            this.tbLoutPanelError.Size = new System.Drawing.Size(641, 440);
             this.tbLoutPanelError.TabIndex = 13;
             // 
             // lblNote
             // 
             this.lblNote.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblNote.AutoSize = true;
-            this.lblNote.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNote.Font = new System.Drawing.Font("Verdana", 40F, System.Drawing.FontStyle.Bold);
             this.lblNote.ForeColor = System.Drawing.Color.White;
-            this.lblNote.Location = new System.Drawing.Point(83, 229);
+            this.lblNote.Location = new System.Drawing.Point(50, 365);
             this.lblNote.Name = "lblNote";
-            this.lblNote.Size = new System.Drawing.Size(240, 29);
+            this.lblNote.Size = new System.Drawing.Size(540, 65);
             this.lblNote.TabIndex = 6;
             this.lblNote.Text = "READING ERROR";
             // 
@@ -71,11 +71,11 @@
             // 
             this.lblStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Verdana", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Font = new System.Drawing.Font("Verdana", 100F, System.Drawing.FontStyle.Bold);
             this.lblStatus.ForeColor = System.Drawing.Color.Red;
-            this.lblStatus.Location = new System.Drawing.Point(99, 93);
+            this.lblStatus.Location = new System.Drawing.Point(175, 196);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(209, 108);
+            this.lblStatus.Size = new System.Drawing.Size(290, 159);
             this.lblStatus.TabIndex = 5;
             this.lblStatus.Text = "NG";
             // 
@@ -83,11 +83,11 @@
             // 
             this.lblScanNumber.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblScanNumber.AutoSize = true;
-            this.lblScanNumber.Font = new System.Drawing.Font("Verdana", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScanNumber.Font = new System.Drawing.Font("Verdana", 69.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScanNumber.ForeColor = System.Drawing.Color.White;
-            this.lblScanNumber.Location = new System.Drawing.Point(151, 17);
+            this.lblScanNumber.Location = new System.Drawing.Point(219, 41);
             this.lblScanNumber.Name = "lblScanNumber";
-            this.lblScanNumber.Size = new System.Drawing.Size(105, 59);
+            this.lblScanNumber.Size = new System.Drawing.Size(202, 113);
             this.lblScanNumber.TabIndex = 4;
             this.lblScanNumber.Text = "NG";
             // 
@@ -97,7 +97,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tbLoutPanelError);
             this.Name = "ucError";
-            this.Size = new System.Drawing.Size(407, 286);
+            this.Size = new System.Drawing.Size(641, 440);
             this.tbLoutPanelError.ResumeLayout(false);
             this.tbLoutPanelError.PerformLayout();
             this.ResumeLayout(false);

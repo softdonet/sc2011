@@ -49,20 +49,24 @@ namespace MES.UserControls
             dataGrdView.EnableHeadersVisualStyles = false;
             dataGrdView.ColumnHeadersDefaultCellStyle.BackColor = Color.Red;
             dataGrdView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGrdView.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Verdana", 25F, FontStyle.Bold);
+            dataGrdView.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Verdana", 40F, FontStyle.Bold);
             dataGrdView.AllowUserToResizeColumns = true;
             dataGrdView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGrdView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.dataGrdView.ColumnHeadersHeight = 50;
+            this.dataGrdView.ColumnHeadersHeight = 80;
+           
+            
 
-            dataGrdView.RowsDefaultCellStyle.Font = new Font("Verdana", 20F, FontStyle.Bold | FontStyle.Bold);
+            dataGrdView.RowsDefaultCellStyle.Font = new Font("Verdana", 50F, FontStyle.Bold | FontStyle.Bold);
 
             dataGrdView.AllowUserToResizeRows = true;
             dataGrdView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;// .DisplayedCellsExceptHeaders;
             dataGrdView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             //dataGrdView.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; ;
-            dataGrdView.RowTemplate.Height = 80;
-            dataGrdView.RowTemplate.MinimumHeight = 80;
+            dataGrdView.RowTemplate.Height = 120;
+            dataGrdView.RowTemplate.MinimumHeight = 120;
+
+            dataGrdView.RowHeadersVisible = false;
             //this.dataGrdView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCellsExceptHeader;
             //  this.dataGrdView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 

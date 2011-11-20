@@ -31,12 +31,15 @@ namespace MES
         private void button1_Click(object sender, EventArgs e)
         {
             ModuleConfig.SaveSettings(settings);
+            this.Close();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
 
         private void frmSettings_KeyDown(object sender, KeyEventArgs e)
         {

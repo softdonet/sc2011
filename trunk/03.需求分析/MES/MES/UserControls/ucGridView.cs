@@ -30,7 +30,6 @@ namespace MES.UserControls
             }
             queue.Enqueue(newScanData);
             this.dataGrdView.DataSource = queue.OrderByDescending(e=>e.ScanTime).ToList();
-
             //if (listScanDataModel.Count > 4)
             //{
             //    listScanDataModel.RemoveAt(4);

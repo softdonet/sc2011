@@ -1,0 +1,9 @@
+﻿<?xml version="1.0"?>
+<ColorProject>
+  <ColorItem itemid="" itemWidth="" foreColor="255,0,0" backColor="255,0,0" star="0" end="5" />
+  <ColorItem star="5" end="20" color="255,255,0" />
+  <ColorItem star="20" end="40" color="0,128,0" />
+  <ColorItem star="40" end="60" color="64,224,208" />
+  <ColorItem star="60" end="80" color="0,0,255" />
+  <ColorItem star="80" end="100" color="128,128,0" />
+</ColorProject>

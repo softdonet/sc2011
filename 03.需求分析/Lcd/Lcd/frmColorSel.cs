@@ -28,7 +28,7 @@ namespace Lcd
         public frmColorSel()
         {
             InitializeComponent();
-
+            this.KeyPreview = true;
 
         }
 

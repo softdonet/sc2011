@@ -177,10 +177,9 @@ namespace Lcd
             lb.ForeColor = Color.White;
         }
 
-        Timer time1 = new Timer();
         private void SetTime()
         {
-            time1.Interval = 5000;
+           Timer time1 = myTimer.GetTimer(5000,true);
             time1.Tick += new EventHandler(time1_Tick);
             time1.Enabled = true;
             time1.Start();

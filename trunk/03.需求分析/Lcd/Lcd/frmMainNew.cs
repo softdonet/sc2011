@@ -140,21 +140,21 @@ namespace Lcd
             SetLabelStyle(label10);
             SetLabelStyle(label11);
             SetLabelStyleSunTi(label12);
-            SetLabelStyle(label13);
+            SetLabelStyleNumber(label13);
             SetLabelStyle(label14);
-            SetLabelStyle(label15);
+            SetLabelStyleNumber(label15);
             SetLabelStyleSunTi(label16);
-            SetLabelStyle(label17);
+            SetLabelStyleNumber(label17);
             SetLabelStyleSunTi(label18);
-            SetLabelStyle(label19);
+            SetLabelStyleNumber(label19);
             SetLabelStyleSunTi(label20);
-            SetLabelStyle(label21);
+            SetLabelStyleNumber(label21);
             SetLabelStyleSunTi(label22);
-            SetLabelStyle(label23);
+            SetLabelStyleNumber(label23);
             SetLabelStyleSunTi(label24);
-            SetLabelStyle(label25);
+            SetLabelStyleNumber(label25);
             SetLabelStyleSunTi(label26);
-            SetLabelStyle(label27);
+            SetLabelStyleNumber(label27);
 
         }
         /// <summary>
@@ -174,6 +174,15 @@ namespace Lcd
         private void SetLabelStyleSunTi(Label lb)
         {
             lb.Font = new Font("宋体", 40F, FontStyle.Bold | FontStyle.Bold);
+            lb.ForeColor = Color.White;
+        }
+        /// <summary>
+        /// 设置label字体样式（数字）
+        /// </summary>
+        /// <param name="lbl"></param>
+        private void SetLabelStyleNumber(Label lb)
+        {
+            lb.Font = new Font("Times New Roman", 45F, FontStyle.Bold | FontStyle.Bold);
             lb.ForeColor = Color.White;
         }
 

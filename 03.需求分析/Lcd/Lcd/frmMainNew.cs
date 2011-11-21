@@ -53,7 +53,7 @@ namespace Lcd
 
         private void SetLblText()
         {
-            lblCurrentTime.Text = DateTime.Now.ToString("yyyy/MM/dd hh:mm");
+            lblCurrentTime.Text = myTimer.CurrentTimeNoSecond();
             label2.Text = "T1";
             label3.Text = "T2";
             label4.Text = "C1";

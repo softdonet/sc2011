@@ -173,6 +173,33 @@ namespace Lcd
         {
             lb.Font = new Font("宋体", 40F, FontStyle.Bold | FontStyle.Bold);
             lb.ForeColor = Color.White;
+        }
+
+        private void panel_DoubleClick(object sender, EventArgs e)
+        {
+            Color bColor, fColor;
+            bColor = (sender as Panel).BackColor;
+            fColor = (sender as Panel).Controls[0].ForeColor;
+
+            frmColorSel frmShow = new frmColorSel();
+            frmShow.NewForeColor = fColor;
+            frmShow.NewBackGroudColor = bColor;
+            if (frmShow.ShowDialog() != System.Windows.Forms.DialogResult.OK) { return; }
+
+            (sender as Panel).BackColor = frmShow.NewBackGroudColor;
+            (sender as Panel).Controls[0].ForeColor = frmShow.NewForeColor;
+        }
+
+        private void frmMainNew_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                if (MessageBox.Show("确定要退出系统吗？", "提示", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    this.Close();
+                }
+            }
+             
         } 
     }
 }

@@ -111,6 +111,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "颜色选择";
             this.Load += new System.EventHandler(this.frmColorSel_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmColorSel_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -59,5 +59,13 @@ namespace Lcd
             this.txtForeColor.BackColor = NewForeColor;
 
         }
+
+        private void frmColorSel_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode==Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

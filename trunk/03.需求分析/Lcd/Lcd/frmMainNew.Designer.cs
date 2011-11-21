@@ -56,7 +56,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblCurrentTime = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -476,7 +476,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.LimeGreen;
             this.tableLayoutPanel1.SetColumnSpan(this.panel1, 4);
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.lblCurrentTime);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.panel1.Location = new System.Drawing.Point(3, 3);
@@ -497,17 +497,17 @@
             this.panel2.Size = new System.Drawing.Size(121, 67);
             this.panel2.TabIndex = 1;
             // 
-            // label1
+            // lblCurrentTime
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(107, 27);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
+            this.lblCurrentTime.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblCurrentTime.AutoSize = true;
+            this.lblCurrentTime.ForeColor = System.Drawing.Color.White;
+            this.lblCurrentTime.Location = new System.Drawing.Point(107, 27);
+            this.lblCurrentTime.Margin = new System.Windows.Forms.Padding(0);
+            this.lblCurrentTime.Name = "lblCurrentTime";
+            this.lblCurrentTime.Size = new System.Drawing.Size(89, 12);
+            this.lblCurrentTime.TabIndex = 1;
+            this.lblCurrentTime.Text = "lblCurrentTime";
             // 
             // label2
             // 
@@ -633,6 +633,7 @@
             // 
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.White;
             this.label12.Location = new System.Drawing.Point(73, 25);
             this.label12.Margin = new System.Windows.Forms.Padding(0);
             this.label12.Name = "label12";
@@ -656,6 +657,7 @@
             // 
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label14.AutoSize = true;
+            this.label14.ForeColor = System.Drawing.Color.White;
             this.label14.Location = new System.Drawing.Point(73, 25);
             this.label14.Margin = new System.Windows.Forms.Padding(0);
             this.label14.Name = "label14";
@@ -828,6 +830,7 @@
             this.Name = "frmMainNew";
             this.Text = "frmMainNew";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmMainNew_Load);
             this.SizeChanged += new System.EventHandler(this.frmMainNew_SizeChanged);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel27.ResumeLayout(false);
@@ -943,7 +946,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblCurrentTime;
         private System.Windows.Forms.Label label3;
 
     }

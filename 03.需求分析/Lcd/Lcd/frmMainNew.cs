@@ -18,6 +18,7 @@ namespace Lcd
             //实时时间
             Timer timer = myTimer.GetTimer(1000, true);
             timer.Tick += new EventHandler(timer_Tick);
+            SetLabelFont();
         }
 
         private void frmMainNew_Load(object sender, EventArgs e)
@@ -41,9 +42,6 @@ namespace Lcd
                 this.tableLayoutPanel1.ColumnStyles[iCol].Width = width / iColumeCount;
                 
             }
-
-
-           
         }
 
 
@@ -121,7 +119,60 @@ namespace Lcd
             
 
         }
-       
 
+
+        /// <summary>
+        /// 设置label字体
+        /// </summary>
+        private void SetLabelFont()
+        {
+            SetLabelStyleSunTi(lblCurrentTime);
+            SetLabelStyle(label2);
+            SetLabelStyle(label3);
+            SetLabelStyle(label4);
+            SetLabelStyle(label5);
+            SetLabelStyle(label6);
+            SetLabelStyle(label7);
+            SetLabelStyle(label8);
+            SetLabelStyle(label9);
+            SetLabelStyle(label10);
+            SetLabelStyle(label11);
+            SetLabelStyle(label12);
+            SetLabelStyle(label13);
+            SetLabelStyle(label14);
+            SetLabelStyle(label15);
+            SetLabelStyle(label16);
+            SetLabelStyle(label17);
+            SetLabelStyle(label18);
+            SetLabelStyle(label19);
+            SetLabelStyle(label20);
+            SetLabelStyle(label21);
+            SetLabelStyle(label22);
+            SetLabelStyle(label23);
+            SetLabelStyle(label24);
+            SetLabelStyle(label25);
+            SetLabelStyle(label26);
+            SetLabelStyle(label27);
+
+        }
+        /// <summary>
+        /// 设置label字体样式（新罗马）
+        /// </summary>
+        /// <param name="lbl"></param>
+        private void SetLabelStyle(Label lb)
+        {
+            lb.Font = new Font("Times New Roman", 40F, FontStyle.Bold | FontStyle.Bold);
+            lb.ForeColor = Color.White;
+        }
+
+        /// <summary>
+        /// 设置label字体样式（宋体）
+        /// </summary>
+        /// <param name="lbl"></param>
+        private void SetLabelStyleSunTi(Label lb)
+        {
+            lb.Font = new Font("宋体", 30F, FontStyle.Bold | FontStyle.Bold);
+            lb.ForeColor = Color.White;
+        } 
     }
 }

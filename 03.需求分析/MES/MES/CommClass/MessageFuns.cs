@@ -29,15 +29,14 @@ namespace MES.CommClass
         /// 获取条形码
         /// </summary>
         /// <returns></returns>
-        public string GetBarCode()
+        public string GetBarCode(int start, int length)
         {
-            byte[] tmpbyte = new byte[10];
-            for (int i = 0; i < 10; i++)
+            byte[] tmpbyte = new byte[length];
+            for (int i = 0; i < length; i++)
             {
-                tmpbyte[i] = data[i];
+                tmpbyte[i] = data[start - 1 + i];
             }
             return System.Text.ASCIIEncoding.Default.GetString(tmpbyte);
-           
         }
 
         /// <summary>
@@ -46,7 +45,8 @@ namespace MES.CommClass
         /// <returns></returns>
         public bool Verify()
         {
-            if (data.Length == 15)
+            string temp = System.Text.ASCIIEncoding.Default.GetString(data).ToUpper();
+            if (temp.IndexOf("NO") > -1)
             {
                 return false;
             }
@@ -70,7 +70,7 @@ namespace MES.CommClass
         {
             return data.Length;
         }
-       
+
         ///// <summary>
         ///// 计算校验位
         ///// </summary>

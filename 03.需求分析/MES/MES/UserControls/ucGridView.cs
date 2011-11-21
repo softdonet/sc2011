@@ -47,7 +47,8 @@ namespace MES.UserControls
             dataGrdView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGrdView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGrdView.ColumnHeadersHeight = 80;
-           
+            this.dataGrdView.DefaultCellStyle.SelectionBackColor = Color.White;
+            this.dataGrdView.DefaultCellStyle.SelectionForeColor = Color.Black;
 
 
             dataGrdView.RowsDefaultCellStyle.Font = new Font("Times New Roman", 45F, FontStyle.Bold | FontStyle.Bold);

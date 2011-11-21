@@ -60,7 +60,7 @@ namespace MES
             recvmessagefuns.InputData(e);
             if (recvmessagefuns.Verify())
             {
-                string strMsg = recvmessagefuns.GetBarCode();
+                string strMsg = recvmessagefuns.GetBarCode(moduleSettings.BarCodeStart, moduleSettings.BarCodeLength);
                 SetText(strMsg, true);
             }
             else

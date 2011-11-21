@@ -19,6 +19,7 @@ namespace Lcd
             Timer timer = myTimer.GetTimer(1000, true);
             timer.Tick += new EventHandler(timer_Tick);
             SetLabelFont();
+            SetTime();
         }
 
         private void frmMainNew_Load(object sender, EventArgs e)
@@ -29,7 +30,7 @@ namespace Lcd
 
         private void frmMainNew_SizeChanged(object sender, EventArgs e)
         {
-            int width =this.Width;
+            int width = this.Width;
             int height = this.Height;
             int iRowCount = tableLayoutPanel1.RowCount;
             int iColumeCount = tableLayoutPanel1.ColumnCount;
@@ -40,7 +41,7 @@ namespace Lcd
             for (int iCol = 0; iCol < iColumeCount; iCol++)
             {
                 this.tableLayoutPanel1.ColumnStyles[iCol].Width = width / iColumeCount;
-                
+
             }
         }
 
@@ -52,6 +53,7 @@ namespace Lcd
 
         private void SetLblText()
         {
+            lblCurrentTime.Text = DateTime.Now.ToString("yyyy/MM/dd hh:mm");
             label2.Text = "T1";
             label3.Text = "T2";
             label4.Text = "C1";
@@ -64,21 +66,21 @@ namespace Lcd
             label11.Text = "CTS";
 
             label12.Text = "运转率";
-            label13.Text = "CTS";
+            label13.Text = "200";
             label14.Text = "JPH";
-            label15.Text = "CTS";
+            label15.Text = "250";
             label16.Text = "现在目标";
-            label17.Text = "CTS";
+            label17.Text = "250";
             label18.Text = "PBS在线";
-            label19.Text = "CTS";
+            label19.Text = "300";
             label20.Text = "投入数量";
-            label21.Text = "CTS";
+            label21.Text = "320";
             label22.Text = "CTS在线";
-            label23.Text = "CTS";
+            label23.Text = "230";
             label24.Text = "入库数量";
-            label25.Text = "CTS";
+            label25.Text = "245";
             label26.Text = "停线时间";
-            label27.Text = "CTS";
+            label27.Text = "15:39";
 
         }
 
@@ -115,8 +117,8 @@ namespace Lcd
             label26.Location = new Point((panel26.Width - label26.Width) / 2, (panel26.Height - label26.Height) / 2);
             label27.Location = new Point((panel27.Width - label27.Width) / 2, (panel27.Height - label27.Height) / 2);
 
-            
-            
+
+
 
         }
 
@@ -174,6 +176,30 @@ namespace Lcd
             lb.Font = new Font("宋体", 40F, FontStyle.Bold | FontStyle.Bold);
             lb.ForeColor = Color.White;
         }
+
+        Timer time1 = new Timer();
+        private void SetTime()
+        {
+            time1.Interval = 5000;
+            time1.Tick += new EventHandler(time1_Tick);
+            time1.Enabled = true;
+            time1.Start();
+        }
+
+        void time1_Tick(object sender, EventArgs e)
+        {
+            Random rd = new Random();
+            int i = rd.Next(200, 400);
+            this.label13.Text = i.ToString();
+            i = rd.Next(200, 400);
+            this.label17.Text = i.ToString();
+            i = rd.Next(200, 400);
+            this.label21.Text = i.ToString();
+            i = rd.Next(200, 400);
+            this.label25.Text = i.ToString();
+        }
+
+       
 
         private void panel_DoubleClick(object sender, EventArgs e)
         {

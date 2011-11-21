@@ -126,7 +126,7 @@ namespace Lcd
         /// </summary>
         private void SetLabelFont()
         {
-            SetLabelStyleSunTi(lblCurrentTime);
+            SetLabelStyle(lblCurrentTime);
             SetLabelStyle(label2);
             SetLabelStyle(label3);
             SetLabelStyle(label4);
@@ -137,21 +137,21 @@ namespace Lcd
             SetLabelStyle(label9);
             SetLabelStyle(label10);
             SetLabelStyle(label11);
-            SetLabelStyle(label12);
+            SetLabelStyleSunTi(label12);
             SetLabelStyle(label13);
             SetLabelStyle(label14);
             SetLabelStyle(label15);
-            SetLabelStyle(label16);
+            SetLabelStyleSunTi(label16);
             SetLabelStyle(label17);
-            SetLabelStyle(label18);
+            SetLabelStyleSunTi(label18);
             SetLabelStyle(label19);
-            SetLabelStyle(label20);
+            SetLabelStyleSunTi(label20);
             SetLabelStyle(label21);
-            SetLabelStyle(label22);
+            SetLabelStyleSunTi(label22);
             SetLabelStyle(label23);
-            SetLabelStyle(label24);
+            SetLabelStyleSunTi(label24);
             SetLabelStyle(label25);
-            SetLabelStyle(label26);
+            SetLabelStyleSunTi(label26);
             SetLabelStyle(label27);
 
         }
@@ -171,7 +171,7 @@ namespace Lcd
         /// <param name="lbl"></param>
         private void SetLabelStyleSunTi(Label lb)
         {
-            lb.Font = new Font("宋体", 30F, FontStyle.Bold | FontStyle.Bold);
+            lb.Font = new Font("宋体", 40F, FontStyle.Bold | FontStyle.Bold);
             lb.ForeColor = Color.White;
         } 
     }

@@ -14,8 +14,8 @@ namespace Lcd
     {
 
         #region 公共变量
-        public static int iLabel21 = 235;
-        public static int iLabel25 = 302;
+        public static int iLabel21 = 320;
+        public static int iLabel25 = 245;
         #endregion
 
         #region 构造函数

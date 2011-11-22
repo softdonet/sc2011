@@ -12,6 +12,14 @@ namespace Lcd
 {
     public partial class frmMainNew : Form
     {
+
+        #region 公共变量
+        public static int iLabel21 = 235;
+        public static int iLabel25 = 302;
+        #endregion
+
+        #region 构造函数
+
         public frmMainNew()
         {
             InitializeComponent();
@@ -19,7 +27,7 @@ namespace Lcd
             Timer timer = myTimer.GetTimer(1000, true);
             timer.Tick += new EventHandler(timer_Tick);
             SetLabelFont();
-            SetTime();
+
         }
 
         private void frmMainNew_Load(object sender, EventArgs e)
@@ -27,7 +35,12 @@ namespace Lcd
             SetLblText();
             SetLocation();
         }
+        #endregion
 
+        #region 事件和算法
+
+
+        //动态改变Cell的宽和高
         private void frmMainNew_SizeChanged(object sender, EventArgs e)
         {
             int width = this.Width;
@@ -44,13 +57,69 @@ namespace Lcd
 
             }
         }
+        private void panel_DoubleClick(object sender, EventArgs e)
+        {
+            Color bColor, fColor;
+            bColor = (sender as Panel).BackColor;
+            fColor = (sender as Panel).Controls[0].ForeColor;
+
+            frmColorSel frmShow = new frmColorSel();
+            frmShow.NewForeColor = fColor;
+            frmShow.NewBackGroudColor = bColor;
+            if (frmShow.ShowDialog() != System.Windows.Forms.DialogResult.OK) { return; }
+
+            (sender as Panel).BackColor = frmShow.NewBackGroudColor;
+            (sender as Panel).Controls[0].ForeColor = frmShow.NewForeColor;
+        }
+
+       
+        private void frmMainNew_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    if (MessageBox.Show("确定要退出系统吗？", "提示", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    {
+                        this.Close();
+                    }
+                    break;
+                case Keys.F1:
+                    iLabel21 += 1;
+                    label21.Text = iLabel21.ToString();
+
+                    break;
+                case Keys.F2:
+                    if (iLabel21 > 0)
+                    {
+                        iLabel21 -= 1;
+                        label21.Text = iLabel21.ToString();
+                    }
+                    break;
+                case Keys.F3:
+                    iLabel25 += 1;
+                    label25.Text = iLabel25.ToString();
+
+                    break;
+                case Keys.F4:
+                    if (iLabel25 > 0)
+                    {
+                        iLabel25 -= 1;
+                        label25.Text = iLabel25.ToString();
+                    }
+                    break;
+                //default:
+            }
+
+
+        }
+        #region 算法
 
 
         void timer_Tick(object sender, EventArgs e)
         {
             lblCurrentTime.Text = myTimer.CurrentTimeNoSecond();
         }
-
+        //初始化Label的值
         private void SetLblText()
         {
             lblCurrentTime.Text = myTimer.CurrentTimeNoSecond();
@@ -65,11 +134,11 @@ namespace Lcd
             label10.Text = "DR";
             label11.Text = "CTS";
 
-            label12.Text = "运转率";
+            label12.Text = "运 转 率";
             label13.Text = "200";
             label14.Text = "JPH";
             label15.Text = "250";
-            label16.Text = "现在目标";
+            label16.Text = "计划数量";
             label17.Text = "250";
             label18.Text = "PBS在线";
             label19.Text = "300";
@@ -83,7 +152,9 @@ namespace Lcd
             label27.Text = "15:39";
 
         }
-
+        /// <summary>
+        /// 定位
+        /// </summary>
         private void SetLocation()
         {
             lblCurrentTime.Location = new Point((panel1.Width - lblCurrentTime.Width) / 2, (panel1.Height - lblCurrentTime.Height) / 2);
@@ -128,10 +199,10 @@ namespace Lcd
         /// </summary>
         private void SetLabelFont()
         {
-            SetLabelStyle(lblCurrentTime);
+            SetDynamicLabelStyle(lblCurrentTime, "Times New Roman", 70);
             SetLabelStyle(label2);
             SetLabelStyle(label3);
-            SetLabelStyle(label4);
+            SetLabelStyleNumber(label4);//大号字体
             SetLabelStyle(label5);
             SetLabelStyle(label6);
             SetLabelStyle(label7);
@@ -157,13 +228,14 @@ namespace Lcd
             SetLabelStyleNumber(label27);
 
         }
+
         /// <summary>
         /// 设置label字体样式（新罗马）
         /// </summary>
         /// <param name="lbl"></param>
         private void SetLabelStyle(Label lb)
         {
-            lb.Font = new Font("Times New Roman", 40F, FontStyle.Bold | FontStyle.Bold);
+            lb.Font = new Font("Times New Roman", 60F, FontStyle.Bold | FontStyle.Bold);
             lb.ForeColor = Color.White;
         }
 
@@ -182,58 +254,39 @@ namespace Lcd
         /// <param name="lbl"></param>
         private void SetLabelStyleNumber(Label lb)
         {
-            lb.Font = new Font("Times New Roman", 45F, FontStyle.Bold | FontStyle.Bold);
+            lb.Font = new Font("Times New Roman", 60F, FontStyle.Bold | FontStyle.Bold);
             lb.ForeColor = Color.White;
         }
 
-        private void SetTime()
+        private void SetDynamicLabelStyle(Label lb, string fontFamily, float size)
         {
-           Timer time1 = myTimer.GetTimer(5000,true);
-            time1.Tick += new EventHandler(time1_Tick);
-            time1.Enabled = true;
-            time1.Start();
+            lb.Font = new Font(fontFamily, size, FontStyle.Bold);
         }
 
-        void time1_Tick(object sender, EventArgs e)
-        {
-            Random rd = new Random();
-            int i = rd.Next(200, 400);
-            this.label13.Text = i.ToString();
-            i = rd.Next(200, 400);
-            this.label17.Text = i.ToString();
-            i = rd.Next(200, 400);
-            this.label21.Text = i.ToString();
-            i = rd.Next(200, 400);
-            this.label25.Text = i.ToString();
-        }
+        //private void SetTime()
+        //{
+        //   Timer time1 = myTimer.GetTimer(5000,true);
+        //    time1.Tick += new EventHandler(time1_Tick);
+        //    time1.Enabled = true;
+        //    time1.Start();
+        //}
 
+        //void time1_Tick(object sender, EventArgs e)
+        //{
+        //    Random rd = new Random();
+        //    int i = rd.Next(200, 400);
+        //    this.label13.Text = i.ToString();
+        //    i = rd.Next(200, 400);
+        //    this.label17.Text = i.ToString();
+        //    i = rd.Next(200, 400);
+        //    this.label21.Text = i.ToString();
+        //    i = rd.Next(200, 400);
+        //    this.label25.Text = i.ToString();
+        //}
+
+        #endregion
        
 
-        private void panel_DoubleClick(object sender, EventArgs e)
-        {
-            Color bColor, fColor;
-            bColor = (sender as Panel).BackColor;
-            fColor = (sender as Panel).Controls[0].ForeColor;
-
-            frmColorSel frmShow = new frmColorSel();
-            frmShow.NewForeColor = fColor;
-            frmShow.NewBackGroudColor = bColor;
-            if (frmShow.ShowDialog() != System.Windows.Forms.DialogResult.OK) { return; }
-
-            (sender as Panel).BackColor = frmShow.NewBackGroudColor;
-            (sender as Panel).Controls[0].ForeColor = frmShow.NewForeColor;
-        }
-
-        private void frmMainNew_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                if (MessageBox.Show("确定要退出系统吗？", "提示", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                {
-                    this.Close();
-                }
-            }
-             
-        } 
+        #endregion
     }
 }

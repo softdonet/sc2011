@@ -31,7 +31,7 @@ namespace Lcd.CommClass
         }
         public static string CurrentTimeNoSecond()
         {
-            return DateTime.Now.ToString("yyyy/MM/dd HH:mm");
+            return DateTime.Now.ToString("HH:mm:ss");
         }
     }
 }

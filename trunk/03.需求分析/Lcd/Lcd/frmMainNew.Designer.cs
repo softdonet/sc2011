@@ -859,6 +859,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmMainNew";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMainNew_FormClosing);
             this.Load += new System.EventHandler(this.frmMainNew_Load);
             this.SizeChanged += new System.EventHandler(this.frmMainNew_SizeChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMainNew_KeyDown);

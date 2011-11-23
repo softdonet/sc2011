@@ -7,21 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Lcd.CommClass;
+using System.Xml.Linq;
 
 namespace Lcd
 {
     public partial class frmMainNew : Form
     {
+       
+
 
         #region 公共变量
         public static int iLabel21 = 320;
         public static int iLabel25 = 245;
+        ModuleSettings setting;
         #endregion
 
         #region 构造函数
-
         public frmMainNew()
         {
+            setting = ModuleConfig.GetSettings();
             InitializeComponent();
             //实时时间
             Timer timer = myTimer.GetTimer(1000, true);
@@ -34,11 +38,11 @@ namespace Lcd
         {
             SetLblText();
             SetLocation();
+            SetColor();
         }
         #endregion
 
         #region 事件和算法
-
 
         //动态改变Cell的宽和高
         private void frmMainNew_SizeChanged(object sender, EventArgs e)
@@ -57,6 +61,7 @@ namespace Lcd
 
             }
         }
+
         private void panel_DoubleClick(object sender, EventArgs e)
         {
             Color bColor, fColor;
@@ -72,7 +77,6 @@ namespace Lcd
             (sender as Panel).Controls[0].ForeColor = frmShow.NewForeColor;
         }
 
-       
         private void frmMainNew_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -112,6 +116,7 @@ namespace Lcd
 
 
         }
+       
         #region 算法
 
 
@@ -263,30 +268,138 @@ namespace Lcd
             lb.Font = new Font(fontFamily, size, FontStyle.Bold);
         }
 
-        //private void SetTime()
-        //{
-        //   Timer time1 = myTimer.GetTimer(5000,true);
-        //    time1.Tick += new EventHandler(time1_Tick);
-        //    time1.Enabled = true;
-        //    time1.Start();
-        //}
-
-        //void time1_Tick(object sender, EventArgs e)
-        //{
-        //    Random rd = new Random();
-        //    int i = rd.Next(200, 400);
-        //    this.label13.Text = i.ToString();
-        //    i = rd.Next(200, 400);
-        //    this.label17.Text = i.ToString();
-        //    i = rd.Next(200, 400);
-        //    this.label21.Text = i.ToString();
-        //    i = rd.Next(200, 400);
-        //    this.label25.Text = i.ToString();
-        //}
-
         #endregion
-       
 
+        private void frmMainNew_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveColor();
+        }
+
+        /// <summary>
+        /// 保存颜色
+        /// </summary>
+        void SaveColor()
+        {
+            setting.FColor1 = panel1.Controls[0].ForeColor.ToArgb();
+            setting.FColor2 = panel2.Controls[0].ForeColor.ToArgb();
+            setting.FColor3 = panel3.Controls[0].ForeColor.ToArgb();
+            setting.FColor4 = panel4.Controls[0].ForeColor.ToArgb();
+            setting.FColor5 = panel5.Controls[0].ForeColor.ToArgb();
+            setting.FColor6 = panel6.Controls[0].ForeColor.ToArgb();
+            setting.FColor7 = panel7.Controls[0].ForeColor.ToArgb();
+            setting.FColor8 = panel8.Controls[0].ForeColor.ToArgb();
+            setting.FColor9 = panel9.Controls[0].ForeColor.ToArgb();
+            setting.FColor10 = panel10.Controls[0].ForeColor.ToArgb();
+            setting.FColor11 = panel11.Controls[0].ForeColor.ToArgb();
+            setting.FColor12 = panel12.Controls[0].ForeColor.ToArgb();
+            setting.FColor13 = panel13.Controls[0].ForeColor.ToArgb();
+            setting.FColor14 = panel14.Controls[0].ForeColor.ToArgb();
+            setting.FColor15 = panel15.Controls[0].ForeColor.ToArgb();
+            setting.FColor16 = panel16.Controls[0].ForeColor.ToArgb();
+            setting.FColor17 = panel17.Controls[0].ForeColor.ToArgb();
+            setting.FColor18 = panel18.Controls[0].ForeColor.ToArgb();
+            setting.FColor19 = panel19.Controls[0].ForeColor.ToArgb();
+            setting.FColor20 = panel20.Controls[0].ForeColor.ToArgb();
+            setting.FColor21 = panel21.Controls[0].ForeColor.ToArgb();
+            setting.FColor22 = panel22.Controls[0].ForeColor.ToArgb();
+            setting.FColor23 = panel23.Controls[0].ForeColor.ToArgb();
+            setting.FColor24 = panel24.Controls[0].ForeColor.ToArgb();
+            setting.FColor25 = panel25.Controls[0].ForeColor.ToArgb();
+            setting.FColor26 = panel26.Controls[0].ForeColor.ToArgb();
+            setting.FColor27 = panel27.Controls[0].ForeColor.ToArgb();
+
+            setting.BColor1 = panel1.BackColor.ToArgb();
+            setting.BColor2 = panel2.BackColor.ToArgb();
+            setting.BColor3 = panel3.BackColor.ToArgb();
+            setting.BColor4 = panel4.BackColor.ToArgb();
+            setting.BColor5 = panel5.BackColor.ToArgb();
+            setting.BColor6 = panel6.BackColor.ToArgb();
+            setting.BColor7 = panel7.BackColor.ToArgb();
+            setting.BColor8 = panel8.BackColor.ToArgb();
+            setting.BColor9 = panel9.BackColor.ToArgb();
+            setting.BColor10 = panel10.BackColor.ToArgb();
+            setting.BColor11 = panel11.BackColor.ToArgb();
+            setting.BColor12 = panel12.BackColor.ToArgb();
+            setting.BColor13 = panel13.BackColor.ToArgb();
+            setting.BColor14 = panel14.BackColor.ToArgb();
+            setting.BColor15 = panel15.BackColor.ToArgb();
+            setting.BColor16 = panel16.BackColor.ToArgb();
+            setting.BColor17 = panel17.BackColor.ToArgb();
+            setting.BColor18 = panel18.BackColor.ToArgb();
+            setting.BColor19 = panel19.BackColor.ToArgb();
+            setting.BColor20 = panel20.BackColor.ToArgb();
+            setting.BColor21 = panel21.BackColor.ToArgb();
+            setting.BColor22 = panel22.BackColor.ToArgb();
+            setting.BColor23 = panel23.BackColor.ToArgb();
+            setting.BColor24 = panel24.BackColor.ToArgb();
+            setting.BColor25 = panel25.BackColor.ToArgb();
+            setting.BColor26 = panel26.BackColor.ToArgb();
+            setting.BColor27 = panel27.BackColor.ToArgb();
+            ModuleConfig.SaveSettings(setting);
+
+        }
+
+        /// <summary>
+        /// 加载颜色
+        /// </summary>
+        void SetColor()
+        {
+            panel1.Controls[0].ForeColor = Color.FromArgb(setting.FColor1);
+            panel2.Controls[0].ForeColor = Color.FromArgb(setting.FColor2);
+            panel3.Controls[0].ForeColor = Color.FromArgb(setting.FColor3);
+            panel4.Controls[0].ForeColor = Color.FromArgb(setting.FColor4);
+            panel5.Controls[0].ForeColor = Color.FromArgb(setting.FColor5);
+            panel6.Controls[0].ForeColor = Color.FromArgb(setting.FColor6);
+            panel7.Controls[0].ForeColor = Color.FromArgb(setting.FColor7);
+            panel8.Controls[0].ForeColor = Color.FromArgb(setting.FColor8);
+            panel9.Controls[0].ForeColor = Color.FromArgb(setting.FColor9);
+            panel10.Controls[0].ForeColor = Color.FromArgb(setting.FColor10);
+            panel11.Controls[0].ForeColor = Color.FromArgb(setting.FColor11);
+            panel12.Controls[0].ForeColor = Color.FromArgb(setting.FColor12);
+            panel13.Controls[0].ForeColor = Color.FromArgb(setting.FColor13);
+            panel14.Controls[0].ForeColor = Color.FromArgb(setting.FColor14);
+            panel15.Controls[0].ForeColor = Color.FromArgb(setting.FColor15);
+            panel16.Controls[0].ForeColor = Color.FromArgb(setting.FColor16);
+            panel17.Controls[0].ForeColor = Color.FromArgb(setting.FColor17);
+            panel18.Controls[0].ForeColor = Color.FromArgb(setting.FColor18);
+            panel19.Controls[0].ForeColor = Color.FromArgb(setting.FColor19);
+            panel20.Controls[0].ForeColor = Color.FromArgb(setting.FColor20);
+            panel21.Controls[0].ForeColor = Color.FromArgb(setting.FColor21);
+            panel22.Controls[0].ForeColor = Color.FromArgb(setting.FColor22);
+            panel23.Controls[0].ForeColor = Color.FromArgb(setting.FColor23);
+            panel24.Controls[0].ForeColor = Color.FromArgb(setting.FColor24);
+            panel25.Controls[0].ForeColor = Color.FromArgb(setting.FColor25);
+            panel26.Controls[0].ForeColor = Color.FromArgb(setting.FColor26);
+            panel27.Controls[0].ForeColor = Color.FromArgb(setting.FColor27);
+
+            panel1.BackColor = Color.FromArgb(setting.BColor1);
+            panel2.BackColor = Color.FromArgb(setting.BColor2);
+            panel3.BackColor = Color.FromArgb(setting.BColor3);
+            panel4.BackColor = Color.FromArgb(setting.BColor4);
+            panel5.BackColor = Color.FromArgb(setting.BColor5);
+            panel6.BackColor = Color.FromArgb(setting.BColor6);
+            panel7.BackColor = Color.FromArgb(setting.BColor7);
+            panel8.BackColor = Color.FromArgb(setting.BColor8);
+            panel9.BackColor = Color.FromArgb(setting.BColor9);
+            panel10.BackColor = Color.FromArgb(setting.BColor10);
+            panel11.BackColor = Color.FromArgb(setting.BColor11);
+            panel12.BackColor = Color.FromArgb(setting.BColor12);
+            panel13.BackColor = Color.FromArgb(setting.BColor13);
+            panel14.BackColor = Color.FromArgb(setting.BColor14);
+            panel15.BackColor = Color.FromArgb(setting.BColor15);
+            panel16.BackColor = Color.FromArgb(setting.BColor16);
+            panel17.BackColor = Color.FromArgb(setting.BColor17);
+            panel18.BackColor = Color.FromArgb(setting.BColor18);
+            panel19.BackColor = Color.FromArgb(setting.BColor19);
+            panel20.BackColor = Color.FromArgb(setting.BColor20);
+            panel21.BackColor = Color.FromArgb(setting.BColor21);
+            panel22.BackColor = Color.FromArgb(setting.BColor22);
+            panel23.BackColor = Color.FromArgb(setting.BColor23);
+            panel24.BackColor = Color.FromArgb(setting.BColor24);
+            panel25.BackColor = Color.FromArgb(setting.BColor25);
+            panel26.BackColor = Color.FromArgb(setting.BColor26);
+            panel27.BackColor = Color.FromArgb(setting.BColor27);
+        }
         #endregion
     }
 }

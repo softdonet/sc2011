@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommClass\ModuleConfig.cs" />
+    <Compile Include="CommClass\ModuleSettings.cs" />
     <Compile Include="CommClass\myTimer.cs" />
     <Compile Include="frmColorSel.cs">
       <SubType>Form</SubType>
@@ -113,6 +115,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ColorControl.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

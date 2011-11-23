@@ -40,7 +40,8 @@ namespace MES.UserControls
 
             dataGrdView.ReadOnly = true;
             dataGrdView.EnableHeadersVisualStyles = false;
-            dataGrdView.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkRed;
+            dataGrdView.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkRed  ;
+            dataGrdView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dataGrdView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGrdView.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("宋体", 40F, FontStyle.Bold);
             dataGrdView.AllowUserToResizeColumns = false;

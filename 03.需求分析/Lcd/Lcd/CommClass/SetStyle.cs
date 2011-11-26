@@ -20,9 +20,9 @@ namespace Lcd.CommClass
         public static void SetOpacityAdd(Form pfrm)
         {
             frm = pfrm;
-            dOpacity = 0.3;
+            //dOpacity = 0.3;
             frm.Opacity = 0.3;
-            timerOpacity = myTimer.GetTimer(50, true);
+            timerOpacity = myTimer.GetTimer(80, true);
             timerOpacity.Tick += new EventHandler(timerOpacityAdd_Tick);
         }
 
@@ -35,7 +35,8 @@ namespace Lcd.CommClass
             }
             else
             {
-                dOpacity = 1;
+              //dOpacity = 1;
+                dOpacity = 0.3;
                 timerOpacity.Stop();
             }
 

@@ -54,12 +54,7 @@ namespace Lcd
             {
                 if (count > setting.WelComeFromTime)
                 {
-                    if (!welComeFromIsShow)
-                    {
-                        frmWel.Show();
-                        welComeFromIsShow = true;
-                    }
-                    CommClass.SetStyle.SetOpacityAdd(frmWel);
+                    CommClass.SetStyle.SetOpacityAdd(this);
                     frmWel.Visible = false;
                     this.Visible = true;
                     count = 0;
@@ -69,7 +64,12 @@ namespace Lcd
             {
                 if (count > setting.MainFormTime)
                 {
-                    CommClass.SetStyle.SetOpacityAdd(this);
+                    if (!welComeFromIsShow)
+                    {
+                        frmWel.Show();
+                        welComeFromIsShow = true;
+                    }
+                    CommClass.SetStyle.SetOpacityAdd(frmWel);
                     frmWel.Visible = true;
                     this.Visible = false;
                     count = 0;

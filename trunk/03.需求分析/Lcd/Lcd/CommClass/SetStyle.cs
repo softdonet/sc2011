@@ -15,12 +15,15 @@ namespace Lcd.CommClass
             lb.Font = new Font(fontFamily, size, FontStyle.Bold);
             lb.ForeColor = c;
         }
-       public static Double dOpacity = 0;
+       public static Double dOpacity = 0.3;
        static Timer timerOpacity;
         public static void SetOpacityAdd(Form pfrm)
         {
+
             frm = pfrm;
-            timerOpacity = myTimer.GetTimer(2000, true);
+            dOpacity = 0.3;
+            frm.Opacity = 0.3;
+            timerOpacity = myTimer.GetTimer(50, true);
             timerOpacity.Tick += new EventHandler(timerOpacityAdd_Tick);
         }
 
@@ -57,7 +60,6 @@ namespace Lcd.CommClass
                 dOpacity = 0;
                 timerOpacity.Stop();
             }
-
         }
     }
 }

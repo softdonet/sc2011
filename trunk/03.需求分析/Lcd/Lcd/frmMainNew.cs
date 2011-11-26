@@ -147,7 +147,7 @@ namespace Lcd
                     }
                     break;
                 case Keys.H:
-                    frmSettings fs = new frmSettings();
+                    frmSettings fs = new frmSettings(setting);
                     fs.ShowDialog();
                     break;
                 //default:

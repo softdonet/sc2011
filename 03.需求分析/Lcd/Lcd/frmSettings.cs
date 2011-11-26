@@ -11,15 +11,13 @@ namespace Lcd
     public partial class frmSettings : Form
     {
         private ModuleSettings settings;
-       
 
-        public frmSettings()
+
+        public frmSettings(ModuleSettings set)
         {
             InitializeComponent();
             this.KeyPreview = true;
-            settings = new ModuleSettings();
-            settings = ModuleConfig.GetSettings();
-            
+            settings = set;
         }
 
         private void Setting_Form_Load(object sender, EventArgs e)
@@ -43,7 +41,7 @@ namespace Lcd
 
         private void frmSettings_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode==Keys.Escape)
+            if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
             }

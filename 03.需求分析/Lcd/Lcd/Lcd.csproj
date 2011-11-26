@@ -47,9 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommClass\FrequeeText.cs" />
     <Compile Include="CommClass\ModuleConfig.cs" />
     <Compile Include="CommClass\ModuleSettings.cs" />
     <Compile Include="CommClass\myTimer.cs" />
+    <Compile Include="CommClass\SetStyle.cs" />
     <Compile Include="frmColorSel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +116,7 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\C70-Blue.jpg" />
     <Content Include="Images\qiaotiaoban.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

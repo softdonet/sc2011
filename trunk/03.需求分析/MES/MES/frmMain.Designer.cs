@@ -114,7 +114,7 @@
             this.lblCurrentTime.ForeColor = System.Drawing.Color.White;
             this.lblCurrentTime.Location = new System.Drawing.Point(184, 55);
             this.lblCurrentTime.Name = "lblCurrentTime";
-            this.lblCurrentTime.Size = new System.Drawing.Size(196, 25);
+            this.lblCurrentTime.Size = new System.Drawing.Size(198, 25);
             this.lblCurrentTime.TabIndex = 3;
             this.lblCurrentTime.Text = "2011-11-19 20:18:36";
             // 
@@ -136,7 +136,7 @@
             this.lblScanTime.ForeColor = System.Drawing.Color.White;
             this.lblScanTime.Location = new System.Drawing.Point(184, 13);
             this.lblScanTime.Name = "lblScanTime";
-            this.lblScanTime.Size = new System.Drawing.Size(196, 25);
+            this.lblScanTime.Size = new System.Drawing.Size(198, 25);
             this.lblScanTime.TabIndex = 2;
             this.lblScanTime.Text = "2011-11-19 17:25:16";
             // 
@@ -148,6 +148,7 @@
             this.button1.TabIndex = 6;
             this.button1.Text = "OK";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
@@ -199,7 +200,7 @@
             // 
             this.toolStripLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel1.Image")));
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(83, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(63, 22);
             this.toolStripLabel1.Text = "DB CONN";
             // 
             // toolStripSeparator2
@@ -210,7 +211,7 @@
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(66, 22);
+            this.toolStripLabel2.Size = new System.Drawing.Size(47, 22);
             this.toolStripLabel2.Text = "BR CONN";
             // 
             // toolStripSeparator3
@@ -222,7 +223,7 @@
             // 
             this.toolStripLabel3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel3.Image")));
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(80, 22);
+            this.toolStripLabel3.Size = new System.Drawing.Size(63, 22);
             this.toolStripLabel3.Text = "LA CONN";
             // 
             // toolStripSeparator4
@@ -234,7 +235,7 @@
             // 
             this.toolStripLabel4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel4.Image")));
             this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(55, 22);
+            this.toolStripLabel4.Size = new System.Drawing.Size(45, 22);
             this.toolStripLabel4.Text = "WAIT";
             // 
             // panelContainer

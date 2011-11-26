@@ -15,7 +15,7 @@ namespace Lcd.CommClass
             lb.Font = new Font(fontFamily, size, FontStyle.Bold);
             lb.ForeColor = c;
         }
-       public static Double dOpacity = 0.3;
+       public static Double dOpacity = 0.0;
        static Timer timerOpacity;
         public static void SetOpacityAdd(Form pfrm)
         {
@@ -23,6 +23,7 @@ namespace Lcd.CommClass
             //dOpacity = 0.3;
             frm.Opacity = 0.3;
             timerOpacity = myTimer.GetTimer(80, true);
+
             timerOpacity.Tick += new EventHandler(timerOpacityAdd_Tick);
         }
 

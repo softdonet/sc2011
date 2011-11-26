@@ -47,7 +47,7 @@ namespace Lcd.CommClass
 
         static void timerOpacityMinus_Tick(object sender, EventArgs e)
         {
-            if (dOpacity >= 0)
+            if (dOpacity > 0)
             {
                 dOpacity -= 0.1;
                 frm.Opacity = dOpacity;

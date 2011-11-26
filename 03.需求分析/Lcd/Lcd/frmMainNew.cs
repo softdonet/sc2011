@@ -14,8 +14,6 @@ namespace Lcd
     public partial class frmMainNew : Form
     {
        
-
-
         #region 公共变量
         public static int iLabel21 = 320;
         public static int iLabel25 = 245;

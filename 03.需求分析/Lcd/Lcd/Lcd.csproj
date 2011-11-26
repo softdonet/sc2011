@@ -56,12 +56,6 @@
     <Compile Include="frmColorSel.Designer.cs">
       <DependentUpon>frmColorSel.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmMain.Designer.cs">
-      <DependentUpon>frmMain.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmMainNew.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,17 +70,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UcViewText.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UcViewText.Designer.cs">
-      <DependentUpon>UcViewText.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="frmColorSel.resx">
       <DependentUpon>frmColorSel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMainNew.resx">
       <DependentUpon>frmMainNew.cs</DependentUpon>
@@ -104,10 +89,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UcViewText.resx">
-      <DependentUpon>UcViewText.cs</DependentUpon>
-    </EmbeddedResource>
-    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -118,17 +99,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="config\" />
-    <Folder Include="Core\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ColorControl.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Config.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\qiaotiaoban.gif" />
   </ItemGroup>

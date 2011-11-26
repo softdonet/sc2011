@@ -29,7 +29,7 @@ namespace Lcd
 
             frmWel = new frmWelcome(setting.WelComeText);
             frmWel.Visible = false;
-            frmWel.Show();
+           
             Timer timerChange = myTimer.GetTimer(1000, true);
             timerChange.Tick += new EventHandler(timerChange_Tick);
 
@@ -40,6 +40,7 @@ namespace Lcd
 
         }
 
+        bool welComeFromIsShow = false;
         int count = 0;
         /// <summary>
         /// 窗体切换
@@ -53,6 +54,11 @@ namespace Lcd
             {
                 if (count > setting.WelComeFromTime)
                 {
+                    if (!welComeFromIsShow)
+                    {
+                        frmWel.Show();
+                        welComeFromIsShow = true;
+                    }
                     frmWel.Visible = false;
                     this.Visible = true;
                     count = 0;

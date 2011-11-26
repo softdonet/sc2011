@@ -19,7 +19,6 @@ namespace Lcd.CommClass
        static Timer timerOpacity;
         public static void SetOpacityAdd(Form pfrm)
         {
-
             frm = pfrm;
             dOpacity = 0.3;
             frm.Opacity = 0.3;

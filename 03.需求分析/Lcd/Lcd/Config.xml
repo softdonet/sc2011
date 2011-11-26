@@ -54,4 +54,7 @@
   <BColor25>-16777216</BColor25>
   <BColor26>-15835713</BColor26>
   <BColor27>-16777216</BColor27>
+  <MainFormTime>10</MainFormTime>
+  <WelComeFromTime>3</WelComeFromTime>
+  <WelComeText>欢迎领导视察工作！</WelComeText>
 </ModuleSettings>

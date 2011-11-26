@@ -56,11 +56,10 @@ namespace Lcd
                 {
                     if (!welComeFromIsShow)
                     {
-                       // frmWel.Opacity = 0.2;
                         frmWel.Show();
                         welComeFromIsShow = true;
-                        CommClass.SetStyle.SetOpacityAdd(frmWel);
                     }
+                    CommClass.SetStyle.SetOpacityAdd(frmWel);
                     frmWel.Visible = false;
                     this.Visible = true;
                     count = 0;
@@ -70,9 +69,8 @@ namespace Lcd
             {
                 if (count > setting.MainFormTime)
                 {
+                    CommClass.SetStyle.SetOpacityAdd(this);
                     frmWel.Visible = true;
-                    CommClass.SetStyle.SetOpacityAdd(frmWel);
-
                     this.Visible = false;
                     count = 0;
                 }

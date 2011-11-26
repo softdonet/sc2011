@@ -14,8 +14,6 @@ namespace Lcd
         public frmWelcome()
         {
             InitializeComponent();
-            
         }
-        
     }
 }

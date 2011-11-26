@@ -18,6 +18,7 @@ namespace Lcd
         public static int iLabel21 = 320;
         public static int iLabel25 = 245;
         ModuleSettings setting;
+        frmWelcome frmWel = null;
         #endregion
 
         #region 构造函数
@@ -25,11 +26,37 @@ namespace Lcd
         {
             setting = ModuleConfig.GetSettings();
             InitializeComponent();
+
+            frmWel = new frmWelcome();
+            frmWel.Visible = false;
+            frmWel.Show();
+            Timer timerChange = myTimer.GetTimer(5000, true);
+            timerChange.Tick += new EventHandler(timerChange_Tick);
+            
             //实时时间
             Timer timer = myTimer.GetTimer(1000, true);
             timer.Tick += new EventHandler(timer_Tick);
             SetLabelFont();
 
+        }
+
+        /// <summary>
+        /// 窗体切换
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void timerChange_Tick(object sender, EventArgs e)
+        {
+            if (frmWel.Visible == true)
+            {
+                frmWel.Visible = false;
+                this.Visible = true;
+            }
+            else
+            {
+                frmWel.Visible = true;
+                this.Visible = false;
+            }
         }
 
         private void frmMainNew_Load(object sender, EventArgs e)

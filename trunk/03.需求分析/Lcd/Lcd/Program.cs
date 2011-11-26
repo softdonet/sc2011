@@ -16,6 +16,7 @@ namespace Lcd
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmMainNew());
+            //Application.Run(new frmWelcome("欢迎各位光临！！！"));
         }
     }
 }

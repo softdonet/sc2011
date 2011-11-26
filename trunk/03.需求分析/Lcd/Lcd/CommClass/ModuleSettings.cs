@@ -65,7 +65,15 @@ namespace Lcd.CommClass
         public int BColor25 { get; set; }
         public int BColor26 { get; set; }
         public int BColor27 { get; set; }
-       
+
+
+        [DescriptionAttribute("主窗体停留时间。"), CategoryAttribute("系统设置")]
+        public int MainFormTime { get; set; }
+        [DescriptionAttribute("欢迎窗体停留时间。"), CategoryAttribute("系统设置")]
+        public int WelComeFromTime { get; set; }
+        [DescriptionAttribute("欢迎文字。"), CategoryAttribute("系统设置")]
+        public string WelComeText { get; set; }
+      
     }
 
     #endregion

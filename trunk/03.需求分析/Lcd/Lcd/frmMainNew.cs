@@ -13,7 +13,7 @@ namespace Lcd
 {
     public partial class frmMainNew : Form
     {
-       
+
         #region 公共变量
         public static int iLabel21 = 320;
         public static int iLabel25 = 245;
@@ -27,12 +27,12 @@ namespace Lcd
             setting = ModuleConfig.GetSettings();
             InitializeComponent();
 
-            frmWel = new frmWelcome();
+            frmWel = new frmWelcome(setting.WelComeText);
             frmWel.Visible = false;
             frmWel.Show();
-            Timer timerChange = myTimer.GetTimer(5000, true);
+            Timer timerChange = myTimer.GetTimer(1000, true);
             timerChange.Tick += new EventHandler(timerChange_Tick);
-            
+
             //实时时间
             Timer timer = myTimer.GetTimer(1000, true);
             timer.Tick += new EventHandler(timer_Tick);
@@ -40,6 +40,7 @@ namespace Lcd
 
         }
 
+        int count = 0;
         /// <summary>
         /// 窗体切换
         /// </summary>
@@ -47,15 +48,24 @@ namespace Lcd
         /// <param name="e"></param>
         void timerChange_Tick(object sender, EventArgs e)
         {
+            count++;
             if (frmWel.Visible == true)
             {
-                frmWel.Visible = false;
-                this.Visible = true;
+                if (count > setting.WelComeFromTime)
+                {
+                    frmWel.Visible = false;
+                    this.Visible = true;
+                    count = 0;
+                }
             }
             else
             {
-                frmWel.Visible = true;
-                this.Visible = false;
+                if (count > setting.MainFormTime)
+                {
+                    frmWel.Visible = true;
+                    this.Visible = false;
+                    count = 0;
+                }
             }
         }
 
@@ -136,12 +146,16 @@ namespace Lcd
                         label25.Text = iLabel25.ToString();
                     }
                     break;
+                case Keys.H:
+                    frmSettings fs = new frmSettings();
+                    fs.ShowDialog();
+                    break;
                 //default:
             }
 
 
         }
-       
+
         #region 算法
 
 

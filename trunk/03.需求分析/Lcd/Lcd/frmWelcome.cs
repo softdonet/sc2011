@@ -11,9 +11,10 @@ namespace Lcd
 {
     public partial class frmWelcome : Form
     {
-        public frmWelcome()
+        public frmWelcome(string welcomeText)
         {
             InitializeComponent();
+            this.label1.Text = welcomeText;
         }
     }
 }

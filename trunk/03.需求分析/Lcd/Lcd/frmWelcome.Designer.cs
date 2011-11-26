@@ -43,6 +43,7 @@
             this.lblCurrent.Size = new System.Drawing.Size(29, 12);
             this.lblCurrent.TabIndex = 0;
             this.lblCurrent.Text = "欢迎";
+            this.lblCurrent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
             // 

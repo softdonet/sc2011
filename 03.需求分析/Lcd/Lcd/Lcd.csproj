@@ -78,6 +78,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\ScrollingText.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="frmColorSel.resx">
       <DependentUpon>frmColorSel.cs</DependentUpon>
     </EmbeddedResource>

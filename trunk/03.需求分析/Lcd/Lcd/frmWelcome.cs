@@ -13,20 +13,17 @@ namespace Lcd
     public partial class frmWelcome : Form
     {
         bool toLeft = false;
-        
-        //public frmWelcome()
-        //{
-        //    InitializeComponent();
-        //}
+
+
         public frmWelcome(string welcomeText)
         {
             InitializeComponent();
-
-            this.lblCurrent.Text = welcomeText;
-            CommClass.SetStyle.SetDynamicLabelStyle(lblCurrent, "楷体", 45F,Color.Red);
-            
+            this.scrollingText1.ScrollText = "                " + welcomeText;
+            //this.lblCurrent.Text = welcomeText;
+            CommClass.SetStyle.SetDynamicLabelStyle(lblCurrent, "楷体", 45F, Color.Red);
             Timer timerFrequee = myTimer.GetTimer(50, true);
             timerFrequee.Tick += new EventHandler(timerFrequee_Tick);
+            timerFrequee.Enabled = false;
         }
 
         void timerFrequee_Tick(object sender, EventArgs e)

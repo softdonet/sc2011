@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.Xml.Linq;
+using Scada.BLL.Implement;
 
 namespace Scada.Server.WebService
 {
@@ -20,7 +21,7 @@ namespace Scada.Server.WebService
     // [System.Web.Script.Services.ScriptService]
     public class Service1 : System.Web.Services.WebService
     {
-
+        
         [WebMethod]
         public string HelloWorld()
         {

@@ -8,7 +8,8 @@ using WS = Scada.Server.WebService.TheThirdWeatherWebServiceReference;
 namespace Scada.Server.WebService
 {
     /// <summary>
-    /// Summary description for WeatherWebService
+    /// 天气预报服务
+    /// yanghk at 2011-12-4
     /// </summary>
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]

@@ -33,18 +33,22 @@ namespace Lcd
         public frmColorSel()
         {
             InitializeComponent();
+        }
+        public frmColorSel( bool flag)
+        {
+            InitializeComponent();
             this.KeyPreview = true;
-            if (CurrentValue==null)
-            {
-                lblCurrent.Visible = false;
-                txtCurrentValue.Visible = false;
-            }
-            else
+
+            if (flag)
             {
                 lblCurrent.Visible = true;
                 txtCurrentValue.Visible = true;
             }
-
+            else
+            {
+                lblCurrent.Visible = false;
+                txtCurrentValue.Visible = false;
+            }
         }
 
 

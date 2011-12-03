@@ -113,7 +113,7 @@ namespace Lcd
             bColor = (sender as Panel).BackColor;
             fColor = (sender as Panel).Controls[0].ForeColor;
             string strValue = string.Empty; ;
-
+            bool IsFlag = false;
          //  Control []c= (sender as Panel).Controls.Find("label13", true);
            foreach (Control item in (sender as Panel).Controls)
            {
@@ -124,12 +124,17 @@ namespace Lcd
                        item.Name == "label21" || item.Name == "label23" || item.Name == "label25")
                    {
                        strValue = item.Text;
+                       IsFlag = true;
+                   }
+                   else
+                   {
+                       IsFlag = false;
                    }
                    
                }
                
            }
-            frmColorSel frmShow = new frmColorSel();
+            frmColorSel frmShow = new frmColorSel(IsFlag);
             frmShow.NewForeColor = fColor;
             frmShow.NewBackGroudColor = bColor;
             frmShow.CurrentValue = strValue;

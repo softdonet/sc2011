@@ -24,11 +24,26 @@ namespace Lcd
             get;
             set;
         }
+        public string CurrentValue
+        { 
+            get;
+            set;
+        }
 
         public frmColorSel()
         {
             InitializeComponent();
             this.KeyPreview = true;
+            if (CurrentValue==null)
+            {
+                lblCurrent.Visible = false;
+                txtCurrentValue.Visible = false;
+            }
+            else
+            {
+                lblCurrent.Visible = true;
+                txtCurrentValue.Visible = true;
+            }
 
         }
 
@@ -38,6 +53,17 @@ namespace Lcd
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             NewBackGroudColor = this.txtBackColor.BackColor;
             NewForeColor = this.txtForeColor.BackColor;
+            int tempValue ;
+            if (Int32.TryParse(this.txtCurrentValue.Text, out tempValue))
+            {
+                CurrentValue = this.txtCurrentValue.Text;
+            }
+            else
+            {
+                MessageBox.Show("请输入数字！");
+                return;
+            }
+            
             this.Close();
         }
 

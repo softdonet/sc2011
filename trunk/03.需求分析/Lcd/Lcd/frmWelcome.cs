@@ -18,12 +18,13 @@ namespace Lcd
         public frmWelcome(string welcomeText)
         {
             InitializeComponent();
-            this.scrollingText1.ScrollText = "                " + welcomeText;
-            //this.lblCurrent.Text = welcomeText;
+            //this.scrollingText1.ScrollText = "                " + welcomeText;
+            this.lblCurrent.Text = welcomeText;
             CommClass.SetStyle.SetDynamicLabelStyle(lblCurrent, "楷体", 45F, Color.Red);
-            Timer timerFrequee = myTimer.GetTimer(50, true);
-            timerFrequee.Tick += new EventHandler(timerFrequee_Tick);
-            timerFrequee.Enabled = false;
+           
+            //Timer timerFrequee = myTimer.GetTimer(50, true);
+            //timerFrequee.Tick += new EventHandler(timerFrequee_Tick);
+            //timerFrequee.Enabled = false;
         }
 
         void timerFrequee_Tick(object sender, EventArgs e)

@@ -58,7 +58,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Expression.Drawing, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Expression.Prototyping.Interactivity, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Maps.MapControl">
+      <HintPath>..\..\Lib\Microsoft.Maps.MapControl.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Maps.MapControl.Common">
+      <HintPath>..\..\Lib\Microsoft.Maps.MapControl.Common.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib" />
+    <Reference Include="SLVisifire.Charts">
+      <HintPath>..\..\Lib\SLVisifire.Charts.dll</HintPath>
+    </Reference>
+    <Reference Include="SLVisifire.Gauges">
+      <HintPath>..\..\Lib\SLVisifire.Gauges.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations, Version=2.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -69,12 +84,25 @@
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Header.xaml.cs">
+      <DependentUpon>Header.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MyContent.cs" />
+    <Compile Include="Controls\MyGauge.cs" />
+    <Compile Include="Controls\MyWin.cs" />
+    <Compile Include="LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -86,13 +114,69 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Controls\Header.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Login.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Modules\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\analysis.PNG" />
+    <Resource Include="Images\bg.jpg" />
+    <Resource Include="Images\electric0.png" />
+    <Resource Include="Images\electric1.png" />
+    <Resource Include="Images\electric2.png" />
+    <Resource Include="Images\electric3.png" />
+    <Resource Include="Images\electric4.png" />
+    <Resource Include="Images\fj.jpg" />
+    <Resource Include="Images\grayer.png" />
+    <Resource Include="Images\green.gif" />
+    <Resource Include="Images\green.png" />
+    <Resource Include="Images\headerbg.png" />
+    <Resource Include="Images\headerbg2.png" />
+    <Resource Include="Images\line-chart.png" />
+    <Resource Include="Images\line.png" />
+    <Resource Include="Images\Login.png" />
+    <Resource Include="Images\LoginBg.png" />
+    <Resource Include="Images\logo.png" />
+    <Resource Include="Images\mapbg.png" />
+    <Resource Include="Images\menu1.png" />
+    <Resource Include="Images\menu2.png" />
+    <Resource Include="Images\menu3.png" />
+    <Resource Include="Images\menu4.png" />
+    <Resource Include="Images\menu5.png" />
+    <Resource Include="Images\Money.png" />
+    <Resource Include="Images\red.gif" />
+    <Resource Include="Images\red.png" />
+    <Resource Include="Images\senmenu.png" />
+    <Resource Include="Images\senmenu1.png" />
+    <Resource Include="Images\signal1.png" />
+    <Resource Include="Images\signal2.png" />
+    <Resource Include="Images\signal3.png" />
+    <Resource Include="Images\temp.jpg" />
+    <Resource Include="Images\whry.jpg" />
+    <Resource Include="Images\xh4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -34,11 +34,14 @@ namespace Lcd
         {
             InitializeComponent();
         }
+
+        //是否需要修改数字
+        bool IsrRequireEditNum = false;
         public frmColorSel( bool flag)
         {
             InitializeComponent();
             this.KeyPreview = true;
-
+            IsrRequireEditNum = flag;
             if (flag)
             {
                 lblCurrent.Visible = true;
@@ -57,7 +60,7 @@ namespace Lcd
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             NewBackGroudColor = this.txtBackColor.BackColor;
             NewForeColor = this.txtForeColor.BackColor;
-            if (this.txtCurrentValue.Visible == true)
+            if (IsrRequireEditNum)
             {
                 int tempValue;
                 if (Int32.TryParse(this.txtCurrentValue.Text, out tempValue))

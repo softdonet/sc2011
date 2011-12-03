@@ -144,7 +144,10 @@ namespace Lcd
             (sender as Panel).BackColor = frmShow.NewBackGroudColor;
             (sender as Panel).Controls[0].ForeColor = frmShow.NewForeColor;
 
-            (sender as Panel).Controls[0].Text = frmShow.CurrentValue;
+            if (IsFlag)
+            {
+                (sender as Panel).Controls[0].Text = frmShow.CurrentValue;
+            }
         }
 
         private void frmMainNew_KeyDown(object sender, KeyEventArgs e)

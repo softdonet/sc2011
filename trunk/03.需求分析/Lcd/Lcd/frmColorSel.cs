@@ -57,15 +57,18 @@ namespace Lcd
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             NewBackGroudColor = this.txtBackColor.BackColor;
             NewForeColor = this.txtForeColor.BackColor;
-            int tempValue ;
-            if (Int32.TryParse(this.txtCurrentValue.Text, out tempValue))
+            if (this.txtCurrentValue.Visible == true)
             {
-                CurrentValue = this.txtCurrentValue.Text;
-            }
-            else
-            {
-                MessageBox.Show("请输入数字！");
-                return;
+                int tempValue;
+                if (Int32.TryParse(this.txtCurrentValue.Text, out tempValue))
+                {
+                    CurrentValue = this.txtCurrentValue.Text;
+                }
+                else
+                {
+                    MessageBox.Show("请输入数字！");
+                    return;
+                }
             }
             
             this.Close();

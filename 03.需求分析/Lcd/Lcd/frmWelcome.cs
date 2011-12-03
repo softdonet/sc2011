@@ -12,60 +12,30 @@ namespace Lcd
 {
     public partial class frmWelcome : Form
     {
-        bool toLeft = false;
-
-
-        public frmWelcome(string welcomeText)
+        ModuleSettings setting = null;
+        public frmWelcome(ModuleSettings set)
         {
             InitializeComponent();
-            //this.scrollingText1.ScrollText = "                " + welcomeText;
-            this.lblCurrent.Text = welcomeText;
-            CommClass.SetStyle.SetDynamicLabelStyle(lblCurrent, "楷体", 45F, Color.Red);
-           
-            //Timer timerFrequee = myTimer.GetTimer(50, true);
-            //timerFrequee.Tick += new EventHandler(timerFrequee_Tick);
-            //timerFrequee.Enabled = false;
+            setting = set;
+            lblRowOneText.Text = setting.RowOneWelComeText;
+            lblRowTwoText.Text = setting.RowTwoWelComeText;
+            CommClass.SetStyle.SetDynamicLabelStyle(lblRowOneText, setting.FontFamily, setting.FontSize, Color.Red);
+            CommClass.SetStyle.SetDynamicLabelStyle(lblRowTwoText, setting.FontFamily, setting.FontSize, Color.Red);
+            this.panel1.BackgroundImage = Image.FromFile(setting.WelComeBackgroundImage);
         }
 
-        void timerFrequee_Tick(object sender, EventArgs e)
+        private void frmWelcome_Load(object sender, EventArgs e)
         {
-            int Ox = this.Width;
-            int Oy = this.Height;
-            int x = lblCurrent.Location.X;
-            int y = lblCurrent.Location.Y;
-            Frequee(lblCurrent, Ox, Oy, x, y);
+            SetLocation();
         }
 
-        private void Frequee(Label lblCurrent, int Ox, int Oy, int x, int y)
+        /// <summary>
+        /// 定位
+        /// </summary>
+        private void SetLocation()
         {
-            if (toLeft == false)
-            {
-                if (x <= (Ox - lblCurrent.Width))
-                {
-                    x += 1;
-                    lblCurrent.Location = new Point(x, y);
-                }
-                else
-                {
-                    toLeft = true;
-                }
-            }
-            else
-            {
-                if (toLeft)
-                {
-                    if (x >= 0)
-                    {
-                        x -= 1;
-                        lblCurrent.Location = new Point(x, y);
-                    }
-                    else
-                    {
-                        toLeft = false;
-                    }
-                }
-            }
+            lblRowOneText.Location = new Point((panel1.Width - lblRowOneText.Width) / 2, int.Parse(setting.WelComeTextTop));
+            lblRowTwoText.Location = new Point((panel1.Width - lblRowTwoText.Width) / 2, int.Parse(setting.WelComeTextTop) + int.Parse(setting.WelComeTextRowledge) + lblRowOneText.Height);
         }
-
     }
 }

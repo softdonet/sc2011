@@ -27,7 +27,7 @@ namespace Lcd
             setting = ModuleConfig.GetSettings();
             InitializeComponent();
 
-            frmWel = new frmWelcome(setting.WelComeText);
+            frmWel = new frmWelcome(setting);
             frmWel.Visible = false;
            
             Timer timerChange = myTimer.GetTimer(1000, true);
@@ -54,7 +54,7 @@ namespace Lcd
             {
                 if (count > setting.WelComeFromTime)
                 {
-                    CommClass.SetStyle.SetOpacityAdd(this);
+                    //CommClass.SetStyle.SetOpacityAdd(this);
                     frmWel.Visible = false;
                     this.Visible = true;
                     count = 0;
@@ -64,7 +64,7 @@ namespace Lcd
             {
                 if (count > setting.MainFormTime)
                 {
-                    this.Visible = false;
+                    //this.Visible = false;
                     if (!welComeFromIsShow)
                     {
                         frmWel.Opacity = 0;
@@ -250,7 +250,7 @@ namespace Lcd
             label11.Location = new Point((panel11.Width - label11.Width) / 2, (panel11.Height - label11.Height) / 2);
             label12.Location = new Point((panel12.Width - label12.Width) / 2, (panel2.Height - label12.Height) / 2);
             label13.Location = new Point((panel13.Width - label13.Width) / 2, (panel3.Height - label13.Height) / 2);
-            label14.Location = new Point((panel14.Width - label14.Width) / 2, (panel14.Height - label4.Height) / 2);
+            label14.Location = new Point((panel14.Width - label14.Width) / 2, (panel14.Height - label14.Height) / 2);
             label15.Location = new Point((panel15.Width - label15.Width) / 2, (panel5.Height - label15.Height) / 2);
 
             label16.Location = new Point((panel16.Width - label16.Width) / 2, (panel16.Height - label16.Height) / 2);
@@ -281,7 +281,7 @@ namespace Lcd
             SetDynamicLabelStyle(lblCurrentTime, "Times New Roman", 70);
             SetLabelStyle(label2);
             SetLabelStyle(label3);
-            SetLabelStyleNumber(label4);//大号字体
+            SetLabelStyle(label4);
             SetLabelStyle(label5);
             SetLabelStyle(label6);
             SetLabelStyle(label7);
@@ -291,7 +291,7 @@ namespace Lcd
             SetLabelStyle(label11);
             SetLabelStyleSunTi(label12);
             SetLabelStyleNumber(label13);
-            SetLabelStyle(label14);
+            SetDynamicLabelStyle(label14, "Times New Roman", 70);//大号字体
             SetLabelStyleNumber(label15);
             SetLabelStyleSunTi(label16);
             SetLabelStyleNumber(label17);
@@ -333,7 +333,7 @@ namespace Lcd
         /// <param name="lbl"></param>
         private void SetLabelStyleNumber(Label lb)
         {
-            lb.Font = new Font("Times New Roman", 60F, FontStyle.Bold | FontStyle.Bold);
+            lb.Font = new Font("Times New Roman", setting.NumFontSize, FontStyle.Bold | FontStyle.Bold);
             lb.ForeColor = Color.White;
         }
 

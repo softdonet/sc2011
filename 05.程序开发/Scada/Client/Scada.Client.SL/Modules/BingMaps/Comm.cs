@@ -8,16 +8,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using Visifire.Gauges;
 
-namespace Scada.Client.SL.Controls
+namespace Scada.Client.SL.Modules.BingMaps
 {
-    public class MyGauge : Gauge
+    public enum DeviceState
     {
-        protected override void LoadWm(GaugeTypes type)
-        {
-            //base.LoadWm(type);
-            CreateWmElement(GaugeTypes.Circular, string.Empty, string.Empty);
-        }
+        Normal,
+        Escape,
+        Alert
     }
 }

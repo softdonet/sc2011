@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace SCADA.UI.Controls
+namespace Scada.Client.SL.Controls
 {
     public class MyWin : ContentControl
     {

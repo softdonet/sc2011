@@ -1,0 +1,88 @@
+﻿<UserControl x:Class="Scada.Client.SL.Modules.BingMaps.WeatherBar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="175" d:DesignWidth="264">
+
+    <UserControl.Resources>
+        <ImageBrush ImageSource="Resources/BLUE-base.png" x:Key="blueBase" />
+        <ImageBrush ImageSource="Resources/GRAY-base.png" x:Key="grayBase" />
+        <ImageBrush ImageSource="Resources/divider-vertical.png" x:Key="dividerVertical" Opacity="0.6" />
+        <ImageBrush ImageSource="Resources/divider-horizontal.png" x:Key="dividerHorizontal" Opacity="0.6" />
+        <BitmapImage UriSource="Resources/BLACK-highlight-01.png" x:Key="blackHighlight" />
+        <BitmapImage UriSource="Resources/undocked_cloudy.png" x:Key="CloudyBig" />
+        <BitmapImage UriSource="Resources/26.png" x:Key="Cloudy" />
+        <BitmapImage UriSource="Resources/undocked_few-showers.png" x:Key="FewShowersBig" />
+        <BitmapImage UriSource="Resources/5.png" x:Key="FewShowers" />
+        <BitmapImage UriSource="Resources/undocked_foggy.png" x:Key="FoggyBig" />
+        <BitmapImage UriSource="Resources/19.png" x:Key="Foggy" />
+        <BitmapImage UriSource="Resources/undocked_hail.png" x:Key="HailBig" />
+        <BitmapImage UriSource="Resources/17.png" x:Key="Hail" />
+        <BitmapImage UriSource="Resources/undocked_partly-cloudy.png" x:Key="PartlyCloudyBig" />
+        <BitmapImage UriSource="Resources/29.png" x:Key="PartlyCloudy" />
+        <BitmapImage UriSource="Resources/undocked_rainy.png" x:Key="RainyBig" />
+        <BitmapImage UriSource="Resources/8.png" x:Key="Rainy" />
+        <BitmapImage UriSource="Resources/undocked_snow.png" x:Key="SnowBig" />
+        <BitmapImage UriSource="Resources/13.png" x:Key="Snow" />
+        <BitmapImage UriSource="Resources/undocked_sun.png" x:Key="SunBig" />
+        <BitmapImage UriSource="Resources/undocked_moon-full.png" x:Key="MoonBig" />
+        <BitmapImage UriSource="Resources/31.png" x:Key="Sun" />
+        <BitmapImage UriSource="Resources/undocked_thunderstorm.png" x:Key="ThunderstormBig" />
+        <BitmapImage UriSource="Resources/1.png" x:Key="Thunderstorm" />
+        <BitmapImage UriSource="Resources/undocked_windy.png" x:Key="WindyBig" />
+        <BitmapImage UriSource="Resources/23.png" x:Key="Windy" />
+        <SolidColorBrush Color="White" Opacity="0.5" x:Key="zipCodeBackground" />
+    </UserControl.Resources>
+	
+    <Canvas x:Name="LayoutRoot" Width="232" Height="149" Background="White" Opacity="0.7">
+        <Canvas Width="230" Height="147">
+            <StackPanel x:Name="ConditionsScreen" >
+                <Canvas Height="90">
+                    <Image x:Name="ConditionsOverlay" Margin="-13,-13,0,0" />
+                    <StackPanel>
+                    	   
+                        <TextBlock  Foreground="Black" Opacity="0.8" Width="225" Height="37" TextAlignment="Right" FontSize="34" x:Name="TodayTemp"  />
+                        <TextBlock  Foreground="Black" Opacity="0.8" Width="225" Height="14" TextAlignment="Right" x:Name="TodayDescription"   />
+                        <TextBlock  Foreground="Black" Opacity="0.8" Width="225" Height="14" TextAlignment="Right" x:Name="TodayRange" />
+                        <TextBlock  Foreground="Black" Opacity="0.8" Width="225" Height="14" TextAlignment="Right" x:Name="City" Text="正在更新数据..." />
+                    </StackPanel>
+                </Canvas>
+                <StackPanel Orientation="Horizontal" Height="53" Loaded="StackPanel_Loaded">
+                    <Canvas Width="71" Background="{StaticResource dividerVertical}" Margin="5, 0, 0, 0">
+                        <TextBlock FontSize="11" x:Name="TomorrowName" Foreground="Black" Opacity="0.8" />
+                        <Image x:Name="TomorrowImage" Canvas.Top="17" Canvas.Left="23" />
+                        <TextBlock Canvas.Top="20" x:Name="TomorrowHi" Foreground="Black" />
+                        <TextBlock Canvas.Top="35" x:Name="TomorrowLo" Foreground="Black" Opacity="0.8" />
+                    </Canvas>
+                    <Canvas Width="71" Background="{StaticResource dividerVertical}" Margin="5, 0, 0, 0">
+                        <TextBlock FontSize="11" x:Name="DayAfterName" Foreground="Black" Opacity="0.8" />
+                        <Image x:Name="DayAfterImage" Canvas.Top="17" Canvas.Left="23" />
+                        <TextBlock Canvas.Top="20" x:Name="DayAfterHi" Foreground="Black" />
+                        <TextBlock Canvas.Top="35" x:Name="DayAfterLo" Foreground="Black" Opacity="0.8" />
+                    </Canvas>
+                    <Canvas Width="71"  Margin="5, 0, 0, 0">
+                        <TextBlock FontSize="11" x:Name="TwoDaysAwayName" Foreground="Black" Opacity="0.8" />
+                        <Image x:Name="TwoDaysAwayImage" Canvas.Top="17" Canvas.Left="23" />
+                        <TextBlock Canvas.Top="20" x:Name="TwoDaysAwayHi" Foreground="Black" />
+                        <TextBlock Canvas.Top="35" x:Name="TwoDaysAwayLo" Foreground="Black" Opacity="0.8" />
+                    </Canvas>
+                </StackPanel>
+                <!--<StackPanel Height="17" Background="{StaticResource dividerHorizontal}" Orientation="Horizontal" >
+                    <TextBlock Text="报警设备：1个" Margin="5, 0, 5, 0" Width="105" Foreground="red" Opacity="0.5"  Visibility="Collapsed"  />
+                    <TextBlock Text="Change ZIP" Margin="5, 0, 5, 0" Width="105" TextAlignment="Right" Foreground="White" Opacity="0.5" Visibility="Collapsed"  />
+                </StackPanel>-->
+            </StackPanel>
+            <StackPanel x:Name="ZipCodeScreen" HorizontalAlignment="Center" Visibility="Collapsed" Width="230">
+                <TextBlock Margin="0, 50, 0, 0" Text="Please enter ZIP code:" Width="130" />
+                <StackPanel Orientation="Horizontal" Width="120" >
+                    <TextBox x:Name="ZipCode" Width="55" MaxLength="5" FontSize="14" Background="{StaticResource zipCodeBackground}" />
+                    <Button Content="Change"  Margin="10, 0, 0, 0" />
+                </StackPanel>
+                <TextBlock Margin="0, 20, 0, 0" Width="220" Text="Weather data courtesy of WeatherBug."  />
+            </StackPanel>
+            
+        </Canvas>
+    </Canvas>
+</UserControl>

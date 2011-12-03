@@ -35,6 +35,8 @@
             this.txtBackColor = new System.Windows.Forms.TextBox();
             this.butOk = new System.Windows.Forms.Button();
             this.butCannel = new System.Windows.Forms.Button();
+            this.lblCurrent = new System.Windows.Forms.Label();
+            this.txtCurrentValue = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtForeColor
@@ -58,7 +60,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(51, 83);
+            this.label2.Location = new System.Drawing.Point(51, 79);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 3;
@@ -66,7 +68,7 @@
             // 
             // txtBackColor
             // 
-            this.txtBackColor.Location = new System.Drawing.Point(110, 78);
+            this.txtBackColor.Location = new System.Drawing.Point(110, 76);
             this.txtBackColor.Name = "txtBackColor";
             this.txtBackColor.ReadOnly = true;
             this.txtBackColor.Size = new System.Drawing.Size(122, 21);
@@ -75,7 +77,7 @@
             // 
             // butOk
             // 
-            this.butOk.Location = new System.Drawing.Point(70, 125);
+            this.butOk.Location = new System.Drawing.Point(58, 151);
             this.butOk.Name = "butOk";
             this.butOk.Size = new System.Drawing.Size(75, 23);
             this.butOk.TabIndex = 5;
@@ -85,7 +87,7 @@
             // 
             // butCannel
             // 
-            this.butCannel.Location = new System.Drawing.Point(157, 125);
+            this.butCannel.Location = new System.Drawing.Point(145, 151);
             this.butCannel.Name = "butCannel";
             this.butCannel.Size = new System.Drawing.Size(75, 23);
             this.butCannel.TabIndex = 6;
@@ -93,11 +95,29 @@
             this.butCannel.UseVisualStyleBackColor = true;
             this.butCannel.Click += new System.EventHandler(this.butCannel_Click);
             // 
+            // lblCurrent
+            // 
+            this.lblCurrent.AutoSize = true;
+            this.lblCurrent.Location = new System.Drawing.Point(51, 114);
+            this.lblCurrent.Name = "lblCurrent";
+            this.lblCurrent.Size = new System.Drawing.Size(53, 12);
+            this.lblCurrent.TabIndex = 7;
+            this.lblCurrent.Text = "当前值：";
+            // 
+            // txtCurrentValue
+            // 
+            this.txtCurrentValue.Location = new System.Drawing.Point(110, 111);
+            this.txtCurrentValue.Name = "txtCurrentValue";
+            this.txtCurrentValue.Size = new System.Drawing.Size(122, 21);
+            this.txtCurrentValue.TabIndex = 8;
+            // 
             // frmColorSel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(282, 200);
+            this.Controls.Add(this.txtCurrentValue);
+            this.Controls.Add(this.lblCurrent);
             this.Controls.Add(this.butCannel);
             this.Controls.Add(this.butOk);
             this.Controls.Add(this.txtBackColor);
@@ -126,5 +146,7 @@
         private System.Windows.Forms.TextBox txtBackColor;
         private System.Windows.Forms.Button butOk;
         private System.Windows.Forms.Button butCannel;
+        private System.Windows.Forms.Label lblCurrent;
+        private System.Windows.Forms.TextBox txtCurrentValue;
     }
 }

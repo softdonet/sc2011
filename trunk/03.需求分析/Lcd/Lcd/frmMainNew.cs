@@ -76,6 +76,7 @@ namespace Lcd
                     count = 0;
                 }
             }
+            SetLocation();
         }
 
         private void frmMainNew_Load(object sender, EventArgs e)
@@ -111,14 +112,34 @@ namespace Lcd
             Color bColor, fColor;
             bColor = (sender as Panel).BackColor;
             fColor = (sender as Panel).Controls[0].ForeColor;
+            string strValue = string.Empty; ;
 
+         //  Control []c= (sender as Panel).Controls.Find("label13", true);
+           foreach (Control item in (sender as Panel).Controls)
+           {
+               if (item is Label)
+               {
+                   if (item.Name == "label13" || item.Name == "label15" ||
+                       item.Name == "label17" || item.Name == "label19" ||
+                       item.Name == "label21" || item.Name == "label23" || item.Name == "label25")
+                   {
+                       strValue = item.Text;
+                   }
+                   
+               }
+               
+           }
             frmColorSel frmShow = new frmColorSel();
             frmShow.NewForeColor = fColor;
             frmShow.NewBackGroudColor = bColor;
+            frmShow.CurrentValue = strValue;
+
             if (frmShow.ShowDialog() != System.Windows.Forms.DialogResult.OK) { return; }
 
             (sender as Panel).BackColor = frmShow.NewBackGroudColor;
             (sender as Panel).Controls[0].ForeColor = frmShow.NewForeColor;
+
+            (sender as Panel).Controls[0].Text = frmShow.CurrentValue;
         }
 
         private void frmMainNew_KeyDown(object sender, KeyEventArgs e)

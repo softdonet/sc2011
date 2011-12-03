@@ -121,6 +121,7 @@
     </Content>
     <Content Include="Images\C70-Blue.jpg" />
     <Content Include="Images\qiaotiaoban.gif" />
+    <Content Include="北汽欢迎.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

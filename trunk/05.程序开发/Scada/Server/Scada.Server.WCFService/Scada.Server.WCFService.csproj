@@ -55,6 +55,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ClientAccessPolicy.xml" />
     <Content Include="DeviceRealTimeService.svc" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

@@ -16,7 +16,6 @@ using System.ServiceModel;
 using System.ServiceModel.Channels;
 using Scada.Client.SL.CommClass;
 using Scada.Client.SL.WeatherWebService;
-//using Scada.Client.SL.Modules.Device;
 
 namespace Scada.Client.SL.Modules.BingMaps
 {

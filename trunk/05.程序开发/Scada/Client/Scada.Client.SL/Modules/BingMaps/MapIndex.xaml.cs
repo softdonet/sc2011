@@ -11,6 +11,11 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Maps.MapControl;
 using Microsoft.Maps.MapControl.Navigation;
+using Scada.Client.SL.DeviceRealTimeService;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
+using Scada.Client.SL.CommClass;
+using Scada.Client.SL.WeatherWebService;
 //using Scada.Client.SL.Modules.Device;
 
 namespace Scada.Client.SL.Modules.BingMaps
@@ -22,6 +27,15 @@ namespace Scada.Client.SL.Modules.BingMaps
             InitializeComponent();
             InitMap();
             MyContent.CloseBtn += new EventHandler(MyContent_CloseBtn);
+
+            DeviceRealTimeServiceClient deviceRealTimeService = ServiceManager.GetDeviceRealTimeService();
+            deviceRealTimeService.GetDataReceived += new EventHandler<GetDataReceivedEventArgs>(deviceRealTimeService_GetDataReceived);
+            deviceRealTimeService.InitDataAsync();
+        }
+
+        void deviceRealTimeService_GetDataReceived(object sender, GetDataReceivedEventArgs e)
+        {
+            this.txtDateTime.Text = e.data;
         }
 
         void MyContent_CloseBtn(object sender, EventArgs e)
@@ -210,15 +224,15 @@ namespace Scada.Client.SL.Modules.BingMaps
             if (this.MainGrid.ColumnDefinitions[2].Width == new GridLength(240))
             {
                 this.ZheDieStoryboardHidden.Begin();
-              
+
                 this.MainGrid.ColumnDefinitions[2].Width = new GridLength(0);
             }
             else
             {
                 this.MainGrid.ColumnDefinitions[2].Width = new GridLength(240);
                 this.ZheDieStoryboardShow.Begin();
-              
-               
+
+
             }
         }
 

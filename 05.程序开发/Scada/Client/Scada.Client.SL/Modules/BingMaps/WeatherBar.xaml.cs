@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Media.Imaging;
 using Scada.Client.SL.WeatherWebService;
+using Scada.Client.SL.CommClass;
 
 namespace Scada.Client.SL.Modules.BingMaps
 {
@@ -24,7 +25,7 @@ namespace Scada.Client.SL.Modules.BingMaps
         {
             InitializeComponent();
             InitData();
-            ws = new WeatherWebService.WeatherWebServiceSoapClient();
+            ws = ServiceManager.GetWeatherWebService();
             ws.GetWeatherCompleted += new EventHandler<WeatherWebService.GetWeatherCompletedEventArgs>(ws_GetWeatherCompleted);
         }
 

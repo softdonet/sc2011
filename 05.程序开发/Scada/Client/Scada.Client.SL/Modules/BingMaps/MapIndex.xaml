@@ -15,8 +15,8 @@
     mc:Ignorable="d"
     d:DesignHeight="880" d:DesignWidth="1024" Loaded="UserControl_Loaded">
     <UserControl.Resources>
-        
-      
+
+
         <Style x:Key="ZheDieButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#FF1F3B53"/>
             <Setter Property="Foreground" Value="#FF000000"/>
@@ -301,7 +301,7 @@
                 <toolkit:WrapPanel x:Name="wpTypeSearch" Orientation="Vertical">
                     <!-- 工程类型显示区-->
                     <TextBlock    Text ="用户名：杨红康"  FontSize=" 12"   VerticalAlignment="Center"  Margin="0,5,0,0" Opacity="0.8"/>
-                    <TextBlock Text ="登录时间：2011-11-11 11:11:11"  FontSize=" 12"   VerticalAlignment="Center"  Margin="1" Opacity="0.8"/>
+                    <TextBlock  x:Name="txtDateTime" Text ="登录时间：2011-11-11 11:11:11"  FontSize=" 12"   VerticalAlignment="Center"  Margin="1" Opacity="0.8"/>
                 </toolkit:WrapPanel>
                 <StackPanel  Background="#FFD5DDF3" Margin="0,5,0,5" Orientation="Vertical">
                     <TextBlock Text ="告警信息"  FontSize=" 12"   VerticalAlignment="Center"   Margin=" 5"/>

@@ -12,6 +12,8 @@ using Scada.Client.SL.WeatherWebService;
 using Scada.Client.SL.DeviceRealTimeService;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
+using Scada.Client.SL.ScadaDeviceService;
+using Scada.Client.SL.SystemManagerService;
 
 namespace Scada.Client.SL.CommClass
 {
@@ -54,6 +56,35 @@ namespace Scada.Client.SL.CommClass
             return _ws;
         }
 
+        /// <summary>
+        /// 设备信息WebService服务
+        /// </summary>
+        static string scadaDeviceServiceEndpointAddress = "WebServices/ScadaDeviceService.asmx";
+        static ScadaDeviceServiceSoapClient _sds = null;
+        public static ScadaDeviceServiceSoapClient GetScadaDeviceService()
+        {
+            if (_sds == null)
+            {
+                System.ServiceModel.EndpointAddress address = new System.ServiceModel.EndpointAddress(GetAbsoluteUri(scadaDeviceServiceEndpointAddress));
+                _sds = new ScadaDeviceServiceSoapClient("ScadaDeviceServiceSoap", address);
+            }
+            return _sds;
+        }
+
+        /// <summary>
+        /// 系统管理WebService服务
+        /// </summary>
+        static string systemManagerServiceEndpointAddress = "WebServices/SystemManagerService.asmx";
+        static SystemManagerServiceSoapClient _sms = null;
+        public static SystemManagerServiceSoapClient GetSystemManagerService()
+        {
+            if (_sms == null)
+            {
+                System.ServiceModel.EndpointAddress address = new System.ServiceModel.EndpointAddress(GetAbsoluteUri(systemManagerServiceEndpointAddress));
+                _sms = new SystemManagerServiceSoapClient("SystemManagerServiceSoap", address);
+            }
+            return _sms;
+        }
         /// <summary>
         /// 获取网站路径
         /// </summary>

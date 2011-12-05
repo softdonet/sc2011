@@ -21,12 +21,26 @@
                     maxReceivedMessageSize="2147483647">
                     <security mode="None" />
                 </binding>
+                <binding name="SystemManagerServiceSoap" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+                <binding name="ScadaDeviceServiceSoap" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
             </basicHttpBinding>
         </bindings>
         <client>
-            <endpoint address="WebServices/WeatherWebService.asmx"
-                binding="basicHttpBinding" bindingConfiguration="WeatherWebServiceSoap"
-                contract="WeatherWebService.WeatherWebServiceSoap" name="WeatherWebServiceSoap" />
+            <endpoint address="WebServices/WeatherWebService.asmx" binding="basicHttpBinding"
+                bindingConfiguration="WeatherWebServiceSoap" contract="WeatherWebService.WeatherWebServiceSoap"
+                name="WeatherWebServiceSoap" />
+            <endpoint address="http://localhost:2793/WebServices/SystemManagerService.asmx"
+                binding="basicHttpBinding" bindingConfiguration="SystemManagerServiceSoap"
+                contract="SystemManagerService.SystemManagerServiceSoap" name="SystemManagerServiceSoap" />
+            <endpoint address="http://localhost:2793/WebServices/ScadaDeviceService.asmx"
+                binding="basicHttpBinding" bindingConfiguration="ScadaDeviceServiceSoap"
+                contract="ScadaDeviceService.ScadaDeviceServiceSoap" name="ScadaDeviceServiceSoap" />
         </client>
     </system.serviceModel>
 </configuration>

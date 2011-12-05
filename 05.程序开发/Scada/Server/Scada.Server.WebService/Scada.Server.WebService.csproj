@@ -60,31 +60,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
-    <None Include="Service References\TheThirdWeatherWebServiceReference\WeatherWebService.disco" />
-    <None Include="Service References\TheThirdWeatherWebServiceReference\configuration91.svcinfo" />
-    <None Include="Service References\TheThirdWeatherWebServiceReference\configuration.svcinfo" />
-    <None Include="Service References\TheThirdWeatherWebServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="ClientAccessPolicy.xml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Web.config" />
-    <None Include="Service References\TheThirdWeatherWebServiceReference\WeatherWebService.wsdl" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\TheThirdWeatherWebServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -99,9 +88,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\TheThirdWeatherWebServiceReference\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

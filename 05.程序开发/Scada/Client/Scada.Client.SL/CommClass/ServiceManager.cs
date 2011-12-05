@@ -18,7 +18,7 @@ namespace Scada.Client.SL.CommClass
     /// <summary>
     /// 服务管理
     /// </summary>
-    public  class ServiceManager
+    public class ServiceManager
     {
         /// <summary>
         /// 获取设备实时信息WCF服务
@@ -49,7 +49,7 @@ namespace Scada.Client.SL.CommClass
             if (_ws == null)
             {
                 System.ServiceModel.EndpointAddress address = new System.ServiceModel.EndpointAddress(GetAbsoluteUri(weatherWebServiceEndpointAddress));
-                _ws = new WeatherWebServiceSoapClient("WeatherWebServiceSoap",address);
+                _ws = new WeatherWebServiceSoapClient("WeatherWebServiceSoap", address);
             }
             return _ws;
         }

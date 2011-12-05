@@ -147,11 +147,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\WeatherWebService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -213,23 +208,18 @@
     </None>
     <None Include="Service References\DeviceRealTimeService\service2.wsdl" />
     <None Include="Service References\DeviceRealTimeService\service21.wsdl" />
-    <None Include="Service References\WeatherWebService\Scada.Client.SL.WeatherWebService.GetWeatherResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\DeviceRealTimeService\configuration91.svcinfo" />
     <None Include="Service References\DeviceRealTimeService\configuration.svcinfo" />
     <None Include="Service References\DeviceRealTimeService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\WeatherWebService\WeatherWebService1.wsdl" />
     <Resource Include="Modules\DiagramAnalysis\Images\d1.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\d2.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\d3.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\d4.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\lastPage.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\nextPage.jpg" />
-    <None Include="Service References\WeatherWebService\WeatherWebService1.disco" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
@@ -306,19 +296,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\DeviceRealTimeService\" />
-    <WCFMetadataStorage Include="Service References\WeatherWebService\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\WeatherWebService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\WeatherWebService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\WeatherWebService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\DeviceList\" />

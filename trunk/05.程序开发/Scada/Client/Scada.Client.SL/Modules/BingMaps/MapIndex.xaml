@@ -293,7 +293,7 @@
                     <TextBlock Text ="气象信息"  FontSize=" 12"   VerticalAlignment="Center"   Margin=" 5"/>
                 </StackPanel>
                 <toolkit:WrapPanel x:Name="wpArea" Orientation="Horizontal" >
-                    <!-- <local:WeatherBar HorizontalAlignment="Center" Margin="0,5,0,5"  VerticalAlignment="Top"/>-->
+                  <local:WeatherBar HorizontalAlignment="Center" Margin="0,5,0,5"  VerticalAlignment="Top"/>
 
                 </toolkit:WrapPanel>
                 <StackPanel Height="27" Background="#FFD5DDF3" Orientation="Horizontal">

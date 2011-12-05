@@ -80,6 +80,7 @@ namespace Lcd
         private void txtForeColor_DoubleClick(object sender, EventArgs e)
         {
             TextBox tBox = sender as TextBox;
+            this.colorDialog.Color = tBox.BackColor;
             this.colorDialog.ShowDialog();
             tBox.BackColor = this.colorDialog.Color;
         }

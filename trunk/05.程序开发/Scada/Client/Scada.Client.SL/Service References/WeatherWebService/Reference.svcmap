@@ -20,11 +20,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:2883/WeatherWebService.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:2793/WebServices/WeatherWebService.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="WeatherWebService.disco" MetadataType="Disco" ID="96e83a25-3f99-4577-bf4b-12832f3910b9" SourceId="1" SourceUrl="http://localhost:2883/WeatherWebService.asmx?disco" />
-    <MetadataFile FileName="WeatherWebService.wsdl" MetadataType="Wsdl" ID="5492c3a1-db72-4018-9b64-06c243a09b7f" SourceId="1" SourceUrl="http://localhost:2883/WeatherWebService.asmx?wsdl" />
+    <MetadataFile FileName="WeatherWebService1.wsdl" MetadataType="Wsdl" ID="036a09f4-a7dc-4c95-bdd2-08e26a6a1ebc" SourceId="1" SourceUrl="http://localhost:2793/WebServices/WeatherWebService.asmx?wsdl" />
+    <MetadataFile FileName="WeatherWebService1.disco" MetadataType="Disco" ID="6e734c65-43b8-48f8-aa16-83ea89e06801" SourceId="1" SourceUrl="http://localhost:2793/WebServices/WeatherWebService.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

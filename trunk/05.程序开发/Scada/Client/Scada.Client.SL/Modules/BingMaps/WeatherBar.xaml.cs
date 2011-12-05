@@ -24,7 +24,6 @@ namespace Scada.Client.SL.Modules.BingMaps
         public WeatherBar()
         {
             InitializeComponent();
-            InitData();
             ws = ServiceManager.GetWeatherWebService();
             ws.GetWeatherCompleted += new EventHandler<WeatherWebService.GetWeatherCompletedEventArgs>(ws_GetWeatherCompleted);
         }
@@ -67,6 +66,8 @@ namespace Scada.Client.SL.Modules.BingMaps
 
         private void StackPanel_Loaded(object sender, RoutedEventArgs e)
         {
+         
+            InitData();
             ws.GetWeatherAsync("北京");
         }
 

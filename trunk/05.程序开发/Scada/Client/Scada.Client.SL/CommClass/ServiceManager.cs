@@ -23,13 +23,13 @@ namespace Scada.Client.SL.CommClass
         /// <summary>
         /// 获取设备实时信息WCF服务
         /// </summary>
-        static string deviceRealTimeServiceEndpointAddress = "http://localhost:8109/DeviceRealTimeService.svc";
+        static string deviceRealTimeServiceEndpointAddress = "WCFServices/DeviceRealTimeService.svc";
         static DeviceRealTimeServiceClient _deviceRealTimeServiceClient = null;
         public static DeviceRealTimeServiceClient GetDeviceRealTimeService()
         {
             if (_deviceRealTimeServiceClient == null)
             {
-                EndpointAddress address = new EndpointAddress(deviceRealTimeServiceEndpointAddress);
+                EndpointAddress address = new EndpointAddress(GetAbsoluteUri(deviceRealTimeServiceEndpointAddress));
                 CustomBinding binding = new CustomBinding(
                     new PollingDuplexBindingElement(),
                     new BinaryMessageEncodingBindingElement(),
@@ -42,16 +42,31 @@ namespace Scada.Client.SL.CommClass
         /// <summary>
         /// 天气预报WebService服务
         /// </summary>
-        static string weatherWebServiceEndpointAddress = "http://localhost:2883/WeatherWebService.asmx";
+        static string weatherWebServiceEndpointAddress = "WebServices/WeatherWebService.asmx";
         static WeatherWebServiceSoapClient _ws = null;
         public static WeatherWebServiceSoapClient GetWeatherWebService()
         {
             if (_ws == null)
             {
-                System.ServiceModel.EndpointAddress address = new System.ServiceModel.EndpointAddress(weatherWebServiceEndpointAddress);
+                System.ServiceModel.EndpointAddress address = new System.ServiceModel.EndpointAddress(GetAbsoluteUri(weatherWebServiceEndpointAddress));
                 _ws = new WeatherWebServiceSoapClient("WeatherWebServiceSoap",address);
             }
             return _ws;
         }
+
+        /// <summary>
+        /// 获取网站路径
+        /// </summary>
+        /// <param name="relativeUri"></param>
+        /// <returns></returns>
+        public static string GetAbsoluteUri(string relativeUri)
+        {
+            Uri uri = System.Windows.Browser.HtmlPage.Document.DocumentUri;
+            string uriString = uri.AbsoluteUri;
+            // replace page name with relative service Uri
+            int ls = uriString.LastIndexOf('/');
+            return uriString.Substring(0, ls + 1) + relativeUri;
+        }
+
     }
 }

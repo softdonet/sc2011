@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ServiceModel;
 
 namespace Scada.BLL.Contract
 {

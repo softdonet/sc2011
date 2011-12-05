@@ -15,7 +15,18 @@
         </client>
     </system.serviceModel>-->
     <system.serviceModel>
-        <bindings />
-        <client />
+        <bindings>
+            <basicHttpBinding>
+                <binding name="WeatherWebServiceSoap" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="WebServices/WeatherWebService.asmx"
+                binding="basicHttpBinding" bindingConfiguration="WeatherWebServiceSoap"
+                contract="WeatherWebService.WeatherWebServiceSoap" name="WeatherWebServiceSoap" />
+        </client>
     </system.serviceModel>
 </configuration>

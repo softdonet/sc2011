@@ -147,6 +147,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\WeatherWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -214,12 +219,23 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\WeatherWebService\Scada.Client.SL.WeatherWebService.GetWeatherResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WeatherWebService\WeatherWebService.wsdl" />
     <Resource Include="Modules\DiagramAnalysis\Images\d1.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\d2.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\d3.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\d4.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\lastPage.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\nextPage.jpg" />
+    <None Include="Service References\WeatherWebService\WeatherWebService.disco" />
+    <None Include="Service References\WeatherWebService\configuration91.svcinfo" />
+    <None Include="Service References\WeatherWebService\configuration.svcinfo" />
+    <None Include="Service References\WeatherWebService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
@@ -296,6 +312,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\DeviceRealTimeService\" />
+    <WCFMetadataStorage Include="Service References\WeatherWebService\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\DeviceList\" />

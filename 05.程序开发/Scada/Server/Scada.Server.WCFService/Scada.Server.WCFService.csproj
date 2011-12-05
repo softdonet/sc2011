@@ -56,7 +56,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClientAccessPolicy.xml" />
-    <Content Include="DeviceRealTimeService.svc" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -66,12 +65,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DeviceRealTimeService.svc.cs">
-      <DependentUpon>DeviceRealTimeService.svc</DependentUpon>
-    </Compile>
-    <Compile Include="DeviceRealTimeServiceHostFactory.cs" />
-    <Compile Include="IDeviceRealTimeService.cs" />
-    <Compile Include="NoticeMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

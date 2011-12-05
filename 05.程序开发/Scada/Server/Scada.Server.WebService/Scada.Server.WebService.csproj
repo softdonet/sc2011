@@ -68,8 +68,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="ClientAccessPolicy.xml" />
-    <Content Include="Service1.asmx" />
-    <Content Include="WeatherWebService.asmx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -88,15 +86,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service1.asmx.cs">
-      <DependentUpon>Service1.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WeatherWebService.asmx.cs">
-      <DependentUpon>WeatherWebService.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

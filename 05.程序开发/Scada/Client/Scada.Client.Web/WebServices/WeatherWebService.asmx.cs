@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-using WS = Scada.Server.WebService.TheThirdWeatherWebServiceReference;
+using WS = Scada.Client.Web.TheThirdWeatherWebServiceReference;
 
-namespace Scada.Server.WebService
+namespace Scada.Client.Web.WebServices
 {
     /// <summary>
     /// 天气预报服务
@@ -25,7 +25,7 @@ namespace Scada.Server.WebService
         /// <returns></returns>
         [WebMethod]
         public string[] GetWeather(string cityName)
-        {   
+        {
             var service = new WS.WeatherWebServiceSoapClient();
             return service.getWeatherbyCityName(cityName);
         }

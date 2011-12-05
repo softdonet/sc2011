@@ -20,13 +20,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:5059/DeviceRealTimeService.svc/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:2793/WCFServices/DeviceRealTimeService.svc/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="80a18341-4311-4ea8-9b30-3d0ef92719dd" SourceId="1" SourceUrl="http://localhost:5059/DeviceRealTimeService.svc/mex" />
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="828b2195-1f32-4d22-a519-88a91c8740c4" SourceId="1" SourceUrl="http://localhost:5059/DeviceRealTimeService.svc/mex" />
-    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="5093a32f-98e9-4cbd-8dd4-c6956f39023e" SourceId="1" SourceUrl="http://localhost:5059/DeviceRealTimeService.svc/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="e5d2277e-bd29-470e-bfc8-64aaa0e96426" SourceId="1" SourceUrl="http://localhost:5059/DeviceRealTimeService.svc/mex" />
+    <MetadataFile FileName="service2.wsdl" MetadataType="Wsdl" ID="b79bc791-1d92-4633-8d17-87bacf60c0c5" SourceId="1" SourceUrl="http://localhost:2793/WCFServices/DeviceRealTimeService.svc/mex" />
+    <MetadataFile FileName="service21.wsdl" MetadataType="Wsdl" ID="3e0e8f4d-50be-4946-a544-3b3e9ab4604e" SourceId="1" SourceUrl="http://localhost:2793/WCFServices/DeviceRealTimeService.svc/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="262c2e0f-393c-4cd6-97bb-5ddb3f685873" SourceId="1" SourceUrl="http://localhost:2793/WCFServices/DeviceRealTimeService.svc/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="d692b583-8d71-4bcb-afe5-940735adf015" SourceId="1" SourceUrl="http://localhost:2793/WCFServices/DeviceRealTimeService.svc/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

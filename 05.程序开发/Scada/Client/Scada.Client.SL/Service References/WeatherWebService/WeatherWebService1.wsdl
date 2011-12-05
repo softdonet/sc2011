@@ -61,10 +61,10 @@
   </wsdl:binding>
   <wsdl:service name="WeatherWebService">
     <wsdl:port name="WeatherWebServiceSoap" binding="tns:WeatherWebServiceSoap">
-      <soap:address location="http://localhost:2883/WeatherWebService.asmx" />
+      <soap:address location="http://localhost:2793/WebServices/WeatherWebService.asmx" />
     </wsdl:port>
     <wsdl:port name="WeatherWebServiceSoap12" binding="tns:WeatherWebServiceSoap12">
-      <soap12:address location="http://localhost:2883/WeatherWebService.asmx" />
+      <soap12:address location="http://localhost:2793/WebServices/WeatherWebService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

@@ -5,7 +5,7 @@ using Scada.BLL.Contract;
 namespace Scada.BLL.Implement
 {
 
-    public class ScadaService : IScadaService
+    public class ScadaDeviceService : IScadaDeviceService
     {
         public int Add(int x, int y)
         {

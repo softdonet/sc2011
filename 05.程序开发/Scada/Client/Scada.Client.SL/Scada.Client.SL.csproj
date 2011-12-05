@@ -147,6 +147,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\ScadaDeviceService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SystemManagerService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\WeatherWebService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -219,6 +229,8 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\ScadaDeviceService\ScadaDeviceService.wsdl" />
+    <None Include="Service References\SystemManagerService\SystemManagerService.wsdl" />
     <None Include="Service References\WeatherWebService\Scada.Client.SL.WeatherWebService.GetWeatherResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -233,6 +245,20 @@
     <None Include="Service References\WeatherWebService\configuration91.svcinfo" />
     <None Include="Service References\WeatherWebService\configuration.svcinfo" />
     <None Include="Service References\WeatherWebService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\SystemManagerService\SystemManagerService.disco" />
+    <None Include="Service References\SystemManagerService\configuration91.svcinfo" />
+    <None Include="Service References\SystemManagerService\configuration.svcinfo" />
+    <None Include="Service References\SystemManagerService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ScadaDeviceService\ScadaDeviceService.disco" />
+    <None Include="Service References\ScadaDeviceService\configuration91.svcinfo" />
+    <None Include="Service References\ScadaDeviceService\configuration.svcinfo" />
+    <None Include="Service References\ScadaDeviceService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -312,6 +338,8 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\DeviceRealTimeService\" />
+    <WCFMetadataStorage Include="Service References\ScadaDeviceService\" />
+    <WCFMetadataStorage Include="Service References\SystemManagerService\" />
     <WCFMetadataStorage Include="Service References\WeatherWebService\" />
   </ItemGroup>
   <ItemGroup>

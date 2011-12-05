@@ -3,12 +3,8 @@ using System.ServiceModel;
 
 namespace Scada.BLL.Contract
 {
-
-    [ServiceContract]
-    public interface IScadaService
+    public interface IScadaDeviceService
     {
-
-        [OperationContract]
         int Add(int x, int y);
 
     }

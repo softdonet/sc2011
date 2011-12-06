@@ -75,6 +75,7 @@
   <ItemGroup>
     <Content Include="ClientAccessPolicy.xml" />
     <Content Include="ClientBin\Scada.Client.SL.xap" />
+    <Content Include="JavaScript\Silverlight.js" />
     <Content Include="WCFServices\DeviceRealTimeService.svc" />
     <Content Include="WebServices\WeatherWebService.asmx" />
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
@@ -134,9 +135,7 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="JavaScript\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\TheThirdWeatherWebServiceReference\" />
   </ItemGroup>

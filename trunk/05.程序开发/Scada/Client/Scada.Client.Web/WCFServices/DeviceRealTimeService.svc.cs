@@ -14,9 +14,14 @@ namespace Scada.Client.Web.WCFServices
     /// </summary>
     public class DeviceRealTimeService : IDeviceRealTimeService
     {
+
+
         public static object LockObject = new object();
         private Timer timer;
-        static List<IDeviceRealTimeServiceCallback> cilents = new List<IDeviceRealTimeServiceCallback>();
+        private static List<IDeviceRealTimeServiceCallback> cilents 
+                                        = new List<IDeviceRealTimeServiceCallback>();
+
+
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -77,7 +82,8 @@ namespace Scada.Client.Web.WCFServices
         /// </summary>
         public void InitData()
         {
-            IDeviceRealTimeServiceCallback iscCurrent = OperationContext.Current.GetCallbackChannel<IDeviceRealTimeServiceCallback>();
+            IDeviceRealTimeServiceCallback iscCurrent =
+                            OperationContext.Current.GetCallbackChannel<IDeviceRealTimeServiceCallback>();
             if (!cilents.Contains(iscCurrent))
             {
                 cilents.Add(OperationContext.Current.GetCallbackChannel<IDeviceRealTimeServiceCallback>());

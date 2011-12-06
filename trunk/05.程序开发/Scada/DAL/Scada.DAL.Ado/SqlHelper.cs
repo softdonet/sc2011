@@ -1,8 +1,10 @@
 ﻿using System;
-using System.Data;
-using System.Data.SqlClient;
 using System.Xml;
+using System.Data;
 using System.Collections;
+using System.Data.SqlClient;
+
+
 
 
 
@@ -17,12 +19,19 @@ namespace Scada.DAL.Ado
     {
 
 
+        #region 用户指定执行TimeOut
+
         /// <summary>
         /// 用户指定的命令执行时间（CommandTimeout，单位：秒），缺省值为 0，
         /// 若需设置该属性，用户必须在每次调用 SqlHelper 的方法前设置，
         /// 形如：SqlHelper.CustomCommandTimeout = 120。
         /// </summary>
         public static int CustomCommandTimeout = 0;
+
+        #endregion
+
+
+
 
         #region 私有实用方法和构造函数 private utility methods & constructors
 
@@ -212,12 +221,9 @@ namespace Scada.DAL.Ado
             return;
         }
 
-        #endregion 私有实用方法和构造函数 private utility methods & constructors
-
+        #endregion
 
         #region 执行无果语句 ExecuteNonQuery
-
-        #region
 
         /// <summary>
         /// 对于连接字符串中指定的数据库执行一个 SqlCommand 命令
@@ -323,43 +329,6 @@ namespace Scada.DAL.Ado
             // 调用重载方法
             return ExecuteNonQuery(transaction, CommandType.Text, sqlText, commandParameters);
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="connectionString">数据库连接字符串</param>
-        /// <param name="tableName">表名</param>
-        /// <returns></returns>
-        public static DataTable GetSchemaByTableName(string connectionString, string tableName)
-        {
-            string sqlText = string.Format("SELECT * FROM {0}", tableName);
-
-            return GetSchema(connectionString, sqlText);
-        }
-
-        /// <summary>
-        /// 填充表结构。
-        /// </summary>
-        /// <param name="connectionString">数据库连接字符串</param>
-        /// <param name="sqlText">用于获取表结构的 SELECT 语句</param>
-        /// <returns></returns>
-        public static DataTable GetSchema(string connectionString, string sqlText)
-        {
-            DataTable dtTarget = new DataTable();
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                SqlDataAdapter da = new SqlDataAdapter(sqlText, conn);
-
-                conn.Open();
-
-                da.FillSchema(dtTarget, SchemaType.Source);
-            }
-
-            return dtTarget;
-        }
-
-        #endregion Bpusoft Created
 
         /// <summary>
         /// 对于连接字符串中指定的数据库执行一个 SqlCommand 命令
@@ -614,7 +583,7 @@ namespace Scada.DAL.Ado
             }
         }
 
-        #endregion 执行无果语句 ExecuteNonQuery
+        #endregion
 
         #region 执行数据集 ExecuteDataset
 
@@ -888,9 +857,10 @@ namespace Scada.DAL.Ado
         }
 
 
-        #endregion 执行数据集 ExecuteDataset
+        #endregion
 
         #region 执行数据表 ExecuteDataTable
+
         /// <summary>
         /// 对于连接字符串中指定的数据库使用提供的参数执行一个 SqlCommand 命令，
         /// 并返回一个数据表。
@@ -971,7 +941,42 @@ namespace Scada.DAL.Ado
             return ExecuteDataset(transaction, CommandType.Text, sqlText).Tables[0];
         }
 
-        #endregion 执行数据表 ExecuteDataTable [2006-04-06 Bpusoft Created]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connectionString">数据库连接字符串</param>
+        /// <param name="tableName">表名</param>
+        /// <returns></returns>
+        public static DataTable GetSchemaByTableName(string connectionString, string tableName)
+        {
+            string sqlText = string.Format("SELECT * FROM {0}", tableName);
+
+            return GetSchema(connectionString, sqlText);
+        }
+
+        /// <summary>
+        /// 填充表结构。
+        /// </summary>
+        /// <param name="connectionString">数据库连接字符串</param>
+        /// <param name="sqlText">用于获取表结构的 SELECT 语句</param>
+        /// <returns></returns>
+        public static DataTable GetSchema(string connectionString, string sqlText)
+        {
+            DataTable dtTarget = new DataTable();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlDataAdapter da = new SqlDataAdapter(sqlText, conn);
+
+                conn.Open();
+
+                da.FillSchema(dtTarget, SchemaType.Source);
+            }
+
+            return dtTarget;
+        }
+
+        #endregion
 
         #region 执行只读查询 ExecuteReader
 
@@ -1290,8 +1295,6 @@ namespace Scada.DAL.Ado
 
         #region 执行单值查询 ExecuteScalar
 
-        #region Bpusoft Created
-
         /// <summary>
         /// 对于连接字符串中指定的数据库执行一个 SqlCommand 命令，
         /// 并返回一个 1x1 的结果集（该命令不接受任何参数）。
@@ -1368,8 +1371,6 @@ namespace Scada.DAL.Ado
         {
             return ExecuteScalar(transaction, CommandType.Text, sqlText, commandParameters);
         }
-
-        #endregion Bpusoft Created
 
         /// <summary>
         /// 对于连接字符串中指定的数据库执行一个 SqlCommand 命令，
@@ -1660,190 +1661,10 @@ namespace Scada.DAL.Ado
         }
 
 
-        #endregion 执行单值查询 ExecuteScalar
-
-        #region 执行 XML 只读查询 ExecuteXmlReader
-        /// <summary>
-        /// 对于指定的 SqlConnection 连接执行一个 SqlCommand 命令（返回一个结果集，但不接受任何参数）。
-        /// </summary>
-        /// <remarks>
-        /// 示例：
-        /// XmlReader r = ExecuteXmlReader(conn, CommandType.StoredProcedure, "GetOrders");
-        /// </remarks>
-        /// <param name="connection">一个有效的 SqlConnection 连接实例</param>
-        /// <param name="commandType">命令类型（存储过程 CommandType.StoredProcedure，文本 CommandType.Text 等）</param>
-        /// <param name="commandText">使用 "FOR XML AUTO" 的存储过程名称 或 T-SQL 命令</param>
-        /// <returns>一个 XmlReader，其中包含由 command 命令产生的结果集</returns>
-        public static XmlReader ExecuteXmlReader(SqlConnection connection, CommandType commandType, string commandText)
-        {
-            // 通过为 SqlParameter[] 参数提供 null 来调用重载方法
-            return ExecuteXmlReader(connection, commandType, commandText, (SqlParameter[])null);
-        }
-
-        /// <summary>
-        /// 对于指定的 SqlConnection 连接使用提供的参数执行一个 SqlCommand 命令（返回一个结果集）。
-        /// </summary>
-        /// <remarks>
-        /// 示例：
-        /// XmlReader r = ExecuteXmlReader(conn, CommandType.StoredProcedure, "GetOrders", new SqlParameter("@prodid", 24));
-        /// </remarks>
-        /// <param name="connection">一个有效的 SqlConnection 连接实例</param>
-        /// <param name="commandType">命令类型（存储过程 CommandType.StoredProcedure，文本 CommandType.Text 等）</param>
-        /// <param name="commandText">使用 "FOR XML AUTO" 的存储过程名称 或 T-SQL 命令</param>
-        /// <param name="commandParameters">一个用于在命令中执行的 SqlParameter[] 数组</param>
-        /// <returns>一个 XmlReader，其中包含由 command 命令产生的结果集</returns>
-        public static XmlReader ExecuteXmlReader(SqlConnection connection, CommandType commandType, string commandText, params SqlParameter[] commandParameters)
-        {
-            if (connection == null) throw new ArgumentNullException("connection");
-
-            bool mustCloseConnection = false;
-            // 创建一个命令以备执行
-            SqlCommand cmd = new SqlCommand();
-            try
-            {
-                PrepareCommand(cmd, connection, (SqlTransaction)null, commandType, commandText, commandParameters, out mustCloseConnection);
-
-                // 创建 DataAdapter 和 DataSet
-                XmlReader retval = cmd.ExecuteXmlReader();
-
-                // 从命令 command 对象中移出 SqlParameters 参数，以便 commandParameters 可以被再次使用
-                cmd.Parameters.Clear();
-
-                return retval;
-            }
-            catch
-            {
-                if (mustCloseConnection)
-                    connection.Close();
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// 对于指定的 SqlConnection 连接使用提供的参数通过 SqlCommand 执行一个存储过程 （返回一个结果集）。
-        /// （当每个存储过程第一次被调用时）该方法将在数据库中为存储过程查找参数，并基于参数的顺序赋值。
-        /// 注：该方法不能访问 output 参数或者是存储过程的返回值参数。
-        /// </summary>
-        /// <remarks>
-        /// 示例：
-        /// XmlReader r = ExecuteXmlReader(conn, "GetOrders", 24, 36);
-        /// </remarks>
-        /// <param name="connection">一个有效的 SqlConnection 连接实例</param>
-        /// <param name="spName">使用 "FOR XML AUTO" 的存储过程名</param>
-        /// <param name="parameterValues">一个对象数组，其中的值将被作为输入值赋给存储过程。</param>
-        /// <returns>一个 XmlReader，其中包含由 command 命令产生的结果集</returns>
-        public static XmlReader ExecuteXmlReader(SqlConnection connection, string spName, params object[] parameterValues)
-        {
-            if (connection == null) throw new ArgumentNullException("connection");
-            if (spName == null || spName.Length == 0) throw new ArgumentNullException("spName");
-
-            // 如果我们收到了参数值，那么我们需要指出它们的去向
-            if ((parameterValues != null) && (parameterValues.Length > 0))
-            {
-                // 从参数缓存中取出该存储过程的参数数组（或者找到它们并放到缓存中）
-                SqlParameter[] commandParameters = SqlHelperParameterCache.GetSpParameterSet(connection, spName);
-
-                // 将提供的值基于参数的顺序分配给这些参数
-                AssignParameterValues(commandParameters, parameterValues);
-
-                // 调用一个重载方法，该方法可以接受一个 SqlParameter[] 参数数组
-                return ExecuteXmlReader(connection, CommandType.StoredProcedure, spName, commandParameters);
-            }
-            else
-            {
-                // 否则我们可以仅调用该存储过程，而无需任何参数
-                return ExecuteXmlReader(connection, CommandType.StoredProcedure, spName);
-            }
-        }
-
-        /// <summary>
-        /// 对于指定的 SqlTransaction 事务执行一个 SqlCommand 命令（返回一个结果集，但不接受任何参数）。
-        /// </summary>
-        /// <remarks>
-        /// 示例：
-        /// XmlReader r = ExecuteXmlReader(trans, CommandType.StoredProcedure, "GetOrders");
-        /// </remarks>
-        /// <param name="transaction">一个有效的 SqlTransaction 事务</param>
-        /// <param name="commandType">命令类型（存储过程 CommandType.StoredProcedure，文本 CommandType.Text 等）</param>
-        /// <param name="commandText">使用 "FOR XML AUTO" 的存储过程名称 或 T-SQL 命令</param>
-        /// <returns>一个 XmlReader，其中包含由 command 命令产生的结果集</returns>
-        public static XmlReader ExecuteXmlReader(SqlTransaction transaction, CommandType commandType, string commandText)
-        {
-            // 通过为 SqlParameter[] 参数提供 null 来调用重载方法
-            return ExecuteXmlReader(transaction, commandType, commandText, (SqlParameter[])null);
-        }
-
-        /// <summary>
-        /// 对于指定的 SqlTransaction 事务使用提供的参数执行一个 SqlCommand 命令（返回一个结果集）。
-        /// </summary>
-        /// <remarks>
-        /// 示例：
-        /// XmlReader r = ExecuteXmlReader(trans, CommandType.StoredProcedure, "GetOrders", new SqlParameter("@prodid", 24));
-        /// </remarks>
-        /// <param name="transaction">一个有效的 SqlTransaction 事务</param>
-        /// <param name="commandType">命令类型（存储过程 CommandType.StoredProcedure，文本 CommandType.Text 等）</param>
-        /// <param name="commandText">使用 "FOR XML AUTO" 的存储过程名称 或 T-SQL 命令</param>
-        /// <param name="commandParameters">一个用于在命令中执行的 SqlParameter[] 数组</param>
-        /// <returns>一个 XmlReader，其中包含由 command 命令产生的结果集</returns>
-        public static XmlReader ExecuteXmlReader(SqlTransaction transaction, CommandType commandType, string commandText, params SqlParameter[] commandParameters)
-        {
-            if (transaction == null) throw new ArgumentNullException("transaction");
-            if (transaction != null && transaction.Connection == null) throw new ArgumentException("The transaction was rollbacked or commited, please provide an open transaction.", "transaction");
-
-            // 创建一个命令以备执行
-            SqlCommand cmd = new SqlCommand();
-            bool mustCloseConnection = false;
-            PrepareCommand(cmd, transaction.Connection, transaction, commandType, commandText, commandParameters, out mustCloseConnection);
-
-            // 创建 DataAdapter 和 DataSet
-            XmlReader retval = cmd.ExecuteXmlReader();
-
-            // 从命令 command 对象中移出 SqlParameters 参数，以便 commandParameters 可以被再次使用
-            cmd.Parameters.Clear();
-            return retval;
-        }
-
-        /// <summary>
-        /// 对于指定的 SqlTransaction 事务使用提供的参数通过 SqlCommand 执行一个存储过程 （返回一个结果集）。
-        /// （当每个存储过程第一次被调用时）该方法将在数据库中为存储过程查找参数，并基于参数的顺序赋值。
-        /// 注：该方法不能访问 output 参数或者是存储过程的返回值参数。
-        /// </summary>
-        /// <remarks>
-        /// 示例：
-        /// XmlReader r = ExecuteXmlReader(trans, "GetOrders", 24, 36);
-        /// </remarks>
-        /// <param name="transaction">一个有效的 SqlTransaction 事务</param>
-        /// <param name="spName">存储过程名</param>
-        /// <param name="parameterValues">一个对象数组，其中的值将被作为输入值赋给存储过程。</param>
-        /// <returns>一个 dataset 数据集，其中包含由 command 命令产生的结果集。</returns>
-        public static XmlReader ExecuteXmlReader(SqlTransaction transaction, string spName, params object[] parameterValues)
-        {
-            if (transaction == null) throw new ArgumentNullException("transaction");
-            if (transaction != null && transaction.Connection == null) throw new ArgumentException("The transaction was rollbacked or commited, please provide an open transaction.", "transaction");
-            if (spName == null || spName.Length == 0) throw new ArgumentNullException("spName");
-
-            // 如果我们收到了参数值，那么我们需要指出它们的去向
-            if ((parameterValues != null) && (parameterValues.Length > 0))
-            {
-                // 从参数缓存中取出该存储过程的参数数组（或者找到它们并放到缓存中）
-                SqlParameter[] commandParameters = SqlHelperParameterCache.GetSpParameterSet(transaction.Connection, spName);
-
-                // 将提供的值基于参数的顺序分配给这些参数
-                AssignParameterValues(commandParameters, parameterValues);
-
-                // 调用一个重载方法，该方法可以接受一个 SqlParameter[] 参数数组
-                return ExecuteXmlReader(transaction, CommandType.StoredProcedure, spName, commandParameters);
-            }
-            else
-            {
-                // 否则我们可以仅调用该存储过程，而无需任何参数
-                return ExecuteXmlReader(transaction, CommandType.StoredProcedure, spName);
-            }
-        }
-
-        #endregion 执行 XML 只读查询 ExecuteXmlReader
+        #endregion
 
         #region 填充数据集 FillDataset
+
         /// <summary>
         /// 对于连接字符串中指定的数据库执行一个 SqlCommand 命令，
         /// 并返回一个结果集（该命令不接受任何参数）。
@@ -2145,7 +1966,7 @@ namespace Scada.DAL.Ado
                 connection.Close();
         }
 
-        #endregion 填充数据集 FillDataset
+        #endregion
 
         #region 更新数据集 UpdateDataset
 
@@ -2184,7 +2005,7 @@ namespace Scada.DAL.Ado
             }
         }
 
-        #endregion 更新数据集 UpdateDataset
+        #endregion
 
         #region 创建 Command 命令 CreateCommand
 
@@ -2225,7 +2046,7 @@ namespace Scada.DAL.Ado
             return cmd;
         }
 
-        #endregion 创建 Command 命令 CreateCommand
+        #endregion
 
         #region 执行强类型参数的无果语句 ExecuteNonQueryTypedParams
 
@@ -2323,7 +2144,7 @@ namespace Scada.DAL.Ado
             }
         }
 
-        #endregion 执行强类型参数的无果语句 ExecuteNonQueryTypedParams
+        #endregion
 
         #region 执行强类型参数的数据集 ExecuteDatasetTypedParams
 
@@ -2421,7 +2242,7 @@ namespace Scada.DAL.Ado
             }
         }
 
-        #endregion 执行强类型参数的数据集 ExecuteDatasetTypedParams
+        #endregion
 
         #region 执行强类型参数的只读查询 ExecuteReaderTypedParams
 
@@ -2519,7 +2340,7 @@ namespace Scada.DAL.Ado
             }
         }
 
-        #endregion 执行强类型参数的只读查询 ExecuteReaderTypedParams
+        #endregion
 
         #region 执行强类型参数的单值查询 ExecuteScalarTypedParams
 
@@ -2617,293 +2438,9 @@ namespace Scada.DAL.Ado
             }
         }
 
-        #endregion 执行强类型参数的单值查询 ExecuteScalarTypedParams
+        #endregion
 
-        #region 执行强类型参数的 XML 只读查询 ExecuteXmlReaderTypedParams
-
-        /// <summary>
-        /// 对于指定的 SqlConnection 连接实例使用 dataRow 各列的值作为该存储过程的参数值
-        /// 通过 SqlCommand 执行一个存储过程 （返回一个结果集）。
-        /// （当每个存储过程第一次被调用时）该方法将在数据库中为存储过程查找参数，并基于参数的顺序赋值。
-        /// </summary>
-        /// <param name="connection">一个有效的 SqlConnection 连接实例 object</param>
-        /// <param name="spName">存储过程名</param>
-        /// <param name="dataRow">用于盛放存储过程参数值得 DataRow 数据行</param>
-        /// <returns>一个 XmlReader，其中包含由 command 命令产生的结果集</returns>
-        public static XmlReader ExecuteXmlReaderTypedParams(SqlConnection connection, String spName, DataRow dataRow)
-        {
-            if (connection == null) throw new ArgumentNullException("connection");
-            if (spName == null || spName.Length == 0) throw new ArgumentNullException("spName");
-
-            // 如果该行有值，那么该存储过程必须被初始化
-            if (dataRow != null && dataRow.ItemArray.Length > 0)
-            {
-                // 从参数缓存中取出该存储过程的参数数组（或者找到它们并放到缓存中）
-                SqlParameter[] commandParameters = SqlHelperParameterCache.GetSpParameterSet(connection, spName);
-
-                // 设置参数值
-                AssignParameterValues(commandParameters, dataRow);
-
-                return SqlHelper.ExecuteXmlReader(connection, CommandType.StoredProcedure, spName, commandParameters);
-            }
-            else
-            {
-                return SqlHelper.ExecuteXmlReader(connection, CommandType.StoredProcedure, spName);
-            }
-        }
-
-        /// <summary>
-        /// 对于指定的 SqlTransaction 事务使用 dataRow 各列的值作为该存储过程的参数值
-        /// 通过 SqlCommand 执行一个存储过程 （返回一个结果集）。
-        /// （当每个存储过程第一次被调用时）该方法将在数据库中为存储过程查找参数，并基于参数的顺序赋值。
-        /// </summary>
-        /// <param name="transaction">一个有效的 SqlTransaction 事务 object</param>
-        /// <param name="spName">存储过程名</param>
-        /// <param name="dataRow">用于盛放存储过程参数值得 DataRow 数据行</param>
-        /// <returns>一个 XmlReader，其中包含由 command 命令产生的结果集</returns>
-        public static XmlReader ExecuteXmlReaderTypedParams(SqlTransaction transaction, String spName, DataRow dataRow)
-        {
-            if (transaction == null) throw new ArgumentNullException("transaction");
-            if (transaction != null && transaction.Connection == null) throw new ArgumentException("The transaction was rollbacked or commited, please provide an open transaction.", "transaction");
-            if (spName == null || spName.Length == 0) throw new ArgumentNullException("spName");
-
-            // 如果该行有值，那么该存储过程必须被初始化
-            if (dataRow != null && dataRow.ItemArray.Length > 0)
-            {
-                // 从参数缓存中取出该存储过程的参数数组（或者找到它们并放到缓存中）
-                SqlParameter[] commandParameters = SqlHelperParameterCache.GetSpParameterSet(transaction.Connection, spName);
-
-                // 设置参数值
-                AssignParameterValues(commandParameters, dataRow);
-
-                return SqlHelper.ExecuteXmlReader(transaction, CommandType.StoredProcedure, spName, commandParameters);
-            }
-            else
-            {
-                return SqlHelper.ExecuteXmlReader(transaction, CommandType.StoredProcedure, spName);
-            }
-        }
-
-        #endregion 执行强类型参数的 XML 只读查询 ExecuteXmlReaderTypedParams
 
     }
-
-    /// <summary>
-    ///	SqlHelperParameterCache 提供了一些函数，
-    ///	用于平衡在运行时存储过程参数的静态缓存与查找存储过程参数的能力。
-    /// </summary>
-    public sealed class SqlHelperParameterCache
-    {
-        #region 私有方法、变量以及构造函数 private methods, variables, and constructors
-
-        /// <summary>
-        /// 由于该类仅提供一些静态方法，因此设置默认构造函数为 private，
-        /// 以阻止使用 "new SqlHelperParameterCache()" 来创建实例。
-        /// </summary>
-        private SqlHelperParameterCache() { }
-
-        private static Hashtable paramCache = Hashtable.Synchronized(new Hashtable());
-
-        /// <summary>
-        /// 在运行时为一个存储过程解析匹配的的 SqlParameter[] 参数数组。
-        /// </summary>
-        /// <param name="connection">一个有效的 SqlConnection 连接实例 object</param>
-        /// <param name="spName">存储过程名</param>
-        /// <param name="includeReturnValueParameter">是否包含它们的 return value parameter 返回值参数</param>
-        /// <returns>查找到的 SqlParameter[] 参数数组</returns>
-        private static SqlParameter[] DiscoverSpParameterSet(SqlConnection connection, string spName, bool includeReturnValueParameter)
-        {
-            if (connection == null) throw new ArgumentNullException("connection");
-            if (spName == null || spName.Length == 0) throw new ArgumentNullException("spName");
-
-            SqlCommand cmd = new SqlCommand(spName, connection);
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            connection.Open();
-            SqlCommandBuilder.DeriveParameters(cmd);
-            connection.Close();
-
-            if (!includeReturnValueParameter)
-            {
-                // 移除返回值参数
-                cmd.Parameters.RemoveAt(0);
-            }
-
-            SqlParameter[] discoveredParameters = new SqlParameter[cmd.Parameters.Count];
-
-            cmd.Parameters.CopyTo(discoveredParameters, 0);
-
-            // 使用 DBNull.Value 初始化参数
-            foreach (SqlParameter discoveredParameter in discoveredParameters)
-            {
-                discoveredParameter.Value = DBNull.Value;
-            }
-            return discoveredParameters;
-        }
-
-        /// <summary>
-        /// 深度拷贝缓存的 SqlParameter[] 数组。
-        /// </summary>
-        /// <param name="originalParameters">原始的参数数组</param>
-        /// <returns>深度拷贝的参数数组</returns>
-        private static SqlParameter[] CloneParameters(SqlParameter[] originalParameters)
-        {
-            SqlParameter[] clonedParameters = new SqlParameter[originalParameters.Length];
-
-            for (int i = 0, j = originalParameters.Length; i < j; i++)
-            {
-                clonedParameters[i] = (SqlParameter)((ICloneable)originalParameters[i]).Clone();
-            }
-
-            return clonedParameters;
-        }
-
-        #endregion 私有方法、变量以及构造函数 private methods, variables, and constructors
-
-        #region 缓存函数 caching functions
-
-        /// <summary>
-        /// 将 SqlParameter[] 参数数组添加到缓存中。
-        /// </summary>
-        /// <param name="connectionString">一个有效的用于建立 SqlConnection 的连接字符串</param>
-        /// <param name="commandText">存储过程名称 或 T-SQL 命令</param>
-        /// <param name="commandParameters">一个将被缓存的 SqlParameter[] 参数数组。</param>
-        public static void CacheParameterSet(string connectionString, string commandText, params SqlParameter[] commandParameters)
-        {
-            if (connectionString == null || connectionString.Length == 0) throw new ArgumentNullException("connectionString");
-            if (commandText == null || commandText.Length == 0) throw new ArgumentNullException("commandText");
-
-            string hashKey = connectionString + ":" + commandText;
-
-            paramCache[hashKey] = commandParameters;
-        }
-
-        /// <summary>
-        /// 从缓存中取回 SqlParameter[] 参数数组。
-        /// </summary>
-        /// <param name="connectionString">一个有效的用于建立 SqlConnection 的连接字符串</param>
-        /// <param name="commandText">存储过程名称 或 T-SQL 命令</param>
-        /// <returns>一个 SqlParameter[] 参数数组</returns>
-        public static SqlParameter[] GetCachedParameterSet(string connectionString, string commandText)
-        {
-            if (connectionString == null || connectionString.Length == 0) throw new ArgumentNullException("connectionString");
-            if (commandText == null || commandText.Length == 0) throw new ArgumentNullException("commandText");
-
-            string hashKey = connectionString + ":" + commandText;
-
-            SqlParameter[] cachedParameters = paramCache[hashKey] as SqlParameter[];
-            if (cachedParameters == null)
-            {
-                return null;
-            }
-            else
-            {
-                return CloneParameters(cachedParameters);
-            }
-        }
-
-        #endregion 缓存函数 caching functions
-
-        #region 参数查找函数 Parameter Discovery Functions
-
-        /// <summary>
-        /// 为该存储过程取回一个匹配的参数数组。
-        /// </summary>
-        /// <remarks>
-        /// 该方法将在数据库中查询这些信息，并存储到缓存中以备将来使用。
-        /// </remarks>
-        /// <param name="connectionString">一个有效的用于建立 SqlConnection 的连接字符串</param>
-        /// <param name="spName">存储过程名</param>
-        /// <returns>一个 SqlParameter[] 参数数组</returns>
-        public static SqlParameter[] GetSpParameterSet(string connectionString, string spName)
-        {
-            return GetSpParameterSet(connectionString, spName, false);
-        }
-
-        /// <summary>
-        /// 为该存储过程取回一个匹配的参数数组。
-        /// </summary>
-        /// <remarks>
-        /// 该方法将在数据库中查询这些信息，并存储到缓存中以备将来使用。
-        /// </remarks>
-        /// <param name="connectionString">一个有效的用于建立 SqlConnection 的连接字符串</param>
-        /// <param name="spName">存储过程名</param>
-        /// <param name="includeReturnValueParameter">一个布尔值，指示返回值参数是否应该包括在结果中</param>
-        /// <returns>一个 SqlParameter[] 参数数组</returns>
-        public static SqlParameter[] GetSpParameterSet(string connectionString, string spName, bool includeReturnValueParameter)
-        {
-            if (connectionString == null || connectionString.Length == 0) throw new ArgumentNullException("connectionString");
-            if (spName == null || spName.Length == 0) throw new ArgumentNullException("spName");
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                return GetSpParameterSetInternal(connection, spName, includeReturnValueParameter);
-            }
-        }
-
-        /// <summary>
-        /// 为该存储过程取回一个匹配的参数数组。
-        /// </summary>
-        /// <remarks>
-        /// 该方法将在数据库中查询这些信息，并存储到缓存中以备将来使用。
-        /// </remarks>
-        /// <param name="connection">一个有效的 SqlConnection 连接实例 object</param>
-        /// <param name="spName">存储过程名</param>
-        /// <returns>一个 SqlParameter[] 参数数组</returns>
-        internal static SqlParameter[] GetSpParameterSet(SqlConnection connection, string spName)
-        {
-            return GetSpParameterSet(connection, spName, false);
-        }
-
-        /// <summary>
-        /// 为该存储过程取回一个匹配的参数数组。
-        /// </summary>
-        /// <remarks>
-        /// 该方法将在数据库中查询这些信息，并存储到缓存中以备将来使用。
-        /// </remarks>
-        /// <param name="connection">一个有效的 SqlConnection 连接实例 object</param>
-        /// <param name="spName">存储过程名</param>
-        /// <param name="includeReturnValueParameter">一个布尔值，指示返回值参数是否应该包括在结果中</param>
-        /// <returns>一个 SqlParameter[] 参数数组</returns>
-        internal static SqlParameter[] GetSpParameterSet(SqlConnection connection, string spName, bool includeReturnValueParameter)
-        {
-            if (connection == null) throw new ArgumentNullException("connection");
-            using (SqlConnection clonedConnection = (SqlConnection)((ICloneable)connection).Clone())
-            {
-                return GetSpParameterSetInternal(clonedConnection, spName, includeReturnValueParameter);
-            }
-        }
-
-        /// <summary>
-        /// 为该存储过程取回一个匹配的参数数组。
-        /// </summary>
-        /// <param name="connection">一个有效的 SqlConnection 连接实例 object</param>
-        /// <param name="spName">存储过程名</param>
-        /// <param name="includeReturnValueParameter">一个布尔值，指示返回值参数是否应该包括在结果中</param>
-        /// <returns>一个 SqlParameter[] 参数数组</returns>
-        private static SqlParameter[] GetSpParameterSetInternal(SqlConnection connection, string spName, bool includeReturnValueParameter)
-        {
-            if (connection == null) throw new ArgumentNullException("connection");
-            if (spName == null || spName.Length == 0) throw new ArgumentNullException("spName");
-
-            string hashKey = connection.ConnectionString + ":" + spName + (includeReturnValueParameter ? ":include ReturnValue Parameter" : "");
-
-            SqlParameter[] cachedParameters;
-
-            cachedParameters = paramCache[hashKey] as SqlParameter[];
-            if (cachedParameters == null)
-            {
-                SqlParameter[] spParameters = DiscoverSpParameterSet(connection, spName, includeReturnValueParameter);
-                paramCache[hashKey] = spParameters;
-                cachedParameters = spParameters;
-            }
-
-            return CloneParameters(cachedParameters);
-        }
-
-        #endregion 参数查找函数 Parameter Discovery Functions
-    }
-
-
 
 }

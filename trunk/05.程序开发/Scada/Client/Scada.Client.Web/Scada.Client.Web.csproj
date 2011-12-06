@@ -91,7 +91,7 @@
     </Content>
     <Content Include="Scada.aspx" />
     <Content Include="Scada.html" />
-    <Content Include="Silverlight.js" />
+    <Content Include="JavaScript\Silverlight.js" />
     <None Include="Service References\TheThirdWeatherWebServiceReference\WeatherWebService.wsdl" />
   </ItemGroup>
   <ItemGroup>

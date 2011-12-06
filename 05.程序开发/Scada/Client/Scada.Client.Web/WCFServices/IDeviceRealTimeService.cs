@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Scada.Client.Web.WCFServices
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IDeviceRealTimeService" in both code and config file together.
+    
     [ServiceContract(Namespace = "", CallbackContract = typeof(IDeviceRealTimeServiceCallback))]
     public interface IDeviceRealTimeService
     {

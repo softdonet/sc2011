@@ -45,6 +45,7 @@ namespace Scada.Client.Web.WCFServices
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message); 
                     if (exceptionDelegate != null)
                         exceptionDelegate.Invoke(NoticeClient);
                 }

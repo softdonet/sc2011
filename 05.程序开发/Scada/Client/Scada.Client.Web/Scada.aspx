@@ -18,7 +18,7 @@
 	    text-align:center;
     }
     </style>
-    <script type="text/javascript" src="Silverlight.js"></script>
+    <script src="JavaScript/Silverlight.js" type="text/javascript"></script>
     <script type="text/javascript">
         function onSilverlightError(sender, args) {
             var appSource = "";

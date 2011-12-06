@@ -91,7 +91,6 @@
     </Content>
     <Content Include="Scada.aspx" />
     <Content Include="Scada.html" />
-    <Content Include="JavaScript\Silverlight.js" />
     <None Include="Service References\TheThirdWeatherWebServiceReference\WeatherWebService.wsdl" />
   </ItemGroup>
   <ItemGroup>
@@ -135,7 +134,9 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="JavaScript\" />
+  </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\TheThirdWeatherWebServiceReference\" />
   </ItemGroup>

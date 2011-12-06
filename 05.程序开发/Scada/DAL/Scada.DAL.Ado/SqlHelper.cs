@@ -18,7 +18,6 @@ namespace Scada.DAL.Ado
     public sealed class SqlHelper
     {
 
-
         #region 用户指定执行TimeOut
 
         /// <summary>
@@ -29,9 +28,6 @@ namespace Scada.DAL.Ado
         public static int CustomCommandTimeout = 0;
 
         #endregion
-
-
-
 
         #region 私有实用方法和构造函数 private utility methods & constructors
 
@@ -225,6 +221,20 @@ namespace Scada.DAL.Ado
 
         #region 执行无果语句 ExecuteNonQuery
 
+        public static int ExecuteNonQuery(string sqlText)
+        {
+            return ExecuteNonQuery(CommandType.Text, sqlText, (SqlParameter[])null);
+        }
+
+        public static int ExecuteNonQuery(CommandType commandType, string commandText, params SqlParameter[] commandParameters)
+        {
+            using (SqlConnection connection = new SqlConnection(DefaultDBConnection.Default_DataBasic_Connection))
+            {
+                connection.Open();
+                return ExecuteNonQuery(connection, commandType, commandText, commandParameters);
+            }
+        }
+
         /// <summary>
         /// 对于连接字符串中指定的数据库执行一个 SqlCommand 命令
         /// （该命令不返回任何结果集，也不接受任何参数）。
@@ -239,7 +249,6 @@ namespace Scada.DAL.Ado
         /// <returns>一个整数，表明该命令所影响的行数。</returns>
         public static int ExecuteNonQuery(string connectionString, string sqlText)
         {
-            // 通过为 SqlParameter[] 参数提供 null 来调用重载方法
             return ExecuteNonQuery(connectionString, CommandType.Text, sqlText, (SqlParameter[])null);
         }
 
@@ -344,7 +353,6 @@ namespace Scada.DAL.Ado
         /// <returns>一个整数，表明该命令所影响的行数。</returns>
         public static int ExecuteNonQuery(string connectionString, CommandType commandType, string commandText)
         {
-            // 通过为 SqlParameter[] 参数提供 null 来调用重载方法
             return ExecuteNonQuery(connectionString, commandType, commandText, (SqlParameter[])null);
         }
 
@@ -586,6 +594,25 @@ namespace Scada.DAL.Ado
         #endregion
 
         #region 执行数据集 ExecuteDataset
+
+        public static DataSet ExecuteDataset(string commandText)
+        {
+            return ExecuteDataset(CommandType.Text, commandText);
+        }
+
+        public static DataSet ExecuteDataset(CommandType commandType, string commandText)
+        {
+            return ExecuteDataset(commandType, commandText, (SqlParameter[])null);
+        }
+
+        public static DataSet ExecuteDataset(CommandType commandType, string commandText, params SqlParameter[] commandParameters)
+        {
+            using (SqlConnection connection = new SqlConnection(DefaultDBConnection.Default_DataBasic_Connection))
+            {
+                connection.Open();
+                return ExecuteDataset(connection, commandType, commandText, commandParameters);
+            }
+        }
 
         /// <summary>
         /// 对于连接字符串中指定的数据库执行一个 SqlCommand 命令，
@@ -856,10 +883,19 @@ namespace Scada.DAL.Ado
             }
         }
 
-
         #endregion
 
         #region 执行数据表 ExecuteDataTable
+
+        public static DataTable ExecuteDataTable(string sqlText)
+        {
+            return ExecuteDataTable(sqlText, (SqlParameter[])null);
+        }
+
+        public static DataTable ExecuteDataTable(string sqlText, SqlParameter[] commandParameters)
+        {
+            return ExecuteDataset(CommandType.Text, sqlText, commandParameters).Tables[0];
+        }
 
         /// <summary>
         /// 对于连接字符串中指定的数据库使用提供的参数执行一个 SqlCommand 命令，
@@ -979,6 +1015,33 @@ namespace Scada.DAL.Ado
         #endregion
 
         #region 执行只读查询 ExecuteReader
+
+        public static SqlDataReader ExecuteReader(string commandText)
+        {
+            return ExecuteReader(commandText, (SqlParameter[])null);
+        }
+
+        public static SqlDataReader ExecuteReader(string commandText, params SqlParameter[] commandParameters)
+        {
+            return ExecuteReader(CommandType.Text, commandText, commandParameters);
+        }
+
+        public static SqlDataReader ExecuteReader(CommandType commandType, string commandText, params SqlParameter[] commandParameters)
+        {
+            SqlConnection connection = null;
+            try
+            {
+                connection = new SqlConnection(DefaultDBConnection.Default_DataBasic_Connection);
+                connection.Open();
+                return ExecuteReader(connection, null, commandType, commandText, commandParameters, SqlConnectionOwnership.Internal);
+            }
+            catch
+            {
+                if (connection != null) connection.Close();
+                throw;
+            }
+
+        }
 
         /// <summary>
         /// 该枚举用于指明连接实例 connection 是由调用者提供的，还是由 SqlHelper 创建的，
@@ -1294,6 +1357,26 @@ namespace Scada.DAL.Ado
         #endregion 执行只读查询 ExecuteReader
 
         #region 执行单值查询 ExecuteScalar
+
+        public static object ExecuteScalar(string sqlText)
+        {
+            return ExecuteScalar(sqlText, (SqlParameter[])null);
+        }
+
+        public static object ExecuteScalar(string sqlText, SqlParameter[] commandParameters)
+        {
+            return ExecuteScalar(CommandType.Text, sqlText, commandParameters);
+        }
+
+        public static object ExecuteScalar(CommandType commandType, string commandText, params SqlParameter[] commandParameters)
+        {
+            using (SqlConnection connection = new SqlConnection(DefaultDBConnection.Default_DataBasic_Connection))
+            {
+                connection.Open();
+                return ExecuteScalar(connection, commandType, commandText, commandParameters);
+            }
+        }
+
 
         /// <summary>
         /// 对于连接字符串中指定的数据库执行一个 SqlCommand 命令，

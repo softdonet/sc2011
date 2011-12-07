@@ -1,0 +1,169 @@
+﻿<CoverageDSPriv>
+  <Module>
+    <ModuleName>区域1</ModuleName>
+    <ImageSize>1081344</ImageSize>
+    <ImageLinkTime>0</ImageLinkTime>
+    <LinesCovered>20</LinesCovered>
+    <LinesNotCovered>1419</LinesNotCovered>
+    <BlocksCovered>北京石景山大王村</BlocksCovered>
+    <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+    <NamespaceTable>
+      <BlocksCovered>北京石景山大王村</BlocksCovered>
+      <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      <LinesCovered>13</LinesCovered>
+      <LinesNotCovered>1223</LinesNotCovered>
+      <ModuleName>区域1</ModuleName>
+      <NamespaceName>管理分区1</NamespaceName>
+
+      <Class>
+        <ClassName>设备G1-01</ClassName>
+        <LinesCovered>23</LinesCovered>
+        <LinesNotCovered>0</LinesNotCovered>
+        <BlocksCovered>北京石景山大王村</BlocksCovered>
+        <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      </Class>
+      <Class>
+        <ClassName>设备G1-02</ClassName>
+        <LinesCovered>12</LinesCovered>
+        <LinesNotCovered>0</LinesNotCovered>
+        <BlocksCovered>北京石景山大王村</BlocksCovered>
+        <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      </Class>
+      <Class>
+        <ClassName>设备G1-03</ClassName>
+        <LinesCovered>30</LinesCovered>
+        <LinesNotCovered>0</LinesNotCovered>
+        <BlocksCovered>北京石景山大王村</BlocksCovered>
+        <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      </Class>
+      <Class>
+        <ClassName>设备G1-04</ClassName>
+        <LinesCovered>23</LinesCovered>
+        <LinesNotCovered>3</LinesNotCovered>
+        <BlocksCovered>北京石景山大王村</BlocksCovered>
+        <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      </Class>
+      <Class>
+        <ClassName>设备G1-05</ClassName>
+        <LinesCovered>32</LinesCovered>
+        <LinesNotCovered>0</LinesNotCovered>
+        <BlocksCovered>北京石景山大王村</BlocksCovered>
+        <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      </Class>
+      <Class>
+        <ClassName>设备G1-06</ClassName>
+        <LinesCovered>17</LinesCovered>
+        <LinesNotCovered>0</LinesNotCovered>
+        <BlocksCovered>北京石景山大王村</BlocksCovered>
+        <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      </Class>
+      <Class>
+        <ClassName>设备G1-07</ClassName>
+        <LinesCovered>3</LinesCovered>
+        <LinesNotCovered>0</LinesNotCovered>
+        <BlocksCovered>北京石景山大王村</BlocksCovered>
+        <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      </Class>
+      <Class>
+        <ClassName>设备G1-08</ClassName>
+        <LinesCovered>14</LinesCovered>
+        <LinesNotCovered>0</LinesNotCovered>
+        <BlocksCovered>北京石景山大王村</BlocksCovered>
+        <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      </Class>
+      <Class>
+        <ClassName>设备G1-09</ClassName>
+        <LinesCovered>12</LinesCovered>
+        <LinesNotCovered>0</LinesNotCovered>
+        <BlocksCovered>北京石景山大王村</BlocksCovered>
+        <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      </Class>
+      <Class>
+        <ClassName>设备G1-10</ClassName>
+        <LinesCovered>15</LinesCovered>
+        <LinesNotCovered>0</LinesNotCovered>
+        <BlocksCovered>北京石景山大王村</BlocksCovered>
+        <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      </Class>
+
+    </NamespaceTable>
+    <NamespaceTable>
+      <BlocksCovered>北京石景山大王村</BlocksCovered>
+      <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      <LinesCovered>26</LinesCovered>
+      <LinesNotCovered>196</LinesNotCovered>
+      <ModuleName>区域2</ModuleName>
+      <NamespaceName>管理分区2</NamespaceName>
+      <Class>
+        <ClassName>设备X1-01</ClassName>
+        <LinesCovered>23</LinesCovered>
+        <LinesNotCovered>0</LinesNotCovered>
+        <BlocksCovered>北京石景山大王村</BlocksCovered>
+        <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      </Class>
+      <Class>
+        <ClassName>设备X1-02</ClassName>
+        <LinesCovered>15</LinesCovered>
+        <LinesNotCovered>0</LinesNotCovered>
+        <BlocksCovered>北京石景山大王村</BlocksCovered>
+        <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      </Class>
+      <Class>
+        <ClassName>设备X1-03</ClassName>
+        <LinesCovered>26</LinesCovered>
+        <LinesNotCovered>36</LinesNotCovered>
+        <BlocksCovered>北京石景山大王村</BlocksCovered>
+        <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      </Class>
+      <Class>
+        <ClassName>设备X1-04</ClassName>
+        <LinesCovered>3</LinesCovered>
+        <LinesNotCovered>0</LinesNotCovered>
+        <BlocksCovered>北京石景山大王村</BlocksCovered>
+        <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      </Class>
+      <Class>
+        <ClassName>设备X1-05</ClassName>
+        <LinesCovered>21</LinesCovered>
+        <LinesNotCovered>17</LinesNotCovered>
+        <BlocksCovered>北京石景山大王村</BlocksCovered>
+        <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      </Class>
+      <Class>
+        <ClassName>设备X1-06</ClassName>
+        <LinesCovered>27</LinesCovered>
+        <LinesNotCovered>11</LinesNotCovered>
+        <BlocksCovered>北京石景山大王村</BlocksCovered>
+        <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      </Class>
+      <Class>
+        <ClassName>设备X1-07</ClassName>
+        <LinesCovered>26</LinesCovered>
+        <LinesNotCovered>3</LinesNotCovered>
+        <BlocksCovered>北京石景山大王村</BlocksCovered>
+        <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      </Class>
+      <Class>
+        <ClassName>设备X1-08</ClassName>
+        <LinesCovered>10</LinesCovered>
+        <LinesNotCovered>0</LinesNotCovered>
+        <BlocksCovered>北京石景山大王村</BlocksCovered>
+        <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      </Class>
+      <Class>
+        <ClassName>设备X1-09</ClassName>
+        <LinesCovered>21</LinesCovered>
+        <LinesNotCovered>3</LinesNotCovered>
+        <BlocksCovered>北京石景山大王村</BlocksCovered>
+        <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      </Class>
+      <Class>
+        <ClassName>设备X1-10</ClassName>
+        <LinesCovered>25</LinesCovered>
+        <LinesNotCovered>0</LinesNotCovered>
+        <BlocksCovered>北京石景山大王村</BlocksCovered>
+        <BlocksNotCovered>2011-10-29 12:05:00</BlocksNotCovered>
+      </Class>
+    </NamespaceTable>
+  </Module>
+</CoverageDSPriv>

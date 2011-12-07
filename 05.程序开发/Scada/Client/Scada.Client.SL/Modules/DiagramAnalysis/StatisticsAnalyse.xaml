@@ -1,0 +1,414 @@
+﻿<UserControl xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  x:Class="Scada.Client.SL.Modules.DiagramAnalysis.StatisticsAnalyse"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="500" d:DesignWidth="1024" xmlns:my="clr-namespace:Scada.Client.UC;assembly=Scada.Client.UC">
+    
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Border Name="content_Border" BorderBrush="#FF4A91BB" BorderThickness="1" Margin="5" CornerRadius="5">
+            <Border.Background>
+                <LinearGradientBrush StartPoint=".5,0" EndPoint=".5,1">
+                    <GradientStop Color="#FF5BB5E3" Offset="0"/>
+                    <GradientStop Color="#FF2C5273" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <TextBlock Name="title_TextBlock" Text="设备告警持续时间分布图" Margin="22,5,0,0" Height="25" TextWrapping="Wrap" FontSize="16"  Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Border BorderBrush="#FF4A91BB" BorderThickness="1" Margin="10,35,10,20" CornerRadius="5" Background="White">
+                    <Border BorderThickness="1" Margin="2" CornerRadius="5">
+                        <Grid ShowGridLines="True" Background="AliceBlue">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="300"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="100"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Name="stackPanel1" Orientation="Vertical" Margin="5,10,5,5" >
+                                <StackPanel Orientation="Horizontal" Margin="5,10,5,5">
+                                    <sdk:Label Content="选择年：" VerticalAlignment="Center" />
+                                    <ComboBox Name="comboBox1" Width="182" SelectedIndex="2">
+                                        <ComboBoxItem Content="2009"/>
+                                        <ComboBoxItem Content="2010"/>
+                                        <ComboBoxItem Content="2011"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="5,10,5,5">
+                                    <sdk:Label Content="选择月：" VerticalAlignment="Center" />
+                                    <ComboBox Name="comboBox2" Width="182" SelectedIndex="0">
+                                        <ComboBoxItem Content="01"/>
+                                        <ComboBoxItem Content="02"/>
+                                        <ComboBoxItem Content="03"/>
+                                        <ComboBoxItem Content="04"/>
+                                        <ComboBoxItem Content="05"/>
+                                        <ComboBoxItem Content="06"/>
+                                        <ComboBoxItem Content="07"/>
+                                        <ComboBoxItem Content="08"/>
+                                        <ComboBoxItem Content="09"/>
+                                        <ComboBoxItem Content="10"/>
+                                        <ComboBoxItem Content="11"/>
+                                        <ComboBoxItem Content="12"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel />
+                            </StackPanel>
+                            <my:TreeListCheckBox Grid.Row="1"  Margin="10,0,10,0" Name="treeListCheckBox1" VerticalAlignment="Top" />
+                            
+                            <!--图表部分-->
+                            <vc:Chart Grid.Column="1" Grid.RowSpan="2" xmlns:vc="clr-namespace:Visifire.Charts;assembly=SLVisifire.Charts" 
+                                Theme="Theme1" ShadowEnabled="True" CornerRadius="5,5,0,0" BorderThickness="0.5"         
+                                BorderBrush="Gray" AnimatedUpdate="true" >
+
+                                <vc:Chart.Titles>
+                                    <vc:Title Text="设备告警持续时间分布图" FontFamily="Arial" FontSize="14" Padding="0,5,0,0"/>
+                                </vc:Chart.Titles>
+
+                                <vc:Chart.PlotArea>
+                                    <vc:PlotArea CornerRadius="0,5,0,0" BorderThickness="0,1,1,0" BorderColor="LightGray" />
+                                </vc:Chart.PlotArea>
+
+                                <vc:Chart.AxesX>
+                                    <vc:Axis Title="设备" >
+                                        <vc:Axis.Grids>
+                                            <vc:ChartGrid LineThickness="0.25" />
+                                        </vc:Axis.Grids>
+
+                                    </vc:Axis>
+                                </vc:Chart.AxesX>
+
+                                <vc:Chart.AxesY>
+                                    <vc:Axis AxisMinimum="0" AxisMaximum="30" Interval="1" Title="2011年10月" >
+                                        <vc:Axis.AxisLabels>
+                                            <vc:AxisLabels Enabled="False" />
+                                        </vc:Axis.AxisLabels>
+                                        <vc:Axis.Ticks>
+                                            <vc:Ticks Enabled="true"/>
+                                        </vc:Axis.Ticks>
+                                        <vc:Axis.CustomAxisLabels>
+                                            <vc:CustomAxisLabels LineEnabled="False" >
+                                                <vc:CustomAxisLabels.Labels>
+                                                    <vc:CustomAxisLabel From="0" To="0" Text="1" />
+                                                    <vc:CustomAxisLabel From="1" To="1" Text="2" />
+                                                    <vc:CustomAxisLabel From="2" To="2" Text="3" />
+                                                    <vc:CustomAxisLabel From="3" To="3" Text="4" />
+                                                    <vc:CustomAxisLabel From="4" To="4" Text="5" />
+                                                    <vc:CustomAxisLabel From="5" To="5" Text="6" />
+                                                    <vc:CustomAxisLabel From="6" To="6" Text="7" />
+                                                    <vc:CustomAxisLabel From="7" To="7" Text="8" />
+                                                    <vc:CustomAxisLabel From="8" To="8" Text="9" />
+                                                    <vc:CustomAxisLabel From="9" To="9" Text="10" />
+                                                    <vc:CustomAxisLabel From="10" To="10" Text="11" />
+                                                    <vc:CustomAxisLabel From="11" To="11" Text="12" />
+                                                    <vc:CustomAxisLabel From="12" To="12" Text="13" />
+                                                    <vc:CustomAxisLabel From="13" To="13" Text="14" />
+                                                    <vc:CustomAxisLabel From="14" To="14" Text="15" />
+                                                    <vc:CustomAxisLabel From="15" To="15" Text="16" />
+                                                    <vc:CustomAxisLabel From="16" To="16" Text="17" />
+                                                    <vc:CustomAxisLabel From="17" To="17" Text="18" />
+                                                    <vc:CustomAxisLabel From="18" To="18" Text="19" />
+                                                    <vc:CustomAxisLabel From="19" To="19" Text="20" />
+                                                    <vc:CustomAxisLabel From="20" To="20" Text="21" />
+                                                    <vc:CustomAxisLabel From="21" To="21" Text="22" />
+                                                    <vc:CustomAxisLabel From="22" To="22" Text="23" />
+                                                    <vc:CustomAxisLabel From="23" To="23" Text="24" />
+                                                    <vc:CustomAxisLabel From="24" To="24" Text="25" />
+                                                    <vc:CustomAxisLabel From="25" To="25" Text="26" />
+                                                    <vc:CustomAxisLabel From="26" To="26" Text="27" />
+                                                    <vc:CustomAxisLabel From="27" To="27" Text="28" />
+                                                    <vc:CustomAxisLabel From="28" To="28" Text="29" />
+                                                    <vc:CustomAxisLabel From="29" To="29" Text="30" />
+                                                </vc:CustomAxisLabels.Labels>
+                                            </vc:CustomAxisLabels>
+                                        </vc:Axis.CustomAxisLabels>
+
+                                    </vc:Axis>
+                                </vc:Chart.AxesY>
+
+                                <vc:Chart.Series>
+                                    <vc:DataSeries RenderAs="StackedBar" ShowInLegend="False" >
+                                        <vc:DataSeries.DataPoints>
+                                            <vc:DataPoint AxisXLabel="设备1"  YValue="0.3" Color="Transparent" />
+                                            <vc:DataPoint AxisXLabel="设备2" YValue="0.5" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备3" YValue="1" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备4" YValue="0.7" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备5" YValue="0.8" Color="Transparent" />
+                                            <vc:DataPoint AxisXLabel="设备6" YValue="0.1" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备7" YValue="1.3" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备8" YValue="0.4" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备9" YValue="0.5" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备10" YValue="1.2" Color="Transparent"/>
+                                        </vc:DataSeries.DataPoints>
+                                    </vc:DataSeries>
+
+                                    <vc:DataSeries RenderAs="StackedBar" ShowInLegend="False" >
+                                        <vc:DataSeries.DataPoints>
+                                            <vc:DataPoint AxisXLabel="设备1" YValue="0.4" Color="red" />
+                                            <vc:DataPoint AxisXLabel="设备2" YValue="0.6" Color="Green"/>
+                                            <vc:DataPoint AxisXLabel="设备3" YValue="0.1" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备4" YValue="0.34" Color="Blue"/>
+                                            <vc:DataPoint AxisXLabel="设备5" YValue="0.35" Color="red" />
+                                            <vc:DataPoint AxisXLabel="设备6" YValue="0.8" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备7" YValue="0.3" Color="Blue"/>
+                                            <vc:DataPoint AxisXLabel="设备8" YValue="0.12" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备9" YValue="0.3" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备10" YValue="0.5" Color="Blue"/>
+                                        </vc:DataSeries.DataPoints>
+                                    </vc:DataSeries>
+
+                                    <vc:DataSeries RenderAs="StackedBar" ShowInLegend="False" >
+                                        <vc:DataSeries.DataPoints>
+                                            <vc:DataPoint AxisXLabel="设备1"  YValue="1.2" Color="Transparent" />
+                                            <vc:DataPoint AxisXLabel="设备2" YValue="2.3" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备3" YValue="2.1" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备4" YValue="1.4" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备5" YValue="1.2" Color="Transparent" />
+                                            <vc:DataPoint AxisXLabel="设备6" YValue="1.1" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备7" YValue="1.34" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备8" YValue="2.56" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备9" YValue="1.2" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备10" YValue="1.7" Color="Transparent"/>
+                                        </vc:DataSeries.DataPoints>
+                                    </vc:DataSeries>
+
+                                    <vc:DataSeries RenderAs="StackedBar" ShowInLegend="False" >
+                                        <vc:DataSeries.DataPoints>
+                                            <vc:DataPoint AxisXLabel="设备1" YValue="0.5" Color="red" />
+                                            <vc:DataPoint AxisXLabel="设备2" YValue="0.4" Color="Blue"/>
+                                            <vc:DataPoint AxisXLabel="设备3" YValue="0.1" Color="Blue"/>
+                                            <vc:DataPoint AxisXLabel="设备4" YValue="0.6" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备5" YValue="0.7" Color="Blue" />
+                                            <vc:DataPoint AxisXLabel="设备6" YValue="0.12" Color="Blue"/>
+                                            <vc:DataPoint AxisXLabel="设备7" YValue="0.3" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备8" YValue="0.34" Color="Blue"/>
+                                            <vc:DataPoint AxisXLabel="设备9" YValue="0.56" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备10" YValue="0.25" Color="Blue"/>
+                                        </vc:DataSeries.DataPoints>
+                                    </vc:DataSeries>
+                                    <vc:DataSeries RenderAs="StackedBar" ShowInLegend="False" >
+                                        <vc:DataSeries.DataPoints>
+                                            <vc:DataPoint AxisXLabel="设备1"  YValue="1" Color="Transparent" />
+                                            <vc:DataPoint AxisXLabel="设备2" YValue="3" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备3" YValue="5" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备4" YValue="2" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备5" YValue="5" Color="Transparent" />
+                                            <vc:DataPoint AxisXLabel="设备6" YValue="7" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备7" YValue="2" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备8" YValue="3" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备9" YValue="1" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备10" YValue="4" Color="Transparent"/>
+                                        </vc:DataSeries.DataPoints>
+                                    </vc:DataSeries>
+
+
+                                    <vc:DataSeries RenderAs="StackedBar" ShowInLegend="False" >
+                                        <vc:DataSeries.DataPoints>
+                                            <vc:DataPoint AxisXLabel="设备1" YValue="0.4" Color="red" />
+                                            <vc:DataPoint AxisXLabel="设备2" YValue="0.6" Color="Green"/>
+                                            <vc:DataPoint AxisXLabel="设备3" YValue="0.1" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备4" YValue="0.34" Color="Blue"/>
+                                            <vc:DataPoint AxisXLabel="设备5" YValue="0.35" Color="red" />
+                                            <vc:DataPoint AxisXLabel="设备6" YValue="0.8" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备7" YValue="0.3" Color="Blue"/>
+                                            <vc:DataPoint AxisXLabel="设备8" YValue="0.12" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备9" YValue="0.3" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备10" YValue="0.5" Color="Blue"/>
+                                        </vc:DataSeries.DataPoints>
+                                    </vc:DataSeries>
+                                    <vc:DataSeries RenderAs="StackedBar" ShowInLegend="False" >
+                                        <vc:DataSeries.DataPoints>
+                                            <vc:DataPoint AxisXLabel="设备1"  YValue="0.3" Color="Transparent" />
+                                            <vc:DataPoint AxisXLabel="设备2" YValue="0.5" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备3" YValue="1" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备4" YValue="0.7" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备5" YValue="0.8" Color="Transparent" />
+                                            <vc:DataPoint AxisXLabel="设备6" YValue="0.1" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备7" YValue="1.3" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备8" YValue="0.4" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备9" YValue="0.5" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备10" YValue="1.2" Color="Transparent"/>
+                                        </vc:DataSeries.DataPoints>
+                                    </vc:DataSeries>
+
+                                    <vc:DataSeries RenderAs="StackedBar" ShowInLegend="False" >
+                                        <vc:DataSeries.DataPoints>
+                                            <vc:DataPoint AxisXLabel="设备1" YValue="0.5" Color="Blue" />
+                                            <vc:DataPoint AxisXLabel="设备2" YValue="0.4" Color="Green"/>
+                                            <vc:DataPoint AxisXLabel="设备3" YValue="0.1" Color="Green"/>
+                                            <vc:DataPoint AxisXLabel="设备4" YValue="0.6" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备5" YValue="0.7" Color="Green" />
+                                            <vc:DataPoint AxisXLabel="设备6" YValue="0.12" Color="Green"/>
+                                            <vc:DataPoint AxisXLabel="设备7" YValue="0.3" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备8" YValue="0.34" Color="Blue"/>
+                                            <vc:DataPoint AxisXLabel="设备9" YValue="0.56" Color="Green"/>
+                                            <vc:DataPoint AxisXLabel="设备10" YValue="0.25" Color="Blue"/>
+                                        </vc:DataSeries.DataPoints>
+                                    </vc:DataSeries>
+
+                                    <vc:DataSeries RenderAs="StackedBar" ShowInLegend="False" >
+                                        <vc:DataSeries.DataPoints>
+                                            <vc:DataPoint AxisXLabel="设备1"  YValue="1.2" Color="Transparent" />
+                                            <vc:DataPoint AxisXLabel="设备2" YValue="2.3" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备3" YValue="2.1" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备4" YValue="1.4" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备5" YValue="1.2" Color="Transparent" />
+                                            <vc:DataPoint AxisXLabel="设备6" YValue="1.1" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备7" YValue="1.34" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备8" YValue="2.56" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备9" YValue="1.2" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备10" YValue="1.7" Color="Transparent"/>
+                                        </vc:DataSeries.DataPoints>
+                                    </vc:DataSeries>
+
+                                    <vc:DataSeries RenderAs="StackedBar" ShowInLegend="False" >
+                                        <vc:DataSeries.DataPoints>
+                                            <vc:DataPoint AxisXLabel="设备1" YValue="0.5" Color="red" />
+                                            <vc:DataPoint AxisXLabel="设备2" YValue="0.4" Color="Blue"/>
+                                            <vc:DataPoint AxisXLabel="设备3" YValue="0.1" Color="Blue"/>
+                                            <vc:DataPoint AxisXLabel="设备4" YValue="0.6" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备5" YValue="0.7" Color="Blue" />
+                                            <vc:DataPoint AxisXLabel="设备6" YValue="0.12" Color="Blue"/>
+                                            <vc:DataPoint AxisXLabel="设备7" YValue="0.3" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备8" YValue="0.34" Color="Blue"/>
+                                            <vc:DataPoint AxisXLabel="设备9" YValue="0.56" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备10" YValue="0.25" Color="Blue"/>
+                                        </vc:DataSeries.DataPoints>
+                                    </vc:DataSeries>
+                                    <vc:DataSeries RenderAs="StackedBar" ShowInLegend="False" >
+                                        <vc:DataSeries.DataPoints>
+                                            <vc:DataPoint AxisXLabel="设备1"  YValue="1" Color="Transparent" />
+                                            <vc:DataPoint AxisXLabel="设备2" YValue="3" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备3" YValue="5" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备4" YValue="2" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备5" YValue="5" Color="Transparent" />
+                                            <vc:DataPoint AxisXLabel="设备6" YValue="7" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备7" YValue="2" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备8" YValue="3" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备9" YValue="1" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备10" YValue="4" Color="Transparent"/>
+                                        </vc:DataSeries.DataPoints>
+                                    </vc:DataSeries>
+                                    <vc:DataSeries RenderAs="StackedBar" ShowInLegend="False" >
+                                        <vc:DataSeries.DataPoints>
+                                            <vc:DataPoint AxisXLabel="设备1" YValue="0.5" Color="Blue" />
+                                            <vc:DataPoint AxisXLabel="设备2" YValue="0.4" Color="Green"/>
+                                            <vc:DataPoint AxisXLabel="设备3" YValue="0.1" Color="Green"/>
+                                            <vc:DataPoint AxisXLabel="设备4" YValue="0.6" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备5" YValue="0.7" Color="Green" />
+                                            <vc:DataPoint AxisXLabel="设备6" YValue="0.12" Color="Green"/>
+                                            <vc:DataPoint AxisXLabel="设备7" YValue="0.3" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备8" YValue="0.34" Color="Blue"/>
+                                            <vc:DataPoint AxisXLabel="设备9" YValue="0.56" Color="Green"/>
+                                            <vc:DataPoint AxisXLabel="设备10" YValue="0.25" Color="Blue"/>
+                                        </vc:DataSeries.DataPoints>
+                                    </vc:DataSeries>
+
+
+                                    <vc:DataSeries RenderAs="StackedBar" ShowInLegend="False" >
+                                        <vc:DataSeries.DataPoints>
+                                            <vc:DataPoint AxisXLabel="设备1"  YValue="0.3" Color="Transparent" />
+                                            <vc:DataPoint AxisXLabel="设备2" YValue="0.5" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备3" YValue="1" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备4" YValue="0.7" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备5" YValue="0.8" Color="Transparent" />
+                                            <vc:DataPoint AxisXLabel="设备6" YValue="0.1" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备7" YValue="1.3" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备8" YValue="0.4" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备9" YValue="0.5" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备10" YValue="1.2" Color="Transparent"/>
+                                        </vc:DataSeries.DataPoints>
+                                    </vc:DataSeries>
+
+                                    <vc:DataSeries RenderAs="StackedBar" ShowInLegend="False" >
+                                        <vc:DataSeries.DataPoints>
+                                            <vc:DataPoint AxisXLabel="设备1" YValue="0.4" Color="red" />
+                                            <vc:DataPoint AxisXLabel="设备2" YValue="0.6" Color="Green"/>
+                                            <vc:DataPoint AxisXLabel="设备3" YValue="0.1" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备4" YValue="0.34" Color="Blue"/>
+                                            <vc:DataPoint AxisXLabel="设备5" YValue="0.35" Color="red" />
+                                            <vc:DataPoint AxisXLabel="设备6" YValue="0.8" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备7" YValue="0.3" Color="Blue"/>
+                                            <vc:DataPoint AxisXLabel="设备8" YValue="0.12" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备9" YValue="0.3" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备10" YValue="0.5" Color="Blue"/>
+                                        </vc:DataSeries.DataPoints>
+                                    </vc:DataSeries>
+
+                                    <vc:DataSeries RenderAs="StackedBar" ShowInLegend="False" >
+                                        <vc:DataSeries.DataPoints>
+                                            <vc:DataPoint AxisXLabel="设备1"  YValue="1.2" Color="Transparent" />
+                                            <vc:DataPoint AxisXLabel="设备2" YValue="2.3" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备3" YValue="2.1" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备4" YValue="1.4" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备5" YValue="1.2" Color="Transparent" />
+                                            <vc:DataPoint AxisXLabel="设备6" YValue="1.1" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备7" YValue="1.34" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备8" YValue="2.56" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备9" YValue="1.2" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备10" YValue="1.7" Color="Transparent"/>
+                                        </vc:DataSeries.DataPoints>
+                                    </vc:DataSeries>
+
+                                    <vc:DataSeries RenderAs="StackedBar" ShowInLegend="False" >
+                                        <vc:DataSeries.DataPoints>
+                                            <vc:DataPoint AxisXLabel="设备1" YValue="0.5" Color="red" />
+                                            <vc:DataPoint AxisXLabel="设备2" YValue="0.4" Color="Blue"/>
+                                            <vc:DataPoint AxisXLabel="设备3" YValue="0.1" Color="Blue"/>
+                                            <vc:DataPoint AxisXLabel="设备4" YValue="0.6" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备5" YValue="0.7" Color="Blue" />
+                                            <vc:DataPoint AxisXLabel="设备6" YValue="0.12" Color="Blue"/>
+                                            <vc:DataPoint AxisXLabel="设备7" YValue="0.3" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备8" YValue="0.34" Color="Blue"/>
+                                            <vc:DataPoint AxisXLabel="设备9" YValue="0.56" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备10" YValue="0.25" Color="Blue"/>
+                                        </vc:DataSeries.DataPoints>
+                                    </vc:DataSeries>
+                                    <vc:DataSeries RenderAs="StackedBar" ShowInLegend="False" >
+                                        <vc:DataSeries.DataPoints>
+                                            <vc:DataPoint AxisXLabel="设备1"  YValue="1" Color="Transparent" />
+                                            <vc:DataPoint AxisXLabel="设备2" YValue="3" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备3" YValue="5" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备4" YValue="2" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备5" YValue="5" Color="Transparent" />
+                                            <vc:DataPoint AxisXLabel="设备6" YValue="7" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备7" YValue="2" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备8" YValue="3" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备9" YValue="1" Color="Transparent"/>
+                                            <vc:DataPoint AxisXLabel="设备10" YValue="4" Color="Transparent"/>
+                                        </vc:DataSeries.DataPoints>
+                                    </vc:DataSeries>
+                                    <vc:DataSeries RenderAs="StackedBar" ShowInLegend="False" >
+                                        <vc:DataSeries.DataPoints>
+                                            <vc:DataPoint AxisXLabel="设备1" YValue="0.5" Color="Blue" />
+                                            <vc:DataPoint AxisXLabel="设备2" YValue="0.4" Color="Green"/>
+                                            <vc:DataPoint AxisXLabel="设备3" YValue="0.1" Color="Green"/>
+                                            <vc:DataPoint AxisXLabel="设备4" YValue="0.6" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备5" YValue="0.7" Color="Green" />
+                                            <vc:DataPoint AxisXLabel="设备6" YValue="0.12" Color="Green"/>
+                                            <vc:DataPoint AxisXLabel="设备7" YValue="0.3" Color="red"/>
+                                            <vc:DataPoint AxisXLabel="设备8" YValue="0.34" Color="Blue"/>
+                                            <vc:DataPoint AxisXLabel="设备9" YValue="0.56" Color="Green"/>
+                                            <vc:DataPoint AxisXLabel="设备10" YValue="0.25" Color="Blue"/>
+                                        </vc:DataSeries.DataPoints>
+                                    </vc:DataSeries>
+                                </vc:Chart.Series>
+
+                            </vc:Chart>
+                            <StackPanel Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Left" Margin="64,5,0,0" Name="stackPanel2" VerticalAlignment="Top"  Orientation="Horizontal">
+                                <Button Content="&lt;" Height="23" Name="button1" Width="75" />
+                                <Button Content="+" Height="23" Name="button2" Width="75" />
+                                <Button Content="-" Height="23" Name="button3" Width="75" />
+                                <Button Content="&gt;" Height="23" Name="button4" Width="75" />
+                            </StackPanel>
+                            <Image Grid.Row="2" Grid.Column="1" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="5" Source="/Scada.Client.SL;component/Modules/DiagramAnalysis/Images/tuli.JPG"  Stretch="None"/>
+                            <Button Content="生成统计" Grid.Row="2" Height="23" HorizontalAlignment="Center" Margin="5" Name="button5" VerticalAlignment="Top" Width="109" />
+                        </Grid>
+                    </Border>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

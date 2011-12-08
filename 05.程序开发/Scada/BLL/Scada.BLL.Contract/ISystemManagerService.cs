@@ -8,5 +8,6 @@ namespace Scada.BLL.Contract
     public interface ISystemManagerService
     {
         int AddDD(int x, int y);
+        string ListStudents(); 
     }
 }

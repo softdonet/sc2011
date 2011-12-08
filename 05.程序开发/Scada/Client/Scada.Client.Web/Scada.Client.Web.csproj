@@ -59,6 +59,7 @@
     <Reference Include="System.ServiceModel.PollingDuplex">
       <HintPath>C:\Program Files\Microsoft SDKs\Silverlight\v3.0\Libraries\Server\System.ServiceModel.PollingDuplex.dll</HintPath>
     </Reference>
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System" />
@@ -123,6 +124,14 @@
     <ProjectReference Include="..\..\BLL\Scada.BLL.Implement\Scada.BLL.Implement.csproj">
       <Project>{4F4EFB80-8D5F-48F7-A035-113920B865C9}</Project>
       <Name>Scada.BLL.Implement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Model\Scada.Model.DB\Scada.Model.DB.csproj">
+      <Project>{EB68EBA2-417A-47A8-8104-A9D82F565BFA}</Project>
+      <Name>Scada.Model.DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Utility\Scada.Utility.Common\Scada.Utility.Common.csproj">
+      <Project>{FF2691F8-CBCF-4615-9232-9A4495CE4E5D}</Project>
+      <Name>Scada.Utility.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

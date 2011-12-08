@@ -5,7 +5,9 @@ using System.Collections.Generic;
 
 using Scada.Model.DB;
 using Scada.BLL.Contract;
-using Scada.Utility.Common.Transfer;
+
+using Newtonsoft.Json;
+
 
 namespace Scada.BLL.Implement
 {
@@ -24,7 +26,7 @@ namespace Scada.BLL.Implement
             List<Student> studens = new List<Student>();
             studens.Add(new Student { Name = "张三", Age = 17 });
             studens.Add(new Student { Name = "李四", Age = 19 });
-            return BinaryObjTransfer.JsonSerializer<List<Student>>(studens);
+            return JsonConvert.SerializeObject(studens);
         }
 
     }

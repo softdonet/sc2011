@@ -13,6 +13,7 @@ using System.Reflection;
 using System.Windows.Media.Imaging;
 using System.Windows.Data;
 using System.Globalization;
+using Scada.Client.SL.Controls;
 
 namespace Scada.Client.SL.Modules.Device
 {

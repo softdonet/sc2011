@@ -4,9 +4,115 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="400">
+    d:DesignHeight="642" d:DesignWidth="1000" xmlns:my="clr-namespace:Scada.Client.UC;assembly=Scada.Client.UC">
     
-    <Grid x:Name="LayoutRoot" Background="White">
+    <Grid x:Name="LayoutRoot" Background="White" ShowGridLines="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300*"/>
+            <ColumnDefinition Width="300*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200*"/>
+            <RowDefinition Height="200*"/>
+        </Grid.RowDefinitions>
+        <my:DaysGraph Grid.Row="0" Margin="5" Name="daysGraph1" />
+        <my:HistoryAvgValue Grid.Row="1"  Margin="5" Name="historyAvgValue1" />
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
+            <StackPanel.Background>
+                <LinearGradientBrush StartPoint=".5,0" EndPoint=".5,1">
+                    <GradientStop Color="#FF14646E" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
+            <TextBlock  Text="详细信息" FontWeight="Bold" FontSize="14" Margin="5" Foreground="#FFF8F9F9"/>
+            <StackPanel Orientation="Horizontal" Background="#FF739796">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  Text="设备编号：" Margin="3" Foreground="#FFF6F9F9"></TextBlock>
+                            <TextBlock  Text="D00001" Margin="3" Foreground="#FFF6F9F9"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  Text="设备名称：" Margin="3" Foreground="#FFE8F5F5"></TextBlock>
+                            <TextBlock  Text="温度采集仪" Margin="3" Foreground="#FFE8F5F5"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  Text="安装地点：" Margin="3" Foreground="#FFE8F3F3"></TextBlock>
+                            <TextBlock  Text="北京海淀区祁家豁子" Margin="3" Foreground="#FFE8F3F3"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  Text="所属分区：" Margin="3" Foreground="#FFEFF5F5"></TextBlock>
+                            <TextBlock  Text="分区1" Margin="3" Foreground="#FFEFF5F5"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  Text="所属分区：" Margin="3" Foreground="#FFEFF5F5"></TextBlock>
+                            <TextBlock  Text="分区1" Margin="3" Foreground="#FFEFF5F5"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  Text="实时温度：" Margin="3" Foreground="#FFDCE7E7"></TextBlock>
+                            <TextBlock  Text="50℃" Margin="3" Foreground="#FFDCE7E7"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  Text="实时压强：" Margin="3" Foreground="#FFEDF3F3"></TextBlock>
+                            <TextBlock  Text="78KP" Margin="3" Foreground="#FFEDF3F3"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  Text="坐标信息：" Margin="3" Foreground="#FFE6EDED"></TextBlock>
+                            <TextBlock  Text="78.3459,45.4566" Margin="3" Foreground="#FFE6EDED"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel></StackPanel>
+            </StackPanel>
+                <StackPanel Margin="5" VerticalAlignment="Center"  HorizontalAlignment="Center">
+               <my:Thermometer Height="174" Width="329" /> 
+            </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+            <StackPanel.Background>
+                <LinearGradientBrush StartPoint=".5,0" EndPoint=".5,1">
+                    <GradientStop Color="#FF14646E" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
+            <TextBlock  Text="维护人员信息" FontWeight="Bold" FontSize="14" Margin="5" Foreground="#FFF8F9F9"/>
+            <StackPanel Orientation="Horizontal" Background="#FF739796">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  Text="姓名：" Margin="3" Foreground="#FFF6F9F9"></TextBlock>
+                            <TextBlock  Text="刘征占" Margin="3" Foreground="#FFF6F9F9"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  Text="电话：" Margin="3" Foreground="#FFE8F5F5"></TextBlock>
+                            <TextBlock  Text="13800138000" Margin="3" Foreground="#FFE8F5F5"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  Text="邮件：" Margin="3" Foreground="#FFE8F3F3"></TextBlock>
+                            <TextBlock  Text="lzz@hotmail.com" Margin="3" Foreground="#FFE8F3F3"></TextBlock>
+                        </StackPanel>
+                       
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  Text="住址：" Margin="3" Foreground="#FFEFF5F5"></TextBlock>
+                            <TextBlock  Text="北京体育大学" Margin="3" Foreground="#FFEFF5F5"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel></StackPanel>
+                </StackPanel>
+                <StackPanel Margin="5" VerticalAlignment="Center"  HorizontalAlignment="Center">
+                    <Image Source="/Scada.Client.SL;component/Images/whry.jpg" Height="152" Width="258" Margin="2,0,0,0" HorizontalAlignment="Left">
+                        <Image.OpacityMask>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Image.OpacityMask>
+                    </Image>
+
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
 
     </Grid>
 </UserControl>

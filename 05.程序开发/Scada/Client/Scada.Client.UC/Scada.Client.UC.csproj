@@ -47,6 +47,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
+    <Reference Include="SLVisifire.Charts">
+      <HintPath>..\..\Lib\SLVisifire.Charts.dll</HintPath>
+    </Reference>
+    <Reference Include="SLVisifire.Gauges">
+      <HintPath>..\..\Lib\SLVisifire.Gauges.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -59,12 +65,34 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="CommClass\Feature.cs" />
+    <Compile Include="DaysGraph.xaml.cs">
+      <DependentUpon>DaysGraph.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryAvgValue.xaml.cs">
+      <DependentUpon>HistoryAvgValue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyGauge.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Thermometer.xaml.cs">
+      <DependentUpon>Thermometer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TreeListCheckBox.xaml.cs">
       <DependentUpon>TreeListCheckBox.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="DaysGraph.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HistoryAvgValue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Thermometer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TreeListCheckBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

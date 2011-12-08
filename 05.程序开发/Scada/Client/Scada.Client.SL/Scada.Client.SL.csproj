@@ -68,6 +68,7 @@
       <HintPath>..\..\Lib\Microsoft.Maps.MapControl.Common.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json, Version=4.0.4.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
     <Reference Include="SLVisifire.Charts">
       <HintPath>..\..\Lib\SLVisifire.Charts.dll</HintPath>
     </Reference>
@@ -76,6 +77,7 @@
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations, Version=2.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Json, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.DomainServices.Client, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.ServiceModel.DomainServices.Client.Web, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -261,6 +263,9 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Service References\ScadaDeviceService\ScadaDeviceService.wsdl" />
+    <None Include="Service References\SystemManagerService\Scada.Client.SL.SystemManagerService.ListStudentsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\SystemManagerService\SystemManagerService.wsdl" />
     <None Include="Service References\WeatherWebService\Scada.Client.SL.WeatherWebService.GetWeatherResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

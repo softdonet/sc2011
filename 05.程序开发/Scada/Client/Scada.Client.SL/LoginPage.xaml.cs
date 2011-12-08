@@ -11,10 +11,20 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Browser;
 using Scada.Client.SL.Controls;
+
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
+
+
+
 namespace Scada.Client.SL
 {
+
+
     public partial class LoginPage : UserControl
-    { 
+    {
         Login login;
         public LoginPage()
         {
@@ -26,6 +36,13 @@ namespace Scada.Client.SL
 
         void login_myKeyDowmEvent(object sender, RoutedEventArgs e)
         {
+
+            //add by zgj test code
+            SystemManagerService.SystemManagerServiceSoapClient client =
+                                    new SystemManagerService.SystemManagerServiceSoapClient();
+            client.ListStudentsCompleted += new EventHandler<SystemManagerService.ListStudentsCompletedEventArgs>(testObject);
+            client.ListStudentsAsync();
+
             if (login.txbName.Text == "admin" && login.txtPassWord.Password == "admin")
             {
                 this.MasterContainer.Child = new MainPage();
@@ -38,5 +55,32 @@ namespace Scada.Client.SL
                 return;
             }
         }
+
+
+        void testObject(object sender, SystemManagerService.ListStudentsCompletedEventArgs e)
+        {
+            List<Student> stuents = new List<Student>();
+            JArray stuArry = JArray.Parse(e.Result);
+            foreach (JObject item in stuArry)
+            {
+                stuents.Add(new Student
+                {
+                    Name = Convert.ToString(item["Name"]),
+                    Age = Convert.ToInt32(item["Age"])
+                });
+            }
+
+
+        }
     }
+
+    [JsonObject]
+    public class Student
+    {
+        [JsonProperty]
+        public string Name { set; get; }
+        [JsonProperty]
+        public int Age { get; set; }
+    }
+
 }

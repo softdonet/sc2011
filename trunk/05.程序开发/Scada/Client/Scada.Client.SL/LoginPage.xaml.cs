@@ -66,11 +66,9 @@ namespace Scada.Client.SL
                 stuents.Add(new Student
                 {
                     Name = Convert.ToString(item["Name"]),
-                    Age = Convert.ToInt32(item["Age"])
+                    Age = Convert.ToInt32(item["Age"].ToString())
                 });
             }
-
-
         }
     }
 

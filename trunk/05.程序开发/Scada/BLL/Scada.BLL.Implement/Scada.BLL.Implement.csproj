@@ -42,6 +42,14 @@
     <Compile Include="SystemManagerService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Model\Scada.Model.DB\Scada.Model.DB.csproj">
+      <Project>{EB68EBA2-417A-47A8-8104-A9D82F565BFA}</Project>
+      <Name>Scada.Model.DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Utility\Scada.Utility.Common\Scada.Utility.Common.csproj">
+      <Project>{FF2691F8-CBCF-4615-9232-9A4495CE4E5D}</Project>
+      <Name>Scada.Utility.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Scada.BLL.Contract\Scada.BLL.Contract.csproj">
       <Project>{66331325-1F42-4C9E-9FA6-E0B7EA8D7B92}</Project>
       <Name>Scada.BLL.Contract</Name>

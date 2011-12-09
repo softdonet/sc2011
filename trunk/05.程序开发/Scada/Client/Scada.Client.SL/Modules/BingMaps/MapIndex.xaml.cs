@@ -30,7 +30,6 @@ namespace Scada.Client.SL.Modules.BingMaps
             deviceRealTimeService.GetRealTimeDataReceived += new EventHandler<GetRealTimeDataReceivedEventArgs>(deviceRealTimeService_GetRealTimeDataReceived);
             deviceRealTimeService.GetAlarmDataReceived += new EventHandler<GetAlarmDataReceivedEventArgs>(deviceRealTimeService_GetAlarmDataReceived);
             deviceRealTimeService.GetCallDataReceived += new EventHandler<GetCallDataReceivedEventArgs>(deviceRealTimeService_GetCallDataReceived);
-            deviceRealTimeService.InitDataAsync();
         }
 
         void deviceRealTimeService_GetCallDataReceived(object sender, GetCallDataReceivedEventArgs e)

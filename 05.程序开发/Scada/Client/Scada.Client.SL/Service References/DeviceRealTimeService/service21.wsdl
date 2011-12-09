@@ -13,20 +13,26 @@
   <wsdl:binding name="CustomBinding_IDeviceRealTimeService" type="IDeviceRealTimeService">
     <wsp:PolicyReference URI="#CustomBinding_IDeviceRealTimeService_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="SentData">
-      <soap12:operation soapAction="urn:IDeviceRealTimeService/SentData" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
     <wsdl:operation name="InitData">
       <soap12:operation soapAction="urn:IDeviceRealTimeService/InitData" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="GetData">
-      <soap12:operation soapAction="urn:IDeviceRealTimeService/GetData" style="document" />
+    <wsdl:operation name="GetRealTimeData">
+      <soap12:operation soapAction="urn:IDeviceRealTimeService/GetRealTimeData" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmData">
+      <soap12:operation soapAction="urn:IDeviceRealTimeService/GetAlarmData" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCallData">
+      <soap12:operation soapAction="urn:IDeviceRealTimeService/GetCallData" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

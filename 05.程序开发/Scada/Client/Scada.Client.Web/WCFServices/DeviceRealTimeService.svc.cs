@@ -5,6 +5,9 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using System.Threading;
+using Scada.BLL.Implement;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace Scada.Client.Web.WCFServices
 {
@@ -14,43 +17,49 @@ namespace Scada.Client.Web.WCFServices
     /// </summary>
     public class DeviceRealTimeService : IDeviceRealTimeService
     {
-
-
         public static object LockObject = new object();
-        private Timer timer;
-        private static List<IDeviceRealTimeServiceCallback> cilents 
+        private static List<IDeviceRealTimeServiceCallback> cilents
                                         = new List<IDeviceRealTimeServiceCallback>();
-
+        DeviceRealTimeMonitorService deviceRealTimeMonitorService = new DeviceRealTimeMonitorService();
 
         /// <summary>
         /// 构造函数
         /// </summary>
         public DeviceRealTimeService()
         {
-            timer = new Timer(new System.Threading.TimerCallback(CheckMessages), this, 5000, 5000);
+            deviceRealTimeMonitorService.AlarmDataReceived += new DataReceivedHandle(deviceRealTimeMonitorService_AlarmDataReceived);
+            deviceRealTimeMonitorService.ReaTimeDataReceived += new DataReceivedHandle(deviceRealTimeMonitorService_ReaTimeDataReceived);
+            deviceRealTimeMonitorService.CallDataReceived += new DataReceivedHandle(deviceRealTimeMonitorService_CallDataReceived);
         }
 
-        /// <summary>
-        /// 检测数据库是否有新数据，并且发送到客户端
-        /// </summary>
-        /// <param name="o"></param>
-        private void CheckMessages(object o)
+      
+
+        #region 实时数据到达处理函数
+
+        void deviceRealTimeMonitorService_CallDataReceived(XElement data)
         {
-            try
-            {
-                //TODO：检测数据库是否有变化
-                SentData(DateTime.Now.ToString());
-            }
-            catch
-            {
-            }
+            SentData(data, MessageType.CallMsg);
         }
+
+        void deviceRealTimeMonitorService_ReaTimeDataReceived(XElement data)
+        {
+            SentData(data, MessageType.RealTimeMsg);
+        }
+
+        void deviceRealTimeMonitorService_AlarmDataReceived(XElement data)
+        {
+            SentData(data, MessageType.AlarmMsg);
+        }
+
+
+        #endregion
 
         /// <summary>
         /// 发送数据
         /// </summary>
         /// <param name="data"></param>
-        public void SentData(string data)
+        /// <param name="msgType"></param>
+        private void SentData(XElement data, MessageType msgType)
         {
             if (cilents != null && cilents.Count != 0)
             {
@@ -59,8 +68,9 @@ namespace Scada.Client.Web.WCFServices
                     NoticeMessage notice = new NoticeMessage();
                     notice.NoticeClient = isc;
                     notice.exceptionDelegate += new ExceptionDelegate(notice_exceptionDelegate);
-                    notice.UsersMessages = "数目：" + cilents.Count.ToString() + "时间" + data;
-                    notice.NoticeGo();
+                    notice.UsersMessages = data;
+                    notice.MsgType = msgType;
+                    notice.Notifiy();
                 }
             }
         }

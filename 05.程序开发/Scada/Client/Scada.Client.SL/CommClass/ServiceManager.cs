@@ -37,6 +37,8 @@ namespace Scada.Client.SL.CommClass
                     new BinaryMessageEncodingBindingElement(),
                     new HttpTransportBindingElement());
                 _deviceRealTimeServiceClient = new DeviceRealTimeServiceClient(binding, address);
+                //初始化连接
+                _deviceRealTimeServiceClient.InitDataAsync();
             }
             return _deviceRealTimeServiceClient;
         }

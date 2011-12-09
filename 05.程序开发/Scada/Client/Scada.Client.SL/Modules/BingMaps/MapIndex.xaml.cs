@@ -26,15 +26,26 @@ namespace Scada.Client.SL.Modules.BingMaps
             InitializeComponent();
             InitMap();
             MyContent.CloseBtn += new EventHandler(MyContent_CloseBtn);
-
             DeviceRealTimeServiceClient deviceRealTimeService = ServiceManager.GetDeviceRealTimeService();
-            deviceRealTimeService.GetDataReceived += new EventHandler<GetDataReceivedEventArgs>(deviceRealTimeService_GetDataReceived);
+            deviceRealTimeService.GetRealTimeDataReceived += new EventHandler<GetRealTimeDataReceivedEventArgs>(deviceRealTimeService_GetRealTimeDataReceived);
+            deviceRealTimeService.GetAlarmDataReceived += new EventHandler<GetAlarmDataReceivedEventArgs>(deviceRealTimeService_GetAlarmDataReceived);
+            deviceRealTimeService.GetCallDataReceived += new EventHandler<GetCallDataReceivedEventArgs>(deviceRealTimeService_GetCallDataReceived);
             deviceRealTimeService.InitDataAsync();
         }
 
-        void deviceRealTimeService_GetDataReceived(object sender, GetDataReceivedEventArgs e)
+        void deviceRealTimeService_GetCallDataReceived(object sender, GetCallDataReceivedEventArgs e)
         {
-            this.txtDateTime.Text = e.data;
+            this.txtCall.Text = e.data.Element("Device").Value;
+        }
+
+        void deviceRealTimeService_GetAlarmDataReceived(object sender, GetAlarmDataReceivedEventArgs e)
+        {
+            this.txtAlarm.Text = e.data.Element("Device").Value;
+        }
+
+        void deviceRealTimeService_GetRealTimeDataReceived(object sender, GetRealTimeDataReceivedEventArgs e)
+        {
+            this.txtRealTime.Text = e.data.Element("Device").Value;
         }
 
         void MyContent_CloseBtn(object sender, EventArgs e)

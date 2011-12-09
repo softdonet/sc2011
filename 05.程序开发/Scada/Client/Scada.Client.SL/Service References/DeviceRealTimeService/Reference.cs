@@ -18,11 +18,6 @@ namespace Scada.Client.SL.DeviceRealTimeService {
     [System.ServiceModel.ServiceContractAttribute(Namespace="", ConfigurationName="DeviceRealTimeService.IDeviceRealTimeService", CallbackContract=typeof(Scada.Client.SL.DeviceRealTimeService.IDeviceRealTimeServiceCallback))]
     public interface IDeviceRealTimeService {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="urn:IDeviceRealTimeService/SentData")]
-        System.IAsyncResult BeginSentData(string data, System.AsyncCallback callback, object asyncState);
-        
-        void EndSentData(System.IAsyncResult result);
-        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="urn:IDeviceRealTimeService/InitData")]
         System.IAsyncResult BeginInitData(System.AsyncCallback callback, object asyncState);
         
@@ -32,8 +27,14 @@ namespace Scada.Client.SL.DeviceRealTimeService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IDeviceRealTimeServiceCallback {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="urn:IDeviceRealTimeService/GetData")]
-        void GetData(string data);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="urn:IDeviceRealTimeService/GetRealTimeData")]
+        void GetRealTimeData(System.Xml.Linq.XElement data);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="urn:IDeviceRealTimeService/GetAlarmData")]
+        void GetAlarmData(System.Xml.Linq.XElement data);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="urn:IDeviceRealTimeService/GetCallData")]
+        void GetCallData(System.Xml.Linq.XElement data);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -43,12 +44,6 @@ namespace Scada.Client.SL.DeviceRealTimeService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class DeviceRealTimeServiceClient : System.ServiceModel.DuplexClientBase<Scada.Client.SL.DeviceRealTimeService.IDeviceRealTimeService>, Scada.Client.SL.DeviceRealTimeService.IDeviceRealTimeService {
-        
-        private BeginOperationDelegate onBeginSentDataDelegate;
-        
-        private EndOperationDelegate onEndSentDataDelegate;
-        
-        private System.Threading.SendOrPostCallback onSentDataCompletedDelegate;
         
         private BeginOperationDelegate onBeginInitDataDelegate;
         
@@ -142,61 +137,17 @@ namespace Scada.Client.SL.DeviceRealTimeService {
             }
         }
         
-        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> SentDataCompleted;
-        
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> InitDataCompleted;
         
-        public event System.EventHandler<GetDataReceivedEventArgs> GetDataReceived;
+        public event System.EventHandler<GetRealTimeDataReceivedEventArgs> GetRealTimeDataReceived;
+        
+        public event System.EventHandler<GetAlarmDataReceivedEventArgs> GetAlarmDataReceived;
+        
+        public event System.EventHandler<GetCallDataReceivedEventArgs> GetCallDataReceived;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult Scada.Client.SL.DeviceRealTimeService.IDeviceRealTimeService.BeginSentData(string data, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginSentData(data, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        void Scada.Client.SL.DeviceRealTimeService.IDeviceRealTimeService.EndSentData(System.IAsyncResult result) {
-            base.Channel.EndSentData(result);
-        }
-        
-        private System.IAsyncResult OnBeginSentData(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            this.VerifyCallbackEvents();
-            string data = ((string)(inValues[0]));
-            return ((Scada.Client.SL.DeviceRealTimeService.IDeviceRealTimeService)(this)).BeginSentData(data, callback, asyncState);
-        }
-        
-        private object[] OnEndSentData(System.IAsyncResult result) {
-            ((Scada.Client.SL.DeviceRealTimeService.IDeviceRealTimeService)(this)).EndSentData(result);
-            return null;
-        }
-        
-        private void OnSentDataCompleted(object state) {
-            if ((this.SentDataCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.SentDataCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void SentDataAsync(string data) {
-            this.SentDataAsync(data, null);
-        }
-        
-        public void SentDataAsync(string data, object userState) {
-            if ((this.onBeginSentDataDelegate == null)) {
-                this.onBeginSentDataDelegate = new BeginOperationDelegate(this.OnBeginSentData);
-            }
-            if ((this.onEndSentDataDelegate == null)) {
-                this.onEndSentDataDelegate = new EndOperationDelegate(this.OnEndSentData);
-            }
-            if ((this.onSentDataCompletedDelegate == null)) {
-                this.onSentDataCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSentDataCompleted);
-            }
-            base.InvokeAsync(this.onBeginSentDataDelegate, new object[] {
-                        data}, this.onEndSentDataDelegate, this.onSentDataCompletedDelegate, userState);
-        }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.IAsyncResult Scada.Client.SL.DeviceRealTimeService.IDeviceRealTimeService.BeginInitData(System.AsyncCallback callback, object asyncState) {
@@ -242,16 +193,32 @@ namespace Scada.Client.SL.DeviceRealTimeService {
             base.InvokeAsync(this.onBeginInitDataDelegate, null, this.onEndInitDataDelegate, this.onInitDataCompletedDelegate, userState);
         }
         
-        private void OnGetDataReceived(object state) {
-            if ((this.GetDataReceived != null)) {
+        private void OnGetRealTimeDataReceived(object state) {
+            if ((this.GetRealTimeDataReceived != null)) {
                 object[] results = ((object[])(state));
-                this.GetDataReceived(this, new GetDataReceivedEventArgs(results, null, false, null));
+                this.GetRealTimeDataReceived(this, new GetRealTimeDataReceivedEventArgs(results, null, false, null));
+            }
+        }
+        
+        private void OnGetAlarmDataReceived(object state) {
+            if ((this.GetAlarmDataReceived != null)) {
+                object[] results = ((object[])(state));
+                this.GetAlarmDataReceived(this, new GetAlarmDataReceivedEventArgs(results, null, false, null));
+            }
+        }
+        
+        private void OnGetCallDataReceived(object state) {
+            if ((this.GetCallDataReceived != null)) {
+                object[] results = ((object[])(state));
+                this.GetCallDataReceived(this, new GetCallDataReceivedEventArgs(results, null, false, null));
             }
         }
         
         private void VerifyCallbackEvents() {
             if (((this.useGeneratedCallback != true) 
-                        && (this.GetDataReceived != null))) {
+                        && (((this.GetRealTimeDataReceived != null) 
+                        || (this.GetAlarmDataReceived != null)) 
+                        || (this.GetCallDataReceived != null)))) {
                 throw new System.InvalidOperationException("Callback events cannot be used when the callback InstanceContext is specified. Pl" +
                         "ease choose between specifying the callback InstanceContext or subscribing to th" +
                         "e callback events.");
@@ -337,8 +304,18 @@ namespace Scada.Client.SL.DeviceRealTimeService {
                 this.proxy = proxy;
             }
             
-            public void GetData(string data) {
-                this.proxy.OnGetDataReceived(new object[] {
+            public void GetRealTimeData(System.Xml.Linq.XElement data) {
+                this.proxy.OnGetRealTimeDataReceived(new object[] {
+                            data});
+            }
+            
+            public void GetAlarmData(System.Xml.Linq.XElement data) {
+                this.proxy.OnGetAlarmDataReceived(new object[] {
+                            data});
+            }
+            
+            public void GetCallData(System.Xml.Linq.XElement data) {
+                this.proxy.OnGetCallDataReceived(new object[] {
                             data});
             }
         }
@@ -347,18 +324,6 @@ namespace Scada.Client.SL.DeviceRealTimeService {
             
             public DeviceRealTimeServiceClientChannel(System.ServiceModel.DuplexClientBase<Scada.Client.SL.DeviceRealTimeService.IDeviceRealTimeService> client) : 
                     base(client) {
-            }
-            
-            public System.IAsyncResult BeginSentData(string data, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[1];
-                _args[0] = data;
-                System.IAsyncResult _result = base.BeginInvoke("SentData", _args, callback, asyncState);
-                return _result;
-            }
-            
-            public void EndSentData(System.IAsyncResult result) {
-                object[] _args = new object[0];
-                base.EndInvoke("SentData", _args, result);
             }
             
             public System.IAsyncResult BeginInitData(System.AsyncCallback callback, object asyncState) {
@@ -374,19 +339,53 @@ namespace Scada.Client.SL.DeviceRealTimeService {
         }
     }
     
-    public class GetDataReceivedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public class GetRealTimeDataReceivedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        public GetDataReceivedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        public GetRealTimeDataReceivedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
-        public string data {
+        public System.Xml.Linq.XElement data {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
+                return ((System.Xml.Linq.XElement)(this.results[0]));
+            }
+        }
+    }
+    
+    public class GetAlarmDataReceivedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetAlarmDataReceivedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Xml.Linq.XElement data {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Xml.Linq.XElement)(this.results[0]));
+            }
+        }
+    }
+    
+    public class GetCallDataReceivedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetCallDataReceivedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Xml.Linq.XElement data {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Xml.Linq.XElement)(this.results[0]));
             }
         }
     }

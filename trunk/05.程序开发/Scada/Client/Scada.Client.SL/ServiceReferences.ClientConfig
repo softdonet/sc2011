@@ -35,12 +35,12 @@
             <endpoint address="WebServices/WeatherWebService.asmx" binding="basicHttpBinding"
                 bindingConfiguration="WeatherWebServiceSoap" contract="WeatherWebService.WeatherWebServiceSoap"
                 name="WeatherWebServiceSoap" />
-            <endpoint address="http://localhost:2793/WebServices/SystemManagerService.asmx"
-                binding="basicHttpBinding" bindingConfiguration="SystemManagerServiceSoap"
-                contract="SystemManagerService.SystemManagerServiceSoap" name="SystemManagerServiceSoap" />
             <endpoint address="http://localhost:2793/WebServices/ScadaDeviceService.asmx"
                 binding="basicHttpBinding" bindingConfiguration="ScadaDeviceServiceSoap"
                 contract="ScadaDeviceService.ScadaDeviceServiceSoap" name="ScadaDeviceServiceSoap" />
+            <endpoint address="http://localhost:2793/WebServices/SystemManagerService.asmx"
+                binding="basicHttpBinding" bindingConfiguration="SystemManagerServiceSoap"
+                contract="SystemManagerService.SystemManagerServiceSoap" name="SystemManagerServiceSoap" />
         </client>
     </system.serviceModel>
 </configuration>

@@ -6,24 +6,30 @@
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IDeviceRealTimeService_SentData_InputMessage">
-    <wsdl:part name="parameters" element="SentData" />
-  </wsdl:message>
   <wsdl:message name="IDeviceRealTimeService_InitData_InputMessage">
     <wsdl:part name="parameters" element="InitData" />
   </wsdl:message>
-  <wsdl:message name="IDeviceRealTimeService_GetData_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="GetData" />
+  <wsdl:message name="IDeviceRealTimeService_GetRealTimeData_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="GetRealTimeData" />
+  </wsdl:message>
+  <wsdl:message name="IDeviceRealTimeService_GetAlarmData_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="GetAlarmData" />
+  </wsdl:message>
+  <wsdl:message name="IDeviceRealTimeService_GetCallData_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="GetCallData" />
   </wsdl:message>
   <wsdl:portType name="IDeviceRealTimeService">
-    <wsdl:operation name="SentData">
-      <wsdl:input wsaw:Action="urn:IDeviceRealTimeService/SentData" message="IDeviceRealTimeService_SentData_InputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="InitData">
       <wsdl:input wsaw:Action="urn:IDeviceRealTimeService/InitData" message="IDeviceRealTimeService_InitData_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetData">
-      <wsdl:output wsaw:Action="urn:IDeviceRealTimeService/GetData" message="IDeviceRealTimeService_GetData_OutputCallbackMessage" />
+    <wsdl:operation name="GetRealTimeData">
+      <wsdl:output wsaw:Action="urn:IDeviceRealTimeService/GetRealTimeData" message="IDeviceRealTimeService_GetRealTimeData_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmData">
+      <wsdl:output wsaw:Action="urn:IDeviceRealTimeService/GetAlarmData" message="IDeviceRealTimeService_GetAlarmData_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCallData">
+      <wsdl:output wsaw:Action="urn:IDeviceRealTimeService/GetCallData" message="IDeviceRealTimeService_GetCallData_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

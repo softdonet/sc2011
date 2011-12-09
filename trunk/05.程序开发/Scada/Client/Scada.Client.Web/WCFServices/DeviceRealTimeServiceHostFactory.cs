@@ -11,8 +11,6 @@ namespace Scada.Client.Web.WCFServices
 {
     public class DeviceRealTimeServiceHostFactory : ServiceHostFactoryBase
     {
-
-
         public override ServiceHostBase CreateServiceHost(string constructorString, Uri[] baseAddresses)
         {
             return new DeviceRealTimeServiceServiceHost(baseAddresses);

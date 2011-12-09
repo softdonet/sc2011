@@ -3,13 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Threading;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace Scada.Client.Web.WCFServices
 {
+    /// <summary>
+    /// 消息类别
+    /// </summary>
+    public enum MessageType
+    {
+        RealTimeMsg = 0,
+        AlarmMsg = 1,
+        CallMsg = 2
+    }
 
+    /// <summary>
+    /// 消息异常委托
+    /// </summary>
+    /// <param name="client"></param>
     public delegate void ExceptionDelegate(IDeviceRealTimeServiceCallback client);
-
-
 
     /// <summary>
     /// 异步发送消息
@@ -17,8 +30,6 @@ namespace Scada.Client.Web.WCFServices
     /// </summary>
     public class NoticeMessage
     {
-
-
         private Thread noticeThread;
 
         /// <summary>
@@ -29,27 +40,49 @@ namespace Scada.Client.Web.WCFServices
         /// <summary>
         /// 要发送的数据
         /// </summary>
-        public string UsersMessages { get; set; }
+        public XElement UsersMessages { get; set; }
 
+        /// <summary>
+        /// 消息类别
+        /// </summary>
+        public MessageType MsgType { get; set; }
+
+        /// <summary>
+        /// 发送异常事件
+        /// </summary>
         public event ExceptionDelegate exceptionDelegate;
-
+       
         public NoticeMessage()
         {
             noticeThread = new Thread(new ThreadStart(SendMessage));
         }
 
-        public void NoticeGo()
+        public void Notifiy()
         {
             noticeThread.Start();
         }
 
+        /// <summary>
+        /// 发送消息
+        /// </summary>
         private void SendMessage()
         {
-            if (NoticeClient != null && !string.IsNullOrEmpty(UsersMessages))
+            if (NoticeClient != null)
             {
                 try
                 {
-                    NoticeClient.GetData(UsersMessages);
+                    switch (MsgType)
+                    {
+                        case MessageType.RealTimeMsg:
+                            NoticeClient.GetRealTimeData(UsersMessages);
+                            break;
+                        case MessageType.AlarmMsg:
+                            NoticeClient.GetAlarmData(UsersMessages);
+                            break;
+                        case MessageType.CallMsg:
+                            NoticeClient.GetCallData(UsersMessages);
+                            break;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -59,7 +92,5 @@ namespace Scada.Client.Web.WCFServices
                 }
             }
         }
-
-
     }
 }

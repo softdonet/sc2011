@@ -306,8 +306,16 @@
                 </toolkit:WrapPanel>
                 <StackPanel  Background="#FFD5DDF3" Margin="0,5,0,5" Orientation="Vertical">
                     <TextBlock Text ="告警信息"  FontSize=" 12"   VerticalAlignment="Center"   Margin=" 5"/>
-
                 </StackPanel>
+                <toolkit:WrapPanel Orientation="Vertical">
+                    <TextBlock x:Name="txtRealTime" Text="ready" FontSize=" 12" Foreground="Red"    VerticalAlignment="Center"   Margin=" 5"/>
+                    <TextBlock x:Name="txtAlarm" Text="ready"  FontSize=" 12"  Foreground="Red"    VerticalAlignment="Center"   Margin=" 5"/>
+                    <TextBlock x:Name="txtCall" Text="ready" FontSize=" 12"  Foreground="Red"  VerticalAlignment="Center"   Margin=" 5"/>
+                </toolkit:WrapPanel>
+
+
+
+
                 <!--<sdk:DataGrid  AutoGenerateColumns="False"  DataContext="{Binding Source={StaticResource TimeTableSampleDataSource}}" ItemsSource="{Binding Collection}" RowHeight="26" >
                     <sdk:DataGrid.Columns>
                         <sdk:DataGridTemplateColumn Header="设备编号" Width="100"   CellTemplate="{StaticResource DeviceNum}" />

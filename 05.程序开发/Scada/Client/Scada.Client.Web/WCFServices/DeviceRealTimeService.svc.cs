@@ -32,8 +32,6 @@ namespace Scada.Client.Web.WCFServices
             deviceRealTimeMonitorService.CallDataReceived += new DataReceivedHandle(deviceRealTimeMonitorService_CallDataReceived);
         }
 
-      
-
         #region 实时数据到达处理函数
 
         void deviceRealTimeMonitorService_CallDataReceived(XElement data)

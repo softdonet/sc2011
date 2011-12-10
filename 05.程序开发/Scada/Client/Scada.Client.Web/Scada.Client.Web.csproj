@@ -74,7 +74,9 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ClientAccessPolicy.xml" />
+    <Content Include="ClientAccessPolicy.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ClientBin\Scada.Client.SL.xap" />
     <Content Include="JavaScript\Silverlight.js" />
     <Content Include="WCFServices\DeviceRealTimeService.svc" />

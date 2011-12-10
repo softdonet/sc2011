@@ -17,6 +17,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 
+using Scada.Model.DB.SL;
+
+
 
 
 namespace Scada.Client.SL
@@ -70,15 +73,6 @@ namespace Scada.Client.SL
                 });
             }
         }
-    }
-
-    [JsonObject]
-    public class Student
-    {
-        [JsonProperty]
-        public string Name { set; get; }
-        [JsonProperty]
-        public int Age { get; set; }
     }
 
 }

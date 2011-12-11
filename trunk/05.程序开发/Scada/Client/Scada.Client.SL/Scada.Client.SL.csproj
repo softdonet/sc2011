@@ -193,6 +193,7 @@
     </Compile>
     <Compile Include="Style\DataGridViewSampleDataSource.xaml.cs">
       <DependentUpon>DataGridViewSampleDataSource.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Style\SilverlightControl1.xaml.cs">
       <DependentUpon>SilverlightControl1.xaml</DependentUpon>
@@ -272,8 +273,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Style\DataGridViewSampleDataSource.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Style\SilverlightControl1.xaml">
       <SubType>Designer</SubType>
@@ -312,7 +313,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\WeatherWebService\WeatherWebService.wsdl" />
-    <None Include="Style\DataGridViewSampleDataSource.xsd">
+    <None Include="Style\DataGridViewSampleDataSource1.xsd">
       <SubType>Designer</SubType>
     </None>
     <Resource Include="Modules\DiagramAnalysis\Images\d1.jpg" />

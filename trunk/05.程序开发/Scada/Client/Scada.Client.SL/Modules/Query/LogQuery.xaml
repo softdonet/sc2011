@@ -4,11 +4,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
    
-     xmlns:SampleData="clr-namespace:Scada.Client.SL.Style"         
+    xmlns:SampleData1="clr-namespace:Scada.Client.SL.Style"   
+    xmlns:SampleData="clr-namespace:Expression.Blend.SampleData.DataGridViewSampleDataSource"
     mc:Ignorable="d"
     d:DesignHeight="500" d:DesignWidth="1024">
 
-    <Grid x:Name="LayoutRoot" Background="White" ShowGridLines="True"  DataContext="{Binding Source={StaticResource DataGridViewSampleDataSource}}">
+    <Grid x:Name="LayoutRoot" Background="White" ShowGridLines="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
@@ -34,8 +35,8 @@
             <TextBox  Height="23"   Name="textBox3"  Width="120" />
             <Button Content="查询" Height="23"  Name="btnCheck"   Margin="50,0,0,0" Width="75" />
         </StackPanel>
-        
-        <sdk:DataGrid Grid.Row="1">
+
+        <sdk:DataGrid Grid.Row="1"   DataContext="{Binding Source={StaticResource DataGridViewSampleDataSource}}" ItemsSource="{Binding Collection}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}">
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTemplateColumn Header="设备名称" Width="80" DisplayIndex="1"/>
                 <sdk:DataGridTemplateColumn Header="安装地点" Width="320" />

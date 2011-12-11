@@ -13,11 +13,8 @@ using System.Windows.Browser;
 using Scada.Client.SL.Controls;
 
 
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-
-
 using Scada.Model.DB.SL;
+using Scada.Client.SL.CommClass;
 
 
 
@@ -62,16 +59,11 @@ namespace Scada.Client.SL
 
         void testObject(object sender, SystemManagerService.ListStudentsCompletedEventArgs e)
         {
-            List<Student> stuents = new List<Student>();
-            JArray stuArry = JArray.Parse(e.Result);
-            foreach (JObject item in stuArry)
-            {
-                stuents.Add(new Student
-                {
-                    Name = Convert.ToString(item["Name"]),
-                    Age = Convert.ToInt32(item["Age"].ToString())
-                });
-            }
+
+            List<Student> stuents = 
+                    BinaryObjTransfer.BinaryDeserialize<List<Student>>(e.Result);
+            Console.WriteLine(e.Result);  
+            
         }
     }
 

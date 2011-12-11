@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     
-    xmlns:local="clr-namespace:Scada.Client.SL.Modules.Device"         
+    xmlns:local="clr-namespace:Scada.Client.SL.Modules.Query"         
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"         
     mc:Ignorable="d"
     d:DesignHeight="768" d:DesignWidth="1024">
@@ -12,7 +12,7 @@
         <local:ItemImageSourceValueConverter x:Key="ItemImageSourceValueConverter1" />
     </UserControl.Resources>
 
-    <Grid x:Name="LayoutRoot" Background="White" ShowGridLines="True">
+    <Grid x:Name="LayoutRoot" Background="White" >
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
@@ -43,22 +43,13 @@
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Header="设备编号"   IsFilterable="False"   HeaderTextAlignment="Center"  Width="100" DataMemberBinding="{Binding DeviceNo}" />
                 <telerik:GridViewDataColumn Header="安装地点"  IsFilterable="False"  HeaderTextAlignment="Center" Width="*" DataMemberBinding="{Binding InstallPlace}" />
-                <telerik:GridViewDataColumn Header="更新时间"   IsFilterable="False" HeaderTextAlignment="Center" Width="*" DataMemberBinding="{Binding UpdateTime}" />
-                <telerik:GridViewDataColumn Header="温度"   IsFilterable="False" HeaderTextAlignment="Center" Width="100" DataMemberBinding="{Binding Temperature}" />
-
-                <telerik:GridViewDataColumn Header="电量"   IsFilterable="False" HeaderTextAlignment="Center" Width="*" DataMemberBinding="{Binding Electricity}" />
-                <telerik:GridViewDataColumn Header="信号强度"   IsFilterable="False" HeaderTextAlignment="Center" Width="100" DataMemberBinding="{Binding Signal}" />
-
-
-                <!--<telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=electricity}"  Width="100" ImageHeight="18" ImageWidth="18"
+                <telerik:GridViewDataColumn Header="更新时间"   IsFilterable="False" HeaderTextAlignment="Center" TextAlignment="Center"   Width="150" DataMemberBinding="{Binding UpdateTime}" />
+                <telerik:GridViewDataColumn Header="温度"   IsFilterable="False" HeaderTextAlignment="Center" TextAlignment="Center" Width="100" DataMemberBinding="{Binding Temperature}" />
+                <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=electricity}"  Width="100" ImageHeight="18" ImageWidth="18"
 											Header="电量" HeaderTextAlignment="Center"/>
                 <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=signal}"  Width="100" ImageHeight="18" ImageWidth="18"
-											Header="信号强度" HeaderTextAlignment="Center"/>-->
-
-                <telerik:GridViewDataColumn Header="预留字段1"  IsFilterable="False" HeaderTextAlignment="Center" Width="100"  />
-                <telerik:GridViewDataColumn Header="预留字段2"   IsFilterable="False" HeaderTextAlignment="Center" Width="100"   />
+											Header="信号强度" HeaderTextAlignment="Center"/>
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>
-
     </Grid>
 </UserControl>

@@ -38,10 +38,12 @@ namespace Scada.Client.SL
         {
 
             //add by zgj test code
-            SystemManagerService.SystemManagerServiceSoapClient client =
-                                    new SystemManagerService.SystemManagerServiceSoapClient();
-            client.ListStudentsCompleted += new EventHandler<SystemManagerService.ListStudentsCompletedEventArgs>(testObject);
-            client.ListStudentsAsync();
+            ScadaDeviceService.ScadaDeviceServiceSoapClient client =
+                                                       new ScadaDeviceService.ScadaDeviceServiceSoapClient();
+            client.GetListDeviceInfoCompleted +=
+                                    new EventHandler<ScadaDeviceService.GetListDeviceInfoCompletedEventArgs>(testObject);
+
+            client.GetListDeviceInfoAsync(new Guid("21CD196B-DC92-4705-8768-09839D9AEF85"), 3, null, null);
 
             if (login.txbName.Text == "admin" && login.txtPassWord.Password == "admin")
             {
@@ -57,13 +59,13 @@ namespace Scada.Client.SL
         }
 
 
-        void testObject(object sender, SystemManagerService.ListStudentsCompletedEventArgs e)
+        void testObject(object sender, ScadaDeviceService.GetListDeviceInfoCompletedEventArgs e)
         {
 
-            List<Student> stuents = 
-                    BinaryObjTransfer.BinaryDeserialize<List<Student>>(e.Result);
-            Console.WriteLine(e.Result);  
-            
+            List<DeviceRealTime> deviceRealTimes =
+                    BinaryObjTransfer.BinaryDeserialize<List<DeviceRealTime>>(e.Result);
+            Console.WriteLine(e.Result);
+
         }
     }
 

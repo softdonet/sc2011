@@ -2,16 +2,18 @@ using System;
 using System.Data;
 using System.Text;
 using System.Data.SqlClient;
+
+
 namespace Scada.Model.DB
 {
     /// <summary>
     /// ¿‡DeviceRealTime°£
     /// </summary>
-    public class DeviceRealTime
+    public partial class DeviceRealTime
     {
         private Guid _id;
         private Guid _deviceid;
-        private string _deviceno;
+        
         private decimal? _temperature;
         private int? _electricity;
         private int? _signal;
@@ -19,6 +21,8 @@ namespace Scada.Model.DB
         private decimal? _process5value;
         private int? _status;
         private DateTime? _updatetime;
+
+
         /// <summary>
         /// Guid
         /// </summary>
@@ -35,14 +39,7 @@ namespace Scada.Model.DB
             set { _deviceid = value; }
             get { return _deviceid; }
         }
-        /// <summary>
-        /// …Ë±∏±‡∫≈
-        /// </summary>
-        public string DeviceNo
-        {
-            set { _deviceno = value; }
-            get { return _deviceno; }
-        }
+       
         /// <summary>
         /// 
         /// </summary>

@@ -62,6 +62,7 @@
     <Compile Include="DeviceLog.cs" />
     <Compile Include="DeviceMaintenancePeople.cs" />
     <Compile Include="DeviceRealTime.cs" />
+    <Compile Include="DeviceRealTimeExpand.cs" />
     <Compile Include="DeviceTree.cs" />
     <Compile Include="MaintenancePeople.cs" />
     <Compile Include="Module.cs" />

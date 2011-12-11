@@ -36,8 +36,8 @@ namespace Scada.Client.SL.Modules.Query
         {
             this.RadGridView1.ItemsSource = BinaryObjTransfer.BinaryDeserialize<List<DeviceRealTime>>(e.Result);
             //treeView1.ItemsSource = BinaryObjTransfer.BinaryDeserialize<List<DeviceRealTime>>(e.Result);
-            treeView1.Items.Add("yanghongkang");
-            treeView1.Items.Add("yanghongkang1");
+            //treeView1.Items.Add("yanghongkang");
+            //treeView1.Items.Add("yanghongkang1");
 
         }
     }

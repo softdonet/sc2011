@@ -22,7 +22,6 @@ namespace Scada.Client.SL.Modules.Query
 {
     public partial class DeviceListQuery : UserControl
     {
-        List<DeviceRealTime> drt = new List<DeviceRealTime>();
         public DeviceListQuery()
         {
             InitializeComponent();
@@ -36,86 +35,78 @@ namespace Scada.Client.SL.Modules.Query
             this.RadGridView1.ItemsSource = BinaryObjTransfer.BinaryDeserialize<List<DeviceRealTime>>(e.Result);
         }
     }
+    /// <summary>
+    /// 类型转化器
+    /// </summary>
+    public class ItemImageSourceValueConverter : IValueConverter
+    {
+        #region IValueConverter Members
 
-    //public class ItemImageSourceValueConverter : IValueConverter
-    //{
-    //    #region IValueConverter Members
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string img = string.Empty;
+            DeviceRealTime currentValue = value as DeviceRealTime;
+            if (currentValue == null)
+            {
+                return DependencyProperty.UnsetValue;
+            }
+            switch (parameter.ToString().ToLower())
+            {
+                case "electricity":
+                    if (currentValue.Electricity.HasValue)
+                    {
+                        switch (currentValue.Electricity.Value)
+                        {
+                            case 1:
+                                img = "electric1.png";
+                                break;
+                            case 2:
+                                img = "electric2.png";
+                                break;
+                            case 3:
+                                img = "electric3.png";
+                                break;
+                            case 4:
+                                img = "electric4.png";
+                                break;
+                        }
+                        break;
+                    }
+                    break;
+                case "signal":
+                    if (currentValue.Signal.HasValue)
+                    {
+                        switch (currentValue.Signal.Value)
+                        {
+                            case 1:
+                                img = "signal1.png";
+                                break;
+                            case 2:
+                                img = "signal2.png";
+                                break;
+                            case 3:
+                                img = "signal3.png";
+                                break;
+                            case 4:
+                                img = "signal4.png";
+                                break;
+                        }
+                        break;
+                    }
+                    break;
+            }
+            string resourcePath = "/Scada.Client.SL;component/Images/" + img;
+            Uri resourceUri = new Uri(resourcePath, UriKind.Relative);
+            var obj = new BitmapImage(resourceUri);
+            return obj;
+        }
 
-    //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        MessageBox.Show("哈哈");
-    //        try
-    //        {
-    //            string img = string.Empty;
-    //            DeviceRealTime currentValue = new DeviceRealTime { DeviceID = Guid.NewGuid(), Signal = 1, Electricity = 2 };
-    //            if (value == null)
-    //            {
-    //                return DependencyProperty.UnsetValue;
-    //            }
-    //            switch (parameter.ToString().ToLower())
-    //            {
-    //                case "electricity":
-    //                    if (currentValue.Electricity.HasValue)
-    //                    {
-    //                        switch (currentValue.Electricity.Value)
-    //                        {
-    //                            case 1:
-    //                                img = "electric1.png";
-    //                                break;
-    //                            case 2:
-    //                                img = "electric2.png";
-    //                                break;
-    //                            case 3:
-    //                                img = "electric3.png";
-    //                                break;
-    //                            case 4:
-    //                                img = "electric4.png";
-    //                                break;
-    //                        }
-    //                        break;
-    //                    }
-    //                    break;
-    //                case "signal":
-    //                    if (currentValue.Signal.HasValue)
-    //                    {
-    //                        switch (currentValue.Signal.Value)
-    //                        {
-    //                            case 1:
-    //                                img = "signal1.png";
-    //                                break;
-    //                            case 2:
-    //                                img = "signal2.png";
-    //                                break;
-    //                            case 3:
-    //                                img = "signal3.png";
-    //                                break;
-    //                            case 4:
-    //                                img = "signal4.png";
-    //                                break;
-    //                        }
-    //                        break;
-    //                    }
-    //                    break;
-    //            }
-    //            AssemblyName assemblyName = new AssemblyName(typeof(RadTreeListXmlDataSource).Assembly.FullName);
-    //            string resourcePath = "/" + assemblyName.Name + ";component/Modules/Device/Image/" + img;
-    //            Uri resourceUri = new Uri(resourcePath, UriKind.Relative);
-    //            var obj = new BitmapImage(resourceUri);
-    //            return obj;
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            MessageBox.Show(ex.Message);
-    //            return null;
-    //        }
-    //    }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
 
-    //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    #endregion
-    //}
+        #endregion
+    }
 }
 

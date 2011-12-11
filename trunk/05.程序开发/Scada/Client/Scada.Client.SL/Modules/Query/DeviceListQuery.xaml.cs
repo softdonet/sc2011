@@ -28,11 +28,17 @@ namespace Scada.Client.SL.Modules.Query
             ScadaDeviceServiceSoapClient scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
             scadaDeviceServiceSoapClient.GetListDeviceInfoCompleted += new EventHandler<GetListDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_GetListDeviceInfoCompleted);
             scadaDeviceServiceSoapClient.GetListDeviceInfoAsync(new Guid("E963C95E-09A9-4AB6-A0C6-40A7DFE97991"), 3, null, null);
+
+           
         }
 
         void scadaDeviceServiceSoapClient_GetListDeviceInfoCompleted(object sender, GetListDeviceInfoCompletedEventArgs e)
         {
             this.RadGridView1.ItemsSource = BinaryObjTransfer.BinaryDeserialize<List<DeviceRealTime>>(e.Result);
+            //treeView1.ItemsSource = BinaryObjTransfer.BinaryDeserialize<List<DeviceRealTime>>(e.Result);
+            treeView1.Items.Add("yanghongkang");
+            treeView1.Items.Add("yanghongkang1");
+
         }
     }
     /// <summary>

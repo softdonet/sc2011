@@ -17,6 +17,7 @@ namespace Scada.Client.UC
     {
         public TreeListCheckBox()
         {
+        
             InitializeComponent();
         }
         void TreeListCheckBox_Loaded(object sender, RoutedEventArgs e)

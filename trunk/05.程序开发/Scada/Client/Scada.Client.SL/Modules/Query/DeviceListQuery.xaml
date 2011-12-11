@@ -5,7 +5,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     
     xmlns:local="clr-namespace:Scada.Client.SL.Modules.Query"         
-    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"         
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+    xmlns:telerikNavigation="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Navigation"
     mc:Ignorable="d"
     d:DesignHeight="768" d:DesignWidth="1024">
     <UserControl.Resources>
@@ -19,19 +20,9 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
             <sdk:Label Content="设备名称:"  Height="28"   Name="label1" Width="50" />
-            <ComboBox  Height="23" HorizontalAlignment="Left"  Name="comboBox11"  Width="146" SelectedIndex="2">
-                <ComboBoxItem Content="总区域" />
-                <ComboBoxItem Content="--管理分区1" />
-                <ComboBoxItem Content="----设备G1-0001" />
-                <ComboBoxItem Content="----设备G1-0002" />
-                <ComboBoxItem Content="----设备G1-0003" />
-                <ComboBoxItem Content="----设备G1-0004" />
-                <ComboBoxItem Content="--管理分区2" />
-                <ComboBoxItem Content="----设备G2-0001" />
-                <ComboBoxItem Content="----设备G2-0002" />
-                <ComboBoxItem Content="----设备G2-0003" />
-                <ComboBoxItem Content="----设备G2-0004" />
-            </ComboBox>
+            <telerikNavigation:RadTreeView   x:Name="treeView1" Width="200" >
+                
+            </telerikNavigation:RadTreeView>
             <sdk:Label Content="开始时间:"  Margin="20,0,0,0" Height="28"  Name="lblSat" Width="50"  />
             <sdk:DatePicker Height="23"   Name="datePicker1"  Width="120" />
             <sdk:Label Content="结束时间:" Margin="20,0,0,0" Height="28"   Name="lblEnd" Width="50"   />

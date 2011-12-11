@@ -70,7 +70,7 @@ namespace Scada.BLL.Implement
             else if (DeviceType == 2)
                 sSql.Append(" And BB.ManageAreaID ='" + DeviceID + "'");
             else if (DeviceType == 3)
-                sSql.Append(" And AA.ID='" + DeviceID.ToString().ToUpper() + "'");
+                sSql.Append(" And AA.DeviceID='" + DeviceID.ToString().ToUpper() + "'");
 
             if (StartDate != null)
                 sSql.Append(" And AA.UpdateTime >='" + Convert.ToDateTime(StartDate).ToString("yyyy-MM-dd hh:mm:ss") + "'");

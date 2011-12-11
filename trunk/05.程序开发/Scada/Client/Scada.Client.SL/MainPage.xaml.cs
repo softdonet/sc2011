@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Scada.Client.SL.Modules.BingMaps;
+using Scada.Client.SL.Modules.Query;
 
 namespace Scada.Client.SL
 {
@@ -79,14 +80,14 @@ namespace Scada.Client.SL
         /// <param name="e"></param>
         void lstbSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //string link = (Header.lstbSearch.SelectedItem as ListBoxItem).Name.ToString().Trim();
-            //Header.menuSearch.IsChecked = true;
-            //switch (link)
-            //{
-            //    //数据分析
-            //    case "childMenuDataSearch":
-            //        this.ViewHost.Child = new SCADA.UI.Modules.Query.QueryDevice();
-            //        break;
+            string link = (Header.lstbSearch.SelectedItem as ListBoxItem).Name.ToString().Trim();
+            Header.menuSearch.IsChecked = true;
+            switch (link)
+            {
+                //数据分析
+                case "childMenuDataSearch":
+                    this.ViewHost.Child = new DeviceListQuery();
+                    break;
             //    //系统告警日志
             //    case "childMenuAlertSearch":
             //        this.ViewHost.Child = new SCADA.UI.Modules.Query.QueryAlarm();
@@ -95,7 +96,7 @@ namespace Scada.Client.SL
             //    case "childMenuRepairLogSearch":
             //        this.ViewHost.Child = new SCADA.UI.Modules.Query.QueryLog();
             //        break;
-            //}
+            }
         }
 
         /// <summary>

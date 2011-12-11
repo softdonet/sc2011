@@ -8,68 +8,8 @@
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"         
     mc:Ignorable="d"
     d:DesignHeight="768" d:DesignWidth="1024">
-
     <UserControl.Resources>
-        <local:RadTreeListXmlDataSource x:Key="TreeListSource" Source="RadRibbonBarCodeCoverage.xml" />
-        <local:RelativeBlocksValueConverter x:Key="RelativeBlocksValueConverter1" />
         <local:ItemImageSourceValueConverter x:Key="ItemImageSourceValueConverter1" />
-        <Storyboard x:Name="Storyboard1">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ViewHost">
-                <DiscreteObjectKeyFrame KeyTime="0">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Visible</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Visible</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-            </ObjectAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="ViewHost">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0.4"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="ViewHost">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0.4"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ViewHost">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-        <Storyboard x:Name="Storyboard2">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ViewHost">
-                <DiscreteObjectKeyFrame KeyTime="0">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Visible</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Visible</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.3">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Collapsed</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-            </ObjectAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="ViewHost">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.6"/>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="ViewHost">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.6"/>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ViewHost">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
     </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot" Background="White" ShowGridLines="True">
@@ -99,48 +39,26 @@
             <Button Content="查询" Margin="20,0,0,0" Height="23" Name="btnCheck"  Width="75" />
             <Button Content="导出" Margin="20,0,0,0"  Height="23" Name="btnExport"  Width="75" />
         </StackPanel>
-        <telerik:RadTreeListView x:Name="RadTreeListView1" Grid.Row="1"
-								 AutoGenerateColumns="False"
-								 IsReadOnly="True"
-                                 
-								 ItemsSource="{StaticResource TreeListSource}" AutoExpandGroups="True" RowHeight="25"  RowLoaded="RadTreeListView1_RowLoaded">
-            <telerik:RadTreeListView.ChildTableDefinitions>
-                <telerik:TreeListViewTableDefinition ItemsSource="{Binding Items}" />
-            </telerik:RadTreeListView.ChildTableDefinitions>
-            <telerik:RadTreeListView.Columns>
-                <telerik:GridViewDataColumn   Header="设备名" HeaderTextAlignment="Center" >
-                    <telerik:GridViewColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel   Orientation="Horizontal" >
-                                <Image  Name="lDevice" Height="14"  Width="14" Source="/SCADA.UI;component/Modules/Device/Image/ldevice.png"></Image>
-                                <Image  Name="pDevice" Height="18"  Width="18" Source="/SCADA.UI;component/Modules/Device/Image/pdevice.png"></Image>
-                                <sdk:Label   Name="lblDevName"  Content ="{Binding Name}" VerticalAlignment="Center" Width="240"></sdk:Label>
-                            </StackPanel>
-                        </DataTemplate>
-                    </telerik:GridViewColumn.CellTemplate>
-                </telerik:GridViewDataColumn>
-                <telerik:GridViewDataColumn   DataMemberBinding="{Binding BlocksCovered}" Header="安装地点" HeaderTextAlignment="Center"  Width="150"/>
-                <telerik:GridViewDataColumn   DataMemberBinding="{Binding BlocksNotCovered}" Header="更新时间" HeaderTextAlignment="Center"  Width="150"/>
-                <telerik:GridViewDataColumn   DataMemberBinding="{Binding LinesCovered}" Header="温度(℃)"  HeaderTextAlignment="Center" TextAlignment="Center"  Width="150"/>
-                <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=2}"  Width="100" ImageHeight="18" ImageWidth="18"
+        <telerik:RadGridView x:Name="RadGridView1" Grid.Row="1"   ShowGroupPanel="False" IsReadOnly="True"   CanUserFreezeColumns="False" AutoGenerateColumns="False" >
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn Header="设备编号"   IsFilterable="False"   HeaderTextAlignment="Center"  Width="100" DataMemberBinding="{Binding DeviceNo}" />
+                <telerik:GridViewDataColumn Header="安装地点"  IsFilterable="False"  HeaderTextAlignment="Center" Width="*" DataMemberBinding="{Binding InstallPlace}" />
+                <telerik:GridViewDataColumn Header="更新时间"   IsFilterable="False" HeaderTextAlignment="Center" Width="*" DataMemberBinding="{Binding UpdateTime}" />
+                <telerik:GridViewDataColumn Header="温度"   IsFilterable="False" HeaderTextAlignment="Center" Width="100" DataMemberBinding="{Binding Temperature}" />
+
+                <telerik:GridViewDataColumn Header="电量"   IsFilterable="False" HeaderTextAlignment="Center" Width="*" DataMemberBinding="{Binding Electricity}" />
+                <telerik:GridViewDataColumn Header="信号强度"   IsFilterable="False" HeaderTextAlignment="Center" Width="100" DataMemberBinding="{Binding Signal}" />
+
+
+                <!--<telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=electricity}"  Width="100" ImageHeight="18" ImageWidth="18"
 											Header="电量" HeaderTextAlignment="Center"/>
-                <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=3}"  Width="100" ImageHeight="18" ImageWidth="18"
-											Header="信号强度" HeaderTextAlignment="Center"/>
-                <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=1}"  Width="100" ImageHeight="18" ImageWidth="18"
-											Header="状态" HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn    Width="100"
-											Header="详情" HeaderTextAlignment="Center" TextAlignment="Center" >
-                    <telerik:GridViewColumn.CellTemplate>
-                        <DataTemplate>
+                <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=signal}"  Width="100" ImageHeight="18" ImageWidth="18"
+											Header="信号强度" HeaderTextAlignment="Center"/>-->
 
-                            <HyperlinkButton x:Name="hlUrl"   Click="hlUrl_Click"    HorizontalAlignment="Center"  Content="查看"  Foreground="#FF0000CC"    />
-
-                        </DataTemplate>
-                    </telerik:GridViewColumn.CellTemplate>
-                </telerik:GridViewDataColumn>
-            </telerik:RadTreeListView.Columns>
-
-        </telerik:RadTreeListView>
+                <telerik:GridViewDataColumn Header="预留字段1"  IsFilterable="False" HeaderTextAlignment="Center" Width="100"  />
+                <telerik:GridViewDataColumn Header="预留字段2"   IsFilterable="False" HeaderTextAlignment="Center" Width="100"   />
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
 
     </Grid>
 </UserControl>

@@ -5,7 +5,7 @@ namespace Scada.Model.DB.SL
 {
 
 
-    public partial class DeviceRealTimeExpand
+    public partial class DeviceRealTime
     {
 
         //设备编号

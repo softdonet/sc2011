@@ -281,8 +281,8 @@ namespace Lcd
         /// </summary>
         private void SetLabelFont()
         {
-            SetDynamicLabelStyle(lblCurrentTime, "Times New Roman", 70);
-            SetLabelStyle(label2);
+            SetDynamicLabelStyle(lblCurrentTime, "Times New Roman", 70);//时间
+            SetLabelStyle(label2);//紫色部分
             SetLabelStyle(label3);
             SetLabelStyle(label4);
             SetLabelStyle(label5);
@@ -293,10 +293,10 @@ namespace Lcd
             SetLabelStyle(label10);
             SetLabelStyle(label11);
             SetLabelStyleSunTi(label12);
-            SetLabelStyleNumber(label13);
-            SetDynamicLabelStyle(label14, "Times New Roman", 70);//大号字体
+            SetLabelStyleNumber(label13);//数字
+            SetDynamicLabelStyle(label14, "Times New Roman", 70);//大号字体JPH
             SetLabelStyleNumber(label15);
-            SetLabelStyleSunTi(label16);
+            SetLabelStyleSunTi(label16);//汉字
             SetLabelStyleNumber(label17);
             SetLabelStyleSunTi(label18);
             SetLabelStyleNumber(label19);

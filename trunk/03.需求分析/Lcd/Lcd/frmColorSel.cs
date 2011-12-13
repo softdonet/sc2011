@@ -24,6 +24,7 @@ namespace Lcd
             get;
             set;
         }
+
         public string CurrentValue
         { 
             get;
@@ -37,6 +38,7 @@ namespace Lcd
 
         //是否需要修改数字
         bool IsrRequireEditNum = false;
+
         public frmColorSel( bool flag)
         {
             InitializeComponent();
@@ -53,7 +55,6 @@ namespace Lcd
                 txtCurrentValue.Visible = false;
             }
         }
-
 
         private void butOk_Click(object sender, EventArgs e)
         {
@@ -73,7 +74,6 @@ namespace Lcd
                     return;
                 }
             }
-            
             this.Close();
         }
 
@@ -94,7 +94,6 @@ namespace Lcd
         {
             this.txtBackColor.BackColor = NewBackGroudColor;
             this.txtForeColor.BackColor = NewForeColor;
-
         }
 
         private void frmColorSel_KeyDown(object sender, KeyEventArgs e)

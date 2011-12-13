@@ -128,30 +128,30 @@ namespace Lcd.CommClass
         [DescriptionAttribute("主页数字字体大小。"), CategoryAttribute("系统主页字体设置")]
         public float NumFontSize { get; set; }
         [DescriptionAttribute("主页数字字体。"), CategoryAttribute("系统主页字体设置")]
-        public float NumFontFamily { get; set; }
+        public string NumFontFamily { get; set; }
 
         [DescriptionAttribute("主页汉子字体大小。"), CategoryAttribute("系统主页字体设置")]
         public float HZFontSize { get; set; }
         [DescriptionAttribute("主页汉子字体（如：宋体）。"), CategoryAttribute("系统主页字体设置")]
-        public float HZFontFamily { get; set; }
+        public string HZFontFamily { get; set; }
 
         [DescriptionAttribute("主页英文字体大小。"), CategoryAttribute("系统主页字体设置")]
         public float YWFontSize { get; set; }
         [DescriptionAttribute("主页英文字体。"), CategoryAttribute("系统主页字体设置")]
-        public float YWFontFamily { get; set; }
+        public string YWFontFamily { get; set; }
 
         [DescriptionAttribute("主页时间字体大小。"), CategoryAttribute("系统主页字体设置")]
         public float TimeFontSize { get; set; }
         [DescriptionAttribute("主页时间字体。"), CategoryAttribute("系统主页字体设置")]
-        public float TimeFontFamily { get; set; }
+        public string TimeFontFamily { get; set; }
 
         [DescriptionAttribute("主页JPH字体大小。"), CategoryAttribute("系统主页字体设置")]
         public float JPHFontSize { get; set; }
         [DescriptionAttribute("主页JPH字体。"), CategoryAttribute("系统主页字体设置")]
-        public float JPHFontFamily { get; set; }
+        public string JPHFontFamily { get; set; }
 
         [DescriptionAttribute("右下角时间字符串。"), CategoryAttribute("系统主页字体设置")]
-        public float TimeString { get; set; }
+        public string TimeString { get; set; }
 
 
         [DescriptionAttribute("第一行欢迎文字。"), CategoryAttribute("欢迎页面字体设置")]

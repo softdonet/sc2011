@@ -124,8 +124,35 @@ namespace Lcd.CommClass
         public int MainFormTime { get; set; }
         [DescriptionAttribute("欢迎窗体停留时间。"), CategoryAttribute("时间设置")]
         public int WelComeFromTime { get; set; }
+        
         [DescriptionAttribute("主页数字字体大小。"), CategoryAttribute("系统主页字体设置")]
         public float NumFontSize { get; set; }
+        [DescriptionAttribute("主页数字字体。"), CategoryAttribute("系统主页字体设置")]
+        public float NumFontFamily { get; set; }
+
+        [DescriptionAttribute("主页汉子字体大小。"), CategoryAttribute("系统主页字体设置")]
+        public float HZFontSize { get; set; }
+        [DescriptionAttribute("主页汉子字体（如：宋体）。"), CategoryAttribute("系统主页字体设置")]
+        public float HZFontFamily { get; set; }
+
+        [DescriptionAttribute("主页英文字体大小。"), CategoryAttribute("系统主页字体设置")]
+        public float YWFontSize { get; set; }
+        [DescriptionAttribute("主页英文字体。"), CategoryAttribute("系统主页字体设置")]
+        public float YWFontFamily { get; set; }
+
+        [DescriptionAttribute("主页时间字体大小。"), CategoryAttribute("系统主页字体设置")]
+        public float TimeFontSize { get; set; }
+        [DescriptionAttribute("主页时间字体。"), CategoryAttribute("系统主页字体设置")]
+        public float TimeFontFamily { get; set; }
+
+        [DescriptionAttribute("主页JPH字体大小。"), CategoryAttribute("系统主页字体设置")]
+        public float JPHFontSize { get; set; }
+        [DescriptionAttribute("主页JPH字体。"), CategoryAttribute("系统主页字体设置")]
+        public float JPHFontFamily { get; set; }
+
+
+
+
         [DescriptionAttribute("第一行欢迎文字。"), CategoryAttribute("欢迎页面字体设置")]
         public string RowOneWelComeText { get; set; }
         [DescriptionAttribute("第二行欢迎文字。"), CategoryAttribute("欢迎页面字体设置")]

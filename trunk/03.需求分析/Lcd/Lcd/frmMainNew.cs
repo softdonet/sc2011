@@ -231,7 +231,7 @@ namespace Lcd
             label24.Text = "入库数量";
             label25.Text = "245";
             label26.Text = "停线时间";
-            label27.Text = "15:39";
+            label27.Text = setting.TimeString;
 
         }
         /// <summary>

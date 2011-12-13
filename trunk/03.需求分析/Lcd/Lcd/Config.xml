@@ -60,25 +60,17 @@
   <RowTwoWelComeText>莅临北京分公司检查指导工作</RowTwoWelComeText>
   <FontSize>60</FontSize>
   <FontFamily>楷体</FontFamily>
-
   <NumFontSize>65</NumFontSize>
   <NumFontFamily>Times New Roman</NumFontFamily>
-
   <HZFontSize>40</HZFontSize>
   <HZFontFamily>宋体</HZFontFamily>
-
   <YWFontSize>60</YWFontSize>
   <YWFontFamily>Times New Roman</YWFontFamily>
-
   <TimeFontSize>70</TimeFontSize>
   <TimeFontFamily>Times New Roman</TimeFontFamily>
-
   <JPHFontSize>70</JPHFontSize>
   <JPHFontFamily>Times New Roman</JPHFontFamily>
-
-  <TimeString>15:39</TimeString>
-
-
+  <TimeString>15:40</TimeString>
   <WelComeTextTop>200</WelComeTextTop>
   <WelComeTextRowledge>50</WelComeTextRowledge>
   <WelComeBackgroundImage>北汽欢迎.jpg</WelComeBackgroundImage>

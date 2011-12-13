@@ -281,7 +281,7 @@ namespace Lcd
         /// </summary>
         private void SetLabelFont()
         {
-            SetDynamicLabelStyle(lblCurrentTime, "Times New Roman", 70);//时间
+            SetDynamicLabelStyle(lblCurrentTime, setting.TimeFontFamily, setting.TimeFontSize);//时间
             SetLabelStyle(label2);//紫色部分
             SetLabelStyle(label3);
             SetLabelStyle(label4);
@@ -294,7 +294,7 @@ namespace Lcd
             SetLabelStyle(label11);
             SetLabelStyleSunTi(label12);
             SetLabelStyleNumber(label13);//数字
-            SetDynamicLabelStyle(label14, "Times New Roman", 70);//大号字体JPH
+            SetDynamicLabelStyle(label14, setting.JPHFontFamily,setting.JPHFontSize);//大号字体JPH
             SetLabelStyleNumber(label15);
             SetLabelStyleSunTi(label16);//汉字
             SetLabelStyleNumber(label17);
@@ -312,22 +312,22 @@ namespace Lcd
         }
 
         /// <summary>
-        /// 设置label字体样式（新罗马）
+        /// 设置label字体样式：字母（新罗马）
         /// </summary>
         /// <param name="lbl"></param>
         private void SetLabelStyle(Label lb)
         {
-            lb.Font = new Font("Times New Roman", 60F, FontStyle.Bold | FontStyle.Bold);
+            lb.Font = new Font(setting.YWFontFamily, setting.YWFontSize, FontStyle.Bold | FontStyle.Bold);
             lb.ForeColor = Color.White;
         }
 
         /// <summary>
-        /// 设置label字体样式（宋体）
+        /// 设置label字体样式:汉字（宋体）
         /// </summary>
         /// <param name="lbl"></param>
         private void SetLabelStyleSunTi(Label lb)
         {
-            lb.Font = new Font("宋体", 40F, FontStyle.Bold | FontStyle.Bold);
+            lb.Font = new Font(setting.HZFontFamily, setting.HZFontSize, FontStyle.Bold | FontStyle.Bold);
             lb.ForeColor = Color.White;
         }
         /// <summary>
@@ -336,7 +336,7 @@ namespace Lcd
         /// <param name="lbl"></param>
         private void SetLabelStyleNumber(Label lb)
         {
-            lb.Font = new Font("Times New Roman", setting.NumFontSize, FontStyle.Bold | FontStyle.Bold);
+            lb.Font = new Font(setting.NumFontFamily, setting.NumFontSize, FontStyle.Bold | FontStyle.Bold);
             lb.ForeColor = Color.White;
         }
 

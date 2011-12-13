@@ -150,7 +150,8 @@ namespace Lcd.CommClass
         [DescriptionAttribute("主页JPH字体。"), CategoryAttribute("系统主页字体设置")]
         public float JPHFontFamily { get; set; }
 
-
+        [DescriptionAttribute("右下角时间字符串。"), CategoryAttribute("系统主页字体设置")]
+        public float TimeString { get; set; }
 
 
         [DescriptionAttribute("第一行欢迎文字。"), CategoryAttribute("欢迎页面字体设置")]

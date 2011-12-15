@@ -1,12 +1,18 @@
 using System;
 using System.Text;
+using System.Collections.Generic;
+
+
 namespace Scada.Model.DB.SL
 {
+
+
     /// <summary>
     /// 类DeviceInfo。
     /// </summary>
     public class DeviceInfo
     {
+
         private Guid _id;
         private string _deviceno;
         private string _hardtype;
@@ -68,6 +74,15 @@ namespace Scada.Model.DB.SL
         private decimal? _process5lowvalue;
         private decimal? _process5lowervalue;
         private decimal? _process5ratevalue;
+
+
+        //设备关联维护人员信息
+        private List<Guid> _deviceMainValue = new List<Guid>();
+
+        //设备自定义时间
+        private List<DateTime> _deviceCustomTime = new List<DateTime>();
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -557,6 +572,19 @@ namespace Scada.Model.DB.SL
             set { _process5ratevalue = value; }
             get { return _process5ratevalue; }
         }
+
+        public List<Guid> DeviceMainValue
+        {
+            set { _deviceMainValue = value; }
+            get { return _deviceMainValue; }
+        }
+
+        public List<DateTime> DeviceCustomTime
+        {
+            set { _deviceCustomTime = value; }
+            get { return _deviceCustomTime; }
+        }
+
     }
 }
 

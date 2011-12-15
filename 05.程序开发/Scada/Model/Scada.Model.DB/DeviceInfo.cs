@@ -2,6 +2,8 @@ using System;
 using System.Data;
 using System.Text;
 using System.Data.SqlClient;
+using System.Collections.Generic;
+
 namespace Scada.Model.DB
 {
     /// <summary>
@@ -71,6 +73,13 @@ namespace Scada.Model.DB
         private decimal? _process5lowvalue;
         private decimal? _process5lowervalue;
         private decimal? _process5ratevalue;
+
+        //设备关联维护人员信息
+        private List<Guid> _deviceMainValue = new List<Guid>();
+
+        //设备自定义时间
+        private List<DateTime> _deviceCustomTime = new List<DateTime>();
+
         /// <summary>
         /// 
         /// </summary>
@@ -567,6 +576,19 @@ namespace Scada.Model.DB
             set { _process5ratevalue = value; }
             get { return _process5ratevalue; }
         }
+
+        public List<Guid> DeviceMainValue
+        {
+            set { _deviceMainValue = value; }
+            get { return _deviceMainValue; }
+        }
+
+        public List<DateTime> DeviceCustomTime
+        {
+            set { _deviceCustomTime = value; }
+            get { return _deviceCustomTime; }
+        }
+
     }
 }
 

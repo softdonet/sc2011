@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="Ho4uVlRY2umC4MWAWKLv/7qiF64=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="p1KmSb2NvbUQW5kv9ZmWlTeJEFo=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="ScadaDeviceServiceSoap">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="ScadaDeviceServiceSoap" contract="ScadaDeviceService.ScadaDeviceServiceSoap" bindingType="basicHttpBinding" address="http://localhost:2793/WebServices/ScadaDeviceService.asmx" bindingConfiguration="ScadaDeviceServiceSoap">
+    <endpoint name="ScadaDeviceServiceSoap" contract="ScadaDeviceService.ScadaDeviceServiceSoap" bindingType="basicHttpBinding" address="http://localhost:2823/WebServices/ScadaDeviceService.asmx" bindingConfiguration="ScadaDeviceServiceSoap">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:2793/WebServices/ScadaDeviceService.asmx</serializedValue>
+          <serializedValue>http://localhost:2823/WebServices/ScadaDeviceService.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

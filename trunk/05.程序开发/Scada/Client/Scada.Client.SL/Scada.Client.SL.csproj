@@ -130,6 +130,9 @@
     <Compile Include="Modules\Alarm\AlarmList.xaml.cs">
       <DependentUpon>AlarmList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\BaseInfo\DeviceManage.xaml.cs">
+      <DependentUpon>DeviceManage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\BingMaps\ChinaMode.cs" />
     <Compile Include="Modules\BingMaps\Comm.cs" />
     <Compile Include="Modules\BingMaps\MapIndex.xaml.cs">
@@ -224,6 +227,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modules\BaseInfo\DeviceManage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\BingMaps\MapIndex.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -287,32 +294,32 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
-    <None Include="Service References\DeviceRealTimeService\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\DeviceRealTimeService\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\DeviceRealTimeService\service2.wsdl" />
-    <None Include="Service References\DeviceRealTimeService\service21.wsdl" />
     <None Include="Service References\DeviceRealTimeService\configuration91.svcinfo" />
     <None Include="Service References\DeviceRealTimeService\configuration.svcinfo" />
     <None Include="Service References\DeviceRealTimeService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\DeviceRealTimeService\service.wsdl" />
+    <None Include="Service References\DeviceRealTimeService\service1.wsdl" />
+    <None Include="Service References\DeviceRealTimeService\service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DeviceRealTimeService\service21.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.GetListDeviceInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ScadaDeviceService\ScadaDeviceService.wsdl" />
+    <None Include="Service References\ScadaDeviceService\ScadaDeviceService1.wsdl" />
     <None Include="Service References\SystemManagerService\Scada.Client.SL.SystemManagerService.ListStudentsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\SystemManagerService\SystemManagerService.wsdl" />
+    <None Include="Service References\SystemManagerService\SystemManagerService1.wsdl" />
     <None Include="Service References\WeatherWebService\Scada.Client.SL.WeatherWebService.GetWeatherResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\WeatherWebService\WeatherWebService.wsdl" />
+    <None Include="Service References\WeatherWebService\WeatherWebService1.wsdl" />
     <None Include="Style\DataGridViewSampleDataSource1.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -322,21 +329,18 @@
     <Resource Include="Modules\DiagramAnalysis\Images\d4.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\lastPage.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\nextPage.jpg" />
-    <None Include="Service References\WeatherWebService\WeatherWebService.disco" />
     <None Include="Service References\WeatherWebService\configuration91.svcinfo" />
     <None Include="Service References\WeatherWebService\configuration.svcinfo" />
     <None Include="Service References\WeatherWebService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\SystemManagerService\SystemManagerService.disco" />
     <None Include="Service References\SystemManagerService\configuration91.svcinfo" />
     <None Include="Service References\SystemManagerService\configuration.svcinfo" />
     <None Include="Service References\SystemManagerService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\ScadaDeviceService\ScadaDeviceService.disco" />
     <None Include="Service References\ScadaDeviceService\configuration91.svcinfo" />
     <None Include="Service References\ScadaDeviceService\configuration.svcinfo" />
     <None Include="Service References\ScadaDeviceService\Reference.svcmap">
@@ -358,7 +362,12 @@
     <Resource Include="Modules\Device\Images\signal2.png" />
     <Resource Include="Modules\Device\Images\signal3.png" />
     <Content Include="Modules\Device\RadRibbonBarCodeCoverage.xml" />
-    <Content Include="ServiceReferences.ClientConfig" />
+    <None Include="Service References\ScadaDeviceService\ScadaDeviceService1.disco" />
+    <None Include="Service References\SystemManagerService\SystemManagerService1.disco" />
+    <None Include="Service References\WeatherWebService\WeatherWebService1.disco" />
+    <Content Include="ServiceReferences.ClientConfig">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

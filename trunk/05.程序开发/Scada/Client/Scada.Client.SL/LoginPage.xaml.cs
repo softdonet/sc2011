@@ -37,14 +37,6 @@ namespace Scada.Client.SL
         void login_myKeyDowmEvent(object sender, RoutedEventArgs e)
         {
 
-            //add by zgj test code
-            ScadaDeviceService.ScadaDeviceServiceSoapClient client =
-                                                       new ScadaDeviceService.ScadaDeviceServiceSoapClient();
-            client.GetListDeviceInfoCompleted +=
-                                    new EventHandler<ScadaDeviceService.GetListDeviceInfoCompletedEventArgs>(testObject);
-
-            client.GetListDeviceInfoAsync(new Guid("21CD196B-DC92-4705-8768-09839D9AEF85"), 3, null, null);
-
             if (login.txbName.Text == "admin" && login.txtPassWord.Password == "admin")
             {
                 this.MasterContainer.Child = new MainPage();
@@ -58,15 +50,6 @@ namespace Scada.Client.SL
             }
         }
 
-
-        void testObject(object sender, ScadaDeviceService.GetListDeviceInfoCompletedEventArgs e)
-        {
-
-            List<DeviceRealTime> deviceRealTimes =
-                    BinaryObjTransfer.BinaryDeserialize<List<DeviceRealTime>>(e.Result);
-            Console.WriteLine(e.Result);
-
-        }
     }
 
 }

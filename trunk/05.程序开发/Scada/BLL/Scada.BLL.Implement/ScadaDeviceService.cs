@@ -109,6 +109,31 @@ namespace Scada.BLL.Implement
 
         #endregion
 
+        #region 设备管理
+
+        public Boolean AddDeviceInfo(string deviceInfo)
+        {
+            return false;
+        }
+
+        public Boolean UpdateDeviceInfo(string deviceInfo)
+        {
+            return false;
+        }
+
+        public Boolean DeleteDeviceInfo(string deviceGuid)
+        {
+            return false;
+        }
+
+        public string ListMaintenancePeople()
+        {
+            return null;
+        }
+
+        #endregion
+
+
     }
 
 }

@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Scada.Client.SL.Modules.BingMaps;
 using Scada.Client.SL.Modules.Query;
+using Scada.Client.SL.Modules.BaseInfo;
 
 namespace Scada.Client.SL
 {
@@ -106,31 +107,31 @@ namespace Scada.Client.SL
         /// <param name="e"></param>
         void lstbSysSettings_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //string link = (Header.lstbSysSettings.SelectedItem as ListBoxItem).Name.ToString().Trim();
-            //Header.menuSysSettings.IsChecked = true;
-            //switch (link)
-            //{
-            //    //设备信息管理
-            //    case "childMenuDeviceManage":
-            //        this.ViewHost.Child = new DeviceManage();
-            //        break;
-            //    //维护人员管理
-            //    case "childMenuRepairUserManage":
-            //        this.ViewHost.Child = new RepairUserManage();
-            //        break;
-            //    //系统参数配置
-            //    case "childMenuSysConfig":
-            //        this.ViewHost.Child = new SysConfig();
-            //        break;
+            string link = (Header.lstbSysSettings.SelectedItem as ListBoxItem).Name.ToString().Trim();
+            Header.menuSysSettings.IsChecked = true;
+            switch (link)
+            {
+                //设备信息管理
+                case "childMenuDeviceManage":
+                    this.ViewHost.Child = new DeviceManage();
+                    break;
+                ////维护人员管理
+                //case "childMenuRepairUserManage":
+                //    this.ViewHost.Child = new RepairUserManage();
+                //    break;
+                ////系统参数配置
+                //case "childMenuSysConfig":
+                //    this.ViewHost.Child = new SysConfig();
+                //    break;
 
-            //    //设备日志管理
-            //    case "childMenuDevideLog":
-            //        this.ViewHost.Child = new DevideLog();
-            //        break;
-            //    case "childMenuDatabaseBak":
-            //        this.ViewHost.Child = new DatabaseBackUp();
-            //        break;
-            //}
+                ////设备日志管理
+                //case "childMenuDevideLog":
+                //    this.ViewHost.Child = new DevideLog();
+                //    break;
+                //case "childMenuDatabaseBak":
+                //    this.ViewHost.Child = new DatabaseBackUp();
+                //    break;
+            }
         }
 
         /// <summary>

@@ -27,6 +27,26 @@ namespace Scada.Client.SL.ScadaDeviceService {
         System.IAsyncResult BeginGetListDeviceInfo(Scada.Client.SL.ScadaDeviceService.GetListDeviceInfoRequest request, System.AsyncCallback callback, object asyncState);
         
         Scada.Client.SL.ScadaDeviceService.GetListDeviceInfoResponse EndGetListDeviceInfo(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/AddDeviceInfo", ReplyAction="*")]
+        System.IAsyncResult BeginAddDeviceInfo(Scada.Client.SL.ScadaDeviceService.AddDeviceInfoRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.SL.ScadaDeviceService.AddDeviceInfoResponse EndAddDeviceInfo(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/UpdateDeviceInfo", ReplyAction="*")]
+        System.IAsyncResult BeginUpdateDeviceInfo(Scada.Client.SL.ScadaDeviceService.UpdateDeviceInfoRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.SL.ScadaDeviceService.UpdateDeviceInfoResponse EndUpdateDeviceInfo(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/DeleteDeviceInfo", ReplyAction="*")]
+        System.IAsyncResult BeginDeleteDeviceInfo(Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoResponse EndDeleteDeviceInfo(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ListMaintenancePeople", ReplyAction="*")]
+        System.IAsyncResult BeginListMaintenancePeople(Scada.Client.SL.ScadaDeviceService.ListMaintenancePeopleRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.SL.ScadaDeviceService.ListMaintenancePeopleResponse EndListMaintenancePeople(System.IAsyncResult result);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -109,6 +129,271 @@ namespace Scada.Client.SL.ScadaDeviceService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class AddDeviceInfoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="AddDeviceInfo", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.AddDeviceInfoRequestBody Body;
+        
+        public AddDeviceInfoRequest() {
+        }
+        
+        public AddDeviceInfoRequest(Scada.Client.SL.ScadaDeviceService.AddDeviceInfoRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class AddDeviceInfoRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string deviceInfo;
+        
+        public AddDeviceInfoRequestBody() {
+        }
+        
+        public AddDeviceInfoRequestBody(string deviceInfo) {
+            this.deviceInfo = deviceInfo;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class AddDeviceInfoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="AddDeviceInfoResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.AddDeviceInfoResponseBody Body;
+        
+        public AddDeviceInfoResponse() {
+        }
+        
+        public AddDeviceInfoResponse(Scada.Client.SL.ScadaDeviceService.AddDeviceInfoResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class AddDeviceInfoResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool AddDeviceInfoResult;
+        
+        public AddDeviceInfoResponseBody() {
+        }
+        
+        public AddDeviceInfoResponseBody(bool AddDeviceInfoResult) {
+            this.AddDeviceInfoResult = AddDeviceInfoResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UpdateDeviceInfoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UpdateDeviceInfo", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.UpdateDeviceInfoRequestBody Body;
+        
+        public UpdateDeviceInfoRequest() {
+        }
+        
+        public UpdateDeviceInfoRequest(Scada.Client.SL.ScadaDeviceService.UpdateDeviceInfoRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class UpdateDeviceInfoRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string deviceInfo;
+        
+        public UpdateDeviceInfoRequestBody() {
+        }
+        
+        public UpdateDeviceInfoRequestBody(string deviceInfo) {
+            this.deviceInfo = deviceInfo;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UpdateDeviceInfoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UpdateDeviceInfoResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.UpdateDeviceInfoResponseBody Body;
+        
+        public UpdateDeviceInfoResponse() {
+        }
+        
+        public UpdateDeviceInfoResponse(Scada.Client.SL.ScadaDeviceService.UpdateDeviceInfoResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class UpdateDeviceInfoResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool UpdateDeviceInfoResult;
+        
+        public UpdateDeviceInfoResponseBody() {
+        }
+        
+        public UpdateDeviceInfoResponseBody(bool UpdateDeviceInfoResult) {
+            this.UpdateDeviceInfoResult = UpdateDeviceInfoResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class DeleteDeviceInfoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="DeleteDeviceInfo", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoRequestBody Body;
+        
+        public DeleteDeviceInfoRequest() {
+        }
+        
+        public DeleteDeviceInfoRequest(Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class DeleteDeviceInfoRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string deviceGuid;
+        
+        public DeleteDeviceInfoRequestBody() {
+        }
+        
+        public DeleteDeviceInfoRequestBody(string deviceGuid) {
+            this.deviceGuid = deviceGuid;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class DeleteDeviceInfoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="DeleteDeviceInfoResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoResponseBody Body;
+        
+        public DeleteDeviceInfoResponse() {
+        }
+        
+        public DeleteDeviceInfoResponse(Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class DeleteDeviceInfoResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool DeleteDeviceInfoResult;
+        
+        public DeleteDeviceInfoResponseBody() {
+        }
+        
+        public DeleteDeviceInfoResponseBody(bool DeleteDeviceInfoResult) {
+            this.DeleteDeviceInfoResult = DeleteDeviceInfoResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ListMaintenancePeopleRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ListMaintenancePeople", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.ListMaintenancePeopleRequestBody Body;
+        
+        public ListMaintenancePeopleRequest() {
+        }
+        
+        public ListMaintenancePeopleRequest(Scada.Client.SL.ScadaDeviceService.ListMaintenancePeopleRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class ListMaintenancePeopleRequestBody {
+        
+        public ListMaintenancePeopleRequestBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ListMaintenancePeopleResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ListMaintenancePeopleResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.ListMaintenancePeopleResponseBody Body;
+        
+        public ListMaintenancePeopleResponse() {
+        }
+        
+        public ListMaintenancePeopleResponse(Scada.Client.SL.ScadaDeviceService.ListMaintenancePeopleResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class ListMaintenancePeopleResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string ListMaintenancePeopleResult;
+        
+        public ListMaintenancePeopleResponseBody() {
+        }
+        
+        public ListMaintenancePeopleResponseBody(string ListMaintenancePeopleResult) {
+            this.ListMaintenancePeopleResult = ListMaintenancePeopleResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface ScadaDeviceServiceSoapChannel : Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap, System.ServiceModel.IClientChannel {
     }
@@ -153,6 +438,82 @@ namespace Scada.Client.SL.ScadaDeviceService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AddDeviceInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public AddDeviceInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UpdateDeviceInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UpdateDeviceInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class DeleteDeviceInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public DeleteDeviceInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ListMaintenancePeopleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public ListMaintenancePeopleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class ScadaDeviceServiceSoapClient : System.ServiceModel.ClientBase<Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap>, Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap {
         
         private BeginOperationDelegate onBeginAddDelegate;
@@ -166,6 +527,30 @@ namespace Scada.Client.SL.ScadaDeviceService {
         private EndOperationDelegate onEndGetListDeviceInfoDelegate;
         
         private System.Threading.SendOrPostCallback onGetListDeviceInfoCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginAddDeviceInfoDelegate;
+        
+        private EndOperationDelegate onEndAddDeviceInfoDelegate;
+        
+        private System.Threading.SendOrPostCallback onAddDeviceInfoCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginUpdateDeviceInfoDelegate;
+        
+        private EndOperationDelegate onEndUpdateDeviceInfoDelegate;
+        
+        private System.Threading.SendOrPostCallback onUpdateDeviceInfoCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginDeleteDeviceInfoDelegate;
+        
+        private EndOperationDelegate onEndDeleteDeviceInfoDelegate;
+        
+        private System.Threading.SendOrPostCallback onDeleteDeviceInfoCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginListMaintenancePeopleDelegate;
+        
+        private EndOperationDelegate onEndListMaintenancePeopleDelegate;
+        
+        private System.Threading.SendOrPostCallback onListMaintenancePeopleCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -223,6 +608,14 @@ namespace Scada.Client.SL.ScadaDeviceService {
         public event System.EventHandler<AddCompletedEventArgs> AddCompleted;
         
         public event System.EventHandler<GetListDeviceInfoCompletedEventArgs> GetListDeviceInfoCompleted;
+        
+        public event System.EventHandler<AddDeviceInfoCompletedEventArgs> AddDeviceInfoCompleted;
+        
+        public event System.EventHandler<UpdateDeviceInfoCompletedEventArgs> UpdateDeviceInfoCompleted;
+        
+        public event System.EventHandler<DeleteDeviceInfoCompletedEventArgs> DeleteDeviceInfoCompleted;
+        
+        public event System.EventHandler<ListMaintenancePeopleCompletedEventArgs> ListMaintenancePeopleCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -345,6 +738,243 @@ namespace Scada.Client.SL.ScadaDeviceService {
                         EndDate}, this.onEndGetListDeviceInfoDelegate, this.onGetListDeviceInfoCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.BeginAddDeviceInfo(Scada.Client.SL.ScadaDeviceService.AddDeviceInfoRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddDeviceInfo(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginAddDeviceInfo(string deviceInfo, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.SL.ScadaDeviceService.AddDeviceInfoRequest inValue = new Scada.Client.SL.ScadaDeviceService.AddDeviceInfoRequest();
+            inValue.Body = new Scada.Client.SL.ScadaDeviceService.AddDeviceInfoRequestBody();
+            inValue.Body.deviceInfo = deviceInfo;
+            return ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginAddDeviceInfo(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.SL.ScadaDeviceService.AddDeviceInfoResponse Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.EndAddDeviceInfo(System.IAsyncResult result) {
+            return base.Channel.EndAddDeviceInfo(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private bool EndAddDeviceInfo(System.IAsyncResult result) {
+            Scada.Client.SL.ScadaDeviceService.AddDeviceInfoResponse retVal = ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndAddDeviceInfo(result);
+            return retVal.Body.AddDeviceInfoResult;
+        }
+        
+        private System.IAsyncResult OnBeginAddDeviceInfo(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string deviceInfo = ((string)(inValues[0]));
+            return this.BeginAddDeviceInfo(deviceInfo, callback, asyncState);
+        }
+        
+        private object[] OnEndAddDeviceInfo(System.IAsyncResult result) {
+            bool retVal = this.EndAddDeviceInfo(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnAddDeviceInfoCompleted(object state) {
+            if ((this.AddDeviceInfoCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AddDeviceInfoCompleted(this, new AddDeviceInfoCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AddDeviceInfoAsync(string deviceInfo) {
+            this.AddDeviceInfoAsync(deviceInfo, null);
+        }
+        
+        public void AddDeviceInfoAsync(string deviceInfo, object userState) {
+            if ((this.onBeginAddDeviceInfoDelegate == null)) {
+                this.onBeginAddDeviceInfoDelegate = new BeginOperationDelegate(this.OnBeginAddDeviceInfo);
+            }
+            if ((this.onEndAddDeviceInfoDelegate == null)) {
+                this.onEndAddDeviceInfoDelegate = new EndOperationDelegate(this.OnEndAddDeviceInfo);
+            }
+            if ((this.onAddDeviceInfoCompletedDelegate == null)) {
+                this.onAddDeviceInfoCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddDeviceInfoCompleted);
+            }
+            base.InvokeAsync(this.onBeginAddDeviceInfoDelegate, new object[] {
+                        deviceInfo}, this.onEndAddDeviceInfoDelegate, this.onAddDeviceInfoCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.BeginUpdateDeviceInfo(Scada.Client.SL.ScadaDeviceService.UpdateDeviceInfoRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateDeviceInfo(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginUpdateDeviceInfo(string deviceInfo, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.SL.ScadaDeviceService.UpdateDeviceInfoRequest inValue = new Scada.Client.SL.ScadaDeviceService.UpdateDeviceInfoRequest();
+            inValue.Body = new Scada.Client.SL.ScadaDeviceService.UpdateDeviceInfoRequestBody();
+            inValue.Body.deviceInfo = deviceInfo;
+            return ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginUpdateDeviceInfo(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.SL.ScadaDeviceService.UpdateDeviceInfoResponse Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.EndUpdateDeviceInfo(System.IAsyncResult result) {
+            return base.Channel.EndUpdateDeviceInfo(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private bool EndUpdateDeviceInfo(System.IAsyncResult result) {
+            Scada.Client.SL.ScadaDeviceService.UpdateDeviceInfoResponse retVal = ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndUpdateDeviceInfo(result);
+            return retVal.Body.UpdateDeviceInfoResult;
+        }
+        
+        private System.IAsyncResult OnBeginUpdateDeviceInfo(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string deviceInfo = ((string)(inValues[0]));
+            return this.BeginUpdateDeviceInfo(deviceInfo, callback, asyncState);
+        }
+        
+        private object[] OnEndUpdateDeviceInfo(System.IAsyncResult result) {
+            bool retVal = this.EndUpdateDeviceInfo(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUpdateDeviceInfoCompleted(object state) {
+            if ((this.UpdateDeviceInfoCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UpdateDeviceInfoCompleted(this, new UpdateDeviceInfoCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UpdateDeviceInfoAsync(string deviceInfo) {
+            this.UpdateDeviceInfoAsync(deviceInfo, null);
+        }
+        
+        public void UpdateDeviceInfoAsync(string deviceInfo, object userState) {
+            if ((this.onBeginUpdateDeviceInfoDelegate == null)) {
+                this.onBeginUpdateDeviceInfoDelegate = new BeginOperationDelegate(this.OnBeginUpdateDeviceInfo);
+            }
+            if ((this.onEndUpdateDeviceInfoDelegate == null)) {
+                this.onEndUpdateDeviceInfoDelegate = new EndOperationDelegate(this.OnEndUpdateDeviceInfo);
+            }
+            if ((this.onUpdateDeviceInfoCompletedDelegate == null)) {
+                this.onUpdateDeviceInfoCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateDeviceInfoCompleted);
+            }
+            base.InvokeAsync(this.onBeginUpdateDeviceInfoDelegate, new object[] {
+                        deviceInfo}, this.onEndUpdateDeviceInfoDelegate, this.onUpdateDeviceInfoCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.BeginDeleteDeviceInfo(Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginDeleteDeviceInfo(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginDeleteDeviceInfo(string deviceGuid, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoRequest inValue = new Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoRequest();
+            inValue.Body = new Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoRequestBody();
+            inValue.Body.deviceGuid = deviceGuid;
+            return ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginDeleteDeviceInfo(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoResponse Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.EndDeleteDeviceInfo(System.IAsyncResult result) {
+            return base.Channel.EndDeleteDeviceInfo(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private bool EndDeleteDeviceInfo(System.IAsyncResult result) {
+            Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoResponse retVal = ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndDeleteDeviceInfo(result);
+            return retVal.Body.DeleteDeviceInfoResult;
+        }
+        
+        private System.IAsyncResult OnBeginDeleteDeviceInfo(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string deviceGuid = ((string)(inValues[0]));
+            return this.BeginDeleteDeviceInfo(deviceGuid, callback, asyncState);
+        }
+        
+        private object[] OnEndDeleteDeviceInfo(System.IAsyncResult result) {
+            bool retVal = this.EndDeleteDeviceInfo(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnDeleteDeviceInfoCompleted(object state) {
+            if ((this.DeleteDeviceInfoCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.DeleteDeviceInfoCompleted(this, new DeleteDeviceInfoCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void DeleteDeviceInfoAsync(string deviceGuid) {
+            this.DeleteDeviceInfoAsync(deviceGuid, null);
+        }
+        
+        public void DeleteDeviceInfoAsync(string deviceGuid, object userState) {
+            if ((this.onBeginDeleteDeviceInfoDelegate == null)) {
+                this.onBeginDeleteDeviceInfoDelegate = new BeginOperationDelegate(this.OnBeginDeleteDeviceInfo);
+            }
+            if ((this.onEndDeleteDeviceInfoDelegate == null)) {
+                this.onEndDeleteDeviceInfoDelegate = new EndOperationDelegate(this.OnEndDeleteDeviceInfo);
+            }
+            if ((this.onDeleteDeviceInfoCompletedDelegate == null)) {
+                this.onDeleteDeviceInfoCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDeleteDeviceInfoCompleted);
+            }
+            base.InvokeAsync(this.onBeginDeleteDeviceInfoDelegate, new object[] {
+                        deviceGuid}, this.onEndDeleteDeviceInfoDelegate, this.onDeleteDeviceInfoCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.BeginListMaintenancePeople(Scada.Client.SL.ScadaDeviceService.ListMaintenancePeopleRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginListMaintenancePeople(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginListMaintenancePeople(System.AsyncCallback callback, object asyncState) {
+            Scada.Client.SL.ScadaDeviceService.ListMaintenancePeopleRequest inValue = new Scada.Client.SL.ScadaDeviceService.ListMaintenancePeopleRequest();
+            inValue.Body = new Scada.Client.SL.ScadaDeviceService.ListMaintenancePeopleRequestBody();
+            return ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginListMaintenancePeople(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.SL.ScadaDeviceService.ListMaintenancePeopleResponse Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.EndListMaintenancePeople(System.IAsyncResult result) {
+            return base.Channel.EndListMaintenancePeople(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private string EndListMaintenancePeople(System.IAsyncResult result) {
+            Scada.Client.SL.ScadaDeviceService.ListMaintenancePeopleResponse retVal = ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndListMaintenancePeople(result);
+            return retVal.Body.ListMaintenancePeopleResult;
+        }
+        
+        private System.IAsyncResult OnBeginListMaintenancePeople(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginListMaintenancePeople(callback, asyncState);
+        }
+        
+        private object[] OnEndListMaintenancePeople(System.IAsyncResult result) {
+            string retVal = this.EndListMaintenancePeople(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnListMaintenancePeopleCompleted(object state) {
+            if ((this.ListMaintenancePeopleCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.ListMaintenancePeopleCompleted(this, new ListMaintenancePeopleCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void ListMaintenancePeopleAsync() {
+            this.ListMaintenancePeopleAsync(null);
+        }
+        
+        public void ListMaintenancePeopleAsync(object userState) {
+            if ((this.onBeginListMaintenancePeopleDelegate == null)) {
+                this.onBeginListMaintenancePeopleDelegate = new BeginOperationDelegate(this.OnBeginListMaintenancePeople);
+            }
+            if ((this.onEndListMaintenancePeopleDelegate == null)) {
+                this.onEndListMaintenancePeopleDelegate = new EndOperationDelegate(this.OnEndListMaintenancePeople);
+            }
+            if ((this.onListMaintenancePeopleCompletedDelegate == null)) {
+                this.onListMaintenancePeopleCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnListMaintenancePeopleCompleted);
+            }
+            base.InvokeAsync(this.onBeginListMaintenancePeopleDelegate, null, this.onEndListMaintenancePeopleDelegate, this.onListMaintenancePeopleCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -445,6 +1075,58 @@ namespace Scada.Client.SL.ScadaDeviceService {
             public Scada.Client.SL.ScadaDeviceService.GetListDeviceInfoResponse EndGetListDeviceInfo(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 Scada.Client.SL.ScadaDeviceService.GetListDeviceInfoResponse _result = ((Scada.Client.SL.ScadaDeviceService.GetListDeviceInfoResponse)(base.EndInvoke("GetListDeviceInfo", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginAddDeviceInfo(Scada.Client.SL.ScadaDeviceService.AddDeviceInfoRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("AddDeviceInfo", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.SL.ScadaDeviceService.AddDeviceInfoResponse EndAddDeviceInfo(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.SL.ScadaDeviceService.AddDeviceInfoResponse _result = ((Scada.Client.SL.ScadaDeviceService.AddDeviceInfoResponse)(base.EndInvoke("AddDeviceInfo", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginUpdateDeviceInfo(Scada.Client.SL.ScadaDeviceService.UpdateDeviceInfoRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("UpdateDeviceInfo", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.SL.ScadaDeviceService.UpdateDeviceInfoResponse EndUpdateDeviceInfo(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.SL.ScadaDeviceService.UpdateDeviceInfoResponse _result = ((Scada.Client.SL.ScadaDeviceService.UpdateDeviceInfoResponse)(base.EndInvoke("UpdateDeviceInfo", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginDeleteDeviceInfo(Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("DeleteDeviceInfo", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoResponse EndDeleteDeviceInfo(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoResponse _result = ((Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoResponse)(base.EndInvoke("DeleteDeviceInfo", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginListMaintenancePeople(Scada.Client.SL.ScadaDeviceService.ListMaintenancePeopleRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("ListMaintenancePeople", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.SL.ScadaDeviceService.ListMaintenancePeopleResponse EndListMaintenancePeople(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.SL.ScadaDeviceService.ListMaintenancePeopleResponse _result = ((Scada.Client.SL.ScadaDeviceService.ListMaintenancePeopleResponse)(base.EndInvoke("ListMaintenancePeople", _args, result)));
                 return _result;
             }
         }

@@ -29,11 +29,11 @@
                                 <ColumnDefinition Width="425" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="400*"/>
-                                <RowDefinition Height="48"/>
+                                <RowDefinition Height="489"/>
+                                <RowDefinition Height="36"/>
                                 
                             </Grid.RowDefinitions>
-                            <my:TreeViewList  Name="treeViewList1"  />
+                            <my:TreeViewList  Name="treeViewList1"   />
                             <sdk:Label Grid.Column="1" Height="18" HorizontalAlignment="Left" Margin="13,14,0,0" x:Name="label1" VerticalAlignment="Top" Width="62" Content="设备MAC：" />
                             <TextBox Height="23" HorizontalAlignment="Left" Margin="88,8,0,0" x:Name="textBox1" VerticalAlignment="Top" Width="204" Text="00-43-45-54-35-42" Grid.Column="1" />
                            
@@ -64,11 +64,11 @@
                                 </StackPanel>
                                 <!--<sdk:DataGrid ItemsSource="{Binding Collection}" AutoGenerateColumns="False" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" CanUserSortColumns="True"  >-->
 
-                                <sdk:DataGrid AutoGenerateColumns="False"  ItemsSource="{Binding Collection}" DataContext="{Binding Source={StaticResource TimeTableSampleDataSource}}"  RowHeight="20" Height="234" Width="251">
+                                <sdk:DataGrid AutoGenerateColumns="False"  ItemsSource="{Binding Collection}" RowHeight="20" Height="234" Width="251">
                                     <sdk:DataGrid.Columns>
-                                        <sdk:DataGridTemplateColumn Header="定时表" Width="80" DisplayIndex="1" CellTemplate="{StaticResource dtTimeTable}" />
-                                        <sdk:DataGridTemplateColumn Header="时" Width="60" CellTemplate="{StaticResource dtHour}" />
-                                        <sdk:DataGridTemplateColumn Header="分" Width="60" CellTemplate="{StaticResource dtMinute}" />
+                                        <sdk:DataGridTemplateColumn Header="定时表" Width="80" DisplayIndex="1"  />
+                                        <sdk:DataGridTemplateColumn Header="时" Width="60"  />
+                                        <sdk:DataGridTemplateColumn Header="分" Width="60"  />
                                     </sdk:DataGrid.Columns>
                                 </sdk:DataGrid>
                             </StackPanel>
@@ -118,11 +118,23 @@
 
                             <CheckBox Content="端口：" Height="16" HorizontalAlignment="Left" Margin="10,383,0,0" x:Name="checkBox19" VerticalAlignment="Top" Grid.Column="1" />
                             <TextBox Height="23" HorizontalAlignment="Left" Margin="87,379,0,0" x:Name="textBox21" Text="" VerticalAlignment="Top" Width="205" Grid.Column="1" />
-                            <StackPanel  Grid.Row="1"  Name="stackPanel11" Orientation="Horizontal">
+                            <StackPanel  Grid.Row="1"  Name="stackPanel11" Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="2" Margin="217,4,275,-4">
                                 <Button Content="增加" Height="23" Name="button1" Width="60" />
                                 <Button Content="删除" Height="23" Name="button2" Width="60" />
                                 <Button Content="保存" Height="23" Name="button3" Width="60" />
                                 <Button Content="导出" Height="23" Name="button4" Width="60" />
+                            </StackPanel>
+                            <sdk:DataGrid AutoGenerateColumns="False" Grid.Column="2" Height="138" HorizontalAlignment="Left" Margin="209,256,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="210" >
+                                <sdk:DataGrid.Columns>
+                                    <sdk:DataGridTemplateColumn Header="维护人" Width="80" DisplayIndex="1" />
+                                    <sdk:DataGridTemplateColumn Header="电话" Width="60"  />
+                                    <sdk:DataGridTemplateColumn Header="操作" Width="60"  />
+                                </sdk:DataGrid.Columns>
+
+                            </sdk:DataGrid>
+                            <StackPanel Grid.Column="2" Height="47" HorizontalAlignment="Left" Margin="233,403,0,0" Name="stackPanel4" VerticalAlignment="Top" Width="155" Orientation="Horizontal">
+                                <Button Content="添加" Height="23" Name="button5" Width="75" />
+                                <Button Content="删除" Height="23" Name="button6" Width="75" />
                             </StackPanel>
                         </Grid>
                     </Border>

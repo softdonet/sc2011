@@ -79,6 +79,9 @@
     <Compile Include="TreeListCheckBox.xaml.cs">
       <DependentUpon>TreeListCheckBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TreeViewList.xaml.cs">
+      <DependentUpon>TreeViewList.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="DaysGraph.xaml">
@@ -94,6 +97,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TreeListCheckBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TreeViewList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

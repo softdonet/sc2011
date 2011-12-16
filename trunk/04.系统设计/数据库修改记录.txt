@@ -1,1 +1,15 @@
 2011-12-11,在pd中添加系统配置表。
+--------------------------------------------------------------------------
+2011-12-16 yanghk发现设备树表缺少自关联关系
+请执行以下脚本即可更新：
+alter table DeviceTree
+   add constraint FK_DEVICETR_REFERENCE_DEVICETR foreign key (ParentID)
+      references DeviceTree (ID)
+go
+-------------------------------------------------------------------------
+2011-12-16 yanghk发现数据库中【设备信息表】并没有和【设备管理分区表】实现关联
+请执行以下脚本即可更新：
+alter table DeviceInfo
+   add constraint FK_DEVICEIN_REFERENCE_DEVICETR foreign key (ManageAreaID)
+      references DeviceTree (ID)
+go

@@ -13,6 +13,13 @@ namespace Scada.Model.Entity
 
         public List<DeviceTreeNode> NodeChild { get; set; }
 
+        public void AddNodeKey(DeviceTreeNode treeNode)
+        {
+            if (this.NodeChild == null)
+                this.NodeChild = new List<DeviceTreeNode>();
+            this.NodeChild.Add(treeNode);
+        }
+
     }
 
 }

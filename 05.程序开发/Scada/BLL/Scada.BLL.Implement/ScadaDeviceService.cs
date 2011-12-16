@@ -3,13 +3,12 @@ using System.Text;
 using System.Data;
 using System.Collections.Generic;
 
+using Scada.BLL.Contract;
 
 using Scada.DAL.Ado;
-using Scada.BLL.Contract;
 using Scada.Model.DB;
+using Scada.Model.Entity;
 using Scada.Utility.Common.Transfer;
-
-
 
 
 
@@ -138,11 +137,67 @@ namespace Scada.BLL.Implement
 
         public string ListDeviceTreeView()
         {
-            return string.Empty;
+            List<DeviceTreeNode> treeList = new List<DeviceTreeNode>();
+            List<DeviceTreeNode> areaTable = this.getTreeNodeChild(null);
+            foreach (DeviceTreeNode area in areaTable)
+            {
+                List<DeviceTreeNode> ManageTable = this.getTreeNodeChild(area.NodeKey);
+                foreach (DeviceTreeNode manage in ManageTable)
+                {
+                    manage.NodeChild = getTreeNodeDevice(manage.NodeKey);
+                    area.AddNodeKey(manage);
+                }
+                treeList.Add(area);
+            }
+            return BinaryObjTransfer.JsonSerializer<List<DeviceTreeNode>>(treeList);
+        }
+
+        private List<DeviceTreeNode> getTreeNodeChild(Guid? nodeKey)
+        {
+            int nodeIndex;
+            List<DeviceTreeNode> result = new List<DeviceTreeNode>();
+            string sSql = "select id,name from DeviceTree";
+            if (nodeKey != null)
+            {
+                nodeIndex = 2;
+                sSql = sSql + " where ParentID ='" + nodeKey.ToString().ToUpper() + "'";
+            }
+            else
+            {
+                nodeIndex = 1;
+                sSql = sSql + " Where ParentID Is Null";
+            }
+            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            foreach (DataRow item in ds.Rows)
+            {
+                result.Add(new DeviceTreeNode
+                {
+                    NodeType = nodeIndex,
+                    NodeValue = item["Name"].ToString(),
+                    NodeKey = new Guid(item["id"].ToString())
+                });
+            }
+            return result;
+        }
+
+        private List<DeviceTreeNode> getTreeNodeDevice(Guid nodeKey)
+        {
+            List<DeviceTreeNode> result = new List<DeviceTreeNode>();
+            string sSql = "select id,DeviceNo from DeviceInfo Where ManageAreaID ='" + nodeKey.ToString().ToUpper() + "'";
+            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            foreach (DataRow item in ds.Rows)
+            {
+                result.Add(new DeviceTreeNode
+                {
+                    NodeType = 3,
+                    NodeValue = item["DeviceNo"].ToString(),
+                    NodeKey = new Guid(item["id"].ToString())
+                });
+            }
+            return result;
         }
 
         #endregion
-
 
     }
 

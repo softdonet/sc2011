@@ -26,6 +26,9 @@ namespace Scada.BLL.Contract
         //列出维护人员信息
         string ListMaintenancePeople();
 
+        //列出设备树形信息
+        string ListDeviceTreeView();
+
 
     }
 }

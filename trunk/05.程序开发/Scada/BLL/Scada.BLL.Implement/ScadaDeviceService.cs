@@ -126,6 +126,11 @@ namespace Scada.BLL.Implement
             return false;
         }
 
+        public string ViewDeviceInfo(string deviceGuid)
+        {
+            return string.Empty;
+        }
+
         public string ListMaintenancePeople()
         {
             return string.Empty;

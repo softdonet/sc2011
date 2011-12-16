@@ -23,6 +23,9 @@ namespace Scada.BLL.Contract
         //删除设备
         Boolean DeleteDeviceInfo(string deviceGuid);
 
+        //列设备信息
+        string ViewDeviceInfo(string deviceGuid);
+
         //列出维护人员信息
         string ListMaintenancePeople();
 

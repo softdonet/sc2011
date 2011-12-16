@@ -128,7 +128,12 @@ namespace Scada.BLL.Implement
 
         public string ListMaintenancePeople()
         {
-            return null;
+            return string.Empty;
+        }
+
+        public string ListDeviceTreeView()
+        {
+            return string.Empty;
         }
 
         #endregion

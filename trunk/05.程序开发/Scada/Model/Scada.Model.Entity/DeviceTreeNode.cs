@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Scada.Model.Entity
+{
+    public class DeviceTreeNode
+    {
+        public string NodeValue { get; set; }
+
+        public Guid NodeKey { get; set; }
+
+        public Int32 NodeType { get; set; }
+
+        public List<DeviceTreeNode> NodeChild { get; set; }
+
+    }
+
+}

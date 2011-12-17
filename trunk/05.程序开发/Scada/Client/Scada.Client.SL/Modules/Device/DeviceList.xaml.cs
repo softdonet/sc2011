@@ -160,10 +160,11 @@ namespace Scada.Client.SL.Modules.Device
                     break;
 
             }
-            AssemblyName assemblyName = new AssemblyName(typeof(RadTreeListXmlDataSource).Assembly.FullName);
-            string resourcePath = "/" + assemblyName.Name + ";component/Modules/Device/Image/" + img;
-            Uri resourceUri = new Uri(resourcePath, UriKind.Relative);
-            var obj = new BitmapImage(resourceUri);
+            //AssemblyName assemblyName = new AssemblyName(typeof(RadTreeListXmlDataSource).Assembly.FullName);
+            //string resourcePath = "/" + assemblyName.Name + ";component/Modules/Device/Image/" + img;
+            //Uri resourceUri = new Uri(resourcePath, UriKind.Relative);
+            //var obj = new BitmapImage(resourceUri);
+            Image obj = null;
             return obj;
         }
 

@@ -10,7 +10,6 @@
     mc:Ignorable="d"
     d:DesignHeight="768" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <UserControl.Resources>
-        <local:RadTreeListXmlDataSource x:Key="TreeListSource" Source="RadRibbonBarCodeCoverage.xml" />
         <local:RelativeBlocksValueConverter x:Key="RelativeBlocksValueConverter1" />
         <local:ItemImageSourceValueConverter x:Key="ItemImageSourceValueConverter1" />
         <Storyboard x:Name="Storyboard1">
@@ -74,9 +73,8 @@
     <Grid x:Name="LayoutRoot" Background="White" >
         <telerik:RadTreeListView x:Name="RadTreeListView1" 
 								 AutoGenerateColumns="False"
-								 IsReadOnly="True"
-                                 
-								 ItemsSource="{StaticResource TreeListSource}" AutoExpandGroups="True" RowHeight="25"  RowLoaded="RadTreeListView1_RowLoaded">
+								 IsReadOnly="True" 
+								 AutoExpandGroups="True" RowHeight="25"  RowLoaded="RadTreeListView1_RowLoaded">
             <telerik:RadTreeListView.ChildTableDefinitions>
                 <telerik:TreeListViewTableDefinition ItemsSource="{Binding Items}" />
             </telerik:RadTreeListView.ChildTableDefinitions>

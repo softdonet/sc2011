@@ -121,6 +121,9 @@
     <Compile Include="Controls\MyContent.cs" />
     <Compile Include="Controls\MyGauge.cs" />
     <Compile Include="Controls\MyWin.cs" />
+    <Compile Include="Controls\TreeViewList.xaml.cs">
+      <DependentUpon>TreeViewList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -150,8 +153,6 @@
     <Compile Include="Modules\Device\DeviceList.xaml.cs">
       <DependentUpon>DeviceList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Device\RadTreeListXmlDataSource.cs" />
-    <Compile Include="Modules\Device\TestCoverageItemsList.cs" />
     <Compile Include="Modules\DiagramAnalysis\CompareByDevice.xaml.cs">
       <DependentUpon>CompareByDevice.xaml</DependentUpon>
     </Compile>
@@ -214,6 +215,10 @@
     <Page Include="Controls\Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TreeViewList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LoginPage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -317,10 +322,16 @@
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.GetListDeviceInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.ListDeviceTreeViewResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.ListMaintenancePeopleResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.UpdateDeviceInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.ViewDeviceInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\ScadaDeviceService1.wsdl" />
@@ -373,7 +384,6 @@
     <Resource Include="Modules\Device\Images\signal1.png" />
     <Resource Include="Modules\Device\Images\signal2.png" />
     <Resource Include="Modules\Device\Images\signal3.png" />
-    <Content Include="Modules\Device\RadRibbonBarCodeCoverage.xml" />
     <None Include="Service References\ScadaDeviceService\ScadaDeviceService1.disco" />
     <None Include="Service References\SystemManagerService\SystemManagerService1.disco" />
     <None Include="Service References\WeatherWebService\WeatherWebService1.disco" />

@@ -40,7 +40,7 @@ namespace Scada.Client.Web.WCFServices
         /// <summary>
         /// 要发送的数据
         /// </summary>
-        public XElement UsersMessages { get; set; }
+        public string UsersMessages { get; set; }
 
         /// <summary>
         /// 消息类别

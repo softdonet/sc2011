@@ -36,6 +36,8 @@ namespace Scada.Client.SL.CommClass
                     new PollingDuplexBindingElement(),
                     new BinaryMessageEncodingBindingElement(),
                     new HttpTransportBindingElement());
+                binding.SendTimeout = new TimeSpan(0, 1, 0);
+                binding.ReceiveTimeout  = new TimeSpan(0, 1, 0);
                 _deviceRealTimeServiceClient = new DeviceRealTimeServiceClient(binding, address);
                 //初始化连接
                 _deviceRealTimeServiceClient.InitDataAsync();

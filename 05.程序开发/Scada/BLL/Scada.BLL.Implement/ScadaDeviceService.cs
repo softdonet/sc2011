@@ -149,7 +149,46 @@ namespace Scada.BLL.Implement
                 }
                 treeList.Add(area);
             }
-            return BinaryObjTransfer.JsonSerializer<List<DeviceTreeNode>>(treeList);
+
+            #region 模拟树数据
+          
+            List<DeviceTreeNode> lst = new List<DeviceTreeNode>();
+            DeviceTreeNode P1 = new DeviceTreeNode();
+            P1.NodeValue = "区域1";
+
+            DeviceTreeNode G1 = new DeviceTreeNode();
+            G1.NodeValue = "管理分区1";
+            P1.AddNodeKey(G1);
+
+            DeviceTreeNode D1 = new DeviceTreeNode();
+            D1.NodeValue = "P001";
+            G1.AddNodeKey(D1);
+
+            DeviceTreeNode D2 = new DeviceTreeNode();
+            D2.NodeValue = "P001";
+            G1.AddNodeKey(D2);
+
+            DeviceTreeNode P2 = new DeviceTreeNode();
+            P2.NodeValue = "区域2";
+
+            DeviceTreeNode G2 = new DeviceTreeNode();
+            G2.NodeValue = "管理分区2";
+            P2.AddNodeKey(G2);
+
+            DeviceTreeNode D3 = new DeviceTreeNode();
+            D3.NodeValue = "P003";
+            G2.AddNodeKey(D3);
+
+            DeviceTreeNode D4 = new DeviceTreeNode();
+            D4.NodeValue = "P004";
+            G2.AddNodeKey(D4);
+
+            lst.Add(P1);
+            lst.Add(P2);
+         
+            #endregion
+
+            return BinaryObjTransfer.JsonSerializer<List<DeviceTreeNode>>(lst);
         }
 
         private List<DeviceTreeNode> getTreeNodeChild(Guid? nodeKey)

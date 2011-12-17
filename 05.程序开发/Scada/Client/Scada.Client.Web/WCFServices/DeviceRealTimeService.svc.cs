@@ -34,17 +34,17 @@ namespace Scada.Client.Web.WCFServices
 
         #region 实时数据到达处理函数
 
-        void deviceRealTimeMonitorService_CallDataReceived(XElement data)
+        void deviceRealTimeMonitorService_CallDataReceived(string data)
         {
             SentData(data, MessageType.CallMsg);
         }
 
-        void deviceRealTimeMonitorService_ReaTimeDataReceived(XElement data)
+        void deviceRealTimeMonitorService_ReaTimeDataReceived(string data)
         {
             SentData(data, MessageType.RealTimeMsg);
         }
 
-        void deviceRealTimeMonitorService_AlarmDataReceived(XElement data)
+        void deviceRealTimeMonitorService_AlarmDataReceived(string data)
         {
             SentData(data, MessageType.AlarmMsg);
         }
@@ -57,7 +57,7 @@ namespace Scada.Client.Web.WCFServices
         /// </summary>
         /// <param name="data"></param>
         /// <param name="msgType"></param>
-        private void SentData(XElement data, MessageType msgType)
+        private void SentData(string data, MessageType msgType)
         {
             if (cilents != null && cilents.Count != 0)
             {

@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Scada.Client.SL.Modules.BingMaps;
 using Scada.Client.SL.Modules.Query;
 using Scada.Client.SL.Modules.BaseInfo;
+using Scada.Client.SL.Modules.Device;
 
 namespace Scada.Client.SL
 {
@@ -35,7 +36,7 @@ namespace Scada.Client.SL
             Header.lstbSysSettings.SelectionChanged += new SelectionChangedEventHandler(lstbSysSettings_SelectionChanged);
             Header.lstbSearch.SelectionChanged += new SelectionChangedEventHandler(lstbSearch_SelectionChanged);
         }
-
+        DeviceList seviceList = new DeviceList();
         /// <summary>
         /// 主菜单选择事件
         /// </summary>
@@ -52,10 +53,10 @@ namespace Scada.Client.SL
                     case "menuMap":
                         this.ViewHost.Child = new MapIndex();
                         break;
-                    ////设备列表
-                    //case "menuDeviceList":
-                    //    this.ViewHost.Child = new DeviceListNew();
-                    //    break;
+                    //设备列表
+                    case "menuDeviceList":
+                        this.ViewHost.Child = seviceList;
+                        break;
                     ////设备告警
                     //case "menuAlertList":
                     //    this.ViewHost.Child = new AlertListNew();

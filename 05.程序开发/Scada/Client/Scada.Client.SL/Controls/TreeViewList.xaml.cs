@@ -38,5 +38,17 @@ namespace Scada.Client.SL.Controls
                 this.myTree.ItemsSource = value;
             }
         }
+
+
+        //选择节点
+        public delegate void TreeSelectItem(object sender, RoutedPropertyChangedEventArgs<object> e);
+        public event TreeSelectItem OnTreeSelectItemClick;
+        private void myTree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (this.OnTreeSelectItemClick != null)
+                this.OnTreeSelectItemClick(sender, e);
+        }
+
+
     }
 }

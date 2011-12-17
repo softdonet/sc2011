@@ -150,6 +150,7 @@ namespace Scada.BLL.Implement
                 treeList.Add(area);
             }
 
+            /*
             #region 模拟树数据
           
             List<DeviceTreeNode> lst = new List<DeviceTreeNode>();
@@ -187,8 +188,10 @@ namespace Scada.BLL.Implement
             lst.Add(P2);
          
             #endregion
+            
+            */
 
-            return BinaryObjTransfer.JsonSerializer<List<DeviceTreeNode>>(lst);
+            return BinaryObjTransfer.JsonSerializer<List<DeviceTreeNode>>(treeList);
         }
 
         private List<DeviceTreeNode> getTreeNodeChild(Guid? nodeKey)

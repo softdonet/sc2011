@@ -14,9 +14,9 @@ using System.Globalization;
 using System.Reflection;
 using System.Windows.Media.Imaging;
 using Scada.Client.SL.Modules.Device;
-using Scada.Model.DB.SL;
 using Scada.Client.SL.ScadaDeviceService;
 using Scada.Client.SL.CommClass;
+using Scada.Model.Entity;
 
 namespace Scada.Client.SL.Modules.Query
 {

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
-
-
-using Scada.Model.DB;
 using Scada.BLL.Contract;
 using Scada.Utility.Common.Transfer;
+using Scada.Model.Entity;
 
 
 

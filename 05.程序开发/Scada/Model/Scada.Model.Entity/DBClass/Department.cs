@@ -1,17 +1,15 @@
 using System;
-using System.Data;
-using System.Text;
-using System.Data.SqlClient;
-namespace Scada.Model.DB
+using System.Collections.Generic;
+namespace Scada.Model.Entity
 {
     /// <summary>
-    /// ¿‡UserRole°£
+    /// ¿‡Department°£
     /// </summary>
-    public class UserRole
+    public class Department
     {
         private Guid _id;
-        private Guid _userid;
-        private Guid _roleid;
+        private string _departmentname;
+        private Guid _parentid;
         /// <summary>
         /// 
         /// </summary>
@@ -23,19 +21,18 @@ namespace Scada.Model.DB
         /// <summary>
         /// 
         /// </summary>
-        public Guid UserID
+        public string DepartmentName
         {
-            set { _userid = value; }
-            get { return _userid; }
+            set { _departmentname = value; }
+            get { return _departmentname; }
         }
         /// <summary>
         /// 
         /// </summary>
-        public Guid RoleID
+        public Guid ParentID
         {
-            set { _roleid = value; }
-            get { return _roleid; }
+            set { _parentid = value; }
+            get { return _parentid; }
         }
     }
 }
-

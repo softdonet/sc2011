@@ -1,10 +1,8 @@
 using System;
-using System.Data;
-using System.Text;
-using System.Data.SqlClient;
+using System.Collections.Generic;
 
 
-namespace Scada.Model.DB
+namespace Scada.Model.Entity
 {
     /// <summary>
     /// ¿‡DeviceRealTime°£

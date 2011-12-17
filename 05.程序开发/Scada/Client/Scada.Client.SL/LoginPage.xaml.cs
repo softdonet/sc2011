@@ -11,9 +11,6 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Browser;
 using Scada.Client.SL.Controls;
-
-
-using Scada.Model.DB.SL;
 using Scada.Client.SL.CommClass;
 
 

@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
-
-namespace Scada.Model.Entity.SL
+namespace Scada.Model.Entity
 {
-
     public class DeviceTreeNode
     {
         public string NodeValue { get; set; }
@@ -24,7 +21,5 @@ namespace Scada.Model.Entity.SL
         }
 
     }
-
-
 
 }

@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Data;
 using System.Globalization;
 using Scada.Client.SL.Controls;
-using Scada.Model.Entity.SL;
+using Scada.Model.Entity;
 using Scada.Client.SL.DeviceRealTimeService;
 using Scada.Client.SL.CommClass;
 

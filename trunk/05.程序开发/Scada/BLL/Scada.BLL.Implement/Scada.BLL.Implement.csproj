@@ -49,10 +49,6 @@
       <Project>{E561BA4F-1A8E-485A-88B2-D35D0CAF5638}</Project>
       <Name>Scada.DAL.Ado</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Model\Scada.Model.DB\Scada.Model.DB.csproj">
-      <Project>{EB68EBA2-417A-47A8-8104-A9D82F565BFA}</Project>
-      <Name>Scada.Model.DB</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Model\Scada.Model.Entity\Scada.Model.Entity.csproj">
       <Project>{185CF734-5C46-4496-A65C-1210607D53F4}</Project>
       <Name>Scada.Model.Entity</Name>

@@ -1,8 +1,6 @@
 using System;
-using System.Data;
-using System.Text;
-using System.Data.SqlClient;
-namespace Scada.Model.DB
+using System.Collections.Generic;
+namespace Scada.Model.Entity
 {
     /// <summary>
     /// ¿‡MaintenancePeople°£

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
-
-namespace Scada.Model.DB
+namespace Scada.Model.Entity
 {
 
     /// <summary>

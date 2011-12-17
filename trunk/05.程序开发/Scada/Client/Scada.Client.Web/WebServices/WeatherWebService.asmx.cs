@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using WS = Scada.Client.Web.TheThirdWeatherWebServiceReference;
-using Scada.Model.DB;
 using Scada.Utility.Common.Transfer;
 using System.ServiceModel;
 using System.ServiceModel.Web;

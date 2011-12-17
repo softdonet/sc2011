@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Scada.BLL.Contract;
 
 using Scada.DAL.Ado;
-using Scada.Model.DB;
 using Scada.Model.Entity;
 using Scada.Utility.Common.Transfer;
 

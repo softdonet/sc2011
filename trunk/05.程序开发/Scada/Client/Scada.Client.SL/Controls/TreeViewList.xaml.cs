@@ -11,7 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Scada.Client.SL.ScadaDeviceService;
 using Scada.Client.SL.CommClass;
-using Scada.Model.Entity.SL;
+using Scada.Model.Entity;
 using System.Collections;
 
 namespace Scada.Client.SL.Controls

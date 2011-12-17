@@ -34,17 +34,17 @@ namespace Scada.Client.SL.Modules.BingMaps
 
         void deviceRealTimeService_GetCallDataReceived(object sender, GetCallDataReceivedEventArgs e)
         {
-            this.txtCall.Text = e.data.Element("Device").Value;
+            this.txtCall.Text = e.data;
         }
 
         void deviceRealTimeService_GetAlarmDataReceived(object sender, GetAlarmDataReceivedEventArgs e)
         {
-            this.txtAlarm.Text = e.data.Element("Device").Value;
+            this.txtAlarm.Text = e.data;
         }
 
         void deviceRealTimeService_GetRealTimeDataReceived(object sender, GetRealTimeDataReceivedEventArgs e)
         {
-            this.txtRealTime.Text = e.data.Element("Device").Value;
+            //this.txtRealTime.Text = e.data;
         }
 
         void MyContent_CloseBtn(object sender, EventArgs e)

@@ -14,6 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Data;
 using System.Globalization;
 using Scada.Client.SL.Controls;
+using Scada.Model.Entity.SL;
+using Scada.Client.SL.DeviceRealTimeService;
+using Scada.Client.SL.CommClass;
 
 namespace Scada.Client.SL.Modules.Device
 {
@@ -22,6 +25,22 @@ namespace Scada.Client.SL.Modules.Device
         public DeviceList()
         {
             InitializeComponent();
+            DeviceRealTimeServiceClient deviceRealTimeService = ServiceManager.GetDeviceRealTimeService();
+            deviceRealTimeService.GetRealTimeDataReceived += new EventHandler<GetRealTimeDataReceivedEventArgs>(deviceRealTimeService_GetRealTimeDataReceived);
+        }
+
+        void deviceRealTimeService_GetRealTimeDataReceived(object sender, GetRealTimeDataReceivedEventArgs e)
+        {
+            List<DeviceRealTimeTree> obj = BinaryObjTransfer.BinaryDeserialize<List<DeviceRealTimeTree>>(e.data);
+            this.RadTreeListView1.ItemsSource = obj;
+            try
+            {
+                this.RadTreeListView1.ExpandAllHierarchyItems();
+            }
+            catch
+            {
+ 
+            }
         }
 
         void MyContent_CloseBtn(object sender, EventArgs e)
@@ -31,19 +50,17 @@ namespace Scada.Client.SL.Modules.Device
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            this.RadTreeListView1.ExpandAllHierarchyItems();
         }
 
         private void RadTreeListView1_RowLoaded(object sender, Telerik.Windows.Controls.GridView.RowLoadedEventArgs e)
         {
+            DeviceRealTimeTree currentValue = e.DataElement as DeviceRealTimeTree;
             var obj = e.Row.Cells[0].Content as FrameworkElement;
-            var lbl = obj.FindName("lblDevName") as Label;
             var imgL = obj.FindName("lDevice") as Image;
             var imgP = obj.FindName("pDevice") as Image;
-            var hlUrl = obj.FindName("hlUrl") as Button;
-            if (lbl != null)
+            if (obj != null && currentValue != null)
             {
-                if (lbl.Content.ToString().Trim().IndexOf("设备") > -1)
+                if (currentValue.NodeType == 3)
                 {
                     imgL.Visibility = Visibility.Collapsed;
                 }
@@ -97,74 +114,78 @@ namespace Scada.Client.SL.Modules.Device
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            int type = System.Convert.ToInt32(parameter);
-            Random rd = new Random();
-
-            int i = rd.Next(1, 10);
-            string imgState = string.Empty;
-            string imgElectric = string.Empty;
-            string imgSignal = string.Empty;
             string img = string.Empty;
-            switch (i)
+            DeviceRealTimeTree currentValue = value as DeviceRealTimeTree;
+            if (currentValue == null)
             {
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 8:
-                case 9:
-                case 10:
-                    switch (type)
-                    {
-                        case 1:
-                            img = "green.png";
-                            break;
-                        case 2:
-                            img = "electric4.png";
-                            break;
-                        case 3:
-                            img = "signal3.png";
-                            break;
-                    }
-
-                    break;
-                case 5:
-                    switch (type)
-                    {
-                        case 1:
-                            img = "red.png";
-                            break;
-                        case 2:
-                            img = "electric3.png";
-                            break;
-                        case 3:
-                            img = "signal2.png";
-                            break;
-                    }
-                    break;
-                case 6:
-                case 7:
-                    switch (type)
-                    {
-                        case 1:
-                            img = "grayer.png";
-                            break;
-                        case 2:
-                            img = "electric1.png";
-                            break;
-                        case 3:
-                            img = "signal1.png";
-                            break;
-                    }
-
-                    break;
-
+                return DependencyProperty.UnsetValue;
             }
-            //AssemblyName assemblyName = new AssemblyName(typeof(RadTreeListXmlDataSource).Assembly.FullName);
-            //string resourcePath = "/" + assemblyName.Name + ";component/Modules/Device/Image/" + img;
-            //Uri resourceUri = new Uri(resourcePath, UriKind.Relative);
-            //var obj = new BitmapImage(resourceUri);
-            Image obj = null;
+            switch (parameter.ToString().ToLower())
+            {
+                case "electricity":
+                    if (currentValue.Electricity.HasValue)
+                    {
+                        switch (currentValue.Electricity.Value)
+                        {
+                            case 1:
+                                img = "electric1.png";
+                                break;
+                            case 2:
+                                img = "electric2.png";
+                                break;
+                            case 3:
+                                img = "electric3.png";
+                                break;
+                            case 4:
+                                img = "electric4.png";
+                                break;
+                        }
+                        break;
+                    }
+                    break;
+                case "signal":
+                    if (currentValue.Signal.HasValue)
+                    {
+                        switch (currentValue.Signal.Value)
+                        {
+                            case 1:
+                                img = "signal1.png";
+                                break;
+                            case 2:
+                                img = "signal2.png";
+                                break;
+                            case 3:
+                                img = "signal3.png";
+                                break;
+                            case 4:
+                                img = "signal4.png";
+                                break;
+                        }
+                        break;
+                    }
+                    break;
+                case "status":
+                    if (currentValue.Status.HasValue)
+                    {
+                        switch (currentValue.Status.Value)
+                        {
+                            case 1:
+                                img = "grayer.png";
+                                break;
+                            case 2:
+                                img = "green.png";
+                                break;
+                            case 3:
+                                img = "red.png";
+                                break;
+                        }
+                        break;
+                    }
+                    break;
+            }
+            string resourcePath = "/Scada.Client.SL;component/Images/" + img;
+            Uri resourceUri = new Uri(resourcePath, UriKind.Relative);
+            var obj = new BitmapImage(resourceUri);
             return obj;
         }
 

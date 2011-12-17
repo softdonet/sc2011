@@ -28,20 +28,20 @@ namespace Scada.Client.Web.WCFServices
         /// </summary>
         /// <param name="data"></param>
         [OperationContract(IsOneWay = true)]
-        void GetRealTimeData(XElement data);
+        void GetRealTimeData(string data);
 
         /// <summary>
         /// 获取告警数据
         /// </summary>
         /// <param name="data"></param>
         [OperationContract(IsOneWay = true)]
-        void GetAlarmData(XElement data);
+        void GetAlarmData(string data);
 
         /// <summary>
         /// 获取呼叫数据
         /// </summary>
         /// <param name="data"></param>
         [OperationContract(IsOneWay = true)]
-        void GetCallData(XElement data);
+        void GetCallData(string data);
     }
 }

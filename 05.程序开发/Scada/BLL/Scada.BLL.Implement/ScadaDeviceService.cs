@@ -8,6 +8,7 @@ using Scada.BLL.Contract;
 using Scada.DAL.Ado;
 using Scada.Model.Entity;
 using Scada.Utility.Common.Transfer;
+using System.Data.SqlClient;
 
 
 
@@ -116,17 +117,201 @@ namespace Scada.BLL.Implement
 
         public Boolean UpdateDeviceInfo(string deviceInfo)
         {
-            return false;
+            Int32 rowNum = 0;
+            Boolean result = false;
+            SqlParameter para = null;
+            StringBuilder sSql = new StringBuilder();
+            List<SqlParameter> sSqlWhere = new List<SqlParameter>();
+
+            try
+            {
+                DeviceInfo deviceValue = BinaryObjTransfer.JsonDeserialize<DeviceInfo>(deviceInfo);
+
+                sSql.Append(@" Update DeviceInfo 
+                                    Set DeviceNo = @DeviceNo,HardType = @HardType,ProductDate = @ProductDate,
+                                       DeviceMac = @DeviceMac,SimNo = @SimNo,InstallPlace = @InstallPlace");
+
+                para = new SqlParameter();
+                para.DbType = DbType.String;
+                para.ParameterName = "@DeviceNo";
+                para.Value = deviceValue.DeviceNo;
+                sSqlWhere.Add(para);
+
+                para = new SqlParameter();
+                para.DbType = DbType.String;
+                para.ParameterName = "@HardType";
+                para.Value = deviceValue.HardType;
+                sSqlWhere.Add(para);
+
+                para = new SqlParameter();
+                para.DbType = DbType.DateTime;
+                para.ParameterName = "@ProductDate";
+                para.Value = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+                sSqlWhere.Add(para);
+
+                para = new SqlParameter();
+                para.DbType = DbType.String;
+                para.ParameterName = "@DeviceMac";
+                para.Value = deviceValue.DeviceMAC;
+                sSqlWhere.Add(para);
+
+                para = new SqlParameter();
+                para.DbType = DbType.String;
+                para.ParameterName = "@SimNo";
+                para.Value = deviceValue.SIMNo;
+                sSqlWhere.Add(para);
+
+                para = new SqlParameter();
+                para.DbType = DbType.String;
+                para.ParameterName = "@InstallPlace";
+                para.Value = deviceValue.InstallPlace;
+                sSqlWhere.Add(para);
+
+                sSql.Append(@" Where id ='" + deviceValue.ID.ToString() + "'");
+                rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql.ToString(), sSqlWhere.ToArray());
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                result = false;
+                Console.WriteLine(ex.Message);
+            }
+            return result;
         }
 
         public Boolean DeleteDeviceInfo(string deviceGuid)
         {
             return false;
+            /*删除一系列*/
+
         }
 
         public string ViewDeviceInfo(string deviceGuid)
         {
-            return string.Empty;
+            string result = string.Empty;
+            string sSql = " select * from DeviceInfo where id ='" + deviceGuid + "'";
+            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            if (ds == null || ds.Rows.Count == 0) { return result; }
+            DeviceInfo deviceInfo = new DeviceInfo();
+            foreach (DataRow item in ds.Rows)
+            {
+
+                deviceInfo.ID = new Guid(item["id"].ToString());
+                deviceInfo.DeviceNo = item["deviceno"].ToString();
+                deviceInfo.HardType = item["hardtype"].ToString();
+                deviceInfo.ProductDate = Convert.ToDateTime(item["productdate"]);
+                deviceInfo.DeviceMAC = item["devicemac"].ToString();
+                deviceInfo.SIMNo = item["simno"].ToString();
+                deviceInfo.ManageAreaID = new Guid(item["manageareaid"].ToString());
+                deviceInfo.InstallPlace = item["installplace"].ToString();
+
+
+                decimal? decValue = null;
+
+                /*
+                if (item["longitude"] != DBNull.Value)
+                    decValue = Convert.ToDecimal(item["longitude"]);
+                deviceInfo.Longitude = decValue;
+
+                decValue = null;
+                if (item["dimensionality"] != DBNull.Value)
+                    decValue = Convert.ToDecimal(item["dimensionality"]);
+                deviceInfo.Dimensionality = decValue;
+                */
+
+                decValue = null;
+                if (item["high"] != DBNull.Value)
+                    decValue = Convert.ToDecimal(item["high"]);
+                deviceInfo.High = decValue;
+
+                deviceInfo.Comment = item["comment"].ToString();
+                deviceInfo.ConnectPoint = item["connectpoint"].ToString();
+                deviceInfo.UserName = item["username"].ToString();
+                deviceInfo.Password = item["password"].ToString();
+                deviceInfo.Coordinate = item["coordinate"].ToString();
+
+                Int32? intValue = null;
+                if (item["connectType"] != DBNull.Value)
+                    intValue = Convert.ToInt32(item["connectType"]);
+                deviceInfo.ConnectType = intValue;
+
+                deviceInfo.MainDNS = item["maindns"].ToString();
+                deviceInfo.SecondDNS = item["seconddns"].ToString();
+                deviceInfo.CenterIP = item["centerip"].ToString();
+                deviceInfo.Domain = item["domain"].ToString();
+
+                intValue = null;
+                if (item["port"] != DBNull.Value)
+                    intValue = Convert.ToInt32(item["port"]);
+                deviceInfo.port = intValue;
+
+                intValue = null;
+                if (item["collectfreq"] != DBNull.Value)
+                    intValue = Convert.ToInt32(item["collectfreq"]);
+                deviceInfo.CollectFreq = intValue;
+
+                intValue = null;
+                if (item["reportinterval"] != DBNull.Value)
+                    intValue = Convert.ToInt32(item["reportinterval"]);
+                deviceInfo.ReportInterval = intValue;
+
+                decValue = null;
+                if (item["alarmtop"] != DBNull.Value)
+                    decValue = Convert.ToDecimal(item["alarmtop"]);
+                deviceInfo.AlarmTop = decValue;
+
+                decValue = null;
+                if (item["alarmdown"] != DBNull.Value)
+                    decValue = Convert.ToDecimal(item["alarmdown"]);
+                deviceInfo.AlarmDown = decValue;
+
+                decValue = null;
+                if (item["windage"] != DBNull.Value)
+                    decValue = Convert.ToDecimal(item["windage"]);
+                deviceInfo.Windage = decValue;
+
+                deviceInfo.Version = item["version"].ToString();
+
+                intValue = null;
+                if (item["timetype"] != DBNull.Value)
+                    intValue = Convert.ToInt32(item["timetype"]);
+                deviceInfo.TimeType = intValue;
+
+                deviceInfo.LCDScreenDisplayType = item["lcdscreendisplaytype"].ToString();
+
+                intValue = null;
+                if (item["useurgencybutton"] != DBNull.Value)
+                    intValue = Convert.ToInt32(item["useurgencybutton"]);
+                deviceInfo.UseUrgencyButton = intValue;
+
+                intValue = null;
+                if (item["process1enable"] != DBNull.Value)
+                    intValue = Convert.ToInt32(item["process1enable"]);
+                deviceInfo.Process1Enable = intValue;
+
+                decValue = null;
+                if (item["process1highervalue"] != DBNull.Value)
+                    decValue = Convert.ToDecimal(item["process1highervalue"]);
+                deviceInfo.Process1HigherValue = decValue;
+
+                intValue = null;
+                if (item["process1highvalue"] != DBNull.Value)
+                    intValue = Convert.ToInt32(item["process1highvalue"]);
+                deviceInfo.Process1HighValue = intValue;
+
+                decValue = null;
+                if (item["process1lowervalue"] != DBNull.Value)
+                    decValue = Convert.ToDecimal(item["process1lowervalue"]);
+                deviceInfo.Process1LowerValue = decValue;
+
+                decValue = null;
+                if (item["process1lowvalue"] != DBNull.Value)
+                    decValue = Convert.ToDecimal(item["process1lowvalue"]);
+                deviceInfo.Process1LowValue = decValue;
+
+            }
+            result = BinaryObjTransfer.JsonSerializer<DeviceInfo>(deviceInfo);
+            return result;
         }
 
         public string ListMaintenancePeople()
@@ -148,48 +333,6 @@ namespace Scada.BLL.Implement
                 }
                 treeList.Add(area);
             }
-
-            /*
-            #region 模拟树数据
-          
-            List<DeviceTreeNode> lst = new List<DeviceTreeNode>();
-            DeviceTreeNode P1 = new DeviceTreeNode();
-            P1.NodeValue = "区域1";
-
-            DeviceTreeNode G1 = new DeviceTreeNode();
-            G1.NodeValue = "管理分区1";
-            P1.AddNodeKey(G1);
-
-            DeviceTreeNode D1 = new DeviceTreeNode();
-            D1.NodeValue = "P001";
-            G1.AddNodeKey(D1);
-
-            DeviceTreeNode D2 = new DeviceTreeNode();
-            D2.NodeValue = "P001";
-            G1.AddNodeKey(D2);
-
-            DeviceTreeNode P2 = new DeviceTreeNode();
-            P2.NodeValue = "区域2";
-
-            DeviceTreeNode G2 = new DeviceTreeNode();
-            G2.NodeValue = "管理分区2";
-            P2.AddNodeKey(G2);
-
-            DeviceTreeNode D3 = new DeviceTreeNode();
-            D3.NodeValue = "P003";
-            G2.AddNodeKey(D3);
-
-            DeviceTreeNode D4 = new DeviceTreeNode();
-            D4.NodeValue = "P004";
-            G2.AddNodeKey(D4);
-
-            lst.Add(P1);
-            lst.Add(P2);
-         
-            #endregion
-            
-            */
-
             return BinaryObjTransfer.JsonSerializer<List<DeviceTreeNode>>(treeList);
         }
 

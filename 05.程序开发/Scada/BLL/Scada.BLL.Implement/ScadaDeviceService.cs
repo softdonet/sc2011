@@ -86,8 +86,6 @@ namespace Scada.BLL.Implement
             if (ds == null || ds.Rows.Count == 0) { return result; }
             foreach (DataRow dr in ds.Rows)
             {
-
-                //add by zgj 未判断 DBNull
                 deviceRealTimes.Add(
                     new DeviceRealTime
                     {

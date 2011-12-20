@@ -9,6 +9,7 @@ namespace Scada.Model.Entity
     /// </summary>
     public partial class DeviceRealTime
     {
+
         private Guid _id;
         private Guid _deviceid;
         

@@ -28,8 +28,6 @@ namespace Scada.Client.SL.Modules.BingMaps
                 plane.Children.Remove(item);
                 plane.Children.Add(item);
             };
-
-            //chart1.Title  ="";
         }
 
         /// <summary>

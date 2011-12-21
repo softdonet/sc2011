@@ -58,6 +58,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Divelements.SilverlightTools">
+      <HintPath>..\..\..\..\03.需求分析\SCADA_Demo\Lib\Divelements.SilverlightTools.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Expression.Drawing, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Expression.Prototyping.Interactivity, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -68,6 +71,9 @@
       <HintPath>..\..\Lib\Microsoft.Maps.MapControl.Common.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
+    <Reference Include="SCADA.UI">
+      <HintPath>..\..\..\..\03.需求分析\SCADA_Demo\SCADA.UI\Bin\Debug\SCADA.UI.dll</HintPath>
+    </Reference>
     <Reference Include="SLVisifire.Charts">
       <HintPath>..\..\Lib\SLVisifire.Charts.dll</HintPath>
     </Reference>
@@ -91,6 +97,8 @@
     <Reference Include="System.Windows.Controls, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System.Windows.Controls.Data, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System.Windows.Controls.Data.Input, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.Windows.Controls.Navigation, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System.Windows.Controls.Toolkit, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Data, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -99,6 +107,7 @@
     <Reference Include="System.Xml.Linq, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Serialization, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls, Version=2010.2.714.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.Charting, Version=2010.2.714.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7" />
     <Reference Include="Telerik.Windows.Controls.Data, Version=2010.2.714.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.GridView, Version=2010.2.714.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.Input, Version=2010.2.714.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
@@ -133,8 +142,20 @@
     <Compile Include="Modules\Alarm\AlarmList.xaml.cs">
       <DependentUpon>AlarmList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\BaseInfo\DatabaseBackUp.xaml.cs">
+      <DependentUpon>DatabaseBackUp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\BaseInfo\DeviceManage.xaml.cs">
       <DependentUpon>DeviceManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\BaseInfo\DevideLog.xaml.cs">
+      <DependentUpon>DevideLog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\BaseInfo\RepairUserManage.xaml.cs">
+      <DependentUpon>RepairUserManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\BaseInfo\SysConfig.xaml.cs">
+      <DependentUpon>SysConfig.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\BingMaps\ChinaMode.cs" />
     <Compile Include="Modules\BingMaps\Comm.cs" />
@@ -232,7 +253,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modules\BaseInfo\DatabaseBackUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\BaseInfo\DeviceManage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\BaseInfo\DevideLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\BaseInfo\RepairUserManage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\BaseInfo\SysConfig.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

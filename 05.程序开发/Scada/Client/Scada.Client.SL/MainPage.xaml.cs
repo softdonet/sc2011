@@ -116,22 +116,23 @@ namespace Scada.Client.SL
                 case "childMenuDeviceManage":
                     this.ViewHost.Child = new DeviceManage();
                     break;
-                ////维护人员管理
-                //case "childMenuRepairUserManage":
-                //    this.ViewHost.Child = new RepairUserManage();
-                //    break;
-                ////系统参数配置
-                //case "childMenuSysConfig":
-                //    this.ViewHost.Child = new SysConfig();
-                //    break;
+                //维护人员管理
+                case "childMenuRepairUserManage":
+                    this.ViewHost.Child = new RepairUserManage();
+                    break;
+                //系统参数配置
+                case "childMenuSysConfig":
+                    this.ViewHost.Child = new SysConfig();
+                    break;
 
-                ////设备日志管理
-                //case "childMenuDevideLog":
-                //    this.ViewHost.Child = new DevideLog();
-                //    break;
-                //case "childMenuDatabaseBak":
-                //    this.ViewHost.Child = new DatabaseBackUp();
-                //    break;
+                //设备日志管理
+                case "childMenuDevideLog":
+                    this.ViewHost.Child = new DevideLog();
+                    break;
+                    //数据库备份管理
+                case "childMenuDatabaseBak":
+                    this.ViewHost.Child = new DatabaseBackUp();
+                    break;
             }
         }
 

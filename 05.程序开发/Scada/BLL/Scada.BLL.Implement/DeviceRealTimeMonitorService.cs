@@ -33,7 +33,7 @@ namespace Scada.BLL.Implement
         #region 变量声明
 
         private Timer timer = null;
-        
+
         public event DataReceivedHandle ReaTimeDataReceived;
         public event DataReceivedHandle AlarmDataReceived;
         public event DataReceivedHandle CallDataReceived;
@@ -195,6 +195,7 @@ namespace Scada.BLL.Implement
                     foreach (DeviceRealTimeTree realThi in realSec.NodeChild)
                     {
                         DeviceRealTime realTime = readTimeDatas.Find(x => x.DeviceID == realThi.NodeKey);
+                        if (realTime == null) { continue; }
                         realThi.InstallPlace = realTime.InstallPlace;
                         realThi.Temperature = realTime.Temperature;
                         realThi.Electricity = realTime.Electricity;

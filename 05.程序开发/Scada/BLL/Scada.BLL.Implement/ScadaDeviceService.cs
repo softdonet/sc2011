@@ -29,7 +29,6 @@ namespace Scada.BLL.Implement
 
         #region 设备查询
 
-
         /// <summary>
         /// 设备查询
         /// </summary>
@@ -102,7 +101,6 @@ namespace Scada.BLL.Implement
             result = BinaryObjTransfer.JsonSerializer<List<DeviceRealTime>>(deviceRealTimes);
             return result;
         }
-
 
         #endregion
 
@@ -438,7 +436,21 @@ namespace Scada.BLL.Implement
 
         public Boolean UpdateDeviceAlarmInfo(Guid AlarmId, DateTime ConfirmTime, String Comment)
         {
-            return false;
+            string sSql = @" Update DeviceAlarm 
+                            Set ConfirmTime='" + ConfirmTime.ToString("yyyy-MM-dd hh:mm:ss") + "',Comment='" + Comment + @"'
+                            Where ID ='" + AlarmId.ToString().ToUpper() + "'";
+            Boolean result = false;
+            try
+            {
+                Int32 intQuery = SqlHelper.ExecuteNonQuery(sSql);
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                result = false;
+                Console.WriteLine(ex.Message);
+            }
+            return result;
         }
 
         #endregion

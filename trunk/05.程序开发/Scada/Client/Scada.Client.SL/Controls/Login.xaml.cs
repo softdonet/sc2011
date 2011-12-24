@@ -13,6 +13,8 @@ using System.Windows.Browser;
 
 namespace Scada.Client.SL.Controls
 {
+
+
     public partial class Login : UserControl
     {
         public event RoutedEventHandler myKeyDownEvent;
@@ -47,5 +49,6 @@ namespace Scada.Client.SL.Controls
                 }
             }
         }
+
     }
 }

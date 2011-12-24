@@ -69,7 +69,7 @@
         </Storyboard>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Background="White">
-        <telerik:RadGridView x:Name="RadGridView1" 
+        <telerik:RadGridView x:Name="RadGridView1"
 							ShowGroupPanel="False" AutoGenerateColumns="False"  IsReadOnly="True"  ItemsSource="{Binding Collection}">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Header="设备名" Width="100"   HeaderTextAlignment="Center" DisplayIndex="1"  />

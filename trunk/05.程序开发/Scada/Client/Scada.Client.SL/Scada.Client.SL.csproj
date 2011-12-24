@@ -356,6 +356,9 @@
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.GetListDeviceAlarmInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.GetListDeviceInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -363,6 +366,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.ListMaintenancePeopleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.UpdateDeviceAlarmInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.UpdateDeviceInfoResponse.datasource">

@@ -25,7 +25,7 @@ namespace Scada.Client.SL.Modules.BingMaps
         {
             InitializeComponent();
             ws = ServiceManager.GetWeatherWebService();
-            ws.GetWeatherCompleted += new EventHandler<WeatherWebService.GetWeatherCompletedEventArgs>(ws_GetWeatherCompleted);
+           // ws.GetWeatherCompleted += new EventHandler<WeatherWebService.GetWeatherCompletedEventArgs>(ws_GetWeatherCompleted);
         }
 
         void ws_GetWeatherCompleted(object sender, WeatherWebService.GetWeatherCompletedEventArgs e)

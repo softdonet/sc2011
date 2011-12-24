@@ -74,6 +74,10 @@ namespace Scada.Client.SL.Modules.Alarm
 
         private void RadGridView1_RowLoaded(object sender, Telerik.Windows.Controls.GridView.RowLoadedEventArgs e)
         {
+            if (e.Row is GridViewHeaderRow)
+            {
+                return;
+            }
             TextBlock state = (e.Row.Cells[RadGridView1.Columns.Count - 3].Content as FrameworkElement) as TextBlock;
             HyperlinkButton hlBtn = (e.Row.Cells[RadGridView1.Columns.Count - 2].Content as FrameworkElement).FindName("hlBtn") as HyperlinkButton;
             if (state.Text.Trim() == "未确认")
@@ -83,7 +87,6 @@ namespace Scada.Client.SL.Modules.Alarm
                 hlBtn.IsEnabled = true;
                 AddAlert(e.Row);
             }
-
 
         }
         private Dictionary<GridViewRowItem, GridViewRowItem> dicDr = new Dictionary<GridViewRowItem, GridViewRowItem>();
@@ -130,11 +133,20 @@ namespace Scada.Client.SL.Modules.Alarm
             string getCommentInfo = e.PromptResult;
             //TODO: 操作人
             this._scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoAsync(id, DateTime.Now, getCommentInfo, "Admin");
+           
+            //DataBind();
         }
 
+        private void DataBind()
+        {
+            //List<DeviceAlarm> deviceAlam = BinaryObjTransfer.BinaryDeserialize<List<DeviceAlarm>>(_scadaDeviceServiceSoapClient.GetListDeviceAlarmInfoAsync());
+            //this.RadGridView1.ItemsSource = deviceAlam;
+            this._scadaDeviceServiceSoapClient.GetListDeviceAlarmInfoAsync();
+        }
         private void scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoCompleted(object sender, UpdateDeviceAlarmInfoCompletedEventArgs e)
         {
             Boolean result = e.Result;
+            this._scadaDeviceServiceSoapClient.GetListDeviceAlarmInfoAsync();
         }
 
 

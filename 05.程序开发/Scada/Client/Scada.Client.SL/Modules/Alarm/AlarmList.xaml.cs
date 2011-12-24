@@ -83,7 +83,7 @@ namespace Scada.Client.SL.Modules.Alarm
                 hlBtn.IsEnabled = true;
                 AddAlert(e.Row);
             }
-           
+
 
         }
         private Dictionary<GridViewRowItem, GridViewRowItem> dicDr = new Dictionary<GridViewRowItem, GridViewRowItem>();
@@ -128,7 +128,8 @@ namespace Scada.Client.SL.Modules.Alarm
         {
             if (e.DialogResult != true) { return; }
             string getCommentInfo = e.PromptResult;
-            this._scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoAsync(Guid.NewGuid(), DateTime.Now, getCommentInfo, "Admin");
+            //TODO: 操作人
+            this._scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoAsync(id, DateTime.Now, getCommentInfo, "Admin");
         }
 
         private void scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoCompleted(object sender, UpdateDeviceAlarmInfoCompletedEventArgs e)

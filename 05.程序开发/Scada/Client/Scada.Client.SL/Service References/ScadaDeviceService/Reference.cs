@@ -636,13 +636,17 @@ namespace Scada.Client.SL.ScadaDeviceService {
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
         public string Comment;
         
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string DealPeople;
+        
         public UpdateDeviceAlarmInfoRequestBody() {
         }
         
-        public UpdateDeviceAlarmInfoRequestBody(System.Guid AlarmId, System.DateTime ConfirmTime, string Comment) {
+        public UpdateDeviceAlarmInfoRequestBody(System.Guid AlarmId, System.DateTime ConfirmTime, string Comment, string DealPeople) {
             this.AlarmId = AlarmId;
             this.ConfirmTime = ConfirmTime;
             this.Comment = Comment;
+            this.DealPeople = DealPeople;
         }
     }
     
@@ -1548,12 +1552,13 @@ namespace Scada.Client.SL.ScadaDeviceService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        private System.IAsyncResult BeginUpdateDeviceAlarmInfo(System.Guid AlarmId, System.DateTime ConfirmTime, string Comment, System.AsyncCallback callback, object asyncState) {
+        private System.IAsyncResult BeginUpdateDeviceAlarmInfo(System.Guid AlarmId, System.DateTime ConfirmTime, string Comment, string DealPeople, System.AsyncCallback callback, object asyncState) {
             Scada.Client.SL.ScadaDeviceService.UpdateDeviceAlarmInfoRequest inValue = new Scada.Client.SL.ScadaDeviceService.UpdateDeviceAlarmInfoRequest();
             inValue.Body = new Scada.Client.SL.ScadaDeviceService.UpdateDeviceAlarmInfoRequestBody();
             inValue.Body.AlarmId = AlarmId;
             inValue.Body.ConfirmTime = ConfirmTime;
             inValue.Body.Comment = Comment;
+            inValue.Body.DealPeople = DealPeople;
             return ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginUpdateDeviceAlarmInfo(inValue, callback, asyncState);
         }
         
@@ -1572,7 +1577,8 @@ namespace Scada.Client.SL.ScadaDeviceService {
             System.Guid AlarmId = ((System.Guid)(inValues[0]));
             System.DateTime ConfirmTime = ((System.DateTime)(inValues[1]));
             string Comment = ((string)(inValues[2]));
-            return this.BeginUpdateDeviceAlarmInfo(AlarmId, ConfirmTime, Comment, callback, asyncState);
+            string DealPeople = ((string)(inValues[3]));
+            return this.BeginUpdateDeviceAlarmInfo(AlarmId, ConfirmTime, Comment, DealPeople, callback, asyncState);
         }
         
         private object[] OnEndUpdateDeviceAlarmInfo(System.IAsyncResult result) {
@@ -1588,11 +1594,11 @@ namespace Scada.Client.SL.ScadaDeviceService {
             }
         }
         
-        public void UpdateDeviceAlarmInfoAsync(System.Guid AlarmId, System.DateTime ConfirmTime, string Comment) {
-            this.UpdateDeviceAlarmInfoAsync(AlarmId, ConfirmTime, Comment, null);
+        public void UpdateDeviceAlarmInfoAsync(System.Guid AlarmId, System.DateTime ConfirmTime, string Comment, string DealPeople) {
+            this.UpdateDeviceAlarmInfoAsync(AlarmId, ConfirmTime, Comment, DealPeople, null);
         }
         
-        public void UpdateDeviceAlarmInfoAsync(System.Guid AlarmId, System.DateTime ConfirmTime, string Comment, object userState) {
+        public void UpdateDeviceAlarmInfoAsync(System.Guid AlarmId, System.DateTime ConfirmTime, string Comment, string DealPeople, object userState) {
             if ((this.onBeginUpdateDeviceAlarmInfoDelegate == null)) {
                 this.onBeginUpdateDeviceAlarmInfoDelegate = new BeginOperationDelegate(this.OnBeginUpdateDeviceAlarmInfo);
             }
@@ -1605,7 +1611,8 @@ namespace Scada.Client.SL.ScadaDeviceService {
             base.InvokeAsync(this.onBeginUpdateDeviceAlarmInfoDelegate, new object[] {
                         AlarmId,
                         ConfirmTime,
-                        Comment}, this.onEndUpdateDeviceAlarmInfoDelegate, this.onUpdateDeviceAlarmInfoCompletedDelegate, userState);
+                        Comment,
+                        DealPeople}, this.onEndUpdateDeviceAlarmInfoDelegate, this.onUpdateDeviceAlarmInfoCompletedDelegate, userState);
         }
         
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {

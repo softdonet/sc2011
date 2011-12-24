@@ -72,7 +72,8 @@
         <telerik:RadGridView x:Name="RadGridView1"
 							ShowGroupPanel="False" AutoGenerateColumns="False"  IsReadOnly="True"  ItemsSource="{Binding Collection}" RowLoaded="RadGridView1_RowLoaded">
             <telerik:RadGridView.Columns>
-                <telerik:GridViewDataColumn Header="设备名" DataMemberBinding="{Binding DeviceNo}" Width="100"   HeaderTextAlignment="Center" DisplayIndex="0"  />
+                <telerik:GridViewDataColumn Header="设备标识" DataMemberBinding="{Binding ID}" IsVisible="False" HeaderTextAlignment="Center" />
+                <telerik:GridViewDataColumn Header="设备名" DataMemberBinding="{Binding DeviceNo}" Width="100"   HeaderTextAlignment="Center" DisplayIndex="0"/>
                 <telerik:GridViewDataColumn Header="事件类型" DataMemberBinding="{Binding EventType}" Width="60" HeaderTextAlignment="Center"  />
                 <telerik:GridViewDataColumn Header="事件等级" DataMemberBinding="{Binding EventLevel}" Width="60" HeaderTextAlignment="Center"  />
                 <telerik:GridViewDataColumn Header="开始时间" DataMemberBinding="{Binding StartTime}" Width="140" HeaderTextAlignment="Center"  />
@@ -91,6 +92,7 @@
                         </DataTemplate>
                     </telerik:GridViewColumn.CellTemplate>
                 </telerik:GridViewDataColumn>
+                
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>
         <Border x:Name="ViewHost" BorderBrush="Black" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed">

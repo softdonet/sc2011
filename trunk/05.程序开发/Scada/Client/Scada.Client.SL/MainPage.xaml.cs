@@ -13,6 +13,7 @@ using Scada.Client.SL.Modules.BingMaps;
 using Scada.Client.SL.Modules.Query;
 using Scada.Client.SL.Modules.BaseInfo;
 using Scada.Client.SL.Modules.Device;
+using Scada.Client.SL.Modules.Alarm;
 
 namespace Scada.Client.SL
 {
@@ -57,10 +58,10 @@ namespace Scada.Client.SL
                     case "menuDeviceList":
                         this.ViewHost.Child = seviceList;
                         break;
-                    ////设备告警
-                    //case "menuAlertList":
-                    //    this.ViewHost.Child = new AlertListNew();
-                       
+                    //设备告警
+                    case "menuAlertList":
+                        this.ViewHost.Child = new AlarmList();
+                        break;
 
                     ///统计分析移到对比分析的子菜单下
 

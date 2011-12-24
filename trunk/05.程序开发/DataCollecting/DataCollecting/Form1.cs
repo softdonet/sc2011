@@ -20,13 +20,10 @@ namespace DataCollecting
             public Socket socket;   //Socket of the client
             public int intDevnum;  //设备编号（设备编号从1开始，0为非法设备）
         }
-
-
+      
         public Form1()
         {
             InitializeComponent();
-
-          byte[]  hehe=  BitConverter.GetBytes(10);
         }
 
         //服务器socket,主侦听socket

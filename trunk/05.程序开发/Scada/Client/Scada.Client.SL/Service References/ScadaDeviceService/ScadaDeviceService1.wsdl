@@ -127,6 +127,7 @@
             <s:element minOccurs="1" maxOccurs="1" name="AlarmId" type="s1:guid" />
             <s:element minOccurs="1" maxOccurs="1" name="ConfirmTime" type="s:dateTime" />
             <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DealPeople" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>

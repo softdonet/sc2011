@@ -111,6 +111,32 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetListDeviceAlarmInfo">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetListDeviceAlarmInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListDeviceAlarmInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDeviceAlarmInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AlarmId" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="ConfirmTime" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDeviceAlarmInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateDeviceAlarmInfoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="guid">
@@ -168,6 +194,18 @@
   <wsdl:message name="ListDeviceTreeViewSoapOut">
     <wsdl:part name="parameters" element="tns:ListDeviceTreeViewResponse" />
   </wsdl:message>
+  <wsdl:message name="GetListDeviceAlarmInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListDeviceAlarmInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetListDeviceAlarmInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListDeviceAlarmInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDeviceAlarmInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateDeviceAlarmInfo" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDeviceAlarmInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateDeviceAlarmInfoResponse" />
+  </wsdl:message>
   <wsdl:portType name="ScadaDeviceServiceSoap">
     <wsdl:operation name="Add">
       <wsdl:input message="tns:AddSoapIn" />
@@ -200,6 +238,14 @@
     <wsdl:operation name="ListDeviceTreeView">
       <wsdl:input message="tns:ListDeviceTreeViewSoapIn" />
       <wsdl:output message="tns:ListDeviceTreeViewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListDeviceAlarmInfo">
+      <wsdl:input message="tns:GetListDeviceAlarmInfoSoapIn" />
+      <wsdl:output message="tns:GetListDeviceAlarmInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeviceAlarmInfo">
+      <wsdl:input message="tns:UpdateDeviceAlarmInfoSoapIn" />
+      <wsdl:output message="tns:UpdateDeviceAlarmInfoSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ScadaDeviceServiceSoap" type="tns:ScadaDeviceServiceSoap">
@@ -276,6 +322,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetListDeviceAlarmInfo">
+      <soap:operation soapAction="http://tempuri.org/GetListDeviceAlarmInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeviceAlarmInfo">
+      <soap:operation soapAction="http://tempuri.org/UpdateDeviceAlarmInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ScadaDeviceServiceSoap12" type="tns:ScadaDeviceServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -344,6 +408,24 @@
     </wsdl:operation>
     <wsdl:operation name="ListDeviceTreeView">
       <soap12:operation soapAction="http://tempuri.org/ListDeviceTreeView" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListDeviceAlarmInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetListDeviceAlarmInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeviceAlarmInfo">
+      <soap12:operation soapAction="http://tempuri.org/UpdateDeviceAlarmInfo" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

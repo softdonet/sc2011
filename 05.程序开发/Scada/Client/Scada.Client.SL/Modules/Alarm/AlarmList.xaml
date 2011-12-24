@@ -6,10 +6,10 @@
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
     xmlns:local="clr-namespace:Scada.Client.SL.Controls"
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="800">
+    d:DesignHeight="768" d:DesignWidth="800" Loaded="UserControl_Loaded">
 
     <UserControl.Resources>
-        <Storyboard x:Name="timer" />
+        <Storyboard x:Name="timer" Completed="timer_Completed" />
         <Storyboard x:Name="Storyboard1">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ViewHost">
                 <DiscreteObjectKeyFrame KeyTime="0">
@@ -70,30 +70,30 @@
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Background="White">
         <telerik:RadGridView x:Name="RadGridView1"
-							ShowGroupPanel="False" AutoGenerateColumns="False"  IsReadOnly="True"  ItemsSource="{Binding Collection}">
+							ShowGroupPanel="False" AutoGenerateColumns="False"  IsReadOnly="True"  ItemsSource="{Binding Collection}" RowLoaded="RadGridView1_RowLoaded">
             <telerik:RadGridView.Columns>
-                <telerik:GridViewDataColumn Header="设备名" Width="100"   HeaderTextAlignment="Center" DisplayIndex="1"  />
-                <telerik:GridViewDataColumn Header="事件类型" Width="60" HeaderTextAlignment="Center"  />
-                <telerik:GridViewDataColumn Header="事件等级" Width="60" HeaderTextAlignment="Center"  />
-                <telerik:GridViewDataColumn Header="开始时间" Width="140" HeaderTextAlignment="Center"  />
-                <telerik:GridViewDataColumn Header="完成时间" Width="140" HeaderTextAlignment="Center"  />
-                <telerik:GridViewDataColumn Header="确认时间" Width="140" HeaderTextAlignment="Center" />
-                <telerik:GridViewDataColumn Header="确认人" Width="80" HeaderTextAlignment="Center" />
-                <telerik:GridViewDataColumn Header="备注" Width="10*"  HeaderTextAlignment="Center" />
-                <telerik:GridViewDataColumn Header="处理状态"  Width="90" HeaderTextAlignment="Center" />
+                <telerik:GridViewDataColumn Header="设备名" DataMemberBinding="{Binding DeviceNo}" Width="100"   HeaderTextAlignment="Center" DisplayIndex="0"  />
+                <telerik:GridViewDataColumn Header="事件类型" DataMemberBinding="{Binding EventType}" Width="60" HeaderTextAlignment="Center"  />
+                <telerik:GridViewDataColumn Header="事件等级" DataMemberBinding="{Binding EventLevel}" Width="60" HeaderTextAlignment="Center"  />
+                <telerik:GridViewDataColumn Header="开始时间" DataMemberBinding="{Binding StartTime}" Width="140" HeaderTextAlignment="Center"  />
+                <telerik:GridViewDataColumn Header="完成时间" DataMemberBinding="{Binding EndTime}" Width="140" HeaderTextAlignment="Center"  />
+                <telerik:GridViewDataColumn Header="确认时间" DataMemberBinding="{Binding ConfirmTime}" Width="140" HeaderTextAlignment="Center" />
+                <telerik:GridViewDataColumn Header="确认人" DataMemberBinding="{Binding DealPeople}"  Width="80" HeaderTextAlignment="Center" />
+                <telerik:GridViewDataColumn Header="备注" DataMemberBinding="{Binding Comment}" Width="50*"  HeaderTextAlignment="Center" />
+                <telerik:GridViewDataColumn Header="处理状态" DataMemberBinding="{Binding DealStatus}"  Width="90" HeaderTextAlignment="Center" />
                 <telerik:GridViewDataColumn    Width="100"
 											Header="操作" HeaderTextAlignment="Center" TextAlignment="Center" >
                     <telerik:GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel  Orientation="Horizontal"   HorizontalAlignment="Center">
-                                <HyperlinkButton x:Name="hlUrl"   IsEnabled="False"   HorizontalAlignment="Center"  Content="处理"  Foreground="#FF0000CC"    />
+                                <HyperlinkButton x:Name="hlBtn"   IsEnabled="False"   HorizontalAlignment="Center"  Content="处理"  Foreground="#FF0000CC" Click="hlBtn_Click" />
                             </StackPanel>
                         </DataTemplate>
                     </telerik:GridViewColumn.CellTemplate>
                 </telerik:GridViewDataColumn>
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>
-        <Border x:Name="ViewHost" BorderBrush="Black" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed" Margin="-37,0,37,0">
+        <Border x:Name="ViewHost" BorderBrush="Black" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed">
             <Border.RenderTransform>
                 <CompositeTransform/>
             </Border.RenderTransform>

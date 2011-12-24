@@ -74,15 +74,16 @@ namespace Scada.Client.SL.Modules.Alarm
 
         private void RadGridView1_RowLoaded(object sender, Telerik.Windows.Controls.GridView.RowLoadedEventArgs e)
         {
-            TextBlock state = (e.Row.Cells[RadGridView1.Columns.Count - 2].Content as FrameworkElement) as TextBlock;
-            HyperlinkButton hlBtn = (e.Row.Cells[RadGridView1.Columns.Count - 1].Content as FrameworkElement).FindName("hlBtn") as HyperlinkButton;
+            TextBlock state = (e.Row.Cells[RadGridView1.Columns.Count - 3].Content as FrameworkElement) as TextBlock;
+            HyperlinkButton hlBtn = (e.Row.Cells[RadGridView1.Columns.Count - 2].Content as FrameworkElement).FindName("hlBtn") as HyperlinkButton;
             if (state.Text.Trim() == "未确认")
             {
                 e.Row.Background = new SolidColorBrush(Colors.Red);
-                e.Row.Cells[RadGridView1.Columns.Count - 1].Background = new SolidColorBrush(Colors.White);
+                e.Row.Cells[RadGridView1.Columns.Count - 2].Background = new SolidColorBrush(Colors.White);
                 hlBtn.IsEnabled = true;
                 AddAlert(e.Row);
             }
+           
 
         }
         private Dictionary<GridViewRowItem, GridViewRowItem> dicDr = new Dictionary<GridViewRowItem, GridViewRowItem>();
@@ -116,9 +117,11 @@ namespace Scada.Client.SL.Modules.Alarm
             timer.Begin();
         }
 
+        private Guid id;
         private void hlBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            HyperlinkButton hlB = sender as HyperlinkButton;
+            id = (hlB.DataContext as DeviceAlarm).ID;
             RadWindow.Prompt("请输入备注：", new EventHandler<WindowClosedEventArgs>(OnClosed));
         }
         private void OnClosed(object sender, WindowClosedEventArgs e)

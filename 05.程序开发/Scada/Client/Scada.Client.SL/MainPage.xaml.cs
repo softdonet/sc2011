@@ -93,18 +93,22 @@ namespace Scada.Client.SL
             Header.menuSearch.IsChecked = true;
             switch (link)
             {
-                //数据分析
+                //设备查询
                 case "childMenuDataSearch":
-                    this.ViewHost.Child = new DeviceListQuery();
+                    this.ViewHost.Child =new DeviceListQuery();
                     break;
-            //    //系统告警日志
-            //    case "childMenuAlertSearch":
-            //        this.ViewHost.Child = new SCADA.UI.Modules.Query.QueryAlarm();
-            //        break;
-            //    //维护日志
-            //    case "childMenuRepairLogSearch":
-            //        this.ViewHost.Child = new SCADA.UI.Modules.Query.QueryLog();
-            //        break;
+                //系统告警日志
+                case "childMenuAlertSearch":
+                    this.ViewHost.Child = AlarmQuery.GetInstance();//new AlarmQuery();
+                    break;
+                //用户事件查询
+                case "childMenuUserEventSearch":
+                    this.ViewHost.Child = new UserEventQuery();
+                    break;
+                //维护日志
+                case "childMenuRepairLogSearch":
+                    this.ViewHost.Child = new LogQuery();
+                    break;
             }
         }
 

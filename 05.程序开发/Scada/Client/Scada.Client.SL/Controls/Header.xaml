@@ -463,7 +463,7 @@
             <!--<TextBlock Text="欢迎 管理员 登录 "  Foreground="White"  VerticalAlignment="Center" ></TextBlock>-->
         </StackPanel>
         <!--查询子菜单-->
-        <Border x:Name="bdSearch" HorizontalAlignment="Right" Height="36" Margin="0,0,280,-4" Grid.Row="3" VerticalAlignment="Bottom" Width="303" Background="{StaticResource header_senmenu}" RenderTransformOrigin="0.5,0.5" Opacity="0" Visibility="Collapsed" >
+        <Border x:Name="bdSearch" HorizontalAlignment="Right" Height="36" Margin="0,0,267,-4" Grid.Row="3" VerticalAlignment="Bottom" Width="316" Background="{StaticResource header_senmenu}" RenderTransformOrigin="0.5,0.5" Opacity="0" Visibility="Collapsed" >
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseEnter">
                     <ei:ControlStoryboardAction Storyboard="{StaticResource ShowSearchSecMenuStory}"/>
@@ -512,6 +512,7 @@
                 </ListBox.ItemTemplate>
                 <ListBoxItem x:Name="childMenuDataSearch" Content="设备查询" VerticalAlignment="Center" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiDataSearch"/>
                 <ListBoxItem x:Name="childMenuAlertSearch" Content="告警查询" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiAlertSearch"/>
+                <ListBoxItem x:Name="childMenuUserEventSearch" Content="事件查询" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiAlertSearch"/>
                 <ListBoxItem x:Name="childMenuRepairLogSearch" Content="日志查询" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiAlertSearch"/>
             </ListBox>
         </Border>

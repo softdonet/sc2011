@@ -16,6 +16,11 @@ using System.Windows.Media.Animation;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.GridView;
 
+using Scada.Model.Entity;
+using Scada.Client.SL.CommClass;
+using Scada.Client.SL.ScadaDeviceService;
+
+
 
 
 namespace Scada.Client.SL.Modules.UsersEvent
@@ -29,7 +34,7 @@ namespace Scada.Client.SL.Modules.UsersEvent
 
         #region 变量声明
 
-
+        private ScadaDeviceServiceSoapClient _scadaDeviceServiceSoapClient;
 
         #endregion
 
@@ -38,14 +43,30 @@ namespace Scada.Client.SL.Modules.UsersEvent
 
         public UserEvent()
         {
+
             InitializeComponent();
+
+            this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
+
+            this._scadaDeviceServiceSoapClient.GetListUserEventInfoCompleted +=
+                new EventHandler<GetListUserEventInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_ListUserEventInfoCompleted);
+
+            this._scadaDeviceServiceSoapClient.GetListUserEventInfoAsync();
+
         }
+
+        private void scadaDeviceServiceSoapClient_ListUserEventInfoCompleted(object sender, GetListUserEventInfoCompletedEventArgs e)
+        {
+            List<UserEventTab> deviceAlam = BinaryObjTransfer.BinaryDeserialize<List<UserEventTab>>(e.Result);
+            this.RadGridView1.ItemsSource = deviceAlam;
+        }
+
 
         #endregion
 
 
         #region 事件处理
-    
+
         private void RadGridView1_RowLoaded(object sender, Telerik.Windows.Controls.GridView.RowLoadedEventArgs e)
         {
             //TextBlock state = (e.Row.Cells[RadGridView1.Columns.Count - 2].Content as FrameworkElement) as TextBlock;

@@ -462,14 +462,14 @@ namespace Scada.BLL.Implement
         public string GetListUserEventInfo()
         {
 
-            List<UserEvent> userEvents = new List<UserEvent>();
+            List<UserEventTab> userEvents = new List<UserEventTab>();
             string sSql = @" Select ID,EventNo,DeviceID,DeviceNo,
                                 State,Count,RequestTime from UserEvent";
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);
-            UserEvent userEvent;
+            UserEventTab userEvent;
             foreach (DataRow item in ds.Rows)
             {
-                userEvent = new UserEvent();
+                userEvent = new UserEventTab();
                 userEvent.ID = new Guid(item["ID"].ToString());
                 userEvent.EventNo = item["EventNo"].ToString();
                 userEvent.DeviceID = new Guid(item["DeviceID"].ToString());
@@ -493,7 +493,7 @@ namespace Scada.BLL.Implement
 
             }
 
-            return BinaryObjTransfer.JsonSerializer<List<UserEvent>>(userEvents);
+            return BinaryObjTransfer.JsonSerializer<List<UserEventTab>>(userEvents);
 
         }
 

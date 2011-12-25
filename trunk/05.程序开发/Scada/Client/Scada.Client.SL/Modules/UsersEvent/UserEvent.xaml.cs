@@ -46,6 +46,7 @@ namespace Scada.Client.SL.Modules.UsersEvent
 
             InitializeComponent();
 
+            MyContent.CloseBtn += new EventHandler(MyContent_CloseBtn);
             this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
 
             this._scadaDeviceServiceSoapClient.GetListUserEventInfoCompleted +=
@@ -53,6 +54,12 @@ namespace Scada.Client.SL.Modules.UsersEvent
 
             this._scadaDeviceServiceSoapClient.GetListUserEventInfoAsync();
 
+        }
+
+        void MyContent_CloseBtn(object sender, EventArgs e)
+        {
+            Storyboard2.Begin();
+            ViewHost.Visibility = Visibility.Collapsed;
         }
 
         private void scadaDeviceServiceSoapClient_ListUserEventInfoCompleted(object sender, GetListUserEventInfoCompletedEventArgs e)
@@ -98,7 +105,19 @@ namespace Scada.Client.SL.Modules.UsersEvent
             //RadWindow.Alert(String.Format("DialogResult: {0}, PromptResult: {1}", e.DialogResult, e.PromptResult));
         }
 
+        private Guid id;
+        private void hlBtn_Click(object sender, RoutedEventArgs e)
+        {
+            HyperlinkButton hlB = sender as HyperlinkButton;
+            id = (hlB.DataContext as UserEventTab).ID;
+
+            Storyboard1.Begin();
+            MyContent.Content = new UserEventProcess();
+            MyContent.Title = "用户事件流程";
+        }
         #endregion
+
+       
 
     }
 }

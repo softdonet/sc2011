@@ -6,13 +6,14 @@
 
     
      xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"         
-    xmlns:local="clr-namespace:Scada.Client.SL.Modules.Device"
+    xmlns:local1="clr-namespace:Scada.Client.SL.Modules.Device"
+    xmlns:local="clr-namespace:Scada.Client.SL.Controls" 
     mc:Ignorable="d"
     d:DesignHeight="768" d:DesignWidth="800">
 
     <UserControl.Resources>
-        <local:RelativeBlocksValueConverter x:Key="RelativeBlocksValueConverter1" />
-        <local:ItemImageSourceValueConverter x:Key="ItemImageSourceValueConverter1" />
+        <local1:RelativeBlocksValueConverter x:Key="RelativeBlocksValueConverter1" />
+        <local1:ItemImageSourceValueConverter x:Key="ItemImageSourceValueConverter1" />
         <Storyboard x:Name="Storyboard1">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ViewHost">
                 <DiscreteObjectKeyFrame KeyTime="0">
@@ -85,7 +86,7 @@
                     <telerik:GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel  Orientation="Horizontal"   HorizontalAlignment="Center">
-                                <HyperlinkButton x:Name="hlBtn"   IsEnabled="False"   HorizontalAlignment="Center"  Content="详细"  Foreground="#FF0000CC" />
+                                <HyperlinkButton x:Name="hlBtn"    HorizontalAlignment="Center"  Content="详细"  Foreground="#FF0000CC" Click="hlBtn_Click" />
                             </StackPanel>
                         </DataTemplate>
                     </telerik:GridViewColumn.CellTemplate>
@@ -93,6 +94,12 @@
 
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>
+        <Border x:Name="ViewHost" BorderBrush="Black" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed" >
+            <Border.RenderTransform>
+                <CompositeTransform/>
+            </Border.RenderTransform>
+            <local:MyContent x:Name="MyContent" Content="MyContent"/>
+        </Border>
 
     </Grid>
 </UserControl>

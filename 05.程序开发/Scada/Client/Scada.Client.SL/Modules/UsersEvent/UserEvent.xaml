@@ -73,33 +73,26 @@
     </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot" Background="White">
-        <telerik:RadTreeListView x:Name="RadTreeListView1" 
-								 AutoGenerateColumns="False"
-								 IsReadOnly="True" 
-								 AutoExpandGroups="True"  RowHeight="25" >
-            <telerik:RadTreeListView.ChildTableDefinitions>
-                <telerik:TreeListViewTableDefinition ItemsSource="{Binding NodeChild}" />
-            </telerik:RadTreeListView.ChildTableDefinitions>
-            <telerik:RadTreeListView.Columns>
-                <telerik:GridViewDataColumn   Header="事件编号" HeaderTextAlignment="Center" />
-                
-                <telerik:GridViewDataColumn   DataMemberBinding="{Binding DeviceNo}" Header="设备编号" HeaderTextAlignment="Center"  Width="150"/>
-                <telerik:GridViewDataColumn   DataMemberBinding="{Binding State}" Header="状态" HeaderTextAlignment="Center"  Width="150"/>
-                <telerik:GridViewDataColumn   DataMemberBinding="{Binding Temperature}" Header="用户请求次数"  HeaderTextAlignment="Center" TextAlignment="Center"  Width="150"/>
-                <telerik:GridViewImageColumn DataMemberBinding="{Binding RequestTime}" Header="请求时间" HeaderTextAlignment="Center" TextAlignment="Center" Width="180" />
-                
-                <telerik:GridViewDataColumn    Width="100"
-											Header="操作" HeaderTextAlignment="Center" TextAlignment="Center" >
+        <telerik:RadGridView x:Name="RadGridView1"
+							ShowGroupPanel="False" AutoGenerateColumns="False"  IsReadOnly="True"  ItemsSource="{Binding Collection}">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn Header="事件编号" DataMemberBinding="{Binding ID}" HeaderTextAlignment="Center"  />
+                <telerik:GridViewDataColumn Header="设备编号" DataMemberBinding="{Binding DeviceNo}" Width="100"   HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn Header="状态" DataMemberBinding="{Binding EventType}" Width="60" HeaderTextAlignment="Center"  />
+                <telerik:GridViewDataColumn Header="用户请求次数" DataMemberBinding="{Binding EventLevel}" Width="60" HeaderTextAlignment="Center"  />
+                <telerik:GridViewDataColumn Header="请求时间" DataMemberBinding="{Binding StartTime}" Width="140" HeaderTextAlignment="Center"  />
+                <telerik:GridViewDataColumn    Width="100" Header="操作" HeaderTextAlignment="Center" TextAlignment="Center" >
                     <telerik:GridViewColumn.CellTemplate>
                         <DataTemplate>
-                            <HyperlinkButton x:Name="hlUrl"   Click="hlUrl_Click"    HorizontalAlignment="Center"  Content="查看"  Foreground="#FF0000CC" />
+                            <StackPanel  Orientation="Horizontal"   HorizontalAlignment="Center">
+                                <HyperlinkButton x:Name="hlBtn"   IsEnabled="False"   HorizontalAlignment="Center"  Content="详细"  Foreground="#FF0000CC" />
+                            </StackPanel>
                         </DataTemplate>
                     </telerik:GridViewColumn.CellTemplate>
-                    
                 </telerik:GridViewDataColumn>
-            </telerik:RadTreeListView.Columns>
 
-        </telerik:RadTreeListView>
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
 
     </Grid>
 </UserControl>

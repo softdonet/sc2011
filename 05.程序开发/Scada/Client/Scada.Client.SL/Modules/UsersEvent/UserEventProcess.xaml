@@ -52,6 +52,6 @@
             <Button Content="确认" Height="23" Margin="10,0,0,0" Width="75" />
             <TextBlock Height="23" Margin="10,0,0,0" Text="确认人：XX 时间：2011-12-23 12:15:45" />
         </StackPanel>
-        <ToggleButton Content="关闭" HorizontalAlignment="Center"   Width="90" Grid.Row="6" Margin="355,38,355,12" />
+        <ToggleButton Content="关闭" HorizontalAlignment="Center"   Width="90" Grid.Row="6" Margin="355,17,355,0" Height="48" VerticalAlignment="Top" />
     </Grid>
 </UserControl>

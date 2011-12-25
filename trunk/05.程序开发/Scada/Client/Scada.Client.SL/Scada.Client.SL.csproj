@@ -157,6 +157,9 @@
     <Compile Include="Modules\BaseInfo\SysConfig.xaml.cs">
       <DependentUpon>SysConfig.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\BaseInfo\UserEventItems.xaml.cs">
+      <DependentUpon>UserEventItems.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\BingMaps\ChinaMode.cs" />
     <Compile Include="Modules\BingMaps\Comm.cs" />
     <Compile Include="Modules\BingMaps\MapIndex.xaml.cs">
@@ -195,8 +198,14 @@
     <Compile Include="Modules\Query\LogQuery.xaml.cs">
       <DependentUpon>LogQuery.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Query\UserEventQuery.xaml.cs">
+      <DependentUpon>UserEventQuery.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\UsersEvent\UserEvent.xaml.cs">
       <DependentUpon>UserEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\UsersEvent\UserEventProcess.xaml.cs">
+      <DependentUpon>UserEventProcess.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScadaMessageBox.cs" />
@@ -277,6 +286,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modules\BaseInfo\UserEventItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\BingMaps\MapIndex.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -325,9 +338,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modules\Query\UserEventQuery.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\UsersEvent\UserEvent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\UsersEvent\UserEventProcess.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Style\DataGridViewSampleDataSource.xaml">
       <SubType>Designer</SubType>

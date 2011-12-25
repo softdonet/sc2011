@@ -412,6 +412,10 @@
             <RadioButton x:Name="menuAlertList" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="设备告警" Width="65" Cursor="Hand" GroupName="menu">
                 <Image Height="27" Source="/Scada.Client.SL;component/Images/menu2.png" Stretch="Fill" Width="25"/>
             </RadioButton>
+            <RadioButton x:Name="menuUserEvent" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="用户事件" Width="65" Cursor="Hand" GroupName="menu">
+                <Image Height="27" Source="/Scada.Client.SL;component/Images/menu3.png" Stretch="Fill" Width="25"/>
+            </RadioButton>
+
             <Image Source="/Scada.Client.SL;component/Images/line.png" Stretch="Fill" Width="2" Height="38" Margin="0,9.5"/>
             <RadioButton x:Name="menuSearch" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="查  询" Width="65" Cursor="Hand" GroupName="menu">
                 <i:Interaction.Triggers>

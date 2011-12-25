@@ -14,6 +14,7 @@ using Scada.Client.SL.Modules.Query;
 using Scada.Client.SL.Modules.BaseInfo;
 using Scada.Client.SL.Modules.Device;
 using Scada.Client.SL.Modules.Alarm;
+using Scada.Client.SL.Modules.UsersEvent;
 
 namespace Scada.Client.SL
 {
@@ -29,6 +30,7 @@ namespace Scada.Client.SL
             Header.menuSearch.Checked += new RoutedEventHandler(menu_Checked);
             Header.menuCompare.Checked += new RoutedEventHandler(menu_Checked);
             Header.menuAlertList.Checked += new RoutedEventHandler(menu_Checked);
+            Header.menuUserEvent.Checked += new RoutedEventHandler(menu_Checked);
             // Header.menuStatistics.Checked += new RoutedEventHandler(menu_Checked);
             Header.menuSysSettings.Checked += new RoutedEventHandler(menu_Checked);
             Header.menuDeviceList.Checked += new RoutedEventHandler(menu_Checked);
@@ -61,6 +63,9 @@ namespace Scada.Client.SL
                     //设备告警
                     case "menuAlertList":
                         this.ViewHost.Child = new AlarmList();
+                        break;
+                    case "menuUserEvent":
+                        this.ViewHost.Child = new UserEvent();
                         break;
 
                     ///统计分析移到对比分析的子菜单下

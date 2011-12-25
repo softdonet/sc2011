@@ -1,5 +1,5 @@
 ﻿//*********************************************************************
-//               异步通讯命令解析数据类型
+//               异步通讯命令数据报头解析类型（报头21Byte）
 //               Create by yanghk at 2011-12-18
 //*********************************************************************
 using System;
@@ -14,118 +14,160 @@ namespace DataCollecting
     /// </summary>
     public enum Command
     {
-        Test,//发送哑数据  客户端到服务器
-        Logout,//登出 客户端到服务器
-        GetConfig,//配置请求 客户端到服务器
-        RealTimeData,//设备实时信息 客户端到服务器
-        UserEvent,//用户事件 客户端到服务器
-
-        ReplyTest, //回复哑数据 服务器到客户端
-        SendConfig //发送设备配置和天气预报信息 服务器到客户端
+        /// <summary>
+        ///设备链路测试
+        /// </summary>
+        cmd_Test = 0x01,
+        /// <summary>
+        /// 设备主动关闭告知
+        /// </summary>
+        cmd_Logout = 0x02,
+        /// <summary>
+        /// 设备请求配置信息
+        /// </summary>
+        cmd_GetConfig = 0x03,
+        /// <summary>
+        /// 设备主动发送实时数据
+        /// </summary>
+        cmd_RealTimeDate = 0x04,
+        /// <summary>
+        /// 设备侧发送用户事件
+        /// </summary>
+        cmd_UserEvent = 0x05,
+        /// <summary>
+        /// 设备到厂家服务器注册（固定IP+默认端口)
+        /// </summary>
+        cmd_Register = 0xFD,
+        /// <summary>
+        /// 设备请求固件更新
+        /// </summary>
+        cmd_FirmwareRequest = 0xFE,
+        /// <summary>
+        /// 没有命令
+        /// </summary>
+        cmd_null
     }
-
 
     public class NetData
     {
-        private byte[] data;
-
-        #region 数据报头
+        #region 报头
 
         /// <summary>
-        /// 设置发送命令头（2Byte）
+        /// 报文头
         /// </summary>
-        public void SetSendCmdHead()
+        private ushort cmdHeader;
+        public ushort CmdHeader
         {
-            data[0] = 0x55;
-            data[1] = 0xAA;
-        }
-
-        /// <summary>
-        /// 命令字(1Byte)
-        /// </summary>
-        /// <param name="cmdword"></param>
-        public void SetCmdWord(byte cmdword)
-        {
-            data[3] = cmdword;
-        }
-        public byte GetCmdWord()
-        {
-            return data[3];
+            get { return cmdHeader; }
+            set { cmdHeader = value; }
         }
 
         /// <summary>
-        /// 数据上下文(2Byte)
+        /// 功能码
         /// </summary>
-        void SetDataContext(byte[] arr)
+        private Command cmdCommand;
+        public Command CmdCommand
         {
-            Array.Copy(arr, 0, data, 3, 2);
-        }
-
-        byte[] GetDataContext()
-        {
-            byte[] arr = new byte[2];
-            Array.Copy(data, 3, arr, 0, 2);
-            return arr;
+            get { return cmdCommand; }
+            set { cmdCommand = value; }
         }
 
         /// <summary>
-        /// 设备序列号(6Byte)
+        /// 数据上下文
         /// </summary>
-        /// <param name="sn"></param>
-        void SetDeviceSN(string sn)
+        private ushort dataContext;
+        public ushort DataContext
         {
-
-        }
-
-        string GetDeviceSN()
-        {
-            return null;
+            get { return dataContext; }
+            set { dataContext = value; }
         }
 
         /// <summary>
-        /// 状态位（1Byte）
+        /// 数据包长度
         /// </summary>
-        /// <param name="state"></param>
-        void SetState(byte[] state)
+        private ushort commandCount;
+        public ushort CommandCount
         {
-
-        }
-
-        void GetState()
-        {
-
+            get { return commandCount; }
+            set { commandCount = value; }
         }
 
         /// <summary>
-        /// 设置时间（7Byte）
+        /// 设备序列号
         /// </summary>
-        void SetDateTime()
+        private string deviceSN;
+        public string DeviceSN
         {
-            byte[] year = BitConverter.GetBytes((ushort)DateTime.Now.Year);
-            data[15] = year[0];
-            data[16] = year[1];
-            data[17] = (byte)DateTime.Now.Month;
-            data[18] = (byte)DateTime.Now.Day;
-            data[19] = (byte)DateTime.Now.Hour;
-            data[20] = (byte)DateTime.Now.Minute;
-            data[21] = (byte)DateTime.Now.Second;
+            get { return deviceSN; }
+            set { deviceSN = value; }
         }
 
         /// <summary>
-        /// 获取时间
+        /// 状态
         /// </summary>
-        /// <returns></returns>
-        public DateTime GetDateTime()
+        private byte state;
+        public byte State
         {
-            string strDateTIme = string.Format("{0}-{1}-{2} {3}:{4}:{5}",
-                BitConverter.ToUInt16(data, 15),
+            get { return state; }
+            set { state = value; }
+        }
+
+        /// <summary>
+        /// 时间戳
+        /// </summary>
+        private DateTime sateTimeMark;
+        public DateTime SateTimeMark
+        {
+            get { return sateTimeMark; }
+            set { sateTimeMark = value; }
+        }
+
+        #endregion
+
+        public NetData(byte[] data)
+        {
+            //命令头(0-1)
+            cmdHeader = BitConverter.ToUInt16(data, 0);
+            //功能码(2)
+            cmdCommand = (Command)data[2];
+            //数据上下文(3-4)
+            dataContext = BitConverter.ToUInt16(data, 3);
+            //报文长度(5-6)
+            commandCount = BitConverter.ToUInt16(data, 5);
+            //设备序列号(7-12)
+            byte[] ldeviceSN = new byte[4];
+            Array.Copy(data, 7, ldeviceSN, 0, 4);
+            deviceSN = DataToStr(ldeviceSN) + BitConverter.ToUInt16(data, 11).ToString("0000");
+            //状态(13)
+            state = data[13];
+            //时间戳(14-20)
+            sateTimeMark = Convert.ToDateTime(string.Format("{0}-{1}-{2} {3}:{4}:{5}",
+                BitConverter.ToUInt16(data, 14),
+                data[16].ToString(),
                 data[17].ToString(),
                 data[18].ToString(),
                 data[19].ToString(),
-                data[20].ToString(),
-                data[21].ToString());
-            return Convert.ToDateTime(strDateTIme);
+                data[20].ToString()));
         }
-        #endregion
+
+        /// <summary>
+        /// 字节转化为字符
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public string DataToStr(byte[] data)
+        {
+            string result = "";
+            for (int i = 0; i < data.Length; i++)
+            {
+                string temp = Convert.ToString(data[i], 16);
+                if (temp.Length == 1)
+                {
+                    temp = "0" + temp;
+                }
+                result = result + temp;
+            }
+            return result;
+        }
     }
 }

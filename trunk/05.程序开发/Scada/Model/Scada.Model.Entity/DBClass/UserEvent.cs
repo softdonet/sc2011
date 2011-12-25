@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Scada.Model.Entity.DBClass
+namespace Scada.Model.Entity
 {
 
     public class UserEvent

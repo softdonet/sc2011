@@ -8,7 +8,6 @@ using Scada.DAL.Ado;
 using Scada.BLL.Contract;
 using Scada.Model.Entity;
 using System.Data.SqlClient;
-using Scada.Model.Entity.DBClass;
 using Scada.Utility.Common.Transfer;
 
 

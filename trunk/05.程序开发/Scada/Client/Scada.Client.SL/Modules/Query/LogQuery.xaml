@@ -36,7 +36,7 @@
             <Button Content="查询" Height="23"  Name="btnCheck"   Margin="50,0,0,0" Width="75" />
         </StackPanel>
 
-        <sdk:DataGrid Grid.Row="1"   DataContext="{Binding Source={StaticResource DataGridViewSampleDataSource}}" ItemsSource="{Binding Collection}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}">
+        <sdk:DataGrid Grid.Row="1" ItemsSource="{Binding Collection}">
             <sdk:DataGrid.Columns>
                 <sdk:DataGridTemplateColumn Header="设备名称" Width="80" DisplayIndex="1"/>
                 <sdk:DataGridTemplateColumn Header="安装地点" Width="320" />

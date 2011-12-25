@@ -14,9 +14,18 @@ namespace Scada.Client.SL.Modules.Query
 {
     public partial class AlarmQuery : UserControl
     {
-        public AlarmQuery()
+        private AlarmQuery()
         {
             InitializeComponent();
+        }
+        private static AlarmQuery instance;
+        public static AlarmQuery GetInstance()
+        {
+            if (instance==null)
+            {
+                instance = new AlarmQuery();
+            }
+            return instance;
         }
     }
 }

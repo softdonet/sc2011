@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Scada.Model.Entity
 {
 
-    public class UserEvent
+    public class UserEventTab
     {
         public Guid ID { get; set; }
         public String EventNo { get; set; }

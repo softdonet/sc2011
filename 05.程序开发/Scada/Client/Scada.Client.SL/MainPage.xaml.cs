@@ -64,6 +64,7 @@ namespace Scada.Client.SL
                     case "menuAlertList":
                         this.ViewHost.Child = new AlarmList();
                         break;
+                    //用户事件
                     case "menuUserEvent":
                         this.ViewHost.Child = new UserEvent();
                         break;

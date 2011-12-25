@@ -1,26 +1,51 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
+
+
 using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Media.Animation;
+
+
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.GridView;
 
+
+
 namespace Scada.Client.SL.Modules.UsersEvent
 {
+
+    /// <summary>
+    /// 用户事件
+    /// </summary>
     public partial class UserEvent : UserControl
     {
+
+        #region 变量声明
+
+
+
+        #endregion
+
+
+        #region 构造函数
+
         public UserEvent()
         {
             InitializeComponent();
         }
 
+        #endregion
+
+
+        #region 事件处理
+    
         private void RadGridView1_RowLoaded(object sender, Telerik.Windows.Controls.GridView.RowLoadedEventArgs e)
         {
             //TextBlock state = (e.Row.Cells[RadGridView1.Columns.Count - 2].Content as FrameworkElement) as TextBlock;
@@ -42,8 +67,6 @@ namespace Scada.Client.SL.Modules.UsersEvent
             }
         }
 
-
-
         private void hlUrl_Click(object sender, RoutedEventArgs e)
         {
             RadWindow.Prompt("请输入备注：", new EventHandler<WindowClosedEventArgs>(OnClosed));
@@ -53,5 +76,8 @@ namespace Scada.Client.SL.Modules.UsersEvent
         {
             //RadWindow.Alert(String.Format("DialogResult: {0}, PromptResult: {1}", e.DialogResult, e.PromptResult));
         }
+
+        #endregion
+
     }
 }

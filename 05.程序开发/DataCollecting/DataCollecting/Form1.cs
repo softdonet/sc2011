@@ -133,6 +133,9 @@ namespace DataCollecting
 
         private void ReceivedCommand(Socket clientSocket, byte[] tmpdata)
         {
+
+
+
             try
             {
                 SetText(System.Text.Encoding.Default.GetString(tmpdata, 0, tmpdata.Length));

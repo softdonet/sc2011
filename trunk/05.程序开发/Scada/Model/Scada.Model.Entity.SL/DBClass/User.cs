@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 namespace Scada.Model.Entity
 {
+
     /// <summary>
     /// 类User。
     /// </summary>
@@ -44,5 +45,17 @@ namespace Scada.Model.Entity
             get { return _deptid; }
         }
     }
+
+    public enum LoginResultType
+    {
+        IP地址已锁定 = 0,
+        密码错误 = 1,
+        成功 = 2,
+        账户已锁定 = 3,
+        账户无效 = 4,
+        IP与账户绑定错误 = 5,
+        系统授权数超过登录数 = 6
+    }
+
 }
 

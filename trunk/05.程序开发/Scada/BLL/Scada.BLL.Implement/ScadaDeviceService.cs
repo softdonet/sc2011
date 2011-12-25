@@ -3,12 +3,13 @@ using System.Text;
 using System.Data;
 using System.Collections.Generic;
 
-using Scada.BLL.Contract;
 
 using Scada.DAL.Ado;
+using Scada.BLL.Contract;
 using Scada.Model.Entity;
-using Scada.Utility.Common.Transfer;
 using System.Data.SqlClient;
+using Scada.Model.Entity.DBClass;
+using Scada.Utility.Common.Transfer;
 
 
 
@@ -456,6 +457,59 @@ namespace Scada.BLL.Implement
         }
 
         #endregion
+
+        #region 用户事件
+
+        public string GetListUserEventInfo()
+        {
+
+            List<UserEvent> userEvents = new List<UserEvent>();
+            string sSql = @" Select ID,EventNo,DeviceID,DeviceNo,
+                                State,Count,RequestTime from UserEvent";
+            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            UserEvent userEvent;
+            foreach (DataRow item in ds.Rows)
+            {
+                userEvent = new UserEvent();
+                userEvent.ID = new Guid(item["ID"].ToString());
+                userEvent.EventNo = item["EventNo"].ToString();
+                userEvent.DeviceID = new Guid(item["DeviceID"].ToString());
+                userEvent.DeviceNo = item["DeviceNo"].ToString();
+                Int32? intValue = null;
+                if (item["State"] != DBNull.Value)
+                    intValue = Convert.ToInt32(item["State"]);
+                userEvent.State = intValue;
+
+                intValue = null;
+                if (item["Count"] != DBNull.Value)
+                    intValue = Convert.ToInt32(item["Count"]);
+                userEvent.Count = intValue;
+
+                DateTime? dTime = null;
+                if (item["RequestTime"] != DBNull.Value)
+                    dTime = Convert.ToDateTime(item["RequestTime"]);
+                userEvent.RequestTime = dTime;
+
+                userEvents.Add(userEvent);
+
+            }
+
+            return BinaryObjTransfer.JsonSerializer<List<UserEvent>>(userEvents);
+
+        }
+
+        public string GetUserEventKeyInfo(Guid EventKey)
+        {
+            return string.Empty;
+        }
+
+        public Boolean UpdateUserEventInfo(string EventDetails)
+        {
+            return false;
+        }
+
+        #endregion
+
 
     }
 

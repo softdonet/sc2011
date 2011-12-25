@@ -50,5 +50,12 @@ namespace Scada.Client.SL.Controls
             }
         }
 
+        private void btnReset_Click(object sender, RoutedEventArgs e)
+        {
+            this.txbName.Text = string.Empty;
+            this.txtPassWord.Password = string.Empty;
+            this.txbName.Focus();
+        }
+
     }
 }

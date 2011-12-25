@@ -138,7 +138,7 @@
                 <TextBox x:Name="txbName"    Grid.Row="2" Grid.ColumnSpan="2"  VerticalAlignment="Bottom"/>
                 <PasswordBox x:Name="txtPassWord"      Grid.Row="4"  VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
                 <Button x:Name="btnLogin" Content="登录" Grid.Row="5" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="90" Height="25" Style="{StaticResource ButtonStyle_Login}" Foreground="White" Click="btnLogin_Click" />
-                <Button x:Name="btnReset" Content="重置" Grid.Row="5" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="92" Height="25" OpacityMask="Black" Style="{StaticResource ButtonStyle_Login}" Foreground="White"/>
+                <Button x:Name="btnReset" Content="重置" Grid.Row="5" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="92" Height="25" OpacityMask="Black" Style="{StaticResource ButtonStyle_Login}" Foreground="White" Click="btnReset_Click" />
             </Grid>
         </Canvas>
     </Grid>

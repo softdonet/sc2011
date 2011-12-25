@@ -14,6 +14,7 @@ namespace Scada.BLL.Implement
     public class SystemManagerService : ISystemManagerService
     {
 
+        #region 测试应用
 
         public int AddDD(int x, int y)
         {
@@ -27,6 +28,20 @@ namespace Scada.BLL.Implement
             studens.Add(new Student { Name = "李四", Age = 19 });
             return BinaryObjTransfer.JsonSerializer<List<Student>>(studens);
         }
+
+        #endregion
+
+
+        #region 登录信息
+
+        public Int32 GetLoginResultType(String username, String userpwd)
+        {
+            return 1;
+
+        }
+
+        #endregion
+
 
     }
 }

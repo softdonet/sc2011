@@ -71,6 +71,7 @@
     <Compile Include="DBClass\RoleModule.cs" />
     <Compile Include="DBClass\Student.cs" />
     <Compile Include="DBClass\User.cs" />
+    <Compile Include="DBClass\UserEvent.cs" />
     <Compile Include="DBClass\UserRole.cs" />
     <Compile Include="DBPartialClass\DeviceRealTimePartial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

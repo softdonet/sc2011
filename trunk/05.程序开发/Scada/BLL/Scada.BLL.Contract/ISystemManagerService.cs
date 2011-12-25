@@ -8,6 +8,11 @@ namespace Scada.BLL.Contract
     public interface ISystemManagerService
     {
         int AddDD(int x, int y);
-        string ListStudents(); 
+        string ListStudents();
+
+
+        //登录
+        Int32 GetLoginResultType(String username, String userpwd);
+
     }
 }

@@ -21,20 +21,32 @@ namespace Scada.Client.SL.Modules.UsersEvent
         private ScadaDeviceServiceSoapClient _scadaDeviceServiceSoapClient=null;
         public Guid myGuid { get; set; }
         #endregion
-       
+        #region 构造函数
+
+      
         public UserEventProcess()
         {
             InitializeComponent();
         }
-        public UserEventProcess(Guid id)
+
+        public UserEventProcess(Guid id,int? state)
         {
             InitializeComponent();
+            if (true)
+            {
+                setControlSate(false);
+            }
+            
+
             myGuid = id;
 
             this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
             this._scadaDeviceServiceSoapClient.GetListStepInfoCompleted += new EventHandler<GetListStepInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_GetListStepInfoCompleted);
             this._scadaDeviceServiceSoapClient.GetListStepInfoAsync();
         }
+        #endregion
+
+        #region 事件处理
 
         void scadaDeviceServiceSoapClient_GetListStepInfoCompleted(object sender, GetListStepInfoCompletedEventArgs e)
         {
@@ -46,5 +58,39 @@ namespace Scada.Client.SL.Modules.UsersEvent
             cmbStep5.ItemsSource = stepInfo;
 
         }
+
+        /// <summary>
+        /// 设置界面控件是否Enabled
+        /// </summary>
+        /// <param name="flag"></param>
+        private void setControlSate(bool flag)
+        {
+            cmbStep1.IsEnabled = flag;
+            cmbStep2.IsEnabled = flag;
+            cmbStep3.IsEnabled = flag;
+            cmbStep4.IsEnabled = flag;
+            cmbStep5.IsEnabled = flag;
+
+            txtStep1.IsEnabled = flag;
+            txtStep2.IsEnabled = flag;
+            txtStep3.IsEnabled = flag;
+            txtStep4.IsEnabled = flag;
+            txtStep5.IsEnabled = flag;
+
+            btnStep1.IsEnabled = flag;
+            btnStep2.IsEnabled = flag;
+            btnStep3.IsEnabled = flag;
+            btnStep4.IsEnabled = flag;
+            btnStep5.IsEnabled = flag;
+        }
+
+        private void tbtnEnter_Checked(object sender, RoutedEventArgs e)
+        {
+            if (true)
+            {
+                setControlSate(true);
+            }
+        }
+        #endregion
     }
 }

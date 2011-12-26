@@ -46,6 +46,7 @@
     <Compile Include="DBClass\DeviceLog.cs" />
     <Compile Include="DBClass\DeviceMaintenancePeople.cs" />
     <Compile Include="DBClass\DeviceRealTime.cs" />
+    <Compile Include="DBClass\EventDealDetail.cs" />
     <Compile Include="DBClass\StepInfo.cs" />
     <Compile Include="DBClass\UserEvent.cs" />
     <Compile Include="DBPartialClass\DeviceRealTimePartial.cs" />

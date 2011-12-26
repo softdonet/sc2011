@@ -19,35 +19,35 @@
         <ToggleButton Content="进入" HorizontalAlignment="Center"  Name="tbtnEnter"  Width="90" Margin="355,12,355,4" />
         <StackPanel Grid.Row="1" Height="29"   VerticalAlignment="Top"  Orientation="Horizontal" >
             <TextBlock Height="16" Name="textBlock1" Text="第一步：" Margin="10,0,0,0" />
-            <ComboBox Height="23" Name="cmbStep1" Width="120" Margin="10,0,0,0"/>
+            <ComboBox Height="23" Name="cmbStep1" Width="120" Margin="10,0,0,0" DisplayMemberPath="StepName" SelectedValuePath="StepID"/>
             <TextBox Height="23" Name="txtStep1" Width="120" Margin="10,0,0,0"/>
             <Button Content="确认" Height="23" Name="btnStep1" Width="75" Margin="10,0,0,0"/>
             <TextBlock Height="23" Name="textBlock2" Text="确认人：XX 时间：2011-12-23 12:15:45" Margin="10,0,0,0"/>
         </StackPanel>
         <StackPanel Height="29"  Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="2">
             <TextBlock Height="16" Margin="10,0,0,0" Text="第二步：" />
-            <ComboBox Height="23" Margin="10,0,0,0" Width="120" Name="cmbStep2" />
+            <ComboBox Height="23" Margin="10,0,0,0" Width="120" Name="cmbStep2" DisplayMemberPath="StepName" SelectedValuePath="StepID" />
             <TextBox Height="23" Margin="10,0,0,0" Width="120" Name="txtStep2" />
             <Button Content="确认" Height="23" Margin="10,0,0,0" Width="75" Name="btnStep2" />
             <TextBlock Height="23" Margin="10,0,0,0" Text="确认人：XX 时间：2011-12-23 12:15:45" />
         </StackPanel>
         <StackPanel Height="29" Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="3">
             <TextBlock Height="16" Margin="10,0,0,0" Text="第三步：" />
-            <ComboBox Height="23" Margin="10,0,0,0" Width="120" Name="cmbStep3" />
+            <ComboBox Height="23" Margin="10,0,0,0" Width="120" Name="cmbStep3" DisplayMemberPath="StepName" SelectedValuePath="StepID" />
             <TextBox Height="23" Margin="10,0,0,0" Width="120" Name="txtStep3" />
             <Button Content="确认" Height="23" Margin="10,0,0,0" Width="75" Name="btnStep3" />
             <TextBlock Height="23" Margin="10,0,0,0" Text="确认人：XX 时间：2011-12-23 12:15:45" />
         </StackPanel>
         <StackPanel Height="29" Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="4">
             <TextBlock Height="16" Margin="10,0,0,0" Text="第四步：" />
-            <ComboBox Height="23" Margin="10,0,0,0" Width="120" Name="cmbStep4" />
+            <ComboBox Height="23" Margin="10,0,0,0" Width="120" Name="cmbStep4" DisplayMemberPath="StepName" SelectedValuePath="StepID" />
             <TextBox Height="23" Margin="10,0,0,0" Width="120" Name="txtStep4" />
             <Button Content="确认" Height="23" Margin="10,0,0,0" Width="75" Name="btnStep4" />
             <TextBlock Height="23" Margin="10,0,0,0" Text="确认人：XX 时间：2011-12-23 12:15:45" />
         </StackPanel>
         <StackPanel Height="29" Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="5">
             <TextBlock Height="16" Margin="10,0,0,0" Text="第五步：" />
-            <ComboBox Height="23" Margin="10,0,0,0" Width="120" Name="cmbStep5" />
+            <ComboBox Height="23" Margin="10,0,0,0" Width="120" Name="cmbStep5" DisplayMemberPath="StepName" SelectedValuePath="StepID"/>
             <TextBox Height="23" Margin="10,0,0,0" Width="120" Name="txtStep5" />
             <Button Content="确认" Height="23" Margin="10,0,0,0" Width="75" Name="btnStep5" />
             <TextBlock Height="23" Margin="10,0,0,0" Text="确认人：XX 时间：2011-12-23 12:15:45" />

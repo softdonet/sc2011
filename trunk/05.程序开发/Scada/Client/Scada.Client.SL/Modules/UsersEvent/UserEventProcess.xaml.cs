@@ -14,9 +14,15 @@ namespace Scada.Client.SL.Modules.UsersEvent
 {
     public partial class UserEventProcess : UserControl
     {
+        public string myEventNo { get; set; }
         public UserEventProcess()
         {
             InitializeComponent();
+        }
+        public UserEventProcess(string eventNo)
+        {
+            InitializeComponent();
+            myEventNo = eventNo;
         }
     }
 }

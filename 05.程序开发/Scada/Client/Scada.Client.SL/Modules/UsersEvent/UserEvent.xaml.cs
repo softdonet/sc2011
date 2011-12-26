@@ -64,8 +64,8 @@ namespace Scada.Client.SL.Modules.UsersEvent
 
         private void scadaDeviceServiceSoapClient_ListUserEventInfoCompleted(object sender, GetListUserEventInfoCompletedEventArgs e)
         {
-            List<UserEventTab> deviceAlam = BinaryObjTransfer.BinaryDeserialize<List<UserEventTab>>(e.Result);
-            this.RadGridView1.ItemsSource = deviceAlam;
+            List<UserEventTab> userEventTab = BinaryObjTransfer.BinaryDeserialize<List<UserEventTab>>(e.Result);
+            this.RadGridView1.ItemsSource = userEventTab;
         }
 
 
@@ -105,14 +105,14 @@ namespace Scada.Client.SL.Modules.UsersEvent
             //RadWindow.Alert(String.Format("DialogResult: {0}, PromptResult: {1}", e.DialogResult, e.PromptResult));
         }
 
-        private string eventNo;
+        private Guid id;
         private void hlBtn_Click(object sender, RoutedEventArgs e)
         {
             HyperlinkButton hlB = sender as HyperlinkButton;
-            eventNo = (hlB.DataContext as UserEventTab).EventNo;
+            id = (hlB.DataContext as UserEventTab).ID;
 
             Storyboard1.Begin();
-            MyContent.Content = new UserEventProcess(eventNo);
+            MyContent.Content = new UserEventProcess(id);
             MyContent.Title = "用户事件流程";
         }
         #endregion

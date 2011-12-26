@@ -507,6 +507,22 @@ namespace Scada.BLL.Implement
             return false;
         }
 
+        public string GetListStepInfo()
+        {
+            List<StepInfo> stepInfos = new List<StepInfo>();
+            string sSql = " select ID,StepName from StepInfo";
+            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            StepInfo stepInfo = null;
+            foreach (DataRow item in ds.Rows)
+            {
+                stepInfo = new StepInfo();
+                stepInfo.StepID = new Guid(item["ID"].ToString());
+                stepInfo.StepName = item["StepName"].ToString();
+                stepInfos.Add(stepInfo);
+            }
+            return BinaryObjTransfer.JsonSerializer<List<StepInfo>>(stepInfos);
+        }
+
         #endregion
 
 

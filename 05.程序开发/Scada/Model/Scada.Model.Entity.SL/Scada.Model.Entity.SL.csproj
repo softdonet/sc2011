@@ -65,6 +65,7 @@
     <Compile Include="DBClass\DeviceMaintenancePeople.cs" />
     <Compile Include="DBClass\DeviceRealTime.cs" />
     <Compile Include="DBClass\DeviceTree.cs" />
+    <Compile Include="DBClass\EventDealDetail.cs" />
     <Compile Include="DBClass\MaintenancePeople.cs" />
     <Compile Include="DBClass\Module.cs" />
     <Compile Include="DBClass\Role.cs" />

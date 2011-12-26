@@ -499,7 +499,41 @@ namespace Scada.BLL.Implement
 
         public string GetUserEventKeyInfo(Guid EventKey)
         {
-            return string.Empty;
+            string result = string.Empty;
+            List<EventDealDetail> dealDetails = new List<EventDealDetail>();
+            string sSql = @" Select ID,EventID,UserID,StepNo,StepName,Memo,Operator,DealTime
+                                From EventDealDetail 
+                                Where EventID='" + EventKey.ToString().ToUpper() + "' Order by StepNo";
+            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            if (ds.Rows.Count == 0) { return result; }
+            EventDealDetail detail;
+            foreach (DataRow item in ds.Rows)
+            {
+                detail = new EventDealDetail();
+                detail.DetailID = new Guid(item["ID"].ToString());
+                detail.EventID = new Guid(item["EventID"].ToString());
+                detail.UserID = new Guid(item["UserID"].ToString());
+                Int32? intValue = null;
+                if (item["StepNo"] != DBNull.Value)
+                    intValue = Convert.ToInt32(item["StepNo"]);
+                detail.StepNo = intValue;
+                detail.StepName = item["StepName"].ToString();
+                detail.Memo = item["Memo"].ToString();
+
+                Guid? guidValue = null;
+                if (item["Operator"] != DBNull.Value)
+                    guidValue = new Guid(item["Operator"].ToString());
+                detail.Operator = guidValue;
+
+                DateTime? dtValue = null;
+                if (item["DealTime"] != DBNull.Value)
+                    dtValue = Convert.ToDateTime(item["DealTime"]);
+                detail.DealTime = dtValue;
+                dealDetails.Add(detail);
+
+            }
+            result = BinaryObjTransfer.JsonSerializer<List<EventDealDetail>>(dealDetails);
+            return result;
         }
 
         public Boolean UpdateUserEventInfo(string EventDetails)

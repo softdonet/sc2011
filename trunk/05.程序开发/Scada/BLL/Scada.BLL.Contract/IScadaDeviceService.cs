@@ -42,5 +42,8 @@ namespace Scada.BLL.Contract
         string GetUserEventKeyInfo(Guid EventKey);
         Boolean UpdateUserEventInfo(string EventDetails);
 
+        string GetListStepInfo();
+
+
     }
 }

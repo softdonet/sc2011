@@ -69,6 +69,7 @@
     <Compile Include="DBClass\Module.cs" />
     <Compile Include="DBClass\Role.cs" />
     <Compile Include="DBClass\RoleModule.cs" />
+    <Compile Include="DBClass\StepInfo.cs" />
     <Compile Include="DBClass\Student.cs" />
     <Compile Include="DBClass\User.cs" />
     <Compile Include="DBClass\UserEvent.cs" />

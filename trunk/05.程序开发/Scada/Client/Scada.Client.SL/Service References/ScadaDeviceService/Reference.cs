@@ -87,6 +87,16 @@ namespace Scada.Client.SL.ScadaDeviceService {
         System.IAsyncResult BeginGetListStepInfo(Scada.Client.SL.ScadaDeviceService.GetListStepInfoRequest request, System.AsyncCallback callback, object asyncState);
         
         Scada.Client.SL.ScadaDeviceService.GetListStepInfoResponse EndGetListStepInfo(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/UpdateEventState", ReplyAction="*")]
+        System.IAsyncResult BeginUpdateEventState(System.Guid EventID, System.AsyncCallback callback, object asyncState);
+        
+        bool EndUpdateEventState(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ProcessingStepNo", ReplyAction="*")]
+        System.IAsyncResult BeginProcessingStepNo(Scada.Client.SL.ScadaDeviceService.ProcessingStepNoRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.SL.ScadaDeviceService.ProcessingStepNoResponse EndProcessingStepNo(System.IAsyncResult result);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -962,6 +972,74 @@ namespace Scada.Client.SL.ScadaDeviceService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ProcessingStepNoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ProcessingStepNo", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.ProcessingStepNoRequestBody Body;
+        
+        public ProcessingStepNoRequest() {
+        }
+        
+        public ProcessingStepNoRequest(Scada.Client.SL.ScadaDeviceService.ProcessingStepNoRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class ProcessingStepNoRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string EventDealDetail;
+        
+        public ProcessingStepNoRequestBody() {
+        }
+        
+        public ProcessingStepNoRequestBody(string EventDealDetail) {
+            this.EventDealDetail = EventDealDetail;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ProcessingStepNoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ProcessingStepNoResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.ProcessingStepNoResponseBody Body;
+        
+        public ProcessingStepNoResponse() {
+        }
+        
+        public ProcessingStepNoResponse(Scada.Client.SL.ScadaDeviceService.ProcessingStepNoResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class ProcessingStepNoResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool ProcessingStepNoResult;
+        
+        public ProcessingStepNoResponseBody() {
+        }
+        
+        public ProcessingStepNoResponseBody(bool ProcessingStepNoResult) {
+            this.ProcessingStepNoResult = ProcessingStepNoResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface ScadaDeviceServiceSoapChannel : Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap, System.ServiceModel.IClientChannel {
     }
@@ -1234,6 +1312,44 @@ namespace Scada.Client.SL.ScadaDeviceService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UpdateEventStateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UpdateEventStateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ProcessingStepNoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public ProcessingStepNoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class ScadaDeviceServiceSoapClient : System.ServiceModel.ClientBase<Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap>, Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap {
         
         private BeginOperationDelegate onBeginAddDelegate;
@@ -1320,6 +1436,18 @@ namespace Scada.Client.SL.ScadaDeviceService {
         
         private System.Threading.SendOrPostCallback onGetListStepInfoCompletedDelegate;
         
+        private BeginOperationDelegate onBeginUpdateEventStateDelegate;
+        
+        private EndOperationDelegate onEndUpdateEventStateDelegate;
+        
+        private System.Threading.SendOrPostCallback onUpdateEventStateCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginProcessingStepNoDelegate;
+        
+        private EndOperationDelegate onEndProcessingStepNoDelegate;
+        
+        private System.Threading.SendOrPostCallback onProcessingStepNoCompletedDelegate;
+        
         private BeginOperationDelegate onBeginOpenDelegate;
         
         private EndOperationDelegate onEndOpenDelegate;
@@ -1400,6 +1528,10 @@ namespace Scada.Client.SL.ScadaDeviceService {
         public event System.EventHandler<UpdateUserEventInfoCompletedEventArgs> UpdateUserEventInfoCompleted;
         
         public event System.EventHandler<GetListStepInfoCompletedEventArgs> GetListStepInfoCompleted;
+        
+        public event System.EventHandler<UpdateEventStateCompletedEventArgs> UpdateEventStateCompleted;
+        
+        public event System.EventHandler<ProcessingStepNoCompletedEventArgs> ProcessingStepNoCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -2236,6 +2368,112 @@ namespace Scada.Client.SL.ScadaDeviceService {
             base.InvokeAsync(this.onBeginGetListStepInfoDelegate, null, this.onEndGetListStepInfoDelegate, this.onGetListStepInfoCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.BeginUpdateEventState(System.Guid EventID, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateEventState(EventID, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        bool Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.EndUpdateEventState(System.IAsyncResult result) {
+            return base.Channel.EndUpdateEventState(result);
+        }
+        
+        private System.IAsyncResult OnBeginUpdateEventState(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            System.Guid EventID = ((System.Guid)(inValues[0]));
+            return ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginUpdateEventState(EventID, callback, asyncState);
+        }
+        
+        private object[] OnEndUpdateEventState(System.IAsyncResult result) {
+            bool retVal = ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndUpdateEventState(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUpdateEventStateCompleted(object state) {
+            if ((this.UpdateEventStateCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UpdateEventStateCompleted(this, new UpdateEventStateCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UpdateEventStateAsync(System.Guid EventID) {
+            this.UpdateEventStateAsync(EventID, null);
+        }
+        
+        public void UpdateEventStateAsync(System.Guid EventID, object userState) {
+            if ((this.onBeginUpdateEventStateDelegate == null)) {
+                this.onBeginUpdateEventStateDelegate = new BeginOperationDelegate(this.OnBeginUpdateEventState);
+            }
+            if ((this.onEndUpdateEventStateDelegate == null)) {
+                this.onEndUpdateEventStateDelegate = new EndOperationDelegate(this.OnEndUpdateEventState);
+            }
+            if ((this.onUpdateEventStateCompletedDelegate == null)) {
+                this.onUpdateEventStateCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateEventStateCompleted);
+            }
+            base.InvokeAsync(this.onBeginUpdateEventStateDelegate, new object[] {
+                        EventID}, this.onEndUpdateEventStateDelegate, this.onUpdateEventStateCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.BeginProcessingStepNo(Scada.Client.SL.ScadaDeviceService.ProcessingStepNoRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginProcessingStepNo(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginProcessingStepNo(string EventDealDetail, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.SL.ScadaDeviceService.ProcessingStepNoRequest inValue = new Scada.Client.SL.ScadaDeviceService.ProcessingStepNoRequest();
+            inValue.Body = new Scada.Client.SL.ScadaDeviceService.ProcessingStepNoRequestBody();
+            inValue.Body.EventDealDetail = EventDealDetail;
+            return ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginProcessingStepNo(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.SL.ScadaDeviceService.ProcessingStepNoResponse Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.EndProcessingStepNo(System.IAsyncResult result) {
+            return base.Channel.EndProcessingStepNo(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private bool EndProcessingStepNo(System.IAsyncResult result) {
+            Scada.Client.SL.ScadaDeviceService.ProcessingStepNoResponse retVal = ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndProcessingStepNo(result);
+            return retVal.Body.ProcessingStepNoResult;
+        }
+        
+        private System.IAsyncResult OnBeginProcessingStepNo(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string EventDealDetail = ((string)(inValues[0]));
+            return this.BeginProcessingStepNo(EventDealDetail, callback, asyncState);
+        }
+        
+        private object[] OnEndProcessingStepNo(System.IAsyncResult result) {
+            bool retVal = this.EndProcessingStepNo(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnProcessingStepNoCompleted(object state) {
+            if ((this.ProcessingStepNoCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.ProcessingStepNoCompleted(this, new ProcessingStepNoCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void ProcessingStepNoAsync(string EventDealDetail) {
+            this.ProcessingStepNoAsync(EventDealDetail, null);
+        }
+        
+        public void ProcessingStepNoAsync(string EventDealDetail, object userState) {
+            if ((this.onBeginProcessingStepNoDelegate == null)) {
+                this.onBeginProcessingStepNoDelegate = new BeginOperationDelegate(this.OnBeginProcessingStepNo);
+            }
+            if ((this.onEndProcessingStepNoDelegate == null)) {
+                this.onEndProcessingStepNoDelegate = new EndOperationDelegate(this.OnEndProcessingStepNo);
+            }
+            if ((this.onProcessingStepNoCompletedDelegate == null)) {
+                this.onProcessingStepNoCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnProcessingStepNoCompleted);
+            }
+            base.InvokeAsync(this.onBeginProcessingStepNoDelegate, new object[] {
+                        EventDealDetail}, this.onEndProcessingStepNoDelegate, this.onProcessingStepNoCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -2492,6 +2730,32 @@ namespace Scada.Client.SL.ScadaDeviceService {
             public Scada.Client.SL.ScadaDeviceService.GetListStepInfoResponse EndGetListStepInfo(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 Scada.Client.SL.ScadaDeviceService.GetListStepInfoResponse _result = ((Scada.Client.SL.ScadaDeviceService.GetListStepInfoResponse)(base.EndInvoke("GetListStepInfo", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginUpdateEventState(System.Guid EventID, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = EventID;
+                System.IAsyncResult _result = base.BeginInvoke("UpdateEventState", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public bool EndUpdateEventState(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                bool _result = ((bool)(base.EndInvoke("UpdateEventState", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginProcessingStepNo(Scada.Client.SL.ScadaDeviceService.ProcessingStepNoRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("ProcessingStepNo", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.SL.ScadaDeviceService.ProcessingStepNoResponse EndProcessingStepNo(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.SL.ScadaDeviceService.ProcessingStepNoResponse _result = ((Scada.Client.SL.ScadaDeviceService.ProcessingStepNoResponse)(base.EndInvoke("ProcessingStepNo", _args, result)));
                 return _result;
             }
         }

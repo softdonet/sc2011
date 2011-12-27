@@ -121,6 +121,9 @@
     </Compile>
     <Compile Include="CommClass\BinaryObjTransfer.cs" />
     <Compile Include="CommClass\ServiceManager.cs" />
+    <Compile Include="Controls\ComboBoxTreeView.xaml.cs">
+      <DependentUpon>ComboBoxTreeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Header.xaml.cs">
       <DependentUpon>Header.xaml</DependentUpon>
     </Compile>
@@ -242,6 +245,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Controls\ComboBoxTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Header.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

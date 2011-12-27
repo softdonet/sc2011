@@ -34,7 +34,6 @@ namespace Scada.Client.SL.Controls
                     test.NodeValue = "清空选择";
                     value.Insert(0, test);
                 }
-
                 this.treeView1.ItemsSource = value;
             }
         }

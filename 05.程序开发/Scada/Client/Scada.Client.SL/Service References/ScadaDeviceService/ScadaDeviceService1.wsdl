@@ -186,6 +186,34 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="UpdateEventState">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateEventStateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateEventStateResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcessingStepNo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EventDealDetail" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcessingStepNoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProcessingStepNoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="guid">
@@ -279,6 +307,18 @@
   <wsdl:message name="GetListStepInfoSoapOut">
     <wsdl:part name="parameters" element="tns:GetListStepInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="UpdateEventStateSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateEventState" />
+  </wsdl:message>
+  <wsdl:message name="UpdateEventStateSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateEventStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProcessingStepNoSoapIn">
+    <wsdl:part name="parameters" element="tns:ProcessingStepNo" />
+  </wsdl:message>
+  <wsdl:message name="ProcessingStepNoSoapOut">
+    <wsdl:part name="parameters" element="tns:ProcessingStepNoResponse" />
+  </wsdl:message>
   <wsdl:portType name="ScadaDeviceServiceSoap">
     <wsdl:operation name="Add">
       <wsdl:input message="tns:AddSoapIn" />
@@ -335,6 +375,14 @@
     <wsdl:operation name="GetListStepInfo">
       <wsdl:input message="tns:GetListStepInfoSoapIn" />
       <wsdl:output message="tns:GetListStepInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEventState">
+      <wsdl:input message="tns:UpdateEventStateSoapIn" />
+      <wsdl:output message="tns:UpdateEventStateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcessingStepNo">
+      <wsdl:input message="tns:ProcessingStepNoSoapIn" />
+      <wsdl:output message="tns:ProcessingStepNoSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ScadaDeviceServiceSoap" type="tns:ScadaDeviceServiceSoap">
@@ -465,6 +513,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UpdateEventState">
+      <soap:operation soapAction="http://tempuri.org/UpdateEventState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessingStepNo">
+      <soap:operation soapAction="http://tempuri.org/ProcessingStepNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ScadaDeviceServiceSoap12" type="tns:ScadaDeviceServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -587,6 +653,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetListStepInfo">
       <soap12:operation soapAction="http://tempuri.org/GetListStepInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEventState">
+      <soap12:operation soapAction="http://tempuri.org/UpdateEventState" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessingStepNo">
+      <soap12:operation soapAction="http://tempuri.org/ProcessingStepNo" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -15,6 +15,7 @@ using Scada.Client.SL.Modules.BaseInfo;
 using Scada.Client.SL.Modules.Device;
 using Scada.Client.SL.Modules.Alarm;
 using Scada.Client.SL.Modules.UsersEvent;
+using Scada.Client.SL.Controls;
 
 namespace Scada.Client.SL
 {

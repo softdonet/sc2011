@@ -22,16 +22,22 @@ namespace Scada.Client.SL.Modules.Query
 {
     public partial class DeviceListQuery : UserControl
     {
+        ScadaDeviceServiceSoapClient scadaDeviceServiceSoapClient = null;
         public DeviceListQuery()
         {
             InitializeComponent();
-            ScadaDeviceServiceSoapClient scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
+            scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
             scadaDeviceServiceSoapClient.GetListDeviceInfoCompleted += new EventHandler<GetListDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_GetListDeviceInfoCompleted);
             scadaDeviceServiceSoapClient.GetListDeviceInfoAsync(new Guid("E963C95E-09A9-4AB6-A0C6-40A7DFE97991"), 3, null, null);
-
+            //刷新树结构
+            scadaDeviceServiceSoapClient.ListDeviceTreeViewCompleted += new EventHandler<ListDeviceTreeViewCompletedEventArgs>(scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted);
+            scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
            
         }
-
+        void scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted(object sender, ListDeviceTreeViewCompletedEventArgs e)
+        {
+            this.comboBoxTreeView1.Source  = BinaryObjTransfer.BinaryDeserialize<List<DeviceTreeNode>>(e.Result);
+        }
         void scadaDeviceServiceSoapClient_GetListDeviceInfoCompleted(object sender, GetListDeviceInfoCompletedEventArgs e)
         {
             this.RadGridView1.ItemsSource = BinaryObjTransfer.BinaryDeserialize<List<DeviceRealTime>>(e.Result);

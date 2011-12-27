@@ -557,6 +557,98 @@ namespace Scada.BLL.Implement
             return BinaryObjTransfer.JsonSerializer<List<StepInfo>>(stepInfos);
         }
 
+        public Boolean UpdateEventState(Guid EventID)
+        {
+            Boolean result = false;
+            String sSql = @" Update UserEvent Set State=2 
+                                Where ID='" + EventID.ToString().ToUpper() + "'";
+            try
+            {
+                SqlHelper.ExecuteNonQuery(sSql);
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                result = false;
+            }
+            return result;
+        }
+
+        public Boolean ProcessingStepNo(String EventDealDetail)
+        {
+
+            Boolean result = false;
+            if (String.IsNullOrEmpty(EventDealDetail)) { return result; }
+            EventDealDetail eDealDetail = BinaryObjTransfer.JsonDeserialize<EventDealDetail>(EventDealDetail);
+            if (eDealDetail == null) { return result; }
+            String sSql = @" Insert Into UserEventDealDetail(ID,EventID,UserID,StepNo,
+                                            StepName,Memo,Operator,DealTime) 
+                            Values (@ID,@EventID,@UserID,@StepNo,@StepName,@Memo,@Operator,@DealTime)";
+            SqlParameter para = null;
+            List<SqlParameter> sSqlWhere = new List<SqlParameter>();
+
+            para = new SqlParameter();
+            para.DbType = DbType.Guid;
+            para.ParameterName = "@ID";
+            para.Value = eDealDetail.DetailID;
+            sSqlWhere.Add(para);
+
+            para = new SqlParameter();
+            para.DbType = DbType.Guid;
+            para.ParameterName = "@EventID";
+            para.Value = eDealDetail.EventID;
+            sSqlWhere.Add(para);
+
+            para = new SqlParameter();
+            para.DbType = DbType.Guid;
+            para.ParameterName = "@UserID";
+            para.Value = eDealDetail.UserID;
+            sSqlWhere.Add(para);
+
+            para = new SqlParameter();
+            para.DbType = DbType.Int32;
+            para.ParameterName = "@StepNo";
+            para.Value = eDealDetail.StepNo;
+            sSqlWhere.Add(para);
+
+            para = new SqlParameter();
+            para.DbType = DbType.String;
+            para.ParameterName = "@StepName";
+            para.Value = eDealDetail.StepName;
+            sSqlWhere.Add(para);
+
+            para = new SqlParameter();
+            para.DbType = DbType.String;
+            para.ParameterName = "@Memo";
+            para.Value = eDealDetail.Memo;
+            sSqlWhere.Add(para);
+
+            para = new SqlParameter();
+            para.DbType = DbType.Guid;
+            para.ParameterName = "@Operator";
+            para.Value = eDealDetail.Operator;
+            sSqlWhere.Add(para);
+
+            para = new SqlParameter();
+            para.DbType = DbType.DateTime;
+            para.ParameterName = "@DealTime";
+            para.Value = eDealDetail.DealTime;
+            sSqlWhere.Add(para);
+
+            try
+            {
+                SqlHelper.ExecuteNonQuery(CommandType.Text, sSql, sSqlWhere.ToArray());
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                result = false;
+            }
+            return result;
+        }
+
         #endregion
 
 

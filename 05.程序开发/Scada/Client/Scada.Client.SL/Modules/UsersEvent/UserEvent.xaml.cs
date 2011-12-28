@@ -105,15 +105,16 @@ namespace Scada.Client.SL.Modules.UsersEvent
             //RadWindow.Alert(String.Format("DialogResult: {0}, PromptResult: {1}", e.DialogResult, e.PromptResult));
         }
 
-        private Guid id;
+        private Guid id, deviceid;
         private int? state;
         private void hlBtn_Click(object sender, RoutedEventArgs e)
         {
             HyperlinkButton hlB = sender as HyperlinkButton;
+            UserEventTab userEventTab = hlB.DataContext as UserEventTab;
             id = (hlB.DataContext as UserEventTab).ID;
             state = (hlB.DataContext as UserEventTab).State;
             Storyboard1.Begin();
-            MyContent.Content = new UserEventProcess(id, state);
+            MyContent.Content = new UserEventProcess(userEventTab);
             MyContent.Title = "用户事件流程";
         }
         #endregion

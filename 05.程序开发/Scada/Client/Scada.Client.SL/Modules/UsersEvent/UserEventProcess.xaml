@@ -52,6 +52,6 @@
             <Button Content="确认" Height="23" Margin="10,0,0,0" Width="75" Name="btnStep5" Click="btnStep_Click" />
             <TextBlock Height="23" Margin="10,0,0,0" Text="确认人：XX 时间：2011-12-23 12:15:45" Name="txtblk5" />
         </StackPanel>
-        <ToggleButton Content="关闭" HorizontalAlignment="Center"   Width="90" Grid.Row="6" Margin="355,17,355,0" Height="48" VerticalAlignment="Top" Name="tbtnClose" />
+        <ToggleButton Content="关闭" HorizontalAlignment="Center"   Width="90" Grid.Row="6" Margin="355,17,355,0" Height="48" VerticalAlignment="Top" Name="tbtnClose" Checked="tbtnClose_Checked" />
     </Grid>
 </UserControl>

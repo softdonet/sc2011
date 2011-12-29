@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Scada.Client.SL.ScadaDeviceService;
 using Scada.Client.SL.CommClass;
 using Scada.Model.Entity;
+using System.Windows.Controls.Primitives;
 
 namespace Scada.Client.SL.Modules.UsersEvent
 {
@@ -22,6 +23,8 @@ namespace Scada.Client.SL.Modules.UsersEvent
         private UserEventTab userEventTab;
         public Guid myGuid { get; set; }
         public int?state;
+
+        private bool isBtnEnter;
         #endregion
 
         #region 构造函数
@@ -49,9 +52,14 @@ namespace Scada.Client.SL.Modules.UsersEvent
                 tbtnEnter.IsEnabled = true;
                 setSteptState(false);
             }
+            else if (state==2)
+            {
+                tbtnEnter.IsEnabled = false;
+            }
             else
             {
                 tbtnEnter.IsEnabled = false;
+                tbtnClose.IsEnabled = false;
             }
 
             ///从服务上获取下拉框数据
@@ -90,7 +98,19 @@ namespace Scada.Client.SL.Modules.UsersEvent
         {
             List<EventDealDetail> eventDealDetail = BinaryObjTransfer.BinaryDeserialize<List<EventDealDetail>>(e.Result);
             //EventDealDetail[] ArrEventDealDetail = eventDealDetail.ToArray();
-         
+            if (userEventTab.State == 1)
+            {
+                tbtnEnter.IsEnabled = true;
+            }
+            else
+            {
+                if (eventDealDetail == null)
+                {
+                    tbtnEnter.IsEnabled = false;
+                    setStept1State();
+                    return;
+                }
+            }
             foreach (EventDealDetail item in eventDealDetail)
             {
 
@@ -143,8 +163,12 @@ namespace Scada.Client.SL.Modules.UsersEvent
 
         private int getSelectIndex(string stepName)
         {
-            List<StepInfo> list = this.cmbStep1.ItemsSource as List<StepInfo>;
             int flag = -1;
+            List<StepInfo> list = this.cmbStep1.ItemsSource as List<StepInfo>;
+            if (list==null)
+            {
+                return flag;
+            }
             for (int i = 0; i < list.Count; i++)
             {
                 if (list[i].StepName == stepName)
@@ -350,9 +374,10 @@ namespace Scada.Client.SL.Modules.UsersEvent
 
         private void tbtnEnter_Checked(object sender, RoutedEventArgs e)
         {
+            isBtnEnter = true;
             this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
             _scadaDeviceServiceSoapClient.UpdateEventStateCompleted += new EventHandler<UpdateEventStateCompletedEventArgs>(_scadaDeviceServiceSoapClient_UpdateEventStateCompleted);
-            _scadaDeviceServiceSoapClient.UpdateEventStateAsync(myGuid);
+            _scadaDeviceServiceSoapClient.UpdateEventStateAsync(myGuid, 2);
             
             //if (true)
             //{
@@ -362,15 +387,36 @@ namespace Scada.Client.SL.Modules.UsersEvent
 
         void _scadaDeviceServiceSoapClient_UpdateEventStateCompleted(object sender, UpdateEventStateCompletedEventArgs e)
         {
+            //ToggleButton tbtn = sender as ToggleButton;
+
             bool flag = e.Result;
             if (flag)
             {
-                tbtnEnter.IsEnabled = false;
-                setStept1State();
+                //判断是否点击的是进入按钮还是关闭按钮
+                if (isBtnEnter)
+                {
+                    tbtnEnter.IsEnabled = false;
+                    setStept1State();
+                }
+                else
+                {
+                    tbtnClose.IsEnabled = false;
+                    setSteptState(false);
+                }
+               
             }
             else
             {
-                tbtnEnter.IsEnabled = true;
+                if (isBtnEnter)
+                {
+                    tbtnEnter.IsEnabled = true;
+                    setSteptState(false);
+                }
+                else
+                {
+                    tbtnClose.IsEnabled = true;
+                }
+               
             }
         }
 
@@ -381,12 +427,7 @@ namespace Scada.Client.SL.Modules.UsersEvent
             eventDealDetail.DetailID = Guid.NewGuid();
             eventDealDetail.EventID = userEventTab.ID;
             eventDealDetail.OperatorId = new Guid("B1EE865D-E279-431F-97CD-2BADC04A850D");
-            eventDealDetail.StepName = ((StepInfo)(cmbStep1.SelectionBoxItem)).StepName;
-            eventDealDetail.Memo = txtStep1.Text.Trim();
             eventDealDetail.DealTime = DateTime.Now;
-            string strSerializer = BinaryObjTransfer.BinarySerialize<EventDealDetail>(eventDealDetail);
-
-            _scadaDeviceServiceSoapClient.ProcessingStepNoAsync(strSerializer);
 
 
             Button btn = sender as Button;
@@ -397,21 +438,21 @@ namespace Scada.Client.SL.Modules.UsersEvent
                     eventDealDetail.StepNo = 1;
                     eventDealDetail.StepName = ((StepInfo)(cmbStep1.SelectionBoxItem)).StepName;
                     eventDealDetail.Memo = txtStep1.Text.Trim();
-
+                    txtblk1.Text = "确认人：" + "admin" + " 确认时间：" + DateTime.Now;
                     setStept2State();
                     break;
                 case "btnStep2":
                     eventDealDetail.StepNo = 2;
                     eventDealDetail.StepName = ((StepInfo)(cmbStep2.SelectionBoxItem)).StepName;
                     eventDealDetail.Memo = txtStep2.Text.Trim();
-
+                    txtblk2.Text = "确认人：" + "admin" + " 确认时间：" + DateTime.Now;
                     setStept3State();
                     break;
                 case "btnStep3":
                     eventDealDetail.StepNo = 3;
                     eventDealDetail.StepName = ((StepInfo)(cmbStep3.SelectionBoxItem)).StepName;
                     eventDealDetail.Memo = txtStep3.Text.Trim();
-
+                    txtblk3.Text = "确认人：" + "admin" + " 确认时间：" + DateTime.Now;
                     setStept4State();
                     break;
 
@@ -419,32 +460,46 @@ namespace Scada.Client.SL.Modules.UsersEvent
                     eventDealDetail.StepNo = 4;
                     eventDealDetail.StepName = ((StepInfo)(cmbStep4.SelectionBoxItem)).StepName;
                     eventDealDetail.Memo = txtStep4.Text.Trim();
-
+                    txtblk4.Text = "确认人：" + "admin" + " 确认时间：" + DateTime.Now;
                     setStept5State();
                     break;
                 case "btnStep5":
                     eventDealDetail.StepNo = 5;
                     eventDealDetail.StepName = ((StepInfo)(cmbStep5.SelectionBoxItem)).StepName;
                     eventDealDetail.Memo = txtStep5.Text.Trim();
-
+                    txtblk5.Text = "确认人：" + "admin" + " 确认时间：" + DateTime.Now;
                     setSteptState(false);
                     break;
                 default:
                     break;
             }
+            string strSerializer = BinaryObjTransfer.BinarySerialize<EventDealDetail>(eventDealDetail);
+
+            _scadaDeviceServiceSoapClient.ProcessingStepNoAsync(strSerializer);
+
         }
-      
-        
-        #endregion
 
         private void tbtnClose_Checked(object sender, RoutedEventArgs e)
         {
             //
-            if (btnStep5.IsEnabled==false)
+            isBtnEnter = false;
+            if (btnStep5.IsEnabled == false)
             {
-                //把State=2 改成 State=3.
+                this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
+                _scadaDeviceServiceSoapClient.UpdateEventStateCompleted += new EventHandler<UpdateEventStateCompletedEventArgs>(_scadaDeviceServiceSoapClient_UpdateEventStateCompleted);
+                _scadaDeviceServiceSoapClient.UpdateEventStateAsync(myGuid, 3);
+
+            }
+            else
+            {
+                MessageBox.Show("请完成以上步骤!", "提示", MessageBoxButton.OK);
             }
         }
+
+      
+        
+        #endregion
+
 
 
     }

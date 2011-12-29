@@ -43,7 +43,7 @@ namespace Scada.BLL.Contract
         Boolean UpdateUserEventInfo(string EventDetails);
         string GetListStepInfo();
 
-        Boolean UpdateEventState(Guid EventID);
+        Boolean UpdateEventState(Guid EventID,int state);
         Boolean ProcessingStepNo(String EventDealDetail);
 
 

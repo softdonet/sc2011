@@ -89,7 +89,7 @@ namespace Scada.Client.SL.ScadaDeviceService {
         Scada.Client.SL.ScadaDeviceService.GetListStepInfoResponse EndGetListStepInfo(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/UpdateEventState", ReplyAction="*")]
-        System.IAsyncResult BeginUpdateEventState(System.Guid EventID, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginUpdateEventState(System.Guid EventID, int state, System.AsyncCallback callback, object asyncState);
         
         bool EndUpdateEventState(System.IAsyncResult result);
         
@@ -2369,8 +2369,8 @@ namespace Scada.Client.SL.ScadaDeviceService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.BeginUpdateEventState(System.Guid EventID, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginUpdateEventState(EventID, callback, asyncState);
+        System.IAsyncResult Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.BeginUpdateEventState(System.Guid EventID, int state, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateEventState(EventID, state, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2380,7 +2380,8 @@ namespace Scada.Client.SL.ScadaDeviceService {
         
         private System.IAsyncResult OnBeginUpdateEventState(object[] inValues, System.AsyncCallback callback, object asyncState) {
             System.Guid EventID = ((System.Guid)(inValues[0]));
-            return ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginUpdateEventState(EventID, callback, asyncState);
+            int state = ((int)(inValues[1]));
+            return ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginUpdateEventState(EventID, state, callback, asyncState);
         }
         
         private object[] OnEndUpdateEventState(System.IAsyncResult result) {
@@ -2396,11 +2397,11 @@ namespace Scada.Client.SL.ScadaDeviceService {
             }
         }
         
-        public void UpdateEventStateAsync(System.Guid EventID) {
-            this.UpdateEventStateAsync(EventID, null);
+        public void UpdateEventStateAsync(System.Guid EventID, int state) {
+            this.UpdateEventStateAsync(EventID, state, null);
         }
         
-        public void UpdateEventStateAsync(System.Guid EventID, object userState) {
+        public void UpdateEventStateAsync(System.Guid EventID, int state, object userState) {
             if ((this.onBeginUpdateEventStateDelegate == null)) {
                 this.onBeginUpdateEventStateDelegate = new BeginOperationDelegate(this.OnBeginUpdateEventState);
             }
@@ -2411,7 +2412,8 @@ namespace Scada.Client.SL.ScadaDeviceService {
                 this.onUpdateEventStateCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateEventStateCompleted);
             }
             base.InvokeAsync(this.onBeginUpdateEventStateDelegate, new object[] {
-                        EventID}, this.onEndUpdateEventStateDelegate, this.onUpdateEventStateCompletedDelegate, userState);
+                        EventID,
+                        state}, this.onEndUpdateEventStateDelegate, this.onUpdateEventStateCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2733,9 +2735,10 @@ namespace Scada.Client.SL.ScadaDeviceService {
                 return _result;
             }
             
-            public System.IAsyncResult BeginUpdateEventState(System.Guid EventID, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[1];
+            public System.IAsyncResult BeginUpdateEventState(System.Guid EventID, int state, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
                 _args[0] = EventID;
+                _args[1] = state;
                 System.IAsyncResult _result = base.BeginInvoke("UpdateEventState", _args, callback, asyncState);
                 return _result;
             }

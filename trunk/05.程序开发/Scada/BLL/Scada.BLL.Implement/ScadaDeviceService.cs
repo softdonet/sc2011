@@ -552,11 +552,11 @@ namespace Scada.BLL.Implement
             return BinaryObjTransfer.JsonSerializer<List<StepInfo>>(stepInfos);
         }
 
-        public Boolean UpdateEventState(Guid EventID)
+        public Boolean UpdateEventState(Guid EventID,int state)
         {
             Boolean result = false;
-            String sSql = @" Update UserEvent Set State=2 
-                                Where ID='" + EventID.ToString().ToUpper() + "'";
+            String sSql = @" Update UserEvent Set State=" + state +
+                                " Where ID='" + EventID.ToString().ToUpper() + "'";
             try
             {
                 SqlHelper.ExecuteNonQuery(sSql);

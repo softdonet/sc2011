@@ -3,16 +3,28 @@
 namespace Scada.BLL.Contract
 {
 
-
     public interface IScadaDeviceService
     {
+
+
+        #region 测试方法
 
         //测试流程
         int Add(int x, int y);
 
+        #endregion
+
+
+        #region 设备查询
+
         //设备查询
         string GetListDeviceInfo(Guid DeviceID, Int32 DeviceType,
                                     DateTime? StartDate, DateTime? EndDate);
+
+        #endregion
+
+
+        #region 设备管理
 
         //增加设备
         Boolean AddDeviceInfo(string deviceInfo);
@@ -32,20 +44,31 @@ namespace Scada.BLL.Contract
         //列出设备树形信息
         string ListDeviceTreeView();
 
+        #endregion
 
-        //设备告警信息
+
+        #region 设备告警
+
+        //列出告警信息
         string GetListDeviceAlarmInfo();
-        Boolean UpdateDeviceAlarmInfo(Guid AlarmId, DateTime ConfirmTime, String Comment, String DealPeople);
+        //更秘诀告警状态
+        Boolean UpdateDeviceAlarmInfo(Guid AlarmId, DateTime ConfirmTime,
+                                            String Comment, String DealPeople);
 
-        //用户事件
+        #endregion
+
+
+        #region 用户事件
+
         string GetListUserEventInfo();
         string GetUserEventKeyInfo(Guid EventKey);
         Boolean UpdateUserEventInfo(string EventDetails);
         string GetListStepInfo();
 
-        Boolean UpdateEventState(Guid EventID,int state);
+        Boolean UpdateEventState(Guid EventID, int state);
         Boolean ProcessingStepNo(String EventDealDetail);
 
+        #endregion
 
     }
 }

@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Net.Sockets;
 
 namespace DataCollecting.Common
 {
+
     /// <summary>
     /// 通讯命令枚举
     /// </summary>
@@ -21,7 +23,7 @@ namespace DataCollecting.Common
         /// <summary>
         /// 设备请求配置信息
         /// </summary>
-        cmd_GetConfig = 0x03,
+        cmd_Config = 0x03,
         /// <summary>
         /// 设备主动发送实时数据
         /// </summary>
@@ -42,5 +44,11 @@ namespace DataCollecting.Common
         /// 没有命令
         /// </summary>
         cmd_null
+    }
+
+    public struct ClientInfo
+    {
+        public Socket socket;   //Socket of the client
+        public int intDevnum;  //设备编号（设备编号从1开始，0为非法设备）
     }
 }

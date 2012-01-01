@@ -24,7 +24,7 @@ namespace DataCollecting.Helper
                 }
                 result = result + temp;
             }
-            return result;
+            return result.ToUpper();
         }
     }
 }

@@ -9,44 +9,7 @@ using System.Text;
 
 namespace DataCollecting
 {
-    /// <summary>
-    /// 通讯命令枚举
-    /// </summary>
-    public enum Command
-    {
-        /// <summary>
-        ///设备链路测试
-        /// </summary>
-        cmd_Test = 0x01,
-        /// <summary>
-        /// 设备主动关闭告知
-        /// </summary>
-        cmd_Logout = 0x02,
-        /// <summary>
-        /// 设备请求配置信息
-        /// </summary>
-        cmd_GetConfig = 0x03,
-        /// <summary>
-        /// 设备主动发送实时数据
-        /// </summary>
-        cmd_RealTimeDate = 0x04,
-        /// <summary>
-        /// 设备侧发送用户事件
-        /// </summary>
-        cmd_UserEvent = 0x05,
-        /// <summary>
-        /// 设备到厂家服务器注册（固定IP+默认端口)
-        /// </summary>
-        cmd_Register = 0xFD,
-        /// <summary>
-        /// 设备请求固件更新
-        /// </summary>
-        cmd_FirmwareRequest = 0xFE,
-        /// <summary>
-        /// 没有命令
-        /// </summary>
-        cmd_null
-    }
+   
 
     public class NetData
     {
@@ -137,7 +100,7 @@ namespace DataCollecting
             //设备序列号(7-12)
             byte[] ldeviceSN = new byte[4];
             Array.Copy(data, 7, ldeviceSN, 0, 4);
-            deviceSN = DataToStr(ldeviceSN) + BitConverter.ToUInt16(data, 11).ToString("0000");
+            deviceSN = StringHelper.DataToStr(ldeviceSN) + BitConverter.ToUInt16(data, 11).ToString("0000");
             //状态(13)
             state = data[13];
             //时间戳(14-20)
@@ -151,23 +114,33 @@ namespace DataCollecting
         }
 
         /// <summary>
-        /// 字节转化为字符
+        /// 转化为字节数组
         /// </summary>
-        /// <param name="data"></param>
         /// <returns></returns>
-        public string DataToStr(byte[] data)
+        public byte[] ToByte()
         {
-            string result = "";
-            for (int i = 0; i < data.Length; i++)
-            {
-                string temp = Convert.ToString(data[i], 16);
-                if (temp.Length == 1)
-                {
-                    temp = "0" + temp;
-                }
-                result = result + temp;
-            }
-            return result;
+            List<byte> result = new List<byte>();
+            //压入报头字符
+            result.AddRange(BitConverter.GetBytes(cmdHeader));
+            //压入功能吗
+            result.Add((byte)cmdCommand);
+            //压入数据上下文
+            result.AddRange(BitConverter.GetBytes(dataContext));
+            //------------------------------------------
+            //ushort报文总长度（5--6）。插入报文长度。待数据报文生成之后。InsertRange插入。
+            //------------------------------------------
+            //压入设备序列号
+            result.AddRange(System.Text.ASCIIEncoding.Default.GetBytes(deviceSN));
+            //压入状态
+            result.Add(state);
+            //压入时间
+            result.AddRange(BitConverter.GetBytes((ushort)DateTime.Now.Year));
+            result.Add((byte)DateTime.Now.Month);
+            result.Add((byte)DateTime.Now.Day);
+            result.Add((byte)DateTime.Now.Hour);
+            result.Add((byte)DateTime.Now.Minute);
+            result.Add((byte)DateTime.Now.Second);
+            return result.ToArray();
         }
     }
 }

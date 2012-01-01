@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DataCollecting
+namespace DataCollecting.Common
 {
     /// <summary>
     /// 通讯命令枚举

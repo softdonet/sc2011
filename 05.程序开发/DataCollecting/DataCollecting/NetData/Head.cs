@@ -6,12 +6,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DataCollecting.Common;
+using DataCollecting.Helper;
 
-namespace DataCollecting
+namespace DataCollecting.NetData
 {
    
 
-    public class NetData
+    public class Head
     {
         #region 报头
 
@@ -87,7 +89,7 @@ namespace DataCollecting
 
         #endregion
 
-        public NetData(byte[] data)
+        public Head(byte[] data)
         {
             //命令头(0-1)
             cmdHeader = BitConverter.ToUInt16(data, 0);

@@ -24,39 +24,42 @@ namespace DataCollecting.NetData
             int blockLength = blockCount * 48;
             //取出数据块内容
             byte[] dataBlock = new byte[blockLength];
-            Array.Copy(data, 21, dataBlock, 0, blockLength);
+            Array.Copy(data, 22, dataBlock, 0, blockLength);
             //放大比例
             decimal ratio = 100;
             for (int i = 0; i < blockCount; i++)
             {
                 RealTimeDataBlock realTimeDataBlock = new RealTimeDataBlock();
                 //块序号
-                realTimeDataBlock.BlockNo = Convert.ToInt32(dataBlock[i * blockSize]);
+                realTimeDataBlock.BlockNo = dataBlock[i * blockSize];
                 //时间戳
                 byte[] datetime = new byte[7];
-                Array.Copy(data, i * blockSize + 1, datetime, 0, 7);
+                Array.Copy(dataBlock, i * blockSize + 1, datetime, 0, 7);
                 realTimeDataBlock.SateTimeMark = StringHelper.ByteToDateTime(datetime);
                 //温度1
-                realTimeDataBlock.Temperature1 = dataBlock[i * blockSize + 8] / ratio;
+                realTimeDataBlock.Temperature1 = BitConverter.ToUInt16(dataBlock, i * blockSize + 8) / ratio;
                 //温度2
-                realTimeDataBlock.Temperature2 = dataBlock[i * blockSize + 9] / ratio;
+                realTimeDataBlock.Temperature2 = BitConverter.ToUInt16(dataBlock, i * blockSize + 10) / ratio;
                 //温度3
-                realTimeDataBlock.Temperature3 = dataBlock[i * blockSize + 10] / ratio;
+                realTimeDataBlock.Temperature3 = BitConverter.ToUInt16(dataBlock, i * blockSize + 12) / ratio;
                 //温度4
-                realTimeDataBlock.Temperature4 = dataBlock[i * blockSize + 11] / ratio;
+                realTimeDataBlock.Temperature4 = BitConverter.ToUInt16(dataBlock, i * blockSize + 14) / ratio;
                 //温度5
-                realTimeDataBlock.Temperature5 = dataBlock[i * blockSize + 12] / ratio;
+                realTimeDataBlock.Temperature5 = BitConverter.ToUInt16(dataBlock, i * blockSize + 16) / ratio;
                 //湿度
-                realTimeDataBlock.Humidity = dataBlock[i * blockSize + 13] / ratio;
+                realTimeDataBlock.Humidity = BitConverter.ToUInt16(dataBlock, i * blockSize + 18) / ratio;
                 //电量
-                realTimeDataBlock.Electric = dataBlock[i * blockSize + 14] / ratio;
+                realTimeDataBlock.Electric = BitConverter.ToUInt16(dataBlock, i * blockSize + 20) / ratio;
                 //信号
-                realTimeDataBlock.Signal = dataBlock[i * blockSize + 15] / ratio;
+                realTimeDataBlock.Signal = BitConverter.ToUInt16(dataBlock, i * blockSize + 22) / ratio;
                 //加载到集合
                 realTimeDataBlocks.Add(realTimeDataBlock);
             }
         }
 
+        public RealTimeData_R()
+        {
+        }
         /// <summary>
         /// 数据块个数
         /// </summary>
@@ -74,6 +77,40 @@ namespace DataCollecting.NetData
         {
             get { return realTimeDataBlocks; }
             set { realTimeDataBlocks = value; }
+        }
+
+        /// <summary>
+        /// 转化为字节数组
+        /// </summary>
+        /// <returns></returns>
+        public byte[] ToByte()
+        {
+            List<byte> result = new List<byte>();
+            result.AddRange(Header.ToByte());
+            result.Add((byte)realTimeDataBlocks.Count);
+            for (byte i = 0; i < 3; i++)
+            {
+                result.Add(realTimeDataBlocks[i].BlockNo);
+                result.AddRange(StringHelper.DateTimeToByte(realTimeDataBlocks[i].SateTimeMark));
+                result.AddRange(BitConverter.GetBytes((ushort)(realTimeDataBlocks[i].Temperature1 * 100)));
+                result.AddRange(BitConverter.GetBytes((ushort)(realTimeDataBlocks[i].Temperature2 * 100)));
+                result.AddRange(BitConverter.GetBytes((ushort)(realTimeDataBlocks[i].Temperature3 * 100)));
+                result.AddRange(BitConverter.GetBytes((ushort)(realTimeDataBlocks[i].Temperature4 * 100)));
+                result.AddRange(BitConverter.GetBytes((ushort)(realTimeDataBlocks[i].Temperature5 * 100)));
+                result.AddRange(BitConverter.GetBytes((ushort)(realTimeDataBlocks[i].Humidity * 100)));
+                result.AddRange(BitConverter.GetBytes((ushort)(realTimeDataBlocks[i].Electric * 100)));
+                result.AddRange(BitConverter.GetBytes((ushort)(realTimeDataBlocks[i].Signal * 100)));
+                //补零
+                for (int j = 0; j < 48 - 24; j++)
+                {
+                    result.Add(0x00);
+                }
+            }
+            //压入校验位
+            result.AddRange(BitConverter.GetBytes((ushort)43605));
+            //插入总长度
+            result.InsertRange(5, BitConverter.GetBytes((ushort)(result.Count + 2)));
+            return result.ToArray();
         }
     }
 }

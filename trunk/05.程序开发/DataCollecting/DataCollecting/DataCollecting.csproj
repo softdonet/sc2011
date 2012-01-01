@@ -46,13 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\RealTimeDataBlock.cs" />
     <Compile Include="NetData\Config_R.cs" />
     <Compile Include="NetData\Config_S.cs" />
     <Compile Include="NetData\FirmwareRequest_R.cs" />
     <Compile Include="NetData\FirmwareRequest_S.cs" />
     <Compile Include="NetData\Logout_R.cs" />
     <Compile Include="NetData\MessageBase.cs" />
-    <Compile Include="Common\Common.cs" />
+    <Compile Include="Common\Command.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

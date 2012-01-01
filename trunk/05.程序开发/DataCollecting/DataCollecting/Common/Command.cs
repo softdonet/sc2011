@@ -45,10 +45,4 @@ namespace DataCollecting.Common
         /// </summary>
         cmd_null
     }
-
-    public struct ClientInfo
-    {
-        public Socket socket;   //Socket of the client
-        public int intDevnum;  //设备编号（设备编号从1开始，0为非法设备）
-    }
 }

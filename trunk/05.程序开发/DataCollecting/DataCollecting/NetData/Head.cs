@@ -11,7 +11,7 @@ using DataCollecting.Helper;
 
 namespace DataCollecting.NetData
 {
-   
+
 
     public class Head
     {
@@ -88,7 +88,9 @@ namespace DataCollecting.NetData
         }
 
         #endregion
-
+        public Head()
+        {
+        }
         public Head(byte[] data)
         {
             //命令头(0-1)
@@ -130,9 +132,22 @@ namespace DataCollecting.NetData
             result.AddRange(BitConverter.GetBytes(dataContext));
             //------------------------------------------
             //ushort报文总长度（5--6）。插入报文长度。待数据报文生成之后。InsertRange插入。
+            //此处测试用
+            result.AddRange(BitConverter.GetBytes(commandCount));
             //------------------------------------------
             //压入设备序列号
-            result.AddRange(System.Text.ASCIIEncoding.Default.GetBytes(deviceSN));
+            //-----------------------------------------------
+            //省级
+            result.Add(Convert.ToByte((deviceSN.Substring(0, 2)),16));
+            //市级
+            result.Add(Convert.ToByte((deviceSN.Substring(2, 2)), 16));
+            //区县
+            result.Add(Convert.ToByte((deviceSN.Substring(4, 2)), 16));
+            //公司编号及设备类型
+            result.Add(Convert.ToByte((deviceSN.Substring(6, 2)), 16));
+            //公司编号及设备类型
+            result.AddRange(BitConverter.GetBytes(Convert.ToUInt16(deviceSN.Substring(8, 4))));
+            //-------------------------------------------------
             //压入状态
             result.Add(state);
             //压入时间

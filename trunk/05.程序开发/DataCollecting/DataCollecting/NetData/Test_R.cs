@@ -10,5 +10,9 @@ namespace DataCollecting.NetData
     /// </summary>
     public class Test_R : MessageBase
     {
+        public Test_R(byte[] data)
+        {
+            this.Header = new Head(data);
+        }
     }
 }

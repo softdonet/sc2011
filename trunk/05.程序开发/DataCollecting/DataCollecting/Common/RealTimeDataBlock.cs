@@ -13,8 +13,8 @@ namespace DataCollecting.Common
         /// <summary>
         /// 数据序号
         /// </summary>
-        private int blockNo;
-        public int BlockNo
+        private byte blockNo;
+        public byte BlockNo
         {
             get { return blockNo; }
             set { blockNo = value; }

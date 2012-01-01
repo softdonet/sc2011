@@ -63,5 +63,22 @@ namespace DataCollecting.Helper
                          data[6].ToString()));
             return obj;
         }
+
+        /// <summary>
+        /// 字节数组转化为时间
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static byte[] DateTimeToByte(DateTime  dt)
+        {
+            List<byte> result = new List<byte>();
+            result.AddRange(BitConverter.GetBytes((ushort)DateTime.Now.Year));
+            result.Add((byte)DateTime.Now.Month);
+            result.Add((byte)DateTime.Now.Day);
+            result.Add((byte)DateTime.Now.Hour);
+            result.Add((byte)DateTime.Now.Minute);
+            result.Add((byte)DateTime.Now.Second);
+            return result.ToArray();
+        }
     }
 }

@@ -129,7 +129,7 @@ namespace DataCollecting.NetData
             //------------------------------------------
             //ushort报文总长度（5--6）。插入报文长度。待数据报文生成之后。InsertRange插入。
             //此处测试用
-            result.AddRange(BitConverter.GetBytes(commandCount));
+            //result.AddRange(BitConverter.GetBytes(commandCount));
             //------------------------------------------
             //压入设备序列号
             //-----------------------------------------------

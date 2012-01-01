@@ -108,13 +108,9 @@ namespace DataCollecting.NetData
             //状态(13)
             state = data[13];
             //时间戳(14-20)
-            sateTimeMark = Convert.ToDateTime(string.Format("{0}-{1}-{2} {3}:{4}:{5}",
-                BitConverter.ToUInt16(data, 14),
-                data[16].ToString(),
-                data[17].ToString(),
-                data[18].ToString(),
-                data[19].ToString(),
-                data[20].ToString()));
+            byte[] datetime = new byte[7];
+            Array.Copy(data, 14, datetime, 0, 7);
+            sateTimeMark = StringHelper.ByteToDateTime(datetime);
         }
 
         /// <summary>

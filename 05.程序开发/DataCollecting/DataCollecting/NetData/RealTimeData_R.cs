@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DataCollecting.Common;
+using DataCollecting.Helper;
 
 namespace DataCollecting.NetData
 {
@@ -10,5 +12,68 @@ namespace DataCollecting.NetData
     /// </summary>
     public class RealTimeData_R : MessageBase
     {
+        public RealTimeData_R(byte[] data)
+        {
+            //取出头部
+            this.Header = new Head(data);
+            //每个块占字节数
+            int blockSize = 48;
+            //数据块数
+            blockCount = Convert.ToInt32(data[21]);
+            //数据块长度
+            int blockLength = blockCount * 48;
+            //取出数据块内容
+            byte[] dataBlock = new byte[blockLength];
+            Array.Copy(data, 21, dataBlock, 0, blockLength);
+            //放大比例
+            decimal ratio = 100;
+            for (int i = 0; i < blockCount; i++)
+            {
+                RealTimeDataBlock realTimeDataBlock = new RealTimeDataBlock();
+                //块序号
+                realTimeDataBlock.BlockNo = Convert.ToInt32(dataBlock[i * blockSize]);
+                //时间戳
+                byte[] datetime = new byte[7];
+                Array.Copy(data, i * blockSize + 1, datetime, 0, 7);
+                realTimeDataBlock.SateTimeMark = StringHelper.ByteToDateTime(datetime);
+                //温度1
+                realTimeDataBlock.Temperature1 = dataBlock[i * blockSize + 8] / ratio;
+                //温度2
+                realTimeDataBlock.Temperature2 = dataBlock[i * blockSize + 9] / ratio;
+                //温度3
+                realTimeDataBlock.Temperature3 = dataBlock[i * blockSize + 10] / ratio;
+                //温度4
+                realTimeDataBlock.Temperature4 = dataBlock[i * blockSize + 11] / ratio;
+                //温度5
+                realTimeDataBlock.Temperature5 = dataBlock[i * blockSize + 12] / ratio;
+                //湿度
+                realTimeDataBlock.Humidity = dataBlock[i * blockSize + 13] / ratio;
+                //电量
+                realTimeDataBlock.Electric = dataBlock[i * blockSize + 14] / ratio;
+                //信号
+                realTimeDataBlock.Signal = dataBlock[i * blockSize + 15] / ratio;
+                //加载到集合
+                realTimeDataBlocks.Add(realTimeDataBlock);
+            }
+        }
+
+        /// <summary>
+        /// 数据块个数
+        /// </summary>
+        int blockCount;
+        public int BlockCount
+        {
+            get { return blockCount; }
+        }
+
+        /// <summary>
+        /// 数据块集合
+        /// </summary>
+        List<RealTimeDataBlock> realTimeDataBlocks = new List<RealTimeDataBlock>();
+        public List<RealTimeDataBlock> RealTimeDataBlocks
+        {
+            get { return realTimeDataBlocks; }
+            set { realTimeDataBlocks = value; }
+        }
     }
 }

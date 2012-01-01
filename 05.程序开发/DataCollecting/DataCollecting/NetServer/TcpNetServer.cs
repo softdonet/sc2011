@@ -32,6 +32,56 @@ namespace DataCollecting.NetServer
             }
         }
 
+        //定义设备请求配置信息事件
+        public delegate void ConfigHandle(Config_R config_R);
+        private ConfigHandle configEvent;
+        public event ConfigHandle ConfigEvent
+        {
+            add
+            {
+                configEvent += value;
+            }
+            remove
+            {
+                configEvent -= value;
+            }
+        }
+
+
+        //定义用户事件
+        public delegate void UserEventHandle(UserEvent_R userEvent_R);
+        private UserEventHandle userEventEvent;
+        public event UserEventHandle UserEventEvent
+        {
+            add
+            {
+                userEventEvent += value;
+            }
+            remove
+            {
+                userEventEvent -= value;
+            }
+        }
+
+        //定义设备实时信息到达事件
+        public delegate void RealTimeDataHandle(RealTimeData_R realTimeData_R);
+        private RealTimeDataHandle realTimeDataEvent;
+        public event RealTimeDataHandle RealTimeDataEvent
+        {
+            add
+            {
+                realTimeDataEvent += value;
+            }
+            remove
+            {
+                realTimeDataEvent -= value;
+            }
+        }
+
+
+
+
+
         //服务器socket,主侦听socket
         private Socket serverSocket;
         ArrayList clientList;
@@ -42,7 +92,7 @@ namespace DataCollecting.NetServer
                                          SocketType.Stream,
                                          ProtocolType.Tcp);
             //端口设置为6622
-            IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Any, 6622);
+            IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Any, 1789);
             //Bind and listen on the given address
             serverSocket.Bind(ipEndPoint);
             serverSocket.Listen(4);
@@ -83,7 +133,11 @@ namespace DataCollecting.NetServer
                 while (!wexit)
                 {
                     tmpsize = BitConverter.ToUInt16(byteData, tmpcp);
-                    if (tmpsize == 43605)
+                    if (tmpsize != 43605)
+                    {
+                        wexit = true;
+                    }
+                    else
                     {
                         header = new Head(byteData);
                         tmpsize = header.CommandCount;
@@ -99,16 +153,16 @@ namespace DataCollecting.NetServer
                 Socket clientSocket = (Socket)ar.AsyncState;
                 int nIndex = 0;
                 int tmpdevnum = 0;
-                foreach (ClientInfo client in clientList)
-                {
-                    if (client.socket == clientSocket)
-                    {
-                        tmpdevnum = client.intDevnum;
-                        clientList.RemoveAt(nIndex);
-                        break;
-                    }
-                    ++nIndex;
-                }
+                //foreach (ClientInfo client in clientList)
+                //{
+                //    if (client.socket == clientSocket)
+                //    {
+                //        tmpdevnum = client.intDevnum;
+                //        clientList.RemoveAt(nIndex);
+                //        break;
+                //    }
+                //    ++nIndex;
+                //}
                 clientSocket.Close();
 
                 System.Windows.Forms.MessageBox.Show("设备" + tmpdevnum.ToString() + "强行断开网络！", "点名中心提示");
@@ -121,7 +175,7 @@ namespace DataCollecting.NetServer
         /// </summary>
         /// <param name="clientSocket"></param>
         /// <param name="tmpdata"></param>
-        private void ReceivedCommand(Socket clientSocket, byte[] tmpdata,Command cmd)
+        private void ReceivedCommand(Socket clientSocket, byte[] tmpdata, Command cmd)
         {
             switch (cmd)
             {
@@ -135,10 +189,25 @@ namespace DataCollecting.NetServer
                 case Command.cmd_Logout:
                     break;
                 case Command.cmd_Config:
+                    Config_R cr = new Config_R(tmpdata);
+                    if (this.configEvent != null)
+                    {
+                        this.configEvent(cr);
+                    }
                     break;
                 case Command.cmd_RealTimeDate:
+                    RealTimeData_R rr = new RealTimeData_R(tmpdata);
+                    if (this.realTimeDataEvent != null)
+                    {
+                        this.realTimeDataEvent(rr);
+                    }
                     break;
                 case Command.cmd_UserEvent:
+                    UserEvent_R ur = new UserEvent_R(tmpdata);
+                    if (this.userEventEvent != null)
+                    {
+                        this.userEventEvent(ur);
+                    }
                     break;
                 case Command.cmd_Register:
                     break;
@@ -149,6 +218,8 @@ namespace DataCollecting.NetServer
                 default:
                     break;
             }
+            //保持常连接
+            clientSocket.BeginReceive(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(OnReceive), clientSocket);
         }
     }
 }

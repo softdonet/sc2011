@@ -5,7 +5,12 @@ using System.Text;
 
 namespace DataCollecting.NetData
 {
-    class UserEvent_R
+    public class UserEvent_R : MessageBase
     {
+        public UserEvent_R(byte[] data)
+        {
+            this.Header = new Head(data);
+        }
+
     }
 }

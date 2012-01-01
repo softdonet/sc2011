@@ -91,7 +91,7 @@ namespace DataCollecting.NetServer
             serverSocket = new Socket(AddressFamily.InterNetwork,
                                          SocketType.Stream,
                                          ProtocolType.Tcp);
-            //端口设置为6622
+            //端口设置为1789
             IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Any, 1789);
             //Bind and listen on the given address
             serverSocket.Bind(ipEndPoint);

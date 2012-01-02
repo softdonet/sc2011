@@ -11,8 +11,9 @@ namespace DataCollecting.NetData
     public class Config_R : MessageBase
     {
         public Config_R(byte[] data)
+            : base(data)
         {
-            this.Header = new Head(data);
+          
         }
     }
 }

@@ -13,9 +13,8 @@ namespace DataCollecting.NetData
     public class RealTimeData_R : MessageBase
     {
         public RealTimeData_R(byte[] data)
+            : base(data)
         {
-            //取出头部
-            this.Header = new Head(data);
             //每个块占字节数
             int blockSize = 48;
             //数据块数

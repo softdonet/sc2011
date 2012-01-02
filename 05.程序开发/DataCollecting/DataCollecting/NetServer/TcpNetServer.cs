@@ -133,6 +133,10 @@ namespace DataCollecting.NetServer
                 while (!wexit)
                 {
                     tmpsize = BitConverter.ToUInt16(byteData, tmpcp);
+                    /*---------------一个有效的命令--------------------
+                        2.命令头为55AA=43605、
+                        3.并且CRC16校验成功
+                    -------------------------------------------------*/
                     if (tmpsize != 43605)
                     {
                         wexit = true;
@@ -144,7 +148,12 @@ namespace DataCollecting.NetServer
                         byte[] tmpdata = new byte[tmpsize];
                         Array.Copy(byteData, tmpcp, tmpdata, 0, tmpsize);
                         tmpcp = tmpcp + tmpsize;
-                        ReceivedCommand(clientSocket, tmpdata, header.CmdCommand);
+                        //CRC16校验
+                        MessageBase mb = new MessageBase(tmpdata);
+                        if (mb.Verify())
+                        {
+                            ReceivedCommand(clientSocket, tmpdata, header.CmdCommand);
+                        }
                     }
                 }
             }
@@ -219,7 +228,7 @@ namespace DataCollecting.NetServer
                     break;
             }
             //保持常连接
-            clientSocket.BeginReceive(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(OnReceive), clientSocket);
+            //clientSocket.BeginReceive(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(OnReceive), clientSocket);
         }
     }
 }

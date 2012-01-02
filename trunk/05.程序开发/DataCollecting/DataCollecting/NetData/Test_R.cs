@@ -13,7 +13,6 @@ namespace DataCollecting.NetData
     {
         public Test_R()
         {
-
         }
 
         public Test_R(byte[] data)
@@ -49,7 +48,5 @@ namespace DataCollecting.NetData
             result.AddRange(BitConverter.GetBytes(CRC16Helper.CalculateCrc16(result.ToArray())));
             return result.ToArray();
         }
-
-
     }
 }

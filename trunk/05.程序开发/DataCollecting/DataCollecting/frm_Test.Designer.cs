@@ -33,6 +33,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.生成测试命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.生成实时数据命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.生成设备请求配置命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +53,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.生成测试命令ToolStripMenuItem,
-            this.生成实时数据命令ToolStripMenuItem});
+            this.生成实时数据命令ToolStripMenuItem,
+            this.生成设备请求配置命令ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(699, 24);
@@ -72,6 +74,13 @@
             this.生成实时数据命令ToolStripMenuItem.Size = new System.Drawing.Size(113, 20);
             this.生成实时数据命令ToolStripMenuItem.Text = "生成实时数据命令";
             this.生成实时数据命令ToolStripMenuItem.Click += new System.EventHandler(this.生成实时数据命令ToolStripMenuItem_Click);
+            // 
+            // 生成设备请求配置命令ToolStripMenuItem
+            // 
+            this.生成设备请求配置命令ToolStripMenuItem.Name = "生成设备请求配置命令ToolStripMenuItem";
+            this.生成设备请求配置命令ToolStripMenuItem.Size = new System.Drawing.Size(137, 20);
+            this.生成设备请求配置命令ToolStripMenuItem.Text = "生成设备请求配置命令";
+            this.生成设备请求配置命令ToolStripMenuItem.Click += new System.EventHandler(this.生成设备请求配置命令ToolStripMenuItem_Click);
             // 
             // frm_Test
             // 
@@ -97,6 +106,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 生成测试命令ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 生成实时数据命令ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 生成设备请求配置命令ToolStripMenuItem;
     }
 }
 

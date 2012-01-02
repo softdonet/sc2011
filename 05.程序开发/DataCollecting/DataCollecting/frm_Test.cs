@@ -128,6 +128,10 @@ namespace DataCollecting
             sb.Append("--------------------------------------" + Environment.NewLine);
             sb.Append(GetHeader(config_R));
             sb.Append("报体：" + Environment.NewLine);
+            sb.Append("    MAC地址：" + config_R.MAC + Environment.NewLine);
+            sb.Append("    SIM卡号：" + config_R.SIM + Environment.NewLine);
+            sb.Append("    设备型号：" + config_R.DeviveType + Environment.NewLine);
+            sb.Append("校验位：" + StringHelper.DataToStrV2(BitConverter.GetBytes(config_R.VerifyData)) + Environment.NewLine);
             sb.Append("--------------------------------------" + Environment.NewLine);
             SetText(sb.ToString(), false);
         }
@@ -161,7 +165,6 @@ namespace DataCollecting
             h.CmdHeader = 43605;
             h.CmdCommand = Common.Command.cmd_Test;
             h.DataContext = 43605;
-            h.CommandCount = 21;
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
             h.SateTimeMark = DateTime.Now;
@@ -184,7 +187,6 @@ namespace DataCollecting
             h.CmdHeader = 43605;
             h.CmdCommand = Common.Command.cmd_RealTimeDate;
             h.DataContext = 43605;
-            h.CommandCount = 21;
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
             h.SateTimeMark = DateTime.Now;
@@ -233,6 +235,28 @@ namespace DataCollecting
 
             SetText(StringHelper.DataToStr(rr.ToByte()) + Environment.NewLine, false);
         }
+
+        private void 生成设备请求配置命令ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Head h = new Head();
+            h.CmdHeader = 43605;
+            h.CmdCommand = Common.Command.cmd_Config;
+            h.DataContext = 43605;
+            h.DeviceSN = "0A5F01CD0001";
+            h.State = 0;
+            h.SateTimeMark = DateTime.Now;
+
+            Config_R cr = new Config_R();
+            cr.Header = h;
+            cr.MAC = "00-10-30-AF-E1-30-40";
+            cr.SIM = "10303239876321900102";
+            cr.DeviveType = "ICG-P1000-ED";
+
+            SetText(StringHelper.DataToStr(cr.ToByte()) + Environment.NewLine, false);
+        }
+
         #endregion
+
+
     }
 }

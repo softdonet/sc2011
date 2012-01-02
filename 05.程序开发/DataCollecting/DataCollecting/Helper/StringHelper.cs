@@ -40,6 +40,26 @@ namespace DataCollecting.Helper
         }
 
         /// <summary>
+        /// 字节转化为MAC
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static string DataToMACStr(byte[] data)
+        {
+            string result = "";
+            for (int i = 0; i < data.Length; i++)
+            {
+                string temp = Convert.ToString(data[i], 16);
+                if (temp.Length == 1)
+                {
+                    temp = "0" + temp;
+                }
+                result = result + temp + "-";
+            }
+            return result.ToUpper().TrimEnd('-') ;
+        }
+
+        /// <summary>
         /// 字节转化为字符(带空格)
         /// </summary>
         /// <param name="data"></param>
@@ -56,7 +76,7 @@ namespace DataCollecting.Helper
                 }
                 result = result + temp + " ";
             }
-            return result.ToUpper();
+            return result.ToUpper().TrimEnd(' '); ;
         }
 
         /// <summary>

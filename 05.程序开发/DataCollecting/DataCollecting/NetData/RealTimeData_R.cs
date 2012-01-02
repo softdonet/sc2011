@@ -106,10 +106,10 @@ namespace DataCollecting.NetData
                     result.Add(0x00);
                 }
             }
-            //压入校验位
-            result.AddRange(BitConverter.GetBytes((ushort)43605));
             //插入总长度
-            result.InsertRange(5, BitConverter.GetBytes((ushort)(result.Count + 2)));
+            result.InsertRange(5, BitConverter.GetBytes((ushort)(result.Count + 4)));
+            //压入校验位
+            result.AddRange(BitConverter.GetBytes(CRC16Helper.CalculateCrc16(result.ToArray())));
             return result.ToArray();
         }
     }

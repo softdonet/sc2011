@@ -171,7 +171,6 @@ namespace DataCollecting
             tr.Content = 1234;
 
             SetText(StringHelper.DataToStr(tr.ToByte()) + Environment.NewLine, false);
-
         }
 
         /// <summary>

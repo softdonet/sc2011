@@ -72,7 +72,11 @@ namespace DataCollecting.Helper
             0x43, 0x83, 0x41, 0x81, 0x80, 0x40
         };
 
-
+        /// <summary>
+        /// 获取校验码
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <returns></returns>
         public static ushort CalculateCrc16(byte[] buffer)
         {
             byte crcHi = 0xff;  // 高位初始化
@@ -89,6 +93,13 @@ namespace DataCollecting.Helper
             return (ushort)(crcHi << 8 | crcLo);
         }
 
+        /// <summary>
+        /// 获取校验码（高位和低位）
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="crcHi"></param>
+        /// <param name="crcLo"></param>
+        /// <returns></returns>
         public static ushort CalculateCrc16(byte[] buffer, out byte crcHi, out byte crcLo)
         {
             crcHi = 0xff;  // high crc byte initialized

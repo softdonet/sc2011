@@ -86,8 +86,11 @@ namespace DataCollecting.NetData
         public byte[] ToByte()
         {
             List<byte> result = new List<byte>();
+            //压入头
             result.AddRange(Header.ToByte());
+            //压入块长度
             result.Add((byte)realTimeDataBlocks.Count);
+            //压入数据块
             for (byte i = 0; i < 3; i++)
             {
                 result.Add(realTimeDataBlocks[i].BlockNo);
@@ -106,7 +109,7 @@ namespace DataCollecting.NetData
                     result.Add(0x00);
                 }
             }
-            //插入总长度
+            //压入总长度
             result.InsertRange(5, BitConverter.GetBytes((ushort)(result.Count + 4)));
             //压入校验位
             result.AddRange(BitConverter.GetBytes(CRC16Helper.CalculateCrc16(result.ToArray())));

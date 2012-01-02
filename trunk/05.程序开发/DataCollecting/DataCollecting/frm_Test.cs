@@ -22,8 +22,6 @@ namespace DataCollecting
         {
             InitializeComponent();
 
-
-
             TcpNetServer tcpserver = new TcpNetServer();
             tcpserver.TestEvent += new TcpNetServer.TestHandle(tcpserver_TestEvent);
             tcpserver.ConfigEvent += new TcpNetServer.ConfigHandle(tcpserver_ConfigEvent);
@@ -31,67 +29,6 @@ namespace DataCollecting
             tcpserver.UserEventEvent += new TcpNetServer.UserEventHandle(tcpserver_UserEventEvent);
         }
 
-        void tcpserver_UserEventEvent(UserEvent_R userEvent_R)
-        {
-            SetText(DateTime.Now.ToString() + " 收到用户事件信息：", false);
-            SetText("--------------------------------------", false);
-            ShowHeader(userEvent_R.Header);
-            SetText("报体：", false);
-            SetText("--------------------------------------", false);
-        }
-
-        void tcpserver_RealTimeDataEvent(RealTimeData_R realTimeData_R)
-        {
-            SetText(DateTime.Now.ToString() + " 收到实时数据信息：", false);
-            SetText("--------------------------------------", false);
-            ShowHeader(realTimeData_R.Header);
-            SetText("报体：", false);
-            SetText("数据块数：" + realTimeData_R.BlockCount.ToString(), false);
-            foreach (RealTimeDataBlock item in realTimeData_R.RealTimeDataBlocks)
-            {
-                SetText("块序号：" + item.BlockNo.ToString(), false);
-                SetText("采集时间：" + item.SateTimeMark.ToString(), false);
-                SetText("温度1：" + item.Temperature1.ToString(), false);
-                SetText("温度2：" + item.Temperature2.ToString(), false);
-                SetText("温度3：" + item.Temperature3.ToString(), false);
-                SetText("温度4：" + item.Temperature4.ToString(), false);
-                SetText("温度5：" + item.Temperature5.ToString(), false);
-                SetText("湿度：" + item.Humidity.ToString(), false);
-                SetText("电量：" + item.Electric.ToString(), false);
-                SetText("信号：" + item.Signal.ToString(), false);
-            }
-            SetText("--------------------------------------", false);
-        }
-
-        void tcpserver_ConfigEvent(Config_R config_R)
-        {
-            SetText(DateTime.Now.ToString() + " 收到配置请求信息：", false);
-            SetText("--------------------------------------", false);
-            ShowHeader(config_R.Header);
-            SetText("报体：", false);
-            SetText("--------------------------------------", false);
-        }
-
-        void tcpserver_TestEvent(NetData.Test_R test_R)
-        {
-            SetText(DateTime.Now.ToString() + " 收到测试信息：", false);
-            SetText("--------------------------------------", false);
-            ShowHeader(test_R.Header);
-            SetText("报体：", false);
-            SetText("--------------------------------------", false);
-        }
-
-        /// <summary>
-        /// 显示报头信息
-        /// </summary>
-        /// <param name="h"></param>
-        private void ShowHeader(Head h)
-        {
-            SetText("报头：" + StringHelper.DataToStrV2(h.ToByte()), false);
-            SetText("设备SN：" + h.DeviceSN, false);
-            SetText("时间戳：" + h.SateTimeMark.ToString(), false);
-
-        }
         /// <summary>
         /// 异步数据显示在界面
         /// </summary>
@@ -113,12 +50,111 @@ namespace DataCollecting
                 {
                     this.textBox1.Text += str + Environment.NewLine;
                 }
-
+                textBox1.SelectionStart = textBox1.TextLength;
+                textBox1.ScrollToCaret();
             }
         }
 
+        /// <summary>
+        /// 获取报头信息
+        /// </summary>
+        /// <param name="h"></param>
+        private string GetHeader(MessageBase mb)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("报头：" + StringHelper.DataToStrV2(mb.Header.ToByte()) + Environment.NewLine);
+            sb.Append("    命令头：" + StringHelper.DataToStrV2(BitConverter.GetBytes(mb.Header.CmdHeader)) + Environment.NewLine);
+            sb.Append("    功能码：" + StringHelper.DataToStr(((byte)mb.Header.CmdCommand)) + Environment.NewLine);
+            sb.Append("    数据上下文：" + StringHelper.DataToStrV2(BitConverter.GetBytes(mb.Header.DataContext)) + Environment.NewLine);
+            sb.Append("    报文长度：" + mb.Header.CommandCount.ToString() + Environment.NewLine);
+            sb.Append("    状态：" + mb.Header.State.ToString() + Environment.NewLine);
+            sb.Append("    设备SN：" + mb.Header.DeviceSN + Environment.NewLine);
+            sb.Append("    时间戳：" + mb.Header.SateTimeMark.ToString() + Environment.NewLine);
+            return sb.ToString();
+        }
+        /// <summary>
+        /// 用户事件
+        /// </summary>
+        /// <param name="userEvent_R"></param>
+        void tcpserver_UserEventEvent(UserEvent_R userEvent_R)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(DateTime.Now.ToString() + " 收到用户事件信息：" + Environment.NewLine);
+            sb.Append("--------------------------------------" + Environment.NewLine);
+            sb.Append(GetHeader(userEvent_R));
+            sb.Append("报体：" + Environment.NewLine);
+            sb.Append("--------------------------------------" + Environment.NewLine);
+            SetText(sb.ToString(), false);
+        }
 
+        /// <summary>
+        /// 实时数据到达事件
+        /// </summary>
+        /// <param name="realTimeData_R"></param>
+        void tcpserver_RealTimeDataEvent(RealTimeData_R realTimeData_R)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(DateTime.Now.ToString() + " 收到实时数据信息：" + Environment.NewLine);
+            sb.Append("--------------------------------------" + Environment.NewLine);
+            sb.Append(GetHeader(realTimeData_R));
+            sb.Append("报体：" + Environment.NewLine);
+            sb.Append("    数据块数：" + realTimeData_R.BlockCount.ToString() + Environment.NewLine);
+            foreach (RealTimeDataBlock item in realTimeData_R.RealTimeDataBlocks)
+            {
+                sb.Append("    块序号：" + item.BlockNo.ToString() + Environment.NewLine);
+                sb.Append("    采集时间：" + item.SateTimeMark.ToString() + Environment.NewLine);
+                sb.Append("    温度1：" + item.Temperature1.ToString() + Environment.NewLine);
+                sb.Append("    温度2：" + item.Temperature2.ToString() + Environment.NewLine);
+                sb.Append("    温度3：" + item.Temperature3.ToString() + Environment.NewLine);
+                sb.Append("    温度4：" + item.Temperature4.ToString() + Environment.NewLine);
+                sb.Append("    温度5：" + item.Temperature5.ToString() + Environment.NewLine);
+                sb.Append("    湿度：" + item.Humidity.ToString() + Environment.NewLine);
+                sb.Append("    电量：" + item.Electric.ToString() + Environment.NewLine);
+                sb.Append("    信号：" + item.Signal.ToString() + Environment.NewLine);
+            }
+            sb.Append("校验位：" + StringHelper.DataToStrV2(BitConverter.GetBytes(realTimeData_R.VerifyData)) + Environment.NewLine);
+            sb.Append("--------------------------------------" + Environment.NewLine);
+            SetText(sb.ToString(), false);
+        }
 
+        /// <summary>
+        /// 请求配置事件
+        /// </summary>
+        /// <param name="config_R"></param>
+        void tcpserver_ConfigEvent(Config_R config_R)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(DateTime.Now.ToString() + " 收到配置请求信息：" + Environment.NewLine);
+            sb.Append("--------------------------------------" + Environment.NewLine);
+            sb.Append(GetHeader(config_R));
+            sb.Append("报体：" + Environment.NewLine);
+            sb.Append("--------------------------------------" + Environment.NewLine);
+            SetText(sb.ToString(), false);
+        }
+
+        /// <summary>
+        /// 测试数据事件
+        /// </summary>
+        /// <param name="test_R"></param>
+        void tcpserver_TestEvent(NetData.Test_R test_R)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(DateTime.Now.ToString() + " 收到测试信息：" + Environment.NewLine);
+            sb.Append("--------------------------------------" + Environment.NewLine);
+            sb.Append(GetHeader(test_R));
+            sb.Append("报体：" + Environment.NewLine);
+            sb.Append("    数据内容：" + StringHelper.DataToStrV2(BitConverter.GetBytes(test_R.Content)) + Environment.NewLine);
+            sb.Append("校验位：" + StringHelper.DataToStrV2(BitConverter.GetBytes(test_R.VerifyData)) + Environment.NewLine);
+            sb.Append("--------------------------------------" + Environment.NewLine);
+            SetText(sb.ToString(), false);
+        }
+
+        #region 生成测试命令
+        /// <summary>
+        /// 生成测试命令
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void 生成测试命令ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Head h = new Head();
@@ -129,9 +165,20 @@ namespace DataCollecting
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
             h.SateTimeMark = DateTime.Now;
-            SetText(StringHelper.DataToStr(h.ToByte()), true);
+
+            Test_R tr = new Test_R();
+            tr.Header = h;
+            tr.Content = 1234;
+
+            SetText(StringHelper.DataToStr(tr.ToByte()) + Environment.NewLine, false);
+
         }
 
+        /// <summary>
+        /// 生成实时数据命令
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void 生成实时数据命令ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Head h = new Head();
@@ -185,7 +232,8 @@ namespace DataCollecting
             rr.RealTimeDataBlocks.Add(block1);
             rr.RealTimeDataBlocks.Add(block2);
 
-            SetText(StringHelper.DataToStr(rr.ToByte()), true);
+            SetText(StringHelper.DataToStr(rr.ToByte()) + Environment.NewLine, false);
         }
+        #endregion
     }
 }

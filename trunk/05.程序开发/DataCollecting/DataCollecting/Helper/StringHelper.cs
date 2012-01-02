@@ -12,6 +12,18 @@ namespace DataCollecting.Helper
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
+        public static string DataToStr(byte data)
+        {
+            byte[] arr = new byte[1] { data };
+            return DataToStr(arr);
+        }
+
+
+        /// <summary>
+        /// 字节转化为字符
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static string DataToStr(byte[] data)
         {
             string result = "";
@@ -42,7 +54,7 @@ namespace DataCollecting.Helper
                 {
                     temp = "0" + temp;
                 }
-                result = result + temp+" ";
+                result = result + temp + " ";
             }
             return result.ToUpper();
         }
@@ -54,7 +66,7 @@ namespace DataCollecting.Helper
         /// <returns></returns>
         public static DateTime ByteToDateTime(byte[] data)
         {
-            var obj= Convert.ToDateTime(string.Format("{0}-{1}-{2} {3}:{4}:{5}",
+            var obj = Convert.ToDateTime(string.Format("{0}-{1}-{2} {3}:{4}:{5}",
                          BitConverter.ToUInt16(data, 0),
                          data[2].ToString(),
                          data[3].ToString(),
@@ -69,7 +81,7 @@ namespace DataCollecting.Helper
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static byte[] DateTimeToByte(DateTime  dt)
+        public static byte[] DateTimeToByte(DateTime dt)
         {
             List<byte> result = new List<byte>();
             result.AddRange(BitConverter.GetBytes((ushort)DateTime.Now.Year));

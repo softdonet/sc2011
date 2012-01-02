@@ -10,5 +10,8 @@ namespace DataCollecting.NetData
     /// </summary>
     public class Config_S : MessageBase
     {
+        public Config_S(byte[] data)
+            : base(data)
+        { }
     }
 }

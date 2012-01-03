@@ -79,6 +79,35 @@ namespace DataCollecting.NetServer
         }
 
 
+        //请求固件更新到达事件
+        public delegate void FirmwareRequestHandle(FirmwareRequest_R firmwareRequest_R);
+        private FirmwareRequestHandle firmwareRequestEvent;
+        public event FirmwareRequestHandle FirmwareRequestEvent
+        {
+            add
+            {
+                firmwareRequestEvent += value;
+            }
+            remove
+            {
+                firmwareRequestEvent -= value;
+            }
+        }
+
+        //设备注册事件
+        public delegate void RegisterHandle(Register_R register_R);
+        private RegisterHandle registerEvent;
+        public event RegisterHandle RegisterEvent
+        {
+            add
+            {
+                registerEvent += value;
+            }
+            remove
+            {
+                registerEvent -= value;
+            }
+        }
 
 
 
@@ -219,8 +248,18 @@ namespace DataCollecting.NetServer
                     }
                     break;
                 case Command.cmd_Register:
+                    Register_R rg = new Register_R(tmpdata);
+                    if (this.registerEvent != null)
+                    {
+                        this.registerEvent(rg);
+                    }
                     break;
                 case Command.cmd_FirmwareRequest:
+                    FirmwareRequest_R fg = new FirmwareRequest_R(tmpdata);
+                    if (this.firmwareRequestEvent != null)
+                    {
+                        this.firmwareRequestEvent(fg);
+                    }
                     break;
                 case Command.cmd_null:
                     break;

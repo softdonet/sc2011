@@ -27,7 +27,68 @@ namespace DataCollecting
             tcpserver.ConfigEvent += new TcpNetServer.ConfigHandle(tcpserver_ConfigEvent);
             tcpserver.RealTimeDataEvent += new TcpNetServer.RealTimeDataHandle(tcpserver_RealTimeDataEvent);
             tcpserver.UserEventEvent += new TcpNetServer.UserEventHandle(tcpserver_UserEventEvent);
+            tcpserver.RegisterEvent += new TcpNetServer.RegisterHandle(tcpserver_RegisterEvent);
+            tcpserver.FirmwareRequestEvent += new TcpNetServer.FirmwareRequestHandle(tcpserver_FirmwareRequestEvent);
         }
+
+        #region 公共方法
+        /// <summary>
+        /// 获取报头信息
+        /// </summary>
+        /// <param name="h"></param>
+        private string GetHeader(MessageBase mb)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("报头：" + StringHelper.DataToStrV2(mb.Header.ToByte()) + Environment.NewLine);
+            sb.Append("    命令头：" + StringHelper.DataToStrV2(BitConverter.GetBytes(mb.Header.CmdHeader)) + Environment.NewLine);
+            sb.Append("    功能码：" + StringHelper.DataToStr(((byte)mb.Header.CmdCommand)) + Environment.NewLine);
+            sb.Append("    数据上下文：" + StringHelper.DataToStrV2(BitConverter.GetBytes(mb.Header.DataContext)) + Environment.NewLine);
+            sb.Append("    报文长度：" + mb.Header.CommandCount.ToString() + Environment.NewLine);
+            sb.Append("    状态：" + mb.Header.State.ToString() + Environment.NewLine);
+            sb.Append("    设备SN：" + mb.Header.DeviceSN + Environment.NewLine);
+            sb.Append("    时间戳：" + mb.Header.SateTimeMark.ToString() + Environment.NewLine);
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// 获取设备请求报体
+        /// </summary>
+        /// <param name="rr"></param>
+        /// <returns></returns>
+        private string GetRequestBody(RequestBase_R rr)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("报体：" + Environment.NewLine);
+            sb.Append("    MAC地址：" + rr.MAC + Environment.NewLine);
+            sb.Append("    SIM卡号：" + rr.SIM + Environment.NewLine);
+            sb.Append("    设备型号：" + rr.DeviveType + Environment.NewLine);
+            sb.Append("    硬件版本号：" + String.Format("{0}.{1}", rr.HardwareVersionMain.ToString(), rr.HardwareVersionChild.ToString()) + Environment.NewLine);
+            sb.Append("    软件版本号：" + String.Format("{0}.{1}", rr.SoftwareVersionMain.ToString(), rr.SoftwareVersionChild.ToString()) + Environment.NewLine);
+            sb.Append("    工作状态：" + String.Format("{0}.{1}", rr.WorkstateMain.ToString(), rr.WorkstateChild.ToString()) + Environment.NewLine);
+            sb.Append("校验位：" + StringHelper.DataToStrV2(BitConverter.GetBytes(rr.VerifyData)) + Environment.NewLine);
+            sb.Append("--------------------------------------" + Environment.NewLine);
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// 获取校验位字符串
+        /// </summary>
+        /// <param name="mb"></param>
+        /// <returns></returns>
+        private string GetVerify(MessageBase mb)
+        {
+            return string.Format("校验位：{0}", StringHelper.DataToStrV2(BitConverter.GetBytes(mb.VerifyData)) + Environment.NewLine);
+        }
+
+        /// <summary>
+        /// 获取一根线
+        /// </summary>
+        /// <returns></returns>
+        private string GetLine()
+        {
+            return "--------------------------------------" + Environment.NewLine;
+        }
+
 
         /// <summary>
         /// 异步数据显示在界面
@@ -55,23 +116,42 @@ namespace DataCollecting
             }
         }
 
+        #endregion
+
+        #region 设备事件
+
         /// <summary>
-        /// 获取报头信息
+        /// 请求固件更新
         /// </summary>
-        /// <param name="h"></param>
-        private string GetHeader(MessageBase mb)
+        /// <param name="firmwareRequest_R"></param>
+        void tcpserver_FirmwareRequestEvent(FirmwareRequest_R firmwareRequest_R)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("报头：" + StringHelper.DataToStrV2(mb.Header.ToByte()) + Environment.NewLine);
-            sb.Append("    命令头：" + StringHelper.DataToStrV2(BitConverter.GetBytes(mb.Header.CmdHeader)) + Environment.NewLine);
-            sb.Append("    功能码：" + StringHelper.DataToStr(((byte)mb.Header.CmdCommand)) + Environment.NewLine);
-            sb.Append("    数据上下文：" + StringHelper.DataToStrV2(BitConverter.GetBytes(mb.Header.DataContext)) + Environment.NewLine);
-            sb.Append("    报文长度：" + mb.Header.CommandCount.ToString() + Environment.NewLine);
-            sb.Append("    状态：" + mb.Header.State.ToString() + Environment.NewLine);
-            sb.Append("    设备SN：" + mb.Header.DeviceSN + Environment.NewLine);
-            sb.Append("    时间戳：" + mb.Header.SateTimeMark.ToString() + Environment.NewLine);
-            return sb.ToString();
+            sb.Append(DateTime.Now.ToString() + " 收到设备固件更新请求：" + Environment.NewLine);
+            sb.Append(GetLine());
+            sb.Append(GetHeader(firmwareRequest_R));
+            sb.Append(GetRequestBody(firmwareRequest_R));
+            sb.Append(GetVerify(firmwareRequest_R));
+            sb.Append(GetLine());
+            SetText(sb.ToString(), false);
         }
+
+        /// <summary>
+        /// 请求注册事件
+        /// </summary>
+        /// <param name="register_R"></param>
+        void tcpserver_RegisterEvent(Register_R register_R)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(DateTime.Now.ToString() + " 收到设备注册请求：" + Environment.NewLine);
+            sb.Append(GetLine());
+            sb.Append(GetHeader(register_R));
+            sb.Append(GetRequestBody(register_R));
+            sb.Append(GetVerify(register_R));
+            sb.Append(GetLine());
+            SetText(sb.ToString(), false);
+        }
+
         /// <summary>
         /// 用户事件
         /// </summary>
@@ -80,10 +160,10 @@ namespace DataCollecting
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(DateTime.Now.ToString() + " 收到用户事件信息：" + Environment.NewLine);
-            sb.Append("--------------------------------------" + Environment.NewLine);
+            sb.Append(GetLine());
             sb.Append(GetHeader(userEvent_R));
-            sb.Append("报体：" + Environment.NewLine);
-            sb.Append("--------------------------------------" + Environment.NewLine);
+            sb.Append(GetRequestBody(userEvent_R));
+            sb.Append(GetLine());
             SetText(sb.ToString(), false);
         }
 
@@ -95,7 +175,7 @@ namespace DataCollecting
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(DateTime.Now.ToString() + " 收到实时数据信息：" + Environment.NewLine);
-            sb.Append("--------------------------------------" + Environment.NewLine);
+            sb.Append(GetLine());
             sb.Append(GetHeader(realTimeData_R));
             sb.Append("报体：" + Environment.NewLine);
             sb.Append("    数据块数：" + realTimeData_R.BlockCount.ToString() + Environment.NewLine);
@@ -112,8 +192,8 @@ namespace DataCollecting
                 sb.Append("    电量：" + item.Electric.ToString() + Environment.NewLine);
                 sb.Append("    信号：" + item.Signal.ToString() + Environment.NewLine);
             }
-            sb.Append("校验位：" + StringHelper.DataToStrV2(BitConverter.GetBytes(realTimeData_R.VerifyData)) + Environment.NewLine);
-            sb.Append("--------------------------------------" + Environment.NewLine);
+            sb.Append(GetVerify(realTimeData_R));
+            sb.Append(GetLine());
             SetText(sb.ToString(), false);
         }
 
@@ -125,17 +205,17 @@ namespace DataCollecting
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(DateTime.Now.ToString() + " 收到配置请求信息：" + Environment.NewLine);
-            sb.Append("--------------------------------------" + Environment.NewLine);
+            sb.Append(GetLine());
             sb.Append(GetHeader(config_R));
             sb.Append("报体：" + Environment.NewLine);
             sb.Append("    MAC地址：" + config_R.MAC + Environment.NewLine);
             sb.Append("    SIM卡号：" + config_R.SIM + Environment.NewLine);
             sb.Append("    设备型号：" + config_R.DeviveType + Environment.NewLine);
-            sb.Append("    硬件版本号：" + String.Format("{0}.{1}",config_R.HardwareVersionMain.ToString(),config_R.HardwareVersionChild.ToString()) + Environment.NewLine);
-            sb.Append("    软件版本号："  +String.Format("{0}.{1}", config_R.SoftwareVersionMain.ToString(), config_R.SoftwareVersionChild.ToString()) + Environment.NewLine);
+            sb.Append("    硬件版本号：" + String.Format("{0}.{1}", config_R.HardwareVersionMain.ToString(), config_R.HardwareVersionChild.ToString()) + Environment.NewLine);
+            sb.Append("    软件版本号：" + String.Format("{0}.{1}", config_R.SoftwareVersionMain.ToString(), config_R.SoftwareVersionChild.ToString()) + Environment.NewLine);
             sb.Append("    工作状态：" + String.Format("{0}.{1}", config_R.WorkstateMain.ToString(), config_R.WorkstateChild.ToString()) + Environment.NewLine);
-            sb.Append("校验位：" + StringHelper.DataToStrV2(BitConverter.GetBytes(config_R.VerifyData)) + Environment.NewLine);
-            sb.Append("--------------------------------------" + Environment.NewLine);
+            sb.Append(GetVerify(config_R));
+            sb.Append(GetLine());
             SetText(sb.ToString(), false);
         }
 
@@ -147,16 +227,19 @@ namespace DataCollecting
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(DateTime.Now.ToString() + " 收到测试信息：" + Environment.NewLine);
-            sb.Append("--------------------------------------" + Environment.NewLine);
+            sb.Append(GetLine());
             sb.Append(GetHeader(test_R));
             sb.Append("报体：" + Environment.NewLine);
             sb.Append("    数据内容：" + StringHelper.DataToStrV2(BitConverter.GetBytes(test_R.Content)) + Environment.NewLine);
-            sb.Append("校验位：" + StringHelper.DataToStrV2(BitConverter.GetBytes(test_R.VerifyData)) + Environment.NewLine);
-            sb.Append("--------------------------------------" + Environment.NewLine);
+            sb.Append(GetVerify(test_R));
+            sb.Append(GetLine());
             SetText(sb.ToString(), false);
         }
 
+        #endregion
+
         #region 生成测试命令
+
         /// <summary>
         /// 生成测试命令
         /// </summary>
@@ -263,8 +346,85 @@ namespace DataCollecting
             SetText(StringHelper.DataToStr(cr.ToByte()) + Environment.NewLine, false);
         }
 
+        private void 用户事件命令ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Head h = new Head();
+            h.CmdHeader = 43605;
+            h.CmdCommand = Common.Command.cmd_UserEvent;
+            h.DataContext = 43605;
+            h.DeviceSN = "0A5F01CD0001";
+            h.State = 0;
+            h.SateTimeMark = DateTime.Now;
+
+            UserEvent_R cr = new UserEvent_R();
+            cr.Header = h;
+            cr.MAC = "00-10-30-AF-E1-30-40";
+            cr.SIM = "10303239876321900102";
+            cr.DeviveType = "ICG-P1000-ED";
+            cr.HardwareVersionMain = 12;
+            cr.HardwareVersionChild = 25;
+            cr.SoftwareVersionMain = 13;
+            cr.SoftwareVersionChild = 26;
+            cr.WorkstateMain = 14;
+            cr.WorkstateChild = 17;
+            SetText(StringHelper.DataToStr(cr.ToByte()) + Environment.NewLine, false);
+        }
+
+
+
+        private void 固件更新命令ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Head h = new Head();
+            h.CmdHeader = 43605;
+            h.CmdCommand = Common.Command.cmd_FirmwareRequest;
+            h.DataContext = 43605;
+            h.DeviceSN = "0A5F01CD0001";
+            h.State = 0;
+            h.SateTimeMark = DateTime.Now;
+
+            FirmwareRequest_R cr = new FirmwareRequest_R();
+            cr.Header = h;
+            cr.MAC = "00-10-30-AF-E1-30-40";
+            cr.SIM = "10303239876321900102";
+            cr.DeviveType = "ICG-P1000-ED";
+            cr.HardwareVersionMain = 12;
+            cr.HardwareVersionChild = 25;
+            cr.SoftwareVersionMain = 13;
+            cr.SoftwareVersionChild = 26;
+            cr.WorkstateMain = 14;
+            cr.WorkstateChild = 17;
+            SetText(StringHelper.DataToStr(cr.ToByte()) + Environment.NewLine, false);
+        }
+
+        private void 注册命令ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Head h = new Head();
+            h.CmdHeader = 43605;
+            h.CmdCommand = Common.Command.cmd_Register;
+            h.DataContext = 43605;
+            h.DeviceSN = "0A5F01CD0001";
+            h.State = 0;
+            h.SateTimeMark = DateTime.Now;
+
+            Register_R cr = new Register_R();
+            cr.Header = h;
+            cr.MAC = "00-10-30-AF-E1-30-40";
+            cr.SIM = "10303239876321900102";
+            cr.DeviveType = "ICG-P1000-ED";
+            cr.HardwareVersionMain = 12;
+            cr.HardwareVersionChild = 25;
+            cr.SoftwareVersionMain = 13;
+            cr.SoftwareVersionChild = 26;
+            cr.WorkstateMain = 14;
+            cr.WorkstateChild = 17;
+            SetText(StringHelper.DataToStr(cr.ToByte()) + Environment.NewLine, false);
+        }
+
+        private void 主动关闭告知命令ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
         #endregion
-
-
     }
 }

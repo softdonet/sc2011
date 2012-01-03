@@ -78,7 +78,6 @@ namespace DataCollecting.NetData
             set { realTimeDataBlocks = value; }
         }
 
-      
         protected override void PushBodyByte(List<byte> result)
         {
             //压入块长度
@@ -86,21 +85,7 @@ namespace DataCollecting.NetData
             //压入数据块
             for (byte i = 0; i < 3; i++)
             {
-                result.Add(realTimeDataBlocks[i].BlockNo);
-                result.AddRange(StringHelper.DateTimeToByte(realTimeDataBlocks[i].SateTimeMark));
-                result.AddRange(BitConverter.GetBytes((ushort)(realTimeDataBlocks[i].Temperature1 * 100)));
-                result.AddRange(BitConverter.GetBytes((ushort)(realTimeDataBlocks[i].Temperature2 * 100)));
-                result.AddRange(BitConverter.GetBytes((ushort)(realTimeDataBlocks[i].Temperature3 * 100)));
-                result.AddRange(BitConverter.GetBytes((ushort)(realTimeDataBlocks[i].Temperature4 * 100)));
-                result.AddRange(BitConverter.GetBytes((ushort)(realTimeDataBlocks[i].Temperature5 * 100)));
-                result.AddRange(BitConverter.GetBytes((ushort)(realTimeDataBlocks[i].Humidity * 100)));
-                result.AddRange(BitConverter.GetBytes((ushort)(realTimeDataBlocks[i].Electric * 100)));
-                result.AddRange(BitConverter.GetBytes((ushort)(realTimeDataBlocks[i].Signal * 100)));
-                //补零
-                for (int j = 0; j < 48 - 24; j++)
-                {
-                    result.Add(0x00);
-                }
+                result.AddRange(realTimeDataBlocks[i].ToByte());
             }
         }
     }

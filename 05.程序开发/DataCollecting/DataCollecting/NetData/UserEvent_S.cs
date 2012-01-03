@@ -5,7 +5,15 @@ using System.Text;
 
 namespace DataCollecting.NetData
 {
-    class UserEvent_S
+    public class UserEvent_S: ReplyBase_S
     {
+        public UserEvent_S()
+        { }
+
+        public UserEvent_S(byte[] data)
+            : base(data)
+        {
+        }
+
     }
 }

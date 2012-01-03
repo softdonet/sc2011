@@ -68,13 +68,13 @@
                             <CheckBox Content="接入点：" Height="16" HorizontalAlignment="Left" Margin="11,142,0,0"  IsChecked="True" VerticalAlignment="Top" x:Name="checkBox10" Grid.Column="1" />
                             <TextBox Height="23" HorizontalAlignment="Left" Margin="87,138,0,0" x:Name="textBox12"  VerticalAlignment="Top" Width="205" Grid.Column="1" />
 
-                            <CheckBox Content="用户名：" Height="16" HorizontalAlignment="Left" Margin="11,167,0,0" IsChecked="True" x:Name="checkBox11" VerticalAlignment="Top" Grid.Column="1" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="87,164,0,0" x:Name="textBox13" Text="" VerticalAlignment="Top" Width="205" Grid.Column="1" />
+                            <CheckBox Content="经  度：" Height="16" HorizontalAlignment="Left" Margin="11,167,0,0" IsChecked="True" x:Name="checkBox11" VerticalAlignment="Top" Grid.Column="1" />
+                            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,164,21,0" x:Name="textBox13" Text="" VerticalAlignment="Top" Width="205" Grid.Column="1" />
 
-                            <CheckBox Content="密    码：" Height="16" HorizontalAlignment="Left" Margin="11,192,0,0" IsChecked="True" x:Name="checkBox12" VerticalAlignment="Top" Grid.Column="1" />
+                            <CheckBox Content="维  度：" Height="16" HorizontalAlignment="Left" Margin="11,192,0,0" IsChecked="True" x:Name="checkBox12" VerticalAlignment="Top" Grid.Column="1" />
                             <TextBox Height="23" HorizontalAlignment="Left" Margin="87,190,0,0" x:Name="textBox14" Text="" VerticalAlignment="Top" Width="205" Grid.Column="1" />
 
-                            <CheckBox Content="坐    标：" Height="16" HorizontalAlignment="Left" Margin="11,219,0,0" IsChecked="True" x:Name="checkBox13" VerticalAlignment="Top" Grid.Column="1" />
+                            <CheckBox Content="高  度：" Height="16" HorizontalAlignment="Left" Margin="11,219,0,0" IsChecked="True" x:Name="checkBox13" VerticalAlignment="Top" Grid.Column="1" />
                             <TextBox Height="23" HorizontalAlignment="Left" Margin="87,216,0,0" x:Name="textBox15" Text="" VerticalAlignment="Top" Width="205" Grid.Column="1" />
 
                             <CheckBox Content="连接方式：" Height="16" HorizontalAlignment="Left" Margin="11,246,0,0" IsChecked="True" x:Name="checkBox14" VerticalAlignment="Top" Grid.Column="1" />

@@ -141,6 +141,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
                 this.textBox21.Text = _userSelDeviceInfo.port.ToString();
 
             //定时表类型
+            /*
             Int32? intType = _userSelDeviceInfo.TimeType;
             if (intType != null)
             {
@@ -155,11 +156,12 @@ namespace Scada.Client.SL.Modules.BaseInfo
                 else
                     this.radioButton5.IsChecked = true;
             }
+            */
 
             this.textBox11.Text = _userSelDeviceInfo.Version;
 
             //硬件配置
-            intType = _userSelDeviceInfo.CollectFreq;
+            Int32? intType = _userSelDeviceInfo.CollectFreq;
             if (intType != null)
                 this.textBox6.Text = intType.ToString();
 
@@ -229,7 +231,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
             this.IsAddUpdateType = true;
 
-            
+
 
 
         }
@@ -287,6 +289,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
             //定时表类型
             Int32? intType = null;
+            /*
             if ((Boolean)this.radioButton1.IsChecked)
                 intType = 1;
             else if ((Boolean)this.radioButton2.IsChecked)
@@ -297,6 +300,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
                 intType = 4;
             else if ((Boolean)this.radioButton5.IsChecked)
                 intType = 5;
+            */
             deviceInfo.TimeType = intType;
             deviceInfo.Version = this.textBox11.Text;
 

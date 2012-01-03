@@ -49,7 +49,6 @@ namespace DataCollecting.Helper
         /// <returns></returns>
         public static string DataToStr(byte[] data,int startIndex,int length)
         {
-           
             byte[] tempArr = new byte[length];
             Array.Copy(data, startIndex, tempArr, 0, length);
 
@@ -88,7 +87,6 @@ namespace DataCollecting.Helper
             }
             return result.ToUpper().TrimEnd('-') ;
         }
-
 
         /// <summary>
         /// 字节转化为MAC
@@ -254,7 +252,6 @@ namespace DataCollecting.Helper
             }
             return result.ToUpper().TrimEnd('.'); ;
         }
-
 
         /// <summary>
         /// IP转化字节

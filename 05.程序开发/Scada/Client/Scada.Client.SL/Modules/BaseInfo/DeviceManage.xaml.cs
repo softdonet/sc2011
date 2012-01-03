@@ -326,6 +326,11 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
         #endregion
 
+        private void dataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
 
         #region 私有方法
 

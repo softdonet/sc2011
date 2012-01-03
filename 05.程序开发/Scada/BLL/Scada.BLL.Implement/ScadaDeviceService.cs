@@ -201,7 +201,9 @@ namespace Scada.BLL.Implement
                 sSqlWhere.Add(para);
 
                 rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql.ToString(), sSqlWhere.ToArray());
-
+                //设备维护人员
+                UpdateDevicePeople(deviceValue.ID, deviceValue.DeviceMainValue);
+                result = true;
             }
             catch (Exception ex)
             {
@@ -266,7 +268,8 @@ namespace Scada.BLL.Implement
                 sSql.Append(@" Where id ='" + deviceValue.ID.ToString() + "'");
                 rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql.ToString(), sSqlWhere.ToArray());
 
-                //TODO: 更改维护人列表
+                //维护人列表
+                UpdateDevicePeople(deviceValue.ID, deviceValue.DeviceMainValue);
 
                 result = true;
             }
@@ -278,10 +281,29 @@ namespace Scada.BLL.Implement
             return result;
         }
 
-        public Boolean DeleteDeviceInfo(string deviceGuid)
+        public Boolean DeleteDeviceInfo(Guid deviceGuid)
         {
-            return false;
-            /*删除一系列*/
+            Boolean result = false;
+            try
+            {
+                //1)删除维护人列表
+                string sSql = @" Delete DeviceMaintenancePeople 
+                                Where DeviceID ='" + deviceGuid.ToString().ToUpper();
+                SqlHelper.ExecuteNonQuery(sSql);
+
+                //2)删除设备信息
+                sSql = @" Delete DeviceInfo Where ID ='" + deviceGuid.ToString().ToUpper();
+                SqlHelper.ExecuteNonQuery(sSql);
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                result = false;
+            }
+
+            return result;
 
         }
 
@@ -504,6 +526,54 @@ namespace Scada.BLL.Implement
                 });
             }
             return result;
+        }
+
+        private Boolean UpdateDevicePeople(Guid deviceId, List<DeviceMaintenancePeople> devicePeples)
+        {
+            Boolean result = false;
+            string sSql = string.Empty;
+            //1)Delete
+            sSql = @" Delete DeviceMaintenancePeople 
+                                Where DeviceID ='" + deviceId.ToString().ToUpper();
+
+            //2)Insert
+            SqlParameter para = null;
+            List<SqlParameter> sSqlWhere = new List<SqlParameter>();
+            try
+            {
+                foreach (DeviceMaintenancePeople item in devicePeples)
+                {
+                    sSql = @" Insert Into DeviceMaintenancePeople(ID,MaintenanceID,DeviceID) Values (@ID,@MaintenanceID,@DeviceID)";
+                    para = new SqlParameter();
+                    para.DbType = DbType.Guid;
+                    para.ParameterName = "@ID";
+                    para.Value = item.ID;
+                    sSqlWhere.Add(para);
+
+                    para = new SqlParameter();
+                    para.DbType = DbType.Guid;
+                    para.ParameterName = "@MaintenanceID";
+                    para.Value = item.MaintenanceID;
+                    sSqlWhere.Add(para);
+
+                    para = new SqlParameter();
+                    para.DbType = DbType.Guid;
+                    para.ParameterName = "@DeviceID";
+                    para.Value = item.DeviceID;
+                    sSqlWhere.Add(para);
+
+                    SqlHelper.ExecuteNonQuery(CommandType.Text, sSql.ToString(), sSqlWhere.ToArray());
+                    sSqlWhere.Clear();
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                result = false;
+            }
+            return result;
+
         }
 
         #endregion

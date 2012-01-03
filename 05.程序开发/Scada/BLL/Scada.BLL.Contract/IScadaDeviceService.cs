@@ -33,7 +33,7 @@ namespace Scada.BLL.Contract
         Boolean UpdateDeviceInfo(string deviceInfo);
 
         //删除设备
-        Boolean DeleteDeviceInfo(string deviceGuid);
+        Boolean DeleteDeviceInfo(Guid deviceGuid);
 
         //列设备信息
         string ViewDeviceInfo(string deviceGuid);

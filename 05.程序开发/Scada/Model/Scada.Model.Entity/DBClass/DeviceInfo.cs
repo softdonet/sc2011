@@ -46,36 +46,11 @@ namespace Scada.Model.Entity
         private decimal? _process1lowvalue;
         private decimal? _process1lowervalue;
         private decimal? _process1ratevalue;
-        private int? _process2enable;
-        private decimal? _process2highervalue;
-        private int? _process2highvalue;
-        private decimal? _process2lowvalue;
-        private decimal? _process2lowervalue;
-        private decimal? _process2ratevalue;
-        private decimal? _process3enable;
-        private decimal? _process3highervalue;
-        private int? _process3highvalue;
-        private decimal? _process3lowvalue;
-        private decimal? _process3lowervalue;
-        private decimal? _process3ratevalue;
-        private decimal? _process4enable;
-        private decimal? _process4highervalue;
-        private int? _process4highvalue;
-        private decimal? _process4lowvalue;
-        private decimal? _process4lowervalue;
-        private decimal? _process4ratevalue;
-        private decimal? _process5enable;
-        private decimal? _process5highervalue;
-        private int? _process5highvalue;
-        private decimal? _process5lowvalue;
-        private decimal? _process5lowervalue;
-        private decimal? _process5ratevalue;
+
 
         //设备关联维护人员信息
-        private List<Guid> _deviceMainValue = new List<Guid>();
+        private List<DeviceMaintenancePeople> _deviceMainValue = new List<DeviceMaintenancePeople>();
 
-        //设备自定义时间
-        private List<DateTime> _deviceCustomTime = new List<DateTime>();
 
         /// <summary>
         /// 
@@ -381,210 +356,14 @@ namespace Scada.Model.Entity
             set { _process1ratevalue = value; }
             get { return _process1ratevalue; }
         }
-        /// <summary>
-        /// 过程值2报警设置有效
-        /// </summary>
-        public int? Process2Enable
-        {
-            set { _process2enable = value; }
-            get { return _process2enable; }
-        }
-        /// <summary>
-        /// 过程值2高高报警值
-        /// </summary>
-        public decimal? Process2HigherValue
-        {
-            set { _process2highervalue = value; }
-            get { return _process2highervalue; }
-        }
-        /// <summary>
-        /// 过程值2高报警值
-        /// </summary>
-        public int? Process2HighValue
-        {
-            set { _process2highvalue = value; }
-            get { return _process2highvalue; }
-        }
-        /// <summary>
-        /// 过程值2低报警值
-        /// </summary>
-        public decimal? Process2LowValue
-        {
-            set { _process2lowvalue = value; }
-            get { return _process2lowvalue; }
-        }
-        /// <summary>
-        /// 过程值2低低报警值
-        /// </summary>
-        public decimal? Process2LowerValue
-        {
-            set { _process2lowervalue = value; }
-            get { return _process2lowervalue; }
-        }
-        /// <summary>
-        /// 过程值2速率报警值
-        /// </summary>
-        public decimal? Process2RateValue
-        {
-            set { _process2ratevalue = value; }
-            get { return _process2ratevalue; }
-        }
-        /// <summary>
-        /// 过程值3报警设置有效
-        /// </summary>
-        public decimal? Process3Enable
-        {
-            set { _process3enable = value; }
-            get { return _process3enable; }
-        }
-        /// <summary>
-        /// 过程值3高高报警值
-        /// </summary>
-        public decimal? Process3HigherValue
-        {
-            set { _process3highervalue = value; }
-            get { return _process3highervalue; }
-        }
-        /// <summary>
-        /// 过程值3高报警值
-        /// </summary>
-        public int? Process3HighValue
-        {
-            set { _process3highvalue = value; }
-            get { return _process3highvalue; }
-        }
-        /// <summary>
-        /// 过程值3低报警值
-        /// </summary>
-        public decimal? Process3LowValue
-        {
-            set { _process3lowvalue = value; }
-            get { return _process3lowvalue; }
-        }
-        /// <summary>
-        /// 过程值3低低报警值
-        /// </summary>
-        public decimal? Process3LowerValue
-        {
-            set { _process3lowervalue = value; }
-            get { return _process3lowervalue; }
-        }
-        /// <summary>
-        /// 过程值3速率报警值
-        /// </summary>
-        public decimal? Process3RateValue
-        {
-            set { _process3ratevalue = value; }
-            get { return _process3ratevalue; }
-        }
-        /// <summary>
-        /// 过程值4报警设置有效
-        /// </summary>
-        public decimal? Process4Enable
-        {
-            set { _process4enable = value; }
-            get { return _process4enable; }
-        }
-        /// <summary>
-        /// 过程值4高高报警值
-        /// </summary>
-        public decimal? Process4HigherValue
-        {
-            set { _process4highervalue = value; }
-            get { return _process4highervalue; }
-        }
-        /// <summary>
-        /// 过程值4高报警值
-        /// </summary>
-        public int? Process4HighValue
-        {
-            set { _process4highvalue = value; }
-            get { return _process4highvalue; }
-        }
-        /// <summary>
-        /// 过程值4低报警值
-        /// </summary>
-        public decimal? Process4LowValue
-        {
-            set { _process4lowvalue = value; }
-            get { return _process4lowvalue; }
-        }
-        /// <summary>
-        /// 过程值4低低报警值
-        /// </summary>
-        public decimal? Process4LowerValue
-        {
-            set { _process4lowervalue = value; }
-            get { return _process4lowervalue; }
-        }
-        /// <summary>
-        /// 过程值4速率报警值
-        /// </summary>
-        public decimal? Process4RateValue
-        {
-            set { _process4ratevalue = value; }
-            get { return _process4ratevalue; }
-        }
-        /// <summary>
-        /// 过程值5报警设置有效
-        /// </summary>
-        public decimal? Process5Enable
-        {
-            set { _process5enable = value; }
-            get { return _process5enable; }
-        }
-        /// <summary>
-        /// 过程值5高高报警值
-        /// </summary>
-        public decimal? Process5HigherValue
-        {
-            set { _process5highervalue = value; }
-            get { return _process5highervalue; }
-        }
-        /// <summary>
-        /// 过程值5高报警值
-        /// </summary>
-        public int? Process5HighValue
-        {
-            set { _process5highvalue = value; }
-            get { return _process5highvalue; }
-        }
-        /// <summary>
-        /// 过程值5低报警值
-        /// </summary>
-        public decimal? Process5LowValue
-        {
-            set { _process5lowvalue = value; }
-            get { return _process5lowvalue; }
-        }
-        /// <summary>
-        /// 过程值5低低报警值
-        /// </summary>
-        public decimal? Process5LowerValue
-        {
-            set { _process5lowervalue = value; }
-            get { return _process5lowervalue; }
-        }
-        /// <summary>
-        /// 过程值5速率报警值
-        /// </summary>
-        public decimal? Process5RateValue
-        {
-            set { _process5ratevalue = value; }
-            get { return _process5ratevalue; }
-        }
 
-        public List<Guid> DeviceMainValue
+        public List<DeviceMaintenancePeople> DeviceMainValue
         {
             set { _deviceMainValue = value; }
             get { return _deviceMainValue; }
         }
 
-        public List<DateTime> DeviceCustomTime
-        {
-            set { _deviceCustomTime = value; }
-            get { return _deviceCustomTime; }
-        }
+
 
     }
 }

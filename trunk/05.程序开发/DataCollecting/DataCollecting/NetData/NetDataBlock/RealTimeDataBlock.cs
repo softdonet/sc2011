@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using DataCollecting.Helper;
 
-namespace DataCollecting.Common
+namespace DataCollecting.NetData
 {
     /// <summary>
     /// 实时数据块实体

@@ -46,10 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\BroadcastDataBlock.cs" />
-    <Compile Include="Common\ConfigDataBlock.cs" />
-    <Compile Include="Common\RealTimeDataBlock.cs" />
-    <Compile Include="Common\WeatherDataBlock.cs" />
+    <Compile Include="NetData\NetDataBlock\BroadcastDataBlock.cs" />
+    <Compile Include="NetData\NetDataBlock\ConfigDataBlock.cs" />
+    <Compile Include="NetData\NetDataBlock\RealTimeDataBlock.cs" />
+    <Compile Include="NetData\NetDataBlock\WeatherDataBlock.cs" />
     <Compile Include="Helper\CRC16Helper.cs" />
     <Compile Include="NetData\Config_R.cs" />
     <Compile Include="NetData\Config_S.cs" />

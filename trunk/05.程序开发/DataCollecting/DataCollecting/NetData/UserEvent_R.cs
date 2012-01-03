@@ -5,12 +5,19 @@ using System.Text;
 
 namespace DataCollecting.NetData
 {
-    public class UserEvent_R : MessageBase
+    /// <summary>
+    /// 用户事件
+    /// </summary>
+    public class UserEvent_R : RequestBase_R
     {
-        public UserEvent_R(byte[] data)
+        public UserEvent_R()
         {
-            this.Header = new Head(data);
         }
 
+        public UserEvent_R(byte[] data)
+            : base(data)
+        {
+
+        }
     }
 }

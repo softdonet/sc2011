@@ -6,16 +6,13 @@ using DataCollecting.Helper;
 
 namespace DataCollecting.NetData
 {
-    /// <summary>
-    /// 获取配置信息解包
-    /// </summary>
-    public class Config_R : MessageBase
+    public class RequestBase_R : MessageBase
     {
-        public Config_R()
+        public RequestBase_R()
         {
         }
 
-        public Config_R(byte[] data)
+        public RequestBase_R(byte[] data)
             : base(data)
         {
             //MAC地址

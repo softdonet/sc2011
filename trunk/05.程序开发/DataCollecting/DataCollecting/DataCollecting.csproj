@@ -66,6 +66,7 @@
     <Compile Include="NetData\RealTimeData_S.cs" />
     <Compile Include="NetData\Register_R.cs" />
     <Compile Include="NetData\Register_S.cs" />
+    <Compile Include="NetData\RequestBase_R.cs" />
     <Compile Include="NetData\Test_R.cs" />
     <Compile Include="NetData\Test_S.cs" />
     <Compile Include="NetData\UserEvent_R.cs" />

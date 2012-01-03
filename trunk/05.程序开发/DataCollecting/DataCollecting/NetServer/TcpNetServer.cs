@@ -109,8 +109,6 @@ namespace DataCollecting.NetServer
             }
         }
 
-
-
         //服务器socket,主侦听socket
         private Socket serverSocket;
         ArrayList clientList;

@@ -239,11 +239,6 @@ namespace DataCollecting
 
         #region 生成测试命令
 
-        /// <summary>
-        /// 生成测试命令
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void 生成测试命令ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Head h = new Head();
@@ -261,11 +256,6 @@ namespace DataCollecting
             SetText(StringHelper.DataToStr(tr.ToByte()) + Environment.NewLine, false);
         }
 
-        /// <summary>
-        /// 生成实时数据命令
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void 生成实时数据命令ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Head h = new Head();
@@ -368,8 +358,6 @@ namespace DataCollecting
             cr.WorkstateChild = 17;
             SetText(StringHelper.DataToStr(cr.ToByte()) + Environment.NewLine, false);
         }
-
-
 
         private void 固件更新命令ToolStripMenuItem_Click(object sender, EventArgs e)
         {

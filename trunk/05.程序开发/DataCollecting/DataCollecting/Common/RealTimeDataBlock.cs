@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DataCollecting.Helper;
 
 namespace DataCollecting.Common
 {
@@ -13,100 +14,73 @@ namespace DataCollecting.Common
         /// <summary>
         /// 数据序号
         /// </summary>
-        private byte blockNo;
-        public byte BlockNo
-        {
-            get { return blockNo; }
-            set { blockNo = value; }
-        }
+        public byte BlockNo { get; set; }
 
         /// <summary>
         /// 时间戳
         /// </summary>
-        private DateTime sateTimeMark;
-        public DateTime SateTimeMark
-        {
-            get { return sateTimeMark; }
-            set { sateTimeMark = value; }
-        }
+        public DateTime SateTimeMark { get; set; }
 
         /// <summary>
         /// 温度1
         /// </summary>
-        private decimal? temperature1;
-        public decimal? Temperature1
-        {
-            get { return temperature1; }
-            set { temperature1 = value; }
-        }
+        public decimal? Temperature1 { get; set; }
+
         /// <summary>
         /// 温度2
         /// </summary>
-        private decimal? temperature2;
-        public decimal? Temperature2
-        {
-            get { return temperature2; }
-            set { temperature2 = value; }
-        }
+        public decimal? Temperature2 { get; set; }
+
         /// <summary>
         /// 温度3
         /// </summary>
-        private decimal? temperature3;
-        public decimal? Temperature3
-        {
-            get { return temperature3; }
-            set { temperature3 = value; }
-        }
+        public decimal? Temperature3 { get; set; }
+
         /// <summary>
         /// 温度4
         /// </summary>
-        private decimal? temperature4;
-        public decimal? Temperature4
-        {
-            get { return temperature4; }
-            set { temperature4 = value; }
-        }
-       
+        public decimal? Temperature4 { get; set; }
+
         /// <summary>
         /// 温度5
         /// </summary>
-        private decimal? temperature5;
-        public decimal? Temperature5
-        {
-            get { return temperature5; }
-            set { temperature5 = value; }
-        }
+        public decimal? Temperature5 { get; set; }
 
         /// <summary>
         /// 湿度
         /// </summary>
-        private decimal? humidity;
-        public decimal? Humidity
-        {
-            get { return humidity; }
-            set { humidity = value; }
-        }
-      
+        public decimal? Humidity { get; set; }
 
         /// <summary>
         /// 电量
         /// </summary>
-        private decimal? electric;
-        public decimal? Electric
-        {
-            get { return electric; }
-            set { electric = value; }
-        }
-       
+        public decimal? Electric { get; set; }
 
         /// <summary>
         /// 信号
         /// </summary>
-        private decimal? signal;
-        public decimal? Signal
+        public decimal? Signal { get; set; }
+
+        public byte[] ToByte()
         {
-            get { return signal; }
-            set { signal = value; }
+            List<byte> result = new List<byte>();
+            result.Add(BlockNo);
+            result.AddRange(StringHelper.DateTimeToByte(SateTimeMark));
+            result.AddRange(BitConverter.GetBytes((ushort)(Temperature1 * 100)));
+            result.AddRange(BitConverter.GetBytes((ushort)(Temperature2 * 100)));
+            result.AddRange(BitConverter.GetBytes((ushort)(Temperature3 * 100)));
+            result.AddRange(BitConverter.GetBytes((ushort)(Temperature4 * 100)));
+            result.AddRange(BitConverter.GetBytes((ushort)(Temperature5 * 100)));
+            result.AddRange(BitConverter.GetBytes((ushort)(Humidity * 100)));
+            result.AddRange(BitConverter.GetBytes((ushort)(Electric * 100)));
+            result.AddRange(BitConverter.GetBytes((ushort)(Signal * 100)));
+            //补零
+            for (int j = 0; j < 48 - 24; j++)
+            {
+                result.Add(0x00);
+            }
+            return result.ToArray();
         }
+
     }
 }

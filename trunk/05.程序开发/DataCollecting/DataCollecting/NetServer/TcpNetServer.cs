@@ -163,8 +163,8 @@ namespace DataCollecting.NetServer
                 {
                     tmpsize = BitConverter.ToUInt16(byteData, tmpcp);
                     /*---------------一个有效的命令--------------------
-                        2.命令头为55AA=43605、
-                        3.并且CRC16校验成功
+                        1.命令头为55AA=43605、
+                        2.并且CRC16校验成功
                     -------------------------------------------------*/
                     if (tmpsize != 43605)
                     {

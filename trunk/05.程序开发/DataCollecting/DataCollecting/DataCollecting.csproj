@@ -46,7 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\BroadcastDataBlock.cs" />
+    <Compile Include="Common\ConfigDataBlock.cs" />
     <Compile Include="Common\RealTimeDataBlock.cs" />
+    <Compile Include="Common\WeatherDataBlock.cs" />
     <Compile Include="Helper\CRC16Helper.cs" />
     <Compile Include="NetData\Config_R.cs" />
     <Compile Include="NetData\Config_S.cs" />
@@ -62,6 +65,7 @@
       <DependentUpon>frm_Test.cs</DependentUpon>
     </Compile>
     <Compile Include="NetData\NetDataBase\Head.cs" />
+    <Compile Include="NetData\NetDataBase\ReplyBase_S.cs" />
     <Compile Include="NetData\RealTimeData_R.cs" />
     <Compile Include="NetData\RealTimeData_S.cs" />
     <Compile Include="NetData\Register_R.cs" />

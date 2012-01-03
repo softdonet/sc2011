@@ -19,17 +19,11 @@ namespace DataCollecting.NetData
             : base(data)
         {
             //MAC地址
-            byte[] arrMac = new byte[7];
-            Array.Copy(data, 21, arrMac, 0, 7);
-            mac = StringHelper.DataToMACStr(arrMac);
+            mac = StringHelper.DataToMACStr(data, 21, 7);
             //SIM卡号
-            byte[] arrSim = new byte[20];
-            Array.Copy(data, 28, arrSim, 0, 20);
-            sim = System.Text.Encoding.ASCII.GetString(arrSim);
+            sim = System.Text.Encoding.ASCII.GetString(data,28,20);
             //产品型号
-            byte[] arrType = new byte[12];
-            Array.Copy(data, 48, arrType, 0, 12);
-            deviveType = System.Text.Encoding.ASCII.GetString(arrType);
+            deviveType = System.Text.Encoding.ASCII.GetString(data,48,12);
             //其他信息
             hardwareVersionMain = data[60];
             hardwareVersionChild = data[61];
@@ -133,11 +127,7 @@ namespace DataCollecting.NetData
         protected override void PushBodyByte(List<byte> result)
         {
             //压入MAC地址
-            string[] arr = mac.Split('-');
-            foreach (string item in arr)
-            {
-                result.Add(Convert.ToByte(item, 16));
-            }
+            result.AddRange(StringHelper.MACStrData(mac));
             //压入SIM卡号
             result.AddRange(System.Text.Encoding.ASCII.GetBytes(sim));
             //压入产品型号12位

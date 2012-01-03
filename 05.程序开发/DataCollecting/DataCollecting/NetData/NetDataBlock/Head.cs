@@ -100,15 +100,11 @@ namespace DataCollecting.NetData
             //报文长度(5-6)
             commandCount = BitConverter.ToUInt16(data, 5);
             //设备序列号(7-12)
-            byte[] ldeviceSN = new byte[4];
-            Array.Copy(data, 7, ldeviceSN, 0, 4);
-            deviceSN = StringHelper.DataToStr(ldeviceSN) + BitConverter.ToUInt16(data, 11).ToString("0000");
+            deviceSN = StringHelper.DataToStr(data, 7, 4) + BitConverter.ToUInt16(data, 11).ToString("0000");
             //状态(13)
             state = data[13];
             //时间戳(14-20)
-            byte[] datetime = new byte[7];
-            Array.Copy(data, 14, datetime, 0, 7);
-            sateTimeMark = StringHelper.ByteToDateTime(datetime);
+            sateTimeMark = StringHelper.ByteToDateTime(data, 14, 7);
         }
 
         /// <summary>

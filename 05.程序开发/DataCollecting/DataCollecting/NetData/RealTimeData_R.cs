@@ -24,33 +24,11 @@ namespace DataCollecting.NetData
             //取出数据块内容
             byte[] dataBlock = new byte[blockLength];
             Array.Copy(data, 22, dataBlock, 0, blockLength);
-            //放大比例
-            decimal ratio = 100;
             for (int i = 0; i < blockCount; i++)
             {
-                RealTimeDataBlock realTimeDataBlock = new RealTimeDataBlock();
-                //块序号
-                realTimeDataBlock.BlockNo = dataBlock[i * blockSize];
-                //时间戳
-                byte[] datetime = new byte[7];
-                Array.Copy(dataBlock, i * blockSize + 1, datetime, 0, 7);
-                realTimeDataBlock.SateTimeMark = StringHelper.ByteToDateTime(datetime);
-                //温度1
-                realTimeDataBlock.Temperature1 = BitConverter.ToUInt16(dataBlock, i * blockSize + 8) / ratio;
-                //温度2
-                realTimeDataBlock.Temperature2 = BitConverter.ToUInt16(dataBlock, i * blockSize + 10) / ratio;
-                //温度3
-                realTimeDataBlock.Temperature3 = BitConverter.ToUInt16(dataBlock, i * blockSize + 12) / ratio;
-                //温度4
-                realTimeDataBlock.Temperature4 = BitConverter.ToUInt16(dataBlock, i * blockSize + 14) / ratio;
-                //温度5
-                realTimeDataBlock.Temperature5 = BitConverter.ToUInt16(dataBlock, i * blockSize + 16) / ratio;
-                //湿度
-                realTimeDataBlock.Humidity = BitConverter.ToUInt16(dataBlock, i * blockSize + 18) / ratio;
-                //电量
-                realTimeDataBlock.Electric = BitConverter.ToUInt16(dataBlock, i * blockSize + 20) / ratio;
-                //信号
-                realTimeDataBlock.Signal = BitConverter.ToUInt16(dataBlock, i * blockSize + 22) / ratio;
+                byte[] singleBlock = new byte[blockSize];
+                Array.Copy(dataBlock, i * blockSize, singleBlock, 0, blockSize);
+                RealTimeDataBlock realTimeDataBlock = new RealTimeDataBlock(singleBlock);
                 //加载到集合
                 realTimeDataBlocks.Add(realTimeDataBlock);
             }

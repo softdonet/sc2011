@@ -17,6 +17,29 @@ namespace DataCollecting.NetData
         public ReplyBase_S(byte[] data)
             : base(data)
         {
+            haveConfigInfo = data[21] == 1 ? true : false;
+            haveWeatherInfo = data[22] == 1 ? true : false;
+            haveBroadcastInfo = data[23] == 1 ? true : false;
+
+            if (haveConfigInfo)
+            {
+                byte[] arr = new byte[132];
+                Array.Copy(data, 24, arr, 0, 132);
+                configData = new ConfigDataBlock(arr);
+            }
+            if (haveWeatherInfo)
+            {
+                byte[] arr = new byte[102];
+                Array.Copy(data, 156, arr, 0, 102);
+                weatherData = new WeatherDataBlock(arr);
+
+            }
+            if (haveBroadcastInfo)
+            {
+                byte[] arr = new byte[100];
+                Array.Copy(data, 258, arr, 0, 100);
+                broadcastData = new BroadcastDataBlock(arr);
+            }
         }
 
         /// <summary>

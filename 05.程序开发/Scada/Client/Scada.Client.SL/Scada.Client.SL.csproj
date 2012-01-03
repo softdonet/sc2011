@@ -562,7 +562,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\Model\Scada.Model.Entity.SL\Scada.Model.Entity.SL.csproj">
+    <ProjectReference Include="..\..\Model\Scada.Model.Entity\Scada.Model.Entity.SL.csproj">
       <Project>{66B7D2F9-31D1-4C6A-A1DC-C5523A8CF27D}</Project>
       <Name>Scada.Model.Entity.SL</Name>
     </ProjectReference>

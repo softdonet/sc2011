@@ -31,7 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{9B51A865
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scada.Client.Web", "Client\Scada.Client.Web\Scada.Client.Web.csproj", "{6AB8F406-73FA-436B-B26F-0455E37AC0E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scada.Model.Entity.SL", "Model\Scada.Model.Entity.SL\Scada.Model.Entity.SL.csproj", "{66B7D2F9-31D1-4C6A-A1DC-C5523A8CF27D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scada.Model.Entity.SL", "Model\Scada.Model.Entity\Scada.Model.Entity.SL.csproj", "{66B7D2F9-31D1-4C6A-A1DC-C5523A8CF27D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

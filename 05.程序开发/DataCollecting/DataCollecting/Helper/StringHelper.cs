@@ -54,7 +54,7 @@ namespace DataCollecting.Helper
             Array.Copy(data, startIndex, tempArr, 0, length);
 
             string result = "";
-            for (int i = 0; i < data.Length; i++)
+            for (int i = 0; i < tempArr.Length; i++)
             {
                 string temp = Convert.ToString(tempArr[i], 16);
                 if (temp.Length == 1)
@@ -77,7 +77,7 @@ namespace DataCollecting.Helper
             Array.Copy(data, startIndex, tempArr, 0, length);
 
             string result = "";
-            for (int i = 0; i < data.Length; i++)
+            for (int i = 0; i < tempArr.Length; i++)
             {
                 string temp = Convert.ToString(tempArr[i], 16);
                 if (temp.Length == 1)
@@ -156,7 +156,7 @@ namespace DataCollecting.Helper
             byte[] tempArr = new byte[length];
             Array.Copy(data, startIndex, tempArr, 0, length);
             string result = "";
-            for (int i = 0; i < data.Length; i++)
+            for (int i = 0; i < tempArr.Length; i++)
             {
                 string temp = Convert.ToString(tempArr[i], 16);
                 if (temp.Length == 1)
@@ -247,7 +247,7 @@ namespace DataCollecting.Helper
             byte[] tempArr = new byte[length];
             Array.Copy(data, startIndex, tempArr, 0, length);
             string result = "";
-            for (int i = 0; i < data.Length; i++)
+            for (int i = 0; i < tempArr.Length; i++)
             {
                 string temp = Convert.ToString(tempArr[i], 10);
                 result = result + temp + ".";

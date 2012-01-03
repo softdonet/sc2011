@@ -165,6 +165,9 @@ namespace Scada.BLL.Implement
 
                 sSql.Append(@" Where id ='" + deviceValue.ID.ToString() + "'");
                 rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql.ToString(), sSqlWhere.ToArray());
+
+                //TODO: 更改维护人列表
+
                 result = true;
             }
             catch (Exception ex)
@@ -200,7 +203,6 @@ namespace Scada.BLL.Implement
                 deviceInfo.SIMNo = item["simno"].ToString();
                 deviceInfo.ManageAreaID = new Guid(item["manageareaid"].ToString());
                 deviceInfo.InstallPlace = item["installplace"].ToString();
-
 
                 decimal? decValue = null;
 
@@ -305,6 +307,9 @@ namespace Scada.BLL.Implement
                     decValue = Convert.ToDecimal(item["process1lowvalue"]);
                 deviceInfo.Process1LowValue = decValue;
 
+                //TODO: 列出设备的维护人列表
+
+
             }
             result = BinaryObjTransfer.JsonSerializer<DeviceInfo>(deviceInfo);
             return result;
@@ -312,7 +317,30 @@ namespace Scada.BLL.Implement
 
         public string ListMaintenancePeople()
         {
-            return string.Empty;
+            string result = string.Empty;
+            List<MaintenancePeople> mainPeople = new List<MaintenancePeople>();
+            string sSql = @" select ID,MainNo,MainName,City,Native,
+                                      Telephone,MobileBack,Email from MaintenancePeople";
+            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            if (ds == null || ds.Rows.Count == 0) { return result; }
+            MaintenancePeople peoples = null;
+            foreach (DataRow item in ds.Rows)
+            {
+                peoples = new MaintenancePeople();
+                peoples.ID = new Guid(item["ID"].ToString());
+                peoples.MainNo = item["MainNo"].ToString();
+                peoples.MainName = item["MainName"].ToString();
+                peoples.City = item["City"].ToString();
+                peoples.Native = item["Native"].ToString();
+                peoples.Telephone = item["Telephone"].ToString();
+                peoples.MobileBack = item["MobileBack"].ToString();
+                peoples.Email = item["Email"].ToString();
+                mainPeople.Add(peoples);
+            }
+            result = BinaryObjTransfer.JsonSerializer<List<MaintenancePeople>>(mainPeople);
+            return result;
+
+
         }
 
         public string ListDeviceTreeView()
@@ -552,7 +580,7 @@ namespace Scada.BLL.Implement
             return BinaryObjTransfer.JsonSerializer<List<StepInfo>>(stepInfos);
         }
 
-        public Boolean UpdateEventState(Guid EventID,int state)
+        public Boolean UpdateEventState(Guid EventID, int state)
         {
             Boolean result = false;
             String sSql = @" Update UserEvent Set State=" + state +

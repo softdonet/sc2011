@@ -131,6 +131,9 @@ namespace DataCollecting
             sb.Append("    MAC地址：" + config_R.MAC + Environment.NewLine);
             sb.Append("    SIM卡号：" + config_R.SIM + Environment.NewLine);
             sb.Append("    设备型号：" + config_R.DeviveType + Environment.NewLine);
+            sb.Append("    硬件版本号：" + String.Format("{0}.{1}",config_R.HardwareVersionMain.ToString(),config_R.HardwareVersionChild.ToString()) + Environment.NewLine);
+            sb.Append("    软件版本号："  +String.Format("{0}.{1}", config_R.SoftwareVersionMain.ToString(), config_R.SoftwareVersionChild.ToString()) + Environment.NewLine);
+            sb.Append("    工作状态：" + String.Format("{0}.{1}", config_R.WorkstateMain.ToString(), config_R.WorkstateChild.ToString()) + Environment.NewLine);
             sb.Append("校验位：" + StringHelper.DataToStrV2(BitConverter.GetBytes(config_R.VerifyData)) + Environment.NewLine);
             sb.Append("--------------------------------------" + Environment.NewLine);
             SetText(sb.ToString(), false);
@@ -251,7 +254,12 @@ namespace DataCollecting
             cr.MAC = "00-10-30-AF-E1-30-40";
             cr.SIM = "10303239876321900102";
             cr.DeviveType = "ICG-P1000-ED";
-
+            cr.HardwareVersionMain = 12;
+            cr.HardwareVersionChild = 25;
+            cr.SoftwareVersionMain = 13;
+            cr.SoftwareVersionChild = 26;
+            cr.WorkstateMain = 14;
+            cr.WorkstateChild = 17;
             SetText(StringHelper.DataToStr(cr.ToByte()) + Environment.NewLine, false);
         }
 

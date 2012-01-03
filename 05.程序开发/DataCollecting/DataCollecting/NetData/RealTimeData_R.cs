@@ -78,15 +78,9 @@ namespace DataCollecting.NetData
             set { realTimeDataBlocks = value; }
         }
 
-        /// <summary>
-        /// 转化为字节数组
-        /// </summary>
-        /// <returns></returns>
-        public byte[] ToByte()
+      
+        protected override void PushBodyByte(List<byte> result)
         {
-            List<byte> result = new List<byte>();
-            //压入头
-            result.AddRange(Header.ToByte());
             //压入块长度
             result.Add((byte)realTimeDataBlocks.Count);
             //压入数据块
@@ -108,11 +102,6 @@ namespace DataCollecting.NetData
                     result.Add(0x00);
                 }
             }
-            //压入总长度
-            result.InsertRange(5, BitConverter.GetBytes((ushort)(result.Count + 4)));
-            //压入校验位
-            result.AddRange(BitConverter.GetBytes(CRC16Helper.CalculateCrc16(result.ToArray())));
-            return result.ToArray();
         }
     }
 }

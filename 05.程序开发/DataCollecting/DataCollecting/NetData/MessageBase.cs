@@ -7,7 +7,8 @@ using DataCollecting.Helper;
 namespace DataCollecting.NetData
 {
     /// <summary>
-    /// 数据解码
+    /// 数据解包封包基类，完成报头检验等基础功能
+    /// yanghk at 2012-1-3
     /// </summary>
     public class MessageBase
     {
@@ -48,6 +49,31 @@ namespace DataCollecting.NetData
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// 构造报体字节数组
+        /// </summary>
+        /// <param name="result"></param>
+        protected virtual void PushBodyByte(List<byte> result)
+        { }
+
+        /// <summary>
+        /// 转化为字节数组
+        /// </summary>
+        /// <returns></returns>
+        public byte[] ToByte()
+        {
+            List<byte> result = new List<byte>();
+            //压入头
+            result.AddRange(Header.ToByte());
+            //构造报体
+            PushBodyByte(result);
+            //压入总长度
+            result.InsertRange(5, BitConverter.GetBytes((ushort)(result.Count + 4)));
+            //压入校验位
+            result.AddRange(BitConverter.GetBytes(CRC16Helper.CalculateCrc16(result.ToArray())));
+            return result.ToArray();
         }
     }
 }

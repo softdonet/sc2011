@@ -97,7 +97,7 @@ namespace DataCollecting.Helper
         }
 
         /// <summary>
-        /// 字节数组转化为时间
+        /// 时间转化为字节数组
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>

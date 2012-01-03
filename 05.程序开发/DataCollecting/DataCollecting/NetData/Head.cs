@@ -1,8 +1,4 @@
-﻿//*********************************************************************
-//               异步通讯命令数据报头解析类型（报头21Byte）
-//               Create by yanghk at 2011-12-18
-//*********************************************************************
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +7,10 @@ using DataCollecting.Helper;
 
 namespace DataCollecting.NetData
 {
-
-
+    /// <summary>
+    /// 报头定义21Byte
+    /// yanghk at 2011-12-18
+    /// </summary>
     public class Head
     {
         #region 报头
@@ -127,9 +125,8 @@ namespace DataCollecting.NetData
             //压入数据上下文
             result.AddRange(BitConverter.GetBytes(dataContext));
             //------------------------------------------
+            //压入报文长度
             //ushort报文总长度（5--6）。插入报文长度。待数据报文生成之后。InsertRange插入。
-            //此处测试用
-            //result.AddRange(BitConverter.GetBytes(commandCount));
             //------------------------------------------
             //压入设备序列号
             //-----------------------------------------------
@@ -147,12 +144,7 @@ namespace DataCollecting.NetData
             //压入状态
             result.Add(state);
             //压入时间
-            result.AddRange(BitConverter.GetBytes((ushort)DateTime.Now.Year));
-            result.Add((byte)DateTime.Now.Month);
-            result.Add((byte)DateTime.Now.Day);
-            result.Add((byte)DateTime.Now.Hour);
-            result.Add((byte)DateTime.Now.Minute);
-            result.Add((byte)DateTime.Now.Second);
+            result.AddRange(StringHelper.DateTimeToByte(DateTime.Now));
             return result.ToArray();
         }
     }

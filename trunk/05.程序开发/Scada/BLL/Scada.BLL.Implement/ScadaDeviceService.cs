@@ -108,7 +108,107 @@ namespace Scada.BLL.Implement
 
         public Boolean AddDeviceInfo(string deviceInfo)
         {
-            return false;
+            Int32 rowNum = 0;
+            Boolean result = false;
+            SqlParameter para = null;
+
+            StringBuilder sSql = new StringBuilder();
+            List<SqlParameter> sSqlWhere = new List<SqlParameter>();
+            try
+            {
+                DeviceInfo deviceValue = BinaryObjTransfer.JsonDeserialize<DeviceInfo>(deviceInfo);
+                sSql.Append(@" Insert Into DeviceInfo(ID,DeviceNo,HardType,ProductDate,DeviceMAC,
+                                SIMNo,ManageAreaID,InstallPlace,Longitude,Dimensionality,
+                                High,Comment,ConnectPoint) Values (@ID,@DeviceNo,@HardType,@ProductDate,@DeviceMAC,
+                                @SIMNo,@ManageAreaID,@InstallPlace,@Longitude,@Dimensionality,
+                                @High,@Comment,@ConnectPoint)");
+                para = new SqlParameter();
+                para.DbType = DbType.Guid;
+                para.ParameterName = "@ID";
+                para.Value = deviceValue.ID;
+                sSqlWhere.Add(para);
+
+                para = new SqlParameter();
+                para.DbType = DbType.String;
+                para.ParameterName = "@DeviceNo";
+                para.Value = deviceValue.DeviceNo;
+                sSqlWhere.Add(para);
+
+                para = new SqlParameter();
+                para.DbType = DbType.String;
+                para.ParameterName = "@HardType";
+                para.Value = deviceValue.HardType;
+                sSqlWhere.Add(para);
+
+                para = new SqlParameter();
+                para.DbType = DbType.DateTime;
+                para.ParameterName = "@ProductDate";
+                para.Value = deviceValue.ProductDate;
+                sSqlWhere.Add(para);
+
+                para = new SqlParameter();
+                para.DbType = DbType.String;
+                para.ParameterName = "@DeviceMAC";
+                para.Value = deviceValue.DeviceMAC;
+                sSqlWhere.Add(para);
+
+                para = new SqlParameter();
+                para.DbType = DbType.String;
+                para.ParameterName = "@SIMNo";
+                para.Value = deviceValue.SIMNo;
+                sSqlWhere.Add(para);
+
+                para = new SqlParameter();
+                para.DbType = DbType.Guid;
+                para.ParameterName = "@ManageAreaID";
+                para.Value = deviceValue.ManageAreaID;
+                sSqlWhere.Add(para);
+
+                para = new SqlParameter();
+                para.DbType = DbType.String;
+                para.ParameterName = "@InstallPlace";
+                para.Value = deviceValue.InstallPlace;
+                sSqlWhere.Add(para);
+
+                para = new SqlParameter();
+                para.DbType = DbType.Decimal;
+                para.ParameterName = "@Longitude";
+                para.Value = deviceValue.Longitude;
+                sSqlWhere.Add(para);
+
+                para = new SqlParameter();
+                para.DbType = DbType.Decimal;
+                para.ParameterName = "@Dimensionality";
+                para.Value = deviceValue.Dimensionality;
+                sSqlWhere.Add(para);
+
+                para = new SqlParameter();
+                para.DbType = DbType.Decimal;
+                para.ParameterName = "@High";
+                para.Value = deviceValue.High;
+                sSqlWhere.Add(para);
+
+                para = new SqlParameter();
+                para.DbType = DbType.String;
+                para.ParameterName = "@Comment";
+                para.Value = deviceValue.Comment;
+                sSqlWhere.Add(para);
+
+                para = new SqlParameter();
+                para.DbType = DbType.String;
+                para.ParameterName = "@ConnectPoint";
+                para.Value = deviceValue.ConnectPoint;
+                sSqlWhere.Add(para);
+
+                rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql.ToString(), sSqlWhere.ToArray());
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                result = false;
+            }
+            return result;
         }
 
         public Boolean UpdateDeviceInfo(string deviceInfo)

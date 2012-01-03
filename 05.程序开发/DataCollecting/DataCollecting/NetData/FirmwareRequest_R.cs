@@ -5,7 +5,19 @@ using System.Text;
 
 namespace DataCollecting.NetData
 {
-    class FirmwareRequest_R
+    /// <summary>
+    /// 设备请求固件更新
+    /// </summary>
+    public class FirmwareRequest_R : RequestBase_R
     {
+        public FirmwareRequest_R()
+        {
+        }
+
+        public FirmwareRequest_R(byte[] data)
+            : base(data)
+        {
+
+        }
     }
 }

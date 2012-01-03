@@ -5,7 +5,16 @@ using System.Text;
 
 namespace DataCollecting.NetData
 {
-    class Register_R
+    public class Register_R : RequestBase_R
     {
+        public Register_R()
+        {
+        }
+
+        public Register_R(byte[] data)
+            : base(data)
+        {
+
+        }
     }
 }

@@ -18,6 +18,7 @@ namespace DataCollecting.NetData
             : base(data)
         {
         }
+
         /// <summary>
         /// 是否含有配置信息
         /// </summary>

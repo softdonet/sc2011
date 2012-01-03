@@ -64,7 +64,7 @@
     <Compile Include="frm_Test.Designer.cs">
       <DependentUpon>frm_Test.cs</DependentUpon>
     </Compile>
-    <Compile Include="NetData\NetDataBase\Head.cs" />
+    <Compile Include="NetData\NetDataBlock\Head.cs" />
     <Compile Include="NetData\NetDataBase\ReplyBase_S.cs" />
     <Compile Include="NetData\RealTimeData_R.cs" />
     <Compile Include="NetData\RealTimeData_S.cs" />

@@ -6,6 +6,10 @@ using DataCollecting.Helper;
 
 namespace DataCollecting.NetData
 {
+    /// <summary>
+    /// 设备请求信息基类型
+    /// 
+    /// </summary>
     public class RequestBase_R : MessageBase
     {
         public RequestBase_R()

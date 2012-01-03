@@ -53,7 +53,7 @@
     <Compile Include="NetData\FirmwareRequest_R.cs" />
     <Compile Include="NetData\FirmwareRequest_S.cs" />
     <Compile Include="NetData\Logout_R.cs" />
-    <Compile Include="NetData\MessageBase.cs" />
+    <Compile Include="NetData\NetDataBase\MessageBase.cs" />
     <Compile Include="Common\Command.cs" />
     <Compile Include="frm_Test.cs">
       <SubType>Form</SubType>
@@ -61,12 +61,12 @@
     <Compile Include="frm_Test.Designer.cs">
       <DependentUpon>frm_Test.cs</DependentUpon>
     </Compile>
-    <Compile Include="NetData\Head.cs" />
+    <Compile Include="NetData\NetDataBase\Head.cs" />
     <Compile Include="NetData\RealTimeData_R.cs" />
     <Compile Include="NetData\RealTimeData_S.cs" />
     <Compile Include="NetData\Register_R.cs" />
     <Compile Include="NetData\Register_S.cs" />
-    <Compile Include="NetData\RequestBase_R.cs" />
+    <Compile Include="NetData\NetDataBase\RequestBase_R.cs" />
     <Compile Include="NetData\Test_R.cs" />
     <Compile Include="NetData\Test_S.cs" />
     <Compile Include="NetData\UserEvent_R.cs" />

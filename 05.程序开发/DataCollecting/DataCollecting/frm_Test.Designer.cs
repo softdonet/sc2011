@@ -38,6 +38,7 @@
             this.固件更新命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.注册命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.主动关闭告知命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.清除屏幕ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,7 +63,8 @@
             this.用户事件命令ToolStripMenuItem,
             this.固件更新命令ToolStripMenuItem,
             this.注册命令ToolStripMenuItem,
-            this.主动关闭告知命令ToolStripMenuItem});
+            this.主动关闭告知命令ToolStripMenuItem,
+            this.清除屏幕ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(852, 24);
@@ -118,6 +120,13 @@
             this.主动关闭告知命令ToolStripMenuItem.Text = "主动关闭告知命令";
             this.主动关闭告知命令ToolStripMenuItem.Click += new System.EventHandler(this.主动关闭告知命令ToolStripMenuItem_Click);
             // 
+            // 清除屏幕ToolStripMenuItem
+            // 
+            this.清除屏幕ToolStripMenuItem.Name = "清除屏幕ToolStripMenuItem";
+            this.清除屏幕ToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.清除屏幕ToolStripMenuItem.Text = "清屏";
+            this.清除屏幕ToolStripMenuItem.Click += new System.EventHandler(this.清除屏幕ToolStripMenuItem_Click);
+            // 
             // frm_Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -147,6 +156,7 @@
         private System.Windows.Forms.ToolStripMenuItem 固件更新命令ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 注册命令ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 主动关闭告知命令ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 清除屏幕ToolStripMenuItem;
     }
 }
 

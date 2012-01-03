@@ -65,8 +65,6 @@ namespace DataCollecting
             sb.Append("    硬件版本号：" + String.Format("{0}.{1}", rr.HardwareVersionMain.ToString(), rr.HardwareVersionChild.ToString()) + Environment.NewLine);
             sb.Append("    软件版本号：" + String.Format("{0}.{1}", rr.SoftwareVersionMain.ToString(), rr.SoftwareVersionChild.ToString()) + Environment.NewLine);
             sb.Append("    工作状态：" + String.Format("{0}.{1}", rr.WorkstateMain.ToString(), rr.WorkstateChild.ToString()) + Environment.NewLine);
-            sb.Append("校验位：" + StringHelper.DataToStrV2(BitConverter.GetBytes(rr.VerifyData)) + Environment.NewLine);
-            sb.Append("--------------------------------------" + Environment.NewLine);
             return sb.ToString();
         }
 
@@ -163,6 +161,7 @@ namespace DataCollecting
             sb.Append(GetLine());
             sb.Append(GetHeader(userEvent_R));
             sb.Append(GetRequestBody(userEvent_R));
+            sb.Append(GetVerify(userEvent_R));
             sb.Append(GetLine());
             SetText(sb.ToString(), false);
         }
@@ -426,5 +425,10 @@ namespace DataCollecting
         }
 
         #endregion
+
+        private void 清除屏幕ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.textBox1.Text = string.Empty;
+        }
     }
 }

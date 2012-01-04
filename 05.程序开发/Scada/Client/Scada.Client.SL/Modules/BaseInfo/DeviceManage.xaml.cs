@@ -86,25 +86,30 @@ namespace Scada.Client.SL.Modules.BaseInfo
             DeviceTreeNode node = e.NewValue as DeviceTreeNode;
             this._userSelTreeNode = node;
 
-            this.butOut.IsEnabled = true;
-            if (node.NodeType == 1)
+            this.btnExport.IsEnabled = true;
+            if (node.NodeType != null)
             {
-                this.butAdd.IsEnabled = false;
-                this.butDel.IsEnabled = false;
-                this.butSave.IsEnabled = false;
-            }
-            else if (node.NodeType == 2)
-            {
-                this.butAdd.IsEnabled = true;
-                this.butDel.IsEnabled = false;
-                this.butSave.IsEnabled = true;
-            }
-            else if (node.NodeType == 3)
-            {
-                this.butAdd.IsEnabled = true;
-                this.butDel.IsEnabled = true;
-                this.butSave.IsEnabled = true;
-                scadaDeviceServiceSoapClient.ViewDeviceInfoAsync(node.NodeKey.ToString().ToUpper());
+
+
+                if (node.NodeType == 1)
+                {
+                    this.butAdd.IsEnabled = false;
+                    this.butDel.IsEnabled = false;
+                    this.butSave.IsEnabled = false;
+                }
+                else if (node.NodeType == 2)
+                {
+                    this.butAdd.IsEnabled = true;
+                    this.butDel.IsEnabled = false;
+                    this.butSave.IsEnabled = true;
+                }
+                else if (node.NodeType == 3)
+                {
+                    this.butAdd.IsEnabled = true;
+                    this.butDel.IsEnabled = true;
+                    this.butSave.IsEnabled = true;
+                    scadaDeviceServiceSoapClient.ViewDeviceInfoAsync(node.NodeKey.ToString().ToUpper());
+                }
             }
         }
 
@@ -243,22 +248,25 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
         private void butSave_Click(object sender, RoutedEventArgs e)
         {
-
-            if (IsAddUpdateType)
-                _userSelDeviceInfo.ID = new Guid();
-
-            this.AddDeviceProperty(_userSelDeviceInfo);
-
-            string deviceInfo = string.Empty;
-            if (IsAddUpdateType)
+            if (_userSelDeviceInfo != null)
             {
-                deviceInfo = BinaryObjTransfer.BinarySerialize<DeviceInfo>(_userSelDeviceInfo);
-                scadaDeviceServiceSoapClient.AddDeviceInfoAsync(deviceInfo);
-            }
-            else
-            {
-                deviceInfo = BinaryObjTransfer.BinarySerialize<DeviceInfo>(_userSelDeviceInfo);
-                scadaDeviceServiceSoapClient.UpdateDeviceInfoAsync(deviceInfo);
+                //_userSelDeviceInfo = new DeviceInfo();
+                if (IsAddUpdateType)
+                    _userSelDeviceInfo.ID = Guid.NewGuid();
+
+                this.AddDeviceProperty(_userSelDeviceInfo);
+
+                string deviceInfo = string.Empty;
+                if (IsAddUpdateType)
+                {
+                    deviceInfo = BinaryObjTransfer.BinarySerialize<DeviceInfo>(_userSelDeviceInfo);
+                    scadaDeviceServiceSoapClient.AddDeviceInfoAsync(deviceInfo);
+                }
+                else
+                {
+                    deviceInfo = BinaryObjTransfer.BinarySerialize<DeviceInfo>(_userSelDeviceInfo);
+                    scadaDeviceServiceSoapClient.UpdateDeviceInfoAsync(deviceInfo);
+                }
             }
         }
 
@@ -272,10 +280,18 @@ namespace Scada.Client.SL.Modules.BaseInfo
             deviceInfo.Comment = this.txtRemark.Text;
 
             deviceInfo.ConnectPoint = this.txtConnPoint.Text;
-            deviceInfo.Longitude = decimal.Parse(this.txtLongitude.Text);
-            deviceInfo.Dimensionality = decimal.Parse(this.txtDimensionality.Text);
-            deviceInfo.High = decimal.Parse(this.txtHigh.Text);
-
+            if (!string.IsNullOrEmpty(txtLongitude.Text))
+            {
+                deviceInfo.Longitude = decimal.Parse(this.txtLongitude.Text);
+            }
+            if (!string.IsNullOrEmpty(txtDimensionality.Text))
+            {
+                deviceInfo.Dimensionality = decimal.Parse(this.txtDimensionality.Text);
+            }
+            if (string.IsNullOrEmpty(txtHigh.Text))
+            {
+                deviceInfo.High = decimal.Parse(this.txtHigh.Text);
+            }
             deviceInfo.ConnectType = 1;
 
             deviceInfo.MainDNS = this.txtHostDNS.Text;

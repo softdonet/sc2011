@@ -17,16 +17,19 @@
     <system.serviceModel>
         <bindings>
             <basicHttpBinding>
-                <binding name="WeatherWebServiceSoap" maxBufferSize="2147483647"
-                    maxReceivedMessageSize="2147483647">
+                <binding name="WeatherWebServiceSoap" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647" 
+                         openTimeout ="00:10:00" receiveTimeout ="00:10:00" 
+                         sendTimeout ="00:10:00" closeTimeout ="00:10:00">
                     <security mode="None" />
                 </binding>
-                <binding name="SystemManagerServiceSoap" maxBufferSize="2147483647"
-                    maxReceivedMessageSize="2147483647">
+                <binding name="SystemManagerServiceSoap" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647"
+                         openTimeout ="00:10:00" receiveTimeout ="00:10:00" 
+                         sendTimeout ="00:10:00" closeTimeout ="00:10:00">
                     <security mode="None" />
                 </binding>
-                <binding name="ScadaDeviceServiceSoap" maxBufferSize="2147483647"
-                    maxReceivedMessageSize="2147483647">
+                <binding name="ScadaDeviceServiceSoap" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647" 
+                         openTimeout ="00:10:00" receiveTimeout ="00:10:00"
+                         sendTimeout ="00:10:00" closeTimeout ="00:10:00">
                     <security mode="None" />
                 </binding>
             </basicHttpBinding>

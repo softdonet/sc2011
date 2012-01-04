@@ -16,6 +16,7 @@
                     <GradientStop Color="#FF2C5273" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
             <Grid>
                 <TextBlock Text="设备信息管理" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,5,0,0" Height="25" FontSize="16" Foreground="White"   TextWrapping="Wrap"  />
                 <Border BorderBrush="#FF4A91BB" BorderThickness="1" Margin="10,35,10,20" CornerRadius="5" >
@@ -99,7 +100,7 @@
                                 <Button Content="增加" Height="23" Name="butAdd" Width="60" Click="butAdd_Click" />
                                 <Button Content="删除" Height="23" Name="butDel" Width="60" Click="butDel_Click" />
                                 <Button Content="保存" Height="23" Name="butSave" Width="60" Click="butSave_Click" />
-                                <Button Content="导出" Height="23" Name="butOut" Width="60" />
+                                <Button Content="导出" Height="23" Name="butExport" Width="60" />
                             </StackPanel>
                             <sdk:DataGrid AutoGenerateColumns="False" Grid.Column="2" Height="213" HorizontalAlignment="Left" Margin="36,241,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="374" SelectionChanged="dataGrid1_SelectionChanged">
                                 <sdk:DataGrid.Columns>
@@ -145,6 +146,7 @@
                     </Border>
                 </Border>
             </Grid>
+            </ScrollViewer>
         </Border>
     </Grid>
 

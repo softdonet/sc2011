@@ -1,7 +1,11 @@
 using System;
 using System.Collections.Generic;
+
+
 namespace Scada.Model.Entity
 {
+
+
     /// <summary>
     /// ¿‡DeviceAlarm°£
     /// </summary>
@@ -107,5 +111,6 @@ namespace Scada.Model.Entity
             get { return _comment; }
         }
     }
+
 }
 

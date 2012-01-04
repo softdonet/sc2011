@@ -27,6 +27,11 @@ namespace Scada.Client.SL.SystemManagerService {
         System.IAsyncResult BeginListStudents(Scada.Client.SL.SystemManagerService.ListStudentsRequest request, System.AsyncCallback callback, object asyncState);
         
         Scada.Client.SL.SystemManagerService.ListStudentsResponse EndListStudents(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/GetLoginResultType", ReplyAction="*")]
+        System.IAsyncResult BeginGetLoginResultType(Scada.Client.SL.SystemManagerService.GetLoginResultTypeRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.SL.SystemManagerService.GetLoginResultTypeResponse EndGetLoginResultType(System.IAsyncResult result);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -90,6 +95,78 @@ namespace Scada.Client.SL.SystemManagerService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetLoginResultTypeRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetLoginResultType", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.SystemManagerService.GetLoginResultTypeRequestBody Body;
+        
+        public GetLoginResultTypeRequest() {
+        }
+        
+        public GetLoginResultTypeRequest(Scada.Client.SL.SystemManagerService.GetLoginResultTypeRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetLoginResultTypeRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string username;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string userpwd;
+        
+        public GetLoginResultTypeRequestBody() {
+        }
+        
+        public GetLoginResultTypeRequestBody(string username, string userpwd) {
+            this.username = username;
+            this.userpwd = userpwd;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetLoginResultTypeResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetLoginResultTypeResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.SystemManagerService.GetLoginResultTypeResponseBody Body;
+        
+        public GetLoginResultTypeResponse() {
+        }
+        
+        public GetLoginResultTypeResponse(Scada.Client.SL.SystemManagerService.GetLoginResultTypeResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetLoginResultTypeResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public int GetLoginResultTypeResult;
+        
+        public GetLoginResultTypeResponseBody() {
+        }
+        
+        public GetLoginResultTypeResponseBody(int GetLoginResultTypeResult) {
+            this.GetLoginResultTypeResult = GetLoginResultTypeResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface SystemManagerServiceSoapChannel : Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap, System.ServiceModel.IClientChannel {
     }
@@ -134,6 +211,25 @@ namespace Scada.Client.SL.SystemManagerService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetLoginResultTypeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetLoginResultTypeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public int Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class SystemManagerServiceSoapClient : System.ServiceModel.ClientBase<Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap>, Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap {
         
         private BeginOperationDelegate onBeginAddDDDelegate;
@@ -147,6 +243,12 @@ namespace Scada.Client.SL.SystemManagerService {
         private EndOperationDelegate onEndListStudentsDelegate;
         
         private System.Threading.SendOrPostCallback onListStudentsCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetLoginResultTypeDelegate;
+        
+        private EndOperationDelegate onEndGetLoginResultTypeDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetLoginResultTypeCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -204,6 +306,8 @@ namespace Scada.Client.SL.SystemManagerService {
         public event System.EventHandler<AddDDCompletedEventArgs> AddDDCompleted;
         
         public event System.EventHandler<ListStudentsCompletedEventArgs> ListStudentsCompleted;
+        
+        public event System.EventHandler<GetLoginResultTypeCompletedEventArgs> GetLoginResultTypeCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -314,6 +418,69 @@ namespace Scada.Client.SL.SystemManagerService {
             base.InvokeAsync(this.onBeginListStudentsDelegate, null, this.onEndListStudentsDelegate, this.onListStudentsCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap.BeginGetLoginResultType(Scada.Client.SL.SystemManagerService.GetLoginResultTypeRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetLoginResultType(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginGetLoginResultType(string username, string userpwd, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.SL.SystemManagerService.GetLoginResultTypeRequest inValue = new Scada.Client.SL.SystemManagerService.GetLoginResultTypeRequest();
+            inValue.Body = new Scada.Client.SL.SystemManagerService.GetLoginResultTypeRequestBody();
+            inValue.Body.username = username;
+            inValue.Body.userpwd = userpwd;
+            return ((Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap)(this)).BeginGetLoginResultType(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.SL.SystemManagerService.GetLoginResultTypeResponse Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap.EndGetLoginResultType(System.IAsyncResult result) {
+            return base.Channel.EndGetLoginResultType(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private int EndGetLoginResultType(System.IAsyncResult result) {
+            Scada.Client.SL.SystemManagerService.GetLoginResultTypeResponse retVal = ((Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap)(this)).EndGetLoginResultType(result);
+            return retVal.Body.GetLoginResultTypeResult;
+        }
+        
+        private System.IAsyncResult OnBeginGetLoginResultType(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string username = ((string)(inValues[0]));
+            string userpwd = ((string)(inValues[1]));
+            return this.BeginGetLoginResultType(username, userpwd, callback, asyncState);
+        }
+        
+        private object[] OnEndGetLoginResultType(System.IAsyncResult result) {
+            int retVal = this.EndGetLoginResultType(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetLoginResultTypeCompleted(object state) {
+            if ((this.GetLoginResultTypeCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetLoginResultTypeCompleted(this, new GetLoginResultTypeCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetLoginResultTypeAsync(string username, string userpwd) {
+            this.GetLoginResultTypeAsync(username, userpwd, null);
+        }
+        
+        public void GetLoginResultTypeAsync(string username, string userpwd, object userState) {
+            if ((this.onBeginGetLoginResultTypeDelegate == null)) {
+                this.onBeginGetLoginResultTypeDelegate = new BeginOperationDelegate(this.OnBeginGetLoginResultType);
+            }
+            if ((this.onEndGetLoginResultTypeDelegate == null)) {
+                this.onEndGetLoginResultTypeDelegate = new EndOperationDelegate(this.OnEndGetLoginResultType);
+            }
+            if ((this.onGetLoginResultTypeCompletedDelegate == null)) {
+                this.onGetLoginResultTypeCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetLoginResultTypeCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetLoginResultTypeDelegate, new object[] {
+                        username,
+                        userpwd}, this.onEndGetLoginResultTypeDelegate, this.onGetLoginResultTypeCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -414,6 +581,19 @@ namespace Scada.Client.SL.SystemManagerService {
             public Scada.Client.SL.SystemManagerService.ListStudentsResponse EndListStudents(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 Scada.Client.SL.SystemManagerService.ListStudentsResponse _result = ((Scada.Client.SL.SystemManagerService.ListStudentsResponse)(base.EndInvoke("ListStudents", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetLoginResultType(Scada.Client.SL.SystemManagerService.GetLoginResultTypeRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("GetLoginResultType", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.SL.SystemManagerService.GetLoginResultTypeResponse EndGetLoginResultType(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.SL.SystemManagerService.GetLoginResultTypeResponse _result = ((Scada.Client.SL.SystemManagerService.GetLoginResultTypeResponse)(base.EndInvoke("GetLoginResultType", _args, result)));
                 return _result;
             }
         }

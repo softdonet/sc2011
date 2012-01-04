@@ -39,9 +39,9 @@ namespace Scada.Client.SL.ScadaDeviceService {
         Scada.Client.SL.ScadaDeviceService.UpdateDeviceInfoResponse EndUpdateDeviceInfo(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/DeleteDeviceInfo", ReplyAction="*")]
-        System.IAsyncResult BeginDeleteDeviceInfo(Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoRequest request, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginDeleteDeviceInfo(System.Guid deviceGuid, System.AsyncCallback callback, object asyncState);
         
-        Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoResponse EndDeleteDeviceInfo(System.IAsyncResult result);
+        bool EndDeleteDeviceInfo(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ViewDeviceInfo", ReplyAction="*")]
         System.IAsyncResult BeginViewDeviceInfo(Scada.Client.SL.ScadaDeviceService.ViewDeviceInfoRequest request, System.AsyncCallback callback, object asyncState);
@@ -312,74 +312,6 @@ namespace Scada.Client.SL.ScadaDeviceService {
         
         public UpdateDeviceInfoResponseBody(bool UpdateDeviceInfoResult) {
             this.UpdateDeviceInfoResult = UpdateDeviceInfoResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class DeleteDeviceInfoRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="DeleteDeviceInfo", Namespace="http://tempuri.org/", Order=0)]
-        public Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoRequestBody Body;
-        
-        public DeleteDeviceInfoRequest() {
-        }
-        
-        public DeleteDeviceInfoRequest(Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class DeleteDeviceInfoRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string deviceGuid;
-        
-        public DeleteDeviceInfoRequestBody() {
-        }
-        
-        public DeleteDeviceInfoRequestBody(string deviceGuid) {
-            this.deviceGuid = deviceGuid;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class DeleteDeviceInfoResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="DeleteDeviceInfoResponse", Namespace="http://tempuri.org/", Order=0)]
-        public Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoResponseBody Body;
-        
-        public DeleteDeviceInfoResponse() {
-        }
-        
-        public DeleteDeviceInfoResponse(Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class DeleteDeviceInfoResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
-        public bool DeleteDeviceInfoResult;
-        
-        public DeleteDeviceInfoResponseBody() {
-        }
-        
-        public DeleteDeviceInfoResponseBody(bool DeleteDeviceInfoResult) {
-            this.DeleteDeviceInfoResult = DeleteDeviceInfoResult;
         }
     }
     
@@ -1775,36 +1707,22 @@ namespace Scada.Client.SL.ScadaDeviceService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.BeginDeleteDeviceInfo(Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoRequest request, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginDeleteDeviceInfo(request, callback, asyncState);
+        System.IAsyncResult Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.BeginDeleteDeviceInfo(System.Guid deviceGuid, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginDeleteDeviceInfo(deviceGuid, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        private System.IAsyncResult BeginDeleteDeviceInfo(string deviceGuid, System.AsyncCallback callback, object asyncState) {
-            Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoRequest inValue = new Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoRequest();
-            inValue.Body = new Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoRequestBody();
-            inValue.Body.deviceGuid = deviceGuid;
-            return ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginDeleteDeviceInfo(inValue, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoResponse Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.EndDeleteDeviceInfo(System.IAsyncResult result) {
+        bool Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.EndDeleteDeviceInfo(System.IAsyncResult result) {
             return base.Channel.EndDeleteDeviceInfo(result);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        private bool EndDeleteDeviceInfo(System.IAsyncResult result) {
-            Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoResponse retVal = ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndDeleteDeviceInfo(result);
-            return retVal.Body.DeleteDeviceInfoResult;
-        }
-        
         private System.IAsyncResult OnBeginDeleteDeviceInfo(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            string deviceGuid = ((string)(inValues[0]));
-            return this.BeginDeleteDeviceInfo(deviceGuid, callback, asyncState);
+            System.Guid deviceGuid = ((System.Guid)(inValues[0]));
+            return ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginDeleteDeviceInfo(deviceGuid, callback, asyncState);
         }
         
         private object[] OnEndDeleteDeviceInfo(System.IAsyncResult result) {
-            bool retVal = this.EndDeleteDeviceInfo(result);
+            bool retVal = ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndDeleteDeviceInfo(result);
             return new object[] {
                     retVal};
         }
@@ -1816,11 +1734,11 @@ namespace Scada.Client.SL.ScadaDeviceService {
             }
         }
         
-        public void DeleteDeviceInfoAsync(string deviceGuid) {
+        public void DeleteDeviceInfoAsync(System.Guid deviceGuid) {
             this.DeleteDeviceInfoAsync(deviceGuid, null);
         }
         
-        public void DeleteDeviceInfoAsync(string deviceGuid, object userState) {
+        public void DeleteDeviceInfoAsync(System.Guid deviceGuid, object userState) {
             if ((this.onBeginDeleteDeviceInfoDelegate == null)) {
                 this.onBeginDeleteDeviceInfoDelegate = new BeginOperationDelegate(this.OnBeginDeleteDeviceInfo);
             }
@@ -2605,16 +2523,16 @@ namespace Scada.Client.SL.ScadaDeviceService {
                 return _result;
             }
             
-            public System.IAsyncResult BeginDeleteDeviceInfo(Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoRequest request, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginDeleteDeviceInfo(System.Guid deviceGuid, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
-                _args[0] = request;
+                _args[0] = deviceGuid;
                 System.IAsyncResult _result = base.BeginInvoke("DeleteDeviceInfo", _args, callback, asyncState);
                 return _result;
             }
             
-            public Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoResponse EndDeleteDeviceInfo(System.IAsyncResult result) {
+            public bool EndDeleteDeviceInfo(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoResponse _result = ((Scada.Client.SL.ScadaDeviceService.DeleteDeviceInfoResponse)(base.EndInvoke("DeleteDeviceInfo", _args, result)));
+                bool _result = ((bool)(base.EndInvoke("DeleteDeviceInfo", _args, result)));
                 return _result;
             }
             

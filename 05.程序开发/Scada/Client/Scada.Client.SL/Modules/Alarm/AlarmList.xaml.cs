@@ -2,8 +2,6 @@
 using System.Linq;
 using System.Collections.Generic;
 
-
-
 using System.Net;
 using System.Windows;
 using System.Windows.Input;
@@ -13,13 +11,13 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media.Animation;
 
-
-
 using Scada.Model.Entity;
 using Scada.Client.SL.CommClass;
 using Scada.Client.SL.ScadaDeviceService;
-using Telerik.Windows.Controls.GridView;
+
 using Telerik.Windows.Controls;
+using Telerik.Windows.Controls.GridView;
+using System.Collections.ObjectModel;
 
 
 
@@ -63,7 +61,8 @@ namespace Scada.Client.SL.Modules.Alarm
 
         private void scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted(object sender, GetListDeviceAlarmInfoCompletedEventArgs e)
         {
-            List<DeviceAlarm> deviceAlam = BinaryObjTransfer.BinaryDeserialize<List<DeviceAlarm>>(e.Result);
+            ObservableCollection<DeviceAlarmViewModel> deviceAlam =
+                                        BinaryObjTransfer.BinaryDeserialize<ObservableCollection<DeviceAlarmViewModel>>(e.Result);
             this.RadGridView1.ItemsSource = deviceAlam;
         }
 
@@ -74,10 +73,10 @@ namespace Scada.Client.SL.Modules.Alarm
 
         private void RadGridView1_RowLoaded(object sender, Telerik.Windows.Controls.GridView.RowLoadedEventArgs e)
         {
+
             if (e.Row is GridViewHeaderRow)
-            {
                 return;
-            }
+
             TextBlock state = (e.Row.Cells[RadGridView1.Columns.Count - 3].Content as FrameworkElement) as TextBlock;
             HyperlinkButton hlBtn = (e.Row.Cells[RadGridView1.Columns.Count - 2].Content as FrameworkElement).FindName("hlBtn") as HyperlinkButton;
             if (state.Text.Trim() == "未确认")
@@ -124,7 +123,7 @@ namespace Scada.Client.SL.Modules.Alarm
         private void hlBtn_Click(object sender, RoutedEventArgs e)
         {
             HyperlinkButton hlB = sender as HyperlinkButton;
-            id = (hlB.DataContext as DeviceAlarm).ID;
+            id = (hlB.DataContext as DeviceAlarmViewModel).ID;
             RadWindow.Prompt("请输入备注：", new EventHandler<WindowClosedEventArgs>(OnClosed));
         }
         private void OnClosed(object sender, WindowClosedEventArgs e)
@@ -133,7 +132,7 @@ namespace Scada.Client.SL.Modules.Alarm
             string getCommentInfo = e.PromptResult;
             //TODO: 操作人
             this._scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoAsync(id, DateTime.Now, getCommentInfo, "Admin");
-           
+
             //DataBind();
         }
 

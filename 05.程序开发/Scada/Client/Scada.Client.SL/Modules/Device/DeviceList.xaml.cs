@@ -18,10 +18,17 @@ using Scada.Model.Entity;
 using Scada.Client.SL.DeviceRealTimeService;
 using Scada.Client.SL.CommClass;
 
+
+
+
 namespace Scada.Client.SL.Modules.Device
 {
+
+
     public partial class DeviceList : UserControl
     {
+
+
         public DeviceList()
         {
             InitializeComponent();
@@ -29,7 +36,7 @@ namespace Scada.Client.SL.Modules.Device
             deviceRealTimeService.GetRealTimeDataReceived += new EventHandler<GetRealTimeDataReceivedEventArgs>(deviceRealTimeService_GetRealTimeDataReceived);
         }
 
-        void deviceRealTimeService_GetRealTimeDataReceived(object sender, GetRealTimeDataReceivedEventArgs e)
+        private void deviceRealTimeService_GetRealTimeDataReceived(object sender, GetRealTimeDataReceivedEventArgs e)
         {
             List<DeviceRealTimeTree> obj = BinaryObjTransfer.BinaryDeserialize<List<DeviceRealTimeTree>>(e.data);
             this.RadTreeListView1.ItemsSource = obj;
@@ -39,17 +46,19 @@ namespace Scada.Client.SL.Modules.Device
             }
             catch
             {
- 
+
             }
         }
 
-        void MyContent_CloseBtn(object sender, EventArgs e)
+        private void MyContent_CloseBtn(object sender, EventArgs e)
         {
             Storyboard2.Begin();
             ViewHost.Visibility = Visibility.Collapsed;
         }
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+
         }
 
         private void RadTreeListView1_RowLoaded(object sender, Telerik.Windows.Controls.GridView.RowLoadedEventArgs e)
@@ -71,7 +80,6 @@ namespace Scada.Client.SL.Modules.Device
             }
         }
 
-
         private void hlUrl_Click(object sender, RoutedEventArgs e)
         {
             Storyboard1.Begin();
@@ -82,6 +90,7 @@ namespace Scada.Client.SL.Modules.Device
 
     public class RelativeBlocksValueConverter : IValueConverter
     {
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return "查看";
@@ -105,7 +114,6 @@ namespace Scada.Client.SL.Modules.Device
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-
             return DependencyProperty.UnsetValue;
         }
     }

@@ -59,7 +59,7 @@
     <Compile Include="Common\DeviceTreeNode.cs" />
     <Compile Include="DBClass\DatabaseBackUp.cs" />
     <Compile Include="DBClass\Department.cs" />
-    <Compile Include="DBClass\DeviceAlarm.cs" />
+    <Compile Include="DBClass\DeviceAlarmViewModel.cs" />
     <Compile Include="DBClass\DeviceInfo.cs" />
     <Compile Include="DBClass\DeviceLog.cs" />
     <Compile Include="DBClass\DeviceMaintenancePeople.cs" />
@@ -76,6 +76,7 @@
     <Compile Include="DBClass\UserEvent.cs" />
     <Compile Include="DBClass\UserRole.cs" />
     <Compile Include="DBPartialClass\DeviceRealTimePartial.cs" />
+    <Compile Include="NotifyPropertyChangedObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

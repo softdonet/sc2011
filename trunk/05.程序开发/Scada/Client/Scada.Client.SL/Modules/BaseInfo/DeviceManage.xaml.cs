@@ -116,29 +116,29 @@ namespace Scada.Client.SL.Modules.BaseInfo
             if (_userSelDeviceInfo == null) { return; }
 
             //设备MAC
-            this.textBox1.Text = _userSelDeviceInfo.DeviceMAC;
-            this.textBox2.Text = _userSelDeviceInfo.SIMNo;
-            this.textBox3.Text = _userSelTreeNode.NodeValue;
-            this.textBox4.Text = _userSelDeviceInfo.InstallPlace;
-            this.textBox5.Text = _userSelDeviceInfo.Comment;
+            this.txtDeviceMac.Text = _userSelDeviceInfo.DeviceMAC;
+            this.txtSIM.Text = _userSelDeviceInfo.SIMNo;
+            this.txtManageArea.Text = _userSelTreeNode.NodeValue;
+            this.txtInstallPlace.Text = _userSelDeviceInfo.InstallPlace;
+            this.txtRemark.Text = _userSelDeviceInfo.Comment;
 
-            this.textBox12.Text = _userSelDeviceInfo.ConnectPoint;
-            this.textBox13.Text = _userSelDeviceInfo.UserName;
-            this.textBox14.Text = _userSelDeviceInfo.Password;
-            this.textBox15.Text = _userSelDeviceInfo.Coordinate;
+            this.txtConnPoint.Text = _userSelDeviceInfo.ConnectPoint;
+            this.txtLongitude.Text = _userSelDeviceInfo.Longitude.ToString();
+            this.txtDimensionality.Text = _userSelDeviceInfo.Dimensionality.ToString();
+            this.txtHigh.Text = _userSelDeviceInfo.High.ToString();
 
-            this.textBox16.Text = "";
+            this.txtConnType.Text = "";
             if (_userSelDeviceInfo.ConnectType != null)
-                this.textBox16.Text = _userSelDeviceInfo.ConnectType.ToString();
+                this.txtConnType.Text = _userSelDeviceInfo.ConnectType.ToString();
 
-            this.textBox17.Text = _userSelDeviceInfo.MainDNS;
-            this.textBox18.Text = _userSelDeviceInfo.SecondDNS;
-            this.textBox19.Text = _userSelDeviceInfo.CenterIP;
-            this.textBox20.Text = _userSelDeviceInfo.Domain;
+            this.txtHostDNS.Text = _userSelDeviceInfo.MainDNS;
+            this.txtNextDNS.Text = _userSelDeviceInfo.SecondDNS;
+            this.txtCenterIp.Text = _userSelDeviceInfo.CenterIP;
+            this.txtDomain.Text = _userSelDeviceInfo.Domain;
 
-            this.textBox21.Text = "";
+            this.txtPort.Text = "";
             if (_userSelDeviceInfo.port != null)
-                this.textBox21.Text = _userSelDeviceInfo.port.ToString();
+                this.txtPort.Text = _userSelDeviceInfo.port.ToString();
 
             //定时表类型
             /*
@@ -158,28 +158,28 @@ namespace Scada.Client.SL.Modules.BaseInfo
             }
             */
 
-            this.textBox11.Text = _userSelDeviceInfo.Version;
+            this.txtVersion.Text = _userSelDeviceInfo.Version;
 
             //硬件配置
             Int32? intType = _userSelDeviceInfo.CollectFreq;
             if (intType != null)
-                this.textBox6.Text = intType.ToString();
+                this.txtCollectFreq.Text = intType.ToString();
 
             intType = _userSelDeviceInfo.ReportInterval;
             if (intType != null)
-                this.textBox7.Text = intType.ToString();
+                this.txtReportInterval.Text = intType.ToString();
 
             decimal? decValue = _userSelDeviceInfo.AlarmTop;
             if (decValue != null)
-                this.textBox8.Text = decValue.ToString();
+                this.txtAlarnTop.Text = decValue.ToString();
 
             decValue = _userSelDeviceInfo.AlarmDown;
             if (decValue != null)
-                this.textBox9.Text = decValue.ToString();
+                this.txtAlarnDown.Text = decValue.ToString();
 
             decValue = _userSelDeviceInfo.Windage;
             if (decValue != null)
-                this.textBox10.Text = decValue.ToString();
+                this.txtWindage.Text = decValue.ToString();
 
         }
 
@@ -265,25 +265,25 @@ namespace Scada.Client.SL.Modules.BaseInfo
         private void AddDeviceProperty(DeviceInfo deviceInfo)
         {
 
-            deviceInfo.DeviceMAC = this.textBox1.Text;
-            deviceInfo.SIMNo = this.textBox2.Text;
+            deviceInfo.DeviceMAC = this.txtDeviceMac.Text;
+            deviceInfo.SIMNo = this.txtSIM.Text;
 
-            deviceInfo.InstallPlace = this.textBox4.Text;
-            deviceInfo.Comment = this.textBox5.Text;
+            deviceInfo.InstallPlace = this.txtInstallPlace.Text;
+            deviceInfo.Comment = this.txtRemark.Text;
 
-            deviceInfo.ConnectPoint = this.textBox12.Text;
-            deviceInfo.UserName = this.textBox13.Text;
-            deviceInfo.Password = this.textBox14.Text;
-            deviceInfo.Coordinate = this.textBox15.Text;
+            deviceInfo.ConnectPoint = this.txtConnPoint.Text;
+            deviceInfo.Longitude = decimal.Parse(this.txtLongitude.Text);
+            deviceInfo.Dimensionality = decimal.Parse(this.txtDimensionality.Text);
+            deviceInfo.High = decimal.Parse(this.txtHigh.Text);
 
             deviceInfo.ConnectType = 1;
 
-            deviceInfo.MainDNS = this.textBox17.Text;
-            deviceInfo.SecondDNS = this.textBox18.Text;
-            deviceInfo.CenterIP = this.textBox19.Text;
-            deviceInfo.Domain = this.textBox20.Text;
+            deviceInfo.MainDNS = this.txtHostDNS.Text;
+            deviceInfo.SecondDNS = this.txtNextDNS.Text;
+            deviceInfo.CenterIP = this.txtCenterIp.Text;
+            deviceInfo.Domain = this.txtDomain.Text;
 
-            string strValue = this.textBox21.Text;
+            string strValue = this.txtPort.Text;
             if (!string.IsNullOrEmpty(strValue))
                 deviceInfo.port = Convert.ToInt32(strValue);
 
@@ -302,26 +302,26 @@ namespace Scada.Client.SL.Modules.BaseInfo
                 intType = 5;
             */
             deviceInfo.TimeType = intType;
-            deviceInfo.Version = this.textBox11.Text;
+            deviceInfo.Version = this.txtVersion.Text;
 
             //硬件配置
-            strValue = this.textBox6.Text;
+            strValue = this.txtCollectFreq.Text;
             if (!string.IsNullOrEmpty(strValue))
                 deviceInfo.CollectFreq = Convert.ToInt32(strValue);
 
-            strValue = this.textBox7.Text;
+            strValue = this.txtReportInterval.Text;
             if (!string.IsNullOrEmpty(strValue))
                 deviceInfo.ReportInterval = Convert.ToInt32(strValue);
 
-            strValue = this.textBox8.Text;
+            strValue = this.txtAlarnTop.Text;
             if (!string.IsNullOrEmpty(strValue))
                 deviceInfo.AlarmTop = Convert.ToDecimal(strValue);
 
-            strValue = this.textBox9.Text;
+            strValue = this.txtAlarnDown.Text;
             if (!string.IsNullOrEmpty(strValue))
                 deviceInfo.AlarmDown = Convert.ToDecimal(strValue);
 
-            strValue = this.textBox10.Text;
+            strValue = this.txtWindage.Text;
             if (!string.IsNullOrEmpty(strValue))
                 deviceInfo.Windage = Convert.ToDecimal(strValue);
 

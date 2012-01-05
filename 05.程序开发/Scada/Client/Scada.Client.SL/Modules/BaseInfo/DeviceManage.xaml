@@ -50,7 +50,7 @@
                             <TextBox Height="23" HorizontalAlignment="Left" Margin="88,86,0,0" x:Name="txtInstallPlace" VerticalAlignment="Top" Width="204" Grid.Column="1" />
 
                             <CheckBox Content="备     注：" Height="16" HorizontalAlignment="Left" Margin="12,115,0,0" IsChecked="True" x:Name="checkBox4" VerticalAlignment="Top" Grid.Column="1" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="88,112,0,0" x:Name="txtRemark" VerticalAlignment="Top" Width="204" Grid.Column="1" />
+                            <TextBox Height="23" HorizontalAlignment="Left" Margin="88,112,0,0" x:Name="txtComment" VerticalAlignment="Top" Width="204" Grid.Column="1" />
                             <CheckBox Content="采集频率：" Height="16" HorizontalAlignment="Left" Margin="10,411,0,0" IsChecked="True" x:Name="checkBox5" VerticalAlignment="Top" Grid.Column="1" />
                             <TextBox Height="23" HorizontalAlignment="Left" Margin="86,408,0,0" x:Name="txtCollectFreq" Text="60" VerticalAlignment="Top" Width="55" Grid.Column="1" />
                             <CheckBox Content="上报间隔：" Height="16" HorizontalAlignment="Left" Margin="10,442,0,0"  IsChecked="True" x:Name="checkBox6" VerticalAlignment="Top" Grid.Column="1" />
@@ -83,10 +83,10 @@
 
 
                             <CheckBox Content="主DNS：" Height="16"  HorizontalAlignment="Left" Margin="10,275,0,0" IsChecked="True" VerticalAlignment="Top" x:Name="checkBox15" Grid.Column="1" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="86,271,0,0" x:Name="txtHostDNS"  VerticalAlignment="Top" Width="206" Grid.Column="1" />
+                            <TextBox Height="23" HorizontalAlignment="Left" Margin="86,271,0,0" x:Name="txtMainDNS"  VerticalAlignment="Top" Width="206" Grid.Column="1" />
 
                             <CheckBox Content="从DNS：" Height="16"  HorizontalAlignment="Left" Margin="11,300,0,0" IsChecked="True" x:Name="checkBox16" VerticalAlignment="Top" Width="75" Grid.Column="1" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="86,297,0,0" x:Name="txtNextDNS" VerticalAlignment="Top" Width="206" Grid.Column="1" />
+                            <TextBox Height="23" HorizontalAlignment="Left" Margin="86,297,0,0" x:Name="txtSecondDNS" VerticalAlignment="Top" Width="206" Grid.Column="1" />
 
                             <CheckBox Content="中心IP：" Height="16" HorizontalAlignment="Left" Margin="10,325,0,0" IsChecked="True" x:Name="checkBox17" VerticalAlignment="Top" Grid.Column="1" />
                             <TextBox Height="23" HorizontalAlignment="Left" Margin="86,323,0,0" x:Name="txtCenterIp" Text="" VerticalAlignment="Top" Width="206" Grid.Column="1" />
@@ -133,9 +133,9 @@
                             <CheckBox Content="是否启用紧急按钮" Grid.Column="2" Height="16" HorizontalAlignment="Left" Margin="5,41,0,0" Name="chkInstancyBtn" VerticalAlignment="Top" />
                             <CheckBox Content="过程值1报警设置有效" Grid.Column="2" Height="16" HorizontalAlignment="Left" Margin="5,67,0,0" Name="chkProcess1" VerticalAlignment="Top" />
                             <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="0,90,0,0" Name="textBlock8" Text="过程值1高高报警值:" VerticalAlignment="Top" />
-                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="106,86,0,0" Name="txtProcess1UpperAlarm" VerticalAlignment="Top" Width="97" />
+                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="106,86,0,0" Name="txtProcess1HigherAlarm" VerticalAlignment="Top" Width="97" />
                             <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="0,115,0,0" Name="textBlock9" Text="过程值1高报警值:" VerticalAlignment="Top" />
-                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="106,113,0,0" Name="txtProcess1UpeAlarm" VerticalAlignment="Top" Width="97" />
+                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="106,113,0,0" Name="txtProcess1HighAlarm" VerticalAlignment="Top" Width="97" />
                             <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="5,143,0,0" Name="textBlock10" Text="过程值1低报警值:" VerticalAlignment="Top" />
                             <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="106,140,0,0" Name="txtProcess1lowAlarm" VerticalAlignment="Top" Width="97" />
                             <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="5,172,0,0" Name="textBlock11" Text="过程值1低低报警值:" VerticalAlignment="Top" />

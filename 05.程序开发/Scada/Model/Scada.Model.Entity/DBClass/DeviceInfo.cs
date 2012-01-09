@@ -48,6 +48,8 @@ namespace Scada.Model.Entity
         private decimal? _process1ratevalue;
 
 
+
+
         //设备关联维护人员信息
         private List<DeviceMaintenancePeople> _deviceMainValue = new List<DeviceMaintenancePeople>();
 
@@ -60,6 +62,7 @@ namespace Scada.Model.Entity
             set { _id = value; }
             get { return _id; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -68,6 +71,7 @@ namespace Scada.Model.Entity
             set { _deviceno = value; }
             get { return _deviceno; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -76,6 +80,7 @@ namespace Scada.Model.Entity
             set { _hardtype = value; }
             get { return _hardtype; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -84,6 +89,7 @@ namespace Scada.Model.Entity
             set { _productdate = value; }
             get { return _productdate; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -92,6 +98,7 @@ namespace Scada.Model.Entity
             set { _devicemac = value; }
             get { return _devicemac; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -100,6 +107,7 @@ namespace Scada.Model.Entity
             set { _simno = value; }
             get { return _simno; }
         }
+
         /// <summary>
         /// 管理分区ID, 来自设备树表
         /// </summary>
@@ -108,6 +116,7 @@ namespace Scada.Model.Entity
             set { _manageareaid = value; }
             get { return _manageareaid; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -116,6 +125,7 @@ namespace Scada.Model.Entity
             set { _installplace = value; }
             get { return _installplace; }
         }
+
         /// <summary>
         /// 当前坐标经度
         /// </summary>
@@ -124,6 +134,7 @@ namespace Scada.Model.Entity
             set { _longitude = value; }
             get { return _longitude; }
         }
+
         /// <summary>
         /// 当前坐标维度
         /// </summary>
@@ -132,6 +143,7 @@ namespace Scada.Model.Entity
             set { _dimensionality = value; }
             get { return _dimensionality; }
         }
+
         /// <summary>
         /// 当前坐标高度
         /// </summary>
@@ -140,6 +152,7 @@ namespace Scada.Model.Entity
             set { _high = value; }
             get { return _high; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -148,6 +161,7 @@ namespace Scada.Model.Entity
             set { _comment = value; }
             get { return _comment; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -156,6 +170,7 @@ namespace Scada.Model.Entity
             set { _connectpoint = value; }
             get { return _connectpoint; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -164,6 +179,7 @@ namespace Scada.Model.Entity
             set { _username = value; }
             get { return _username; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -172,6 +188,7 @@ namespace Scada.Model.Entity
             set { _password = value; }
             get { return _password; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -180,6 +197,7 @@ namespace Scada.Model.Entity
             set { _coordinate = value; }
             get { return _coordinate; }
         }
+
         /// <summary>
         /// 固定IP , 域名
         /// </summary>
@@ -188,6 +206,7 @@ namespace Scada.Model.Entity
             set { _connecttype = value; }
             get { return _connecttype; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -196,6 +215,7 @@ namespace Scada.Model.Entity
             set { _maindns = value; }
             get { return _maindns; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -204,6 +224,7 @@ namespace Scada.Model.Entity
             set { _seconddns = value; }
             get { return _seconddns; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -212,6 +233,7 @@ namespace Scada.Model.Entity
             set { _centerip = value; }
             get { return _centerip; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -220,6 +242,7 @@ namespace Scada.Model.Entity
             set { _domain = value; }
             get { return _domain; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -228,6 +251,7 @@ namespace Scada.Model.Entity
             set { _port = value; }
             get { return _port; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -236,6 +260,7 @@ namespace Scada.Model.Entity
             set { _collectfreq = value; }
             get { return _collectfreq; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -244,6 +269,7 @@ namespace Scada.Model.Entity
             set { _reportinterval = value; }
             get { return _reportinterval; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -252,6 +278,7 @@ namespace Scada.Model.Entity
             set { _alarmtop = value; }
             get { return _alarmtop; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -260,6 +287,7 @@ namespace Scada.Model.Entity
             set { _alarmdown = value; }
             get { return _alarmdown; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -268,6 +296,7 @@ namespace Scada.Model.Entity
             set { _windage = value; }
             get { return _windage; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -276,6 +305,7 @@ namespace Scada.Model.Entity
             set { _version = value; }
             get { return _version; }
         }
+
         /// <summary>
         /// 按定时表采集， 按定时表上报，按定时表采集并上报 
         /// </summary>
@@ -284,6 +314,7 @@ namespace Scada.Model.Entity
             set { _timetype = value; }
             get { return _timetype; }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -292,6 +323,7 @@ namespace Scada.Model.Entity
             set { _operateno = value; }
             get { return _operateno; }
         }
+
         /// <summary>
         /// 完整显示、基本显示、天气预报、不显示
         /// </summary>
@@ -300,6 +332,7 @@ namespace Scada.Model.Entity
             set { _lcdscreendisplaytype = value; }
             get { return _lcdscreendisplaytype; }
         }
+
         /// <summary>
         /// 是/否
         /// </summary>
@@ -308,6 +341,7 @@ namespace Scada.Model.Entity
             set { _useurgencybutton = value; }
             get { return _useurgencybutton; }
         }
+
         /// <summary>
         /// 过程值1报警设置有效
         /// </summary>
@@ -316,6 +350,7 @@ namespace Scada.Model.Entity
             set { _process1enable = value; }
             get { return _process1enable; }
         }
+
         /// <summary>
         /// 过程值1高高报警值
         /// </summary>
@@ -324,6 +359,7 @@ namespace Scada.Model.Entity
             set { _process1highervalue = value; }
             get { return _process1highervalue; }
         }
+
         /// <summary>
         /// 过程值1高报警值
         /// </summary>
@@ -332,6 +368,7 @@ namespace Scada.Model.Entity
             set { _process1highvalue = value; }
             get { return _process1highvalue; }
         }
+
         /// <summary>
         /// 过程值1低报警值
         /// </summary>
@@ -340,6 +377,7 @@ namespace Scada.Model.Entity
             set { _process1lowvalue = value; }
             get { return _process1lowvalue; }
         }
+
         /// <summary>
         /// 过程值1低低报警值
         /// </summary>
@@ -348,6 +386,7 @@ namespace Scada.Model.Entity
             set { _process1lowervalue = value; }
             get { return _process1lowervalue; }
         }
+
         /// <summary>
         /// 过程值1速率报警值
         /// </summary>
@@ -362,8 +401,6 @@ namespace Scada.Model.Entity
             set { _deviceMainValue = value; }
             get { return _deviceMainValue; }
         }
-
-
 
     }
 }

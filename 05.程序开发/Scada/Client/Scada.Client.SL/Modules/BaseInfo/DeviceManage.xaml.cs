@@ -19,6 +19,11 @@ using Scada.Client.SL.ScadaDeviceService;
 
 namespace Scada.Client.SL.Modules.BaseInfo
 {
+
+
+    /// <summary>
+    /// 设备管理
+    /// </summary>
     public partial class DeviceManage : UserControl
     {
 
@@ -43,12 +48,6 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
             //加载树型
             this.LoadTreeViewInfo();
-
-            //增加设备
-            //this.LoadAddDeviceInfo();
-
-            //修改设备
-            this.LoadUpdateDeviceInfo();
 
             //删除设备
 
@@ -87,30 +86,27 @@ namespace Scada.Client.SL.Modules.BaseInfo
             this._userSelTreeNode = node;
 
             this.btnExport.IsEnabled = true;
-            if (node.NodeType != null)
+
+            if (node.NodeType == 1)
             {
-
-
-                if (node.NodeType == 1)
-                {
-                    this.butAdd.IsEnabled = false;
-                    this.butDel.IsEnabled = false;
-                    this.butSave.IsEnabled = false;
-                }
-                else if (node.NodeType == 2)
-                {
-                    this.butAdd.IsEnabled = true;
-                    this.butDel.IsEnabled = false;
-                    this.butSave.IsEnabled = true;
-                }
-                else if (node.NodeType == 3)
-                {
-                    this.butAdd.IsEnabled = true;
-                    this.butDel.IsEnabled = true;
-                    this.butSave.IsEnabled = true;
-                    scadaDeviceServiceSoapClient.ViewDeviceInfoAsync(node.NodeKey.ToString().ToUpper());
-                }
+                this.butAdd.IsEnabled = false;
+                this.butDel.IsEnabled = false;
+                this.butSave.IsEnabled = false;
             }
+            else if (node.NodeType == 2)
+            {
+                this.butAdd.IsEnabled = true;
+                this.butDel.IsEnabled = false;
+                this.butSave.IsEnabled = true;
+            }
+            else if (node.NodeType == 3)
+            {
+                this.butAdd.IsEnabled = true;
+                this.butDel.IsEnabled = true;
+                this.butSave.IsEnabled = true;
+                scadaDeviceServiceSoapClient.ViewDeviceInfoAsync(node.NodeKey.ToString().ToUpper());
+            }
+
         }
 
         private void scadaDeviceServiceSoapClient_ViewDeviceInfoCompleted(object sender, ViewDeviceInfoCompletedEventArgs e)
@@ -144,24 +140,6 @@ namespace Scada.Client.SL.Modules.BaseInfo
             this.txtPort.Text = "";
             if (_userSelDeviceInfo.port != null)
                 this.txtPort.Text = _userSelDeviceInfo.port.ToString();
-
-            //定时表类型
-            /*
-            Int32? intType = _userSelDeviceInfo.TimeType;
-            if (intType != null)
-            {
-                if (intType == 1)
-                    this.radioButton1.IsChecked = true;
-                else if (intType == 2)
-                    this.radioButton2.IsChecked = true;
-                else if (intType == 3)
-                    this.radioButton3.IsChecked = true;
-                else if (intType == 4)
-                    this.radioButton4.IsChecked = true;
-                else
-                    this.radioButton5.IsChecked = true;
-            }
-            */
 
             this.txtVersion.Text = _userSelDeviceInfo.Version;
 
@@ -212,11 +190,14 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
         #region 修改设备
 
-        private void LoadUpdateDeviceInfo()
+        private void LoadUpdateDeviceInfo(DeviceInfo deviceInfo)
         {
             scadaDeviceServiceSoapClient.UpdateDeviceInfoCompleted
                             += new EventHandler<UpdateDeviceInfoCompletedEventArgs>
                                         (scadaDeviceServiceSoapClient_UpdateDeviceInfoCompleted);
+
+            
+
         }
 
         private void scadaDeviceServiceSoapClient_UpdateDeviceInfoCompleted(object sender, UpdateDeviceInfoCompletedEventArgs e)
@@ -276,7 +257,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
             }
             if (!string.IsNullOrEmpty(txtWindage.Text.Trim()))
             {
-                deviceInfo.Windage=Convert.ToInt32(txtWindage.Text.Trim());
+                deviceInfo.Windage = Convert.ToInt32(txtWindage.Text.Trim());
             }
             if (!string.IsNullOrEmpty(txtAlarnTop.Text.Trim()))
             {
@@ -296,7 +277,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
             {
                 deviceInfo.UseUrgencyButton = 1;
             }
-            if (chkProcess1.IsChecked==true)
+            if (chkProcess1.IsChecked == true)
             {
                 deviceInfo.Process1Enable = 0;
             }
@@ -329,7 +310,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
                 deviceInfo.Process1HigherValue = Convert.ToDecimal(txtProcess1RateAlarm.Text.Trim());
             }
-            
+
             this.IsAddUpdateType = true;
             LoadAddDeviceInfo(deviceInfo);
 

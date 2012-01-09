@@ -1,39 +1,46 @@
 using System;
 using System.Collections.Generic;
+
+
+
+
 namespace Scada.Model.Entity
 {
+
     /// <summary>
-    /// 类DeviceMaintenancePeople。
+    /// 设备关联维护人员信息
     /// </summary>
     public class DeviceMaintenancePeople
     {
+
+        //标识
         private Guid _id;
-        private Guid _maintenanceid;
+
+        private MaintenancePeople _maintenanceInfo;
+
+        //设备标识
         private Guid _deviceid;
-        /// <summary>
-        /// 
-        /// </summary>
+
+
         public Guid ID
         {
             set { _id = value; }
             get { return _id; }
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        public Guid MaintenanceID
+
+        public MaintenancePeople MaintenancePeopleInfo
         {
-            set { _maintenanceid = value; }
-            get { return _maintenanceid; }
+            set { _maintenanceInfo = value; }
+            get { return _maintenanceInfo; }
         }
-        /// <summary>
-        /// 
-        /// </summary>
+
         public Guid DeviceID
         {
             set { _deviceid = value; }
             get { return _deviceid; }
         }
+
     }
+
 }
 

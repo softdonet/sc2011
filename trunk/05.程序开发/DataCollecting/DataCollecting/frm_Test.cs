@@ -135,7 +135,7 @@ namespace DataCollecting
         void tcpserver_RealTimeDataEvent_S(RealTimeData_S realTimeData_S)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(DateTime.Now.ToString() + " 【发送】设备实时信息回复：" + Environment.NewLine);
+            sb.Append(DateTime.Now.ToString() + " 【发送】服务器实时回复：" + Environment.NewLine);
             sb.Append(GetLine());
             sb.Append(GetHeader(realTimeData_S));
             sb.Append("报体：" + Environment.NewLine);

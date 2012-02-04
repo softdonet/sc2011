@@ -20,25 +20,28 @@ namespace DataCollecting.NetData
             haveConfigInfo = data[21] == 1 ? true : false;
             haveWeatherInfo = data[22] == 1 ? true : false;
             haveBroadcastInfo = data[23] == 1 ? true : false;
-
+            //数组指针
+            int index = 24;
             if (haveConfigInfo)
             {
-                byte[] arr = new byte[132];
-                Array.Copy(data, 24, arr, 0, 132);
+                byte[] arr = new byte[125];
+                Array.Copy(data, index, arr, 0, 125);
                 configData = new ConfigDataBlock(arr);
+                index += 125;
             }
             if (haveWeatherInfo)
             {
-                byte[] arr = new byte[102];
-                Array.Copy(data, 156, arr, 0, 102);
+                byte[] arr = new byte[106];
+                Array.Copy(data, index, arr, 0, 106);
                 weatherData = new WeatherDataBlock(arr);
-
+                index += 106;
             }
             if (haveBroadcastInfo)
             {
-                byte[] arr = new byte[100];
-                Array.Copy(data, 258, arr, 0, 100);
+                byte[] arr = new byte[102];
+                Array.Copy(data, index, arr, 0, 102);
                 broadcastData = new BroadcastDataBlock(arr);
+                index += 102;
             }
         }
 

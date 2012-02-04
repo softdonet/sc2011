@@ -23,13 +23,16 @@ namespace DataCollecting
             InitializeComponent();
 
             TcpNetServer tcpserver = new TcpNetServer();
-            tcpserver.TestEvent += new TcpNetServer.TestHandle(tcpserver_TestEvent);
-            tcpserver.ConfigEvent += new TcpNetServer.ConfigHandle(tcpserver_ConfigEvent);
-            tcpserver.RealTimeDataEvent += new TcpNetServer.RealTimeDataHandle(tcpserver_RealTimeDataEvent);
-            tcpserver.UserEventEvent += new TcpNetServer.UserEventHandle(tcpserver_UserEventEvent);
-            tcpserver.RegisterEvent += new TcpNetServer.RegisterHandle(tcpserver_RegisterEvent);
-            tcpserver.FirmwareRequestEvent += new TcpNetServer.FirmwareRequestHandle(tcpserver_FirmwareRequestEvent);
+            tcpserver.TestEvent_R += new TcpNetServer.TestHandle_R(tcpserver_TestEvent_R);
+            tcpserver.ConfigEvent_R += new TcpNetServer.ConfigHandle_R(tcpserver_ConfigEvent_R);
+            tcpserver.RealTimeDataEvent_R += new TcpNetServer.RealTimeDataHandle_R(tcpserver_RealTimeDataEvent_R);
+            tcpserver.UserEventEvent_R += new TcpNetServer.UserEventHandle_R(tcpserver_UserEventEvent_R);
+            tcpserver.RegisterEvent_R += new TcpNetServer.RegisterHandle_R(tcpserver_RegisterEvent_R);
+            tcpserver.FirmwareRequestEvent_R += new TcpNetServer.FirmwareRequestHandle_R(tcpserver_FirmwareRequestEvent_R);
+            tcpserver.RealTimeDataEvent_S += new TcpNetServer.RealTimeDataHandle_S(tcpserver_RealTimeDataEvent_S);
         }
+
+
 
         #region 公共方法
         /// <summary>
@@ -118,11 +121,48 @@ namespace DataCollecting
 
         #region 设备事件
 
+        void tcpserver_RealTimeDataEvent_S(RealTimeData_S realTimeData_S)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(DateTime.Now.ToString() + " 收到设备实时信息回复：" + Environment.NewLine);
+            sb.Append(GetLine());
+            sb.Append(GetHeader(realTimeData_S));
+            sb.Append("报体：" + Environment.NewLine);
+            sb.Append("    是否含有配置信息：" + realTimeData_S.HaveConfigInfo.ToString() + Environment.NewLine);
+            sb.Append("    是否含有天气信息：" + realTimeData_S.HaveWeatherInfo.ToString() + Environment.NewLine);
+            sb.Append("    是否含有广播信息：" + realTimeData_S.HaveBroadcastInfo.ToString() + Environment.NewLine);
+            sb.Append(Environment.NewLine);
+            sb.Append("    运行模式：" + realTimeData_S.ConfigData.RunMode.ToString() + Environment.NewLine);
+            sb.Append("    参数1：" + realTimeData_S.ConfigData.Argument1.ToString() + Environment.NewLine);
+            sb.Append("    参数2：" + realTimeData_S.ConfigData.Argument2.ToString() + Environment.NewLine);
+            sb.Append("    参数3：" + realTimeData_S.ConfigData.Argument3.ToString() + Environment.NewLine);
+            sb.Append("    设备编号：" + realTimeData_S.ConfigData.DeviceNo.ToString() + Environment.NewLine);
+            sb.Append("    默认显示方式：" + realTimeData_S.ConfigData.DisplayMode.ToString() + Environment.NewLine);
+            sb.Append("    是否启用紧急按钮：" + realTimeData_S.ConfigData.InstancyBtnEnable.ToString() + Environment.NewLine);
+            sb.Append("    是否启用信息按钮：" + realTimeData_S.ConfigData.InfoBtnEnable.ToString() + Environment.NewLine);
+            sb.Append("    维护人员手机号码：" + realTimeData_S.ConfigData.RepairTel.ToString() + Environment.NewLine);
+            sb.Append("    主DNS：" + realTimeData_S.ConfigData.MainDNS.ToString() + Environment.NewLine);
+            sb.Append("    备用DNS：" + realTimeData_S.ConfigData.ReserveDNS.ToString() + Environment.NewLine);
+            sb.Append("    服务器IP：" + realTimeData_S.ConfigData.ServerIP.ToString() + Environment.NewLine);
+            sb.Append("    域名：" + realTimeData_S.ConfigData.DomainName.ToString() + Environment.NewLine);
+            sb.Append("    端口号：" + realTimeData_S.ConfigData.Port.ToString() + Environment.NewLine);
+            sb.Append(Environment.NewLine);
+            sb.Append("    今日天气标识：" + realTimeData_S.WeatherData.TodayMark.ToString() + Environment.NewLine);
+            sb.Append("    今日天气信息：" + realTimeData_S.WeatherData.TodayWeather + Environment.NewLine);
+            sb.Append("    明日天气标识：" + realTimeData_S.WeatherData.TomorrowMark.ToString() + Environment.NewLine);
+            sb.Append("    明日天气信息：" + realTimeData_S.WeatherData.TomorrowWeather + Environment.NewLine);
+            sb.Append(Environment.NewLine);
+            sb.Append("    广播信息：" + realTimeData_S.BroadcastData.Msg + Environment.NewLine);
+            sb.Append(GetVerify(realTimeData_S));
+            sb.Append(GetLine());
+            SetText(sb.ToString(), false);
+        }
+
         /// <summary>
         /// 请求固件更新
         /// </summary>
         /// <param name="firmwareRequest_R"></param>
-        void tcpserver_FirmwareRequestEvent(FirmwareRequest_R firmwareRequest_R)
+        void tcpserver_FirmwareRequestEvent_R(FirmwareRequest_R firmwareRequest_R)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(DateTime.Now.ToString() + " 收到设备固件更新请求：" + Environment.NewLine);
@@ -138,7 +178,7 @@ namespace DataCollecting
         /// 请求注册事件
         /// </summary>
         /// <param name="register_R"></param>
-        void tcpserver_RegisterEvent(Register_R register_R)
+        void tcpserver_RegisterEvent_R(Register_R register_R)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(DateTime.Now.ToString() + " 收到设备注册请求：" + Environment.NewLine);
@@ -154,7 +194,7 @@ namespace DataCollecting
         /// 用户事件
         /// </summary>
         /// <param name="userEvent_R"></param>
-        void tcpserver_UserEventEvent(UserEvent_R userEvent_R)
+        void tcpserver_UserEventEvent_R(UserEvent_R userEvent_R)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(DateTime.Now.ToString() + " 收到用户事件信息：" + Environment.NewLine);
@@ -170,7 +210,7 @@ namespace DataCollecting
         /// 实时数据到达事件
         /// </summary>
         /// <param name="realTimeData_R"></param>
-        void tcpserver_RealTimeDataEvent(RealTimeData_R realTimeData_R)
+        void tcpserver_RealTimeDataEvent_R(RealTimeData_R realTimeData_R)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(DateTime.Now.ToString() + " 收到实时数据信息：" + Environment.NewLine);
@@ -200,7 +240,7 @@ namespace DataCollecting
         /// 请求配置事件
         /// </summary>
         /// <param name="config_R"></param>
-        void tcpserver_ConfigEvent(Config_R config_R)
+        void tcpserver_ConfigEvent_R(Config_R config_R)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(DateTime.Now.ToString() + " 收到配置请求信息：" + Environment.NewLine);
@@ -222,7 +262,7 @@ namespace DataCollecting
         /// 测试数据事件
         /// </summary>
         /// <param name="test_R"></param>
-        void tcpserver_TestEvent(NetData.Test_R test_R)
+        void tcpserver_TestEvent_R(NetData.Test_R test_R)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(DateTime.Now.ToString() + " 收到测试信息：" + Environment.NewLine);
@@ -243,7 +283,7 @@ namespace DataCollecting
         {
             Head h = new Head();
             h.CmdHeader = 43605;
-            h.CmdCommand = Common.Command.cmd_Test;
+            h.CmdCommand = Common.Command.cmd_Test_R;
             h.DataContext = 43605;
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
@@ -260,7 +300,7 @@ namespace DataCollecting
         {
             Head h = new Head();
             h.CmdHeader = 43605;
-            h.CmdCommand = Common.Command.cmd_RealTimeDate;
+            h.CmdCommand = Common.Command.cmd_RealTimeDate_R;
             h.DataContext = 43605;
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
@@ -315,7 +355,7 @@ namespace DataCollecting
         {
             Head h = new Head();
             h.CmdHeader = 43605;
-            h.CmdCommand = Common.Command.cmd_Config;
+            h.CmdCommand = Common.Command.cmd_Config_R;
             h.DataContext = 43605;
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
@@ -325,7 +365,7 @@ namespace DataCollecting
             cr.Header = h;
             cr.MAC = "00-10-30-AF-E1-30-40";
             cr.SIM = "10303239876321900102";
-            cr.DeviveType = "ICG-P1000-ED";
+            cr.DeviveType = "ICG-P1000-E";
             cr.HardwareVersionMain = 12;
             cr.HardwareVersionChild = 25;
             cr.SoftwareVersionMain = 13;
@@ -339,7 +379,7 @@ namespace DataCollecting
         {
             Head h = new Head();
             h.CmdHeader = 43605;
-            h.CmdCommand = Common.Command.cmd_UserEvent;
+            h.CmdCommand = Common.Command.cmd_UserEvent_R;
             h.DataContext = 43605;
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
@@ -363,7 +403,7 @@ namespace DataCollecting
         {
             Head h = new Head();
             h.CmdHeader = 43605;
-            h.CmdCommand = Common.Command.cmd_FirmwareRequest;
+            h.CmdCommand = Common.Command.cmd_FirmwareRequest_R;
             h.DataContext = 43605;
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
@@ -387,7 +427,7 @@ namespace DataCollecting
         {
             Head h = new Head();
             h.CmdHeader = 43605;
-            h.CmdCommand = Common.Command.cmd_Register;
+            h.CmdCommand = Common.Command.cmd_Register_R;
             h.DataContext = 43605;
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
@@ -397,7 +437,7 @@ namespace DataCollecting
             cr.Header = h;
             cr.MAC = "00-10-30-AF-E1-30-40";
             cr.SIM = "10303239876321900102";
-            cr.DeviveType = "ICG-P1000-ED";
+            cr.DeviveType = "ICG-P1000-E";
             cr.HardwareVersionMain = 12;
             cr.HardwareVersionChild = 25;
             cr.SoftwareVersionMain = 13;
@@ -417,6 +457,57 @@ namespace DataCollecting
         private void 清除屏幕ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.textBox1.Text = string.Empty;
+        }
+
+
+
+        private void 实时数据回复命令ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Head h = new Head();
+            h.CmdHeader = 43605;
+            h.CmdCommand = Common.Command.cmd_Reply;
+            h.DataContext = 43605;
+            h.DeviceSN = "0A5F01CD0001";
+            h.State = 0;
+            h.SateTimeMark = DateTime.Now;
+
+            RealTimeData_S rs = new RealTimeData_S();
+            rs.Header = h;
+            rs.HaveBroadcastInfo = true;
+            rs.HaveConfigInfo = true;
+            rs.HaveWeatherInfo = true;
+
+
+            ConfigDataBlock configDataBlock = new ConfigDataBlock();
+            configDataBlock.RunMode = 1;
+            configDataBlock.Argument1 = 1500;
+            configDataBlock.Argument2 = 1600;
+            configDataBlock.Argument3 = 1700;
+            configDataBlock.DeviceNo = "P-100100";
+            configDataBlock.DisplayMode = 1;
+            configDataBlock.InstancyBtnEnable = true;
+            configDataBlock.InfoBtnEnable = true;
+            configDataBlock.RepairTel = "13801112222";
+            configDataBlock.MainDNS = "202.106.42.1";
+            configDataBlock.ReserveDNS = "202.106.42.2";
+            configDataBlock.ServerIP = "192.168.0.1";
+            configDataBlock.DomainName = "xyz.dddd.com";
+            configDataBlock.Port = 1789;
+            rs.ConfigData = configDataBlock;
+
+
+            WeatherDataBlock weatherDataBlock = new WeatherDataBlock();
+            weatherDataBlock.TodayMark = 0;
+            weatherDataBlock.TodayWeather = "晴转XXX多云，有阵雨。";
+            weatherDataBlock.TomorrowMark = 1;
+            weatherDataBlock.TomorrowWeather = "温度很低，有大雪，注意防寒。";
+            rs.WeatherData = weatherDataBlock;
+
+            BroadcastDataBlock broadcastDataBlock = new BroadcastDataBlock();
+            broadcastDataBlock.Msg = "通知：明天下午开会。不要迟到，知道一分钟扣100元。";
+
+            rs.BroadcastData = broadcastDataBlock;
+            SetText(StringHelper.DataToStr(rs.ToByte()) + Environment.NewLine, false);
         }
     }
 }

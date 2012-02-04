@@ -11,6 +11,7 @@ namespace DataCollecting.Helper
     /// </summary>
     public class StringHelper
     {
+        #region 字节转化为字符相关
         /// <summary>
         /// 单字节转化为字符
         /// </summary>
@@ -47,7 +48,7 @@ namespace DataCollecting.Helper
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static string DataToStr(byte[] data,int startIndex,int length)
+        public static string DataToStr(byte[] data, int startIndex, int length)
         {
             byte[] tempArr = new byte[length];
             Array.Copy(data, startIndex, tempArr, 0, length);
@@ -65,64 +66,6 @@ namespace DataCollecting.Helper
             return result.ToUpper();
         }
 
-        /// <summary>
-        /// 字节转化为MAC
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public static string DataToMACStr(byte[] data, int startIndex, int length)
-        {
-            byte[] tempArr = new byte[length];
-            Array.Copy(data, startIndex, tempArr, 0, length);
-
-            string result = "";
-            for (int i = 0; i < tempArr.Length; i++)
-            {
-                string temp = Convert.ToString(tempArr[i], 16);
-                if (temp.Length == 1)
-                {
-                    temp = "0" + temp;
-                }
-                result = result + temp + "-";
-            }
-            return result.ToUpper().TrimEnd('-') ;
-        }
-
-        /// <summary>
-        /// 字节转化为MAC
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public static string DataToMACStr(byte[] data)
-        {
-            string result = "";
-            for (int i = 0; i < data.Length; i++)
-            {
-                string temp = Convert.ToString(data[i], 16);
-                if (temp.Length == 1)
-                {
-                    temp = "0" + temp;
-                }
-                result = result + temp + "-";
-            }
-            return result.ToUpper().TrimEnd('-');
-        }
-
-         /// <summary>
-        /// MAC转化为字节
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public static byte[] MACStrData(string macStr)
-        {
-            List<byte> result = new List<byte>();
-            string[] arr = macStr.Split('-');
-            foreach (string item in arr)
-            {
-                result.Add(Convert.ToByte(item, 16));
-            }
-            return result.ToArray();
-        }
 
         /// <summary>
         /// 字节转化为字符(带空格)
@@ -165,6 +108,72 @@ namespace DataCollecting.Helper
             }
             return result.ToUpper().TrimEnd(' '); ;
         }
+
+        #endregion
+
+        #region  MAC相关
+        /// <summary>
+        /// 字节转化为MAC
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static string DataToMACStr(byte[] data, int startIndex, int length)
+        {
+            byte[] tempArr = new byte[length];
+            Array.Copy(data, startIndex, tempArr, 0, length);
+
+            string result = "";
+            for (int i = 0; i < tempArr.Length; i++)
+            {
+                string temp = Convert.ToString(tempArr[i], 16);
+                if (temp.Length == 1)
+                {
+                    temp = "0" + temp;
+                }
+                result = result + temp + "-";
+            }
+            return result.ToUpper().TrimEnd('-');
+        }
+
+        /// <summary>
+        /// 字节转化为MAC
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static string DataToMACStr(byte[] data)
+        {
+            string result = "";
+            for (int i = 0; i < data.Length; i++)
+            {
+                string temp = Convert.ToString(data[i], 16);
+                if (temp.Length == 1)
+                {
+                    temp = "0" + temp;
+                }
+                result = result + temp + "-";
+            }
+            return result.ToUpper().TrimEnd('-');
+        }
+
+        /// <summary>
+        /// MAC转化为字节
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static byte[] MACStrData(string macStr)
+        {
+            List<byte> result = new List<byte>();
+            string[] arr = macStr.Split('-');
+            foreach (string item in arr)
+            {
+                result.Add(Convert.ToByte(item, 16));
+            }
+            return result.ToArray();
+        }
+
+        #endregion
+
+        #region 时间相关
 
         /// <summary>
         /// 字节数组转化为时间
@@ -219,6 +228,10 @@ namespace DataCollecting.Helper
             return result.ToArray();
         }
 
+        #endregion
+
+        #region IP相关
+
         /// <summary>
         /// 字节转化为IP
         /// </summary>
@@ -264,10 +277,14 @@ namespace DataCollecting.Helper
             string[] arr = IPStr.Split('.');
             foreach (string item in arr)
             {
-                result.Add(Convert.ToByte(item, 16));
+                result.Add(byte.Parse(item));
             }
             return result.ToArray();
         }
+
+        #endregion
+
+        #region ASCII相关
 
         /// <summary>
         /// 字节转化为ASCII
@@ -293,6 +310,9 @@ namespace DataCollecting.Helper
             return System.Text.Encoding.ASCII.GetString(tempArr);
         }
 
+        #endregion
+
+        #region 汉字相关
         /// <summary>
         /// 字节转化为汉字
         /// </summary>
@@ -316,5 +336,12 @@ namespace DataCollecting.Helper
             Array.Copy(data, startIndex, tempArr, 0, length);
             return System.Text.Encoding.Default.GetString(tempArr);
         }
+
+        //获取汉字所占用的字节数
+        public static ushort GetLength(string str)
+        {
+            return (ushort)System.Text.Encoding.Default.GetByteCount(str);
+        }
+        #endregion
     }
 }

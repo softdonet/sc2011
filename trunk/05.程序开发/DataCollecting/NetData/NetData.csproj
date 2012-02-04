@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Command.cs" />
+    <Compile Include="Common\Const.cs" />
     <Compile Include="Config_R.cs" />
     <Compile Include="Config_S.cs" />
     <Compile Include="FirmwareRequest_R.cs" />

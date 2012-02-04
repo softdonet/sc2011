@@ -135,7 +135,7 @@ namespace DataCollecting
         void tcpserver_RealTimeDataEvent_S(RealTimeData_S realTimeData_S)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(DateTime.Now.ToString() + " 【收到】设备实时信息回复：" + Environment.NewLine);
+            sb.Append(DateTime.Now.ToString() + " 【发送】设备实时信息回复：" + Environment.NewLine);
             sb.Append(GetLine());
             sb.Append(GetHeader(realTimeData_S));
             sb.Append("报体：" + Environment.NewLine);
@@ -293,7 +293,7 @@ namespace DataCollecting
         private void 生成测试命令ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Head h = new Head();
-            h.CmdHeader = 43605;
+            h.CmdHeader = Const.UP_HEADER;
             h.CmdCommand = Command.cmd_Test_R;
             h.DataContext = 42605;
             h.DeviceSN = "0A5F01CD0001";
@@ -310,9 +310,9 @@ namespace DataCollecting
         private void 生成实时数据命令ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Head h = new Head();
-            h.CmdHeader = 43605;
+            h.CmdHeader = Const.UP_HEADER;
             h.CmdCommand = Command.cmd_RealTimeDate_R;
-            h.DataContext = 43605;
+            h.DataContext = 42605;
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
             h.SateTimeMark = DateTime.Now;
@@ -365,9 +365,9 @@ namespace DataCollecting
         private void 生成设备请求配置命令ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Head h = new Head();
-            h.CmdHeader = 43605;
+            h.CmdHeader = Const.UP_HEADER;
             h.CmdCommand = Command.cmd_Config_R;
-            h.DataContext = 43605;
+            h.DataContext = 42605;
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
             h.SateTimeMark = DateTime.Now;
@@ -389,9 +389,9 @@ namespace DataCollecting
         private void 用户事件命令ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Head h = new Head();
-            h.CmdHeader = 43605;
+            h.CmdHeader = Const.UP_HEADER;
             h.CmdCommand = Command.cmd_UserEvent_R;
-            h.DataContext = 43605;
+            h.DataContext = 42605;
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
             h.SateTimeMark = DateTime.Now;
@@ -413,9 +413,9 @@ namespace DataCollecting
         private void 固件更新命令ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Head h = new Head();
-            h.CmdHeader = 43605;
+            h.CmdHeader = Const.UP_HEADER;
             h.CmdCommand = Command.cmd_FirmwareRequest_R;
-            h.DataContext = 43605;
+            h.DataContext = 42605;
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
             h.SateTimeMark = DateTime.Now;
@@ -437,9 +437,9 @@ namespace DataCollecting
         private void 注册命令ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Head h = new Head();
-            h.CmdHeader = 43605;
+            h.CmdHeader = Const.UP_HEADER;
             h.CmdCommand = Command.cmd_Register_R;
-            h.DataContext = 43605;
+            h.DataContext = 42605;
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
             h.SateTimeMark = DateTime.Now;
@@ -475,9 +475,9 @@ namespace DataCollecting
         private void 实时数据回复命令ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Head h = new Head();
-            h.CmdHeader = 43605;
+            h.CmdHeader = Const.UP_HEADER;
             h.CmdCommand = Command.cmd_Reply;
-            h.DataContext = 43605;
+            h.DataContext = 42605;
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
             h.SateTimeMark = DateTime.Now;

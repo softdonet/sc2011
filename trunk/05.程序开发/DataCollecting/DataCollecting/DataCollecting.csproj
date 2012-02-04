@@ -78,6 +78,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessRules\BusinessRules.csproj">
+      <Project>{E7D70557-E3BE-4CF3-A125-05522BE31CDB}</Project>
+      <Name>BusinessRules</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entity\Entity.csproj">
       <Project>{1F2204CC-1017-458D-9912-329C2D1A35F6}</Project>
       <Name>Entity</Name>

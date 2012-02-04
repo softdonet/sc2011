@@ -48,8 +48,6 @@ namespace DataCollecting.NetServer
             }
         }
 
-
-
         //定义设备请求配置信息事件
         public delegate void ConfigHandle_R(Config_R config_R);
         private ConfigHandle_R configEvent_R;
@@ -64,7 +62,6 @@ namespace DataCollecting.NetServer
                 configEvent_R -= value;
             }
         }
-
 
         //定义用户事件
         public delegate void UserEventHandle_R(UserEvent_R userEvent_R);
@@ -95,9 +92,6 @@ namespace DataCollecting.NetServer
                 realTimeDataEvent_R -= value;
             }
         }
-
-
-
 
         //定义设备实时信息回复事件
         public delegate void RealTimeDataHandle_S(RealTimeData_S realTimeData_S);
@@ -223,21 +217,8 @@ namespace DataCollecting.NetServer
             catch
             {
                 Socket clientSocket = (Socket)ar.AsyncState;
-                int nIndex = 0;
-                int tmpdevnum = 0;
-                //foreach (ClientInfo client in clientList)
-                //{
-                //    if (client.socket == clientSocket)
-                //    {
-                //        tmpdevnum = client.intDevnum;
-                //        clientList.RemoveAt(nIndex);
-                //        break;
-                //    }
-                //    ++nIndex;
-                //}
                 clientSocket.Close();
-
-                System.Windows.Forms.MessageBox.Show("设备" + tmpdevnum.ToString() + "强行断开网络！", "点名中心提示");
+                System.Windows.Forms.MessageBox.Show("数据解析出现异常", "提示");
             }
 
         }
@@ -405,7 +386,7 @@ namespace DataCollecting.NetServer
                     break;
             }
             //保持常连接
-            clientSocket.BeginReceive(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(OnReceive), clientSocket);
+            //clientSocket.BeginReceive(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(OnReceive), clientSocket);
         }
     }
 }

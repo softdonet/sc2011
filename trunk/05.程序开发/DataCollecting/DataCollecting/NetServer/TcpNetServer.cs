@@ -18,94 +18,112 @@ namespace DataCollecting.NetServer
     {
 
         //定义设备测试
-        public delegate void TestHandle(Test_R test_R);
-        private TestHandle testEvent;
-        public event TestHandle TestEvent
+        public delegate void TestHandle_R(Test_R test_R);
+        private TestHandle_R testEvent_R;
+        public event TestHandle_R TestEvent_R
         {
             add
             {
-                testEvent += value;
+                testEvent_R += value;
             }
             remove
             {
-                testEvent -= value;
+                testEvent_R -= value;
             }
         }
 
         //定义设备请求配置信息事件
-        public delegate void ConfigHandle(Config_R config_R);
-        private ConfigHandle configEvent;
-        public event ConfigHandle ConfigEvent
+        public delegate void ConfigHandle_R(Config_R config_R);
+        private ConfigHandle_R configEvent_R;
+        public event ConfigHandle_R ConfigEvent_R
         {
             add
             {
-                configEvent += value;
+                configEvent_R += value;
             }
             remove
             {
-                configEvent -= value;
+                configEvent_R -= value;
             }
         }
 
 
         //定义用户事件
-        public delegate void UserEventHandle(UserEvent_R userEvent_R);
-        private UserEventHandle userEventEvent;
-        public event UserEventHandle UserEventEvent
+        public delegate void UserEventHandle_R(UserEvent_R userEvent_R);
+        private UserEventHandle_R userEventEvent_R;
+        public event UserEventHandle_R UserEventEvent_R
         {
             add
             {
-                userEventEvent += value;
+                userEventEvent_R += value;
             }
             remove
             {
-                userEventEvent -= value;
+                userEventEvent_R -= value;
             }
         }
 
         //定义设备实时信息到达事件
-        public delegate void RealTimeDataHandle(RealTimeData_R realTimeData_R);
-        private RealTimeDataHandle realTimeDataEvent;
-        public event RealTimeDataHandle RealTimeDataEvent
+        public delegate void RealTimeDataHandle_R(RealTimeData_R realTimeData_R);
+        private RealTimeDataHandle_R realTimeDataEvent_R;
+        public event RealTimeDataHandle_R RealTimeDataEvent_R
         {
             add
             {
-                realTimeDataEvent += value;
+                realTimeDataEvent_R += value;
             }
             remove
             {
-                realTimeDataEvent -= value;
+                realTimeDataEvent_R -= value;
+            }
+        }
+
+
+
+
+        //定义设备实时信息回复事件
+        public delegate void RealTimeDataHandle_S(RealTimeData_S realTimeData_S);
+        private RealTimeDataHandle_S realTimeDataEvent_S;
+        public event RealTimeDataHandle_S RealTimeDataEvent_S
+        {
+            add
+            {
+                realTimeDataEvent_S += value;
+            }
+            remove
+            {
+                realTimeDataEvent_S -= value;
             }
         }
 
 
         //请求固件更新到达事件
-        public delegate void FirmwareRequestHandle(FirmwareRequest_R firmwareRequest_R);
-        private FirmwareRequestHandle firmwareRequestEvent;
-        public event FirmwareRequestHandle FirmwareRequestEvent
+        public delegate void FirmwareRequestHandle_R(FirmwareRequest_R firmwareRequest_R);
+        private FirmwareRequestHandle_R firmwareRequestEvent_R;
+        public event FirmwareRequestHandle_R FirmwareRequestEvent_R
         {
             add
             {
-                firmwareRequestEvent += value;
+                firmwareRequestEvent_R += value;
             }
             remove
             {
-                firmwareRequestEvent -= value;
+                firmwareRequestEvent_R -= value;
             }
         }
 
         //设备注册事件
-        public delegate void RegisterHandle(Register_R register_R);
-        private RegisterHandle registerEvent;
-        public event RegisterHandle RegisterEvent
+        public delegate void RegisterHandle_R(Register_R register_R);
+        private RegisterHandle_R registerEvent_R;
+        public event RegisterHandle_R RegisterEvent_R
         {
             add
             {
-                registerEvent += value;
+                registerEvent_R += value;
             }
             remove
             {
-                registerEvent -= value;
+                registerEvent_R -= value;
             }
         }
 
@@ -215,50 +233,59 @@ namespace DataCollecting.NetServer
         {
             switch (cmd)
             {
-                case Command.cmd_Test:
+                case Command.cmd_Test_R:
                     Test_R tr = new Test_R(tmpdata);
-                    if (testEvent != null)
+                    if (testEvent_R != null)
                     {
-                        this.testEvent(tr);
+                        this.testEvent_R(tr);
                     }
                     break;
-                case Command.cmd_Logout:
+                case Command.cmd_Logout_R:
                     break;
-                case Command.cmd_Config:
+                case Command.cmd_Config_R:
                     Config_R cr = new Config_R(tmpdata);
-                    if (this.configEvent != null)
+                    if (this.configEvent_R != null)
                     {
-                        this.configEvent(cr);
+                        this.configEvent_R(cr);
                     }
                     break;
-                case Command.cmd_RealTimeDate:
+                case Command.cmd_RealTimeDate_R:
                     RealTimeData_R rr = new RealTimeData_R(tmpdata);
-                    if (this.realTimeDataEvent != null)
+                    if (this.realTimeDataEvent_R != null)
                     {
-                        this.realTimeDataEvent(rr);
+                        this.realTimeDataEvent_R(rr);
                     }
                     break;
-                case Command.cmd_UserEvent:
+                case Command.cmd_UserEvent_R:
                     UserEvent_R ur = new UserEvent_R(tmpdata);
-                    if (this.userEventEvent != null)
+                    if (this.userEventEvent_R != null)
                     {
-                        this.userEventEvent(ur);
+                        this.userEventEvent_R(ur);
                     }
                     break;
-                case Command.cmd_Register:
+                case Command.cmd_Register_R:
                     Register_R rg = new Register_R(tmpdata);
-                    if (this.registerEvent != null)
+                    if (this.registerEvent_R != null)
                     {
-                        this.registerEvent(rg);
+                        this.registerEvent_R(rg);
                     }
                     break;
-                case Command.cmd_FirmwareRequest:
+                case Command.cmd_FirmwareRequest_R:
                     FirmwareRequest_R fg = new FirmwareRequest_R(tmpdata);
-                    if (this.firmwareRequestEvent != null)
+                    if (this.firmwareRequestEvent_R != null)
                     {
-                        this.firmwareRequestEvent(fg);
+                        this.firmwareRequestEvent_R(fg);
                     }
                     break;
+
+                case Command.cmd_Reply:
+                    RealTimeData_S rts = new RealTimeData_S(tmpdata);
+                    if (this.realTimeDataEvent_S != null)
+                    {
+                        this.realTimeDataEvent_S(rts);
+                    }
+                    break;
+
                 case Command.cmd_null:
                     break;
                 default:

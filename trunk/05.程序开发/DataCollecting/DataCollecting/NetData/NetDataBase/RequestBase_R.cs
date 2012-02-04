@@ -22,15 +22,22 @@ namespace DataCollecting.NetData
             mac = StringHelper.DataToMACStr(data, 21, 7);
             //SIM卡号
             sim = System.Text.Encoding.ASCII.GetString(data,28,20);
+            //产品型号长度
+            deviveTypeLength = BitConverter.ToUInt16(data, 48);
             //产品型号
-            deviveType = System.Text.Encoding.ASCII.GetString(data,48,12);
-            //其他信息
-            hardwareVersionMain = data[60];
-            hardwareVersionChild = data[61];
-            softwareVersionMain = data[62];
-            softwareVersionChild = data[63];
-            workstateMain = data[64];
-            workstateChild = data[65];
+            deviveType = System.Text.Encoding.ASCII.GetString(data, 50, deviveTypeLength);
+            //硬件住版本号
+            hardwareVersionMain = data[62];
+            //硬件子版本号
+            hardwareVersionChild = data[63];
+            //软件主版本号
+            softwareVersionMain = data[64];
+            //软件子版本号
+            softwareVersionChild = data[65];
+            //工作状态主信息
+            workstateMain = data[66];
+            //工作状态子信息
+            workstateChild = data[67];
         }
 
         /// <summary>
@@ -51,6 +58,16 @@ namespace DataCollecting.NetData
         {
             get { return sim; }
             set { sim = value; }
+        }
+
+        /// <summary>
+        /// 产品型号长度
+        /// </summary>
+        private ushort deviveTypeLength;
+        public ushort DeviveTypeLength
+        {
+            get { return deviveTypeLength; }
+            set { deviveTypeLength = value; }
         }
 
         /// <summary>
@@ -130,6 +147,8 @@ namespace DataCollecting.NetData
             result.AddRange(StringHelper.MACStrData(mac));
             //压入SIM卡号
             result.AddRange(System.Text.Encoding.ASCII.GetBytes(sim));
+            //压入产品型号长度
+            result.AddRange(BitConverter.GetBytes((ushort)deviveType.Length));
             //压入产品型号12位
             byte[] arrtype = System.Text.Encoding.ASCII.GetBytes(deviveType);
             result.AddRange(arrtype);

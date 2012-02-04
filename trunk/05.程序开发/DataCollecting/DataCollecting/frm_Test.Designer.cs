@@ -39,7 +39,10 @@
             this.注册命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.主动关闭告知命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.清除屏幕ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.实时数据回复命令ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
+            this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -47,11 +50,11 @@
             this.textBox1.BackColor = System.Drawing.Color.Black;
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox1.ForeColor = System.Drawing.Color.Lime;
-            this.textBox1.Location = new System.Drawing.Point(0, 24);
+            this.textBox1.Location = new System.Drawing.Point(0, 48);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(852, 336);
+            this.textBox1.Size = new System.Drawing.Size(889, 420);
             this.textBox1.TabIndex = 0;
             // 
             // menuStrip1
@@ -65,9 +68,9 @@
             this.注册命令ToolStripMenuItem,
             this.主动关闭告知命令ToolStripMenuItem,
             this.清除屏幕ToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 24);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(852, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(889, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -127,18 +130,38 @@
             this.清除屏幕ToolStripMenuItem.Text = "清屏";
             this.清除屏幕ToolStripMenuItem.Click += new System.EventHandler(this.清除屏幕ToolStripMenuItem_Click);
             // 
+            // menuStrip2
+            // 
+            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.实时数据回复命令ToolStripMenuItem1});
+            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Size = new System.Drawing.Size(889, 24);
+            this.menuStrip2.TabIndex = 5;
+            this.menuStrip2.Text = "menuStrip2";
+            // 
+            // 实时数据回复命令ToolStripMenuItem1
+            // 
+            this.实时数据回复命令ToolStripMenuItem1.Name = "实时数据回复命令ToolStripMenuItem1";
+            this.实时数据回复命令ToolStripMenuItem1.Size = new System.Drawing.Size(113, 20);
+            this.实时数据回复命令ToolStripMenuItem1.Text = "实时数据回复命令";
+            this.实时数据回复命令ToolStripMenuItem1.Click += new System.EventHandler(this.实时数据回复命令ToolStripMenuItem1_Click);
+            // 
             // frm_Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(852, 360);
+            this.ClientSize = new System.Drawing.Size(889, 468);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menuStrip2);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frm_Test";
             this.Text = "命令测试";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.menuStrip2.ResumeLayout(false);
+            this.menuStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,6 +180,8 @@
         private System.Windows.Forms.ToolStripMenuItem 注册命令ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 主动关闭告知命令ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 清除屏幕ToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem 实时数据回复命令ToolStripMenuItem1;
     }
 }
 

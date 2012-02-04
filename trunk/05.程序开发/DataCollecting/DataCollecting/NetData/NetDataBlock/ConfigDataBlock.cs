@@ -19,20 +19,21 @@ namespace DataCollecting.NetData
         public ConfigDataBlock(byte[] data)
         {
             RunMode = data[0];
-            Argument1 = data[1];
-            Argument2 = data[2];
-            Argument3 = data[3];
-            DeviceNo = StringHelper.GetDefulatStringByByteArr(data,4,8);
+            Argument1 = BitConverter.ToUInt16(data, 1);
+            Argument2 = BitConverter.ToUInt16(data, 3);
+            Argument3 = BitConverter.ToUInt16(data, 5);
+            DeviceNo = StringHelper.GetDefulatStringByByteArr(data, 7, 8);
 
-            DisplayMode = data[12];
-            InstancyBtnEnable = (data[13] == 1 ? true : false);
-            InfoBtnEnable = (data[14] == 1 ? true : false);
-            RepairTel = StringHelper.GetDefulatStringByByteArr(data,15,11);
-            MainDNS = StringHelper.DataToIPStr(data, 26, 8);
-            ReserveDNS = StringHelper.DataToIPStr(data, 34, 8);
-            ServerIP = StringHelper.DataToIPStr(data, 42, 8);
-            DomainName = StringHelper.GetASCIIStringByByteArr(data, 50, 30);
-            Port = BitConverter.ToUInt16(data, 80);
+            DisplayMode = data[15];
+            InstancyBtnEnable = (data[16] == 1 ? true : false);
+            InfoBtnEnable = (data[17] == 1 ? true : false);
+            RepairTel = StringHelper.GetDefulatStringByByteArr(data, 18, 11);
+            MainDNS = StringHelper.DataToIPStr(data, 29, 4);
+            ReserveDNS = StringHelper.DataToIPStr(data, 33, 4);
+            ServerIP = StringHelper.DataToIPStr(data, 37, 4);
+            DomainNameLength = BitConverter.ToUInt16(data, 41);
+            DomainName = StringHelper.GetASCIIStringByByteArr(data, 43, DomainNameLength);
+            Port = BitConverter.ToUInt16(data, 73);
         }
 
         /// <summary>
@@ -42,15 +43,15 @@ namespace DataCollecting.NetData
         /// <summary>
         /// 参数1
         /// </summary>
-        public byte Argument1 { get; set; }
+        public ushort Argument1 { get; set; }
         /// <summary>
         /// 参数2
         /// </summary>
-        public byte Argument2 { get; set; }
+        public ushort Argument2 { get; set; }
         /// <summary>
         /// 参数3
         /// </summary>
-        public byte Argument3 { get; set; }
+        public ushort Argument3 { get; set; }
 
         /// <summary>
         /// 设备编号
@@ -93,6 +94,11 @@ namespace DataCollecting.NetData
         public string ServerIP { get; set; }
 
         /// <summary>
+        /// 域名长度
+        /// </summary>
+        public ushort DomainNameLength { get; set; }
+
+        /// <summary>
         /// 域名
         /// </summary>
         public string DomainName { get; set; }
@@ -106,9 +112,9 @@ namespace DataCollecting.NetData
         {
             List<byte> result = new List<byte>();
             result.Add(RunMode);
-            result.Add(Argument1);
-            result.Add(Argument2);
-            result.Add(Argument3);
+            result.AddRange(BitConverter.GetBytes(Argument1));
+            result.AddRange(BitConverter.GetBytes(Argument2));
+            result.AddRange(BitConverter.GetBytes(Argument3));
             result.AddRange(System.Text.Encoding.ASCII.GetBytes(DeviceNo));
             result.Add(DisplayMode);
             result.Add((byte)(InstancyBtnEnable ? 1 : 0));
@@ -117,6 +123,7 @@ namespace DataCollecting.NetData
             result.AddRange(StringHelper.IPStrData(MainDNS));
             result.AddRange(StringHelper.IPStrData(ReserveDNS));
             result.AddRange(StringHelper.IPStrData(ServerIP));
+            result.AddRange(BitConverter.GetBytes((ushort)DomainName.Length));
             result.AddRange(GetDomainByte(DomainName));
             result.AddRange(BitConverter.GetBytes(Port));
             //预留50个字节

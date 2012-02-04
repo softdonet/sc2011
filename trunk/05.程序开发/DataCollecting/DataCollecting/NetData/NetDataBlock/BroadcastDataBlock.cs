@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DataCollecting.Helper;
 
 namespace DataCollecting.NetData
 {
@@ -14,8 +15,15 @@ namespace DataCollecting.NetData
 
         public BroadcastDataBlock(byte[] data)
         {
-            Msg = System.Text.Encoding.Default.GetString(data);
+            MsgLength = BitConverter.ToUInt16(data, 0);
+            Msg = StringHelper.GetDefulatStringByByteArr(data, 2, MsgLength);
         }
+
+        /// <summary>
+        /// 广播内容
+        /// </summary>
+        public ushort MsgLength { get; set; }
+
         /// <summary>
         /// 广播内容
         /// </summary>
@@ -24,6 +32,7 @@ namespace DataCollecting.NetData
         public byte[] ToByte()
         {
             List<byte> result = new List<byte>();
+            result.AddRange(BitConverter.GetBytes(StringHelper.GetLength(Msg)));
             byte[] arr = System.Text.Encoding.Default.GetBytes(Msg);
             if (arr.Length <= 100)
             {

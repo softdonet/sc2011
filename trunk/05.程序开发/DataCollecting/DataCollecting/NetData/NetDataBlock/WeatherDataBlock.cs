@@ -19,15 +19,23 @@ namespace DataCollecting.NetData
         public WeatherDataBlock(byte[] data)
         {
             TodayMark = data[0];
-            TodayWeather = StringHelper.GetDefulatStringByByteArr(data, 1, 50);
-            TomorrowMark = data[51];
-            TomorrowWeather = StringHelper.GetDefulatStringByByteArr(data, 52, 50);
+            TodayWeatherLength = BitConverter.ToUInt16(data, 1);
+            TodayWeather = StringHelper.GetDefulatStringByByteArr(data, 3, TodayWeatherLength);
+            TomorrowMark = data[53];
+            TomorrowWeatherLength = BitConverter.ToUInt16(data, 54);
+            TomorrowWeather = StringHelper.GetDefulatStringByByteArr(data, 56, TomorrowWeatherLength);
         }
        
         /// <summary>
         /// 今日天气标识
         /// </summary>
         public byte TodayMark { get; set; }
+
+        /// <summary>
+        /// 今日天气情况长度
+        /// </summary>
+        public ushort TodayWeatherLength { get; set; }
+
         /// <summary>
         /// 今日天气情况
         /// </summary>
@@ -36,6 +44,12 @@ namespace DataCollecting.NetData
         /// 明日天气标识
         /// </summary>
         public byte TomorrowMark { get; set; }
+
+        /// <summary>
+        /// 明日天气情况
+        /// </summary>
+        public ushort TomorrowWeatherLength { get; set; }
+
         /// <summary>
         /// 明日天气情况
         /// </summary>
@@ -45,8 +59,10 @@ namespace DataCollecting.NetData
         {
             List<byte> result = new List<byte>();
             result.Add(TodayMark);
+            result.AddRange(BitConverter.GetBytes(StringHelper.GetLength(TodayWeather)));
             result.AddRange(GetWeatherInfo(TodayWeather));
             result.Add(TomorrowMark);
+            result.AddRange(BitConverter.GetBytes(StringHelper.GetLength(TomorrowWeather)));
             result.AddRange(GetWeatherInfo(TomorrowWeather));
             return result.ToArray();
         }

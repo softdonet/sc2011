@@ -89,14 +89,14 @@ namespace BusinessRules
             //构造天气预报块
             WeatherDataBlock weatherDataBlock = new WeatherDataBlock();
             weatherDataBlock.TodayMark = 0;
-            weatherDataBlock.TodayWeather = "晴转XXX多云，有阵雨。";
+            weatherDataBlock.TodayWeather = "晴转多云，有阵雨。";
             weatherDataBlock.TomorrowMark = 1;
             weatherDataBlock.TomorrowWeather = "温度很低，有大雪，注意防寒。";
             rs.WeatherData = weatherDataBlock;
 
             //构造广播信息块
             BroadcastDataBlock broadcastDataBlock = new BroadcastDataBlock();
-            broadcastDataBlock.Msg = "通知：明天下午开会。不要迟到，知道一分钟扣100元。";
+            broadcastDataBlock.Msg = "通知：明天下午开会。不要迟到，迟到一分钟扣100元。";
             rs.BroadcastData = broadcastDataBlock;
 
             return rs;
@@ -150,7 +150,7 @@ namespace BusinessRules
         }
     }
 }
-//需要讨论的问题
+//需要讨论的问题2012-2-4
 /*
 天气预报信息和广播信息往哪里存储
 设备属性如果有更新，该如何标记

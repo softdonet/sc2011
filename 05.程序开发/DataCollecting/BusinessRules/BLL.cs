@@ -7,6 +7,10 @@ using DataAccess;
 
 namespace BusinessRules
 {
+    /// <summary>
+    /// 业务逻辑类
+    /// yanghk at 2012-2-4
+    /// </summary>
     public class BLL
     {
         /// <summary>
@@ -154,7 +158,4 @@ namespace BusinessRules
  * 温度、电量 湿度 存储的类型不太一直
  * 设备SN号在数据库中貌似没有存储
  * 需要重新生成数据库结构，添加了部门表的自关联、修改了硬件版本和软件版本字段
- * 
- * 
- * 
 */

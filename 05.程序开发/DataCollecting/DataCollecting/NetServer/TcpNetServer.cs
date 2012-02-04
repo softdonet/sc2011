@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Collections;
 using NetData;
+using BusinessRules;
 
 namespace DataCollecting.NetServer
 {
@@ -15,6 +16,7 @@ namespace DataCollecting.NetServer
     /// </summary>
     public class TcpNetServer
     {
+        BLL bll = new BLL();
 
         //定义设备测试
         public delegate void TestHandle_R(Test_R test_R);
@@ -195,10 +197,10 @@ namespace DataCollecting.NetServer
                 {
                     tmpsize = BitConverter.ToUInt16(byteData, tmpcp);
                     /*---------------一个有效的命令--------------------
-                        1.命令头为55AA=43605、
+                        1.命令头为55AA=Const.UP_HEADER、
                         2.并且CRC16校验成功
                     -------------------------------------------------*/
-                    if (tmpsize != 43605)
+                    if (tmpsize != Const.UP_HEADER)
                     {
                         wexit = true;
                     }
@@ -256,10 +258,9 @@ namespace DataCollecting.NetServer
                     {
                         this.testEvent_R(tr);
                     }
-                    //构造回复测试数据
                     //begin---------------------
                     Head h = new Head();
-                    h.CmdHeader = 21930;
+                    h.CmdHeader = Const.DOWN_HEADER;
                     h.CmdCommand = Command.cmd_Test_R;
                     h.DataContext = tr.Header.DataContext;
                     h.DeviceSN = tr.Header.DeviceSN;
@@ -270,11 +271,11 @@ namespace DataCollecting.NetServer
                     ts.Header = h;
                     ts.Content = tr.Content;
                     clientSocket.Send(ts.ToByte());
-                    //end---------------------
                     if (testEvent_S != null)
                     {
                         this.testEvent_S(new Test_S(ts.ToByte()));
                     }
+                    //end---------------------
                     break;
                 //设备退出命令
                 case Command.cmd_Logout_R:
@@ -286,20 +287,29 @@ namespace DataCollecting.NetServer
                     {
                         this.configEvent_R(cr);
                     }
-                    /*
-                    业务逻辑：
-                    根据设备SN号在数据库中查找进行对比。
-                    如果有该设备，则需要做的事：
-                     * 1.更新其相关属性：
-                         MAC地址
-                         SIM地址
-                         产品型号长度
-                         产品型号
-                         硬件版本
-                         固件版本
-                         工作状态
-                      2.如果设备配置有更新，则回复配置信息+天气预报+广播信息，否则正常回复，不加扩展信息
-                     */
+                    //begin
+                    Head hconfig = new Head();
+                    hconfig.CmdHeader = Const.DOWN_HEADER;
+                    hconfig.CmdCommand = Command.cmd_Reply;
+                    hconfig.DataContext =cr.Header.DataContext;
+                    hconfig.DeviceSN = cr.Header.DeviceSN;
+                    hconfig.SateTimeMark = DateTime.Now;
+                    if (bll.RefreshData(cr))
+                    {
+                        hconfig.State = 1;
+                    }
+                    else
+                    {
+                        hconfig.State = 2;
+                    }
+                    ReplyBase_S replyBase_S_config = bll.GetDeviceInfor(cr.Header.DeviceSN);
+                    replyBase_S_config.Header = hconfig;
+                    clientSocket.Send(replyBase_S_config.ToByte());
+                    if (this.realTimeDataEvent_S != null)
+                    {
+                        this.realTimeDataEvent_S(new RealTimeData_S(replyBase_S_config.ToByte()));
+                    }
+                    //end
                     break;
                 //设备实时数据上传
                 case Command.cmd_RealTimeDate_R:
@@ -308,11 +318,29 @@ namespace DataCollecting.NetServer
                     {
                         this.realTimeDataEvent_R(rr);
                     }
-                     /*
-                     业务逻辑：
-                       1.将实时数据存储在数据库中
-                       2.如果设备配置有更新，则回复配置信息+天气预报+广播信息，否则正常回复，不加扩展信息
-                      */
+                    //begin
+                    Head hRealTime = new Head();
+                    hRealTime.CmdHeader = Const.DOWN_HEADER;
+                    hRealTime.CmdCommand = Command.cmd_Reply;
+                    hRealTime.DataContext = rr.Header.DataContext;
+                    hRealTime.DeviceSN = rr.Header.DeviceSN;
+                    hRealTime.SateTimeMark = DateTime.Now;
+                    if (bll.SaveRealTimeData(rr))
+                    {
+                        hRealTime.State = 1;
+                    }
+                    else
+                    {
+                        hRealTime.State = 2;
+                    }
+                    ReplyBase_S replyBase_S_realTime = bll.GetDeviceInfor(rr.Header.DeviceSN);
+                    replyBase_S_realTime.Header = hRealTime;
+                    clientSocket.Send(replyBase_S_realTime.ToByte());
+                    if (this.realTimeDataEvent_S != null)
+                    {
+                        this.realTimeDataEvent_S(new RealTimeData_S(replyBase_S_realTime.ToByte()));
+                    }
+                    //end
                     break;
                 //设备用户事件告知
                 case Command.cmd_UserEvent_R:
@@ -321,11 +349,29 @@ namespace DataCollecting.NetServer
                     {
                         this.userEventEvent_R(ur);
                     }
-                    /*
-                  业务逻辑：
-                    1.将实时数据存储在数据库中，包括告警的处理
-                    2.如果设备配置有更新，则回复配置信息+天气预报+广播信息，否则正常回复，不加扩展信息
-                   */
+                    //begin
+                    Head hUserEvent = new Head();
+                    hUserEvent.CmdHeader = Const.DOWN_HEADER;
+                    hUserEvent.CmdCommand = Command.cmd_Reply;
+                    hUserEvent.DataContext = ur.Header.DataContext;
+                    hUserEvent.DeviceSN = ur.Header.DeviceSN;
+                    hUserEvent.SateTimeMark = DateTime.Now;
+                    if (bll.SaveUserEvent(ur))
+                    {
+                        hUserEvent.State = 1;
+                    }
+                    else
+                    {
+                        hUserEvent.State = 2;
+                    }
+                    ReplyBase_S replyBase_S_userEvent = bll.GetDeviceInfor(ur.Header.DeviceSN);
+                    replyBase_S_userEvent.Header = hUserEvent;
+                    clientSocket.Send(replyBase_S_userEvent.ToByte());
+                    if (this.realTimeDataEvent_S != null)
+                    {
+                        this.realTimeDataEvent_S(new RealTimeData_S(replyBase_S_userEvent.ToByte()));
+                    }
+                    //end
                     break;
                 //设备注册
                 case Command.cmd_Register_R:
@@ -335,6 +381,7 @@ namespace DataCollecting.NetServer
                         this.registerEvent_R(rg);
                     }
                     break;
+
                 //设备请求固件更新
                 case Command.cmd_FirmwareRequest_R:
                     FirmwareRequest_R fg = new FirmwareRequest_R(tmpdata);

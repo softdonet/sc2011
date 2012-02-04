@@ -10,9 +10,8 @@ using System.Net.Sockets;
 using System.Net;
 using System.Collections;
 using DataCollecting.NetServer;
-using DataCollecting.NetData;
-using DataCollecting.Helper;
-using DataCollecting.Common;
+using NetData;
+using Utility;
 
 namespace DataCollecting
 {
@@ -24,6 +23,7 @@ namespace DataCollecting
 
             TcpNetServer tcpserver = new TcpNetServer();
             tcpserver.TestEvent_R += new TcpNetServer.TestHandle_R(tcpserver_TestEvent_R);
+            tcpserver.TestEvent_S += new TcpNetServer.TestHandle_S(tcpserver_TestEvent_S);
             tcpserver.ConfigEvent_R += new TcpNetServer.ConfigHandle_R(tcpserver_ConfigEvent_R);
             tcpserver.RealTimeDataEvent_R += new TcpNetServer.RealTimeDataHandle_R(tcpserver_RealTimeDataEvent_R);
             tcpserver.UserEventEvent_R += new TcpNetServer.UserEventHandle_R(tcpserver_UserEventEvent_R);
@@ -32,7 +32,18 @@ namespace DataCollecting
             tcpserver.RealTimeDataEvent_S += new TcpNetServer.RealTimeDataHandle_S(tcpserver_RealTimeDataEvent_S);
         }
 
-
+        void tcpserver_TestEvent_S(Test_S test_S)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(DateTime.Now.ToString() + " 【发送】测试回复：" + Environment.NewLine);
+            sb.Append(GetLine());
+            sb.Append(GetHeader(test_S));
+            sb.Append("报体：" + Environment.NewLine);
+            sb.Append("    数据内容：" + StringHelper.DataToStrV2(BitConverter.GetBytes(test_S.Content)) + Environment.NewLine);
+            sb.Append(GetVerify(test_S));
+            sb.Append(GetLine());
+            SetText(sb.ToString(), false);
+        }
 
         #region 公共方法
         /// <summary>
@@ -124,7 +135,7 @@ namespace DataCollecting
         void tcpserver_RealTimeDataEvent_S(RealTimeData_S realTimeData_S)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(DateTime.Now.ToString() + " 收到设备实时信息回复：" + Environment.NewLine);
+            sb.Append(DateTime.Now.ToString() + " 【收到】设备实时信息回复：" + Environment.NewLine);
             sb.Append(GetLine());
             sb.Append(GetHeader(realTimeData_S));
             sb.Append("报体：" + Environment.NewLine);
@@ -197,7 +208,7 @@ namespace DataCollecting
         void tcpserver_UserEventEvent_R(UserEvent_R userEvent_R)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(DateTime.Now.ToString() + " 收到用户事件信息：" + Environment.NewLine);
+            sb.Append(DateTime.Now.ToString() + "【收到】用户事件信息：" + Environment.NewLine);
             sb.Append(GetLine());
             sb.Append(GetHeader(userEvent_R));
             sb.Append(GetRequestBody(userEvent_R));
@@ -213,7 +224,7 @@ namespace DataCollecting
         void tcpserver_RealTimeDataEvent_R(RealTimeData_R realTimeData_R)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(DateTime.Now.ToString() + " 收到实时数据信息：" + Environment.NewLine);
+            sb.Append(DateTime.Now.ToString() + " 【收到】实时数据信息：" + Environment.NewLine);
             sb.Append(GetLine());
             sb.Append(GetHeader(realTimeData_R));
             sb.Append("报体：" + Environment.NewLine);
@@ -243,7 +254,7 @@ namespace DataCollecting
         void tcpserver_ConfigEvent_R(Config_R config_R)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(DateTime.Now.ToString() + " 收到配置请求信息：" + Environment.NewLine);
+            sb.Append(DateTime.Now.ToString() + " 【收到】配置请求信息：" + Environment.NewLine);
             sb.Append(GetLine());
             sb.Append(GetHeader(config_R));
             sb.Append("报体：" + Environment.NewLine);
@@ -265,7 +276,7 @@ namespace DataCollecting
         void tcpserver_TestEvent_R(NetData.Test_R test_R)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(DateTime.Now.ToString() + " 收到测试信息：" + Environment.NewLine);
+            sb.Append(DateTime.Now.ToString() + " 【收到】测试信息：" + Environment.NewLine);
             sb.Append(GetLine());
             sb.Append(GetHeader(test_R));
             sb.Append("报体：" + Environment.NewLine);
@@ -283,8 +294,8 @@ namespace DataCollecting
         {
             Head h = new Head();
             h.CmdHeader = 43605;
-            h.CmdCommand = Common.Command.cmd_Test_R;
-            h.DataContext = 43605;
+            h.CmdCommand = Command.cmd_Test_R;
+            h.DataContext = 42605;
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
             h.SateTimeMark = DateTime.Now;
@@ -300,7 +311,7 @@ namespace DataCollecting
         {
             Head h = new Head();
             h.CmdHeader = 43605;
-            h.CmdCommand = Common.Command.cmd_RealTimeDate_R;
+            h.CmdCommand = Command.cmd_RealTimeDate_R;
             h.DataContext = 43605;
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
@@ -355,7 +366,7 @@ namespace DataCollecting
         {
             Head h = new Head();
             h.CmdHeader = 43605;
-            h.CmdCommand = Common.Command.cmd_Config_R;
+            h.CmdCommand = Command.cmd_Config_R;
             h.DataContext = 43605;
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
@@ -379,7 +390,7 @@ namespace DataCollecting
         {
             Head h = new Head();
             h.CmdHeader = 43605;
-            h.CmdCommand = Common.Command.cmd_UserEvent_R;
+            h.CmdCommand = Command.cmd_UserEvent_R;
             h.DataContext = 43605;
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
@@ -403,7 +414,7 @@ namespace DataCollecting
         {
             Head h = new Head();
             h.CmdHeader = 43605;
-            h.CmdCommand = Common.Command.cmd_FirmwareRequest_R;
+            h.CmdCommand = Command.cmd_FirmwareRequest_R;
             h.DataContext = 43605;
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
@@ -427,7 +438,7 @@ namespace DataCollecting
         {
             Head h = new Head();
             h.CmdHeader = 43605;
-            h.CmdCommand = Common.Command.cmd_Register_R;
+            h.CmdCommand = Command.cmd_Register_R;
             h.DataContext = 43605;
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
@@ -465,7 +476,7 @@ namespace DataCollecting
         {
             Head h = new Head();
             h.CmdHeader = 43605;
-            h.CmdCommand = Common.Command.cmd_Reply;
+            h.CmdCommand = Command.cmd_Reply;
             h.DataContext = 43605;
             h.DeviceSN = "0A5F01CD0001";
             h.State = 0;

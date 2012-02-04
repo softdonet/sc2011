@@ -5,8 +5,7 @@ using System.Text;
 using System.Net.Sockets;
 using System.Net;
 using System.Collections;
-using DataCollecting.Common;
-using DataCollecting.NetData;
+using NetData;
 
 namespace DataCollecting.NetServer
 {
@@ -31,6 +30,23 @@ namespace DataCollecting.NetServer
                 testEvent_R -= value;
             }
         }
+
+        //定义设备测试
+        public delegate void TestHandle_S(Test_S test_S);
+        private TestHandle_S testEvent_S;
+        public event TestHandle_S TestEvent_S
+        {
+            add
+            {
+                testEvent_S += value;
+            }
+            remove
+            {
+                testEvent_S -= value;
+            }
+        }
+
+
 
         //定义设备请求配置信息事件
         public delegate void ConfigHandle_R(Config_R config_R);
@@ -233,36 +249,85 @@ namespace DataCollecting.NetServer
         {
             switch (cmd)
             {
+                //测试命令
                 case Command.cmd_Test_R:
                     Test_R tr = new Test_R(tmpdata);
                     if (testEvent_R != null)
                     {
                         this.testEvent_R(tr);
                     }
+                    //构造回复测试数据
+                    //begin---------------------
+                    Head h = new Head();
+                    h.CmdHeader = 21930;
+                    h.CmdCommand = Command.cmd_Test_R;
+                    h.DataContext = tr.Header.DataContext;
+                    h.DeviceSN = tr.Header.DeviceSN;
+                    h.State = 1;
+                    h.SateTimeMark = DateTime.Now;
+
+                    Test_S ts = new Test_S();
+                    ts.Header = h;
+                    ts.Content = tr.Content;
+                    clientSocket.Send(ts.ToByte());
+                    //end---------------------
+                    if (testEvent_S != null)
+                    {
+                        this.testEvent_S(new Test_S(ts.ToByte()));
+                    }
                     break;
+                //设备退出命令
                 case Command.cmd_Logout_R:
                     break;
+                //设备请求配置信息
                 case Command.cmd_Config_R:
                     Config_R cr = new Config_R(tmpdata);
                     if (this.configEvent_R != null)
                     {
                         this.configEvent_R(cr);
                     }
+                    /*
+                    业务逻辑：
+                    根据设备SN号在数据库中查找进行对比。
+                    如果有该设备，则需要做的事：
+                     * 1.更新其相关属性：
+                         MAC地址
+                         SIM地址
+                         产品型号长度
+                         产品型号
+                         硬件版本
+                         固件版本
+                         工作状态
+                      2.如果设备配置有更新，则回复配置信息+天气预报+广播信息，否则正常回复，不加扩展信息
+                     */
                     break;
+                //设备实时数据上传
                 case Command.cmd_RealTimeDate_R:
                     RealTimeData_R rr = new RealTimeData_R(tmpdata);
                     if (this.realTimeDataEvent_R != null)
                     {
                         this.realTimeDataEvent_R(rr);
                     }
+                     /*
+                     业务逻辑：
+                       1.将实时数据存储在数据库中
+                       2.如果设备配置有更新，则回复配置信息+天气预报+广播信息，否则正常回复，不加扩展信息
+                      */
                     break;
+                //设备用户事件告知
                 case Command.cmd_UserEvent_R:
                     UserEvent_R ur = new UserEvent_R(tmpdata);
                     if (this.userEventEvent_R != null)
                     {
                         this.userEventEvent_R(ur);
                     }
+                    /*
+                  业务逻辑：
+                    1.将实时数据存储在数据库中，包括告警的处理
+                    2.如果设备配置有更新，则回复配置信息+天气预报+广播信息，否则正常回复，不加扩展信息
+                   */
                     break;
+                //设备注册
                 case Command.cmd_Register_R:
                     Register_R rg = new Register_R(tmpdata);
                     if (this.registerEvent_R != null)
@@ -270,6 +335,7 @@ namespace DataCollecting.NetServer
                         this.registerEvent_R(rg);
                     }
                     break;
+                //设备请求固件更新
                 case Command.cmd_FirmwareRequest_R:
                     FirmwareRequest_R fg = new FirmwareRequest_R(tmpdata);
                     if (this.firmwareRequestEvent_R != null)
@@ -277,7 +343,7 @@ namespace DataCollecting.NetServer
                         this.firmwareRequestEvent_R(fg);
                     }
                     break;
-
+                //服务器回复(仅做测试用)
                 case Command.cmd_Reply:
                     RealTimeData_S rts = new RealTimeData_S(tmpdata);
                     if (this.realTimeDataEvent_S != null)
@@ -292,7 +358,7 @@ namespace DataCollecting.NetServer
                     break;
             }
             //保持常连接
-            //clientSocket.BeginReceive(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(OnReceive), clientSocket);
+            clientSocket.BeginReceive(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(OnReceive), clientSocket);
         }
     }
 }

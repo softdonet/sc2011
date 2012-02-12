@@ -57,13 +57,13 @@ namespace Scada.BLL.Implement
                                                     Where ParentID = '{0}'", DeviceID.ToString());
                 ds = SqlHelper.ExecuteDataTable(sql);
                 if (ds == null || ds.Rows.Count == 0) { return result; }
-                string sqlWhere = string.Empty;
-                foreach (var item in ds.Rows)
-                {
-                    sqlWhere = sqlWhere + string.Format("'{0}',", item);
-                }
-                sqlWhere = sqlWhere.Substring(0, sqlWhere.Length - 1);
-                sSql.Append(" And BB.ManageAreaID In (" + sqlWhere + ")");
+                //string sqlWhere = string.Empty;
+                //foreach (var item in ds.Rows)
+                //{
+                //    sqlWhere = sqlWhere + string.Format("'{0}',", item);
+                //}
+                //sqlWhere = sqlWhere.Substring(0, sqlWhere.Length - 1);
+                //sSql.Append(" And BB.ManageAreaID In (" + sqlWhere + ")");
             }
             else if (DeviceType == 2)
                 sSql.Append(" And BB.ManageAreaID ='" + DeviceID + "'");

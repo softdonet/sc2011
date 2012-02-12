@@ -17,9 +17,9 @@ using Scada.Client.SL.Controls;
 using Scada.Model.Entity;
 using Scada.Client.SL.DeviceRealTimeService;
 using Scada.Client.SL.CommClass;
-
-
-
+using Scada.Client.VM;
+using System.Threading;
+using Scada.Client.VM.Modules.Device;
 
 namespace Scada.Client.SL.Modules.Device
 {
@@ -28,24 +28,28 @@ namespace Scada.Client.SL.Modules.Device
     public partial class DeviceList : UserControl
     {
 
-
         public DeviceList()
         {
             InitializeComponent();
-            DeviceRealTimeServiceClient deviceRealTimeService = ServiceManager.GetDeviceRealTimeService();
-            deviceRealTimeService.GetRealTimeDataReceived += new EventHandler<GetRealTimeDataReceivedEventArgs>(deviceRealTimeService_GetRealTimeDataReceived);
+            DeviceListViewModel dlvm = new DeviceListViewModel();
+            this.DataContext = dlvm;
+            dlvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(dlvm_PropertyChanged);
+
         }
 
-        private void deviceRealTimeService_GetRealTimeDataReceived(object sender, GetRealTimeDataReceivedEventArgs e)
+        /// <summary>
+        /// 数据加载时展开所有数据项
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void dlvm_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            List<DeviceRealTimeTree> obj = BinaryObjTransfer.BinaryDeserialize<List<DeviceRealTimeTree>>(e.data);
-            this.RadTreeListView1.ItemsSource = obj;
             try
             {
                 this.RadTreeListView1.ExpandAllHierarchyItems();
             }
             catch
-            {
+            { 
 
             }
         }
@@ -83,8 +87,6 @@ namespace Scada.Client.SL.Modules.Device
         private void hlUrl_Click(object sender, RoutedEventArgs e)
         {
             Storyboard1.Begin();
-            //MyContent.Content = new DetailsPage();
-            //MyContent.Title = "设备详细信息";
         }
     }
 
@@ -94,22 +96,6 @@ namespace Scada.Client.SL.Modules.Device
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return "查看";
-
-            //CoverageItemBase currentValue = value as CoverageItemBase;
-            //if (value == null)
-            //{
-            //    return DependencyProperty.UnsetValue;
-            //}
-            //return currentValue.BlocksCovered;
-
-            //bool showCovered = Int16.Parse(parameter.ToString()) > 0;
-
-            //int relativeValue = (showCovered) ? currentValue.BlocksCovered : currentValue.BlocksNotCovered;
-            //int totalValue = currentValue.BlocksCovered + currentValue.BlocksNotCovered;
-
-            //if (totalValue == 0) return "0 %";
-
-            //return String.Format("{0:f2} %", (double)relativeValue / totalValue * 100);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

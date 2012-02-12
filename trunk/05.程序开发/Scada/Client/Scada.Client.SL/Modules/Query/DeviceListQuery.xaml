@@ -20,15 +20,15 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
             <sdk:Label Content="设备名称:"  Height="28"   Name="label1" Width="50" />
-            <my:ComboBoxTreeView x:Name="comboBoxTreeView1" Width="120" Height="28" />
+            <my:ComboBoxTreeView x:Name="comboBoxTreeView1" Width="120" Height="28"     SelectValue="{Binding SelectDeviceTreeNode,  Mode=TwoWay}"/>
             <sdk:Label Content="开始时间:"  Margin="20,0,0,0" Height="28"  Name="lblSat" Width="50"  />
-            <sdk:DatePicker Height="23"   Name="datePicker1"  Width="120" />
+            <sdk:DatePicker Height="23"   Name="datePicker1"  Width="120"  SelectedDate="{Binding StartDate, Mode=TwoWay}" />
             <sdk:Label Content="结束时间:" Margin="20,0,0,0" Height="28"   Name="lblEnd" Width="50"   />
-            <sdk:DatePicker  Height="23"  Name="datePicker2"  Width="120" />
-            <Button Content="查询" Margin="20,0,0,0" Height="23" Name="btnCheck"  Width="75" />
+            <sdk:DatePicker  Height="23"  Name="datePicker2"  Width="120" SelectedDate="{Binding EndDate, Mode=TwoWay}"/>
+            <Button Content="查询" Margin="20,0,0,0" Height="23" Name="btnQuery"  Command="{Binding QueryCommand}" Width="75" />
             <Button Content="导出" Margin="20,0,0,0"  Height="23" Name="btnExport"  Width="75" />
         </StackPanel>
-        <telerik:RadGridView x:Name="RadGridView1" Grid.Row="1"   ShowGroupPanel="False" IsReadOnly="True"   CanUserFreezeColumns="False" AutoGenerateColumns="False" >
+        <telerik:RadGridView x:Name="RadGridView1" Grid.Row="1"     ItemsSource="{Binding DeviceRealTimeList}" ShowGroupPanel="False" IsReadOnly="True"   CanUserFreezeColumns="False" AutoGenerateColumns="False" >
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Header="设备编号"   IsFilterable="False"   HeaderTextAlignment="Center"  Width="100" DataMemberBinding="{Binding DeviceNo}" />
                 <telerik:GridViewDataColumn Header="安装地点"  IsFilterable="False"  HeaderTextAlignment="Center" Width="*" DataMemberBinding="{Binding InstallPlace}" />

@@ -28,5 +28,8 @@ namespace Scada.Model.Entity
         public int? Signal { get; set; }
         public int? Status { get; set; }
         public DateTime? UpdateTime { get; set; }
+
+        public float? Longitude { get; set; }
+        public float? Dimensionality { get; set; }
     }
 }

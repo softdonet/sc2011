@@ -16,36 +16,93 @@ using System.ServiceModel;
 using System.ServiceModel.Channels;
 using Scada.Client.SL.CommClass;
 using Scada.Client.SL.WeatherWebService;
+using Scada.Client.VM.Modules.BingMaps;
 
 namespace Scada.Client.SL.Modules.BingMaps
 {
     public partial class MapIndex : UserControl
     {
+
+        private static MapIndex instance;
+        public static MapIndex GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new MapIndex();
+            }
+       
+            return instance;
+        }
+
+
+        MapIndexViewModel mapVM = null;
         public MapIndex()
         {
             InitializeComponent();
             InitMap();
             MyContent.CloseBtn += new EventHandler(MyContent_CloseBtn);
-            DeviceRealTimeServiceClient deviceRealTimeService = ServiceManager.GetDeviceRealTimeService();
-            deviceRealTimeService.GetRealTimeDataReceived += new EventHandler<GetRealTimeDataReceivedEventArgs>(deviceRealTimeService_GetRealTimeDataReceived);
-            deviceRealTimeService.GetAlarmDataReceived += new EventHandler<GetAlarmDataReceivedEventArgs>(deviceRealTimeService_GetAlarmDataReceived);
-            deviceRealTimeService.GetCallDataReceived += new EventHandler<GetCallDataReceivedEventArgs>(deviceRealTimeService_GetCallDataReceived);
+
+            myMapLayerDevice = new MapLayer();
+            myMapLayerDeviceAvg = new MapLayer();
+            map.Children.Add(myMapLayerDeviceAvg);
+            map.Children.Add(myMapLayerDevice);
+            mapVM = new MapIndexViewModel();
+            mapVM.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(mapVM_PropertyChanged);
+
+            //    DeviceRealTimeServiceClient deviceRealTimeService = ServiceManager.GetDeviceRealTimeService();
+            //    deviceRealTimeService.GetRealTimeDataReceived += new EventHandler<GetRealTimeDataReceivedEventArgs>(deviceRealTimeService_GetRealTimeDataReceived);
+            //    deviceRealTimeService.GetAlarmDataReceived += new EventHandler<GetAlarmDataReceivedEventArgs>(deviceRealTimeService_GetAlarmDataReceived);
+            //    deviceRealTimeService.GetCallDataReceived += new EventHandler<GetCallDataReceivedEventArgs>(deviceRealTimeService_GetCallDataReceived);
         }
 
-        void deviceRealTimeService_GetCallDataReceived(object sender, GetCallDataReceivedEventArgs e)
+        bool falg = false;
+        void mapVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            this.txtCall.Text = e.data;
+            if(falg)
+            {
+                return ;
+            }
+
+            if (e.PropertyName == "DeviceRealTimeTree")
+            {
+                foreach (var item in mapVM.DeviceRealTimeTree)
+                {
+                    pushPinDevice myPushPin = new pushPinDevice();
+                    myPushPin.DataContext = item;
+                    MapLayer.SetPosition(myPushPin, new Location(item.Longitude.Value, item.Dimensionality.Value));
+                    myPushPin.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
+                    switch (item.NodeType)
+                    {
+                        case 1:
+                            break;
+                        case 2:
+                            myMapLayerDeviceAvg.Children.Add(myPushPin);
+                            break;
+                        case 3:
+                            myMapLayerDevice.Children.Add(myPushPin);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                falg = true;
+            }
         }
 
-        void deviceRealTimeService_GetAlarmDataReceived(object sender, GetAlarmDataReceivedEventArgs e)
-        {
-            this.txtAlarm.Text = e.data;
-        }
+        //void deviceRealTimeService_GetCallDataReceived(object sender, GetCallDataReceivedEventArgs e)
+        //{
+        //    this.txtCall.Text = e.data;
+        //}
 
-        void deviceRealTimeService_GetRealTimeDataReceived(object sender, GetRealTimeDataReceivedEventArgs e)
-        {
-            //this.txtRealTime.Text = e.data;
-        }
+        //void deviceRealTimeService_GetAlarmDataReceived(object sender, GetAlarmDataReceivedEventArgs e)
+        //{
+        //    this.txtAlarm.Text = e.data;
+        //}
+
+        //void deviceRealTimeService_GetRealTimeDataReceived(object sender, GetRealTimeDataReceivedEventArgs e)
+        //{
+        //    //this.txtRealTime.Text = e.data;
+        //}
 
         void MyContent_CloseBtn(object sender, EventArgs e)
         {
@@ -120,87 +177,8 @@ namespace Scada.Client.SL.Modules.BingMaps
             double weidu = (39.9487 + 39.90705 + 39.98698 + 39.96754 + 39.88405) / 5.0;
             double jindu = (116.45072 + 116.37995 + 116.36773 + 116.36932 + 116.33072) / 5.0;
             map.Center = new Location(weidu, jindu);
-            myMapLayerDevice = new MapLayer();
-            myMapLayerDeviceAvg = new MapLayer();
 
-            map.Children.Add(myMapLayerDeviceAvg);
-            map.Children.Add(myMapLayerDevice);
-
-            pushPinDevice myPushPin0 = new pushPinDevice();
-            myPushPin0.DevState = DeviceState.Normal;
-            myPushPin0.DeviceName = "P0000";
-            myPushPin0.DeviceTemp = "20℃";
-            myMapLayerDevice.Children.Add(myPushPin0);
-            MapLayer.SetPosition(myPushPin0, new Location(39.9487, 116.45072));
-            myPushPin0.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
-
-            pushPinDevice myPushPin1 = new pushPinDevice();
-            myPushPin1.DevState = DeviceState.Normal;
-            myPushPin1.DeviceName = "P0001";
-            myPushPin1.DeviceTemp = "21℃";
-            myMapLayerDevice.Children.Add(myPushPin1);
-            MapLayer.SetPosition(myPushPin1, new Location(39.90705, 116.37995));
-            myPushPin1.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
-
-            pushPinDevice myPushPin2 = new pushPinDevice();
-            myPushPin2.DevState = DeviceState.Normal;
-            myPushPin2.DeviceName = "P0002";
-            myPushPin2.DeviceTemp = "22℃";
-            myMapLayerDevice.Children.Add(myPushPin2);
-            myPushPin2.DevState = DeviceState.Escape;
-            MapLayer.SetPosition(myPushPin2, new Location(39.98698, 116.36773));
-            myPushPin2.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
-
-            pushPinDevice myPushPin3 = new pushPinDevice();
-            myPushPin3.DevState = DeviceState.Normal;
-            myPushPin3.DeviceName = "P0003";
-            myPushPin3.DeviceTemp = "23℃";
-            myMapLayerDevice.Children.Add(myPushPin3);
-            MapLayer.SetPosition(myPushPin3, new Location(39.96754, 116.36932));
-            myPushPin3.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
-
-            pushPinDevice myPushPin4 = new pushPinDevice();
-            myPushPin4.DevState = DeviceState.Alert;
-            myPushPin4.DeviceName = "P0004";
-            myPushPin4.DeviceTemp = "24℃";
-            myMapLayerDevice.Children.Add(myPushPin4);
-            MapLayer.SetPosition(myPushPin4, new Location(39.92405, 116.33072));
-            myPushPin4.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
-
-
-            pushPinDevice myPushPin6 = new pushPinDevice();
-            myPushPin6.DevState = DeviceState.Alert;
-            myPushPin6.DeviceName = "P0005";
-            myPushPin6.DeviceTemp = "25℃";
-            myMapLayerDevice.Children.Add(myPushPin6);
-            MapLayer.SetPosition(myPushPin6, new Location(39.99205, 116.31072));
-            myPushPin6.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
-
-
-
-            pushPinDevice myPushPin7 = new pushPinDevice();
-            myPushPin7.DevState = DeviceState.Normal;
-            myPushPin7.DeviceName = "P0007";
-            myPushPin7.DeviceTemp = "23℃";
-            myMapLayerDevice.Children.Add(myPushPin7);
-            MapLayer.SetPosition(myPushPin7, new Location(39.97405, 116.39972));
-            myPushPin7.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
-
-            pushPinDevice myPushPin8 = new pushPinDevice();
-            myPushPin8.DevState = DeviceState.Normal;
-            myPushPin8.DeviceName = "P0008";
-            myPushPin8.DeviceTemp = "28℃";
-            myMapLayerDevice.Children.Add(myPushPin8);
-            MapLayer.SetPosition(myPushPin8, new Location(39.9687, 116.42072));
-            myPushPin8.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
-
-            pushPinDevice myPushPin5 = new pushPinDevice();
-            myPushPin5.DevState = DeviceState.Alert;
-            myPushPin5.DeviceName = "片区1";
-            myPushPin5.DeviceTemp = "65℃";
-            myMapLayerDeviceAvg.Children.Add(myPushPin5);
-            MapLayer.SetPosition(myPushPin5, new Location(39.92405, 116.33072));
-            myPushPin5.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
+          
         }
 
         void myPushPin_onclickDetails(object sender, RoutedEventArgs e)

@@ -68,6 +68,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommClass\BinaryObjTransfer.cs" />
+    <Compile Include="Modules\BingMaps\MapIndexViewModel.cs" />
+    <Compile Include="Modules\BingMaps\PushPinDeviceViewModel.cs" />
     <Compile Include="Modules\Query\DeviceListQueryViewModel.cs" />
     <Compile Include="Modules\Device\DeviceListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -166,6 +168,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

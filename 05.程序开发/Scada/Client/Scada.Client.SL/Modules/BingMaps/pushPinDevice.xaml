@@ -60,13 +60,13 @@ Storyboard.TargetProperty="(UIElement.Visibility)">
             <Canvas >
                 <Canvas Canvas.Top="0" Canvas.Left="3" >
                     <StackPanel x:Name="ConditionsScreen1"  Height="14" Width="43" >
-                        <TextBlock Width="40"   Height="14"   TextAlignment="Center"   FontSize="10" x:Name="txtDeviceName"  Text="P001" VerticalAlignment="Top" Margin="0" />
+                        <TextBlock Width="40"  Text="{Binding NodeValue}"  Height="14"   TextAlignment="Center"   FontSize="10" x:Name="txtDeviceName"   VerticalAlignment="Top" Margin="0" />
 
                     </StackPanel>
                 </Canvas>
                 <Canvas Canvas.Top="18" Canvas.Left="3" >
                     <StackPanel x:Name="ConditionsScreen"  >
-                        <TextBlock Width="40"  Height="25" TextAlignment="Center"  HorizontalAlignment="Center"   FontSize="15" x:Name="txtTemp"  Text="29℃" />
+                        <TextBlock Width="40"  Height="25" TextAlignment="Center"  HorizontalAlignment="Center"   FontSize="15" x:Name="txtTemp"  Text= "{Binding Temperature, Mode=OneWay}"/>
                     </StackPanel>
                 </Canvas>
             </Canvas>
@@ -87,13 +87,12 @@ Storyboard.TargetProperty="(UIElement.Visibility)">
                     <StackPanel Margin="0,0,0,0"  >
                         <StackPanel x:Name="sp" Orientation="Vertical" Margin="21,0,110,0"  >
                             <StackPanel Orientation="Horizontal" >
-                                <TextBlock  x:Name="txtTitle"   Text ="设备编号：P0001"  FontSize="12"  HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18" VerticalAlignment="Center"/>
+                                <TextBlock  x:Name="txtTitle"   Text="{Binding NodeValue}"  FontSize="12"  HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18" VerticalAlignment="Center"/>
                                 <HyperlinkButton x:Name="hlUrl"     Content="查看详情" FontSize="10" TargetName = "_blank" Foreground="#FF0000CC"   Margin="130,0,0,0"  Click="hlUrl_Click"   HorizontalAlignment="Center" Height="13" Width="50"    />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,1,0,0" >
-                                <TextBlock  x:Name="txtProjectCode"   TextWrapping="Wrap" Text ="设备名称：采集仪"  FontSize="10"  Margin="5,0,0,0"  VerticalAlignment="Center"/>
-
-                                <TextBlock  x:Name="txtProjectManagerName"   TextWrapping="Wrap" Text ="安装地点：北京天安门"  FontSize="10" Foreground="Black" Margin="5,0,0,0"  VerticalAlignment="Center"/>
+                                <TextBlock  x:Name="txtProjectCode"   TextWrapping="Wrap" Text ="安装地点："  FontSize="10"  Margin="5,0,0,0"  VerticalAlignment="Center"/>
+                                <TextBlock  x:Name="txtInstallPlace"   TextWrapping="Wrap" Text ="{Binding InstallPlace}"  FontSize="10" Foreground="Black" Margin="0,0,0,0"  VerticalAlignment="Center"/>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Margin="0,0,91,0" >

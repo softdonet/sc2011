@@ -23,7 +23,6 @@ namespace Scada.Client.VM.Modules.Query
     /// </summary>
     public class DeviceListQueryViewModel : NotificationObject
     {
-
         public DelegateCommand QueryCommand { get; set; }
         ScadaDeviceServiceSoapClient scadaDeviceServiceSoapClient = null;
 
@@ -68,7 +67,6 @@ namespace Scada.Client.VM.Modules.Query
             }
         }
 
-
         /// <summary>
         /// 开始时间
         /// </summary>
@@ -96,7 +94,6 @@ namespace Scada.Client.VM.Modules.Query
                 this.RaisePropertyChanged("EndDate");
             }
         }
-
 
         public DeviceListQueryViewModel()
         {

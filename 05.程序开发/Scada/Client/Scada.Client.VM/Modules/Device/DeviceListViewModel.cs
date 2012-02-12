@@ -35,7 +35,7 @@ namespace Scada.Client.VM.Modules.Device
             if (e.Error == null)
             {
                 List<DeviceRealTimeTree> result = BinaryObjTransfer.BinaryDeserialize<List<DeviceRealTimeTree>>(e.data);
-                DeviceRealTimeList = result.OrderByDescending(d=>d.NodeValue).ToList();
+                DeviceRealTimeList = result;
             }
             else
             {

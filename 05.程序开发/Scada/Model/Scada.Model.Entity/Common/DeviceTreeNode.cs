@@ -20,6 +20,11 @@ namespace Scada.Model.Entity
             this.NodeChild.Add(treeNode);
         }
 
+        public float? Longitude { get; set; }
+
+        public float? Dimensionality { get; set; }
+        public string InstallPlace { get; set; }
+
     }
 
 }

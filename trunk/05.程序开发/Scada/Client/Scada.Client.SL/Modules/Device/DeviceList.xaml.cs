@@ -28,6 +28,15 @@ namespace Scada.Client.SL.Modules.Device
     public partial class DeviceList : UserControl
     {
 
+        private static DeviceList instance;
+        public static DeviceList GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new DeviceList();
+            }
+            return instance;
+        }
         public DeviceList()
         {
             InitializeComponent();

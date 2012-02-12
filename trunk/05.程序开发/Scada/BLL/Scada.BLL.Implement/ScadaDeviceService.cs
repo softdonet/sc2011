@@ -568,7 +568,8 @@ namespace Scada.BLL.Implement
                 {
                     NodeType = nodeIndex,
                     NodeValue = item["Name"].ToString(),
-                    NodeKey = new Guid(item["id"].ToString())
+                    NodeKey = new Guid(item["id"].ToString()),
+
                 });
             }
             return result;
@@ -577,7 +578,7 @@ namespace Scada.BLL.Implement
         private List<DeviceTreeNode> getTreeNodeDevice(Guid nodeKey)
         {
             List<DeviceTreeNode> result = new List<DeviceTreeNode>();
-            string sSql = @"select id,DeviceNo from DeviceInfo 
+            string sSql = @"select id,DeviceNo,Longitude,Dimensionality,InstallPlace from DeviceInfo 
                                 Where ManageAreaID ='" + nodeKey.ToString().ToUpper() + "'";
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);
             foreach (DataRow item in ds.Rows)
@@ -586,7 +587,10 @@ namespace Scada.BLL.Implement
                 {
                     NodeType = 3,
                     NodeValue = item["DeviceNo"].ToString(),
-                    NodeKey = new Guid(item["id"].ToString())
+                    NodeKey = new Guid(item["id"].ToString()),
+                    Longitude = float.Parse(item["Longitude"].ToString()),
+                    Dimensionality = float.Parse(item["Dimensionality"].ToString()),
+                    InstallPlace = item["InstallPlace"].ToString(),
                 });
             }
             return result;

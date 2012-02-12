@@ -25,7 +25,7 @@ namespace Scada.Client.SL
         {
             InitializeComponent();
             //初始页面加载地图
-            this.ViewHost.Child = new MapIndex();
+            this.ViewHost.Child = MapIndex.GetInstance();
             //注册主导航菜单点击事件
             Header.menuMap.Checked += new RoutedEventHandler(menu_Checked);
             Header.menuSearch.Checked += new RoutedEventHandler(menu_Checked);
@@ -40,7 +40,7 @@ namespace Scada.Client.SL
             Header.lstbSysSettings.SelectionChanged += new SelectionChangedEventHandler(lstbSysSettings_SelectionChanged);
             Header.lstbSearch.SelectionChanged += new SelectionChangedEventHandler(lstbSearch_SelectionChanged);
         }
-        DeviceList deviceList = new DeviceList();
+    
         /// <summary>
         /// 主菜单选择事件
         /// </summary>
@@ -55,11 +55,11 @@ namespace Scada.Client.SL
                 {
                     //地图信息
                     case "menuMap":
-                        this.ViewHost.Child = new MapIndex();
+                        this.ViewHost.Child = MapIndex.GetInstance();
                         break;
                     //设备列表
                     case "menuDeviceList":
-                        this.ViewHost.Child = deviceList;
+                        this.ViewHost.Child =  DeviceList.GetInstance();
                         break;
                     //设备告警
                     case "menuAlertList":

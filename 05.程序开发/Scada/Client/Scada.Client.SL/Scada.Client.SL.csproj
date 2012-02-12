@@ -70,6 +70,9 @@
     <Reference Include="Microsoft.Maps.MapControl.Common">
       <HintPath>..\..\Lib\Microsoft.Maps.MapControl.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\..\Lib\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="SCADA.UI">
       <HintPath>..\..\..\..\03.需求分析\SCADA_Demo\SCADA.UI\Bin\Debug\SCADA.UI.dll</HintPath>
@@ -433,9 +436,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\SystemManagerService\SystemManagerService1.wsdl" />
-    <None Include="Service References\WeatherWebService\Scada.Client.SL.WeatherWebService.GetWeatherResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\WeatherWebService\WeatherWebService1.wsdl" />
     <Resource Include="Modules\DiagramAnalysis\Images\d1.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\d2.jpg" />
@@ -569,6 +569,10 @@
     <ProjectReference Include="..\Scada.Client.UC\Scada.Client.UC.csproj">
       <Project>{CB49D8C3-CC6E-4D73-98BD-272A2D30B3AD}</Project>
       <Name>Scada.Client.UC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Scada.Client.VM\Scada.Client.VM.csproj">
+      <Project>{4C77E612-3996-4205-93AF-AC4C143F2173}</Project>
+      <Name>Scada.Client.VM</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

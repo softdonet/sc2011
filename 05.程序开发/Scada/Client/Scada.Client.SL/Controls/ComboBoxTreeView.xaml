@@ -6,20 +6,20 @@
     mc:Ignorable="d"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" d:DesignWidth="131" d:DesignHeight="23">
 
-    <Canvas > 
+    <Canvas >
         <ComboBox Height="24" x:Name="cbTree"  Width="24">
-        <ComboBoxItem>
-            <ComboBoxItem.Content>
-                <sdk:TreeView   Name="treeView1"  Margin="0" SelectedItemChanged="treeView1_SelectedItemChanged">
-                    <sdk:TreeView.ItemTemplate>
-                        <sdk:HierarchicalDataTemplate ItemsSource="{Binding NodeChild}">
-                            <TextBlock Text="{Binding NodeValue}"/>
-                        </sdk:HierarchicalDataTemplate>
-                    </sdk:TreeView.ItemTemplate>
-                </sdk:TreeView>
-            </ComboBoxItem.Content>
-        </ComboBoxItem>
-    </ComboBox>
-    <TextBox Height="24" x:Name="tbTree" Width="107" Margin="0" Canvas.Left="24" Canvas.Top="0"  IsReadOnly="true" />
+            <ComboBoxItem>
+                <ComboBoxItem.Content>
+                    <sdk:TreeView   Name="treeView1"  Margin="0" SelectedItemChanged="treeView1_SelectedItemChanged">
+                        <sdk:TreeView.ItemTemplate>
+                            <sdk:HierarchicalDataTemplate ItemsSource="{Binding NodeChild}">
+                                <TextBlock Text="{Binding NodeValue}"/>
+                            </sdk:HierarchicalDataTemplate>
+                        </sdk:TreeView.ItemTemplate>
+                    </sdk:TreeView>
+                </ComboBoxItem.Content>
+            </ComboBoxItem>
+        </ComboBox>
+        <TextBox Height="24" x:Name="tbTree" Width="107" Margin="0" Canvas.Left="24" Canvas.Top="0"  IsReadOnly="true"  Text="{ Binding SelectValue }"/>
     </Canvas>
 </UserControl>

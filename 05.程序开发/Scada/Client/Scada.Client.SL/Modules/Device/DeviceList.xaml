@@ -72,9 +72,10 @@
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Background="White" >
         <telerik:RadTreeListView x:Name="RadTreeListView1" 
+                                  ItemsSource="{Binding DeviceRealTimeList}" 
 								 AutoGenerateColumns="False"
 								 IsReadOnly="True" 
-								 AutoExpandGroups="True"  RowHeight="25" RowLoaded="RadTreeListView1_RowLoaded" >
+								 AutoExpandGroups="True"  RowHeight="25"  RowLoaded="RadTreeListView1_RowLoaded" >
             <telerik:RadTreeListView.ChildTableDefinitions>
                 <telerik:TreeListViewTableDefinition ItemsSource="{Binding NodeChild}" />
             </telerik:RadTreeListView.ChildTableDefinitions>

@@ -45,7 +45,7 @@ namespace Scada.BLL.Implement
 
         public DeviceRealTimeMonitorService()
         {
-            timer = new Timer(new System.Threading.TimerCallback(CheckDBMessages), this, 2000, 2000);
+            timer = new Timer(new System.Threading.TimerCallback(CheckDBMessages), this, 2000, 5000);
         }
 
         #endregion

@@ -40,7 +40,7 @@ namespace Scada.Client.SL
             Header.lstbSysSettings.SelectionChanged += new SelectionChangedEventHandler(lstbSysSettings_SelectionChanged);
             Header.lstbSearch.SelectionChanged += new SelectionChangedEventHandler(lstbSearch_SelectionChanged);
         }
-        DeviceList seviceList = new DeviceList();
+        DeviceList deviceList = new DeviceList();
         /// <summary>
         /// 主菜单选择事件
         /// </summary>
@@ -59,7 +59,7 @@ namespace Scada.Client.SL
                         break;
                     //设备列表
                     case "menuDeviceList":
-                        this.ViewHost.Child = seviceList;
+                        this.ViewHost.Child = deviceList;
                         break;
                     //设备告警
                     case "menuAlertList":
@@ -96,7 +96,7 @@ namespace Scada.Client.SL
             {
                 //设备查询
                 case "childMenuDataSearch":
-                    this.ViewHost.Child =new DeviceListQuery();
+                    this.ViewHost.Child = DeviceListQuery.GetInstance();;
                     break;
                 //系统告警日志
                 case "childMenuAlertSearch":

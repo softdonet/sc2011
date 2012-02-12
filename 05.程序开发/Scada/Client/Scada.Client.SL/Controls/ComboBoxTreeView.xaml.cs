@@ -27,21 +27,23 @@ namespace Scada.Client.SL.Controls
         {
             set
             {
-                if (value != null)
-                {
-                    DeviceTreeNode test = new DeviceTreeNode();
-                    test.NodeKey = Guid.Empty;
-                    test.NodeValue = "清空选择";
-                    value.Insert(0, test);
-                }
                 this.treeView1.ItemsSource = value;
             }
         }
 
-        /// <summary>
-        /// 选择项
-        /// </summary>
-        public DeviceTreeNode SelectValue { get; set; }
+
+
+        public DeviceTreeNode SelectValue
+        {
+            get { return (DeviceTreeNode)GetValue(SelectValueProperty); }
+            set { SetValue(SelectValueProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SelectValue.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectValueProperty =
+            DependencyProperty.Register("SelectValue", typeof(DeviceTreeNode), typeof(ComboBoxTreeView),new PropertyMetadata(null));
+
+        
 
         private void treeView1_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {

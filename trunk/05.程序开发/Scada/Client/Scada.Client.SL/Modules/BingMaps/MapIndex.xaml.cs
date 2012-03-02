@@ -22,7 +22,6 @@ namespace Scada.Client.SL.Modules.BingMaps
 {
     public partial class MapIndex : UserControl
     {
-
         private static MapIndex instance;
         public static MapIndex GetInstance()
         {
@@ -30,10 +29,8 @@ namespace Scada.Client.SL.Modules.BingMaps
             {
                 instance = new MapIndex();
             }
-       
             return instance;
         }
-
 
         MapIndexViewModel mapVM = null;
         public MapIndex()
@@ -47,62 +44,61 @@ namespace Scada.Client.SL.Modules.BingMaps
             map.Children.Add(myMapLayerDeviceAvg);
             map.Children.Add(myMapLayerDevice);
             mapVM = new MapIndexViewModel();
-            mapVM.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(mapVM_PropertyChanged);
-
-            //    DeviceRealTimeServiceClient deviceRealTimeService = ServiceManager.GetDeviceRealTimeService();
-            //    deviceRealTimeService.GetRealTimeDataReceived += new EventHandler<GetRealTimeDataReceivedEventArgs>(deviceRealTimeService_GetRealTimeDataReceived);
-            //    deviceRealTimeService.GetAlarmDataReceived += new EventHandler<GetAlarmDataReceivedEventArgs>(deviceRealTimeService_GetAlarmDataReceived);
-            //    deviceRealTimeService.GetCallDataReceived += new EventHandler<GetCallDataReceivedEventArgs>(deviceRealTimeService_GetCallDataReceived);
+            mapVM.BaseDataResviceEvent += new EventHandler(mapVM_BaseDataResviceEvent);
+            mapVM.RealTimeDataResviceEvent += new EventHandler(mapVM_RealTimeDataResviceEvent);
         }
 
-        bool falg = false;
-        void mapVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        /// <summary>
+        /// 实时数据到达更新界面
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void mapVM_RealTimeDataResviceEvent(object sender, EventArgs e)
         {
-            if(falg)
+            foreach (var item in mapVM.DeviceRealTimeTree)
             {
-                return ;
-            }
-
-            if (e.PropertyName == "DeviceRealTimeTree")
-            {
-                foreach (var item in mapVM.DeviceRealTimeTree)
+                pushPinDevice pp;
+                if (dicPin.TryGetValue(item.NodeKey, out pp))
                 {
-                    pushPinDevice myPushPin = new pushPinDevice();
-                    myPushPin.DataContext = item;
-                    MapLayer.SetPosition(myPushPin, new Location(item.Longitude.Value, item.Dimensionality.Value));
-                    myPushPin.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
-                    switch (item.NodeType)
+                    if (pp != null)
                     {
-                        case 1:
-                            break;
-                        case 2:
-                            myMapLayerDeviceAvg.Children.Add(myPushPin);
-                            break;
-                        case 3:
-                            myMapLayerDevice.Children.Add(myPushPin);
-                            break;
-                        default:
-                            break;
+                        pp.txtTemp.Text = item.Temperature.ToString();
                     }
                 }
-                falg = true;
-            }
+            }  
         }
 
-        //void deviceRealTimeService_GetCallDataReceived(object sender, GetCallDataReceivedEventArgs e)
-        //{
-        //    this.txtCall.Text = e.data;
-        //}
-
-        //void deviceRealTimeService_GetAlarmDataReceived(object sender, GetAlarmDataReceivedEventArgs e)
-        //{
-        //    this.txtAlarm.Text = e.data;
-        //}
-
-        //void deviceRealTimeService_GetRealTimeDataReceived(object sender, GetRealTimeDataReceivedEventArgs e)
-        //{
-        //    //this.txtRealTime.Text = e.data;
-        //}
+        Dictionary<Guid, pushPinDevice> dicPin = new Dictionary<Guid, pushPinDevice>();
+        /// <summary>
+        /// 基础数据到达，界面描图钉
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void mapVM_BaseDataResviceEvent(object sender, EventArgs e)
+        {
+            dicPin.Clear();
+            foreach (var item in mapVM.DeviceRealTimeTree)
+            {
+                pushPinDevice myPushPin = new pushPinDevice();
+                dicPin.Add(item.NodeKey, myPushPin);
+                myPushPin.DataContext = item;
+                MapLayer.SetPosition(myPushPin, new Location(item.Longitude.Value, item.Dimensionality.Value));
+                myPushPin.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
+                switch (item.NodeType)
+                {
+                    case 1:
+                        break;
+                    case 2:
+                        myMapLayerDeviceAvg.Children.Add(myPushPin);
+                        break;
+                    case 3:
+                        myMapLayerDevice.Children.Add(myPushPin);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
 
         void MyContent_CloseBtn(object sender, EventArgs e)
         {
@@ -160,13 +156,10 @@ namespace Scada.Client.SL.Modules.BingMaps
                 }
                 else
                 {
-
                     this.myMapLayerDeviceAvg.Visibility = Visibility.Visible;
                     this.myMapLayerDevice.Visibility = Visibility.Collapsed;
                 }
-
             };
-
         }
 
         MapLayer myMapLayerDevice = null;
@@ -176,9 +169,7 @@ namespace Scada.Client.SL.Modules.BingMaps
             map.ZoomLevel = 12;
             double weidu = (39.9487 + 39.90705 + 39.98698 + 39.96754 + 39.88405) / 5.0;
             double jindu = (116.45072 + 116.37995 + 116.36773 + 116.36932 + 116.33072) / 5.0;
-            map.Center = new Location(weidu, jindu);
-
-          
+            map.Center = new Location(weidu, jindu); 
         }
 
         void myPushPin_onclickDetails(object sender, RoutedEventArgs e)
@@ -201,7 +192,6 @@ namespace Scada.Client.SL.Modules.BingMaps
             else
             {
                 this.hidWeather.Begin();
-
             }
             flag = !flag;
         }
@@ -218,10 +208,7 @@ namespace Scada.Client.SL.Modules.BingMaps
             {
                 this.MainGrid.ColumnDefinitions[2].Width = new GridLength(240);
                 this.ZheDieStoryboardShow.Begin();
-
-
             }
         }
-
     }
 }

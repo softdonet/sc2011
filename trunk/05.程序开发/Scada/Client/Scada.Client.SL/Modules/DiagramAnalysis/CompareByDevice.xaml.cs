@@ -14,6 +14,16 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
 {
     public partial class CompareByDevice : UserControl
     {
+        private static CompareByDevice instance;
+        public static CompareByDevice GetInstance()
+        {
+            if (instance==null)
+            {
+                instance = new CompareByDevice();
+            }
+            return instance;
+        }
+
         public CompareByDevice()
         {
             InitializeComponent();

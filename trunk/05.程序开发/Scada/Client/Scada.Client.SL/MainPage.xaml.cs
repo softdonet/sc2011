@@ -16,6 +16,8 @@ using Scada.Client.SL.Modules.Device;
 using Scada.Client.SL.Modules.Alarm;
 using Scada.Client.SL.Modules.UsersEvent;
 using Scada.Client.SL.Controls;
+using Scada.Client.SL.Modules.DiagramAnalysis;
+
 
 namespace Scada.Client.SL
 {
@@ -63,11 +65,11 @@ namespace Scada.Client.SL
                         break;
                     //设备告警
                     case "menuAlertList":
-                        this.ViewHost.Child = new AlarmList();
+                        this.ViewHost.Child =  AlarmList.GetInstance();
                         break;
                     //用户事件
                     case "menuUserEvent":
-                        this.ViewHost.Child = new UserEvent();
+                        this.ViewHost.Child = UserEvent.GetInstance();
                         break;
 
                     ///统计分析移到对比分析的子菜单下
@@ -156,25 +158,25 @@ namespace Scada.Client.SL
         /// <param name="e"></param>
         void lstbCompare_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //string link = (Header.lstbCompare.SelectedItem as ListBoxItem).Name.ToString().Trim();
-            //Header.menuCompare.IsChecked = true;
-            //switch (link)
-            //{
-            //    //按日期对比
-            //    case "childMenuByDateCompare":
-            //        this.ViewHost.Child = new CompareByTime();
-            //        break;
-            //    //按设备对比
-            //    case "childMenuDeviceCompare":
-            //        this.ViewHost.Child = new CompareByDevice();
+            string link = (Header.lstbCompare.SelectedItem as ListBoxItem).Name.ToString().Trim();
+            Header.menuCompare.IsChecked = true;
+            switch (link)
+            {
+                //按日期对比
+                case "childMenuByDateCompare":
+                    this.ViewHost.Child = CompareByTime.GetInstance();
+                    break;
+                //按设备对比
+                case "childMenuDeviceCompare":
+                    this.ViewHost.Child =  CompareByDevice.GetInstance();
 
-            //        break;
-            //    //统计分析
-            //    case "childMenuStatistics":
-            //        this.ViewHost.Child = new StatisticsAnalyseNew();
+                    break;
+                //统计分析
+                case "childMenuStatistics":
+                    this.ViewHost.Child =new  SCADA.UI.Modules.Statistics.StatisticsAnalyseNew();//StatisticsAnalyse.GetInstance();
 
-            //        break;
-            //}
+                    break;
+            }
         }
 
         #endregion

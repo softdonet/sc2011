@@ -14,6 +14,17 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
 {
     public partial class StatisticsAnalyse : UserControl
     {
+        #region 单例
+        private static UserControl instance;
+        public static UserControl GetInstance()
+        {
+            if (instance==null)
+            {
+                instance = new UserControl();
+            }
+            return instance;
+        }
+        #endregion
         public StatisticsAnalyse()
         {
             InitializeComponent();

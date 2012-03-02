@@ -12,7 +12,7 @@ using Microsoft.Practices.Prism.ViewModel;
 
 namespace Scada.Client.VM.Modules.BingMaps
 {
-    public class PushPinDeviceViewModel : NotificationObject
+    public class PushPinDeviceViewModel
     {
         private string nodeValue;
         public string NodeValue
@@ -21,7 +21,6 @@ namespace Scada.Client.VM.Modules.BingMaps
             set
             {
                 nodeValue = value;
-                this.RaisePropertyChanged("NodeValue");
             }
         }
 
@@ -32,7 +31,6 @@ namespace Scada.Client.VM.Modules.BingMaps
             set
             {
                 nodeKey = value;
-                this.RaisePropertyChanged("NodeKey");
             }
         }
 
@@ -43,8 +41,6 @@ namespace Scada.Client.VM.Modules.BingMaps
             set
             {
                 nodeType = value;
-                this.RaisePropertyChanged("NodeType");
-
             }
         }
 
@@ -55,8 +51,6 @@ namespace Scada.Client.VM.Modules.BingMaps
             set
             {
                 installPlace = value;
-                this.RaisePropertyChanged("InstallPlace");
-
             }
         }
         private decimal? temperature;
@@ -66,8 +60,6 @@ namespace Scada.Client.VM.Modules.BingMaps
             set
             {
                 temperature = value;
-                this.RaisePropertyChanged("Temperature");
-
             }
         }
         private int? electricity;
@@ -77,8 +69,6 @@ namespace Scada.Client.VM.Modules.BingMaps
             set
             {
                 electricity = value;
-                this.RaisePropertyChanged("Electricity");
-
             }
         }
         private int? signal;
@@ -88,7 +78,6 @@ namespace Scada.Client.VM.Modules.BingMaps
             set
             {
                 signal = value;
-                this.RaisePropertyChanged("Signal");
             }
         }
         private int? status;
@@ -98,7 +87,6 @@ namespace Scada.Client.VM.Modules.BingMaps
             set
             {
                 status = value;
-                this.RaisePropertyChanged("Status");
             }
         }
         private DateTime? updateTime;
@@ -108,7 +96,6 @@ namespace Scada.Client.VM.Modules.BingMaps
             set
             {
                 updateTime = value;
-                this.RaisePropertyChanged("UpdateTime");
             }
         }
         private float? longitude;
@@ -118,8 +105,6 @@ namespace Scada.Client.VM.Modules.BingMaps
             set
             {
                 longitude = value;
-
-                this.RaisePropertyChanged("Longitude");
             }
         }
         private float? dimensionality;
@@ -129,7 +114,6 @@ namespace Scada.Client.VM.Modules.BingMaps
             set
             {
                 dimensionality = value;
-                this.RaisePropertyChanged("Dimensionality");
             }
         }
 

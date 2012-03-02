@@ -42,12 +42,12 @@ namespace Scada.Client.VM.Modules.BingMaps
             scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
             scadaDeviceServiceSoapClient.ListDeviceTreeViewCompleted += new EventHandler<ListDeviceTreeViewCompletedEventArgs>(scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted);
             scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
-
             DeviceRealTimeServiceClient deviceRealTimeService = ServiceManager.GetDeviceRealTimeService();
             deviceRealTimeService.GetRealTimeDataReceived += new EventHandler<GetRealTimeDataReceivedEventArgs>(deviceRealTimeService_GetRealTimeDataReceived);
         }
 
-
+        public event EventHandler RealTimeDataResviceEvent;
+        public event EventHandler BaseDataResviceEvent;
         /// <summary>
         /// 实时数据到达事件
         /// </summary>
@@ -57,28 +57,33 @@ namespace Scada.Client.VM.Modules.BingMaps
         {
             if (e.Error == null)
             {
-
-                //List<DeviceRealTimeTree> result = BinaryObjTransfer.BinaryDeserialize<List<DeviceRealTimeTree>>(e.data);
-                //foreach (var item1 in result)
-                //{
-                //    foreach (var item2 in item1.NodeChild)
-                //    {
-                //        foreach (var item3 in item2.NodeChild)
-                //        {
-                //            PushPinDeviceViewModel pp;
-                //            if (dic.TryGetValue(item3.NodeKey, out pp))
-                //            {
-                //                if (pp != null)
-                //                    pp.Temperature = item3.Temperature;
-                //            }
-                //            else
-                //            {
-
-                //                dic[item3.NodeKey].Temperature = 10; ;
-                //            }
-                //        }
-                //    }
-                //}
+                //获取实时数据
+                List<DeviceRealTimeTree> result = BinaryObjTransfer.BinaryDeserialize<List<DeviceRealTimeTree>>(e.data);
+                List<PushPinDeviceViewModel> tempList = new List<PushPinDeviceViewModel>();
+                foreach (var item1 in result)
+                {
+                    foreach (var item2 in item1.NodeChild)
+                    {
+                        foreach (var item3 in item2.NodeChild)
+                        {
+                            PushPinDeviceViewModel tem = new PushPinDeviceViewModel();
+                            tem.NodeKey = item3.NodeKey;
+                            tem.NodeValue = item3.NodeValue;
+                            tem.NodeType = item3.NodeType;
+                            tem.Temperature = item3.Temperature;
+                            tem.Status = item3.Status;
+                            tem.Longitude = item3.Longitude;
+                            tem.Dimensionality = item3.Dimensionality;
+                            tem.InstallPlace = item3.InstallPlace;
+                            tempList.Add(tem);
+                        }
+                    }
+                }
+                DeviceRealTimeTree = tempList;
+                if (RealTimeDataResviceEvent != null)
+                {
+                    this.RealTimeDataResviceEvent(this, EventArgs.Empty);
+                }
             }
             else
             {
@@ -86,11 +91,9 @@ namespace Scada.Client.VM.Modules.BingMaps
             }
         }
 
-
         /// <summary>
         /// 获取基础设备数据
         /// </summary>
-        Dictionary<Guid, PushPinDeviceViewModel> dic = new Dictionary<Guid, PushPinDeviceViewModel>();
         void scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted(object sender, ListDeviceTreeViewCompletedEventArgs e)
         {
             if (e.Error == null)
@@ -108,7 +111,7 @@ namespace Scada.Client.VM.Modules.BingMaps
                             tem.NodeKey = item3.NodeKey;
                             tem.NodeValue = item3.NodeValue;
                             tem.NodeType = item3.NodeType;
-                            tem.Temperature = 0;
+                            tem.Temperature = 20;
                             tem.Status = 0;
                             tem.Longitude = item3.Longitude;
                             tem.Dimensionality = item3.Dimensionality;
@@ -116,18 +119,20 @@ namespace Scada.Client.VM.Modules.BingMaps
                             if (tem.Longitude.HasValue && tem.Dimensionality.HasValue)
                             {
                                 tempList.Add(tem);
-                                dic.Add(tem.NodeKey, tem);
                             }
                         }
                     }
                 }
                 DeviceRealTimeTree = tempList;
+                if (BaseDataResviceEvent != null)
+                {
+                    this.BaseDataResviceEvent(this, EventArgs.Empty);
+                }
             }
             else
             {
-                MessageBox.Show(e.Error.Message);
+                MessageBox.Show("获取地图设备信息失败！");
             }
         }
-
     }
 }

@@ -73,7 +73,8 @@ namespace Scada.Client.VM.Modules.Device
             if (e.Error == null)
             {
                 List<DeviceRealTimeTree> result = BinaryObjTransfer.BinaryDeserialize<List<DeviceRealTimeTree>>(e.data);
-                deviceRealTimeList = result;
+                //注意：此处必须赋值给属性，而非字段，才可实现 MVVM
+                DeviceRealTimeList = result;
             }
             else
             {

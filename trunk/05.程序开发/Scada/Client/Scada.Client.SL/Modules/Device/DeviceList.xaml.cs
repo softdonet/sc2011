@@ -28,8 +28,6 @@ using Scada.Client.SL.DeviceRealTimeService;
 
 namespace Scada.Client.SL.Modules.Device
 {
-
-
     public partial class DeviceList : UserControl
     {
 
@@ -53,6 +51,10 @@ namespace Scada.Client.SL.Modules.Device
         public DeviceList()
         {
             InitializeComponent();
+            //注意：以下代码必须放在构造函数中
+            DeviceListViewModel dlvm = new DeviceListViewModel();
+            this.DataContext = dlvm;
+            dlvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(dlvm_PropertyChanged);
         }
 
         #endregion
@@ -62,9 +64,7 @@ namespace Scada.Client.SL.Modules.Device
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            DeviceListViewModel dlvm = new DeviceListViewModel();
-            this.DataContext = dlvm;
-            dlvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(dlvm_PropertyChanged);
+         
 
         }
 
@@ -116,7 +116,6 @@ namespace Scada.Client.SL.Modules.Device
         }
 
         #endregion
-
 
     }
 

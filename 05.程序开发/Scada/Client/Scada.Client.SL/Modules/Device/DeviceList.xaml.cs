@@ -43,7 +43,6 @@ namespace Scada.Client.SL.Modules.Device
             DeviceListViewModel dlvm = new DeviceListViewModel();
             this.DataContext = dlvm;
             dlvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(dlvm_PropertyChanged);
-
         }
 
         /// <summary>

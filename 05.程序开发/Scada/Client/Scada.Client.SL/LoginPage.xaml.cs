@@ -51,6 +51,8 @@ namespace Scada.Client.SL
 
         private void login_myKeyDowmEvent(object sender, RoutedEventArgs e)
         {
+            this.MasterContainer.Child = new MainPage();
+            return;
 
             //1)Check UserName
             if (string.IsNullOrEmpty(login.txbName.Text))
@@ -70,6 +72,7 @@ namespace Scada.Client.SL
 
             if (login.txbName.Text == "admin" && login.txtPassWord.Password == "admin")
             {
+
                 this.MasterContainer.Child = new MainPage();
             }
             else

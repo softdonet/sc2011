@@ -13,13 +13,18 @@ using System.Reflection;
 using System.Windows.Media.Imaging;
 using System.Windows.Data;
 using System.Globalization;
-using Scada.Client.SL.Controls;
+
 using Scada.Model.Entity;
-using Scada.Client.SL.DeviceRealTimeService;
-using Scada.Client.SL.CommClass;
+
 using Scada.Client.VM;
-using System.Threading;
 using Scada.Client.VM.Modules.Device;
+
+
+using Scada.Client.SL.Controls;
+using Scada.Client.SL.CommClass;
+using Scada.Client.SL.DeviceRealTimeService;
+
+
 
 namespace Scada.Client.SL.Modules.Device
 {
@@ -27,6 +32,8 @@ namespace Scada.Client.SL.Modules.Device
 
     public partial class DeviceList : UserControl
     {
+
+        #region 单例构造
 
         private static DeviceList instance;
         public static DeviceList GetInstance()
@@ -37,40 +44,40 @@ namespace Scada.Client.SL.Modules.Device
             }
             return instance;
         }
+
+        #endregion
+
+
+        #region 构造函数
+
         public DeviceList()
         {
             InitializeComponent();
+        }
+
+        #endregion
+
+
+        #region 界面初期化
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
             DeviceListViewModel dlvm = new DeviceListViewModel();
             this.DataContext = dlvm;
             dlvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(dlvm_PropertyChanged);
+
         }
 
-        /// <summary>
-        /// 数据加载时展开所有数据项
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void dlvm_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void dlvm_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             try
             {
                 this.RadTreeListView1.ExpandAllHierarchyItems();
             }
-            catch
-            { 
-
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
-        }
-
-        private void MyContent_CloseBtn(object sender, EventArgs e)
-        {
-            Storyboard2.Begin();
-            ViewHost.Visibility = Visibility.Collapsed;
-        }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void RadTreeListView1_RowLoaded(object sender, Telerik.Windows.Controls.GridView.RowLoadedEventArgs e)
@@ -92,10 +99,25 @@ namespace Scada.Client.SL.Modules.Device
             }
         }
 
+        #endregion
+
+
+        #region 废弃代码
+
+        private void MyContent_CloseBtn(object sender, EventArgs e)
+        {
+            Storyboard2.Begin();
+            ViewHost.Visibility = Visibility.Collapsed;
+        }
+
         private void hlUrl_Click(object sender, RoutedEventArgs e)
         {
             Storyboard1.Begin();
         }
+
+        #endregion
+
+
     }
 
     public class RelativeBlocksValueConverter : IValueConverter
@@ -114,6 +136,7 @@ namespace Scada.Client.SL.Modules.Device
 
     public class ItemImageSourceValueConverter : IValueConverter
     {
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string img = string.Empty;
@@ -195,6 +218,10 @@ namespace Scada.Client.SL.Modules.Device
         {
             throw new NotImplementedException();
         }
+
     }
 
 }
+
+
+

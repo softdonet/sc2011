@@ -41,6 +41,17 @@ namespace Scada.Client.SL.Modules.UsersEvent
 
         #region 构造函数
 
+        private static UserEvent instance;
+
+        public static UserEvent GetInstance()
+        {
+            if (instance==null)
+            {
+                instance = new UserEvent();
+            }
+            return instance;
+        }
+
         public UserEvent()
         {
 

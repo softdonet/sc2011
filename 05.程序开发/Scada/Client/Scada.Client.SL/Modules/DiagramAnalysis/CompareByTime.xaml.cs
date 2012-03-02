@@ -14,6 +14,15 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
 {
     public partial class CompareByTime : UserControl
     {
+        private static CompareByTime instance;
+        public static CompareByTime GetInstance()
+        {
+            if (instance==null)
+            {
+                instance = new CompareByTime();
+            }
+            return instance;
+        }
         public CompareByTime()
         {
             InitializeComponent();

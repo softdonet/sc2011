@@ -43,6 +43,15 @@ namespace Scada.Client.SL.Modules.Alarm
 
         #region 构造函数
 
+        private static AlarmList instance;
+        public static AlarmList GetInstance()
+        {
+            if (instance==null)
+            {
+                instance = new AlarmList();
+            }
+            return instance;
+        }
         public AlarmList()
         {
 

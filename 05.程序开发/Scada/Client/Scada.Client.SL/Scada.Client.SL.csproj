@@ -28,7 +28,8 @@
     <OutOfBrowserSettingsFile>Properties\OutOfBrowserSettings.xml</OutOfBrowserSettingsFile>
     <UsePlatformExtensions>false</UsePlatformExtensions>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
-    <LinkedServerProject>..\Scada.Client.Web\Scada.Client.Web.csproj</LinkedServerProject>
+    <LinkedServerProject>
+    </LinkedServerProject>
   </PropertyGroup>
   <!-- This property group is only here to support building this project using the 
        MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
@@ -436,19 +437,13 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\SystemManagerService\SystemManagerService1.wsdl" />
-    <None Include="Service References\WeatherWebService\WeatherWebService1.wsdl" />
+    <None Include="Service References\WeatherWebService\WeatherWebService.wsdl" />
     <Resource Include="Modules\DiagramAnalysis\Images\d1.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\d2.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\d3.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\d4.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\lastPage.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\nextPage.jpg" />
-    <None Include="Service References\WeatherWebService\configuration91.svcinfo" />
-    <None Include="Service References\WeatherWebService\configuration.svcinfo" />
-    <None Include="Service References\WeatherWebService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Service References\SystemManagerService\configuration91.svcinfo" />
     <None Include="Service References\SystemManagerService\configuration.svcinfo" />
     <None Include="Service References\SystemManagerService\Reference.svcmap">
@@ -477,7 +472,13 @@
     <Resource Include="Modules\Device\Images\signal3.png" />
     <None Include="Service References\ScadaDeviceService\ScadaDeviceService1.disco" />
     <None Include="Service References\SystemManagerService\SystemManagerService1.disco" />
-    <None Include="Service References\WeatherWebService\WeatherWebService1.disco" />
+    <None Include="Service References\WeatherWebService\WeatherWebService.disco" />
+    <None Include="Service References\WeatherWebService\configuration91.svcinfo" />
+    <None Include="Service References\WeatherWebService\configuration.svcinfo" />
+    <None Include="Service References\WeatherWebService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="ServiceReferences.ClientConfig">
       <SubType>Designer</SubType>
     </Content>

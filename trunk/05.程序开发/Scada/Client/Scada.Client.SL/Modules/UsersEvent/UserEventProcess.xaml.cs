@@ -436,6 +436,11 @@ namespace Scada.Client.SL.Modules.UsersEvent
             {
                 case "btnStep1":
                     eventDealDetail.StepNo = 1;
+                    if (cmbStep1.SelectedIndex == -1)
+                    {
+                        MessageBox.Show("请选择用户事件类型!");
+                        return;
+                    }
                     eventDealDetail.StepName = ((StepInfo)(cmbStep1.SelectionBoxItem)).StepName;
                     eventDealDetail.Memo = txtStep1.Text.Trim();
                     txtblk1.Text = "确认人：" + "admin" + " 确认时间：" + DateTime.Now;
@@ -443,6 +448,11 @@ namespace Scada.Client.SL.Modules.UsersEvent
                     break;
                 case "btnStep2":
                     eventDealDetail.StepNo = 2;
+                    if (cmbStep2.SelectedIndex == -1)
+                    {
+                        MessageBox.Show("请选择用户事件类型!");
+                        return;
+                    }
                     eventDealDetail.StepName = ((StepInfo)(cmbStep2.SelectionBoxItem)).StepName;
                     eventDealDetail.Memo = txtStep2.Text.Trim();
                     txtblk2.Text = "确认人：" + "admin" + " 确认时间：" + DateTime.Now;
@@ -450,6 +460,11 @@ namespace Scada.Client.SL.Modules.UsersEvent
                     break;
                 case "btnStep3":
                     eventDealDetail.StepNo = 3;
+                    if (cmbStep3.SelectedIndex == -1)
+                    {
+                        MessageBox.Show("请选择用户事件类型!");
+                        return;
+                    }
                     eventDealDetail.StepName = ((StepInfo)(cmbStep3.SelectionBoxItem)).StepName;
                     eventDealDetail.Memo = txtStep3.Text.Trim();
                     txtblk3.Text = "确认人：" + "admin" + " 确认时间：" + DateTime.Now;
@@ -458,6 +473,11 @@ namespace Scada.Client.SL.Modules.UsersEvent
 
                 case "btnStep4":
                     eventDealDetail.StepNo = 4;
+                    if (cmbStep4.SelectedIndex==-1)
+                    {
+                        MessageBox.Show("请选择用户事件类型!");
+                        return;
+                    }
                     eventDealDetail.StepName = ((StepInfo)(cmbStep4.SelectionBoxItem)).StepName;
                     eventDealDetail.Memo = txtStep4.Text.Trim();
                     txtblk4.Text = "确认人：" + "admin" + " 确认时间：" + DateTime.Now;
@@ -465,6 +485,11 @@ namespace Scada.Client.SL.Modules.UsersEvent
                     break;
                 case "btnStep5":
                     eventDealDetail.StepNo = 5;
+                    if (cmbStep5.SelectedIndex == -1)
+                    {
+                        MessageBox.Show("请选择用户事件类型!");
+                        return;
+                    }
                     eventDealDetail.StepName = ((StepInfo)(cmbStep5.SelectionBoxItem)).StepName;
                     eventDealDetail.Memo = txtStep5.Text.Trim();
                     txtblk5.Text = "确认人：" + "admin" + " 确认时间：" + DateTime.Now;

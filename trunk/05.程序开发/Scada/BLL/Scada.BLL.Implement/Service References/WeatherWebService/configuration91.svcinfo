@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="zlSJ1V5lJObEY1f/v8AMyA3rrOY=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="CvtGEblL5oUAIZT4qCNsdIEzrYk=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="WeatherWebServiceSoap">
       <properties>
@@ -227,7 +227,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="WeatherWebServiceSoap" contract="TheThirdWeatherWebServiceReference.WeatherWebServiceSoap" bindingType="basicHttpBinding" address="http://www.webxml.com.cn/WebServices/WeatherWebService.asmx" bindingConfiguration="WeatherWebServiceSoap">
+    <endpoint name="WeatherWebServiceSoap" contract="WeatherWebService.WeatherWebServiceSoap" bindingType="basicHttpBinding" address="http://www.webxml.com.cn/WebServices/WeatherWebService.asmx" bindingConfiguration="WeatherWebServiceSoap">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://www.webxml.com.cn/WebServices/WeatherWebService.asmx</serializedValue>
@@ -242,7 +242,7 @@
           <serializedValue>WeatherWebServiceSoap</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>TheThirdWeatherWebServiceReference.WeatherWebServiceSoap</serializedValue>
+          <serializedValue>WeatherWebService.WeatherWebServiceSoap</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
@@ -312,7 +312,7 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="WeatherWebServiceSoap12" contract="TheThirdWeatherWebServiceReference.WeatherWebServiceSoap" bindingType="customBinding" address="http://www.webxml.com.cn/WebServices/WeatherWebService.asmx" bindingConfiguration="WeatherWebServiceSoap12">
+    <endpoint name="WeatherWebServiceSoap12" contract="WeatherWebService.WeatherWebServiceSoap" bindingType="customBinding" address="http://www.webxml.com.cn/WebServices/WeatherWebService.asmx" bindingConfiguration="WeatherWebServiceSoap12">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://www.webxml.com.cn/WebServices/WeatherWebService.asmx</serializedValue>
@@ -327,7 +327,7 @@
           <serializedValue>WeatherWebServiceSoap12</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>TheThirdWeatherWebServiceReference.WeatherWebServiceSoap</serializedValue>
+          <serializedValue>WeatherWebService.WeatherWebServiceSoap</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>

@@ -32,6 +32,11 @@ namespace Scada.Client.SL.SystemManagerService {
         System.IAsyncResult BeginGetLoginResultType(Scada.Client.SL.SystemManagerService.GetLoginResultTypeRequest request, System.AsyncCallback callback, object asyncState);
         
         Scada.Client.SL.SystemManagerService.GetLoginResultTypeResponse EndGetLoginResultType(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/GetWeather", ReplyAction="*")]
+        System.IAsyncResult BeginGetWeather(Scada.Client.SL.SystemManagerService.GetWeatherRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.SL.SystemManagerService.GetWeatherResponse EndGetWeather(System.IAsyncResult result);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -167,6 +172,74 @@ namespace Scada.Client.SL.SystemManagerService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetWeatherRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetWeather", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.SystemManagerService.GetWeatherRequestBody Body;
+        
+        public GetWeatherRequest() {
+        }
+        
+        public GetWeatherRequest(Scada.Client.SL.SystemManagerService.GetWeatherRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetWeatherRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string cityName;
+        
+        public GetWeatherRequestBody() {
+        }
+        
+        public GetWeatherRequestBody(string cityName) {
+            this.cityName = cityName;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetWeatherResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetWeatherResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.SystemManagerService.GetWeatherResponseBody Body;
+        
+        public GetWeatherResponse() {
+        }
+        
+        public GetWeatherResponse(Scada.Client.SL.SystemManagerService.GetWeatherResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetWeatherResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetWeatherResult;
+        
+        public GetWeatherResponseBody() {
+        }
+        
+        public GetWeatherResponseBody(string GetWeatherResult) {
+            this.GetWeatherResult = GetWeatherResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface SystemManagerServiceSoapChannel : Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap, System.ServiceModel.IClientChannel {
     }
@@ -230,6 +303,25 @@ namespace Scada.Client.SL.SystemManagerService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetWeatherCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetWeatherCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class SystemManagerServiceSoapClient : System.ServiceModel.ClientBase<Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap>, Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap {
         
         private BeginOperationDelegate onBeginAddDDDelegate;
@@ -249,6 +341,12 @@ namespace Scada.Client.SL.SystemManagerService {
         private EndOperationDelegate onEndGetLoginResultTypeDelegate;
         
         private System.Threading.SendOrPostCallback onGetLoginResultTypeCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetWeatherDelegate;
+        
+        private EndOperationDelegate onEndGetWeatherDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetWeatherCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -308,6 +406,8 @@ namespace Scada.Client.SL.SystemManagerService {
         public event System.EventHandler<ListStudentsCompletedEventArgs> ListStudentsCompleted;
         
         public event System.EventHandler<GetLoginResultTypeCompletedEventArgs> GetLoginResultTypeCompleted;
+        
+        public event System.EventHandler<GetWeatherCompletedEventArgs> GetWeatherCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -481,6 +581,66 @@ namespace Scada.Client.SL.SystemManagerService {
                         userpwd}, this.onEndGetLoginResultTypeDelegate, this.onGetLoginResultTypeCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap.BeginGetWeather(Scada.Client.SL.SystemManagerService.GetWeatherRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetWeather(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginGetWeather(string cityName, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.SL.SystemManagerService.GetWeatherRequest inValue = new Scada.Client.SL.SystemManagerService.GetWeatherRequest();
+            inValue.Body = new Scada.Client.SL.SystemManagerService.GetWeatherRequestBody();
+            inValue.Body.cityName = cityName;
+            return ((Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap)(this)).BeginGetWeather(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.SL.SystemManagerService.GetWeatherResponse Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap.EndGetWeather(System.IAsyncResult result) {
+            return base.Channel.EndGetWeather(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private string EndGetWeather(System.IAsyncResult result) {
+            Scada.Client.SL.SystemManagerService.GetWeatherResponse retVal = ((Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap)(this)).EndGetWeather(result);
+            return retVal.Body.GetWeatherResult;
+        }
+        
+        private System.IAsyncResult OnBeginGetWeather(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string cityName = ((string)(inValues[0]));
+            return this.BeginGetWeather(cityName, callback, asyncState);
+        }
+        
+        private object[] OnEndGetWeather(System.IAsyncResult result) {
+            string retVal = this.EndGetWeather(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetWeatherCompleted(object state) {
+            if ((this.GetWeatherCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetWeatherCompleted(this, new GetWeatherCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetWeatherAsync(string cityName) {
+            this.GetWeatherAsync(cityName, null);
+        }
+        
+        public void GetWeatherAsync(string cityName, object userState) {
+            if ((this.onBeginGetWeatherDelegate == null)) {
+                this.onBeginGetWeatherDelegate = new BeginOperationDelegate(this.OnBeginGetWeather);
+            }
+            if ((this.onEndGetWeatherDelegate == null)) {
+                this.onEndGetWeatherDelegate = new EndOperationDelegate(this.OnEndGetWeather);
+            }
+            if ((this.onGetWeatherCompletedDelegate == null)) {
+                this.onGetWeatherCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetWeatherCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetWeatherDelegate, new object[] {
+                        cityName}, this.onEndGetWeatherDelegate, this.onGetWeatherCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -594,6 +754,19 @@ namespace Scada.Client.SL.SystemManagerService {
             public Scada.Client.SL.SystemManagerService.GetLoginResultTypeResponse EndGetLoginResultType(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 Scada.Client.SL.SystemManagerService.GetLoginResultTypeResponse _result = ((Scada.Client.SL.SystemManagerService.GetLoginResultTypeResponse)(base.EndInvoke("GetLoginResultType", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetWeather(Scada.Client.SL.SystemManagerService.GetWeatherRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("GetWeather", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.SL.SystemManagerService.GetWeatherResponse EndGetWeather(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.SL.SystemManagerService.GetWeatherResponse _result = ((Scada.Client.SL.SystemManagerService.GetWeatherResponse)(base.EndInvoke("GetWeather", _args, result)));
                 return _result;
             }
         }

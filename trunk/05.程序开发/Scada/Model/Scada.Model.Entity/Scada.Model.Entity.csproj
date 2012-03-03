@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Weather.cs" />
     <Compile Include="DBClass\DatabaseBackUp.cs" />
     <Compile Include="DBClass\Department.cs" />
     <Compile Include="DBClass\DeviceAlarm.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="DBClass\UserRole.cs" />
     <Compile Include="Common\DeviceRealTimeTree.cs" />
     <Compile Include="Common\DeviceTreeNode.cs" />
+    <Compile Include="Enums\DeviceState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

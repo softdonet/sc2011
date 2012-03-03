@@ -16,6 +16,7 @@ using System.Windows.Media.Animation;
 
 using Scada.Client.SL.Controls;
 using Scada.Client.SL.CommClass;
+using Scada.Model.Entity;
 
 
 
@@ -50,9 +51,17 @@ namespace Scada.Client.SL
         #region 事件处理
 
         private void login_myKeyDowmEvent(object sender, RoutedEventArgs e)
-        {
-            this.MasterContainer.Child = new MainPage();
+        {  
+            //测试用户 admin
+            if (login.txbName.Text == "admin")
+            {
+                User u = new User();
+                u.UserName = "admin";
+                App.CurUser = u;
+                this.MasterContainer.Child = new MainPage();
+            }
             return;
+
 
             //1)Check UserName
             if (string.IsNullOrEmpty(login.txbName.Text))
@@ -72,7 +81,6 @@ namespace Scada.Client.SL
 
             if (login.txbName.Text == "admin" && login.txtPassWord.Password == "admin")
             {
-
                 this.MasterContainer.Child = new MainPage();
             }
             else

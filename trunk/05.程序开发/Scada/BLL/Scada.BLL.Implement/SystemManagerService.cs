@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Scada.BLL.Contract;
 using Scada.Utility.Common.Transfer;
 using Scada.Model.Entity;
+using Scada.BLL.Implement.WeatherWebService;
+using Scada.Utility.Common.Helper;
 
 
 
@@ -42,6 +44,16 @@ namespace Scada.BLL.Implement
 
         #endregion
 
-
+        /// <summary>
+        /// 获取天气预报
+        /// </summary>
+        /// <param name="cityName">城市名称</param>
+        /// <returns></returns>
+        public string GetWeather(string cityName)
+        {
+            var service = new WeatherWebServiceSoapClient();
+            string[] ws = service.getWeatherbyCityName(cityName);
+            return BinaryObjTransfer.JsonSerializer<Weather>(WeatherHelper.GetWeather(ws));
+        }
     }
 }

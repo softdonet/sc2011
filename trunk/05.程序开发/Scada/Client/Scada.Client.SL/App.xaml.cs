@@ -9,12 +9,16 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Scada.Model.Entity;
 
 namespace Scada.Client.SL
 {
     public partial class App : Application
     {
-
+        /// <summary>
+        /// 系统当前用户
+        /// </summary>
+        public static User CurUser = null;
         public App()
         {
             this.Startup += this.Application_Startup;

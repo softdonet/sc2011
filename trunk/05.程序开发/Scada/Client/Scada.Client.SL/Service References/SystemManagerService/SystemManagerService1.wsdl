@@ -42,6 +42,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetWeather">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cityName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWeatherResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWeatherResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddDDSoapIn">
@@ -62,6 +76,12 @@
   <wsdl:message name="GetLoginResultTypeSoapOut">
     <wsdl:part name="parameters" element="tns:GetLoginResultTypeResponse" />
   </wsdl:message>
+  <wsdl:message name="GetWeatherSoapIn">
+    <wsdl:part name="parameters" element="tns:GetWeather" />
+  </wsdl:message>
+  <wsdl:message name="GetWeatherSoapOut">
+    <wsdl:part name="parameters" element="tns:GetWeatherResponse" />
+  </wsdl:message>
   <wsdl:portType name="SystemManagerServiceSoap">
     <wsdl:operation name="AddDD">
       <wsdl:input message="tns:AddDDSoapIn" />
@@ -74,6 +94,10 @@
     <wsdl:operation name="GetLoginResultType">
       <wsdl:input message="tns:GetLoginResultTypeSoapIn" />
       <wsdl:output message="tns:GetLoginResultTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWeather">
+      <wsdl:input message="tns:GetWeatherSoapIn" />
+      <wsdl:output message="tns:GetWeatherSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="SystemManagerServiceSoap" type="tns:SystemManagerServiceSoap">
@@ -105,6 +129,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetWeather">
+      <soap:operation soapAction="http://tempuri.org/GetWeather" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="SystemManagerServiceSoap12" type="tns:SystemManagerServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -128,6 +161,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetLoginResultType">
       <soap12:operation soapAction="http://tempuri.org/GetLoginResultType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWeather">
+      <soap12:operation soapAction="http://tempuri.org/GetWeather" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -48,7 +48,7 @@ Storyboard.TargetProperty="(UIElement.Visibility)">
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Canvas x:Name="LayoutRoot" Width="47" Background="{StaticResource alertBase}" HorizontalAlignment="Left"  Height="51" VerticalAlignment="Top" Cursor="Hand" MouseLeave="GoToLeave" MouseEnter="GoToEnter" Margin="7,15,0,0">
+        <Canvas x:Name="LayoutRoot" Width="47" Background="{StaticResource grayBase}" HorizontalAlignment="Left"  Height="51" VerticalAlignment="Top" Cursor="Hand" MouseLeave="GoToLeave" MouseEnter="GoToEnter" Margin="7,15,0,0">
             <Canvas.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

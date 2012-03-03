@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Common\DeviceRealTimeTree.cs" />
     <Compile Include="Common\DeviceTreeNode.cs" />
+    <Compile Include="Common\Weather.cs" />
     <Compile Include="DBClass\DatabaseBackUp.cs" />
     <Compile Include="DBClass\Department.cs" />
     <Compile Include="DBClass\DeviceAlarmViewModel.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="DBClass\UserEvent.cs" />
     <Compile Include="DBClass\UserRole.cs" />
     <Compile Include="DBPartialClass\DeviceRealTimePartial.cs" />
+    <Compile Include="Enums\DeviceState.cs" />
     <Compile Include="NotifyPropertyChangedObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

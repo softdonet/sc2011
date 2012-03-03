@@ -15,8 +15,8 @@ using Scada.Client.SL.DeviceRealTimeService;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using Scada.Client.SL.CommClass;
-using Scada.Client.SL.WeatherWebService;
 using Scada.Client.VM.Modules.BingMaps;
+using Scada.Model.Entity.Enums;
 
 namespace Scada.Client.SL.Modules.BingMaps
 {
@@ -62,7 +62,9 @@ namespace Scada.Client.SL.Modules.BingMaps
                 {
                     if (pp != null)
                     {
-                        pp.txtTemp.Text = item.Temperature.ToString();
+                        pp.DeviceTemp= item.Temperature.ToString();
+                        pp.DevState = (DeviceState)item.Status;
+                        pp.DeviceName = item.NodeValue;
                     }
                 }
             }  

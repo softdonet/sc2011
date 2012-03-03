@@ -168,7 +168,6 @@
       <DependentUpon>UserEventItems.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\BingMaps\ChinaMode.cs" />
-    <Compile Include="Modules\BingMaps\Comm.cs" />
     <Compile Include="Modules\BingMaps\MapIndex.xaml.cs">
       <DependentUpon>MapIndex.xaml</DependentUpon>
     </Compile>
@@ -227,11 +226,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\SystemManagerService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\WeatherWebService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -433,11 +427,13 @@
     <None Include="Service References\SystemManagerService\Scada.Client.SL.SystemManagerService.GetLoginResultTypeResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\SystemManagerService\Scada.Client.SL.SystemManagerService.GetWeatherResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\SystemManagerService\Scada.Client.SL.SystemManagerService.ListStudentsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\SystemManagerService\SystemManagerService1.wsdl" />
-    <None Include="Service References\WeatherWebService\WeatherWebService.wsdl" />
     <Resource Include="Modules\DiagramAnalysis\Images\d1.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\d2.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\d3.jpg" />
@@ -472,13 +468,6 @@
     <Resource Include="Modules\Device\Images\signal3.png" />
     <None Include="Service References\ScadaDeviceService\ScadaDeviceService1.disco" />
     <None Include="Service References\SystemManagerService\SystemManagerService1.disco" />
-    <None Include="Service References\WeatherWebService\WeatherWebService.disco" />
-    <None Include="Service References\WeatherWebService\configuration91.svcinfo" />
-    <None Include="Service References\WeatherWebService\configuration.svcinfo" />
-    <None Include="Service References\WeatherWebService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="ServiceReferences.ClientConfig">
       <SubType>Designer</SubType>
     </Content>
@@ -559,7 +548,6 @@
     <WCFMetadataStorage Include="Service References\DeviceRealTimeService\" />
     <WCFMetadataStorage Include="Service References\ScadaDeviceService\" />
     <WCFMetadataStorage Include="Service References\SystemManagerService\" />
-    <WCFMetadataStorage Include="Service References\WeatherWebService\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -15,6 +15,7 @@ using Scada.Client.VM.CommClass;
 using System.Collections.Generic;
 using System.Linq;
 using Scada.Client.VM.DeviceRealTimeService;
+using Scada.Model.Entity.Enums;
 
 namespace Scada.Client.VM.Modules.BingMaps
 {
@@ -35,6 +36,35 @@ namespace Scada.Client.VM.Modules.BingMaps
                 this.RaisePropertyChanged("DeviceRealTimeTree");
             }
         }
+
+        /// <summary>
+        /// 登陆用户
+        /// </summary>
+        private string userName;
+        public string UserName
+        {
+            get { return userName; }
+            set
+            {
+                userName = value;
+                this.RaisePropertyChanged("UserName");
+            }
+        }
+
+        /// <summary>
+        /// 登陆时间
+        /// </summary>
+        private DateTime loginTime;
+        public DateTime LoginTime
+        {
+            get { return loginTime; }
+            set
+            {
+                loginTime = value;
+                this.RaisePropertyChanged("LoginTime");
+            }
+        }
+
 
 
         public MapIndexViewModel()
@@ -111,8 +141,8 @@ namespace Scada.Client.VM.Modules.BingMaps
                             tem.NodeKey = item3.NodeKey;
                             tem.NodeValue = item3.NodeValue;
                             tem.NodeType = item3.NodeType;
-                            tem.Temperature = 20;
-                            tem.Status = 0;
+                            tem.Temperature = 0;
+                            tem.Status = (int)DeviceState.Escape;
                             tem.Longitude = item3.Longitude;
                             tem.Dimensionality = item3.Dimensionality;
                             tem.InstallPlace = item3.InstallPlace;

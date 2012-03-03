@@ -23,6 +23,7 @@ using Scada.Client.VM.Modules.Device;
 using Scada.Client.SL.Controls;
 using Scada.Client.SL.CommClass;
 using Scada.Client.SL.DeviceRealTimeService;
+using Scada.Model.Entity.Enums;
 
 
 
@@ -191,15 +192,15 @@ namespace Scada.Client.SL.Modules.Device
                 case "status":
                     if (currentValue.Status.HasValue)
                     {
-                        switch (currentValue.Status.Value)
+                        switch ((DeviceState)currentValue.Status.Value)
                         {
-                            case 1:
+                            case DeviceState.Escape:
                                 img = "grayer.png";
                                 break;
-                            case 2:
+                            case DeviceState.Normal:
                                 img = "green.png";
                                 break;
-                            case 3:
+                            case DeviceState.Alert:
                                 img = "red.png";
                                 break;
                         }

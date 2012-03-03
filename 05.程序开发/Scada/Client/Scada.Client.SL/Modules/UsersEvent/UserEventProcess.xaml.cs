@@ -101,6 +101,7 @@ namespace Scada.Client.SL.Modules.UsersEvent
             if (userEventTab.State == 1)
             {
                 tbtnEnter.IsEnabled = true;
+                return;
             }
             else
             {

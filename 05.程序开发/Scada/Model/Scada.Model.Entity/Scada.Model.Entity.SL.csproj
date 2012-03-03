@@ -60,6 +60,7 @@
     <Compile Include="Common\Weather.cs" />
     <Compile Include="DBClass\DatabaseBackUp.cs" />
     <Compile Include="DBClass\Department.cs" />
+    <Compile Include="DBClass\DeviceAlarm.cs" />
     <Compile Include="DBClass\DeviceAlarmViewModel.cs" />
     <Compile Include="DBClass\DeviceInfo.cs" />
     <Compile Include="DBClass\DeviceLog.cs" />

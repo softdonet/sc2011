@@ -80,13 +80,10 @@ namespace Scada.BLL.Implement
             //3更新实体设备
             this.UpdateEntityDevice(readlTimeTreeDatas, readTimeDatas);
 
-            //4更新虚拟设备
-            this.UpdateVirtualDevice(readlTimeTreeDatas);
-
-            //5序列化数据
+            //4序列化数据
             string reaTimedata = BinaryObjTransfer.JsonSerializer<List<DeviceRealTimeTree>>(readlTimeTreeDatas);
 
-            //6回调数据
+            //5回调数据
             if (ReaTimeDataReceived != null)
                 this.ReaTimeDataReceived(reaTimedata);
 
@@ -202,17 +199,33 @@ namespace Scada.BLL.Implement
                         realThi.Signal = realTime.Signal;
                         realThi.Status = realTime.Status;
                         realThi.UpdateTime = realTime.UpdateTime;
-
-                        realFir.UpdateTime = realTime.UpdateTime;
-                        realFir.UpdateTime = realTime.UpdateTime;
-
                     }
+                    this.UpdateVirtualDevice(realSec);
                 }
+                this.UpdateVirtualDevice(realFir);
             }
         }
 
-        private void UpdateVirtualDevice(List<DeviceRealTimeTree> readlTimeTreeDatas)
+        private void UpdateVirtualDevice(DeviceRealTimeTree treeDatas)
         {
+
+            List<DeviceRealTimeTree> realTree = treeDatas.NodeChild;
+            if (realTree == null) { return; }
+
+            //时间
+            treeDatas.UpdateTime = realTree.Max(p => p.UpdateTime);
+
+            //温度
+            decimal? avgTemperature = realTree.Average(p => p.Temperature);
+            if (avgTemperature != null)
+                avgTemperature = Math.Round((decimal)avgTemperature, 2);
+            treeDatas.Temperature = avgTemperature;
+
+            //电量
+            treeDatas.Electricity = (int?)realTree.Average(p => p.Electricity);
+
+            //信号强度
+            treeDatas.Signal = (int?)realTree.Average(p => p.Signal);
 
         }
 

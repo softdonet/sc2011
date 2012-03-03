@@ -13,6 +13,7 @@ namespace BusinessRules
     /// </summary>
     public class BLL
     {
+        SCADADataContext DataContext = new SCADADataContext();
         /// <summary>
         /// 更新设备
         /// </summary>
@@ -109,33 +110,54 @@ namespace BusinessRules
         /// <returns></returns>
         public bool SaveRealTimeData(RealTimeData_R realTimeData_R)
         {
-
-            //请根据系统配置参数对告警进行处理
-            SCADADataContext DataContext = new SCADADataContext();
-            DeviceInfo deviceInfor = DataContext.DeviceInfos.SingleOrDefault(e => e.DeviceNo == realTimeData_R.Header.DeviceSN);
-            foreach (RealTimeDataBlock item in realTimeData_R.RealTimeDataBlocks)
+            //TODO:请根据系统配置参数对告警进行处理
+            DeviceInfo deviceInfor = DataContext.DeviceInfos.SingleOrDefault(e => e.DeviceSN == realTimeData_R.Header.DeviceSN);
+            if (deviceInfor != null)
             {
-                DeviceRealTime drt = new DeviceRealTime();
-                drt.ID = Guid.NewGuid();
-                drt.DeviceID = deviceInfor.ID;
-                drt.DeviceNo = deviceInfor.DeviceNo;
-                //此处和数据库不太一样，需要调整和修改
-                //drt.Temperature =item.Temperature1;
-                //drt.Electricity =item.Electric;
-                //drt.Signal =item.Signal;
-                drt.UpdateTime = item.SateTimeMark;
-                DataContext.DeviceRealTimes.Attach(drt);
-                //TODO:判断告警的逻辑
-                if (true)
+                foreach (RealTimeDataBlock item in realTimeData_R.RealTimeDataBlocks)
                 {
-                    DeviceAlarm da = new DeviceAlarm();
-                    da.ID = Guid.NewGuid();
-                    DataContext.DeviceAlarms.Attach(da);
+                    DeviceRealTime drt = new DeviceRealTime();
+                    drt.ID = Guid.NewGuid();
+                    drt.DeviceID = deviceInfor.ID;
+                    drt.DeviceNo = deviceInfor.DeviceNo;
+                    //此处和数据库不太一样，需要调整和修改
+                    //---------------------------------------------------
+                    //温度
+                    drt.Temperature = (double)item.Temperature1;
+                    //信号
+                    drt.Signal = 2;//(double)item.Signal;
+                    //电量
+                    drt.Electricity = 3;// (double)item.Electric;
+                    //设备状态
+                    drt.Status = 1;//设备状态
+                    drt.UpdateTime = item.SateTimeMark;
+                    DataContext.DeviceRealTimes.InsertOnSubmit(drt);
+                    //判断告警的逻辑
+                    if (drt.Temperature.Value > 50 || drt.Temperature.Value < 10)
+                    {
+                        DeviceAlarm da = new DeviceAlarm();
+                        da.ID = Guid.NewGuid();
+                        da.DeviceID = deviceInfor.ID;
+                        da.DeviceNo = deviceInfor.DeviceNo;
+                        da.StartTime = item.SateTimeMark;
+                        if (drt.Temperature.Value > 50)
+                        {
+                            //超高
+                            da.EventType = 1;
+                        }
+                        else
+                        {
+                            //超低
+                            da.EventType = 2;
+                        }
+                        da.EventLevel = 1;
+                        DataContext.DeviceAlarms.InsertOnSubmit(da);
+                    }
                 }
+                DataContext.SubmitChanges();
+                return true;
             }
-
-            DataContext.SubmitChanges();
-            return true;
+            return false;
         }
 
         /// <summary>
@@ -146,10 +168,35 @@ namespace BusinessRules
         public bool SaveUserEvent(UserEvent_R userEvent_R)
         {
             //逻辑较复杂些
-            return true;
+            DeviceInfo deviceInfor = DataContext.DeviceInfos.SingleOrDefault(e => e.DeviceSN == userEvent_R.Header.DeviceSN);
+            if (deviceInfor != null)
+            {
+                var obj = DataContext.UserEvents.SingleOrDefault(e => e.DeviceID == deviceInfor.ID && e.State == 1);
+                if (obj != null)
+                {
+                    obj.Count = obj.Count.GetValueOrDefault(0) + 1;
+                    obj.RequestTime = DateTime.Now;
+                }
+                else
+                {
+                    UserEvent ue = new UserEvent();
+                    ue.ID = Guid.NewGuid();
+                    ue.EventNo = "eventNo" + DataContext.UserEvents.Count().ToString();
+                    ue.DeviceID = deviceInfor.ID;
+                    ue.DeviceNo = deviceInfor.DeviceNo;
+                    ue.RequestTime = DateTime.Now;
+                    ue.State = 1;
+                    ue.Count = 1;
+                    DataContext.UserEvents.InsertOnSubmit(ue);
+                }
+                DataContext.SubmitChanges();
+                return true;
+            }
+            return false;
         }
     }
 }
+
 //需要讨论的问题2012-2-4
 /*
 天气预报信息和广播信息往哪里存储

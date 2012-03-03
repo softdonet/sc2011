@@ -32,5 +32,16 @@ namespace DataAccess.Properties {
                 return ((string)(this["SCADAConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=124.248.35.194\\SYMMSSQL,14330;Initial Catalog=zhengguojiang;Persist S" +
+            "ecurity Info=True;User ID=zhengguojiang;Password=!QAZ2wsx")]
+        public string zhengguojiangConnectionString {
+            get {
+                return ((string)(this["zhengguojiangConnectionString"]));
+            }
+        }
     }
 }

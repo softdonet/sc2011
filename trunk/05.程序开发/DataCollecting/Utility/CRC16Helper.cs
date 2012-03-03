@@ -7,6 +7,7 @@ namespace Utility
 {
     /// <summary>
     /// CRC16 循环校验码
+    /// yanghk at 2012-3-2
     /// </summary>
     public class CRC16Helper
     {

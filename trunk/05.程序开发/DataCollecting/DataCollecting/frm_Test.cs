@@ -322,7 +322,7 @@ namespace DataCollecting
             RealTimeDataBlock block = new RealTimeDataBlock();
             block.BlockNo = 1;
             block.SateTimeMark = DateTime.Now;
-            block.Temperature1 = (decimal)11.45;
+            block.Temperature1 = (decimal)60;
             block.Temperature2 = (decimal)12.45;
             block.Temperature3 = (decimal)13.45;
             block.Temperature4 = (decimal)14.45;
@@ -470,8 +470,6 @@ namespace DataCollecting
             this.textBox1.Text = string.Empty;
         }
 
-
-
         private void 实时数据回复命令ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Head h = new Head();
@@ -515,7 +513,7 @@ namespace DataCollecting
             rs.WeatherData = weatherDataBlock;
 
             BroadcastDataBlock broadcastDataBlock = new BroadcastDataBlock();
-            broadcastDataBlock.Msg = "通知：明天下午开会。不要迟到，知道一分钟扣100元。";
+            broadcastDataBlock.Msg = "通知：明天下午开会。不要迟到，迟到一分钟扣100元。";
 
             rs.BroadcastData = broadcastDataBlock;
             SetText(StringHelper.DataToStr(rs.ToByte()) + Environment.NewLine, false);

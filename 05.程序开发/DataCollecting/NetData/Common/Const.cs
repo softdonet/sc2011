@@ -10,7 +10,13 @@ namespace NetData
     /// </summary>
     public class Const
     {
-        public static ushort UP_HEADER = Const.UP_HEADER;
-        public static ushort DOWN_HEADER = Const.DOWN_HEADER;
+        /// <summary>
+        /// 上行命令头标识
+        /// </summary>
+        public static ushort UP_HEADER = 0xAA55;
+        /// <summary>
+        /// 下行命令头标识
+        /// </summary>
+        public static ushort DOWN_HEADER = 0X55AA;
     }
 }

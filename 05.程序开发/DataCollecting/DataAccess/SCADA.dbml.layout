@@ -1,159 +1,127 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.5, 12.625" name="SCADA">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 15, 16.375" name="SCADA">
   <DataContextMoniker Name="/SCADADataContext" />
   <nestedChildShapes>
-    <classShape Id="f154513b-5359-42d5-891a-77332405f775" absoluteBounds="6.75, 9.75, 2, 1.7855859374999987">
-      <DataClassMoniker Name="/SCADADataContext/DatabaseBackUp" />
-      <nestedChildShapes>
-        <elementListCompartment Id="eaa2da9d-eb8c-4714-afcb-f68aad22a9fa" absoluteBounds="6.765, 10.21, 1.9700000000000002, 1.2255859375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="ffdc9d2a-4ba6-4ce6-8a59-48ffbd62451d" absoluteBounds="12.25, 1.125, 2, 1.2797265624999998">
-      <DataClassMoniker Name="/SCADADataContext/UserRole" />
-      <nestedChildShapes>
-        <elementListCompartment Id="f4f2e9fd-95ae-4ace-b199-0efbd7d41096" absoluteBounds="12.265, 1.585, 1.9700000000000002, 0.7197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="715c380f-b35f-4ddc-8f36-9ed648789a5c" absoluteBounds="6.75, 2.125, 2, 1.2797265624999996">
-      <DataClassMoniker Name="/SCADADataContext/Department" />
-      <nestedChildShapes>
-        <elementListCompartment Id="ec44abf2-0a66-406b-880a-38441ca6044d" absoluteBounds="6.765, 2.585, 1.9700000000000002, 0.7197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="58fdd849-deb3-4bc9-b68d-da6404dbcaef" absoluteBounds="3.5, 9.5, 2, 2.6286848958333344">
-      <DataClassMoniker Name="/SCADADataContext/DeviceAlarm" />
-      <nestedChildShapes>
-        <elementListCompartment Id="8d41f931-f5e7-4f32-8144-86a29c2b8646" absoluteBounds="3.515, 9.96, 1.9700000000000002, 2.068684895833333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="a1bdc962-7276-4435-9715-81b935233b74" absoluteBounds="0.75, 1.375, 2, 11.059674479166665">
+    <classShape Id="7b3739ac-2fd8-495e-9ba8-a2c9109fd072" absoluteBounds="3.75, 3.75, 2, 12.408632812500002">
       <DataClassMoniker Name="/SCADADataContext/DeviceInfo" />
       <nestedChildShapes>
-        <elementListCompartment Id="b03669e9-90a0-4905-9126-236ff2176d90" absoluteBounds="0.765, 1.835, 1.9700000000000002, 10.499674479166666" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="5d2cbe07-0013-401f-ade3-e22c13609c49" absoluteBounds="3.765, 4.21, 1.9700000000000002, 11.8486328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="54659259-2aa4-47b7-b131-fbccd6c18aff" absoluteBounds="3.5, 3.75, 2, 1.7855859375000005">
+    <classShape Id="b56a35d2-188d-4c7b-a301-ae7d1a156df4" absoluteBounds="6.75, 0.75, 2, 1.7855859375000003">
+      <DataClassMoniker Name="/SCADADataContext/DatabaseBackUp" />
+      <nestedChildShapes>
+        <elementListCompartment Id="31fd958d-3e96-4d4f-83b1-3be615bf7978" absoluteBounds="6.765, 1.21, 1.9700000000000002, 1.2255859375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cce1f4f6-9f27-4e42-8361-a501916e62dc" absoluteBounds="6.75, 3.75, 2, 1.2797265625000005">
+      <DataClassMoniker Name="/SCADADataContext/Department" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9262cf6f-997f-46cb-b054-bb7aad018f89" absoluteBounds="6.765, 4.21, 1.9700000000000002, 0.7197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d56eba04-c5ab-4be0-8431-7fcb03bdd1b3" absoluteBounds="6.75, 6.75, 2, 2.6286848958333335">
+      <DataClassMoniker Name="/SCADADataContext/DeviceAlarm" />
+      <nestedChildShapes>
+        <elementListCompartment Id="49d9a80f-5624-4240-a724-649194c1e859" absoluteBounds="6.765, 7.21, 1.9700000000000002, 2.068684895833333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="83025530-e73c-4ac1-967c-589f616063de" absoluteBounds="9.75, 0.75, 2, 1.7855859375000003">
       <DataClassMoniker Name="/SCADADataContext/DeviceLog" />
       <nestedChildShapes>
-        <elementListCompartment Id="cb257e6f-b4f8-4aaa-9e77-2d4d5c3e8770" absoluteBounds="3.515, 4.21, 1.9700000000000002, 1.2255859375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="5035e76b-4116-47cb-9a9f-2590dcf9900c" absoluteBounds="9.765, 1.21, 1.9700000000000002, 1.2255859375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="5bd5bdc5-a362-4981-b2b7-72110cf87093" absoluteBounds="3.5, 1.75, 2, 1.2797265625000003">
+    <classShape Id="2808f777-aa30-452d-98b5-49c30f0d7ca1" absoluteBounds="9.75, 3.75, 2, 1.2797265625000005">
       <DataClassMoniker Name="/SCADADataContext/DeviceMaintenancePeople" />
       <nestedChildShapes>
-        <elementListCompartment Id="91116e4d-cecc-4a15-b4a0-5fc7d7bc90c3" absoluteBounds="3.515, 2.21, 1.9700000000000002, 0.7197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="100682a5-d1be-4f58-bd97-1bbad9669079" absoluteBounds="9.765, 4.21, 1.9700000000000002, 0.7197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="cdda2353-69ff-4de4-ae22-9c014ff446ab" absoluteBounds="3.5, 6.25, 2, 2.4600651041666675">
+    <classShape Id="bfbfb931-ece4-4e86-bf8c-b9e6c34f1ced" absoluteBounds="9.75, 6.75, 2, 2.4600651041666666">
       <DataClassMoniker Name="/SCADADataContext/DeviceRealTime" />
       <nestedChildShapes>
-        <elementListCompartment Id="24f3ba62-8eff-489a-988e-50cf3bf03c31" absoluteBounds="3.515, 6.71, 1.9700000000000002, 1.9000651041666665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="7c0e9784-4603-4bc6-9366-f8650ef2dc9c" absoluteBounds="9.765, 7.21, 1.9700000000000002, 1.9000651041666665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="1379191f-6352-45de-aef8-706afbe8bd9a" absoluteBounds="12.25, 4, 2, 1.4483463541666666">
+    <classShape Id="99caeee9-0e06-4488-bb21-69b3fb59c7d0" absoluteBounds="6.75, 10.75, 2, 1.4483463541666666">
       <DataClassMoniker Name="/SCADADataContext/DeviceTree" />
       <nestedChildShapes>
-        <elementListCompartment Id="3c504ea9-da48-4e62-820c-709545c512ad" absoluteBounds="12.265, 4.46, 1.9700000000000002, 0.88834635416666674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="8b27f83c-47c5-4b33-9c56-9d5dd9f6c1e8" absoluteBounds="6.765, 11.21, 1.9700000000000002, 0.88834635416666674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="fc8cf3c3-5d78-4811-b6cc-6ed00d563498" absoluteBounds="9.75, 9.75, 2, 2.2914453124999987">
+    <classShape Id="186fdd38-4f4d-4cd9-a2a4-1d7fe6a0dc2d" absoluteBounds="9.75, 10.75, 2, 2.2914453124999987">
       <DataClassMoniker Name="/SCADADataContext/MaintenancePeople" />
       <nestedChildShapes>
-        <elementListCompartment Id="c82309fd-c604-49c5-8d29-ae8e129a2f59" absoluteBounds="9.765, 10.21, 1.9700000000000002, 1.7314453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="77e4571a-7fcc-45fa-a281-3bd94a6d4657" absoluteBounds="9.765, 11.21, 1.9700000000000002, 1.7314453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="8569e5b3-da2b-433e-8e1b-910856da9900" absoluteBounds="9.5, 7.125, 2, 1.1111067708333344">
+    <classShape Id="54b49d75-f9d6-4ac8-9733-58a322f5e982" absoluteBounds="12.75, 0.75, 2, 1.1111067708333335">
       <DataClassMoniker Name="/SCADADataContext/Module" />
       <nestedChildShapes>
-        <elementListCompartment Id="c0b8f0bc-16fa-4db1-a2bd-cca0afcfdb43" absoluteBounds="9.515, 7.585, 1.9700000000000002, 0.55110677083333326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="68bf5072-85b8-4c6b-a556-c5606bd13222" absoluteBounds="12.765, 1.21, 1.9700000000000002, 0.55110677083333326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="7c4894a4-8406-4746-89fb-efa2202fbd61" absoluteBounds="9.5, 5.125, 2, 1.1111067708333344">
+    <classShape Id="ffc00175-8ff5-485c-9526-c1fbca69f045" absoluteBounds="12.75, 2.75, 2, 1.1111067708333335">
       <DataClassMoniker Name="/SCADADataContext/Role" />
       <nestedChildShapes>
-        <elementListCompartment Id="67dd214c-39c1-492f-9d86-efdb13706b45" absoluteBounds="9.515, 5.585, 1.9700000000000002, 0.55110677083333326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="24bb4c08-11e5-46d8-afce-97ea13a25861" absoluteBounds="12.765, 3.21, 1.9700000000000002, 0.55110677083333326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="2e552078-3017-4240-92ce-8cd967fef12e" absoluteBounds="12.25, 7.125, 2, 1.2797265624999996">
+    <classShape Id="1011d6b8-6c48-4873-b02c-89f92e911afc" absoluteBounds="12.75, 4.75, 2, 1.2797265625000005">
       <DataClassMoniker Name="/SCADADataContext/RoleModule" />
       <nestedChildShapes>
-        <elementListCompartment Id="b76b7357-366d-4707-8084-8e3c8059b700" absoluteBounds="12.265, 7.585, 1.9700000000000002, 0.7197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="ea5a59ff-5d0d-4459-bb9d-f62a3581d5ec" absoluteBounds="12.765, 5.21, 1.9700000000000002, 0.7197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="abdef1f5-ae37-429a-93bc-6ea0e1b1a1fc" absoluteBounds="9.5, 2, 2, 1.4483463541666666">
+    <classShape Id="d4fbccc3-e4a6-4a8d-a58f-ed7122d40dac" absoluteBounds="12.75, 7.75, 2, 1.1111067708333344">
+      <DataClassMoniker Name="/SCADADataContext/StepInfo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9c34203e-31e8-43ad-981b-9df95c599f4d" absoluteBounds="12.765, 8.21, 1.9700000000000002, 0.55110677083333326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9c6fc482-9697-4d11-83c1-3b1feff2a4f4" absoluteBounds="0.75, 1.125, 2, 1.6169661458333333">
       <DataClassMoniker Name="/SCADADataContext/User" />
       <nestedChildShapes>
-        <elementListCompartment Id="d8a88e99-f7ef-45a4-bae5-5d09f23f29f9" absoluteBounds="9.515, 2.46, 1.9700000000000002, 0.88834635416666674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="043f18a5-a980-463f-9b41-815a96fe9aa2" absoluteBounds="0.765, 1.585, 1.9700000000000002, 1.0569661458333333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 10.8143424479167); (3.5 : 10.8143424479167)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/SCADADataContext/DeviceInfo/DeviceInfo_DeviceAlarm" />
+    <classShape Id="b37bed0a-6b7e-4c2d-a0b4-ce30b08871ea" absoluteBounds="0.75, 3.875, 2, 1.9542057291666666">
+      <DataClassMoniker Name="/SCADADataContext/UserEvent" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b81dc4e0-8805-444b-a84f-487de38e14ef" absoluteBounds="0.765, 4.335, 1.9700000000000002, 1.3942057291666665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b576ae5b-753e-4f72-afaf-cbe42f2a80df" absoluteBounds="12.75, 9.75, 2, 1.2797265624999987">
+      <DataClassMoniker Name="/SCADADataContext/UserRole" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6195428e-671d-402b-a1af-b593a3cc004a" absoluteBounds="12.765, 10.21, 1.9700000000000002, 0.7197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3f25bdbc-5f73-4084-926f-a33221513e09" absoluteBounds="3.5, 0.875, 2, 1.9542057291666666">
+      <DataClassMoniker Name="/SCADADataContext/UserEventDealDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fda47346-85cc-47ef-9ac7-ece8c846216f" absoluteBounds="3.515, 1.335, 1.9700000000000002, 1.3942057291666665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ec6e255e-bbc7-4140-85b4-06e26cb94cb6" absoluteBounds="12.75, 12.75, 2, 1.2797265624999987">
+      <DataClassMoniker Name="/SCADADataContext/zhenggj" />
+      <nestedChildShapes>
+        <elementListCompartment Id="facecbb2-9158-495b-bdc7-aa07df362622" absoluteBounds="12.765, 13.21, 1.9700000000000002, 0.7197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 1.93348307291667); (3.04166666666667 : 1.93348307291667 : JumpStart); (3.20833333333333 : 1.93348307291667 : JumpEnd); (3.5 : 1.93348307291667)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SCADADataContext/User/User_UserEventDealDetail" />
       <nodes>
-        <classShapeMoniker Id="a1bdc962-7276-4435-9715-81b935233b74" />
-        <classShapeMoniker Id="58fdd849-deb3-4bc9-b68d-da6404dbcaef" />
+        <classShapeMoniker Id="9c6fc482-9697-4d11-83c1-3b1feff2a4f4" />
+        <classShapeMoniker Id="3f25bdbc-5f73-4084-926f-a33221513e09" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 4.64279296875); (3.5 : 4.64279296875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/SCADADataContext/DeviceInfo/DeviceInfo_DeviceLog" />
+    <associationConnector edgePoints="[(2.75 : 3.875); (3.125 : 3.5); (3.125 : 1.37298953645833); (3.5 : 1.37298953645833)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SCADADataContext/UserEvent/UserEvent_UserEventDealDetail" />
       <nodes>
-        <classShapeMoniker Id="a1bdc962-7276-4435-9715-81b935233b74" />
-        <classShapeMoniker Id="54659259-2aa4-47b7-b131-fbccd6c18aff" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 2.38986328125); (3.5 : 2.38986328125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/SCADADataContext/DeviceInfo/DeviceInfo_DeviceMaintenancePeople" />
-      <nodes>
-        <classShapeMoniker Id="a1bdc962-7276-4435-9715-81b935233b74" />
-        <classShapeMoniker Id="5bd5bdc5-a362-4981-b2b7-72110cf87093" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 7.48003255208333); (3.5 : 7.48003255208333)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/SCADADataContext/DeviceInfo/DeviceInfo_DeviceRealTime" />
-      <nodes>
-        <classShapeMoniker Id="a1bdc962-7276-4435-9715-81b935233b74" />
-        <classShapeMoniker Id="cdda2353-69ff-4de4-ae22-9c014ff446ab" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(11.5 : 5.125); (11.875 : 4.75); (11.875 : 2.78070996754808); (12.2509834050481 : 2.4047265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/SCADADataContext/Role/Role_UserRole" />
-      <nodes>
-        <classShapeMoniker Id="7c4894a4-8406-4746-89fb-efa2202fbd61" />
-        <classShapeMoniker Id="ffdc9d2a-4ba6-4ce6-8a59-48ffbd62451d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(11.5 : 7.68055338541667); (12.25 : 7.68055338541667)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/SCADADataContext/Module/Module_RoleModule" />
-      <nodes>
-        <classShapeMoniker Id="8569e5b3-da2b-433e-8e1b-910856da9900" />
-        <classShapeMoniker Id="2e552078-3017-4240-92ce-8cd967fef12e" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(11.5 : 6.23525107331731); (11.875 : 6.61025107331731); (11.875 : 6.74901659495192); (12.2509834050481 : 7.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/SCADADataContext/Role/Role_RoleModule" />
-      <nodes>
-        <classShapeMoniker Id="7c4894a4-8406-4746-89fb-efa2202fbd61" />
-        <classShapeMoniker Id="2e552078-3017-4240-92ce-8cd967fef12e" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(11.5 : 2.20236328125); (12.25 : 2.20236328125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/SCADADataContext/User/User_UserRole" />
-      <nodes>
-        <classShapeMoniker Id="abdef1f5-ae37-429a-93bc-6ea0e1b1a1fc" />
-        <classShapeMoniker Id="ffdc9d2a-4ba6-4ce6-8a59-48ffbd62451d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(11.5 : 3.38595504967949); (11.8160744349011 : 3.70202948458061 : JumpStart); (11.9339255650989 : 3.81988061477837 : JumpEnd); (12.0625 : 3.94845504967949); (12.0625 : 3.81138688741987); (12.2511131125801 : 4)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/SCADADataContext/User/User_DeviceTree" />
-      <nodes>
-        <classShapeMoniker Id="abdef1f5-ae37-429a-93bc-6ea0e1b1a1fc" />
-        <classShapeMoniker Id="1379191f-6352-45de-aef8-706afbe8bd9a" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(8.75 : 2.76486328125); (9.5 : 2.76486328125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/SCADADataContext/Department/Department_User" />
-      <nodes>
-        <classShapeMoniker Id="715c380f-b35f-4ddc-8f36-9ed648789a5c" />
-        <classShapeMoniker Id="abdef1f5-ae37-429a-93bc-6ea0e1b1a1fc" />
+        <classShapeMoniker Id="b37bed0a-6b7e-4c2d-a0b4-ce30b08871ea" />
+        <classShapeMoniker Id="3f25bdbc-5f73-4084-926f-a33221513e09" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

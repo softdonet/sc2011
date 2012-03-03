@@ -41,6 +41,8 @@
             this.清除屏幕ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.实时数据回复命令ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.上行命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.下行命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -60,6 +62,7 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.上行命令ToolStripMenuItem,
             this.生成测试命令ToolStripMenuItem,
             this.生成实时数据命令ToolStripMenuItem,
             this.生成设备请求配置命令ToolStripMenuItem,
@@ -133,6 +136,7 @@
             // menuStrip2
             // 
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.下行命令ToolStripMenuItem,
             this.实时数据回复命令ToolStripMenuItem1});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
@@ -146,6 +150,21 @@
             this.实时数据回复命令ToolStripMenuItem1.Size = new System.Drawing.Size(113, 20);
             this.实时数据回复命令ToolStripMenuItem1.Text = "实时数据回复命令";
             this.实时数据回复命令ToolStripMenuItem1.Click += new System.EventHandler(this.实时数据回复命令ToolStripMenuItem1_Click);
+            // 
+            // 上行命令ToolStripMenuItem
+            // 
+            this.上行命令ToolStripMenuItem.Font = new System.Drawing.Font("SimSun", 9F);
+            this.上行命令ToolStripMenuItem.ForeColor = System.Drawing.Color.Blue;
+            this.上行命令ToolStripMenuItem.Name = "上行命令ToolStripMenuItem";
+            this.上行命令ToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.上行命令ToolStripMenuItem.Text = "上行命令：";
+            // 
+            // 下行命令ToolStripMenuItem
+            // 
+            this.下行命令ToolStripMenuItem.ForeColor = System.Drawing.Color.Blue;
+            this.下行命令ToolStripMenuItem.Name = "下行命令ToolStripMenuItem";
+            this.下行命令ToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.下行命令ToolStripMenuItem.Text = "下行命令：";
             // 
             // frm_Test
             // 
@@ -182,6 +201,8 @@
         private System.Windows.Forms.ToolStripMenuItem 清除屏幕ToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.ToolStripMenuItem 实时数据回复命令ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 上行命令ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 下行命令ToolStripMenuItem;
     }
 }
 

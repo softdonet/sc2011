@@ -1,52 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SCADA" Class="SCADADataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=YANGHONGKANG;Initial Catalog=SCADA;Integrated Security=True" SettingsObjectName="DataAccess.Properties.Settings" SettingsPropertyName="SCADAConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.DatabaseBackUp" Member="DatabaseBackUps">
-    <Type Name="DatabaseBackUp">
-      <Column Name="Guid" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="DatabaseName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="BackUpDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="BackUpSize" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="BackUpPeople" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="Comment" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.UserRole" Member="UserRoles">
-    <Type Name="UserRole">
-      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="RoleID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Association Name="Role_UserRole" Member="Role" ThisKey="RoleID" OtherKey="RoleID" Type="Role" IsForeignKey="true" />
-      <Association Name="User_UserRole" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Department" Member="Departments">
-    <Type Name="Department">
-      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="DepartmentName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ParentID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Association Name="Department_User" Member="Users" ThisKey="ID" OtherKey="DeptID" Type="User" />
-    </Type>
-  </Table>
-  <Table Name="dbo.DeviceAlarm" Member="DeviceAlarms">
-    <Type Name="DeviceAlarm">
-      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="DeviceID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeviceNo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="EventType" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="EventLevel" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="StartTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="EndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ConfirmTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DealStatus" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="DealPeople" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="Comment" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Association Name="DeviceInfo_DeviceAlarm" Member="DeviceInfo" ThisKey="DeviceID" OtherKey="ID" Type="DeviceInfo" IsForeignKey="true" />
-    </Type>
-  </Table>
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="zhengguojiang" Class="SCADADataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=124.248.35.194\SYMMSSQL,14330;Initial Catalog=zhengguojiang;Persist Security Info=True;User ID=zhengguojiang" SettingsObjectName="DataAccess.Properties.Settings" SettingsPropertyName="zhengguojiangConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.DeviceInfo" Member="DeviceInfos">
     <Type Name="DeviceInfo">
       <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="DeviceNo" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="DeviceSN" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="HardType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="ProductDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="DeviceMAC" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
@@ -106,21 +64,55 @@
       <Column Name="Process5LowValue" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="Process5LowerValue" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="Process5RateValue" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Association Name="DeviceInfo_DeviceAlarm" Member="DeviceAlarms" ThisKey="ID" OtherKey="DeviceID" Type="DeviceAlarm" />
-      <Association Name="DeviceInfo_DeviceLog" Member="DeviceLogs" ThisKey="ID" OtherKey="DeviceID" Type="DeviceLog" />
-      <Association Name="DeviceInfo_DeviceMaintenancePeople" Member="DeviceMaintenancePeoples" ThisKey="ID" OtherKey="DeviceID" Type="DeviceMaintenancePeople" />
-      <Association Name="DeviceInfo_DeviceRealTime" Member="DeviceRealTimes" ThisKey="ID" OtherKey="DeviceID" Type="DeviceRealTime" />
+      <Column Name="RealTimeParam" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FullTimeParam1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FullTimeParam2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OptimizeParam1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OptimizeParam2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OptimizeParam3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CurrentModel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DatabaseBackUp" Member="DatabaseBackUps">
+    <Type Name="DatabaseBackUp">
+      <Column Name="Guid" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="DatabaseName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="BackUpDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BackUpSize" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="BackUpPeople" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Comment" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Department" Member="Departments">
+    <Type Name="Department">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="DepartmentName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ParentID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DeviceAlarm" Member="DeviceAlarms">
+    <Type Name="DeviceAlarm">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DeviceID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeviceNo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="EventType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EventLevel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StartTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ConfirmTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DealStatus" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DealPeople" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Comment" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.DeviceLog" Member="DeviceLogs">
     <Type Name="DeviceLog">
-      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="DeviceID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="DeviceNo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="LogPeople" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="LogTIme" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Comment" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="DeviceInfo_DeviceLog" Member="DeviceInfo" ThisKey="DeviceID" OtherKey="ID" Type="DeviceInfo" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.DeviceMaintenancePeople" Member="DeviceMaintenancePeoples">
@@ -128,7 +120,6 @@
       <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MaintenanceID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="DeviceID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Association Name="DeviceInfo_DeviceMaintenancePeople" Member="DeviceInfo" ThisKey="DeviceID" OtherKey="ID" Type="DeviceInfo" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.DeviceRealTime" Member="DeviceRealTimes">
@@ -143,7 +134,6 @@
       <Column Name="Process5Value" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="UpdateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="DeviceInfo_DeviceRealTime" Member="DeviceInfo" ThisKey="DeviceID" OtherKey="ID" Type="DeviceInfo" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.DeviceTree" Member="DeviceTrees">
@@ -152,7 +142,6 @@
       <Column Name="Name" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="ParentID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="AdminID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Association Name="User_DeviceTree" Member="User" ThisKey="AdminID" OtherKey="UserID" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.MaintenancePeople" Member="MaintenancePeoples">
@@ -170,26 +159,27 @@
   </Table>
   <Table Name="dbo.Module" Member="Modules">
     <Type Name="Module">
-      <Column Name="ModuleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ModuleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="ModuleName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="Module_RoleModule" Member="RoleModules" ThisKey="ModuleID" OtherKey="ModuleID" Type="RoleModule" />
     </Type>
   </Table>
   <Table Name="dbo.Role" Member="Roles">
     <Type Name="Role">
-      <Column Name="RoleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="RoleName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="Role_UserRole" Member="UserRoles" ThisKey="RoleID" OtherKey="RoleID" Type="UserRole" />
-      <Association Name="Role_RoleModule" Member="RoleModules" ThisKey="RoleID" OtherKey="RoleID" Type="RoleModule" />
     </Type>
   </Table>
   <Table Name="dbo.RoleModule" Member="RoleModules">
     <Type Name="RoleModule">
-      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="RoleID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="ModuleID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Association Name="Module_RoleModule" Member="Module" ThisKey="ModuleID" OtherKey="ModuleID" Type="Module" IsForeignKey="true" />
-      <Association Name="Role_RoleModule" Member="Role" ThisKey="RoleID" OtherKey="RoleID" Type="Role" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StepInfo" Member="StepInfos">
+    <Type Name="StepInfo">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StepName" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.[User]" Member="Users">
@@ -198,9 +188,47 @@
       <Column Name="LoginID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="UserName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="DeptID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Association Name="User_UserRole" Member="UserRoles" ThisKey="UserID" OtherKey="UserID" Type="UserRole" />
-      <Association Name="User_DeviceTree" Member="DeviceTrees" ThisKey="UserID" OtherKey="AdminID" Type="DeviceTree" />
-      <Association Name="Department_User" Member="Department" ThisKey="DeptID" OtherKey="ID" Type="Department" IsForeignKey="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="User_UserEventDealDetail" Member="UserEventDealDetails" ThisKey="UserID" OtherKey="OperatorId" Type="UserEventDealDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserEvent" Member="UserEvents">
+    <Type Name="UserEvent">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EventNo" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="DeviceID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="DeviceNo" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="State" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Count" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RequestTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="UserEvent_UserEventDealDetail" Member="UserEventDealDetails" ThisKey="ID" OtherKey="EventID" Type="UserEventDealDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserRole" Member="UserRoles">
+    <Type Name="UserRole">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="RoleID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserEventDealDetail" Member="UserEventDealDetails">
+    <Type Name="UserEventDealDetail">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EventID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="OperatorId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="StepNo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StepName" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="Memo" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="DealTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="User_UserEventDealDetail" Member="User" ThisKey="OperatorId" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="UserEvent_UserEventDealDetail" Member="UserEvent" ThisKey="EventID" OtherKey="ID" Type="UserEvent" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.zhenggj" Member="zhenggjs">
+    <Type Name="zhenggj">
+      <Column Name="AAA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BBB" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CCC" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

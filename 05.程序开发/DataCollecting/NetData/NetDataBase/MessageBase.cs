@@ -7,7 +7,7 @@ using Utility;
 namespace NetData
 {
     /// <summary>
-    /// 数据解包封包基类，完成报头检验等基础功能
+    /// 数据解包封包基类，完成报头、检验等基础功能
     /// yanghk at 2012-1-3
     /// </summary>
     public class MessageBase

@@ -92,7 +92,7 @@ namespace Scada.Client.SL.Modules.Alarm
 
             TextBlock state = (e.Row.Cells[RadGridView1.Columns.Count - 3].Content as FrameworkElement) as TextBlock;
             HyperlinkButton hlBtn = (e.Row.Cells[RadGridView1.Columns.Count - 2].Content as FrameworkElement).FindName("hlBtn") as HyperlinkButton;
-            if (state.Text.Trim() == "未确认")
+            if (string.IsNullOrEmpty( state.Text.Trim()))//未处理的数据
             {
                 e.Row.Background = new SolidColorBrush(Colors.Red);
                 e.Row.Cells[RadGridView1.Columns.Count - 2].Background = new SolidColorBrush(Colors.White);

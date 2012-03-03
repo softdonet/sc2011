@@ -18,6 +18,9 @@ using Scada.Client.SL.ScadaDeviceService;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.GridView;
 using System.Collections.ObjectModel;
+using System.Windows.Data;
+using System.Globalization;
+using System.Runtime.Serialization;
 
 
 
@@ -70,8 +73,8 @@ namespace Scada.Client.SL.Modules.Alarm
 
         private void scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted(object sender, GetListDeviceAlarmInfoCompletedEventArgs e)
         {
-            ObservableCollection<DeviceAlarmViewModel> deviceAlam =
-                                        BinaryObjTransfer.BinaryDeserialize<ObservableCollection<DeviceAlarmViewModel>>(e.Result);
+            ObservableCollection<DeviceAlarm> deviceAlam =
+                                        BinaryObjTransfer.BinaryDeserialize<ObservableCollection<DeviceAlarm>>(e.Result);
             this.RadGridView1.ItemsSource = deviceAlam;
         }
 
@@ -132,7 +135,7 @@ namespace Scada.Client.SL.Modules.Alarm
         private void hlBtn_Click(object sender, RoutedEventArgs e)
         {
             HyperlinkButton hlB = sender as HyperlinkButton;
-            id = (hlB.DataContext as DeviceAlarmViewModel).ID;
+            id = (hlB.DataContext as DeviceAlarm).ID;
             RadWindow.Prompt("请输入备注：", new EventHandler<WindowClosedEventArgs>(OnClosed));
         }
         private void OnClosed(object sender, WindowClosedEventArgs e)
@@ -158,9 +161,68 @@ namespace Scada.Client.SL.Modules.Alarm
         }
 
 
+     
         #endregion
 
 
 
+    }
+    /// <summary>
+    /// 将数字改成字符
+    /// </summary>
+    public class ConvertNumberToText : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string currentText = string.Empty;
+            DeviceAlarm currentValue = value as DeviceAlarm;
+            if (currentValue == null)
+            {
+                return DependencyProperty.UnsetValue;
+            }
+            switch (parameter.ToString().ToLower())
+            {
+                case "eventtype"://EventType
+                    if (currentValue.EventType.HasValue)
+                    {
+                        switch (currentValue.EventType.Value)
+                        {
+                            case 1:
+                                currentText = MyEventType.故障.ToString();
+                                break;
+                            case 2:
+                                currentText = MyEventType.超高.ToString();
+                                break;
+                            case 3:
+                                currentText = MyEventType.超低.ToString();
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    break;
+
+                //case "EventLevel":
+                //    break;
+                default:
+                    break;
+            }
+            return currentText;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
+    public enum MyEventType
+    {
+        //[EnumMember(Value="故障"]
+        故障,
+        超高,
+        超低
     }
 }

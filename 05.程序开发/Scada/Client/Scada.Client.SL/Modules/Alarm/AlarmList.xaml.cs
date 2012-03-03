@@ -21,6 +21,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Data;
 using System.Globalization;
 using System.Runtime.Serialization;
+using Scada.Model.Entity.Enums;
 
 
 
@@ -183,28 +184,14 @@ namespace Scada.Client.SL.Modules.Alarm
             }
             switch (parameter.ToString().ToLower())
             {
-                case "eventtype"://EventType
+                case "eventtype":
                     if (currentValue.EventType.HasValue)
                     {
-                        switch (currentValue.EventType.Value)
-                        {
-                            case 1:
-                                currentText = MyEventType.故障.ToString();
-                                break;
-                            case 2:
-                                currentText = MyEventType.超高.ToString();
-                                break;
-                            case 3:
-                                currentText = MyEventType.超低.ToString();
-                                break;
-                            default:
-                                break;
-                        }
+                       return EnumHelper.Display<EventTypes>(currentValue.EventType.Value);
                     }
                     break;
-
-                //case "EventLevel":
-                //    break;
+                case "eventLevel":
+                    break;
                 default:
                     break;
             }
@@ -215,14 +202,5 @@ namespace Scada.Client.SL.Modules.Alarm
         {
             throw new NotImplementedException();
         }
-    }
-
-
-    public enum MyEventType
-    {
-        //[EnumMember(Value="故障"]
-        故障,
-        超高,
-        超低
     }
 }

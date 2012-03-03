@@ -63,7 +63,7 @@ namespace Scada.Client.SL.Modules.BingMaps
                     if (pp != null)
                     {
                         pp.DeviceTemp = (item.Temperature.HasValue ? ((int)(item.Temperature.Value)).ToString() : "0") + "℃";
-                        pp.DevState = (DeviceState)item.Status;
+                        pp.DevState = (DeviceStates)item.Status;
                         pp.DeviceName = item.NodeValue;
                     }
                 }

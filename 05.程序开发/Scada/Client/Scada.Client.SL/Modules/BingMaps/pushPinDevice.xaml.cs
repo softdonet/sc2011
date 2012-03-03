@@ -34,8 +34,8 @@ namespace Scada.Client.SL.Modules.BingMaps
         /// <summary>
         /// 设备状态
         /// </summary>
-        private DeviceState devState;
-        public DeviceState DevState
+        private DeviceStates devState;
+        public DeviceStates DevState
         {
             get
             {
@@ -46,15 +46,15 @@ namespace Scada.Client.SL.Modules.BingMaps
                 ImageBrush brush = new ImageBrush();
                 switch (value)
                 {
-                    case DeviceState.Normal:
+                    case DeviceStates.Normal:
                         brush.ImageSource = new BitmapImage(new Uri("Image/BLUE-base1.png", UriKind.Relative));
 
                         break;
-                    case DeviceState.Escape:
+                    case DeviceStates.Escape:
                         brush.ImageSource = new BitmapImage(new Uri("Image/GRAY-base1.png", UriKind.Relative));
 
                         break;
-                    case DeviceState.Alert:
+                    case DeviceStates.Alert:
                         brush.ImageSource = new BitmapImage(new Uri("Image/ALERT-base1.png", UriKind.Relative));
 
                         break;

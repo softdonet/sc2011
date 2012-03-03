@@ -192,15 +192,15 @@ namespace Scada.Client.SL.Modules.Device
                 case "status":
                     if (currentValue.Status.HasValue)
                     {
-                        switch ((DeviceState)currentValue.Status.Value)
+                        switch ((DeviceStates)currentValue.Status.Value)
                         {
-                            case DeviceState.Escape:
+                            case DeviceStates.Escape:
                                 img = "grayer.png";
                                 break;
-                            case DeviceState.Normal:
+                            case DeviceStates.Normal:
                                 img = "green.png";
                                 break;
-                            case DeviceState.Alert:
+                            case DeviceStates.Alert:
                                 img = "red.png";
                                 break;
                         }

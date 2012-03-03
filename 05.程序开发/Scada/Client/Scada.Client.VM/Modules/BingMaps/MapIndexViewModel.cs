@@ -142,7 +142,7 @@ namespace Scada.Client.VM.Modules.BingMaps
                             tem.NodeValue = item3.NodeValue;
                             tem.NodeType = item3.NodeType;
                             tem.Temperature = 0;
-                            tem.Status = (int)DeviceState.Escape;
+                            tem.Status = (int)DeviceStates.Escape;
                             tem.Longitude = item3.Longitude;
                             tem.Dimensionality = item3.Dimensionality;
                             tem.InstallPlace = item3.InstallPlace;

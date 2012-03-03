@@ -47,6 +47,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -78,7 +79,8 @@
     <Compile Include="DBClass\UserEvent.cs" />
     <Compile Include="DBClass\UserRole.cs" />
     <Compile Include="DBPartialClass\DeviceRealTimePartial.cs" />
-    <Compile Include="Enums\DeviceState.cs" />
+    <Compile Include="Enums\DeviceStates.cs" />
+    <Compile Include="Enums\EventTypes.cs" />
     <Compile Include="NotifyPropertyChangedObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

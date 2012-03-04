@@ -17,6 +17,7 @@ using System.ServiceModel.Channels;
 using Scada.Client.SL.CommClass;
 using Scada.Client.VM.Modules.BingMaps;
 using Scada.Model.Entity.Enums;
+using Scada.Client.SL.Modules.Device;
 
 namespace Scada.Client.SL.Modules.BingMaps
 {
@@ -177,8 +178,8 @@ namespace Scada.Client.SL.Modules.BingMaps
         void myPushPin_onclickDetails(object sender, RoutedEventArgs e)
         {
             Storyboard1.Begin();
-            //MyContent.Content = new DetailsPage();
-            //MyContent.Title = "设备详细信息";
+            MyContent.Content = new DetailsPage();
+            MyContent.Title = "设备详细信息";
         }
 
         /// <summary>

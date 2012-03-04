@@ -134,6 +134,9 @@ namespace Scada.Client.SL.Modules.Device
         }
     }
 
+    /// <summary>
+    /// 把对应的数字改成图片显示
+    /// </summary>
     public class ItemImageSourceValueConverter : IValueConverter
     {
 

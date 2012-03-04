@@ -63,7 +63,7 @@ namespace Scada.BLL.Implement
             this.SendAlarmData(o);
 
             //用户事件
-            this.SendCallData(o);
+            this.SendUserEventData(o);
 
         }
 
@@ -238,8 +238,84 @@ namespace Scada.BLL.Implement
                 this.AlarmDataReceived(alarmData);
         }
 
+        #region 设备告警
+
+        public List<DeviceAlarm> GetListDeviceAlarmInfo()
+        {
+
+            List<DeviceAlarm> result = new List<DeviceAlarm>();
+            string sSql = @" Select Top 100 ID,DeviceID,DeviceNo,EventType,
+                              EventLevel,StartTime,EndTime,ConfirmTime,
+                              DealStatus,DealPeople,Comment from DeviceAlarm";
+            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            DeviceAlarm alarm = null;
+            foreach (DataRow item in ds.Rows)
+            {
+
+                alarm = new DeviceAlarm();
+                alarm.ID = new Guid(item["ID"].ToString());
+                alarm.DeviceID = new Guid(item["DeviceID"].ToString());
+                alarm.DeviceNo = item["DeviceNo"].ToString();
+                int? intType = null;
+                if (item["EventType"] != DBNull.Value)
+                    intType = Convert.ToInt32(item["EventType"]);
+                alarm.EventType = intType;
+
+                intType = null;
+                if (item["EventType"] != DBNull.Value)
+                    intType = Convert.ToInt32(item["EventLevel"]);
+                alarm.EventLevel = intType;
+
+                DateTime? dtValue = null;
+                if (item["StartTime"] != DBNull.Value)
+                    dtValue = Convert.ToDateTime(item["StartTime"]);
+                alarm.StartTime = dtValue;
+
+                dtValue = null;
+                if (item["EndTime"] != DBNull.Value)
+                    dtValue = Convert.ToDateTime(item["EndTime"]);
+                alarm.EndTime = dtValue;
+
+                dtValue = null;
+                if (item["ConfirmTime"] != DBNull.Value)
+                    dtValue = Convert.ToDateTime(item["ConfirmTime"]);
+                alarm.ConfirmTime = dtValue;
+
+                alarm.DealStatus = item["DealStatus"].ToString();
+                alarm.DealPeople = item["DealPeople"].ToString();
+                alarm.Comment = item["Comment"].ToString();
+                result.Add(alarm);
+
+            }
+
+            return result;
+
+        }
+
+
+        public Boolean UpdateDeviceAlarmInfo(Guid AlarmId, DateTime ConfirmTime, String Comment, String DealPeople)
+        {
+            string sSql = @" Update DeviceAlarm 
+                            Set ConfirmTime='" + ConfirmTime.ToString("yyyy-MM-dd hh:mm:ss") + @"',
+                                   DealStatus='已确认', DealPeople='" + DealPeople + "',Comment='" + Comment + @"'
+                            Where ID ='" + AlarmId.ToString().ToUpper() + "'";
+            Boolean result = false;
+            try
+            {
+                Int32 intQuery = SqlHelper.ExecuteNonQuery(sSql);
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                result = false;
+                Console.WriteLine(ex.Message);
+            }
+            return result;
+        }
+
+        #endregion
         //用户事件
-        private void SendCallData(object o)
+        private void SendUserEventData(object o)
         {
             string callData = DateTime.Now.ToString() + "用户事件";
             if (CallDataReceived != null)

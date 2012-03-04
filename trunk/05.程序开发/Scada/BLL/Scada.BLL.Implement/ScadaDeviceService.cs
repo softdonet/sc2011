@@ -648,78 +648,78 @@ namespace Scada.BLL.Implement
 
         #region 设备告警
 
-        public string GetListDeviceAlarmInfo()
-        {
+//        public string GetListDeviceAlarmInfo()
+//        {
 
-            List<DeviceAlarm> result = new List<DeviceAlarm>();
-            string sSql = @" Select Top 100 ID,DeviceID,DeviceNo,EventType,
-                              EventLevel,StartTime,EndTime,ConfirmTime,
-                              DealStatus,DealPeople,Comment from DeviceAlarm";
-            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
-            DeviceAlarm alarm = null;
-            foreach (DataRow item in ds.Rows)
-            {
+//            List<DeviceAlarm> result = new List<DeviceAlarm>();
+//            string sSql = @" Select Top 100 ID,DeviceID,DeviceNo,EventType,
+//                              EventLevel,StartTime,EndTime,ConfirmTime,
+//                              DealStatus,DealPeople,Comment from DeviceAlarm";
+//            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+//            DeviceAlarm alarm = null;
+//            foreach (DataRow item in ds.Rows)
+//            {
 
-                alarm = new DeviceAlarm();
-                alarm.ID = new Guid(item["ID"].ToString());
-                alarm.DeviceID = new Guid(item["DeviceID"].ToString());
-                alarm.DeviceNo = item["DeviceNo"].ToString();
-                int? intType = null;
-                if (item["EventType"] != DBNull.Value)
-                    intType = Convert.ToInt32(item["EventType"]);
-                alarm.EventType = intType;
+//                alarm = new DeviceAlarm();
+//                alarm.ID = new Guid(item["ID"].ToString());
+//                alarm.DeviceID = new Guid(item["DeviceID"].ToString());
+//                alarm.DeviceNo = item["DeviceNo"].ToString();
+//                int? intType = null;
+//                if (item["EventType"] != DBNull.Value)
+//                    intType = Convert.ToInt32(item["EventType"]);
+//                alarm.EventType = intType;
 
-                intType = null;
-                if (item["EventType"] != DBNull.Value)
-                    intType = Convert.ToInt32(item["EventLevel"]);
-                alarm.EventLevel = intType;
+//                intType = null;
+//                if (item["EventType"] != DBNull.Value)
+//                    intType = Convert.ToInt32(item["EventLevel"]);
+//                alarm.EventLevel = intType;
 
-                DateTime? dtValue = null;
-                if (item["StartTime"] != DBNull.Value)
-                    dtValue = Convert.ToDateTime(item["StartTime"]);
-                alarm.StartTime = dtValue;
+//                DateTime? dtValue = null;
+//                if (item["StartTime"] != DBNull.Value)
+//                    dtValue = Convert.ToDateTime(item["StartTime"]);
+//                alarm.StartTime = dtValue;
 
-                dtValue = null;
-                if (item["EndTime"] != DBNull.Value)
-                    dtValue = Convert.ToDateTime(item["EndTime"]);
-                alarm.EndTime = dtValue;
+//                dtValue = null;
+//                if (item["EndTime"] != DBNull.Value)
+//                    dtValue = Convert.ToDateTime(item["EndTime"]);
+//                alarm.EndTime = dtValue;
 
-                dtValue = null;
-                if (item["ConfirmTime"] != DBNull.Value)
-                    dtValue = Convert.ToDateTime(item["ConfirmTime"]);
-                alarm.ConfirmTime = dtValue;
+//                dtValue = null;
+//                if (item["ConfirmTime"] != DBNull.Value)
+//                    dtValue = Convert.ToDateTime(item["ConfirmTime"]);
+//                alarm.ConfirmTime = dtValue;
 
-                alarm.DealStatus = item["DealStatus"].ToString();
-                alarm.DealPeople = item["DealPeople"].ToString();
-                alarm.Comment = item["Comment"].ToString();
-                result.Add(alarm);
+//                alarm.DealStatus = item["DealStatus"].ToString();
+//                alarm.DealPeople = item["DealPeople"].ToString();
+//                alarm.Comment = item["Comment"].ToString();
+//                result.Add(alarm);
 
-            }
+//            }
 
-            return BinaryObjTransfer.JsonSerializer<List<DeviceAlarm>>(result);
+//            return BinaryObjTransfer.JsonSerializer<List<DeviceAlarm>>(result);
 
-        }
+//        }
 
 
-        public Boolean UpdateDeviceAlarmInfo(Guid AlarmId, DateTime ConfirmTime, String Comment, String DealPeople)
-        {
-            string sSql = @" Update DeviceAlarm 
-                            Set ConfirmTime='" + ConfirmTime.ToString("yyyy-MM-dd hh:mm:ss") + @"',
-                                   DealStatus='已确认', DealPeople='" + DealPeople + "',Comment='" + Comment + @"'
-                            Where ID ='" + AlarmId.ToString().ToUpper() + "'";
-            Boolean result = false;
-            try
-            {
-                Int32 intQuery = SqlHelper.ExecuteNonQuery(sSql);
-                result = true;
-            }
-            catch (Exception ex)
-            {
-                result = false;
-                Console.WriteLine(ex.Message);
-            }
-            return result;
-        }
+//        public Boolean UpdateDeviceAlarmInfo(Guid AlarmId, DateTime ConfirmTime, String Comment, String DealPeople)
+//        {
+//            string sSql = @" Update DeviceAlarm 
+//                            Set ConfirmTime='" + ConfirmTime.ToString("yyyy-MM-dd hh:mm:ss") + @"',
+//                                   DealStatus='已确认', DealPeople='" + DealPeople + "',Comment='" + Comment + @"'
+//                            Where ID ='" + AlarmId.ToString().ToUpper() + "'";
+//            Boolean result = false;
+//            try
+//            {
+//                Int32 intQuery = SqlHelper.ExecuteNonQuery(sSql);
+//                result = true;
+//            }
+//            catch (Exception ex)
+//            {
+//                result = false;
+//                Console.WriteLine(ex.Message);
+//            }
+//            return result;
+//        }
 
         #endregion
 

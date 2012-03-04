@@ -52,15 +52,15 @@ namespace Scada.BLL.Contract
         ////列出告警信息
         //string GetListDeviceAlarmInfo();
         ////更秘诀告警状态
-        //Boolean UpdateDeviceAlarmInfo(Guid AlarmId, DateTime ConfirmTime,
-        //                                    String Comment, String DealPeople);
+        Boolean UpdateDeviceAlarmInfo(Guid AlarmId, DateTime ConfirmTime,
+                                            String Comment, String DealPeople);
 
         #endregion
 
 
         #region 用户事件
 
-        string GetListUserEventInfo();
+        //string GetListUserEventInfo();
         string GetUserEventKeyInfo(Guid EventKey);
         Boolean UpdateUserEventInfo(string EventDetails);
         string GetListStepInfo();

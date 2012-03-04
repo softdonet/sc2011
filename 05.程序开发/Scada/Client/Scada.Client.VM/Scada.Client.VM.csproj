@@ -73,6 +73,7 @@
     <Compile Include="Modules\BingMaps\PushPinDeviceViewModel.cs" />
     <Compile Include="Modules\Query\DeviceListQueryViewModel.cs" />
     <Compile Include="Modules\Device\DeviceListViewModel.cs" />
+    <Compile Include="Modules\UserEvent\UserEventViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\DeviceRealTimeService\Reference.cs">
       <AutoGen>True</AutoGen>

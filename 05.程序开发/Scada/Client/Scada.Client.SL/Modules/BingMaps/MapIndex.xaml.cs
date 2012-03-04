@@ -18,6 +18,8 @@ using Scada.Client.SL.CommClass;
 using Scada.Client.VM.Modules.BingMaps;
 using Scada.Model.Entity.Enums;
 using Scada.Client.SL.Modules.Device;
+using Scada.Client.VM.Modules.Alarm;
+using Scada.Client.VM.Modules.UserEvent;
 
 namespace Scada.Client.SL.Modules.BingMaps
 {
@@ -47,6 +49,14 @@ namespace Scada.Client.SL.Modules.BingMaps
             mapVM = new MapIndexViewModel();
             mapVM.BaseDataResviceEvent += new EventHandler(mapVM_BaseDataResviceEvent);
             mapVM.RealTimeDataResviceEvent += new EventHandler(mapVM_RealTimeDataResviceEvent);
+
+            DeviceAlarmViewModel deviceAlarmViewModel = new DeviceAlarmViewModel();
+            RadGridViewAlarm.DataContext = deviceAlarmViewModel;
+           
+            UserEventViewModel userEventViewModel = new UserEventViewModel();
+            RadGridViewUserEvent.DataContext = userEventViewModel;
+
+            
         }
 
         /// <summary>

@@ -10,9 +10,11 @@ namespace Scada.Model.Entity
         public String EventNo { get; set; }
         public Guid DeviceID { get; set; }
         public String DeviceNo { get; set; }
+        public int? EventType { get; set; }
         public Int32? State { get; set; }
         public Int32? Count { get; set; }
         public DateTime? RequestTime { get; set; }
+        public string DealInfo { get; set; }
 
     }
 }

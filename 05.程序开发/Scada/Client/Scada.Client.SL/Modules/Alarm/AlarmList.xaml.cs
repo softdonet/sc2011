@@ -22,6 +22,7 @@ using System.Windows.Data;
 using System.Globalization;
 using System.Runtime.Serialization;
 using Scada.Model.Entity.Enums;
+using Scada.Client.VM.Modules.Alarm;
 
 
 
@@ -61,15 +62,25 @@ namespace Scada.Client.SL.Modules.Alarm
 
             InitializeComponent();
 
+            DeviceAlarmViewModel DeviceAlarmVM = new DeviceAlarmViewModel();
+            this.DataContext = DeviceAlarmVM;
+            DeviceAlarmVM.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(DeviceAlarmVM_PropertyChanged);
+
             this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
 
-            this._scadaDeviceServiceSoapClient.GetListDeviceAlarmInfoCompleted +=
-                    new EventHandler<GetListDeviceAlarmInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted);
-            this._scadaDeviceServiceSoapClient.GetListDeviceAlarmInfoAsync();
+            //this._scadaDeviceServiceSoapClient.GetListDeviceAlarmInfoCompleted +=
+            //        new EventHandler<GetListDeviceAlarmInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted);
+            //this._scadaDeviceServiceSoapClient.GetListDeviceAlarmInfoAsync();
 
             this._scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoCompleted +=
                 new EventHandler<UpdateDeviceAlarmInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoCompleted);
 
+
+        }
+
+        void DeviceAlarmVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            //throw new NotImplementedException();
         }
 
         private void scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted(object sender, GetListDeviceAlarmInfoCompletedEventArgs e)
@@ -171,36 +182,36 @@ namespace Scada.Client.SL.Modules.Alarm
     /// <summary>
     /// 将数字改成字符
     /// </summary>
-    public class ConvertNumberToText : IValueConverter
-    {
+    //public class ConvertNumberToText : IValueConverter
+    //{
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            string currentText = string.Empty;
-            DeviceAlarm currentValue = value as DeviceAlarm;
-            if (currentValue == null)
-            {
-                return DependencyProperty.UnsetValue;
-            }
-            switch (parameter.ToString().ToLower())
-            {
-                case "eventtype":
-                    if (currentValue.EventType.HasValue)
-                    {
-                       return EnumHelper.Display<EventTypes>(currentValue.EventType.Value);
-                    }
-                    break;
-                case "eventLevel":
-                    break;
-                default:
-                    break;
-            }
-            return currentText;
-        }
+    //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        string currentText = string.Empty;
+    //        DeviceAlarm currentValue = value as DeviceAlarm;
+    //        if (currentValue == null)
+    //        {
+    //            return DependencyProperty.UnsetValue;
+    //        }
+    //        switch (parameter.ToString().ToLower())
+    //        {
+    //            case "eventtype":
+    //                if (currentValue.EventType.HasValue)
+    //                {
+    //                   return EnumHelper.Display<EventTypes>(currentValue.EventType.Value);
+    //                }
+    //                break;
+    //            case "eventLevel":
+    //                break;
+    //            default:
+    //                break;
+    //        }
+    //        return currentText;
+    //    }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
+    //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
 }

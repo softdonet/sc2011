@@ -6,16 +6,19 @@
     xmlns:m="clr-namespace:Microsoft.Maps.MapControl;assembly=Microsoft.Maps.MapControl"
      xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
      xmlns:local="clr-namespace:Scada.Client.SL.Modules.BingMaps"
-              xmlns:local1="clr-namespace:Scada.Client.SL.Controls" 
-              xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
-                 xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" 
-             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+     xmlns:local1="clr-namespace:Scada.Client.SL.Controls" 
+     xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
+     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" 
+     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
 			
-             
+    xmlns:myConvert="clr-namespace:Scada.Utility.Common.SL;assembly=Scada.Utility.Common.SL"   
+    
     mc:Ignorable="d"
     d:DesignHeight="880" d:DesignWidth="1024" Loaded="UserControl_Loaded">
     <UserControl.Resources>
 
+        <myConvert:ConverNumberToTextAlarm x:Key="ConverNumberToTextAlarm1"/>
+        <myConvert:ConvertNumberToText x:Key="ConvertNumberToText1"/>
 
         <Style x:Key="ZheDieButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#FF1F3B53"/>
@@ -308,17 +311,54 @@
                     <TextBlock Text ="告警信息"  FontSize=" 12"   VerticalAlignment="Center"   Margin=" 5"/>
                 </StackPanel>
                 <toolkit:WrapPanel Orientation="Vertical">
-                    <TextBlock x:Name="txtRealTime" Text="ready" FontSize=" 12" Foreground="Red"    VerticalAlignment="Center"   Margin=" 5"/>
-                    <TextBlock x:Name="txtAlarm" Text="ready"  FontSize=" 12"  Foreground="Red"    VerticalAlignment="Center"   Margin=" 5"/>
-                    <TextBlock x:Name="txtCall" Text="ready" FontSize=" 12"  Foreground="Red"  VerticalAlignment="Center"   Margin=" 5"/>
+                    <telerik:RadGridView  x:Name="RadGridViewAlarm" 
+                                          ShowGroupPanel="False" 
+                                          AutoGenerateColumns="False"
+                                          IsReadOnly="True"
+                                          ItemsSource="{Binding DeviceAlarmListTop}"  RowIndicatorVisibility="Collapsed">
+                        <telerik:RadGridView.Columns>
+                            <telerik:GridViewDataColumn Header="设备名称" DataMemberBinding="{Binding DeviceNo}" Width="80" HeaderTextAlignment="Center" />
+                            <telerik:GridViewDataColumn Header="告警类型" DataMemberBinding="{Binding Converter={StaticResource ConverNumberToTextAlarm1},ConverterParameter=EventType}" Width="70" HeaderTextAlignment="Center"  />
+                            <telerik:GridViewDataColumn    Width="70"
+											Header="操作" HeaderTextAlignment="Center" TextAlignment="Center" >
+                                <telerik:GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel  Orientation="Horizontal"   HorizontalAlignment="Center">
+                                            <HyperlinkButton x:Name="hlBtn"   IsEnabled="False"   HorizontalAlignment="Center"  Content="处理"  Foreground="#FF0000CC" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </telerik:GridViewColumn.CellTemplate>
+                            </telerik:GridViewDataColumn>
+                        </telerik:RadGridView.Columns>
+                        
+                    </telerik:RadGridView>
                 </toolkit:WrapPanel>
                 <StackPanel  Background="#FFD5DDF3" Margin="0,5,0,5" Orientation="Vertical">
                     <TextBlock Text ="用户事件"  FontSize=" 12"   VerticalAlignment="Center"   Margin=" 5"/>
                 </StackPanel>
                 <toolkit:WrapPanel Orientation="Vertical">
-                    <TextBlock x:Name="txtRealTime1" Text="ready" FontSize=" 12" Foreground="Red"    VerticalAlignment="Center"   Margin=" 5"/>
-                    <TextBlock x:Name="txtAlarm1" Text="ready"  FontSize=" 12"  Foreground="Red"    VerticalAlignment="Center"   Margin=" 5"/>
-                    <TextBlock x:Name="txtCall1" Text="ready" FontSize=" 12"  Foreground="Red"  VerticalAlignment="Center"   Margin=" 5"/>
+                    <telerik:RadGridView  x:Name="RadGridViewUserEvent" 
+                                          ShowGroupPanel="False" 
+                                          AutoGenerateColumns="False"
+                                          IsReadOnly="True"
+                                          ItemsSource="{Binding UserEventTabListTop}"  RowIndicatorVisibility="Collapsed">
+                        <telerik:RadGridView.Columns>
+                            <telerik:GridViewDataColumn Header="设备名称" DataMemberBinding="{Binding DeviceNo}" Width="80" HeaderTextAlignment="Center" />
+                            <telerik:GridViewDataColumn Header="事件类型" DataMemberBinding="{Binding Converter={StaticResource ConvertNumberToText1},ConverterParameter=EventType}" Width="70" HeaderTextAlignment="Center"  />
+                            <telerik:GridViewDataColumn    Width="70"
+											Header="操作" HeaderTextAlignment="Center" TextAlignment="Center" >
+                                <telerik:GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel  Orientation="Horizontal"   HorizontalAlignment="Center">
+                                            <HyperlinkButton x:Name="hlBtn"   IsEnabled="False"   HorizontalAlignment="Center"  Content="处理"  Foreground="#FF0000CC" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </telerik:GridViewColumn.CellTemplate>
+                            </telerik:GridViewDataColumn>
+                        </telerik:RadGridView.Columns>
+
+                    </telerik:RadGridView>
+
                 </toolkit:WrapPanel>
 
 

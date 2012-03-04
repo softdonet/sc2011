@@ -701,67 +701,67 @@ namespace Scada.BLL.Implement
 //        }
 
 
-//        public Boolean UpdateDeviceAlarmInfo(Guid AlarmId, DateTime ConfirmTime, String Comment, String DealPeople)
-//        {
-//            string sSql = @" Update DeviceAlarm 
-//                            Set ConfirmTime='" + ConfirmTime.ToString("yyyy-MM-dd hh:mm:ss") + @"',
-//                                   DealStatus='已确认', DealPeople='" + DealPeople + "',Comment='" + Comment + @"'
-//                            Where ID ='" + AlarmId.ToString().ToUpper() + "'";
-//            Boolean result = false;
-//            try
-//            {
-//                Int32 intQuery = SqlHelper.ExecuteNonQuery(sSql);
-//                result = true;
-//            }
-//            catch (Exception ex)
-//            {
-//                result = false;
-//                Console.WriteLine(ex.Message);
-//            }
-//            return result;
-//        }
+        public Boolean UpdateDeviceAlarmInfo(Guid AlarmId, DateTime ConfirmTime, String Comment, String DealPeople)
+        {
+            string sSql = @" Update DeviceAlarm 
+                            Set ConfirmTime='" + ConfirmTime.ToString("yyyy-MM-dd hh:mm:ss") + @"',
+                                   DealStatus='已确认', DealPeople='" + DealPeople + "',Comment='" + Comment + @"'
+                            Where ID ='" + AlarmId.ToString().ToUpper() + "'";
+            Boolean result = false;
+            try
+            {
+                Int32 intQuery = SqlHelper.ExecuteNonQuery(sSql);
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                result = false;
+                Console.WriteLine(ex.Message);
+            }
+            return result;
+        }
 
         #endregion
 
         #region 用户事件
 
-        public string GetListUserEventInfo()
-        {
+//        public string GetListUserEventInfo()
+//        {
 
-            List<UserEventTab> userEvents = new List<UserEventTab>();
-            string sSql = @" Select ID,EventNo,DeviceID,DeviceNo,
-                                State,Count,RequestTime from UserEvent";
-            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
-            UserEventTab userEvent;
-            foreach (DataRow item in ds.Rows)
-            {
-                userEvent = new UserEventTab();
-                userEvent.ID = new Guid(item["ID"].ToString());
-                userEvent.EventNo = item["EventNo"].ToString();
-                userEvent.DeviceID = new Guid(item["DeviceID"].ToString());
-                userEvent.DeviceNo = item["DeviceNo"].ToString();
-                Int32? intValue = null;
-                if (item["State"] != DBNull.Value)
-                    intValue = Convert.ToInt32(item["State"]);
-                userEvent.State = intValue;
+//            List<UserEventTab> userEvents = new List<UserEventTab>();
+//            string sSql = @" Select ID,EventNo,DeviceID,DeviceNo,
+//                                State,Count,RequestTime from UserEvent";
+//            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+//            UserEventTab userEvent;
+//            foreach (DataRow item in ds.Rows)
+//            {
+//                userEvent = new UserEventTab();
+//                userEvent.ID = new Guid(item["ID"].ToString());
+//                userEvent.EventNo = item["EventNo"].ToString();
+//                userEvent.DeviceID = new Guid(item["DeviceID"].ToString());
+//                userEvent.DeviceNo = item["DeviceNo"].ToString();
+//                Int32? intValue = null;
+//                if (item["State"] != DBNull.Value)
+//                    intValue = Convert.ToInt32(item["State"]);
+//                userEvent.State = intValue;
 
-                intValue = null;
-                if (item["Count"] != DBNull.Value)
-                    intValue = Convert.ToInt32(item["Count"]);
-                userEvent.Count = intValue;
+//                intValue = null;
+//                if (item["Count"] != DBNull.Value)
+//                    intValue = Convert.ToInt32(item["Count"]);
+//                userEvent.Count = intValue;
 
-                DateTime? dTime = null;
-                if (item["RequestTime"] != DBNull.Value)
-                    dTime = Convert.ToDateTime(item["RequestTime"]);
-                userEvent.RequestTime = dTime;
+//                DateTime? dTime = null;
+//                if (item["RequestTime"] != DBNull.Value)
+//                    dTime = Convert.ToDateTime(item["RequestTime"]);
+//                userEvent.RequestTime = dTime;
 
-                userEvents.Add(userEvent);
+//                userEvents.Add(userEvent);
 
-            }
+//            }
 
-            return BinaryObjTransfer.JsonSerializer<List<UserEventTab>>(userEvents);
+//            return BinaryObjTransfer.JsonSerializer<List<UserEventTab>>(userEvents);
 
-        }
+//        }
 
         public string GetUserEventKeyInfo(Guid EventKey)
         {
@@ -779,7 +779,7 @@ namespace Scada.BLL.Implement
                 detail.DetailID = new Guid(item["ID"].ToString());
                 detail.EventID = new Guid(item["EventID"].ToString());
                 detail.OperatorId = new Guid(item["OperatorId"].ToString());
-                Int32? intValue = null;
+                Int32 intValue =0;
                 if (item["StepNo"] != DBNull.Value)
                     intValue = Convert.ToInt32(item["StepNo"]);
                 detail.StepNo = intValue;

@@ -120,32 +120,33 @@ namespace Scada.Client.SL.Modules.UsersEvent
                     case 1:
                         cmbStep1.SelectedIndex = getSelectIndex(item.StepName);
                         txtStep1.Text = item.Memo;
-                        txtblk1.Text = "确认人：" + item.OperatorId + " 确认时间：" + item.DealTime;
+                        //txtblk1.Text = "确认人：" + item.OperatorId + " 确认时间：" + item.DealTime;
+                        txtblk1.Text = "确认人：Admin"  + " 确认时间：" + item.DealTime;
                         setStept2State();
                         break;
                     case 2:
                         cmbStep2.SelectedIndex = getSelectIndex(item.StepName);
                         txtStep2.Text = item.Memo;
-                        txtblk2.Text = "确认人：" + item.OperatorId + " 确认时间：" + item.DealTime;
+                        txtblk2.Text = "确认人：Admin"  + " 确认时间：" + item.DealTime;
                         setStept3State();
                         break;
                     case 3:
                         cmbStep3.SelectedIndex = getSelectIndex(item.StepName);
                         txtStep3.Text = item.Memo;
-                        txtblk3.Text = "确认人：" + item.OperatorId + " 确认时间：" + item.DealTime;
+                        txtblk3.Text = "确认人：Admin" + " 确认时间：" + item.DealTime;
                         setStept4State();
 
                         break;
                     case 4:
                         cmbStep4.SelectedIndex = getSelectIndex(item.StepName);
                         txtStep4.Text = item.Memo;
-                        txtblk4.Text = "确认人：" + item.OperatorId + " 确认时间：" + item.DealTime;
+                        txtblk4.Text = "确认人：Admin"  + " 确认时间：" + item.DealTime;
                         setStept5State();
                         break;
                     case 5:
                         cmbStep5.SelectedIndex = getSelectIndex(item.StepName);
                         txtStep5.Text = item.Memo;
-                        txtblk5.Text = "确认人：" + item.OperatorId + " 确认时间：" + item.DealTime;
+                        txtblk5.Text = "确认人：Admin"  + " 确认时间：" + item.DealTime;
                         setSteptState(false);
                         break;
 

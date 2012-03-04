@@ -8,45 +8,37 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-
-using System.Windows.Data;
 using Scada.Model.Entity;
-using System.Globalization;
 using Scada.Model.Entity.Enums;
-
+using System.Globalization;
+using System.Windows.Data;
 
 namespace Scada.Utility.Common.SL
 {
-
     /// <summary>
-    /// 用户事件
-    /// 将数字改成字符
-    /// 实体类（UserEventTab）
+    /// 告警事件
+    /// 将数字改成对应的字符
+    /// 
     /// </summary>
-    public class ConvertNumberToText : IValueConverter
+    public class ConverNumberToTextAlarm : IValueConverter
     {
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string currentText = string.Empty;
-            UserEventTab currentValue = value as UserEventTab;
+            DeviceAlarm currentValue = value as DeviceAlarm;
             if (currentValue == null)
             {
                 return DependencyProperty.UnsetValue;
             }
             switch (parameter.ToString().ToLower())
             {
-                case "state":
-                    if (currentValue.State.HasValue)
-                    {
-                        return EnumHelper.Display<UserDealState>(currentValue.State.Value);
-                    }
-                    break;
                 case "eventtype":
                     if (currentValue.EventType.HasValue)
                     {
-                        return EnumHelper.Display<UserEventType>(currentValue.EventType.Value);
+                        return EnumHelper.Display<EventTypes>(currentValue.EventType.Value);
                     }
+                    break;
+                case "eventLevel":
                     break;
                 default:
                     break;
@@ -59,6 +51,4 @@ namespace Scada.Utility.Common.SL
             throw new NotImplementedException();
         }
     }
-
 }
-

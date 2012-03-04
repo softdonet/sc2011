@@ -20,7 +20,7 @@ using Scada.Model.Entity;
 using Scada.Client.SL.CommClass;
 using Scada.Client.SL.ScadaDeviceService;
 
-
+using Scada.Utility.Common.SL;
 
 
 namespace Scada.Client.SL.Modules.UsersEvent

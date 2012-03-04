@@ -556,6 +556,10 @@
       <Project>{66B7D2F9-31D1-4C6A-A1DC-C5523A8CF27D}</Project>
       <Name>Scada.Model.Entity.SL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Utility\Scada.Utility.Common.SL\Scada.Utility.Common.SL.csproj">
+      <Project>{5A5A12C8-9B18-4B86-A5B2-CCA2AC85EE81}</Project>
+      <Name>Scada.Utility.Common.SL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Scada.Client.UC\Scada.Client.UC.csproj">
       <Project>{CB49D8C3-CC6E-4D73-98BD-272A2D30B3AD}</Project>
       <Name>Scada.Client.UC</Name>

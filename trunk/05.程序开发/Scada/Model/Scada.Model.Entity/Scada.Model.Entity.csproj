@@ -64,6 +64,7 @@
     <Compile Include="Common\DeviceTreeNode.cs" />
     <Compile Include="Enums\EventTypes.cs" />
     <Compile Include="Enums\DeviceStates.cs" />
+    <Compile Include="Enums\UserDealState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

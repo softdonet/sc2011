@@ -5,15 +5,18 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 
     
-     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"         
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"         
     xmlns:local1="clr-namespace:Scada.Client.SL.Modules.Device"
     xmlns:local="clr-namespace:Scada.Client.SL.Controls" 
+             
+    xmlns:myConver="clr-namespace:Scada.Utility.Common.SL;assembly=Scada.Utility.Common.SL"         
     mc:Ignorable="d"
     d:DesignHeight="768" d:DesignWidth="800">
 
     <UserControl.Resources>
         <local1:RelativeBlocksValueConverter x:Key="RelativeBlocksValueConverter1" />
         <local1:ItemImageSourceValueConverter x:Key="ItemImageSourceValueConverter1" />
+        <myConver:ConvertNumberToText x:Key="ConvertNumberToText1"/>
         <Storyboard x:Name="Storyboard1">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ViewHost">
                 <DiscreteObjectKeyFrame KeyTime="0">
@@ -79,7 +82,9 @@
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Header="事件编号" DataMemberBinding="{Binding EventNo}" Width="80"  HeaderTextAlignment="Center"  />
                 <telerik:GridViewDataColumn Header="设备编号" DataMemberBinding="{Binding DeviceNo}" Width="100"   HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn Header="状态" DataMemberBinding="{Binding State}" Width="80" HeaderTextAlignment="Center"  />
+                <!--<telerik:GridViewDataColumn Header="状态" DataMemberBinding="{Binding State}" Width="80" HeaderTextAlignment="Center"  />-->
+
+                <telerik:GridViewDataColumn Header="状态" DataMemberBinding="{Binding Converter={StaticResource ConvertNumberToText1},ConverterParameter=State}" Width="80" HeaderTextAlignment="Center"  />
                 <telerik:GridViewDataColumn Header="用户请求次数" DataMemberBinding="{Binding Count}" Width="100" HeaderTextAlignment="Center"  />
                 <telerik:GridViewDataColumn Header="请求时间" DataMemberBinding="{Binding RequestTime}" Width="140" HeaderTextAlignment="Center"  />
                 <telerik:GridViewDataColumn    Width="100" Header="操作" HeaderTextAlignment="Center" TextAlignment="Center" >
@@ -91,6 +96,7 @@
                         </DataTemplate>
                     </telerik:GridViewColumn.CellTemplate>
                 </telerik:GridViewDataColumn>
+                <!--<telerik:GridViewDataColumn Header="处理信息" DataMemberBinding="{Binding Steps}" Width="*" HeaderTextAlignment="Center"  />-->
 
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>

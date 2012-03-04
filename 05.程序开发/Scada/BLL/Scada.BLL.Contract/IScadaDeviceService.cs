@@ -49,11 +49,11 @@ namespace Scada.BLL.Contract
 
         #region 设备告警
 
-        //列出告警信息
-        string GetListDeviceAlarmInfo();
-        //更秘诀告警状态
-        Boolean UpdateDeviceAlarmInfo(Guid AlarmId, DateTime ConfirmTime,
-                                            String Comment, String DealPeople);
+        ////列出告警信息
+        //string GetListDeviceAlarmInfo();
+        ////更秘诀告警状态
+        //Boolean UpdateDeviceAlarmInfo(Guid AlarmId, DateTime ConfirmTime,
+        //                                    String Comment, String DealPeople);
 
         #endregion
 

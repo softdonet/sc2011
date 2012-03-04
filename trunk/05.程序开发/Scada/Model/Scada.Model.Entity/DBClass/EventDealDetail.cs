@@ -15,7 +15,7 @@ namespace Scada.Model.Entity
 
         public Guid OperatorId { get; set; }
 
-        public Int32? StepNo { get; set; }
+        public Int32 StepNo { get; set; }
 
         public String StepName { get; set; }
 

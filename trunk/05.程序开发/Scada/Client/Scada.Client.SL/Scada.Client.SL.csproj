@@ -469,6 +469,7 @@
     <Resource Include="Modules\Device\Images\signal3.png" />
     <None Include="Service References\ScadaDeviceService\ScadaDeviceService1.disco" />
     <None Include="Service References\SystemManagerService\SystemManagerService1.disco" />
+    <Resource Include="Images\Worker.png" />
     <Content Include="ServiceReferences.ClientConfig">
       <SubType>Designer</SubType>
     </Content>

@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConverNumberToText.cs" />
+    <Compile Include="ConverNumberToTextAlarm.cs" />
     <Compile Include="EnumHelpe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

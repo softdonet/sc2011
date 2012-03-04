@@ -233,9 +233,18 @@ namespace Scada.BLL.Implement
         //告警数据
         private void SendAlarmData(object o)
         {
-            string alarmData = DateTime.Now.ToString() + "告警数据";
-            if (AlarmDataReceived != null)
-                this.AlarmDataReceived(alarmData);
+            //string alarmData = DateTime.Now.ToString() + "告警数据";
+            //if (AlarmDataReceived != null)
+            //    this.AlarmDataReceived(alarmData);
+
+            List<DeviceAlarm> deviceAlarm = GetListDeviceAlarmInfo();
+            //4序列化数据
+            string deviceAlarmdata = BinaryObjTransfer.JsonSerializer<List<DeviceAlarm>>(deviceAlarm);
+
+            if (AlarmDataReceived!=null)
+            {
+                this.AlarmDataReceived(deviceAlarmdata);
+            }
         }
 
         #region 设备告警
@@ -314,14 +323,119 @@ namespace Scada.BLL.Implement
         }
 
         #endregion
+
         //用户事件
         private void SendUserEventData(object o)
         {
-            string callData = DateTime.Now.ToString() + "用户事件";
-            if (CallDataReceived != null)
-                this.CallDataReceived(callData);
+            //string callData = DateTime.Now.ToString() + "用户事件";
+            //if (CallDataReceived != null)
+            //    this.CallDataReceived(callData);
+            string userEventTabData = GetListUserEventInfo();
+            if (CallDataReceived!=null)
+            {
+                this.CallDataReceived(userEventTabData);
+            }
         }
 
+        /// <summary>
+        /// 获取用户列表
+        /// </summary>
+        /// <returns></returns>
+        public string GetListUserEventInfo()
+        {
+
+            List<UserEventTab> userEvents = new List<UserEventTab>();
+            string sSql = @" Select top 100 ID,EventNo,DeviceID,DeviceNo,EventType,
+                                State,Count,RequestTime from UserEvent";
+            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            UserEventTab userEvent;
+            foreach (DataRow item in ds.Rows)
+            {
+                userEvent = new UserEventTab();
+                userEvent.ID = new Guid(item["ID"].ToString());
+                userEvent.EventNo = item["EventNo"].ToString();
+                userEvent.DeviceID = new Guid(item["DeviceID"].ToString());
+                userEvent.DeviceNo = item["DeviceNo"].ToString();
+
+                Int32? intEventType = null;
+                if (item["EventType"] != DBNull.Value)
+                {
+                    intEventType = Convert.ToInt32(item["EventType"]);
+                }
+                userEvent.EventType = intEventType;
+
+                Int32? intValue = null;
+                if (item["State"] != DBNull.Value)
+                    intValue = Convert.ToInt32(item["State"]);
+                userEvent.State = intValue;
+
+                intValue = null;
+                if (item["Count"] != DBNull.Value)
+                    intValue = Convert.ToInt32(item["Count"]);
+                userEvent.Count = intValue;
+
+                DateTime? dTime = null;
+                if (item["RequestTime"] != DBNull.Value)
+                    dTime = Convert.ToDateTime(item["RequestTime"]);
+                userEvent.RequestTime = dTime;
+
+                ///--------------------
+                ///添加前，先把详细信息表中的操作步骤填写上
+                ///从从表中读取数据，然后整合
+                ///--------------------------
+                ///
+                List<EventDealDetail> eventDealDetailList = GetUserEventKeyInfo(userEvent.ID);
+                string joinString = string.Empty;//拼接字符串
+                eventDealDetailList  = eventDealDetailList.OrderBy(tt => tt.StepNo).ToList(); ;//. from p in eventDealDetailList orderby p.StepNo select p;
+                if (eventDealDetailList.Count != 0)
+                {
+                    foreach (EventDealDetail eventItem in eventDealDetailList)
+                    {
+                        joinString += eventItem.StepName + "-->";
+                    }
+                    joinString = joinString.Remove(joinString.LastIndexOf("-->"));
+                }
+                userEvent.DealInfo = joinString;
+                userEvents.Add(userEvent);
+                
+            }
+
+            return BinaryObjTransfer.JsonSerializer<List<UserEventTab>>(userEvents);
+
+        }
+
+        public List<EventDealDetail> GetUserEventKeyInfo(Guid EventKey)
+        {
+           
+            List<EventDealDetail> dealDetails = new List<EventDealDetail>();
+            string sSql = @" Select ID,EventID,OperatorId,StepNo,StepName,Memo,DealTime
+                                From UserEventDealDetail 
+                                Where EventID='" + EventKey.ToString().ToUpper() + "' Order by StepNo";
+            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            if (ds.Rows.Count == 0) { return dealDetails; }
+            EventDealDetail detail;
+            foreach (DataRow item in ds.Rows)
+            {
+                detail = new EventDealDetail();
+                detail.DetailID = new Guid(item["ID"].ToString());
+                detail.EventID = new Guid(item["EventID"].ToString());
+                detail.OperatorId = new Guid(item["OperatorId"].ToString());
+                Int32 intValue = 0;
+                if (item["StepNo"] != DBNull.Value)
+                    intValue = Convert.ToInt32(item["StepNo"]);
+                detail.StepNo = intValue;
+                detail.StepName = item["StepName"].ToString();
+                detail.Memo = item["Memo"].ToString();
+
+                DateTime? dtValue = null;
+                if (item["DealTime"] != DBNull.Value)
+                    dtValue = Convert.ToDateTime(item["DealTime"]);
+                detail.DealTime = dtValue;
+                dealDetails.Add(detail);
+
+            }
+            return dealDetails;
+        }
         #endregion
 
 

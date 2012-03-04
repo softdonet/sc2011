@@ -62,7 +62,7 @@
     <Compile Include="DBClass\DatabaseBackUp.cs" />
     <Compile Include="DBClass\Department.cs" />
     <Compile Include="DBClass\DeviceAlarm.cs" />
-    <Compile Include="DBClass\DeviceAlarmViewModel.cs" />
+    <Compile Include="DBClass\DeviceAlarmViewModeltest.cs" />
     <Compile Include="DBClass\DeviceInfo.cs" />
     <Compile Include="DBClass\DeviceLog.cs" />
     <Compile Include="DBClass\DeviceMaintenancePeople.cs" />
@@ -82,6 +82,7 @@
     <Compile Include="Enums\DeviceStates.cs" />
     <Compile Include="Enums\EventTypes.cs" />
     <Compile Include="Enums\UserDealState.cs" />
+    <Compile Include="Enums\UserEventType.cs" />
     <Compile Include="NotifyPropertyChangedObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

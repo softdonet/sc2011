@@ -21,6 +21,7 @@ using Scada.Client.SL.CommClass;
 using Scada.Client.SL.ScadaDeviceService;
 
 using Scada.Utility.Common.SL;
+using Scada.Client.VM.Modules.UserEvent;
 
 
 namespace Scada.Client.SL.Modules.UsersEvent
@@ -57,14 +58,26 @@ namespace Scada.Client.SL.Modules.UsersEvent
 
             InitializeComponent();
 
+            UserEventViewModel userEventViewModel = new UserEventViewModel();
+            this.DataContext = userEventViewModel;
+            userEventViewModel.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(userEventViewModel_PropertyChanged);
+
+
             MyContent.CloseBtn += new EventHandler(MyContent_CloseBtn);
-            this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
 
-            this._scadaDeviceServiceSoapClient.GetListUserEventInfoCompleted +=
-                new EventHandler<GetListUserEventInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_ListUserEventInfoCompleted);
 
-            this._scadaDeviceServiceSoapClient.GetListUserEventInfoAsync();
+            //this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
 
+            //this._scadaDeviceServiceSoapClient.GetListUserEventInfoCompleted +=
+            //    new EventHandler<GetListUserEventInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_ListUserEventInfoCompleted);
+
+            //this._scadaDeviceServiceSoapClient.GetListUserEventInfoAsync();
+
+        }
+
+        void userEventViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            //throw new NotImplementedException();
         }
 
         void MyContent_CloseBtn(object sender, EventArgs e)

@@ -110,6 +110,7 @@ namespace BusinessRules
         /// <returns></returns>
         public bool SaveRealTimeData(RealTimeData_R realTimeData_R)
         {
+
             //TODO:请根据系统配置参数对告警进行处理
             DeviceInfo deviceInfor = DataContext.DeviceInfos.SingleOrDefault(e => e.DeviceSN == realTimeData_R.Header.DeviceSN);
             if (deviceInfor != null)
@@ -124,22 +125,78 @@ namespace BusinessRules
                     //---------------------------------------------------
                     //温度
                     drt.Temperature = (double)item.Temperature1;
+                     //湿度  需要添加字段
                     //信号
-                    drt.Signal = 2;//(double)item.Signal;
-                    //电量
-                    drt.Electricity = 3;// (double)item.Electric;
+                    //0---31  5以下不能用  界面量程（信号(0--4)）
+                  
+
+
+                    if (item.Signal.HasValue)
+                    {
+                        if (item.Signal.Value < 5)
+                        {
+                            drt.Signal = 0;
+                        }
+                        else if (item.Signal.Value > 5 && item.Signal.Value < 10)
+                        {
+                            drt.Signal = 1;
+                        }
+                        else if (item.Signal.Value > 10 && item.Signal.Value < 15)
+                        {
+                            drt.Signal = 2;
+                        }
+                        else if (item.Signal.Value > 15 && item.Signal.Value < 25)
+                        {
+                            drt.Signal = 3;
+                        }
+                        else if (item.Signal.Value>25)
+                        {
+                            drt.Signal = 4;
+                        }
+                    }
+                    else
+                    {
+                        drt.Signal = 0;
+                    }
+
+                    //电量 0--400 //界面量程(1--3)
+                    if (item.Electric.HasValue)
+                    {
+                        if (item.Electric.Value < 50)
+                        {
+                            drt.Electricity = 0;
+                        }
+                        else if (item.Electric.Value > 50 && item.Electric.Value < 200)
+                        {
+                            drt.Electricity = 1;
+                        }
+                        else if (item.Electric.Value > 200 && item.Electric.Value < 300)
+                        {
+                            drt.Electricity = 2;
+                        }
+                        else if (item.Electric.Value > 300 && item.Electric.Value < 400)
+                        {
+                            drt.Electricity = 3;
+                        }
+                    }
+                    else
+                    {
+                        drt.Electricity = 0;
+                    }
+
                     //设备状态
                     drt.Status = 1;//设备状态
-                    drt.UpdateTime = item.SateTimeMark;
+                    drt.UpdateTime = DateTime.Now;//item.SateTimeMark;
                     DataContext.DeviceRealTimes.InsertOnSubmit(drt);
                     //判断告警的逻辑
-                    if (drt.Temperature.Value > 50 || drt.Temperature.Value < 10)
+                    if (drt.Temperature.Value > 21 || drt.Temperature.Value < 16)
                     {
+                        drt.Status = 3;//设备告警
                         DeviceAlarm da = new DeviceAlarm();
                         da.ID = Guid.NewGuid();
                         da.DeviceID = deviceInfor.ID;
                         da.DeviceNo = deviceInfor.DeviceNo;
-                        da.StartTime = item.SateTimeMark;
+                        da.StartTime = DateTime.Now;//item.SateTimeMark;
                         if (drt.Temperature.Value > 50)
                         {
                             //超高
@@ -167,11 +224,12 @@ namespace BusinessRules
         /// <returns></returns>
         public bool SaveUserEvent(UserEvent_R userEvent_R)
         {
+
             //逻辑较复杂些
             DeviceInfo deviceInfor = DataContext.DeviceInfos.SingleOrDefault(e => e.DeviceSN == userEvent_R.Header.DeviceSN);
             if (deviceInfor != null)
             {
-                var obj = DataContext.UserEvents.SingleOrDefault(e => e.DeviceID == deviceInfor.ID && e.State == 1);
+                var obj = DataContext.UserEvents.SingleOrDefault(e => e.DeviceID == deviceInfor.ID && e.State == 1 && e.EventType == userEvent_R.WorkstateChild);
                 if (obj != null)
                 {
                     obj.Count = obj.Count.GetValueOrDefault(0) + 1;
@@ -187,6 +245,7 @@ namespace BusinessRules
                     ue.RequestTime = DateTime.Now;
                     ue.State = 1;
                     ue.Count = 1;
+                    ue.EventType = userEvent_R.WorkstateChild;
                     DataContext.UserEvents.InsertOnSubmit(ue);
                 }
                 DataContext.SubmitChanges();

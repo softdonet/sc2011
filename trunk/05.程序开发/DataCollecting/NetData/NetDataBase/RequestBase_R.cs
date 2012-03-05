@@ -22,23 +22,25 @@ namespace NetData
             //MAC地址
             mac = StringHelper.DataToMACStr(data, 21, 7);
             //SIM卡号
-            sim = System.Text.Encoding.ASCII.GetString(data,28,20);
+            sim = System.Text.Encoding.ASCII.GetString(data, 28, 20);
             //产品型号长度
             deviveTypeLength = BitConverter.ToUInt16(data, 48);
             //产品型号
             deviveType = System.Text.Encoding.ASCII.GetString(data, 50, deviveTypeLength);
+
+            int index = 50 + deviveTypeLength;
             //硬件住版本号
-            hardwareVersionMain = data[62];
+            hardwareVersionMain = data[index];
             //硬件子版本号
-            hardwareVersionChild = data[63];
+            hardwareVersionChild = data[index + 1];
             //软件主版本号
-            softwareVersionMain = data[64];
+            softwareVersionMain = data[index + 2];
             //软件子版本号
-            softwareVersionChild = data[65];
+            softwareVersionChild = data[index + 3];
             //工作状态主信息
-            workstateMain = data[66];
+            workstateMain = data[index + 4];
             //工作状态子信息
-            workstateChild = data[67];
+            workstateChild = data[index + 5];
         }
 
         /// <summary>

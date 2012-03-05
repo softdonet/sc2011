@@ -7,6 +7,7 @@ using System.Net;
 using System.Collections;
 using NetData;
 using BusinessRules;
+using Utility;
 
 namespace DataCollecting.NetServer
 {
@@ -157,7 +158,7 @@ namespace DataCollecting.NetServer
             serverSocket.BeginAccept(new AsyncCallback(OnAccept), null);
         }
 
-        byte[] byteData = new byte[1024];
+
         private void OnAccept(IAsyncResult ar)
         {
             try
@@ -175,21 +176,23 @@ namespace DataCollecting.NetServer
                     System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
             }
         }
-
+        byte[] byteData = new byte[1024];
         private void OnReceive(IAsyncResult ar)
         {
             try
             {
                 Socket clientSocket = (Socket)ar.AsyncState;
                 clientSocket.EndReceive(ar);
-
+                //数据转化
+                byte[] realData = StringHelper.ConvertData(byteData);
                 bool wexit = false;
                 int tmpcp = 0;//数组位置指针
                 int tmpsize = 0;
                 Head header = null;
+
                 while (!wexit)
                 {
-                    tmpsize = BitConverter.ToUInt16(byteData, tmpcp);
+                    tmpsize = BitConverter.ToUInt16(realData, tmpcp);
                     /*---------------一个有效的命令--------------------
                         1.命令头为55AA=Const.UP_HEADER、
                         2.并且CRC16校验成功
@@ -200,17 +203,17 @@ namespace DataCollecting.NetServer
                     }
                     else
                     {
-                        header = new Head(byteData);
+                        header = new Head(realData);
                         tmpsize = header.CommandCount;
                         byte[] tmpdata = new byte[tmpsize];
-                        Array.Copy(byteData, tmpcp, tmpdata, 0, tmpsize);
+                        Array.Copy(realData, tmpcp, tmpdata, 0, tmpsize);
                         tmpcp = tmpcp + tmpsize;
                         //CRC16校验
                         MessageBase mb = new MessageBase(tmpdata);
-                        if (mb.Verify())
-                        {
-                            ReceivedCommand(clientSocket, tmpdata, header.CmdCommand);
-                        }
+                        //if (mb.Verify())
+                        //{
+                        ReceivedCommand(clientSocket, tmpdata, header.CmdCommand);
+                        //}
                     }
                 }
             }
@@ -218,7 +221,7 @@ namespace DataCollecting.NetServer
             {
                 Socket clientSocket = (Socket)ar.AsyncState;
                 clientSocket.Close();
-                System.Windows.Forms.MessageBox.Show("数据解析出现异常", "提示");
+                //System.Windows.Forms.MessageBox.Show("数据解析出现异常", "提示");
             }
 
         }
@@ -272,16 +275,23 @@ namespace DataCollecting.NetServer
                     Head hconfig = new Head();
                     hconfig.CmdHeader = Const.DOWN_HEADER;
                     hconfig.CmdCommand = Command.cmd_Reply;
-                    hconfig.DataContext =cr.Header.DataContext;
+                    hconfig.DataContext = cr.Header.DataContext;
                     hconfig.DeviceSN = cr.Header.DeviceSN;
                     hconfig.SateTimeMark = DateTime.Now;
-                    if (bll.RefreshData(cr))
+                    if (Comm.UpdateToDB)
                     {
-                        hconfig.State = 1;
+                        if (bll.RefreshData(cr))
+                        {
+                            hconfig.State = 1;
+                        }
+                        else
+                        {
+                            hconfig.State = 2;
+                        }
                     }
                     else
                     {
-                        hconfig.State = 2;
+                        hconfig.State = 1;
                     }
                     ReplyBase_S replyBase_S_config = bll.GetDeviceInfor(cr.Header.DeviceSN);
                     replyBase_S_config.Header = hconfig;
@@ -306,13 +316,20 @@ namespace DataCollecting.NetServer
                     hRealTime.DataContext = rr.Header.DataContext;
                     hRealTime.DeviceSN = rr.Header.DeviceSN;
                     hRealTime.SateTimeMark = DateTime.Now;
-                    if (bll.SaveRealTimeData(rr))
+                    if (Comm.UpdateToDB)
                     {
-                        hRealTime.State = 1;
+                        if (bll.SaveRealTimeData(rr))
+                        {
+                            hRealTime.State = 1;
+                        }
+                        else
+                        {
+                            hRealTime.State = 2;
+                        }
                     }
                     else
                     {
-                        hRealTime.State = 2;
+                        hRealTime.State = 1;
                     }
                     ReplyBase_S replyBase_S_realTime = bll.GetDeviceInfor(rr.Header.DeviceSN);
                     replyBase_S_realTime.Header = hRealTime;
@@ -337,13 +354,20 @@ namespace DataCollecting.NetServer
                     hUserEvent.DataContext = ur.Header.DataContext;
                     hUserEvent.DeviceSN = ur.Header.DeviceSN;
                     hUserEvent.SateTimeMark = DateTime.Now;
-                    if (bll.SaveUserEvent(ur))
+                    if (Comm.UpdateToDB)
                     {
-                        hUserEvent.State = 1;
+                        if (bll.SaveUserEvent(ur))
+                        {
+                            hUserEvent.State = 1;
+                        }
+                        else
+                        {
+                            hUserEvent.State = 2;
+                        }
                     }
                     else
                     {
-                        hUserEvent.State = 2;
+                        hUserEvent.State = 1;
                     }
                     ReplyBase_S replyBase_S_userEvent = bll.GetDeviceInfor(ur.Header.DeviceSN);
                     replyBase_S_userEvent.Header = hUserEvent;
@@ -386,7 +410,7 @@ namespace DataCollecting.NetServer
                     break;
             }
             //保持常连接
-            //clientSocket.BeginReceive(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(OnReceive), clientSocket);
+            clientSocket.BeginReceive(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(OnReceive), clientSocket);
         }
     }
 }

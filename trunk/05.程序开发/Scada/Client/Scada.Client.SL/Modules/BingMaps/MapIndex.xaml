@@ -319,12 +319,12 @@
                         <telerik:RadGridView.Columns>
                             <telerik:GridViewDataColumn Header="设备名称" DataMemberBinding="{Binding DeviceNo}" Width="80" HeaderTextAlignment="Center" />
                             <telerik:GridViewDataColumn Header="告警类型" DataMemberBinding="{Binding Converter={StaticResource ConverNumberToTextAlarm1},ConverterParameter=EventType}" Width="70" HeaderTextAlignment="Center"  />
-                            <telerik:GridViewDataColumn    Width="70"
-											Header="操作" HeaderTextAlignment="Center" TextAlignment="Center" >
+
+                            <telerik:GridViewDataColumn    Width="70" Header="操作" HeaderTextAlignment="Center" TextAlignment="Center" >
                                 <telerik:GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel  Orientation="Horizontal"   HorizontalAlignment="Center">
-                                            <HyperlinkButton x:Name="hlBtn"   IsEnabled="False"   HorizontalAlignment="Center"  Content="处理"  Foreground="#FF0000CC" />
+                                            <HyperlinkButton x:Name="hlBtnAlarm"    HorizontalAlignment="Center"  Content="详细"  Foreground="#FF0000CC" Click="hlBtnAlarm_Click" />
                                         </StackPanel>
                                     </DataTemplate>
                                 </telerik:GridViewColumn.CellTemplate>
@@ -345,12 +345,12 @@
                         <telerik:RadGridView.Columns>
                             <telerik:GridViewDataColumn Header="设备名称" DataMemberBinding="{Binding DeviceNo}" Width="80" HeaderTextAlignment="Center" />
                             <telerik:GridViewDataColumn Header="事件类型" DataMemberBinding="{Binding Converter={StaticResource ConvertNumberToText1},ConverterParameter=EventType}" Width="70" HeaderTextAlignment="Center"  />
-                            <telerik:GridViewDataColumn    Width="70"
-											Header="操作" HeaderTextAlignment="Center" TextAlignment="Center" >
+
+                            <telerik:GridViewDataColumn    Width="100" Header="操作" HeaderTextAlignment="Center" TextAlignment="Center" >
                                 <telerik:GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel  Orientation="Horizontal"   HorizontalAlignment="Center">
-                                            <HyperlinkButton x:Name="hlBtn"   IsEnabled="False"   HorizontalAlignment="Center"  Content="处理"  Foreground="#FF0000CC" />
+                                            <HyperlinkButton x:Name="hlBtnUserEvent"    HorizontalAlignment="Center"  Content="处理"  Foreground="#FF0000CC" Click="hlBtnUserEvent_Click" />
                                         </StackPanel>
                                     </DataTemplate>
                                 </telerik:GridViewColumn.CellTemplate>

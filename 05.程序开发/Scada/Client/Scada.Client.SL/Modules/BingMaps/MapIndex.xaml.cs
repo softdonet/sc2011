@@ -20,6 +20,9 @@ using Scada.Model.Entity.Enums;
 using Scada.Client.SL.Modules.Device;
 using Scada.Client.VM.Modules.Alarm;
 using Scada.Client.VM.Modules.UserEvent;
+using Scada.Model.Entity;
+using Scada.Client.SL.Modules.UsersEvent;
+using Telerik.Windows.Controls;
 
 namespace Scada.Client.SL.Modules.BingMaps
 {
@@ -222,6 +225,28 @@ namespace Scada.Client.SL.Modules.BingMaps
                 this.MainGrid.ColumnDefinitions[2].Width = new GridLength(240);
                 this.ZheDieStoryboardShow.Begin();
             }
+        }
+
+        private Guid id, deviceid;
+        private int? state;
+       
+
+        private void hlBtnAlarm_Click(object sender, RoutedEventArgs e)
+        {
+            HyperlinkButton hlB = sender as HyperlinkButton;
+            id = (hlB.DataContext as DeviceAlarm).ID;
+           // RadWindow.Prompt("请输入备注：", new EventHandler<WindowClosedEventArgs>(OnClosed));
+        }
+
+        private void hlBtnUserEvent_Click(object sender, RoutedEventArgs e)
+        {
+            HyperlinkButton hlB = sender as HyperlinkButton;
+            UserEventTab userEventTab = hlB.DataContext as UserEventTab;
+            id = (hlB.DataContext as UserEventTab).ID;
+            state = (hlB.DataContext as UserEventTab).State;
+            Storyboard1.Begin();
+            MyContent.Content = new UserEventProcess(userEventTab);
+            MyContent.Title = "用户事件流程";
         }
     }
 }

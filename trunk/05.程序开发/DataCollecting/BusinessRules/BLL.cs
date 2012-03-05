@@ -174,7 +174,7 @@ namespace BusinessRules
                         {
                             drt.Electricity = 2;
                         }
-                        else if (item.Electric.Value > 300 && item.Electric.Value < 400)
+                        else if (item.Electric.Value > 300 )
                         {
                             drt.Electricity = 3;
                         }

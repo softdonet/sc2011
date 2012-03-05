@@ -65,7 +65,7 @@ namespace Scada.Client.SL.Modules.Device
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-         
+
 
         }
 
@@ -155,6 +155,9 @@ namespace Scada.Client.SL.Modules.Device
                     {
                         switch (currentValue.Electricity.Value)
                         {
+                            case 0:
+                                img = "electric0.png";
+                                break;
                             case 1:
                                 img = "electric1.png";
                                 break;
@@ -167,6 +170,10 @@ namespace Scada.Client.SL.Modules.Device
                             case 4:
                                 img = "electric4.png";
                                 break;
+                            default:
+                                img = "electric0.png";
+                                break;
+
                         }
                         break;
                     }
@@ -185,8 +192,11 @@ namespace Scada.Client.SL.Modules.Device
                             case 3:
                                 img = "signal3.png";
                                 break;
-                            case 4:
-                                img = "signal4.png";
+                            //case 4:
+                            //    img = "signal4.png";
+                            //    break;
+                            default:
+                                img = "signal1.png";
                                 break;
                         }
                         break;

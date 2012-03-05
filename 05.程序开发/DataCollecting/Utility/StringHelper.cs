@@ -13,6 +13,38 @@ namespace Utility
     {
         #region 字节转化为字符相关
         /// <summary>
+        ///通讯数据转换
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static byte[] ConvertData(byte[] data)
+        {
+
+            List<byte> result = new List<byte>();
+            for (int i = 0; i < data.Length / 2; i = i + 2)
+            {
+                string strHex1 = System.Text.Encoding.ASCII.GetString(data, i, 1);
+                string strHex2 = System.Text.Encoding.ASCII.GetString(data, i + 1, 1);
+                string strHex = strHex1 + strHex2;
+                byte temp = Convert.ToByte(strHex, 16);
+                result.Add(temp);
+                bool falg = false;
+                if (data[i + 2] == 0x00 || data[i + 2] == 13 || data[i + 2] == 10)
+                {
+                    falg = true;
+                }
+                if (falg)
+                {
+                    break;
+                }
+            }
+            byte[] tempByte = result.ToArray();
+            byte[] newByte = new byte[1024];
+            Array.Copy(tempByte, 0, newByte, 0, tempByte.Length);
+            return newByte;
+        }
+
+        /// <summary>
         /// 单字节转化为字符
         /// </summary>
         /// <param name="data"></param>

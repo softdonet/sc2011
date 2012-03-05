@@ -53,7 +53,7 @@ namespace DataCollecting
         private string GetHeader(MessageBase mb)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("报头：" + StringHelper.DataToStrV2(mb.Header.ToByte()) + Environment.NewLine);
+            sb.Append("报头(不含长度和校验位)：" + StringHelper.DataToStrV2(mb.Header.ToByte()) + Environment.NewLine);
             sb.Append("    命令头：" + StringHelper.DataToStrV2(BitConverter.GetBytes(mb.Header.CmdHeader)) + Environment.NewLine);
             sb.Append("    功能码：" + StringHelper.DataToStr(((byte)mb.Header.CmdCommand)) + Environment.NewLine);
             sb.Append("    数据上下文：" + StringHelper.DataToStrV2(BitConverter.GetBytes(mb.Header.DataContext)) + Environment.NewLine);
@@ -76,9 +76,9 @@ namespace DataCollecting
             sb.Append("    MAC地址：" + rr.MAC + Environment.NewLine);
             sb.Append("    SIM卡号：" + rr.SIM + Environment.NewLine);
             sb.Append("    设备型号：" + rr.DeviveType + Environment.NewLine);
-            sb.Append("    硬件版本号：" + String.Format("{0}.{1}", rr.HardwareVersionMain.ToString(), rr.HardwareVersionChild.ToString()) + Environment.NewLine);
-            sb.Append("    软件版本号：" + String.Format("{0}.{1}", rr.SoftwareVersionMain.ToString(), rr.SoftwareVersionChild.ToString()) + Environment.NewLine);
-            sb.Append("    工作状态：" + String.Format("{0}.{1}", rr.WorkstateMain.ToString(), rr.WorkstateChild.ToString()) + Environment.NewLine);
+            sb.Append("    硬件版本号：" + String.Format("{0}.{1}", StringHelper.DataToStr(rr.HardwareVersionMain), StringHelper.DataToStr(rr.HardwareVersionChild)) + Environment.NewLine);
+            sb.Append("    软件版本号：" + String.Format("{0}.{1}", StringHelper.DataToStr(rr.SoftwareVersionMain), StringHelper.DataToStr(rr.SoftwareVersionChild)) + Environment.NewLine);
+            sb.Append("    工作状态：" + String.Format("{0}.{1}", StringHelper.DataToStr(rr.WorkstateMain), StringHelper.DataToStr(rr.WorkstateChild)) + Environment.NewLine);
             return sb.ToString();
         }
 
@@ -109,22 +109,25 @@ namespace DataCollecting
         delegate void SetTextHandle(string str, bool isClear);
         private void SetText(string str, bool isClear)
         {
-            if (this.InvokeRequired)
+            if (Comm.PrintCmd)
             {
-                this.Invoke(new SetTextHandle(SetText), str, isClear);
-            }
-            else
-            {
-                if (isClear)
+                if (this.InvokeRequired)
                 {
-                    this.textBox1.Text = str + Environment.NewLine;
+                    this.Invoke(new SetTextHandle(SetText), str, isClear);
                 }
                 else
                 {
-                    this.textBox1.Text += str + Environment.NewLine;
+                    if (isClear)
+                    {
+                        this.textBox1.Text = str + Environment.NewLine;
+                    }
+                    else
+                    {
+                        this.textBox1.Text += str + Environment.NewLine;
+                    }
+                    textBox1.SelectionStart = textBox1.TextLength;
+                    textBox1.ScrollToCaret();
                 }
-                textBox1.SelectionStart = textBox1.TextLength;
-                textBox1.ScrollToCaret();
             }
         }
 
@@ -313,7 +316,7 @@ namespace DataCollecting
             h.CmdHeader = Const.UP_HEADER;
             h.CmdCommand = Command.cmd_RealTimeDate_R;
             h.DataContext = 42605;
-            h.DeviceSN = "0A5F01CD0001";
+            h.DeviceSN = "000000000000";
             h.State = 0;
             h.SateTimeMark = DateTime.Now;
             RealTimeData_R rr = new RealTimeData_R();
@@ -323,7 +326,7 @@ namespace DataCollecting
             block.BlockNo = 1;
             block.SateTimeMark = DateTime.Now;
             block.Temperature1 = (decimal)60;
-            block.Temperature2 = (decimal)12.45;
+            block.Temperature2 = (decimal)25.45;
             block.Temperature3 = (decimal)13.45;
             block.Temperature4 = (decimal)14.45;
             block.Temperature5 = (decimal)15.45;
@@ -334,7 +337,7 @@ namespace DataCollecting
             RealTimeDataBlock block1 = new RealTimeDataBlock();
             block1.BlockNo = 2;
             block1.SateTimeMark = DateTime.Now;
-            block1.Temperature1 = (decimal)21.45;
+            block1.Temperature1 = (decimal)25.45;
             block1.Temperature2 = (decimal)22.45;
             block1.Temperature3 = (decimal)23.45;
             block1.Temperature4 = (decimal)24.45;
@@ -343,21 +346,21 @@ namespace DataCollecting
             block1.Electric = (decimal)27.45;
             block1.Signal = (decimal)28.45;
 
-            RealTimeDataBlock block2 = new RealTimeDataBlock();
-            block2.BlockNo = 3;
-            block2.SateTimeMark = DateTime.Now;
-            block2.Temperature1 = (decimal)31.45;
-            block2.Temperature2 = (decimal)32.45;
-            block2.Temperature3 = (decimal)33.45;
-            block2.Temperature4 = (decimal)34.45;
-            block2.Temperature5 = (decimal)35.45;
-            block2.Humidity = (decimal)36.45;
-            block2.Electric = (decimal)37.45;
-            block2.Signal = (decimal)38.45;
+            //RealTimeDataBlock block2 = new RealTimeDataBlock();
+            //block2.BlockNo = 3;
+            //block2.SateTimeMark = DateTime.Now;
+            //block2.Temperature1 = (decimal)25.45;
+            //block2.Temperature2 = (decimal)32.45;
+            //block2.Temperature3 = (decimal)33.45;
+            //block2.Temperature4 = (decimal)34.45;
+            //block2.Temperature5 = (decimal)35.45;
+            //block2.Humidity = (decimal)36.45;
+            //block2.Electric = (decimal)37.45;
+            //block2.Signal = (decimal)38.45;
 
             rr.RealTimeDataBlocks.Add(block);
             rr.RealTimeDataBlocks.Add(block1);
-            rr.RealTimeDataBlocks.Add(block2);
+            //rr.RealTimeDataBlocks.Add(block2);
 
             SetText(StringHelper.DataToStr(rr.ToByte()) + Environment.NewLine, false);
         }
@@ -392,7 +395,7 @@ namespace DataCollecting
             h.CmdHeader = Const.UP_HEADER;
             h.CmdCommand = Command.cmd_UserEvent_R;
             h.DataContext = 42605;
-            h.DeviceSN = "0A5F01CD0001";
+            h.DeviceSN = "000000000000";
             h.State = 0;
             h.SateTimeMark = DateTime.Now;
 
@@ -517,6 +520,35 @@ namespace DataCollecting
 
             rs.BroadcastData = broadcastDataBlock;
             SetText(StringHelper.DataToStr(rs.ToByte()) + Environment.NewLine, false);
+        }
+
+        private void frm_Test_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkUpdateToDB_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.chkUpdateToDB.Checked)
+            {
+                Comm.UpdateToDB = true;
+            }
+            else
+            {
+                Comm.UpdateToDB = false;
+            }
+        }
+
+        private void chkPrintCmd_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.chkPrintCmd.Checked)
+            {
+                Comm.PrintCmd = true;
+            }
+            else
+            {
+                Comm.PrintCmd = false;
+            }
         }
     }
 }

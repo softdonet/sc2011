@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.上行命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.生成测试命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.生成实时数据命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.生成设备请求配置命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,27 +40,22 @@
             this.主动关闭告知命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.清除屏幕ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
-            this.实时数据回复命令ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.上行命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.下行命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.实时数据回复命令ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.chkUpdateToDB = new System.Windows.Forms.CheckBox();
+            this.chkPrintCmd = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.Color.Black;
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.ForeColor = System.Drawing.Color.Lime;
-            this.textBox1.Location = new System.Drawing.Point(0, 48);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(889, 420);
-            this.textBox1.TabIndex = 0;
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.Wheat;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.上行命令ToolStripMenuItem,
             this.生成测试命令ToolStripMenuItem,
@@ -71,11 +66,19 @@
             this.注册命令ToolStripMenuItem,
             this.主动关闭告知命令ToolStripMenuItem,
             this.清除屏幕ToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 24);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(889, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // 上行命令ToolStripMenuItem
+            // 
+            this.上行命令ToolStripMenuItem.Font = new System.Drawing.Font("SimSun", 9F);
+            this.上行命令ToolStripMenuItem.ForeColor = System.Drawing.Color.Blue;
+            this.上行命令ToolStripMenuItem.Name = "上行命令ToolStripMenuItem";
+            this.上行命令ToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.上行命令ToolStripMenuItem.Text = "上行命令：";
             // 
             // 生成测试命令ToolStripMenuItem
             // 
@@ -135,29 +138,15 @@
             // 
             // menuStrip2
             // 
+            this.menuStrip2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.下行命令ToolStripMenuItem,
             this.实时数据回复命令ToolStripMenuItem1});
-            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip2.Location = new System.Drawing.Point(0, 24);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.Size = new System.Drawing.Size(889, 24);
-            this.menuStrip2.TabIndex = 5;
+            this.menuStrip2.TabIndex = 8;
             this.menuStrip2.Text = "menuStrip2";
-            // 
-            // 实时数据回复命令ToolStripMenuItem1
-            // 
-            this.实时数据回复命令ToolStripMenuItem1.Name = "实时数据回复命令ToolStripMenuItem1";
-            this.实时数据回复命令ToolStripMenuItem1.Size = new System.Drawing.Size(113, 20);
-            this.实时数据回复命令ToolStripMenuItem1.Text = "实时数据回复命令";
-            this.实时数据回复命令ToolStripMenuItem1.Click += new System.EventHandler(this.实时数据回复命令ToolStripMenuItem1_Click);
-            // 
-            // 上行命令ToolStripMenuItem
-            // 
-            this.上行命令ToolStripMenuItem.Font = new System.Drawing.Font("SimSun", 9F);
-            this.上行命令ToolStripMenuItem.ForeColor = System.Drawing.Color.Blue;
-            this.上行命令ToolStripMenuItem.Name = "上行命令ToolStripMenuItem";
-            this.上行命令ToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
-            this.上行命令ToolStripMenuItem.Text = "上行命令：";
             // 
             // 下行命令ToolStripMenuItem
             // 
@@ -166,21 +155,89 @@
             this.下行命令ToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
             this.下行命令ToolStripMenuItem.Text = "下行命令：";
             // 
+            // 实时数据回复命令ToolStripMenuItem1
+            // 
+            this.实时数据回复命令ToolStripMenuItem1.Name = "实时数据回复命令ToolStripMenuItem1";
+            this.实时数据回复命令ToolStripMenuItem1.Size = new System.Drawing.Size(113, 20);
+            this.实时数据回复命令ToolStripMenuItem1.Text = "实时数据回复命令";
+            this.实时数据回复命令ToolStripMenuItem1.Click += new System.EventHandler(this.实时数据回复命令ToolStripMenuItem1_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 48);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(889, 420);
+            this.panel1.TabIndex = 9;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.Black;
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.ForeColor = System.Drawing.Color.Lime;
+            this.textBox1.Location = new System.Drawing.Point(0, 35);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(889, 385);
+            this.textBox1.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.chkPrintCmd);
+            this.panel2.Controls.Add(this.chkUpdateToDB);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(889, 35);
+            this.panel2.TabIndex = 2;
+            // 
+            // chkUpdateToDB
+            // 
+            this.chkUpdateToDB.AutoSize = true;
+            this.chkUpdateToDB.Location = new System.Drawing.Point(12, 8);
+            this.chkUpdateToDB.Name = "chkUpdateToDB";
+            this.chkUpdateToDB.Size = new System.Drawing.Size(96, 16);
+            this.chkUpdateToDB.TabIndex = 0;
+            this.chkUpdateToDB.Text = "更新到数据库";
+            this.chkUpdateToDB.UseVisualStyleBackColor = true;
+            this.chkUpdateToDB.CheckedChanged += new System.EventHandler(this.chkUpdateToDB_CheckedChanged);
+            // 
+            // chkPrintCmd
+            // 
+            this.chkPrintCmd.AutoSize = true;
+            this.chkPrintCmd.Checked = true;
+            this.chkPrintCmd.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkPrintCmd.Location = new System.Drawing.Point(115, 8);
+            this.chkPrintCmd.Name = "chkPrintCmd";
+            this.chkPrintCmd.Size = new System.Drawing.Size(96, 16);
+            this.chkPrintCmd.TabIndex = 1;
+            this.chkPrintCmd.Text = "实时打印命令";
+            this.chkPrintCmd.UseVisualStyleBackColor = true;
+            this.chkPrintCmd.CheckedChanged += new System.EventHandler(this.chkPrintCmd_CheckedChanged);
+            // 
             // frm_Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(889, 468);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip2);
+            this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frm_Test";
             this.Text = "命令测试";
+            this.Load += new System.EventHandler(this.frm_Test_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,7 +245,6 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 生成测试命令ToolStripMenuItem;
@@ -199,10 +255,15 @@
         private System.Windows.Forms.ToolStripMenuItem 注册命令ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 主动关闭告知命令ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 清除屏幕ToolStripMenuItem;
-        private System.Windows.Forms.MenuStrip menuStrip2;
-        private System.Windows.Forms.ToolStripMenuItem 实时数据回复命令ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 上行命令ToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.ToolStripMenuItem 下行命令ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 实时数据回复命令ToolStripMenuItem1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.CheckBox chkUpdateToDB;
+        private System.Windows.Forms.CheckBox chkPrintCmd;
     }
 }
 

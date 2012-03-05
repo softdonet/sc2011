@@ -13,10 +13,10 @@ namespace NetData
         /// <summary>
         /// 上行命令头标识
         /// </summary>
-        public static ushort UP_HEADER = 0xAA55;
+        public static ushort UP_HEADER = 0X55AA;
         /// <summary>
         /// 下行命令头标识
         /// </summary>
-        public static ushort DOWN_HEADER = 0X55AA;
+        public static ushort DOWN_HEADER = 0xAA55;
     }
 }

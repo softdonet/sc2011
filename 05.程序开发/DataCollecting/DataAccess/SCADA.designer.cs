@@ -30,12 +30,12 @@ namespace DataAccess
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertDeviceInfo(DeviceInfo instance);
-    partial void UpdateDeviceInfo(DeviceInfo instance);
-    partial void DeleteDeviceInfo(DeviceInfo instance);
     partial void InsertDeviceAlarm(DeviceAlarm instance);
     partial void UpdateDeviceAlarm(DeviceAlarm instance);
     partial void DeleteDeviceAlarm(DeviceAlarm instance);
+    partial void InsertDeviceInfo(DeviceInfo instance);
+    partial void UpdateDeviceInfo(DeviceInfo instance);
+    partial void DeleteDeviceInfo(DeviceInfo instance);
     partial void InsertDeviceMaintenancePeople(DeviceMaintenancePeople instance);
     partial void UpdateDeviceMaintenancePeople(DeviceMaintenancePeople instance);
     partial void DeleteDeviceMaintenancePeople(DeviceMaintenancePeople instance);
@@ -92,14 +92,6 @@ namespace DataAccess
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<DeviceInfo> DeviceInfos
-		{
-			get
-			{
-				return this.GetTable<DeviceInfo>();
-			}
-		}
-		
 		public System.Data.Linq.Table<DatabaseBackUp> DatabaseBackUps
 		{
 			get
@@ -121,6 +113,14 @@ namespace DataAccess
 			get
 			{
 				return this.GetTable<DeviceAlarm>();
+			}
+		}
+		
+		public System.Data.Linq.Table<DeviceInfo> DeviceInfos
+		{
+			get
+			{
+				return this.GetTable<DeviceInfo>();
 			}
 		}
 		
@@ -212,14 +212,6 @@ namespace DataAccess
 			}
 		}
 		
-		public System.Data.Linq.Table<UserRole> UserRoles
-		{
-			get
-			{
-				return this.GetTable<UserRole>();
-			}
-		}
-		
 		public System.Data.Linq.Table<UserEventDealDetail> UserEventDealDetails
 		{
 			get
@@ -228,11 +220,501 @@ namespace DataAccess
 			}
 		}
 		
+		public System.Data.Linq.Table<UserRole> UserRoles
+		{
+			get
+			{
+				return this.GetTable<UserRole>();
+			}
+		}
+		
 		public System.Data.Linq.Table<zhenggj> zhenggjs
 		{
 			get
 			{
 				return this.GetTable<zhenggj>();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DatabaseBackUp")]
+	public partial class DatabaseBackUp
+	{
+		
+		private System.Guid _Guid;
+		
+		private string _DatabaseName;
+		
+		private System.Nullable<System.DateTime> _BackUpDate;
+		
+		private System.Nullable<double> _BackUpSize;
+		
+		private string _BackUpPeople;
+		
+		private string _Comment;
+		
+		public DatabaseBackUp()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Guid", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid Guid
+		{
+			get
+			{
+				return this._Guid;
+			}
+			set
+			{
+				if ((this._Guid != value))
+				{
+					this._Guid = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DatabaseName", DbType="VarChar(20)")]
+		public string DatabaseName
+		{
+			get
+			{
+				return this._DatabaseName;
+			}
+			set
+			{
+				if ((this._DatabaseName != value))
+				{
+					this._DatabaseName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BackUpDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> BackUpDate
+		{
+			get
+			{
+				return this._BackUpDate;
+			}
+			set
+			{
+				if ((this._BackUpDate != value))
+				{
+					this._BackUpDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BackUpSize", DbType="Float")]
+		public System.Nullable<double> BackUpSize
+		{
+			get
+			{
+				return this._BackUpSize;
+			}
+			set
+			{
+				if ((this._BackUpSize != value))
+				{
+					this._BackUpSize = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BackUpPeople", DbType="VarChar(20)")]
+		public string BackUpPeople
+		{
+			get
+			{
+				return this._BackUpPeople;
+			}
+			set
+			{
+				if ((this._BackUpPeople != value))
+				{
+					this._BackUpPeople = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comment", DbType="VarChar(50)")]
+		public string Comment
+		{
+			get
+			{
+				return this._Comment;
+			}
+			set
+			{
+				if ((this._Comment != value))
+				{
+					this._Comment = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Department")]
+	public partial class Department
+	{
+		
+		private System.Guid _ID;
+		
+		private string _DepartmentName;
+		
+		private System.Nullable<System.Guid> _ParentID;
+		
+		public Department()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DepartmentName", DbType="VarChar(50)")]
+		public string DepartmentName
+		{
+			get
+			{
+				return this._DepartmentName;
+			}
+			set
+			{
+				if ((this._DepartmentName != value))
+				{
+					this._DepartmentName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> ParentID
+		{
+			get
+			{
+				return this._ParentID;
+			}
+			set
+			{
+				if ((this._ParentID != value))
+				{
+					this._ParentID = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DeviceAlarm")]
+	public partial class DeviceAlarm : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ID;
+		
+		private System.Nullable<System.Guid> _DeviceID;
+		
+		private string _DeviceNo;
+		
+		private System.Nullable<int> _EventType;
+		
+		private System.Nullable<int> _EventLevel;
+		
+		private System.Nullable<System.DateTime> _StartTime;
+		
+		private System.Nullable<System.DateTime> _EndTime;
+		
+		private System.Nullable<System.DateTime> _ConfirmTime;
+		
+		private string _DealStatus;
+		
+		private string _DealPeople;
+		
+		private string _Comment;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(System.Guid value);
+    partial void OnIDChanged();
+    partial void OnDeviceIDChanging(System.Nullable<System.Guid> value);
+    partial void OnDeviceIDChanged();
+    partial void OnDeviceNoChanging(string value);
+    partial void OnDeviceNoChanged();
+    partial void OnEventTypeChanging(System.Nullable<int> value);
+    partial void OnEventTypeChanged();
+    partial void OnEventLevelChanging(System.Nullable<int> value);
+    partial void OnEventLevelChanged();
+    partial void OnStartTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnStartTimeChanged();
+    partial void OnEndTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnEndTimeChanged();
+    partial void OnConfirmTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnConfirmTimeChanged();
+    partial void OnDealStatusChanging(string value);
+    partial void OnDealStatusChanged();
+    partial void OnDealPeopleChanging(string value);
+    partial void OnDealPeopleChanged();
+    partial void OnCommentChanging(string value);
+    partial void OnCommentChanged();
+    #endregion
+		
+		public DeviceAlarm()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeviceID
+		{
+			get
+			{
+				return this._DeviceID;
+			}
+			set
+			{
+				if ((this._DeviceID != value))
+				{
+					this.OnDeviceIDChanging(value);
+					this.SendPropertyChanging();
+					this._DeviceID = value;
+					this.SendPropertyChanged("DeviceID");
+					this.OnDeviceIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceNo", DbType="VarChar(20)")]
+		public string DeviceNo
+		{
+			get
+			{
+				return this._DeviceNo;
+			}
+			set
+			{
+				if ((this._DeviceNo != value))
+				{
+					this.OnDeviceNoChanging(value);
+					this.SendPropertyChanging();
+					this._DeviceNo = value;
+					this.SendPropertyChanged("DeviceNo");
+					this.OnDeviceNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventType", DbType="Int")]
+		public System.Nullable<int> EventType
+		{
+			get
+			{
+				return this._EventType;
+			}
+			set
+			{
+				if ((this._EventType != value))
+				{
+					this.OnEventTypeChanging(value);
+					this.SendPropertyChanging();
+					this._EventType = value;
+					this.SendPropertyChanged("EventType");
+					this.OnEventTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventLevel", DbType="Int")]
+		public System.Nullable<int> EventLevel
+		{
+			get
+			{
+				return this._EventLevel;
+			}
+			set
+			{
+				if ((this._EventLevel != value))
+				{
+					this.OnEventLevelChanging(value);
+					this.SendPropertyChanging();
+					this._EventLevel = value;
+					this.SendPropertyChanged("EventLevel");
+					this.OnEventLevelChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> StartTime
+		{
+			get
+			{
+				return this._StartTime;
+			}
+			set
+			{
+				if ((this._StartTime != value))
+				{
+					this.OnStartTimeChanging(value);
+					this.SendPropertyChanging();
+					this._StartTime = value;
+					this.SendPropertyChanged("StartTime");
+					this.OnStartTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> EndTime
+		{
+			get
+			{
+				return this._EndTime;
+			}
+			set
+			{
+				if ((this._EndTime != value))
+				{
+					this.OnEndTimeChanging(value);
+					this.SendPropertyChanging();
+					this._EndTime = value;
+					this.SendPropertyChanged("EndTime");
+					this.OnEndTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConfirmTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ConfirmTime
+		{
+			get
+			{
+				return this._ConfirmTime;
+			}
+			set
+			{
+				if ((this._ConfirmTime != value))
+				{
+					this.OnConfirmTimeChanging(value);
+					this.SendPropertyChanging();
+					this._ConfirmTime = value;
+					this.SendPropertyChanged("ConfirmTime");
+					this.OnConfirmTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DealStatus", DbType="VarChar(10)")]
+		public string DealStatus
+		{
+			get
+			{
+				return this._DealStatus;
+			}
+			set
+			{
+				if ((this._DealStatus != value))
+				{
+					this.OnDealStatusChanging(value);
+					this.SendPropertyChanging();
+					this._DealStatus = value;
+					this.SendPropertyChanged("DealStatus");
+					this.OnDealStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DealPeople", DbType="VarChar(10)")]
+		public string DealPeople
+		{
+			get
+			{
+				return this._DealPeople;
+			}
+			set
+			{
+				if ((this._DealPeople != value))
+				{
+					this.OnDealPeopleChanging(value);
+					this.SendPropertyChanging();
+					this._DealPeople = value;
+					this.SendPropertyChanged("DealPeople");
+					this.OnDealPeopleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comment", DbType="VarChar(30)")]
+		public string Comment
+		{
+			get
+			{
+				return this._Comment;
+			}
+			set
+			{
+				if ((this._Comment != value))
+				{
+					this.OnCommentChanging(value);
+					this.SendPropertyChanging();
+					this._Comment = value;
+					this.SendPropertyChanged("Comment");
+					this.OnCommentChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -1931,488 +2413,6 @@ namespace DataAccess
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DatabaseBackUp")]
-	public partial class DatabaseBackUp
-	{
-		
-		private System.Guid _Guid;
-		
-		private string _DatabaseName;
-		
-		private System.Nullable<System.DateTime> _BackUpDate;
-		
-		private System.Nullable<double> _BackUpSize;
-		
-		private string _BackUpPeople;
-		
-		private string _Comment;
-		
-		public DatabaseBackUp()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Guid", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid Guid
-		{
-			get
-			{
-				return this._Guid;
-			}
-			set
-			{
-				if ((this._Guid != value))
-				{
-					this._Guid = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DatabaseName", DbType="VarChar(20)")]
-		public string DatabaseName
-		{
-			get
-			{
-				return this._DatabaseName;
-			}
-			set
-			{
-				if ((this._DatabaseName != value))
-				{
-					this._DatabaseName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BackUpDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> BackUpDate
-		{
-			get
-			{
-				return this._BackUpDate;
-			}
-			set
-			{
-				if ((this._BackUpDate != value))
-				{
-					this._BackUpDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BackUpSize", DbType="Float")]
-		public System.Nullable<double> BackUpSize
-		{
-			get
-			{
-				return this._BackUpSize;
-			}
-			set
-			{
-				if ((this._BackUpSize != value))
-				{
-					this._BackUpSize = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BackUpPeople", DbType="VarChar(20)")]
-		public string BackUpPeople
-		{
-			get
-			{
-				return this._BackUpPeople;
-			}
-			set
-			{
-				if ((this._BackUpPeople != value))
-				{
-					this._BackUpPeople = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comment", DbType="VarChar(50)")]
-		public string Comment
-		{
-			get
-			{
-				return this._Comment;
-			}
-			set
-			{
-				if ((this._Comment != value))
-				{
-					this._Comment = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Department")]
-	public partial class Department
-	{
-		
-		private System.Guid _ID;
-		
-		private string _DepartmentName;
-		
-		private System.Nullable<System.Guid> _ParentID;
-		
-		public Department()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DepartmentName", DbType="VarChar(50)")]
-		public string DepartmentName
-		{
-			get
-			{
-				return this._DepartmentName;
-			}
-			set
-			{
-				if ((this._DepartmentName != value))
-				{
-					this._DepartmentName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> ParentID
-		{
-			get
-			{
-				return this._ParentID;
-			}
-			set
-			{
-				if ((this._ParentID != value))
-				{
-					this._ParentID = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DeviceAlarm")]
-	public partial class DeviceAlarm : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _ID;
-		
-		private System.Nullable<System.Guid> _DeviceID;
-		
-		private string _DeviceNo;
-		
-		private System.Nullable<int> _EventType;
-		
-		private System.Nullable<int> _EventLevel;
-		
-		private System.Nullable<System.DateTime> _StartTime;
-		
-		private System.Nullable<System.DateTime> _EndTime;
-		
-		private System.Nullable<System.DateTime> _ConfirmTime;
-		
-		private string _DealStatus;
-		
-		private string _DealPeople;
-		
-		private string _Comment;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(System.Guid value);
-    partial void OnIDChanged();
-    partial void OnDeviceIDChanging(System.Nullable<System.Guid> value);
-    partial void OnDeviceIDChanged();
-    partial void OnDeviceNoChanging(string value);
-    partial void OnDeviceNoChanged();
-    partial void OnEventTypeChanging(System.Nullable<int> value);
-    partial void OnEventTypeChanged();
-    partial void OnEventLevelChanging(System.Nullable<int> value);
-    partial void OnEventLevelChanged();
-    partial void OnStartTimeChanging(System.Nullable<System.DateTime> value);
-    partial void OnStartTimeChanged();
-    partial void OnEndTimeChanging(System.Nullable<System.DateTime> value);
-    partial void OnEndTimeChanged();
-    partial void OnConfirmTimeChanging(System.Nullable<System.DateTime> value);
-    partial void OnConfirmTimeChanged();
-    partial void OnDealStatusChanging(string value);
-    partial void OnDealStatusChanged();
-    partial void OnDealPeopleChanging(string value);
-    partial void OnDealPeopleChanged();
-    partial void OnCommentChanging(string value);
-    partial void OnCommentChanged();
-    #endregion
-		
-		public DeviceAlarm()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> DeviceID
-		{
-			get
-			{
-				return this._DeviceID;
-			}
-			set
-			{
-				if ((this._DeviceID != value))
-				{
-					this.OnDeviceIDChanging(value);
-					this.SendPropertyChanging();
-					this._DeviceID = value;
-					this.SendPropertyChanged("DeviceID");
-					this.OnDeviceIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceNo", DbType="VarChar(20)")]
-		public string DeviceNo
-		{
-			get
-			{
-				return this._DeviceNo;
-			}
-			set
-			{
-				if ((this._DeviceNo != value))
-				{
-					this.OnDeviceNoChanging(value);
-					this.SendPropertyChanging();
-					this._DeviceNo = value;
-					this.SendPropertyChanged("DeviceNo");
-					this.OnDeviceNoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventType", DbType="Int")]
-		public System.Nullable<int> EventType
-		{
-			get
-			{
-				return this._EventType;
-			}
-			set
-			{
-				if ((this._EventType != value))
-				{
-					this.OnEventTypeChanging(value);
-					this.SendPropertyChanging();
-					this._EventType = value;
-					this.SendPropertyChanged("EventType");
-					this.OnEventTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventLevel", DbType="Int")]
-		public System.Nullable<int> EventLevel
-		{
-			get
-			{
-				return this._EventLevel;
-			}
-			set
-			{
-				if ((this._EventLevel != value))
-				{
-					this.OnEventLevelChanging(value);
-					this.SendPropertyChanging();
-					this._EventLevel = value;
-					this.SendPropertyChanged("EventLevel");
-					this.OnEventLevelChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartTime", DbType="DateTime")]
-		public System.Nullable<System.DateTime> StartTime
-		{
-			get
-			{
-				return this._StartTime;
-			}
-			set
-			{
-				if ((this._StartTime != value))
-				{
-					this.OnStartTimeChanging(value);
-					this.SendPropertyChanging();
-					this._StartTime = value;
-					this.SendPropertyChanged("StartTime");
-					this.OnStartTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndTime", DbType="DateTime")]
-		public System.Nullable<System.DateTime> EndTime
-		{
-			get
-			{
-				return this._EndTime;
-			}
-			set
-			{
-				if ((this._EndTime != value))
-				{
-					this.OnEndTimeChanging(value);
-					this.SendPropertyChanging();
-					this._EndTime = value;
-					this.SendPropertyChanged("EndTime");
-					this.OnEndTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConfirmTime", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ConfirmTime
-		{
-			get
-			{
-				return this._ConfirmTime;
-			}
-			set
-			{
-				if ((this._ConfirmTime != value))
-				{
-					this.OnConfirmTimeChanging(value);
-					this.SendPropertyChanging();
-					this._ConfirmTime = value;
-					this.SendPropertyChanged("ConfirmTime");
-					this.OnConfirmTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DealStatus", DbType="VarChar(10)")]
-		public string DealStatus
-		{
-			get
-			{
-				return this._DealStatus;
-			}
-			set
-			{
-				if ((this._DealStatus != value))
-				{
-					this.OnDealStatusChanging(value);
-					this.SendPropertyChanging();
-					this._DealStatus = value;
-					this.SendPropertyChanged("DealStatus");
-					this.OnDealStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DealPeople", DbType="VarChar(10)")]
-		public string DealPeople
-		{
-			get
-			{
-				return this._DealPeople;
-			}
-			set
-			{
-				if ((this._DealPeople != value))
-				{
-					this.OnDealPeopleChanging(value);
-					this.SendPropertyChanging();
-					this._DealPeople = value;
-					this.SendPropertyChanged("DealPeople");
-					this.OnDealPeopleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comment", DbType="VarChar(30)")]
-		public string Comment
-		{
-			get
-			{
-				return this._Comment;
-			}
-			set
-			{
-				if ((this._Comment != value))
-				{
-					this.OnCommentChanging(value);
-					this.SendPropertyChanging();
-					this._Comment = value;
-					this.SendPropertyChanged("Comment");
-					this.OnCommentChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DeviceLog")]
 	public partial class DeviceLog
 	{
@@ -3751,6 +3751,8 @@ namespace DataAccess
 		
 		private System.Nullable<System.DateTime> _RequestTime;
 		
+		private System.Nullable<int> _EventType;
+		
 		private EntitySet<UserEventDealDetail> _UserEventDealDetails;
 		
     #region Extensibility Method Definitions
@@ -3771,6 +3773,8 @@ namespace DataAccess
     partial void OnCountChanged();
     partial void OnRequestTimeChanging(System.Nullable<System.DateTime> value);
     partial void OnRequestTimeChanged();
+    partial void OnEventTypeChanging(System.Nullable<int> value);
+    partial void OnEventTypeChanged();
     #endregion
 		
 		public UserEvent()
@@ -3919,6 +3923,26 @@ namespace DataAccess
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventType", DbType="Int")]
+		public System.Nullable<int> EventType
+		{
+			get
+			{
+				return this._EventType;
+			}
+			set
+			{
+				if ((this._EventType != value))
+				{
+					this.OnEventTypeChanging(value);
+					this.SendPropertyChanging();
+					this._EventType = value;
+					this.SendPropertyChanged("EventType");
+					this.OnEventTypeChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserEvent_UserEventDealDetail", Storage="_UserEventDealDetails", ThisKey="ID", OtherKey="EventID")]
 		public EntitySet<UserEventDealDetail> UserEventDealDetails
 		{
@@ -3962,69 +3986,6 @@ namespace DataAccess
 		{
 			this.SendPropertyChanging();
 			entity.UserEvent = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserRole")]
-	public partial class UserRole
-	{
-		
-		private System.Guid _ID;
-		
-		private System.Nullable<System.Guid> _UserID;
-		
-		private System.Nullable<System.Guid> _RoleID;
-		
-		public UserRole()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> UserID
-		{
-			get
-			{
-				return this._UserID;
-			}
-			set
-			{
-				if ((this._UserID != value))
-				{
-					this._UserID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> RoleID
-		{
-			get
-			{
-				return this._RoleID;
-			}
-			set
-			{
-				if ((this._RoleID != value))
-				{
-					this._RoleID = value;
-				}
-			}
 		}
 	}
 	
@@ -4312,6 +4273,69 @@ namespace DataAccess
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserRole")]
+	public partial class UserRole
+	{
+		
+		private System.Guid _ID;
+		
+		private System.Nullable<System.Guid> _UserID;
+		
+		private System.Nullable<System.Guid> _RoleID;
+		
+		public UserRole()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					this._UserID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> RoleID
+		{
+			get
+			{
+				return this._RoleID;
+			}
+			set
+			{
+				if ((this._RoleID != value))
+				{
+					this._RoleID = value;
+				}
 			}
 		}
 	}

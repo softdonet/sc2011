@@ -19,7 +19,7 @@ namespace NetData
         public RealTimeDataBlock(byte[] data)
         {
             //放大比例
-            decimal ratio = 100;
+            decimal ratio = 10;
             //块序号
             BlockNo = data[0];
             //时间戳
@@ -37,9 +37,9 @@ namespace NetData
             //湿度
             Humidity = BitConverter.ToUInt16(data, 18) / ratio;
             //电量
-            Electric = BitConverter.ToUInt16(data, 20) / ratio;
+            Electric = BitConverter.ToUInt16(data, 20) ;
             //信号
-            Signal = BitConverter.ToUInt16(data, 22) / ratio;
+            Signal = BitConverter.ToUInt16(data, 22);
         }
         /// <summary>
         /// 数据序号
@@ -96,14 +96,14 @@ namespace NetData
             List<byte> result = new List<byte>();
             result.Add(BlockNo);
             result.AddRange(StringHelper.DateTimeToByte(SateTimeMark));
-            result.AddRange(BitConverter.GetBytes((ushort)(Temperature1 * 100)));
-            result.AddRange(BitConverter.GetBytes((ushort)(Temperature2 * 100)));
-            result.AddRange(BitConverter.GetBytes((ushort)(Temperature3 * 100)));
-            result.AddRange(BitConverter.GetBytes((ushort)(Temperature4 * 100)));
-            result.AddRange(BitConverter.GetBytes((ushort)(Temperature5 * 100)));
-            result.AddRange(BitConverter.GetBytes((ushort)(Humidity * 100)));
-            result.AddRange(BitConverter.GetBytes((ushort)(Electric * 100)));
-            result.AddRange(BitConverter.GetBytes((ushort)(Signal * 100)));
+            result.AddRange(BitConverter.GetBytes((ushort)(Temperature1 * 10)));
+            result.AddRange(BitConverter.GetBytes((ushort)(Temperature2 * 10)));
+            result.AddRange(BitConverter.GetBytes((ushort)(Temperature3 * 10)));
+            result.AddRange(BitConverter.GetBytes((ushort)(Temperature4 * 10)));
+            result.AddRange(BitConverter.GetBytes((ushort)(Temperature5 * 10)));
+            result.AddRange(BitConverter.GetBytes((ushort)(Humidity * 10)));
+            result.AddRange(BitConverter.GetBytes((ushort)(Electric)));
+            result.AddRange(BitConverter.GetBytes((ushort)(Signal)));
             //补零
             for (int j = 0; j < 48 - 24; j++)
             {

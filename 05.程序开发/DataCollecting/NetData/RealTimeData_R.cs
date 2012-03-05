@@ -60,7 +60,7 @@ namespace NetData
             //压入块长度
             result.Add((byte)realTimeDataBlocks.Count);
             //压入数据块
-            for (byte i = 0; i < 3; i++)
+            for (byte i = 0; i < realTimeDataBlocks.Count ; i++)
             {
                 result.AddRange(realTimeDataBlocks[i].ToByte());
             }

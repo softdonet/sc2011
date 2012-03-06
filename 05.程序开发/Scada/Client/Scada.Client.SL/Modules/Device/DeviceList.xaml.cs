@@ -145,7 +145,7 @@ namespace Scada.Client.SL.Modules.Device
     /// <summary>
     /// 数字转换图片
     /// </summary>
-    internal class ItemImageSourceValueConverter : IValueConverter
+    public class ItemImageSourceValueConverter : IValueConverter
     {
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

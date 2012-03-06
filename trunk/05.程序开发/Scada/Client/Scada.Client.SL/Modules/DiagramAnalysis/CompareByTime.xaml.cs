@@ -70,7 +70,7 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            this.init();
+            //this.init();
 
         }
 

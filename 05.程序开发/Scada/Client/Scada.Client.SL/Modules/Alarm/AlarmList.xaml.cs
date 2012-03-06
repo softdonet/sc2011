@@ -105,7 +105,9 @@ namespace Scada.Client.SL.Modules.Alarm
             HyperlinkButton hlBtn = (e.Row.Cells[RadGridView1.Columns.Count - 2].Content as FrameworkElement).FindName("hlBtn") as HyperlinkButton;
             if (string.IsNullOrEmpty( state.Text.Trim()))//未处理的数据
             {
-                e.Row.Background = new SolidColorBrush(Colors.Red);
+                //e.Row.Background = new SolidColorBrush(Colors.Red);
+                //e.Row.Cells[RadGridView1.Columns.Count - 2].Background = new SolidColorBrush(Colors.White);
+                e.Row.Background = new SolidColorBrush(Colors.Orange);
                 e.Row.Cells[RadGridView1.Columns.Count - 2].Background = new SolidColorBrush(Colors.White);
                 hlBtn.IsEnabled = true;
                 AddAlert(e.Row);
@@ -127,9 +129,14 @@ namespace Scada.Client.SL.Modules.Alarm
         private bool flag = false;
         private void timer_Completed(object sender, EventArgs e)
         {
-            SolidColorBrush col = new SolidColorBrush(Color.FromArgb(255, 254, 63, 23));
+            //SolidColorBrush col = new SolidColorBrush(Color.FromArgb(255, 254, 63, 23));
+            //if (flag)
+            //    col = new SolidColorBrush(Color.FromArgb(255, 254, 181, 24));
+
+            SolidColorBrush col = new SolidColorBrush(Colors.Orange);
             if (flag)
-                col = new SolidColorBrush(Color.FromArgb(255, 254, 181, 24));
+                col = new SolidColorBrush(Colors.White);
+           
             foreach (GridViewRowItem dgr in dicDr.Keys)
             {
                 dgr.Background = col;

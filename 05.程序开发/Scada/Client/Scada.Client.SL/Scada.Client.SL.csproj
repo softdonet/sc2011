@@ -388,16 +388,13 @@
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.AddDeviceInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.GetListDeviceAlarmInfoResponse.datasource">
+    <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.GetDeviceTreeListResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.GetListDeviceInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.GetListStepInfoResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.GetListUserEventInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.GetUserEventKeyInfoResponse.datasource">

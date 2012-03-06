@@ -29,6 +29,11 @@ using Scada.Model.Entity.Enums;
 
 namespace Scada.Client.SL.Modules.Device
 {
+
+
+    /// <summary>
+    /// 设备列表
+    /// </summary>
     public partial class DeviceList : UserControl
     {
 
@@ -120,7 +125,10 @@ namespace Scada.Client.SL.Modules.Device
 
     }
 
-    public class RelativeBlocksValueConverter : IValueConverter
+    /// <summary>
+    /// 备用查看
+    /// </summary>
+    internal class RelativeBlocksValueConverter : IValueConverter
     {
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -135,9 +143,9 @@ namespace Scada.Client.SL.Modules.Device
     }
 
     /// <summary>
-    /// 把对应的数字改成图片显示
+    /// 数字转换图片
     /// </summary>
-    public class ItemImageSourceValueConverter : IValueConverter
+    internal class ItemImageSourceValueConverter : IValueConverter
     {
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

@@ -70,5 +70,17 @@ namespace Scada.BLL.Contract
 
         #endregion
 
+
+        #region 图表分析
+
+        //1)获取树型设备(combox)
+        string GetDeviceTreeList();
+
+        //2同设备不同时间段获取温度值
+        string GetSameDeviceTemperatureDiffDate(Int32 DeviceType, Guid DeviceID, Int32 DateSelMode, string DateList);
+
+        #endregion
+
+
     }
 }

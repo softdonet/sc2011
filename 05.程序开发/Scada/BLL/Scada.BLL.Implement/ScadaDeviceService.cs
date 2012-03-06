@@ -532,13 +532,13 @@ namespace Scada.BLL.Implement
         public string ListDeviceTreeView()
         {
             List<DeviceTreeNode> treeList = new List<DeviceTreeNode>();
-            List<DeviceTreeNode> areaTable = this.getTreeNodeChild(null);
+            List<DeviceTreeNode> areaTable = this.getTreeNodeChild(null, string.Empty);
             foreach (DeviceTreeNode area in areaTable)
             {
-                List<DeviceTreeNode> ManageTable = this.getTreeNodeChild(area.NodeKey);
+                List<DeviceTreeNode> ManageTable = this.getTreeNodeChild(area.NodeKey, string.Empty);
                 foreach (DeviceTreeNode manage in ManageTable)
                 {
-                    manage.NodeChild = getTreeNodeDevice(manage.NodeKey);
+                    manage.NodeChild = getTreeNodeDevice(manage.NodeKey, string.Empty);
                     area.AddNodeKey(manage);
                 }
                 treeList.Add(area);
@@ -546,7 +546,7 @@ namespace Scada.BLL.Implement
             return BinaryObjTransfer.JsonSerializer<List<DeviceTreeNode>>(treeList);
         }
 
-        private List<DeviceTreeNode> getTreeNodeChild(Guid? nodeKey)
+        private List<DeviceTreeNode> getTreeNodeChild(Guid? nodeKey, String prefix)
         {
             int nodeIndex;
             List<DeviceTreeNode> result = new List<DeviceTreeNode>();
@@ -567,7 +567,7 @@ namespace Scada.BLL.Implement
                 result.Add(new DeviceTreeNode
                 {
                     NodeType = nodeIndex,
-                    NodeValue = item["Name"].ToString(),
+                    NodeValue = prefix + item["Name"].ToString(),
                     NodeKey = new Guid(item["id"].ToString()),
 
                 });
@@ -575,7 +575,7 @@ namespace Scada.BLL.Implement
             return result;
         }
 
-        private List<DeviceTreeNode> getTreeNodeDevice(Guid nodeKey)
+        private List<DeviceTreeNode> getTreeNodeDevice(Guid nodeKey, String prefix)
         {
             List<DeviceTreeNode> result = new List<DeviceTreeNode>();
             string sSql = @"select id,DeviceNo,Longitude,Dimensionality,InstallPlace from DeviceInfo 
@@ -586,7 +586,7 @@ namespace Scada.BLL.Implement
                 result.Add(new DeviceTreeNode
                 {
                     NodeType = 3,
-                    NodeValue = item["DeviceNo"].ToString(),
+                    NodeValue = prefix + item["DeviceNo"].ToString(),
                     NodeKey = new Guid(item["id"].ToString()),
                     Longitude = float.Parse(item["Longitude"].ToString()),
                     Dimensionality = float.Parse(item["Dimensionality"].ToString()),
@@ -648,57 +648,57 @@ namespace Scada.BLL.Implement
 
         #region 设备告警
 
-//        public string GetListDeviceAlarmInfo()
-//        {
+        //        public string GetListDeviceAlarmInfo()
+        //        {
 
-//            List<DeviceAlarm> result = new List<DeviceAlarm>();
-//            string sSql = @" Select Top 100 ID,DeviceID,DeviceNo,EventType,
-//                              EventLevel,StartTime,EndTime,ConfirmTime,
-//                              DealStatus,DealPeople,Comment from DeviceAlarm";
-//            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
-//            DeviceAlarm alarm = null;
-//            foreach (DataRow item in ds.Rows)
-//            {
+        //            List<DeviceAlarm> result = new List<DeviceAlarm>();
+        //            string sSql = @" Select Top 100 ID,DeviceID,DeviceNo,EventType,
+        //                              EventLevel,StartTime,EndTime,ConfirmTime,
+        //                              DealStatus,DealPeople,Comment from DeviceAlarm";
+        //            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+        //            DeviceAlarm alarm = null;
+        //            foreach (DataRow item in ds.Rows)
+        //            {
 
-//                alarm = new DeviceAlarm();
-//                alarm.ID = new Guid(item["ID"].ToString());
-//                alarm.DeviceID = new Guid(item["DeviceID"].ToString());
-//                alarm.DeviceNo = item["DeviceNo"].ToString();
-//                int? intType = null;
-//                if (item["EventType"] != DBNull.Value)
-//                    intType = Convert.ToInt32(item["EventType"]);
-//                alarm.EventType = intType;
+        //                alarm = new DeviceAlarm();
+        //                alarm.ID = new Guid(item["ID"].ToString());
+        //                alarm.DeviceID = new Guid(item["DeviceID"].ToString());
+        //                alarm.DeviceNo = item["DeviceNo"].ToString();
+        //                int? intType = null;
+        //                if (item["EventType"] != DBNull.Value)
+        //                    intType = Convert.ToInt32(item["EventType"]);
+        //                alarm.EventType = intType;
 
-//                intType = null;
-//                if (item["EventType"] != DBNull.Value)
-//                    intType = Convert.ToInt32(item["EventLevel"]);
-//                alarm.EventLevel = intType;
+        //                intType = null;
+        //                if (item["EventType"] != DBNull.Value)
+        //                    intType = Convert.ToInt32(item["EventLevel"]);
+        //                alarm.EventLevel = intType;
 
-//                DateTime? dtValue = null;
-//                if (item["StartTime"] != DBNull.Value)
-//                    dtValue = Convert.ToDateTime(item["StartTime"]);
-//                alarm.StartTime = dtValue;
+        //                DateTime? dtValue = null;
+        //                if (item["StartTime"] != DBNull.Value)
+        //                    dtValue = Convert.ToDateTime(item["StartTime"]);
+        //                alarm.StartTime = dtValue;
 
-//                dtValue = null;
-//                if (item["EndTime"] != DBNull.Value)
-//                    dtValue = Convert.ToDateTime(item["EndTime"]);
-//                alarm.EndTime = dtValue;
+        //                dtValue = null;
+        //                if (item["EndTime"] != DBNull.Value)
+        //                    dtValue = Convert.ToDateTime(item["EndTime"]);
+        //                alarm.EndTime = dtValue;
 
-//                dtValue = null;
-//                if (item["ConfirmTime"] != DBNull.Value)
-//                    dtValue = Convert.ToDateTime(item["ConfirmTime"]);
-//                alarm.ConfirmTime = dtValue;
+        //                dtValue = null;
+        //                if (item["ConfirmTime"] != DBNull.Value)
+        //                    dtValue = Convert.ToDateTime(item["ConfirmTime"]);
+        //                alarm.ConfirmTime = dtValue;
 
-//                alarm.DealStatus = item["DealStatus"].ToString();
-//                alarm.DealPeople = item["DealPeople"].ToString();
-//                alarm.Comment = item["Comment"].ToString();
-//                result.Add(alarm);
+        //                alarm.DealStatus = item["DealStatus"].ToString();
+        //                alarm.DealPeople = item["DealPeople"].ToString();
+        //                alarm.Comment = item["Comment"].ToString();
+        //                result.Add(alarm);
 
-//            }
+        //            }
 
-//            return BinaryObjTransfer.JsonSerializer<List<DeviceAlarm>>(result);
+        //            return BinaryObjTransfer.JsonSerializer<List<DeviceAlarm>>(result);
 
-//        }
+        //        }
 
 
         public Boolean UpdateDeviceAlarmInfo(Guid AlarmId, DateTime ConfirmTime, String Comment, String DealPeople)
@@ -725,43 +725,45 @@ namespace Scada.BLL.Implement
 
         #region 用户事件
 
-//        public string GetListUserEventInfo()
-//        {
+        /*
+        public string GetListUserEventInfo()
+        {
 
-//            List<UserEventTab> userEvents = new List<UserEventTab>();
-//            string sSql = @" Select ID,EventNo,DeviceID,DeviceNo,
-//                                State,Count,RequestTime from UserEvent";
-//            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
-//            UserEventTab userEvent;
-//            foreach (DataRow item in ds.Rows)
-//            {
-//                userEvent = new UserEventTab();
-//                userEvent.ID = new Guid(item["ID"].ToString());
-//                userEvent.EventNo = item["EventNo"].ToString();
-//                userEvent.DeviceID = new Guid(item["DeviceID"].ToString());
-//                userEvent.DeviceNo = item["DeviceNo"].ToString();
-//                Int32? intValue = null;
-//                if (item["State"] != DBNull.Value)
-//                    intValue = Convert.ToInt32(item["State"]);
-//                userEvent.State = intValue;
+            List<UserEventTab> userEvents = new List<UserEventTab>();
+            string sSql = @" Select ID,EventNo,DeviceID,DeviceNo,
+                                        State,Count,RequestTime from UserEvent";
+            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            UserEventTab userEvent;
+            foreach (DataRow item in ds.Rows)
+            {
+                userEvent = new UserEventTab();
+                userEvent.ID = new Guid(item["ID"].ToString());
+                userEvent.EventNo = item["EventNo"].ToString();
+                userEvent.DeviceID = new Guid(item["DeviceID"].ToString());
+                userEvent.DeviceNo = item["DeviceNo"].ToString();
+                Int32? intValue = null;
+                if (item["State"] != DBNull.Value)
+                    intValue = Convert.ToInt32(item["State"]);
+                userEvent.State = intValue;
 
-//                intValue = null;
-//                if (item["Count"] != DBNull.Value)
-//                    intValue = Convert.ToInt32(item["Count"]);
-//                userEvent.Count = intValue;
+                intValue = null;
+                if (item["Count"] != DBNull.Value)
+                    intValue = Convert.ToInt32(item["Count"]);
+                userEvent.Count = intValue;
 
-//                DateTime? dTime = null;
-//                if (item["RequestTime"] != DBNull.Value)
-//                    dTime = Convert.ToDateTime(item["RequestTime"]);
-//                userEvent.RequestTime = dTime;
+                DateTime? dTime = null;
+                if (item["RequestTime"] != DBNull.Value)
+                    dTime = Convert.ToDateTime(item["RequestTime"]);
+                userEvent.RequestTime = dTime;
 
-//                userEvents.Add(userEvent);
+                userEvents.Add(userEvent);
 
-//            }
+            }
 
-//            return BinaryObjTransfer.JsonSerializer<List<UserEventTab>>(userEvents);
+            return BinaryObjTransfer.JsonSerializer<List<UserEventTab>>(userEvents);
 
-//        }
+        }
+        */
 
         public string GetUserEventKeyInfo(Guid EventKey)
         {
@@ -779,7 +781,7 @@ namespace Scada.BLL.Implement
                 detail.DetailID = new Guid(item["ID"].ToString());
                 detail.EventID = new Guid(item["EventID"].ToString());
                 detail.OperatorId = new Guid(item["OperatorId"].ToString());
-                Int32 intValue =0;
+                Int32 intValue = 0;
                 if (item["StepNo"] != DBNull.Value)
                     intValue = Convert.ToInt32(item["StepNo"]);
                 detail.StepNo = intValue;
@@ -903,6 +905,36 @@ namespace Scada.BLL.Implement
             }
             return result;
         }
+
+        #endregion
+
+
+        #region 图表分析
+
+        //1获取树型设备(combox)
+        public string GetDeviceTreeList()
+        {
+            List<DeviceTreeNode> treeList = new List<DeviceTreeNode>();
+            List<DeviceTreeNode> areaTable = this.getTreeNodeChild(null, string.Empty);
+            foreach (DeviceTreeNode area in areaTable)
+            {
+                List<DeviceTreeNode> ManageTable = this.getTreeNodeChild(area.NodeKey, "--");
+                foreach (DeviceTreeNode manage in ManageTable)
+                {
+                    manage.NodeChild = getTreeNodeDevice(manage.NodeKey, "----");
+                    area.AddNodeKey(manage);
+                }
+                treeList.Add(area);
+            }
+            return BinaryObjTransfer.JsonSerializer<List<DeviceTreeNode>>(treeList);
+        }
+
+        //2同设备不同时间段获取温度值
+        public string GetSameDeviceTemperatureDiffDate(Int32 DeviceType, Guid DeviceID, Int32 DateSelMode, string DateList)
+        {
+            return string.Empty;
+        }
+
 
         #endregion
 

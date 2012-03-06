@@ -44,6 +44,9 @@ namespace Scada.BLL.Implement
 
         #endregion
 
+
+        #region 天气预报
+
         /// <summary>
         /// 获取天气预报
         /// </summary>
@@ -55,5 +58,7 @@ namespace Scada.BLL.Implement
             string[] ws = service.getWeatherbyCityName(cityName);
             return BinaryObjTransfer.JsonSerializer<Weather>(WeatherHelper.GetWeather(ws));
         }
+
+        #endregion
     }
 }

@@ -137,19 +137,19 @@ namespace BusinessRules
                         {
                             drt.Signal = 0;
                         }
-                        else if (item.Signal.Value > 5 && item.Signal.Value < 10)
+                        else if (item.Signal.Value >= 5 && item.Signal.Value < 10)
                         {
                             drt.Signal = 1;
                         }
-                        else if (item.Signal.Value > 10 && item.Signal.Value < 15)
+                        else if (item.Signal.Value >= 10 && item.Signal.Value < 15)
                         {
                             drt.Signal = 2;
                         }
-                        else if (item.Signal.Value > 15 && item.Signal.Value < 25)
+                        else if (item.Signal.Value >= 15 && item.Signal.Value < 25)
                         {
                             drt.Signal = 3;
                         }
-                        else if (item.Signal.Value>25)
+                        else if (item.Signal.Value>=25)
                         {
                             drt.Signal = 4;
                         }
@@ -166,15 +166,15 @@ namespace BusinessRules
                         {
                             drt.Electricity = 0;
                         }
-                        else if (item.Electric.Value > 50 && item.Electric.Value < 200)
+                        else if (item.Electric.Value >= 50 && item.Electric.Value < 200)
                         {
                             drt.Electricity = 1;
                         }
-                        else if (item.Electric.Value > 200 && item.Electric.Value < 300)
+                        else if (item.Electric.Value >= 200 && item.Electric.Value < 300)
                         {
                             drt.Electricity = 2;
                         }
-                        else if (item.Electric.Value > 300 )
+                        else if (item.Electric.Value >= 300 )
                         {
                             drt.Electricity = 3;
                         }

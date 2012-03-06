@@ -71,6 +71,7 @@
     <Compile Include="Modules\Alarm\DeviceAlarmViewModel.cs" />
     <Compile Include="Modules\BingMaps\MapIndexViewModel.cs" />
     <Compile Include="Modules\BingMaps\PushPinDeviceViewModel.cs" />
+    <Compile Include="Modules\DiagramAnalysis\CompareByTimeViewModel.cs" />
     <Compile Include="Modules\Query\DeviceListQueryViewModel.cs" />
     <Compile Include="Modules\Device\DeviceListViewModel.cs" />
     <Compile Include="Modules\UserEvent\UserEventViewModel.cs" />
@@ -108,16 +109,13 @@
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.AddDeviceInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.GetListDeviceAlarmInfoResponse.datasource">
+    <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.GetDeviceTreeListResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.GetListDeviceInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.GetListStepInfoResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.GetListUserEventInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.GetUserEventKeyInfoResponse.datasource">

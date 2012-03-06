@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="468" d:DesignWidth="800">
+    d:DesignHeight="468" d:DesignWidth="1024">
     
     <Grid x:Name="LayoutRoot" >
         <!--<Grid.Background>
@@ -25,11 +25,11 @@
        
         <StackPanel  Orientation="Horizontal"  Grid.RowSpan="7"  Grid.Row="0">
             <StackPanel Margin="0,0,5,0">
-                <ToggleButton Content="进入" Grid.Row="0" HorizontalAlignment="Left"  Name="tbtnEnter"  Width="399" Margin="0,12,0,4" Checked="tbtnEnter_Checked" Height="47" />
+                <ToggleButton Content="进入处理流程" Grid.Row="0" HorizontalAlignment="Left"  Name="tbtnEnter"  Width="399" Margin="0,12,0,4" Checked="tbtnEnter_Checked" Height="47" FontSize="18" />
                 <StackPanel Grid.Row="1" Height="29" Margin="3"   VerticalAlignment="Top"  Orientation="Horizontal" >
             <TextBlock Height="16" Name="textBlock1" Text="第一步：" Margin="10,0,0,0" />
             <ComboBox Height="23" Name="cmbStep1" Width="120" Margin="10,0,0,0" DisplayMemberPath="StepName" SelectedValuePath="StepID"/>
-            <TextBox Height="23" Name="txtStep1" Width="120" Margin="10,0,0,0"/>
+            <TextBox Height="23" Name="txtStep1" Width="240" Margin="10,0,0,0"/>
             <Button Content="确认" Height="23" Name="btnStep1" Width="75" Margin="10,0,0,0" Click="btnStep_Click" />
         </StackPanel>
                 <StackPanel Grid.Row="2" Height="29" Margin="3"   VerticalAlignment="Top"  Orientation="Horizontal" >
@@ -38,7 +38,7 @@
                 <StackPanel Height="29"   Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="3" Name="stackPanel2">
             <TextBlock Height="16" Margin="10,0,0,0" Text="第二步：" />
             <ComboBox Height="23" Margin="10,0,0,0" Width="120" Name="cmbStep2" DisplayMemberPath="StepName" SelectedValuePath="StepID" />
-            <TextBox Height="23" Margin="10,0,0,0" Width="120" Name="txtStep2" />
+            <TextBox Height="23" Margin="10,0,0,0" Width="240" Name="txtStep2" />
             <Button Content="确认" Height="23" Margin="10,0,0,0" Width="75" Name="btnStep2" Click="btnStep_Click" />
         </StackPanel>
                 <StackPanel Height="29"   Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="4" >
@@ -47,7 +47,7 @@
                 <StackPanel Height="29" Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="5">
             <TextBlock Height="16" Margin="10,0,0,0" Text="第三步：" />
             <ComboBox Height="23" Margin="10,0,0,0" Width="120" Name="cmbStep3" DisplayMemberPath="StepName" SelectedValuePath="StepID" />
-            <TextBox Height="23" Margin="10,0,0,0" Width="120" Name="txtStep3" />
+            <TextBox Height="23" Margin="10,0,0,0" Width="240" Name="txtStep3" />
             <Button Content="确认" Height="23" Margin="10,0,0,0" Width="75" Name="btnStep3" Click="btnStep_Click" />
         </StackPanel>
                 <StackPanel Height="29" Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="6">
@@ -56,7 +56,7 @@
                 <StackPanel Height="29" Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="7">
             <TextBlock Height="16" Margin="10,0,0,0" Text="第四步：" />
             <ComboBox Height="23" Margin="10,0,0,0" Width="120" Name="cmbStep4" DisplayMemberPath="StepName" SelectedValuePath="StepID" />
-            <TextBox Height="23" Margin="10,0,0,0" Width="120" Name="txtStep4" />
+            <TextBox Height="23" Margin="10,0,0,0" Width="240" Name="txtStep4" />
             <Button Content="确认" Height="23" Margin="10,0,0,0" Width="75" Name="btnStep4" Click="btnStep_Click" />
         </StackPanel>
                 <StackPanel Height="29" Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="8">
@@ -65,14 +65,14 @@
                 <StackPanel Height="29" Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="9">
             <TextBlock Height="16" Margin="10,0,0,0" Text="第五步：" />
             <ComboBox Height="23" Margin="10,0,0,0" Width="120" Name="cmbStep5" DisplayMemberPath="StepName" SelectedValuePath="StepID"/>
-            <TextBox Height="23" Margin="10,0,0,0" Width="120" Name="txtStep5" />
+            <TextBox Height="23" Margin="10,0,0,0" Width="240" Name="txtStep5" />
             <Button Content="确认" Height="23" Margin="10,0,0,0" Width="75" Name="btnStep5" Click="btnStep_Click" />
             </StackPanel>
                 <StackPanel Height="29" Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="10">
                     <TextBlock Height="23" Margin="70,0,0,0" Text="确认人：  时间：                       " Name="txtblk5" />
                 </StackPanel>
             </StackPanel>
-            <StackPanel Margin="50,0,0,0" >
+            <StackPanel Margin="50,0,10,0" Width="400">
                 <StackPanel >
                     <StackPanel.Background>
                     <LinearGradientBrush StartPoint=".5,0" EndPoint=".5,1">
@@ -158,6 +158,6 @@
             </StackPanel>
         </StackPanel>
 
-        <ToggleButton Content="关闭" HorizontalAlignment="Left"   Width="405" Grid.Row="6" Margin="0,17,0,0" Height="48" VerticalAlignment="Top" Name="tbtnClose" Checked="tbtnClose_Checked" />
+        <ToggleButton Content="退出处理流程" HorizontalAlignment="Left"   Width="405" Grid.Row="6" Margin="0,17,0,0" Height="48" VerticalAlignment="Top" Name="tbtnClose" Checked="tbtnClose_Checked" FontSize="18" />
     </Grid>
 </UserControl>

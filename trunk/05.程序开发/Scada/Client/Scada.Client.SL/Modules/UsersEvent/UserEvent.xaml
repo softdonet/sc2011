@@ -14,8 +14,8 @@
     d:DesignHeight="768" d:DesignWidth="800">
 
     <UserControl.Resources>
-        <local1:RelativeBlocksValueConverter x:Key="RelativeBlocksValueConverter1" />
-        <local1:ItemImageSourceValueConverter x:Key="ItemImageSourceValueConverter1" />
+        <!--<local1:RelativeBlocksValueConverter x:Key="RelativeBlocksValueConverter1" />
+        <local1:ItemImageSourceValueConverter x:Key="ItemImageSourceValueConverter1" />-->
         <myConver:ConvertNumberToText x:Key="ConvertNumberToText1"/>
         <Storyboard x:Name="Storyboard1">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ViewHost">

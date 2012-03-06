@@ -83,12 +83,12 @@ namespace Scada.Client.SL.Modules.Alarm
             //throw new NotImplementedException();
         }
 
-        private void scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted(object sender, GetListDeviceAlarmInfoCompletedEventArgs e)
-        {
-            ObservableCollection<DeviceAlarm> deviceAlam =
-                                        BinaryObjTransfer.BinaryDeserialize<ObservableCollection<DeviceAlarm>>(e.Result);
-            this.RadGridView1.ItemsSource = deviceAlam;
-        }
+        //private void scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted(object sender, GetListDeviceAlarmInfoCompletedEventArgs e)
+        //{
+        //    ObservableCollection<DeviceAlarm> deviceAlam =
+        //                                BinaryObjTransfer.BinaryDeserialize<ObservableCollection<DeviceAlarm>>(e.Result);
+        //    this.RadGridView1.ItemsSource = deviceAlam;
+        //}
 
         #endregion
 
@@ -164,12 +164,12 @@ namespace Scada.Client.SL.Modules.Alarm
         {
             //List<DeviceAlarm> deviceAlam = BinaryObjTransfer.BinaryDeserialize<List<DeviceAlarm>>(_scadaDeviceServiceSoapClient.GetListDeviceAlarmInfoAsync());
             //this.RadGridView1.ItemsSource = deviceAlam;
-            this._scadaDeviceServiceSoapClient.GetListDeviceAlarmInfoAsync();
+            //this._scadaDeviceServiceSoapClient.GetListDeviceAlarmInfoAsync();
         }
         private void scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoCompleted(object sender, UpdateDeviceAlarmInfoCompletedEventArgs e)
         {
             Boolean result = e.Result;
-            this._scadaDeviceServiceSoapClient.GetListDeviceAlarmInfoAsync();
+            //this._scadaDeviceServiceSoapClient.GetListDeviceAlarmInfoAsync();
         }
 
 

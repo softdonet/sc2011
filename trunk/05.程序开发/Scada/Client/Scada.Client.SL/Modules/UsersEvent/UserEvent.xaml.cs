@@ -86,11 +86,11 @@ namespace Scada.Client.SL.Modules.UsersEvent
             ViewHost.Visibility = Visibility.Collapsed;
         }
 
-        private void scadaDeviceServiceSoapClient_ListUserEventInfoCompleted(object sender, GetListUserEventInfoCompletedEventArgs e)
-        {
-            List<UserEventTab> userEventTab = BinaryObjTransfer.BinaryDeserialize<List<UserEventTab>>(e.Result);
-            this.RadGridView1.ItemsSource = userEventTab;
-        }
+        //private void scadaDeviceServiceSoapClient_ListUserEventInfoCompleted(object sender, GetListUserEventInfoCompletedEventArgs e)
+        //{
+        //    List<UserEventTab> userEventTab = BinaryObjTransfer.BinaryDeserialize<List<UserEventTab>>(e.Result);
+        //    this.RadGridView1.ItemsSource = userEventTab;
+        //}
 
 
         #endregion

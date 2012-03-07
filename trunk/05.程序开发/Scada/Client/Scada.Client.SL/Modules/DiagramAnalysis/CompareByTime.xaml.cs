@@ -61,6 +61,7 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
 
             CompareByTimeViewModel vm = new CompareByTimeViewModel();
             this.DataContext = vm;
+           
         }
 
         #endregion
@@ -70,18 +71,20 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            //this.init();
-
+            this.init();
+            this.cmbSelDevice.SelectedValuePath = "NodeKey";
+            this.cmbSelDevice.DisplayMemberPath = "NodeValue";
+            
         }
 
 
         private void init()
         {
             this.cmbSelDateMode.Items.Clear();
-            string[] selMode = (string[])EnumHelper.GetValues(typeof(DateSelMode));
-            foreach (string item in selMode)
+            object[] selMode = EnumHelper.GetValues(typeof(DateSelMode));
+            foreach (var item in selMode)
             {
-                this.cmbSelDateMode.Items.Add(item);
+                this.cmbSelDateMode.Items.Add(item.ToString());
             }
 
             if (this.cmbSelDateMode.Items.Count > 0)

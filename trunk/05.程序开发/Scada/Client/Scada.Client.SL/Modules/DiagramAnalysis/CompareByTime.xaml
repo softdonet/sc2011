@@ -34,8 +34,10 @@
                             <StackPanel Margin="20,10,10,10" Orientation="Horizontal">
                                 <sdk:Label Content="选择设备: "/>
                                 <ComboBox Name="cmbSelDevice" Height="23" Width="169" 
-                                          SelectedValue="{Binding Path=DeviceTreeList, Mode=TwoWay}" 
-                                          SelectedValuePath="NodeKey" DisplayMemberPath="NodeValue" >
+                                          SelectedValue="{Binding Path=DeviceRealTimeTree, Mode=TwoWay}" 
+                                          DataContext="{Binding DeviceTreeList}"
+                                          ItemsSource="{Binding DeviceTreeList}"
+                                          SelectedValuePath="NodeKey" DisplayMemberPath="NodeValue"  >
                                 </ComboBox>
                             </StackPanel>
                             <StackPanel Margin="20,10,10,10" Orientation="Horizontal">

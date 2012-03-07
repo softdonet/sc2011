@@ -43,5 +43,15 @@ namespace DataAccess.Properties {
                 return ((string)(this["zhengguojiangConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=211.152.52.203;Initial Catalog=SCADA;User ID=sa;Password=pass@word1")]
+        public string SCADAConnectionString1 {
+            get {
+                return ((string)(this["SCADAConnectionString1"]));
+            }
+        }
     }
 }

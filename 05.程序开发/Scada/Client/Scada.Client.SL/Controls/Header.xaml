@@ -460,7 +460,7 @@
            
         </StackPanel>
         <StackPanel HorizontalAlignment="Right" Height="26" Grid.Row="3" VerticalAlignment="Center" Width="90" Margin="0,0,20,0" Orientation="Horizontal">
-            <!--<TextBlock Text="欢迎 管理员 登录 "  Foreground="White"  VerticalAlignment="Center" ></TextBlock>-->
+            <TextBlock Text="欢迎 管理员 登录 "  Foreground="White"  VerticalAlignment="Center" ></TextBlock>
         </StackPanel>
         <!--查询子菜单-->
         <Border x:Name="bdSearch" HorizontalAlignment="Right" Height="36" Margin="0,0,267,-4" Grid.Row="3" VerticalAlignment="Bottom" Width="316" Background="{StaticResource header_senmenu}" RenderTransformOrigin="0.5,0.5" Opacity="0" Visibility="Collapsed" >

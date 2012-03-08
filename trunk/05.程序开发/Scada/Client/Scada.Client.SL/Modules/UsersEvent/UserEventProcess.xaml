@@ -25,7 +25,7 @@
        
         <StackPanel  Orientation="Horizontal"  Grid.RowSpan="7"  Grid.Row="0">
             <StackPanel Margin="0,0,5,0">
-                <ToggleButton Content="进入处理流程" Grid.Row="0" HorizontalAlignment="Left"  Name="tbtnEnter"  Width="399" Margin="0,12,0,4" Checked="tbtnEnter_Checked" Height="47" FontSize="18" />
+                <ToggleButton Content="进入处理流程" Grid.Row="0" HorizontalAlignment="Center"  Name="tbtnEnter"  Width="399" Margin="0,12,0,4" Checked="tbtnEnter_Checked" Height="47" FontSize="18" />
                 <StackPanel Grid.Row="1" Height="29" Margin="3"   VerticalAlignment="Top"  Orientation="Horizontal" >
             <TextBlock Height="16" Name="textBlock1" Text="第一步：" Margin="10,0,0,0" />
             <ComboBox Height="23" Name="cmbStep1" Width="120" Margin="10,0,0,0" DisplayMemberPath="StepName" SelectedValuePath="StepID"/>
@@ -68,9 +68,10 @@
             <TextBox Height="23" Margin="10,0,0,0" Width="240" Name="txtStep5" />
             <Button Content="确认" Height="23" Margin="10,0,0,0" Width="75" Name="btnStep5" Click="btnStep_Click" />
             </StackPanel>
-                <StackPanel Height="29" Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="10">
+                <StackPanel Height="29" Orientation="Horizontal" VerticalAlignment="Top">
                     <TextBlock Height="23" Margin="70,0,0,0" Text="确认人：  时间：                       " Name="txtblk5" />
                 </StackPanel>
+                <ToggleButton Content="退出处理流程"  Margin="20" Width="405" Height="48" Name="tbtnClose" Checked="tbtnClose_Checked" FontSize="18" />
             </StackPanel>
             <StackPanel Margin="50,0,10,0" Width="400">
                 <StackPanel >
@@ -157,7 +158,5 @@
             </StackPanel>
             </StackPanel>
         </StackPanel>
-
-        <ToggleButton Content="退出处理流程" HorizontalAlignment="Left"   Width="405" Grid.Row="6" Margin="0,17,0,0" Height="48" VerticalAlignment="Top" Name="tbtnClose" Checked="tbtnClose_Checked" FontSize="18" />
     </Grid>
 </UserControl>

@@ -62,11 +62,6 @@ namespace DataAccess
     partial void DeleteUserEventDealDetail(UserEventDealDetail instance);
     #endregion
 		
-		public SCADADataContext() : 
-				base(global::DataAccess.Properties.Settings.Default.SCADAConnectionString1, mappingSource)
-		{
-			OnCreated();
-		}
 		
 		public SCADADataContext(string connection) : 
 				base(connection, mappingSource)

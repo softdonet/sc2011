@@ -98,11 +98,9 @@
                                 <vc:Title Text="同一设备不同时段温度对比" FontFamily="Arial" FontSize="14"/>
                             </vc:Chart.Titles>
                             <vc:Chart.TrendLines>
-
                                 <vc:TrendLine Orientation="Horizontal" StartValue="15" EndValue="18" LineColor="#9FEAF451"/>
                                 <vc:TrendLine Orientation="Horizontal" StartValue="18" EndValue="25" LineColor="#9F9AD846"/>
                                 <vc:TrendLine Orientation="Horizontal" StartValue="25" EndValue="50" LineColor="#9FF86D5A"/>
-
                             </vc:Chart.TrendLines>
                             <vc:Chart.AxesX>
                                 <vc:Axis Title="小时" ValueFormatString="HH">

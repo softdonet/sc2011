@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Text;
 using System.Data;
+using System.Data.SqlClient;
 using System.Collections.Generic;
 
 
 using Scada.DAL.Ado;
 using Scada.BLL.Contract;
 using Scada.Model.Entity;
-using System.Data.SqlClient;
 using Scada.Utility.Common.Transfer;
 
 
@@ -17,6 +17,7 @@ namespace Scada.BLL.Implement
 
     public class ScadaDeviceService : IScadaDeviceService
     {
+
 
         #region 测试流程
 
@@ -908,23 +909,27 @@ namespace Scada.BLL.Implement
 
         #endregion
 
-
         #region 图表分析
 
         //1获取树型设备(combox)
         public string GetDeviceTreeList()
         {
             List<DeviceTreeNode> treeList = new List<DeviceTreeNode>();
-            List<DeviceTreeNode> areaTable = this.getTreeNodeChild(null, string.Empty);
-            foreach (DeviceTreeNode area in areaTable)
+
+            List<DeviceTreeNode> firstNode = this.getTreeNodeChild(null, string.Empty);
+            foreach (DeviceTreeNode area in firstNode)
             {
-                List<DeviceTreeNode> ManageTable = this.getTreeNodeChild(area.NodeKey, "--");
-                foreach (DeviceTreeNode manage in ManageTable)
+                treeList.Add(new DeviceTreeNode { NodeKey = area.NodeKey, NodeValue = area.NodeValue, NodeType = area.NodeType });
+                List<DeviceTreeNode> secondNode = this.getTreeNodeChild(area.NodeKey, "--");
+                foreach (DeviceTreeNode manage in secondNode)
                 {
-                    manage.NodeChild = getTreeNodeDevice(manage.NodeKey, "----");
-                    area.AddNodeKey(manage);
+                    treeList.Add(new DeviceTreeNode { NodeKey = manage.NodeKey, NodeValue = manage.NodeValue, NodeType = area.NodeType });
+                    List<DeviceTreeNode> thirdNode = getTreeNodeDevice(manage.NodeKey, "----");
+                    foreach (DeviceTreeNode item in thirdNode)
+                    {
+                        treeList.Add(new DeviceTreeNode { NodeKey = item.NodeKey, NodeValue = item.NodeValue, NodeType = area.NodeType });
+                    }
                 }
-                treeList.Add(area);
             }
             return BinaryObjTransfer.JsonSerializer<List<DeviceTreeNode>>(treeList);
         }
@@ -932,9 +937,93 @@ namespace Scada.BLL.Implement
         //2同设备不同时间段获取温度值
         public string GetSameDeviceTemperatureDiffDate(Int32 DeviceType, Guid DeviceID, Int32 DateSelMode, string DateList)
         {
-            return string.Empty;
+            Dictionary<DateTime, List<ChartSource>> source = new Dictionary<DateTime, List<ChartSource>>();
+            DateTime start, end;
+            List<DateTime> dates = BinaryObjTransfer.JsonDeserialize<List<DateTime>>(DateList);
+            foreach (DateTime item in dates)
+            {
+                string groupType = string.Empty;
+                start = item;
+                string where = GetDevicEntityKey(DeviceType, DeviceID);
+                end = DateDiffTime(item, DateSelMode, ref groupType);
+                source.Add(item, GetDeviceDateTemperature(start, end, groupType, where));
+            }
+            return BinaryObjTransfer.JsonSerializer<Dictionary<DateTime, List<ChartSource>>>(source);
         }
 
+        private DateTime DateDiffTime(DateTime start, Int32 dateSelMode, ref string groupType)
+        {
+            DateTime result = DateTime.MinValue;
+            if (dateSelMode == 0)
+            {
+                result = start.AddDays(1);
+                groupType = @" case when convert(varchar(16),AAA.UpdateTime,120) like '%[0-4]' 
+		                        then convert(varchar(15),AAA.UpdateTime,120)+'0'
+		                        else convert(varchar(15),AAA.UpdateTime,120)+'5' end ";
+            }
+            else if (dateSelMode == 1)
+            {
+                result = start.AddMonths(1);
+                groupType = @" convert(varchar(13), AAA.UpdateTime,120) +':00:00' ";
+            }
+            else
+            {
+                result = start.AddYears(1);
+                groupType = @" convert(varchar(7), AAA.UpdateTime,120) +'-01:00:00' ";
+            }
+            return result;
+        }
+
+        private string GetDevicEntityKey(Int32 DeviceType, Guid DeviceID)
+        {
+            string sSql = string.Empty;
+            string result = string.Empty;
+
+            if (DeviceType == 2)
+            {
+                result = " And AAA.DeviceID ='" + DeviceID.ToString().ToUpper() + "'";
+                return result;
+            }
+            else if (DeviceType == 0)
+                sSql = @" Select Distinct CCC.ID
+                                from DeviceTree AAA 
+                                Inner Join DeviceTree BBB On AAA.ID=BBB.ParentID
+                                Inner Join DeviceInfo CCC On BBB.ID=CCC.ManageAreaID
+                                Where AAA.ID = '" + DeviceID.ToString().ToUpper() + "'";
+            else if (DeviceType == 1)
+                sSql = " Select Id from DeviceInfo Where ManageAreaID = '" + DeviceID.ToString().ToUpper() + "'";
+            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            if (ds == null || ds.Rows.Count == 0) { return result; }
+            StringBuilder sb = new StringBuilder();
+            foreach (DataRow dr in ds.Rows)
+            {
+                sb.Append(",'" + dr["ID"] + "'");
+            }
+            result = "And AAA.DeviceID In ( " + sb.ToString().Substring(1) + " )";
+            return result;
+        }
+
+        private List<ChartSource> GetDeviceDateTemperature(DateTime start, DateTime end, string groupType, string whereType)
+        {
+            List<ChartSource> result = new List<ChartSource>();
+            string sSql = @" Select " + groupType + @" As DeviceDate ,Round(Avg(AAA.Temperature),2) As DeviceTemperature
+                                from DeviceRealTime AAA  
+                                Where 1=1 And AAA.Temperature >0 
+                                And AAA.UpdateTime >='" + start.ToString("yyyy-MM-dd HH:mm:ss") + @"'
+                                And AAA.UpdateTime <'" + end.ToString("yyyy-MM-dd HH:mm:ss") + "' Group by " + groupType + " Order by DeviceDate";
+            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            if (ds == null || ds.Rows.Count == 0) { return result; }
+            foreach (DataRow dr in ds.Rows)
+            {
+                result.Add(
+                    new ChartSource
+                    {
+                        DeviceDate = Convert.ToDateTime(dr["DeviceDate"]),
+                        DeviceTemperature = Convert.ToDouble(dr["DeviceTemperature"])
+                    });
+            }
+            return result;
+        }
 
         #endregion
 

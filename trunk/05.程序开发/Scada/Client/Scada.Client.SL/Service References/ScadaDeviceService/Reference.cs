@@ -92,6 +92,11 @@ namespace Scada.Client.SL.ScadaDeviceService {
         System.IAsyncResult BeginGetDeviceTreeList(Scada.Client.SL.ScadaDeviceService.GetDeviceTreeListRequest request, System.AsyncCallback callback, object asyncState);
         
         Scada.Client.SL.ScadaDeviceService.GetDeviceTreeListResponse EndGetDeviceTreeList(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/GetSameDeviceTemperatureDiffDate", ReplyAction="*")]
+        System.IAsyncResult BeginGetSameDeviceTemperatureDiffDate(Scada.Client.SL.ScadaDeviceService.GetSameDeviceTemperatureDiffDateRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.SL.ScadaDeviceService.GetSameDeviceTemperatureDiffDateResponse EndGetSameDeviceTemperatureDiffDate(System.IAsyncResult result);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -906,6 +911,86 @@ namespace Scada.Client.SL.ScadaDeviceService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetSameDeviceTemperatureDiffDateRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetSameDeviceTemperatureDiffDate", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.GetSameDeviceTemperatureDiffDateRequestBody Body;
+        
+        public GetSameDeviceTemperatureDiffDateRequest() {
+        }
+        
+        public GetSameDeviceTemperatureDiffDateRequest(Scada.Client.SL.ScadaDeviceService.GetSameDeviceTemperatureDiffDateRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetSameDeviceTemperatureDiffDateRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public int DeviceType;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public System.Guid DeviceID;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public int DateSelMode;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string DateList;
+        
+        public GetSameDeviceTemperatureDiffDateRequestBody() {
+        }
+        
+        public GetSameDeviceTemperatureDiffDateRequestBody(int DeviceType, System.Guid DeviceID, int DateSelMode, string DateList) {
+            this.DeviceType = DeviceType;
+            this.DeviceID = DeviceID;
+            this.DateSelMode = DateSelMode;
+            this.DateList = DateList;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetSameDeviceTemperatureDiffDateResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetSameDeviceTemperatureDiffDateResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.GetSameDeviceTemperatureDiffDateResponseBody Body;
+        
+        public GetSameDeviceTemperatureDiffDateResponse() {
+        }
+        
+        public GetSameDeviceTemperatureDiffDateResponse(Scada.Client.SL.ScadaDeviceService.GetSameDeviceTemperatureDiffDateResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetSameDeviceTemperatureDiffDateResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetSameDeviceTemperatureDiffDateResult;
+        
+        public GetSameDeviceTemperatureDiffDateResponseBody() {
+        }
+        
+        public GetSameDeviceTemperatureDiffDateResponseBody(string GetSameDeviceTemperatureDiffDateResult) {
+            this.GetSameDeviceTemperatureDiffDateResult = GetSameDeviceTemperatureDiffDateResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface ScadaDeviceServiceSoapChannel : Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap, System.ServiceModel.IClientChannel {
     }
@@ -1197,6 +1282,25 @@ namespace Scada.Client.SL.ScadaDeviceService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetSameDeviceTemperatureDiffDateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetSameDeviceTemperatureDiffDateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class ScadaDeviceServiceSoapClient : System.ServiceModel.ClientBase<Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap>, Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap {
         
         private BeginOperationDelegate onBeginAddDelegate;
@@ -1289,6 +1393,12 @@ namespace Scada.Client.SL.ScadaDeviceService {
         
         private System.Threading.SendOrPostCallback onGetDeviceTreeListCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetSameDeviceTemperatureDiffDateDelegate;
+        
+        private EndOperationDelegate onEndGetSameDeviceTemperatureDiffDateDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetSameDeviceTemperatureDiffDateCompletedDelegate;
+        
         private BeginOperationDelegate onBeginOpenDelegate;
         
         private EndOperationDelegate onEndOpenDelegate;
@@ -1370,6 +1480,8 @@ namespace Scada.Client.SL.ScadaDeviceService {
         public event System.EventHandler<ProcessingStepNoCompletedEventArgs> ProcessingStepNoCompleted;
         
         public event System.EventHandler<GetDeviceTreeListCompletedEventArgs> GetDeviceTreeListCompleted;
+        
+        public event System.EventHandler<GetSameDeviceTemperatureDiffDateCompletedEventArgs> GetSameDeviceTemperatureDiffDateCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -2243,6 +2355,75 @@ namespace Scada.Client.SL.ScadaDeviceService {
             base.InvokeAsync(this.onBeginGetDeviceTreeListDelegate, null, this.onEndGetDeviceTreeListDelegate, this.onGetDeviceTreeListCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.BeginGetSameDeviceTemperatureDiffDate(Scada.Client.SL.ScadaDeviceService.GetSameDeviceTemperatureDiffDateRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetSameDeviceTemperatureDiffDate(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginGetSameDeviceTemperatureDiffDate(int DeviceType, System.Guid DeviceID, int DateSelMode, string DateList, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.SL.ScadaDeviceService.GetSameDeviceTemperatureDiffDateRequest inValue = new Scada.Client.SL.ScadaDeviceService.GetSameDeviceTemperatureDiffDateRequest();
+            inValue.Body = new Scada.Client.SL.ScadaDeviceService.GetSameDeviceTemperatureDiffDateRequestBody();
+            inValue.Body.DeviceType = DeviceType;
+            inValue.Body.DeviceID = DeviceID;
+            inValue.Body.DateSelMode = DateSelMode;
+            inValue.Body.DateList = DateList;
+            return ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginGetSameDeviceTemperatureDiffDate(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.SL.ScadaDeviceService.GetSameDeviceTemperatureDiffDateResponse Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.EndGetSameDeviceTemperatureDiffDate(System.IAsyncResult result) {
+            return base.Channel.EndGetSameDeviceTemperatureDiffDate(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private string EndGetSameDeviceTemperatureDiffDate(System.IAsyncResult result) {
+            Scada.Client.SL.ScadaDeviceService.GetSameDeviceTemperatureDiffDateResponse retVal = ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndGetSameDeviceTemperatureDiffDate(result);
+            return retVal.Body.GetSameDeviceTemperatureDiffDateResult;
+        }
+        
+        private System.IAsyncResult OnBeginGetSameDeviceTemperatureDiffDate(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int DeviceType = ((int)(inValues[0]));
+            System.Guid DeviceID = ((System.Guid)(inValues[1]));
+            int DateSelMode = ((int)(inValues[2]));
+            string DateList = ((string)(inValues[3]));
+            return this.BeginGetSameDeviceTemperatureDiffDate(DeviceType, DeviceID, DateSelMode, DateList, callback, asyncState);
+        }
+        
+        private object[] OnEndGetSameDeviceTemperatureDiffDate(System.IAsyncResult result) {
+            string retVal = this.EndGetSameDeviceTemperatureDiffDate(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetSameDeviceTemperatureDiffDateCompleted(object state) {
+            if ((this.GetSameDeviceTemperatureDiffDateCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetSameDeviceTemperatureDiffDateCompleted(this, new GetSameDeviceTemperatureDiffDateCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetSameDeviceTemperatureDiffDateAsync(int DeviceType, System.Guid DeviceID, int DateSelMode, string DateList) {
+            this.GetSameDeviceTemperatureDiffDateAsync(DeviceType, DeviceID, DateSelMode, DateList, null);
+        }
+        
+        public void GetSameDeviceTemperatureDiffDateAsync(int DeviceType, System.Guid DeviceID, int DateSelMode, string DateList, object userState) {
+            if ((this.onBeginGetSameDeviceTemperatureDiffDateDelegate == null)) {
+                this.onBeginGetSameDeviceTemperatureDiffDateDelegate = new BeginOperationDelegate(this.OnBeginGetSameDeviceTemperatureDiffDate);
+            }
+            if ((this.onEndGetSameDeviceTemperatureDiffDateDelegate == null)) {
+                this.onEndGetSameDeviceTemperatureDiffDateDelegate = new EndOperationDelegate(this.OnEndGetSameDeviceTemperatureDiffDate);
+            }
+            if ((this.onGetSameDeviceTemperatureDiffDateCompletedDelegate == null)) {
+                this.onGetSameDeviceTemperatureDiffDateCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetSameDeviceTemperatureDiffDateCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetSameDeviceTemperatureDiffDateDelegate, new object[] {
+                        DeviceType,
+                        DeviceID,
+                        DateSelMode,
+                        DateList}, this.onEndGetSameDeviceTemperatureDiffDateDelegate, this.onGetSameDeviceTemperatureDiffDateCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -2513,6 +2694,19 @@ namespace Scada.Client.SL.ScadaDeviceService {
             public Scada.Client.SL.ScadaDeviceService.GetDeviceTreeListResponse EndGetDeviceTreeList(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 Scada.Client.SL.ScadaDeviceService.GetDeviceTreeListResponse _result = ((Scada.Client.SL.ScadaDeviceService.GetDeviceTreeListResponse)(base.EndInvoke("GetDeviceTreeList", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetSameDeviceTemperatureDiffDate(Scada.Client.SL.ScadaDeviceService.GetSameDeviceTemperatureDiffDateRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("GetSameDeviceTemperatureDiffDate", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.SL.ScadaDeviceService.GetSameDeviceTemperatureDiffDateResponse EndGetSameDeviceTemperatureDiffDate(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.SL.ScadaDeviceService.GetSameDeviceTemperatureDiffDateResponse _result = ((Scada.Client.SL.ScadaDeviceService.GetSameDeviceTemperatureDiffDateResponse)(base.EndInvoke("GetSameDeviceTemperatureDiffDate", _args, result)));
                 return _result;
             }
         }

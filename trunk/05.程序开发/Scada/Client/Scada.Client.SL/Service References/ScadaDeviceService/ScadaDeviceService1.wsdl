@@ -205,6 +205,23 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetSameDeviceTemperatureDiffDate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeviceType" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeviceID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="DateSelMode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DateList" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSameDeviceTemperatureDiffDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSameDeviceTemperatureDiffDateResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="guid">
@@ -304,6 +321,12 @@
   <wsdl:message name="GetDeviceTreeListSoapOut">
     <wsdl:part name="parameters" element="tns:GetDeviceTreeListResponse" />
   </wsdl:message>
+  <wsdl:message name="GetSameDeviceTemperatureDiffDateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSameDeviceTemperatureDiffDate" />
+  </wsdl:message>
+  <wsdl:message name="GetSameDeviceTemperatureDiffDateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSameDeviceTemperatureDiffDateResponse" />
+  </wsdl:message>
   <wsdl:portType name="ScadaDeviceServiceSoap">
     <wsdl:operation name="Add">
       <wsdl:input message="tns:AddSoapIn" />
@@ -364,6 +387,10 @@
     <wsdl:operation name="GetDeviceTreeList">
       <wsdl:input message="tns:GetDeviceTreeListSoapIn" />
       <wsdl:output message="tns:GetDeviceTreeListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSameDeviceTemperatureDiffDate">
+      <wsdl:input message="tns:GetSameDeviceTemperatureDiffDateSoapIn" />
+      <wsdl:output message="tns:GetSameDeviceTemperatureDiffDateSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ScadaDeviceServiceSoap" type="tns:ScadaDeviceServiceSoap">
@@ -503,6 +530,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetSameDeviceTemperatureDiffDate">
+      <soap:operation soapAction="http://tempuri.org/GetSameDeviceTemperatureDiffDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ScadaDeviceServiceSoap12" type="tns:ScadaDeviceServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -634,6 +670,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetDeviceTreeList">
       <soap12:operation soapAction="http://tempuri.org/GetDeviceTreeList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSameDeviceTemperatureDiffDate">
+      <soap12:operation soapAction="http://tempuri.org/GetSameDeviceTemperatureDiffDate" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

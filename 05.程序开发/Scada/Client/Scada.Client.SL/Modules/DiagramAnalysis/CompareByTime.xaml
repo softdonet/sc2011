@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
     mc:Ignorable="d"
     d:DesignHeight="500" d:DesignWidth="1024">
 
@@ -16,9 +17,14 @@
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
-        <Grid Loaded="Grid_Loaded">
-            <TextBlock x:Name="title_TextBlock" HorizontalAlignment="Left" Height="25" Margin="22,5,0,0" TextWrapping="Wrap" Text="时间对比" VerticalAlignment="Top"  FontSize="16" Foreground="White"/>
-            <Border BorderBrush="#FF4A91BB" BorderThickness="1" Margin="10,35,10,20" CornerRadius="5" Background="White">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="402*" />
+                <ColumnDefinition Width="622*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="title_TextBlock" HorizontalAlignment="Left" Height="25" Margin="22,5,0,0" 
+                       TextWrapping="Wrap" Text="时间对比" VerticalAlignment="Top"  FontSize="16" Foreground="White"/>
+            <Border BorderBrush="#FF4A91BB" BorderThickness="1" Margin="10,35,10,20" CornerRadius="5" Background="White" Grid.ColumnSpan="2">
                 <Border BorderThickness="1" Margin="1" CornerRadius="6">
                     <Grid ShowGridLines="True" Background="AliceBlue">
                         <Grid.ColumnDefinitions>
@@ -34,10 +40,7 @@
                             <StackPanel Margin="20,10,10,10" Orientation="Horizontal">
                                 <sdk:Label Content="选择设备: "/>
                                 <ComboBox Name="cmbSelDevice" Height="23" Width="169" 
-                                          SelectedValue="{Binding Path=DeviceRealTimeTree, Mode=TwoWay}" 
-                                          DataContext="{Binding DeviceTreeList}"
-                                          ItemsSource="{Binding DeviceTreeList}"
-                                          SelectedValuePath="NodeKey" DisplayMemberPath="NodeValue"  >
+                                          SelectedValuePath="NodeKey" DisplayMemberPath="NodeValue">
                                 </ComboBox>
                             </StackPanel>
                             <StackPanel Margin="20,10,10,10" Orientation="Horizontal">
@@ -47,32 +50,41 @@
                             </StackPanel>
 
                             <StackPanel  Margin="20,10,10,10"  Orientation="Horizontal" >
-                                <CheckBox VerticalAlignment="Center" IsChecked="True" ></CheckBox>
+                                <CheckBox VerticalAlignment="Center" Name="chkFrist" IsChecked="True" ></CheckBox>
                                 <Image Source="/Scada.Client.SL;component/Modules/DiagramAnalysis/Images/d1.jpg"></Image>
                                 <sdk:Label Height="28"  Content="时间1：" HorizontalAlignment="Left"  Name="label11" VerticalAlignment="Center"  />
-                                <sdk:DatePicker Height="23"  Name="datePicker1" Width="148" DataContext="{Binding}" />
+                                <telerik:RadDateTimePicker x:Name="dateFrist" Width="140"  Height="23"
+									   DisplayFormat="Short" InputMode="DatePicker" IsReadOnly="False" DateSelectionMode="Day"/>
+
                             </StackPanel>
                             <StackPanel  Margin="20,10,10,10"  Orientation="Horizontal" >
-                                <CheckBox VerticalAlignment="Center" IsChecked="True" ></CheckBox>
+                                <CheckBox VerticalAlignment="Center" Name="chkSecond" IsChecked="True" ></CheckBox>
                                 <Image Source="/Scada.Client.SL;component/Modules/DiagramAnalysis/Images/d2.jpg"></Image>
                                 <sdk:Label Height="28"  Content="时间2：" HorizontalAlignment="Left"  Name="label3" VerticalAlignment="Center"  />
-                                <sdk:DatePicker Height="23" Name="datePicker3" Width="148" />
+                                <telerik:RadDateTimePicker x:Name="dateSecond" Width="140"  Height="23"
+									   DisplayFormat="Short" InputMode="DatePicker" IsReadOnly="False" DateSelectionMode="Day"/>
+
                             </StackPanel>
                             <StackPanel  Margin="20,10,10,10"  Orientation="Horizontal" >
-                                <CheckBox VerticalAlignment="Center" IsChecked="True" ></CheckBox>
+                                <CheckBox VerticalAlignment="Center" Name="chkThird" IsChecked="False" ></CheckBox>
                                 <Image Source="/Scada.Client.SL;component/Modules/DiagramAnalysis/Images/d3.jpg"></Image>
-                                <sdk:Label Height="28"  Content="时间2：" HorizontalAlignment="Left"  Name="label4" VerticalAlignment="Center"  />
-                                <sdk:DatePicker Height="23" Name="datePicker4" Width="148" />
+                                <sdk:Label Height="28"  Content="时间3：" HorizontalAlignment="Left"  Name="label4" VerticalAlignment="Center"  />
+                                <telerik:RadDateTimePicker x:Name="dateThird" Width="140"  Height="23"
+									   DisplayFormat="Short" InputMode="DatePicker" IsReadOnly="False" DateSelectionMode="Day"/>
+
                             </StackPanel>
                             <StackPanel  Margin="20,10,10,10"  Orientation="Horizontal" >
-                                <CheckBox VerticalAlignment="Center" IsChecked="True" ></CheckBox>
+                                <CheckBox VerticalAlignment="Center" Name="chkFour" IsChecked="False" ></CheckBox>
                                 <Image Source="/Scada.Client.SL;component/Modules/DiagramAnalysis/Images/d4.jpg"></Image>
-                                <sdk:Label Height="28"  Content="时间2：" HorizontalAlignment="Left"  Name="label2" VerticalAlignment="Center"  />
-                                <sdk:DatePicker Height="23" Name="datePicker2" Width="148" />
+                                <sdk:Label Height="28" Content="时间4：" HorizontalAlignment="Left"  Name="label2" VerticalAlignment="Center"  />
+
+                                <telerik:RadDateTimePicker x:Name="dateFour" Width="140"  Height="23"
+									   DisplayFormat="Short" InputMode="DatePicker" IsReadOnly="False" DateSelectionMode="Day"/>
+
                             </StackPanel>
 
                             <StackPanel  Margin="0,10,20,10"  Orientation="Horizontal" HorizontalAlignment="Right" >
-                                <Button    Content=" 查看对比" VerticalAlignment="Top" Width="129"/>
+                                <Button  Content=" 查看对比" Name="butViewCompare" VerticalAlignment="Top" Width="129" Click="butViewCompare_Click" />
                             </StackPanel>
 
                         </StackPanel>
@@ -80,7 +92,7 @@
                         <!--图表-->
                         <vc:Chart xmlns:vc="clr-namespace:Visifire.Charts;assembly=SLVisifire.Charts" 
                           Theme="Theme1" BorderBrush="Gray" ScrollingEnabled="False" AnimatedUpdate="true" 
-                          Margin="0"  Grid.Column="1" Grid.Row="0" IndicatorEnabled="true">
+                          Margin="0"  Name="charTemperature" Grid.Column="1" Grid.Row="0" IndicatorEnabled="true">
 
                             <vc:Chart.Titles>
                                 <vc:Title Text="同一设备不同时段温度对比" FontFamily="Arial" FontSize="14"/>
@@ -93,7 +105,7 @@
 
                             </vc:Chart.TrendLines>
                             <vc:Chart.AxesX>
-                                <vc:Axis Title="小时"     ValueFormatString="HH"  >
+                                <vc:Axis Title="小时" ValueFormatString="HH">
                                     <vc:Axis.Grids>
                                         <vc:ChartGrid Interval="8" InterlacedColor="#0efCff6e"  />
                                     </vc:Axis.Grids>
@@ -113,11 +125,11 @@
                             </vc:Chart.PlotArea>
 
                             <vc:Chart.Series>
-                                <vc:DataSeries RenderAs="Spline"     ShowInLegend="false"   SelectionEnabled="true"    MarkerEnabled="false"   LabelEnabled="false" LegendText="设备1">
+                                
+                                <vc:DataSeries RenderAs="Spline" ShowInLegend="false" SelectionEnabled="true" MarkerEnabled="false" LabelEnabled="false" LegendText="设备1">
                                     <vc:DataSeries.Color>
-                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <LinearGradientBrush>
                                             <GradientStop Color="Red" Offset="0"/>
-                                            <GradientStop Color="#FFFF8080" Offset="1"/>
                                         </LinearGradientBrush>
                                     </vc:DataSeries.Color>
                                     <vc:DataSeries.DataPoints>
@@ -220,7 +232,7 @@
 
                                     </vc:DataSeries.DataPoints>
                                 </vc:DataSeries>
-                                <vc:DataSeries RenderAs="Spline" ShowInLegend="false"    LabelEnabled="false"  MarkerEnabled="false" LegendText="设备2">
+                                <vc:DataSeries RenderAs="Spline" ShowInLegend="false" LabelEnabled="false" MarkerEnabled="false" LegendText="设备2">
                                     <vc:DataSeries.Color>
                                         <SolidColorBrush Color="DodgerBlue"></SolidColorBrush>
                                     </vc:DataSeries.Color>

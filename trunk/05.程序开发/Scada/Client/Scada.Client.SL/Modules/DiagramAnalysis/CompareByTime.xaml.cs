@@ -153,14 +153,17 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
             dataSeries.SelectionEnabled = true;
             dataSeries.MarkerEnabled = false;
             dataSeries.LabelEnabled = false;
+            dataSeries.XValueType = ChartValueTypes.DateTime;
+            dataSeries.XValueFormatString = "yyyy-MM-dd HH:mm:ss";
             dataSeries.Color = new SolidColorBrush(color);
 
             DataPoint datapoint;
             foreach (ChartSource item in source)
             {
                 datapoint = new DataPoint();
-                datapoint.AxisXLabel = item.DeviceDate.ToString("HH:mm");
+                datapoint.XValue = item.DeviceDate.ToString("yyyy-MM-dd HH:mm:ss");
                 datapoint.YValue = item.DeviceTemperature;
+                datapoint.ToolTipText = string.Format("{0},{1}", datapoint.XValue, datapoint.YValue);
                 dataSeries.DataPoints.Add(datapoint);
             }
             this.charTemperature.Series.Add(dataSeries);

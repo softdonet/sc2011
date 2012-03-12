@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 namespace Scada.Model.Entity
 {
-
-    public class UserEventTab
+    /// <summary>
+    /// 用户事件
+    /// </summary>
+    public class UserEvent
     {
         public Guid ID { get; set; }
-        public String EventNo { get; set; }
+        public string EventNo { get; set; }
         public Guid DeviceID { get; set; }
-        public String DeviceNo { get; set; }
-        public int? EventType { get; set; }
-        public Int32? State { get; set; }
-        public Int32? Count { get; set; }
+        public string DeviceNo { get; set; }
+        public int? State { get; set; }
+        public int? Count { get; set; }
         public DateTime? RequestTime { get; set; }
-        public string DealInfo { get; set; }
-
+        public int? EventType { get; set; }
     }
 }

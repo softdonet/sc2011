@@ -41,24 +41,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Weather.cs" />
-    <Compile Include="DBClass\ChartSource.cs" />
-    <Compile Include="DBClass\DatabaseBackUp.cs" />
-    <Compile Include="DBClass\Department.cs" />
+    <Compile Include="Common\ChartSource.cs" />
     <Compile Include="DBClass\DeviceAlarm.cs" />
     <Compile Include="DBClass\DeviceInfo.cs" />
-    <Compile Include="DBClass\DeviceLog.cs" />
-    <Compile Include="DBClass\DeviceMaintenancePeople.cs" />
     <Compile Include="DBClass\DeviceRealTime.cs" />
-    <Compile Include="DBClass\EventDealDetail.cs" />
     <Compile Include="DBClass\StepInfo.cs" />
     <Compile Include="DBClass\UserEvent.cs" />
+    <Compile Include="DBClass\UserEventDealDetail.cs" />
     <Compile Include="DBPartialClass\DeviceRealTimePartial.cs" />
     <Compile Include="DBClass\DeviceTree.cs" />
     <Compile Include="DBClass\MaintenancePeople.cs" />
     <Compile Include="DBClass\Module.cs" />
     <Compile Include="DBClass\Role.cs" />
     <Compile Include="DBClass\RoleModule.cs" />
-    <Compile Include="DBClass\Student.cs" />
     <Compile Include="DBClass\User.cs" />
     <Compile Include="DBClass\UserRole.cs" />
     <Compile Include="Common\DeviceRealTimeTree.cs" />

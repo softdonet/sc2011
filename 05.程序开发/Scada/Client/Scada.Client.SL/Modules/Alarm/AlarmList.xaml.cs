@@ -45,50 +45,29 @@ namespace Scada.Client.SL.Modules.Alarm
 
         #endregion
 
-
         #region 构造函数
 
         private static AlarmList instance;
         public static AlarmList GetInstance()
         {
-            if (instance==null)
+            if (instance == null)
             {
                 instance = new AlarmList();
             }
             return instance;
         }
+        AlarmListViewModel AlarmListVM = null;
         public AlarmList()
         {
 
             InitializeComponent();
 
-            DeviceAlarmViewModel DeviceAlarmVM = new DeviceAlarmViewModel();
-            this.DataContext = DeviceAlarmVM;
-            DeviceAlarmVM.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(DeviceAlarmVM_PropertyChanged);
-
+            AlarmListVM = new AlarmListViewModel();
+            this.DataContext = AlarmListVM;
             this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
-
-            //this._scadaDeviceServiceSoapClient.GetListDeviceAlarmInfoCompleted +=
-            //        new EventHandler<GetListDeviceAlarmInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted);
-            //this._scadaDeviceServiceSoapClient.GetListDeviceAlarmInfoAsync();
-
             this._scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoCompleted +=
                 new EventHandler<UpdateDeviceAlarmInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoCompleted);
-
-
         }
-
-        void DeviceAlarmVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            //throw new NotImplementedException();
-        }
-
-        //private void scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted(object sender, GetListDeviceAlarmInfoCompletedEventArgs e)
-        //{
-        //    ObservableCollection<DeviceAlarm> deviceAlam =
-        //                                BinaryObjTransfer.BinaryDeserialize<ObservableCollection<DeviceAlarm>>(e.Result);
-        //    this.RadGridView1.ItemsSource = deviceAlam;
-        //}
 
         #endregion
 
@@ -103,7 +82,7 @@ namespace Scada.Client.SL.Modules.Alarm
 
             TextBlock state = (e.Row.Cells[RadGridView1.Columns.Count - 3].Content as FrameworkElement) as TextBlock;
             HyperlinkButton hlBtn = (e.Row.Cells[RadGridView1.Columns.Count - 2].Content as FrameworkElement).FindName("hlBtn") as HyperlinkButton;
-            if (string.IsNullOrEmpty( state.Text.Trim()))//未处理的数据
+            if (string.IsNullOrEmpty(state.Text.Trim()))//未处理的数据
             {
                 //e.Row.Background = new SolidColorBrush(Colors.Red);
                 //e.Row.Cells[RadGridView1.Columns.Count - 2].Background = new SolidColorBrush(Colors.White);
@@ -136,7 +115,7 @@ namespace Scada.Client.SL.Modules.Alarm
             SolidColorBrush col = new SolidColorBrush(Colors.Orange);
             if (flag)
                 col = new SolidColorBrush(Colors.White);
-           
+
             foreach (GridViewRowItem dgr in dicDr.Keys)
             {
                 dgr.Background = col;
@@ -154,7 +133,7 @@ namespace Scada.Client.SL.Modules.Alarm
         private void hlBtn_Click(object sender, RoutedEventArgs e)
         {
             HyperlinkButton hlB = sender as HyperlinkButton;
-            id = (hlB.DataContext as DeviceAlarm).ID;
+            id = (hlB.DataContext as DeviceAlarmViewModel).DeviceAlarm.ID;
             RadWindow.Prompt("请输入备注：", new EventHandler<WindowClosedEventArgs>(OnClosed));
         }
         private void OnClosed(object sender, WindowClosedEventArgs e)
@@ -163,62 +142,17 @@ namespace Scada.Client.SL.Modules.Alarm
             string getCommentInfo = e.PromptResult;
             //TODO: 操作人
             this._scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoAsync(id, DateTime.Now, getCommentInfo, "Admin");
-
-            //DataBind();
+            var obj = AlarmListVM.DeviceAlarmList.SingleOrDefault(x => x.DeviceAlarm.ID == id);
+            if (obj != null)
+            {
+                obj.Comment = getCommentInfo;
+            }
         }
 
-        private void DataBind()
-        {
-            //List<DeviceAlarm> deviceAlam = BinaryObjTransfer.BinaryDeserialize<List<DeviceAlarm>>(_scadaDeviceServiceSoapClient.GetListDeviceAlarmInfoAsync());
-            //this.RadGridView1.ItemsSource = deviceAlam;
-            //this._scadaDeviceServiceSoapClient.GetListDeviceAlarmInfoAsync();
-        }
         private void scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoCompleted(object sender, UpdateDeviceAlarmInfoCompletedEventArgs e)
         {
             Boolean result = e.Result;
-            //this._scadaDeviceServiceSoapClient.GetListDeviceAlarmInfoAsync();
         }
-
-
-     
         #endregion
-
-
-
     }
-    /// <summary>
-    /// 将数字改成字符
-    /// </summary>
-    //public class ConvertNumberToText : IValueConverter
-    //{
-
-    //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        string currentText = string.Empty;
-    //        DeviceAlarm currentValue = value as DeviceAlarm;
-    //        if (currentValue == null)
-    //        {
-    //            return DependencyProperty.UnsetValue;
-    //        }
-    //        switch (parameter.ToString().ToLower())
-    //        {
-    //            case "eventtype":
-    //                if (currentValue.EventType.HasValue)
-    //                {
-    //                   return EnumHelper.Display<EventTypes>(currentValue.EventType.Value);
-    //                }
-    //                break;
-    //            case "eventLevel":
-    //                break;
-    //            default:
-    //                break;
-    //        }
-    //        return currentText;
-    //    }
-
-    //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
 }

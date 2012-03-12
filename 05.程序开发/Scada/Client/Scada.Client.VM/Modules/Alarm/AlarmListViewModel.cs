@@ -21,17 +21,9 @@ namespace Scada.Client.VM.Modules.Alarm
     /// <summary>
     /// 数据实时列表：告警信息
     /// </summary>
-    public class DeviceAlarmViewModel : NotificationObject
+    public class AlarmListViewModel : NotificationObject
     {
-        #region Variable
-
-        private List<DeviceAlarm> deviceAlarm;
-
-        #endregion
-
-        #region Constructor
-
-        public DeviceAlarmViewModel()
+        public AlarmListViewModel()
         {
             DeviceRealTimeServiceClient deviceAlarmService = ServiceManager.GetDeviceRealTimeService();
             deviceAlarmService.GetAlarmDataReceived += new EventHandler<GetAlarmDataReceivedEventArgs>(deviceAlarmService_GetAlarmDataReceived);
@@ -42,8 +34,15 @@ namespace Scada.Client.VM.Modules.Alarm
             if (e.Error == null)
             {
                 List<DeviceAlarm> result = BinaryObjTransfer.BinaryDeserialize<List<DeviceAlarm>>(e.data);
-                DeviceAlarmList = result;
-                DeviceAlarmListTop = result;
+                List<DeviceAlarmViewModel> davmList = new List<DeviceAlarmViewModel>();
+                foreach (var item in result)
+                {
+                    DeviceAlarmViewModel davm = new DeviceAlarmViewModel();
+                    davm.DeviceAlarm = item;
+                    davmList.Add(davm);
+                }
+                DeviceAlarmList = davmList;
+                DeviceAlarmListTop = davmList;
             }
             else
             {
@@ -51,9 +50,8 @@ namespace Scada.Client.VM.Modules.Alarm
             }
         }
 
-        private List<DeviceAlarm> deviceAlarmList;
-
-        public List<DeviceAlarm> DeviceAlarmList
+        private List<DeviceAlarmViewModel> deviceAlarmList;
+        public List<DeviceAlarmViewModel> DeviceAlarmList
         {
             get { return deviceAlarmList; }
             set
@@ -63,23 +61,18 @@ namespace Scada.Client.VM.Modules.Alarm
             }
         }
 
-        private List<DeviceAlarm> deviceAlarmListTop;
-
-        public List<DeviceAlarm> DeviceAlarmListTop
+        private List<DeviceAlarmViewModel> deviceAlarmListTop;
+        public List<DeviceAlarmViewModel> DeviceAlarmListTop
         {
             get { return deviceAlarmListTop; }
-            set 
-            { 
+            set
+            {
                 deviceAlarmListTop = value;
-                deviceAlarmListTop = deviceAlarmListTop.OrderBy(e => e.StartTime).Take(4).ToList();
+                deviceAlarmListTop = deviceAlarmListTop.OrderBy(e => e.DeviceAlarm.StartTime).Take(4).ToList();
                 this.RaisePropertyChanged("DeviceAlarmListTop");
             }
         }
-
     }
-        #endregion
-
-
 }
 
 

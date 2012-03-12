@@ -16,5 +16,10 @@ namespace Scada.Model.Entity
         public int? Count { get; set; }
         public DateTime? RequestTime { get; set; }
         public int? EventType { get; set; }
+
+        /// <summary>
+        /// 后续添加字段，拼接详细表中处理的内容
+        /// </summary>
+        public string DealInfo { get; set; }
     }
 }

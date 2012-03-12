@@ -21,7 +21,7 @@ namespace Scada.Utility.Common.SL
     /// <summary>
     /// 用户事件
     /// 将数字改成字符
-    /// 实体类（UserEventTab）
+    /// 实体类（UserEvent）
     /// </summary>
     public class ConvertNumberToText : IValueConverter
     {
@@ -29,7 +29,7 @@ namespace Scada.Utility.Common.SL
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string currentText = string.Empty;
-            UserEventTab currentValue = value as UserEventTab;
+            UserEvent currentValue = value as UserEvent;
             if (currentValue == null)
             {
                 return DependencyProperty.UnsetValue;

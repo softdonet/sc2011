@@ -6,7 +6,8 @@
     mc:Ignorable="d"
     d:DesignHeight="600" d:DesignWidth="1024" xmlns:my="clr-namespace:Scada.Client.UC;assembly=Scada.Client.UC" 
              xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
-             xmlns:my1="clr-namespace:Scada.Client.SL.Controls">
+             xmlns:my1="clr-namespace:Scada.Client.SL.Controls"
+             >
 
     <Grid x:Name="LayoutRoot" Background="White">
         <Border Name="content_Border" BorderBrush="#FF4A91BB" BorderThickness="1" Margin="5" CornerRadius="5">
@@ -37,112 +38,93 @@
 
                             </Grid.RowDefinitions>
                             <my1:TreeViewList   x:Name="treeViewList1" OnTreeSelectItemClick="treeViewList1_OnTreeSelectItemClick" />
-                            <sdk:Label Grid.Column="1" Height="18" HorizontalAlignment="Left" Margin="13,14,0,0" x:Name="label1" VerticalAlignment="Top" Width="62" Content="设备MAC：" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="88,8,0,0" x:Name="txtDeviceMac" VerticalAlignment="Top" Width="204" Grid.Column="1" />
+                            <sdk:Label Content="设备编号：" HorizontalAlignment="Left" Margin="14,17,0,0" VerticalAlignment="Top" Width="62" Grid.Column="1" />
+                            <TextBox Height="23" HorizontalAlignment="Left" Margin="86,14,0,0" Name="txtDeviceId" Text="" VerticalAlignment="Top" Width="204" Grid.Column="1" />
+                            <sdk:Label Content="设备SN号：" HorizontalAlignment="Left" Margin="14,44,0,0" VerticalAlignment="Top" Width="62" Grid.Column="1" />
+                            <TextBox Height="23" HorizontalAlignment="Left" Margin="86,40,0,0" Name="txtDeviceSN" Text="" VerticalAlignment="Top" Width="204" Grid.Column="1" />
+                            <sdk:Label Content="设备MAC：" Grid.Column="1"  HorizontalAlignment="Left" Margin="10,74,0,0" x:Name="label1" VerticalAlignment="Top" Width="62"  />
+                            <TextBox Height="23" HorizontalAlignment="Left" Margin="86,68,0,0" x:Name="txtDeviceMac" VerticalAlignment="Top" Width="204" Grid.Column="1" />
+                            
+                            <sdk:Label Content="SIM卡号：" Grid.Column="1"  HorizontalAlignment="Left" Margin="10,97,0,0" x:Name="label2" VerticalAlignment="Top" Width="62"  />
+                            <TextBox Height="23" HorizontalAlignment="Left" Margin="86,94,0,0" x:Name="txtSIM" VerticalAlignment="Top" Width="204" Grid.Column="1" />
+                                <sdk:Label Content="硬件型号：" HorizontalAlignment="Left" Margin="12,123,0,0" Name="label5" VerticalAlignment="Top" Width="62" Grid.Column="1" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="86,121,0,0" Name="txtHardId" VerticalAlignment="Top" Width="204" Grid.Column="1" />
+                                <sdk:Label Content="生产日期：" HorizontalAlignment="Left" Margin="12,146,0,0" Name="label6" VerticalAlignment="Top" Width="62" Grid.Column="1" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="86,148,0,0" Name="txtProductDate" VerticalAlignment="Top" Width="204" Grid.Column="1" />
 
-                            <CheckBox Content="SIM卡号：" Grid.Column="1" HorizontalAlignment="Left" IsChecked="True"  VerticalAlignment="Top" Margin="12,38,0,0" x:Name="checkBox1" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="88,34,0,0" x:Name="txtSIM" VerticalAlignment="Top" Width="204" Grid.Column="1" />
+                                <sdk:Label Content="管理分区：" Grid.Column="1"  HorizontalAlignment="Left" Margin="10,178,0,0" x:Name="label3" VerticalAlignment="Top" Width="62"  />
+                            <TextBox Height="23" HorizontalAlignment="Left" Margin="86,176,0,0" x:Name="txtManageArea" VerticalAlignment="Top" Width="204" Grid.Column="1" />
 
-                            <CheckBox Content="管理分区：" Grid.Column="1" Height="16" Margin="12,63,0,0"  IsChecked="True" HorizontalAlignment="Left"   x:Name="checkBox2" VerticalAlignment="Top" Width="75" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="88,60,0,0" x:Name="txtManageArea" VerticalAlignment="Top" Width="204" Grid.Column="1" />
+                            <sdk:Label Content="安装位置：" Grid.Column="1"  HorizontalAlignment="Left" Margin="10,204,0,0" x:Name="label4" VerticalAlignment="Top" Width="62"  />
+                            <TextBox Height="23" HorizontalAlignment="Left" Margin="86,202,0,0" x:Name="txtInstallPlace" VerticalAlignment="Top" Width="204" Grid.Column="1" />
+                                <sdk:Label Content="经      度：" Grid.Column="1"  HorizontalAlignment="Left" Margin="12,234,0,0" VerticalAlignment="Top" Width="62"  />
+                                <TextBox Height="23" HorizontalAlignment="Right" Margin="0,231,22,0" x:Name="txtLongitude" Text="" VerticalAlignment="Top" Width="205" Grid.Column="1" />
 
-                            <CheckBox Content="安装位置：" Grid.Column="1" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="13,88,0,0" x:Name="checkBox3" VerticalAlignment="Top" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="88,86,0,0" x:Name="txtInstallPlace" VerticalAlignment="Top" Width="204" Grid.Column="1" />
+                                <sdk:Label Content="维      度：" Grid.Column="1"  HorizontalAlignment="Left" Margin="12,261,0,0" VerticalAlignment="Top" Width="62"  />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="86,257,0,0" x:Name="txtDimensionality" Text="" VerticalAlignment="Top" Width="205" Grid.Column="1" />
 
-                            <CheckBox Content="备     注：" Height="16" HorizontalAlignment="Left" Margin="12,115,0,0" IsChecked="True" x:Name="checkBox4" VerticalAlignment="Top" Grid.Column="1" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="88,112,0,0" x:Name="txtComment" VerticalAlignment="Top" Width="204" Grid.Column="1" />
-                            <CheckBox Content="采集频率：" Height="16" HorizontalAlignment="Left" Margin="10,411,0,0" IsChecked="True" x:Name="checkBox5" VerticalAlignment="Top" Grid.Column="1" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="86,408,0,0" x:Name="txtCollectFreq" Text="60" VerticalAlignment="Top" Width="55" Grid.Column="1" />
-                            <CheckBox Content="上报间隔：" Height="16" HorizontalAlignment="Left" Margin="10,442,0,0"  IsChecked="True" x:Name="checkBox6" VerticalAlignment="Top" Grid.Column="1" />
-                            <TextBox HorizontalAlignment="Left" Margin="86,440,0,26" x:Name="txtReportInterval" Text="240" Width="55" Grid.Column="1" />
-                            <CheckBox Content="报警上限：" Height="16" HorizontalAlignment="Left" Margin="166,412,0,0" IsChecked="True" x:Name="checkBox7" VerticalAlignment="Top" Grid.Column="1" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="242,410,0,0" x:Name="txtAlarnTop" Text="35.0" VerticalAlignment="Top" Width="50" Grid.Column="1" />
-                            <CheckBox Content="报警下限：" Height="16" HorizontalAlignment="Left" Margin="166,441,0,0" IsChecked="True" x:Name="checkBox8" VerticalAlignment="Top" Grid.Column="1" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="242,439,0,0" x:Name="txtAlarnDown" Text="10.0" VerticalAlignment="Top" Width="50" Grid.Column="1" />
-                            <CheckBox Content="偏     差：" Height="16" HorizontalAlignment="Left" Margin="10,469,0,0" IsChecked="True" x:Name="checkBox9" VerticalAlignment="Top" Grid.Column="1" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="86,466,0,0" x:Name="txtWindage" Text="0.0" VerticalAlignment="Top" Width="55" Grid.Column="1" />
+                                <sdk:Label Content="高      度：" Grid.Column="1"  HorizontalAlignment="Left" Margin="12,288,0,0" VerticalAlignment="Top" Width="62"  />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="86,283,0,0" x:Name="txtHigh" Text="" VerticalAlignment="Top" Width="205" Grid.Column="1" />
+                                <sdk:Label Content="连接方式：" Grid.Column="1"  HorizontalAlignment="Left" Margin="12,312,0,0" VerticalAlignment="Top" Width="62"  />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="86,309,0,0" x:Name="txtConnType" Text="" VerticalAlignment="Top" Width="204" Grid.Column="1" />
+                                <sdk:Label Content="备      注：" Grid.Column="1"  HorizontalAlignment="Left" Margin="9,341,0,0" VerticalAlignment="Top" Width="62"  />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="85,338,0,0" x:Name="txtComment" VerticalAlignment="Top" Width="204" Grid.Column="1" />
+                                <sdk:Label Content="时间偏差：" Grid.Column="1"  HorizontalAlignment="Left" Margin="12,379,0,0" VerticalAlignment="Top" Width="62"  />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="85,376,0,0" x:Name="txtWindage" Text="0.0" VerticalAlignment="Top" Width="205" Grid.Column="1" />
 
-
-
-
-
-                            <CheckBox Content="接入点：" Height="16" HorizontalAlignment="Left" Margin="11,142,0,0"  IsChecked="True" VerticalAlignment="Top" x:Name="checkBox10" Grid.Column="1" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="87,138,0,0" x:Name="txtConnPoint"  VerticalAlignment="Top" Width="205" Grid.Column="1" />
-
-                            <CheckBox Content="经  度：" Height="16" HorizontalAlignment="Left" Margin="11,167,0,0" IsChecked="True" x:Name="checkBox11" VerticalAlignment="Top" Grid.Column="1" />
-                            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,164,21,0" x:Name="txtLongitude" Text="" VerticalAlignment="Top" Width="205" Grid.Column="1" />
-
-                            <CheckBox Content="维  度：" Height="16" HorizontalAlignment="Left" Margin="11,192,0,0" IsChecked="True" x:Name="checkBox12" VerticalAlignment="Top" Grid.Column="1" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="87,190,0,0" x:Name="txtDimensionality" Text="" VerticalAlignment="Top" Width="205" Grid.Column="1" />
-
-                            <CheckBox Content="高  度：" Height="16" HorizontalAlignment="Left" Margin="11,219,0,0" IsChecked="True" x:Name="checkBox13" VerticalAlignment="Top" Grid.Column="1" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="87,216,0,0" x:Name="txtHigh" Text="" VerticalAlignment="Top" Width="205" Grid.Column="1" />
-
-                            <CheckBox Content="连接方式：" Height="16" HorizontalAlignment="Left" Margin="11,246,0,0" IsChecked="True" x:Name="checkBox14" VerticalAlignment="Top" Grid.Column="1" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="88,242,0,0" x:Name="txtConnType" Text="" VerticalAlignment="Top" Width="204" Grid.Column="1" />
-
-
-                            <CheckBox Content="主DNS：" Height="16"  HorizontalAlignment="Left" Margin="10,275,0,0" IsChecked="True" VerticalAlignment="Top" x:Name="checkBox15" Grid.Column="1" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="86,271,0,0" x:Name="txtMainDNS"  VerticalAlignment="Top" Width="206" Grid.Column="1" />
-
-                            <CheckBox Content="从DNS：" Height="16"  HorizontalAlignment="Left" Margin="11,300,0,0" IsChecked="True" x:Name="checkBox16" VerticalAlignment="Top" Width="75" Grid.Column="1" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="86,297,0,0" x:Name="txtSecondDNS" VerticalAlignment="Top" Width="206" Grid.Column="1" />
-
-                            <CheckBox Content="中心IP：" Height="16" HorizontalAlignment="Left" Margin="10,325,0,0" IsChecked="True" x:Name="checkBox17" VerticalAlignment="Top" Grid.Column="1" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="86,323,0,0" x:Name="txtCenterIp" Text="" VerticalAlignment="Top" Width="206" Grid.Column="1" />
-
-                            <CheckBox Content="域名：" Height="16" HorizontalAlignment="Left" Margin="10,352,0,0"  IsChecked="True" x:Name="checkBox18" VerticalAlignment="Top" Grid.Column="1" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="86,349,0,0" x:Name="txtDomain" Text="" VerticalAlignment="Top" Width="206" Grid.Column="1" />
-
-                            <CheckBox Content="端口：" Height="16" HorizontalAlignment="Left" Margin="10,383,0,0"  IsChecked="True" x:Name="checkBox19" VerticalAlignment="Top" Grid.Column="1" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="87,379,0,0" x:Name="txtPort" Text="" VerticalAlignment="Top" Width="205" Grid.Column="1" />
-                            <StackPanel Name="stackPanel11" Orientation="Horizontal" Grid.Column="2" Margin="53,5,126,-1" Grid.Row="1">
+                                <StackPanel Name="stackPanel11" Orientation="Horizontal" Grid.Column="2" Margin="53,5,126,-1" Grid.Row="1">
                                 <Button Content="增加" Height="23" Name="butAdd" Width="60" Click="butAdd_Click" />
                                 <Button Content="删除" Height="23" Name="butDel" Width="60" Click="butDel_Click" />
                                 <Button Content="保存" Height="23" Name="butSave" Width="60" Click="butSave_Click" />
                                 <Button Content="导出" Height="23" Name="btnExport" Width="60" />
                             </StackPanel>
-                            <sdk:DataGrid AutoGenerateColumns="False" Grid.Column="2" Height="213" HorizontalAlignment="Left" Margin="36,241,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="374" SelectionChanged="dataGrid1_SelectionChanged">
-                                <sdk:DataGrid.Columns>
-                                    <sdk:DataGridTemplateColumn Header="维护人" Width="80" DisplayIndex="1" />
-                                    <sdk:DataGridTemplateColumn Header="电话" Width="60"  />
-                                    <sdk:DataGridTemplateColumn Header="操作" Width="60"  />
-                                </sdk:DataGrid.Columns>
-
-                            </sdk:DataGrid>
-                            <StackPanel Grid.Column="2" Height="35" HorizontalAlignment="Left" Margin="260,454,0,0" Name="stackPanel4" VerticalAlignment="Top" Width="155" Orientation="Horizontal">
-                                <Button Content="添加" Height="23" Name="button5" Width="75" />
-                                <Button Content="删除" Height="23" Name="button6" Width="75" />
-                            </StackPanel>
-                            <sdk:Label Content="硬件版本：" Height="18" x:Name="label2" Width="50" Margin="166,469,97,2" Grid.Column="1" />
-                            <TextBox Height="23" x:Name="txtVersion" Text="V.10" Width="48" Margin="244,466,21,0" Grid.Column="1" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="219,14,0,0" Name="textBlock1" Text="实时模式参数：" VerticalAlignment="Top" />
-                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="295,10,0,0" Name="txtRealTimeParam" VerticalAlignment="Top" Width="120" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="219,44,0,0" Name="textBlock2" Text="整点采集频率：" VerticalAlignment="Top" />
-                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="295,40,0,0" Name="txtHourCollectrate" VerticalAlignment="Top" Width="120" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="219,75,0,0" Name="textBlock3" Text="整点发送频率：" VerticalAlignment="Top" />
-                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="295,73,0,0" Name="txtHourSendFreq" VerticalAlignment="Top" Width="120" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="220,108,0,0" Name="textBlock4" Text="快速采集频率:" VerticalAlignment="Top" />
-                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="295,104,0,0" Name="txtQuickCollectFreq" VerticalAlignment="Top" Width="120" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="226,134,0,0" Name="textBlock5" Text="速    率:" VerticalAlignment="Top" />
-                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="295,132,0,0" Name="txtRate" VerticalAlignment="Top" Width="120" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="220,164,0,0" Name="textBlock6" Text="发送间隔:" VerticalAlignment="Top" />
-                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="295,167,0,0" Name="txtSendTimeSpace" VerticalAlignment="Top" Width="120" />
-                            <ComboBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="83,9,0,0" Name="cmbDisplayType" VerticalAlignment="Top" Width="120" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="0,14,0,0" Name="textBlock7" Text="液晶屏显示类型:" VerticalAlignment="Top" />
-                            <CheckBox Content="是否启用紧急按钮" Grid.Column="2" Height="16" HorizontalAlignment="Left" Margin="5,41,0,0" Name="chkInstancyBtn" VerticalAlignment="Top" />
-                            <CheckBox Content="过程值1报警设置有效" Grid.Column="2" Height="16" HorizontalAlignment="Left" Margin="5,67,0,0" Name="chkProcess1" VerticalAlignment="Top" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="0,90,0,0" Name="textBlock8" Text="过程值1高高报警值:" VerticalAlignment="Top" />
-                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="106,86,0,0" Name="txtProcess1HigherAlarm" VerticalAlignment="Top" Width="97" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="0,115,0,0" Name="textBlock9" Text="过程值1高报警值:" VerticalAlignment="Top" />
-                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="106,113,0,0" Name="txtProcess1HighAlarm" VerticalAlignment="Top" Width="97" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="5,143,0,0" Name="textBlock10" Text="过程值1低报警值:" VerticalAlignment="Top" />
-                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="106,140,0,0" Name="txtProcess1lowAlarm" VerticalAlignment="Top" Width="97" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="5,172,0,0" Name="textBlock11" Text="过程值1低低报警值:" VerticalAlignment="Top" />
-                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="106,168,0,0" Name="txtProcess1lowerAlarm" VerticalAlignment="Top" Width="97" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="5,197,0,0" Name="textBlock12" Text="过程值1速率报警值:" VerticalAlignment="Top" />
-                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="106,196,0,0" Name="txtProcess1RateAlarm" VerticalAlignment="Top" Width="97" />
-                        </Grid>
+                                <sdk:Label Content="硬件版本：" Height="18" x:Name="label33" Width="50" Margin="7,418,256,53" Grid.Column="1" />
+                            <TextBox Height="23" x:Name="txtVersion" Text="V.10" Width="48" Margin="85,415,180,51" Grid.Column="1" />
+                            <sdk:Label Content="软件版本：" Height="18"  Width="50" Margin="165,417,98,54" Grid.Column="1" />
+                            <TextBox Height="23" x:Name="txtSoftVersion" Text="V.10" Width="48" Margin="242,417,23,49" Grid.Column="1" />
+                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="220,86,0,0" Name="textBlock1" Text="实时模式参数：" VerticalAlignment="Top" />
+                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,82,0,0" Name="txtRealTimeParam" VerticalAlignment="Top" Width="120" />
+                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="220,116,0,0" Name="textBlock2" Text="整点模式参数1：" VerticalAlignment="Top" />
+                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,112,0,0" Name="txtFullTimeParam1" VerticalAlignment="Top" Width="120" />
+                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="220,147,0,0" Name="textBlock3" Text="整点模式参数2：" VerticalAlignment="Top" />
+                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,145,0,0" Name="txtFullTimeParam2" VerticalAlignment="Top" Width="120" />
+                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="221,180,0,0" Name="textBlock4" Text="逢变则报参数1:" VerticalAlignment="Top" />
+                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,176,0,0" Name="txtOptimizeParam1" VerticalAlignment="Top" Width="120" />
+                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="221,206,0,0" Name="textBlock5" Text="逢变则报参数2:" VerticalAlignment="Top" />
+                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,204,0,0" Name="txtOptimizeParam2" VerticalAlignment="Top" Width="120" />
+                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="222,240,0,0" Name="textBlock6" Text="逢变则报参数3:" VerticalAlignment="Top" />
+                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,236,0,0" Name="txtOptimizeParam3" VerticalAlignment="Top" Width="120" />
+                            <ComboBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="295,17,0,0" Name="cmbDisplayType" VerticalAlignment="Top" Width="120" />
+                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="212,19,0,0" Name="textBlock7" Text="液晶屏显示类型:" VerticalAlignment="Top" />
+                            <CheckBox Content="是否启用紧急按钮" Grid.Column="2" Height="16" HorizontalAlignment="Left" Margin="7,19,0,0" Name="chkInstancyBtn" VerticalAlignment="Top" />
+                            <CheckBox Content="主温度报警设置有效" Grid.Column="2" Height="16" HorizontalAlignment="Left" Margin="5,53,0,0" Name="chkHighTemp1Alarm" VerticalAlignment="Top" />
+                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="0,90,0,0" Name="textBlock8" Text="主温度高报警值:" VerticalAlignment="Top" />
+                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="106,86,0,0" Name="txtHighTemp1Alarm" VerticalAlignment="Top" Width="97" />
+                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="0,115,0,0" Name="textBlock9" Text="主温度低报警值:" VerticalAlignment="Top" />
+                            <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="106,113,0,0" Name="txtLowTemp1Alarm" VerticalAlignment="Top" Width="97" />
+                                <CheckBox Content="从温度报警设置有效" Height="16" HorizontalAlignment="Left" Margin="7,141,0,0" Name="chkHighTemp2Alarm" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,165,0,0" Name="textBlock10" Text="从温度高报警值:" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,161,0,0" Name="txtHighTemp2Alarm" VerticalAlignment="Top" Width="97" Grid.Column="2" />
+                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,190,0,0" Name="textBlock13" Text="从温度低报警值:" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,188,0,0" Name="txtLowTemp2Alarm" VerticalAlignment="Top" Width="97" Grid.Column="2" />
+                                <CheckBox Content="湿度报警设置有效" Height="16" HorizontalAlignment="Left" Margin="0,219,0,0" Name="chkHumidityAlarm" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,248,0,0" Name="textBlock14" Text="湿度高报警值:" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,244,0,0" Name="txtHumidityHighAlarm" VerticalAlignment="Top" Width="97" Grid.Column="2" />
+                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,273,0,0" Name="textBlock15" Text="湿度低报警值:" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,271,0,0" Name="txtHumidityLowAlarm" VerticalAlignment="Top" Width="97" Grid.Column="2" />
+                                <CheckBox Content="信号报警设置有效" Height="16" HorizontalAlignment="Left" Margin="0,312,0,0" Name="chkSignalAlarm" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,334,0,0" Name="textBlock11" Text="信号高报警值:" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,330,0,0" Name="txtSignalHighAlarm" VerticalAlignment="Top" Width="97" Grid.Column="2" />
+                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,359,0,0" Name="textBlock12" Text="信号低报警值:" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,357,0,0" Name="txtSignalLowAlarm" VerticalAlignment="Top" Width="97" Grid.Column="2" />
+                                <CheckBox Content="电量报警设置有效" Height="16" HorizontalAlignment="Left" Margin="1,394,0,0" Name="chkElectricityAlarm" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,417,0,0" Name="textBlock16" Text="电量高报警值:" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,413,0,0" Name="txtElectricityHighAlarm" VerticalAlignment="Top" Width="97" Grid.Column="2" />
+                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,442,0,0" Name="textBlock17" Text="电量低报警值:" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,440,0,0" Name="txtElectricityLowAlarm" VerticalAlignment="Top" Width="97" Grid.Column="2" />
+                                <ComboBox Height="23" HorizontalAlignment="Left" Margin="296,50,0,0" Name="cmbCurrentModel" VerticalAlignment="Top" Width="120" Grid.Column="2" />
+                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="213,55,0,0" Name="textBlock18" Text="当前选择模式:" VerticalAlignment="Top" Grid.Column="2" />
+                            </Grid>
                     </Border>
                 </Border>
             </Grid>

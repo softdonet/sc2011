@@ -78,7 +78,6 @@
     <Compile Include="Enums\EventTypes.cs" />
     <Compile Include="Enums\UserDealState.cs" />
     <Compile Include="Enums\UserEventType.cs" />
-    <Compile Include="NotifyPropertyChangedObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

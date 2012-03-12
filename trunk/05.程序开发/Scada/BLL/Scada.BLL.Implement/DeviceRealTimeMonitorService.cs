@@ -330,10 +330,10 @@ namespace Scada.BLL.Implement
             //string callData = DateTime.Now.ToString() + "用户事件";
             //if (CallDataReceived != null)
             //    this.CallDataReceived(callData);
-            string userEventTabData = GetListUserEventInfo();
+            string userEventData = GetListUserEventInfo();
             if (CallDataReceived!=null)
             {
-                this.CallDataReceived(userEventTabData);
+                this.CallDataReceived(userEventData);
             }
         }
 
@@ -344,14 +344,14 @@ namespace Scada.BLL.Implement
         public string GetListUserEventInfo()
         {
 
-            List<UserEventTab> userEvents = new List<UserEventTab>();
+            List<UserEvent> userEvents = new List<UserEvent>();
             string sSql = @" Select top 100 ID,EventNo,DeviceID,DeviceNo,EventType,
                                 State,Count,RequestTime from UserEvent";
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);
-            UserEventTab userEvent;
+            UserEvent userEvent;
             foreach (DataRow item in ds.Rows)
             {
-                userEvent = new UserEventTab();
+                userEvent = new UserEvent();
                 userEvent.ID = new Guid(item["ID"].ToString());
                 userEvent.EventNo = item["EventNo"].ToString();
                 userEvent.DeviceID = new Guid(item["DeviceID"].ToString());
@@ -384,12 +384,12 @@ namespace Scada.BLL.Implement
                 ///从从表中读取数据，然后整合
                 ///--------------------------
                 ///
-                List<EventDealDetail> eventDealDetailList = GetUserEventKeyInfo(userEvent.ID);
+                List<UserEventDealDetail> eventDealDetailList = GetUserEventKeyInfo(userEvent.ID);
                 string joinString = string.Empty;//拼接字符串
                 eventDealDetailList  = eventDealDetailList.OrderBy(tt => tt.StepNo).ToList(); ;//. from p in eventDealDetailList orderby p.StepNo select p;
                 if (eventDealDetailList.Count != 0)
                 {
-                    foreach (EventDealDetail eventItem in eventDealDetailList)
+                    foreach (UserEventDealDetail eventItem in eventDealDetailList)
                     {
                         joinString += eventItem.StepName + "-->";
                     }
@@ -400,26 +400,26 @@ namespace Scada.BLL.Implement
                 
             }
 
-            return BinaryObjTransfer.JsonSerializer<List<UserEventTab>>(userEvents);
+            return BinaryObjTransfer.JsonSerializer<List<UserEvent>>(userEvents);
 
         }
 
-        public List<EventDealDetail> GetUserEventKeyInfo(Guid EventKey)
+        public List<UserEventDealDetail> GetUserEventKeyInfo(Guid EventKey)
         {
            
-            List<EventDealDetail> dealDetails = new List<EventDealDetail>();
+            List<UserEventDealDetail> dealDetails = new List<UserEventDealDetail>();
             string sSql = @" Select ID,EventID,OperatorId,StepNo,StepName,Memo,DealTime
                                 From UserEventDealDetail 
                                 Where EventID='" + EventKey.ToString().ToUpper() + "' Order by StepNo";
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);
             if (ds.Rows.Count == 0) { return dealDetails; }
-            EventDealDetail detail;
+            UserEventDealDetail detail;
             foreach (DataRow item in ds.Rows)
             {
-                detail = new EventDealDetail();
-                detail.DetailID = new Guid(item["ID"].ToString());
+                detail = new UserEventDealDetail();
+                detail.ID = new Guid(item["ID"].ToString());
                 detail.EventID = new Guid(item["EventID"].ToString());
-                detail.OperatorId = new Guid(item["OperatorId"].ToString());
+                detail.Operator = new Guid(item["Operator"].ToString());
                 Int32 intValue = 0;
                 if (item["StepNo"] != DBNull.Value)
                     intValue = Convert.ToInt32(item["StepNo"]);

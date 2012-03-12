@@ -288,7 +288,7 @@ namespace Scada.BLL.Implement
             try
             {
                 //1)删除维护人列表
-                string sSql = @" Delete DeviceMaintenancePeople 
+                string sSql = @" Delete MaintenancePeople 
                                 Where DeviceID ='" + deviceGuid.ToString().ToUpper() + "'";
                 SqlHelper.ExecuteNonQuery(sSql);
 
@@ -496,35 +496,36 @@ namespace Scada.BLL.Implement
             return result;
         }
 
-        private List<DeviceMaintenancePeople> ListDeviceMaintenancePeople(Guid deviceID)
+        private List<MaintenancePeople> ListDeviceMaintenancePeople(Guid deviceID)
         {
-            List<DeviceMaintenancePeople> result = new List<DeviceMaintenancePeople>();
+            List<MaintenancePeople> result = new List<MaintenancePeople>();
             String sSql = @" Select AA.ID,BB.ID,BB.MainNo,BB.MainName,BB.City,
                              BB.Native,BB.Telephone,BB.MobileBack,BB.Email,AA.DeviceID
-                            From DeviceMaintenancePeople AA
+                            From MaintenancePeople AA
                             Inner JOIN MaintenancePeople BB On AA.MaintenanceID=BB.ID
                             Where AA.DeviceID ='" + deviceID.ToString().ToUpper() + "'";
 
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);
             if (ds == null || ds.Rows.Count == 0) { return result; }
-            DeviceMaintenancePeople people = null;
+            MaintenancePeople people = null;
             foreach (DataRow item in ds.Rows)
             {
-                people = new DeviceMaintenancePeople();
+                people = new MaintenancePeople();
                 people.ID = new Guid(item["ID"].ToString());
-                people.DeviceID = new Guid(item["DeviceID"].ToString());
+               // people.DeviceID = new Guid(item["DeviceID"].ToString());
 
                 MaintenancePeople peoples = new MaintenancePeople();
                 peoples.ID = new Guid(item["ID"].ToString());
-                peoples.MainNo = item["MainNo"].ToString();
-                peoples.MainName = item["MainName"].ToString();
-                peoples.City = item["City"].ToString();
-                peoples.Native = item["Native"].ToString();
+                //peoples.MainNo = item["MainNo"].ToString();
+                peoples.Name = item["Name"].ToString();
+                peoples.Address = item["Address"].ToString();
                 peoples.Telephone = item["Telephone"].ToString();
-                peoples.MobileBack = item["MobileBack"].ToString();
+                peoples.Mobile = item["Mobile"].ToString();
+                peoples.QQ = item["QQ"].ToString();
+                peoples.MSN = item["MSN"].ToString();
                 peoples.Email = item["Email"].ToString();
 
-                people.MaintenancePeopleInfo = peoples;
+                //people.MaintenancePeopleInfo = peoples;
                 result.Add(people);
             }
             return result;
@@ -597,12 +598,12 @@ namespace Scada.BLL.Implement
             return result;
         }
 
-        private Boolean UpdateDevicePeople(Guid deviceId, List<DeviceMaintenancePeople> devicePeples)
+        private Boolean UpdateDevicePeople(Guid deviceId, List<MaintenancePeople> devicePeples)
         {
             Boolean result = false;
             string sSql = string.Empty;
             //1)Delete
-            sSql = @" Delete DeviceMaintenancePeople 
+            sSql = @" Delete MaintenancePeople 
                                 Where DeviceID ='" + deviceId.ToString().ToUpper();
 
             //2)Insert
@@ -610,26 +611,26 @@ namespace Scada.BLL.Implement
             List<SqlParameter> sSqlWhere = new List<SqlParameter>();
             try
             {
-                foreach (DeviceMaintenancePeople item in devicePeples)
+                foreach (MaintenancePeople item in devicePeples)
                 {
-                    sSql = @" Insert Into DeviceMaintenancePeople(ID,MaintenanceID,DeviceID) Values (@ID,@MaintenanceID,@DeviceID)";
+                    sSql = @" Insert Into MaintenancePeople(ID,MaintenanceID,DeviceID) Values (@ID,@MaintenanceID,@DeviceID)";
                     para = new SqlParameter();
                     para.DbType = DbType.Guid;
                     para.ParameterName = "@ID";
                     para.Value = item.ID;
                     sSqlWhere.Add(para);
 
-                    para = new SqlParameter();
-                    para.DbType = DbType.Guid;
-                    para.ParameterName = "@MaintenanceID";
-                    para.Value = item.MaintenancePeopleInfo.ID;
-                    sSqlWhere.Add(para);
+                    //para = new SqlParameter();
+                    //para.DbType = DbType.Guid;
+                    //para.ParameterName = "@MaintenanceID";
+                    //para.Value = item.MaintenancePeopleInfo.ID;
+                    //sSqlWhere.Add(para);
 
-                    para = new SqlParameter();
-                    para.DbType = DbType.Guid;
-                    para.ParameterName = "@DeviceID";
-                    para.Value = item.DeviceID;
-                    sSqlWhere.Add(para);
+                    //para = new SqlParameter();
+                    //para.DbType = DbType.Guid;
+                    //para.ParameterName = "@DeviceID";
+                    //para.Value = item.DeviceID;
+                    //sSqlWhere.Add(para);
 
                     SqlHelper.ExecuteNonQuery(CommandType.Text, sSql.ToString(), sSqlWhere.ToArray());
                     sSqlWhere.Clear();
@@ -769,19 +770,19 @@ namespace Scada.BLL.Implement
         public string GetUserEventKeyInfo(Guid EventKey)
         {
             string result = string.Empty;
-            List<EventDealDetail> dealDetails = new List<EventDealDetail>();
+            List<UserEventDealDetail> dealDetails = new List<UserEventDealDetail>();
             string sSql = @" Select ID,EventID,OperatorId,StepNo,StepName,Memo,DealTime
                                 From UserEventDealDetail 
                                 Where EventID='" + EventKey.ToString().ToUpper() + "' Order by StepNo";
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);
             if (ds.Rows.Count == 0) { return result; }
-            EventDealDetail detail;
+            UserEventDealDetail detail;
             foreach (DataRow item in ds.Rows)
             {
-                detail = new EventDealDetail();
-                detail.DetailID = new Guid(item["ID"].ToString());
+                detail = new UserEventDealDetail();
+                detail.ID = new Guid(item["ID"].ToString());
                 detail.EventID = new Guid(item["EventID"].ToString());
-                detail.OperatorId = new Guid(item["OperatorId"].ToString());
+                detail.Operator = new Guid(item["OperatorId"].ToString());
                 Int32 intValue = 0;
                 if (item["StepNo"] != DBNull.Value)
                     intValue = Convert.ToInt32(item["StepNo"]);
@@ -796,7 +797,7 @@ namespace Scada.BLL.Implement
                 dealDetails.Add(detail);
 
             }
-            result = BinaryObjTransfer.JsonSerializer<List<EventDealDetail>>(dealDetails);
+            result = BinaryObjTransfer.JsonSerializer<List<UserEventDealDetail>>(dealDetails);
             return result;
         }
 
@@ -814,7 +815,7 @@ namespace Scada.BLL.Implement
             foreach (DataRow item in ds.Rows)
             {
                 stepInfo = new StepInfo();
-                stepInfo.StepID = new Guid(item["ID"].ToString());
+                stepInfo.ID = new Guid(item["ID"].ToString());
                 stepInfo.StepName = item["StepName"].ToString();
                 stepInfos.Add(stepInfo);
             }
@@ -839,12 +840,12 @@ namespace Scada.BLL.Implement
             return result;
         }
 
-        public Boolean ProcessingStepNo(String EventDealDetail)
+        public Boolean ProcessingStepNo(String UserEventDealDetail)
         {
 
             Boolean result = false;
-            if (String.IsNullOrEmpty(EventDealDetail)) { return result; }
-            EventDealDetail eDealDetail = BinaryObjTransfer.JsonDeserialize<EventDealDetail>(EventDealDetail);
+            if (String.IsNullOrEmpty(UserEventDealDetail)) { return result; }
+            UserEventDealDetail eDealDetail = BinaryObjTransfer.JsonDeserialize<UserEventDealDetail>(UserEventDealDetail);
             if (eDealDetail == null) { return result; }
             String sSql = @" Insert Into UserEventDealDetail(ID,EventID,OperatorId,StepNo,
                                             StepName,Memo,DealTime) 
@@ -855,7 +856,7 @@ namespace Scada.BLL.Implement
             para = new SqlParameter();
             para.DbType = DbType.Guid;
             para.ParameterName = "@ID";
-            para.Value = eDealDetail.DetailID;
+            para.Value = eDealDetail.ID;
             sSqlWhere.Add(para);
 
             para = new SqlParameter();
@@ -867,7 +868,7 @@ namespace Scada.BLL.Implement
             para = new SqlParameter();
             para.DbType = DbType.Guid;
             para.ParameterName = "@OperatorId";
-            para.Value = eDealDetail.OperatorId;
+            para.Value = eDealDetail.Operator;
             sSqlWhere.Add(para);
 
             para = new SqlParameter();

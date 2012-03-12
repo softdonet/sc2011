@@ -23,14 +23,6 @@ namespace Scada.BLL.Implement
             return x + y;
         }
 
-        public string ListStudents()
-        {
-            List<Student> studens = new List<Student>();
-            studens.Add(new Student { Name = "张三", Age = 17 });
-            studens.Add(new Student { Name = "李四", Age = 19 });
-            return BinaryObjTransfer.JsonSerializer<List<Student>>(studens);
-        }
-
         #endregion
 
 

@@ -19,7 +19,7 @@ using Scada.Client.VM.Modules.BingMaps;
 using Scada.Model.Entity.Enums;
 using Scada.Client.SL.Modules.Device;
 using Scada.Client.VM.Modules.Alarm;
-using Scada.Client.VM.Modules.UserEvent;
+using Scada.Client.VM.Modules.UserEventVM;
 using Scada.Model.Entity;
 using Scada.Client.SL.Modules.UsersEvent;
 using Telerik.Windows.Controls;
@@ -241,11 +241,11 @@ namespace Scada.Client.SL.Modules.BingMaps
         private void hlBtnUserEvent_Click(object sender, RoutedEventArgs e)
         {
             HyperlinkButton hlB = sender as HyperlinkButton;
-            UserEvent userEvent = hlB.DataContext as UserEvent;
-            id = (hlB.DataContext as UserEvent).ID;
-            state = (hlB.DataContext as UserEvent).State;
+            UserEventModel userEventModel = hlB.DataContext as UserEventModel;
+            id = (hlB.DataContext as UserEventModel).ID;
+            state = (hlB.DataContext as UserEventModel).State;
             Storyboard1.Begin();
-            MyContent.Content = new UserEventProcess(userEvent);
+            MyContent.Content = new UserEventProcess(userEventModel);
             MyContent.Title = "用户事件流程";
         }
     }

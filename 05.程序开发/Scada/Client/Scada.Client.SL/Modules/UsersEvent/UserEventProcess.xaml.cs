@@ -20,7 +20,7 @@ namespace Scada.Client.SL.Modules.UsersEvent
     {
         #region 变量声明
         private ScadaDeviceServiceSoapClient _scadaDeviceServiceSoapClient=null;
-        private UserEventTab userEventTab;
+        private UserEventModel userEventModel;
         public Guid myGuid { get; set; }
         public int?state;
 
@@ -39,13 +39,13 @@ namespace Scada.Client.SL.Modules.UsersEvent
         /// </summary>
         /// <param name="id">处理的事件编号</param>
         /// <param name="state">1 未处理,2 正在处理,3 处理完毕</param>
-        public UserEventProcess(UserEventTab userEventTab)
+        public UserEventProcess(UserEventModel userEventModel)
         {
             InitializeComponent();
-            this.userEventTab = userEventTab;
+            this.userEventModel = userEventModel;
 
-            myGuid = userEventTab.ID;
-            state = userEventTab.State;
+            myGuid = userEventModel.ID;
+            state = userEventModel.State;
 
             if (state==1)
             {
@@ -70,7 +70,7 @@ namespace Scada.Client.SL.Modules.UsersEvent
             ///查找用户表中是否处理过该用户事件，有的话，返回结果对象
             //this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
             this._scadaDeviceServiceSoapClient.GetUserEventKeyInfoCompleted+=new EventHandler<GetUserEventKeyInfoCompletedEventArgs>(_scadaDeviceServiceSoapClient_GetUserEventKeyInfoCompleted);
-            this._scadaDeviceServiceSoapClient.GetUserEventKeyInfoAsync(userEventTab.ID);
+            this._scadaDeviceServiceSoapClient.GetUserEventKeyInfoAsync(userEventModel.ID);
             
         }
 
@@ -96,9 +96,9 @@ namespace Scada.Client.SL.Modules.UsersEvent
 
         void _scadaDeviceServiceSoapClient_GetUserEventKeyInfoCompleted(object sender, GetUserEventKeyInfoCompletedEventArgs e)
         {
-            List<EventDealDetail> eventDealDetail = BinaryObjTransfer.BinaryDeserialize<List<EventDealDetail>>(e.Result);
-            //EventDealDetail[] ArrEventDealDetail = eventDealDetail.ToArray();
-            if (userEventTab.State == 1)
+            List<UserEventDealDetail> eventDealDetail = BinaryObjTransfer.BinaryDeserialize<List<UserEventDealDetail>>(e.Result);
+            //UserEventDealDetail[] ArrEventDealDetail = eventDealDetail.ToArray();
+            if (userEventModel.State == 1)
             {
                 tbtnEnter.IsEnabled = true;
                 return;
@@ -112,7 +112,7 @@ namespace Scada.Client.SL.Modules.UsersEvent
                     return;
                 }
             }
-            foreach (EventDealDetail item in eventDealDetail)
+            foreach (UserEventDealDetail item in eventDealDetail)
             {
 
                 switch (item.StepNo)
@@ -422,13 +422,13 @@ namespace Scada.Client.SL.Modules.UsersEvent
             }
         }
 
-        EventDealDetail eventDealDetail;
+        UserEventDealDetail eventDealDetail;
         private void btnStep_Click(object sender, RoutedEventArgs e)
         {
-            eventDealDetail = new EventDealDetail();
-            eventDealDetail.DetailID = Guid.NewGuid();
-            eventDealDetail.EventID = userEventTab.ID;
-            eventDealDetail.OperatorId = new Guid("B1EE865D-E279-431F-97CD-2BADC04A850D");
+            eventDealDetail = new UserEventDealDetail();
+            eventDealDetail.ID = Guid.NewGuid();
+            eventDealDetail.EventID = userEventModel.ID;
+            eventDealDetail.Operator= new Guid("B1EE865D-E279-431F-97CD-2BADC04A850D");
             eventDealDetail.DealTime = DateTime.Now;
 
 
@@ -500,7 +500,7 @@ namespace Scada.Client.SL.Modules.UsersEvent
                 default:
                     break;
             }
-            string strSerializer = BinaryObjTransfer.BinarySerialize<EventDealDetail>(eventDealDetail);
+            string strSerializer = BinaryObjTransfer.BinarySerialize<UserEventDealDetail>(eventDealDetail);
 
             _scadaDeviceServiceSoapClient.ProcessingStepNoAsync(strSerializer);
 

@@ -21,7 +21,7 @@ using Scada.Client.SL.CommClass;
 using Scada.Client.SL.ScadaDeviceService;
 
 using Scada.Utility.Common.SL;
-using Scada.Client.VM.Modules.UserEventMV;
+using Scada.Client.VM.Modules.UserEventVM;
 
 
 namespace Scada.Client.SL.Modules.UsersEvent
@@ -134,9 +134,9 @@ namespace Scada.Client.SL.Modules.UsersEvent
         private void hlBtn_Click(object sender, RoutedEventArgs e)
         {
             HyperlinkButton hlB = sender as HyperlinkButton;
-            UserEvent userEvent = hlB.DataContext as UserEvent;
-            id = (hlB.DataContext as UserEvent).ID;
-            state = (hlB.DataContext as UserEvent).State;
+            UserEventModel userEvent = hlB.DataContext as UserEventModel;
+            id = (hlB.DataContext as UserEventModel).ID;
+            state = (hlB.DataContext as UserEventModel).State;
             Storyboard1.Begin();
             MyContent.Content = new UserEventProcess(userEvent);
             MyContent.Title = "用户事件流程";

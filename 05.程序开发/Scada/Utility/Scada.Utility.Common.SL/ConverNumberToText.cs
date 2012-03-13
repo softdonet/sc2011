@@ -29,7 +29,7 @@ namespace Scada.Utility.Common.SL
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string currentText = string.Empty;
-            UserEvent currentValue = value as UserEvent;
+            UserEventModel currentValue = value as UserEventModel;
             if (currentValue == null)
             {
                 return DependencyProperty.UnsetValue;

@@ -109,7 +109,7 @@ namespace Scada.BLL.Implement
                     DeviceID = new Guid(dr["DeviceID"].ToString()),
                     InstallPlace = dr["InstallPlace"].ToString(),
                     UpdateTime = Convert.ToDateTime(dr["UpdateTime"]),
-                    Temperature = Convert.ToDecimal(dr["Temperature"]),
+                    //Temperature = Convert.ToDecimal(dr["Temperature"]),
                     Electricity = Convert.ToInt32(dr["Electricity"]),
                     Signal = Convert.ToInt32(dr["Signal"]),
                     Status = Convert.ToInt32(dr["Status"])
@@ -194,7 +194,7 @@ namespace Scada.BLL.Implement
                         DeviceRealTime realTime = readTimeDatas.Find(x => x.DeviceID == realThi.NodeKey);
                         if (realTime == null) { continue; }
                         realThi.InstallPlace = realTime.InstallPlace;
-                        realThi.Temperature = realTime.Temperature;
+                        //realThi.Temperature = realTime.Temperature;
                         realThi.Electricity = realTime.Electricity;
                         realThi.Signal = realTime.Signal;
                         realThi.Status = realTime.Status;
@@ -283,15 +283,15 @@ namespace Scada.BLL.Implement
                 dtValue = null;
                 if (item["EndTime"] != DBNull.Value)
                     dtValue = Convert.ToDateTime(item["EndTime"]);
-                alarm.EndTime = dtValue;
+                //alarm.EndTime = dtValue;
 
                 dtValue = null;
                 if (item["ConfirmTime"] != DBNull.Value)
                     dtValue = Convert.ToDateTime(item["ConfirmTime"]);
                 alarm.ConfirmTime = dtValue;
 
-                alarm.DealStatus = item["DealStatus"].ToString();
-                alarm.DealPeople = item["DealPeople"].ToString();
+                //alarm.DealStatus = item["DealStatus"].ToString();
+                //alarm.DealPeople = item["DealPeople"].ToString();
                 alarm.Comment = item["Comment"].ToString();
                 result.Add(alarm);
 

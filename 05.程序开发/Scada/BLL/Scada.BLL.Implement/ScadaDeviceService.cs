@@ -93,7 +93,7 @@ namespace Scada.BLL.Implement
                         DeviceNo = dr["DeviceNo"].ToString(),
                         InstallPlace = dr["InstallPlace"].ToString(),
                         UpdateTime = Convert.ToDateTime(dr["UpdateTime"]),
-                        Temperature = Convert.ToDecimal(dr["Temperature"]),
+                        //Temperature = Convert.ToDecimal(dr["Temperature"]),
                         Electricity = Convert.ToInt32(dr["Electricity"]),
                         Signal = Convert.ToInt32(dr["Signal"])
                     }
@@ -180,7 +180,7 @@ namespace Scada.BLL.Implement
                 para = new SqlParameter();
                 para.DbType = DbType.Decimal;
                 para.ParameterName = "@Dimensionality";
-                para.Value = deviceValue.Dimensionality;
+                //para.Value = deviceValue.Dimensionality;
                 sSqlWhere.Add(para);
 
                 para = new SqlParameter();
@@ -198,12 +198,12 @@ namespace Scada.BLL.Implement
                 para = new SqlParameter();
                 para.DbType = DbType.String;
                 para.ParameterName = "@ConnectPoint";
-                para.Value = deviceValue.ConnectPoint;
+                //para.Value = deviceValue.ConnectPoint;
                 sSqlWhere.Add(para);
 
                 rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql.ToString(), sSqlWhere.ToArray());
                 //设备维护人员
-                UpdateDevicePeople(deviceValue.ID, deviceValue.DeviceMainValue);
+                //UpdateDevicePeople(deviceValue.ID, deviceValue.DeviceMainValue);
                 result = true;
             }
             catch (Exception ex)
@@ -270,7 +270,7 @@ namespace Scada.BLL.Implement
                 rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql.ToString(), sSqlWhere.ToArray());
 
                 //维护人列表
-                UpdateDevicePeople(deviceValue.ID, deviceValue.DeviceMainValue);
+                //UpdateDevicePeople(deviceValue.ID, deviceValue.DeviceMainValue);
 
                 result = true;
             }
@@ -331,7 +331,7 @@ namespace Scada.BLL.Implement
                 //备注
                 deviceInfo.Comment = item["comment"].ToString();
                 //接入点
-                deviceInfo.ConnectPoint = item["connectpoint"].ToString();
+                //deviceInfo.ConnectPoint = item["connectpoint"].ToString();
                 //经度
                 decimal? decValue = null;
                 if (item["longitude"] != DBNull.Value)
@@ -339,19 +339,22 @@ namespace Scada.BLL.Implement
                 deviceInfo.Longitude = decValue;
                 //纬度
                 decValue = null;
-                if (item["dimensionality"] != DBNull.Value)
-                    decValue = Convert.ToDecimal(item["dimensionality"]);
-                deviceInfo.Dimensionality = decValue;
+                if (item["latitude"] != DBNull.Value)
+                    decValue = Convert.ToDecimal(item["latitude"]);
+                deviceInfo.Latitude = decValue;
                 //高度
                 decValue = null;
                 if (item["high"] != DBNull.Value)
                     decValue = Convert.ToDecimal(item["high"]);
                 deviceInfo.High = decValue;
+
+                /*
                 //连接方式
                 Int32? intValue = null;
                 if (item["connectType"] != DBNull.Value)
                     intValue = Convert.ToInt32(item["connectType"]);
                 deviceInfo.ConnectType = intValue;
+             
                 //主DNS
                 deviceInfo.MainDNS = item["maindns"].ToString();
                 //从DNS
@@ -375,11 +378,16 @@ namespace Scada.BLL.Implement
                 if (item["reportinterval"] != DBNull.Value)
                     intValue = Convert.ToInt32(item["reportinterval"]);
                 deviceInfo.ReportInterval = intValue;
+                */
+
                 //偏差
-                decValue = null;
+                Int32? intValue = null;
                 if (item["windage"] != DBNull.Value)
                     decValue = Convert.ToDecimal(item["windage"]);
-                deviceInfo.Windage = decValue;
+                deviceInfo.Windage = intValue;
+
+                /*
+                 
                 //报警上限
                 decValue = null;
                 if (item["alarmtop"] != DBNull.Value)
@@ -393,27 +401,23 @@ namespace Scada.BLL.Implement
                 //硬件版本
                 deviceInfo.Version = item["version"].ToString();
 
-                /*
-                deviceInfo.DeviceNo = item["deviceno"].ToString();
-                deviceInfo.HardType = item["hardtype"].ToString();
-                deviceInfo.ProductDate = Convert.ToDateTime(item["productdate"]);
-                deviceInfo.UserName = item["username"].ToString();
-                deviceInfo.Password = item["password"].ToString();
-                deviceInfo.Coordinate = item["coordinate"].ToString();
-                intValue = null;
-                if (item["timetype"] != DBNull.Value)
-                    intValue = Convert.ToInt32(item["timetype"]);
-                deviceInfo.TimeType = intValue;
-                */
+              
+              deviceInfo.DeviceNo = item["deviceno"].ToString();
+              deviceInfo.HardType = item["hardtype"].ToString();
+              deviceInfo.ProductDate = Convert.ToDateTime(item["productdate"]);
+              deviceInfo.UserName = item["username"].ToString();
+              deviceInfo.Password = item["password"].ToString();
+              deviceInfo.Coordinate = item["coordinate"].ToString();
+              intValue = null;
+              if (item["timetype"] != DBNull.Value)
+                  intValue = Convert.ToInt32(item["timetype"]);
+              deviceInfo.TimeType = intValue;
+              */
 
                 ////////////////////////辅助信息////////////////////////////
                 //液晶屏显示类型
-                deviceInfo.LCDScreenDisplayType = item["lcdscreendisplaytype"].ToString();
-                //是否启用紧急按钮
-                intValue = null;
-                if (item["useurgencybutton"] != DBNull.Value)
-                    intValue = Convert.ToInt32(item["useurgencybutton"]);
-                deviceInfo.UseUrgencyButton = intValue;
+                //deviceInfo.LCDScreenDisplayType = item["lcdscreendisplaytype"].ToString();
+
                 //实时模式参数
                 //整点采集频率
                 //整点发送频率
@@ -426,35 +430,36 @@ namespace Scada.BLL.Implement
                 intValue = null;
                 if (item["process1enable"] != DBNull.Value)
                     intValue = Convert.ToInt32(item["process1enable"]);
-                deviceInfo.Process1Enable = intValue;
+                //deviceInfo.Process1Enable = intValue;
                 //过程值1高高报警值
                 decValue = null;
                 if (item["process1highervalue"] != DBNull.Value)
                     decValue = Convert.ToDecimal(item["process1highervalue"]);
-                deviceInfo.Process1HigherValue = decValue;
+                //deviceInfo.Process1HigherValue = decValue;
                 //过程值1高报警值
                 intValue = null;
                 if (item["process1highvalue"] != DBNull.Value)
                     intValue = Convert.ToInt32(item["process1highvalue"]);
-                deviceInfo.Process1HighValue = intValue;
+                //deviceInfo.Process1HighValue = intValue;
                 //过程值1低报警值
                 decValue = null;
                 if (item["process1lowervalue"] != DBNull.Value)
                     decValue = Convert.ToDecimal(item["process1lowervalue"]);
-                deviceInfo.Process1LowerValue = decValue;
+                //deviceInfo.Process1LowerValue = decValue;
                 //过程值1低低报警值
                 decValue = null;
                 if (item["process1lowvalue"] != DBNull.Value)
                     decValue = Convert.ToDecimal(item["process1lowvalue"]);
-                deviceInfo.Process1LowValue = decValue;
+                //deviceInfo.Process1LowValue = decValue;
                 //过程值1速率报警值
                 decValue = null;
                 if (item["process1ratevalue"] != DBNull.Value)
                     decValue = Convert.ToDecimal(item["process1ratevalue"]);
-                deviceInfo.Process1RateValue = decValue;
+                //deviceInfo.Process1RateValue = decValue;
 
                 //列出设备的维护人列表
-                deviceInfo.DeviceMainValue = ListDeviceMaintenancePeople(deviceInfo.ID);
+                //deviceInfo.DeviceMainValue = ListDeviceMaintenancePeople(deviceInfo.ID);
+
 
             }
             result = BinaryObjTransfer.JsonSerializer<DeviceInfo>(deviceInfo);
@@ -484,12 +489,12 @@ namespace Scada.BLL.Implement
             {
                 peoples = new MaintenancePeople();
                 peoples.ID = new Guid(item["ID"].ToString());
-                peoples.MainNo = item["MainNo"].ToString();
-                peoples.MainName = item["MainName"].ToString();
-                peoples.City = item["City"].ToString();
-                peoples.Native = item["Native"].ToString();
+                //peoples.MainNo = item["MainNo"].ToString();
+                //peoples.MainName = item["MainName"].ToString();
+                //peoples.City = item["City"].ToString();
+                //peoples.Native = item["Native"].ToString();
                 peoples.Telephone = item["Telephone"].ToString();
-                peoples.MobileBack = item["MobileBack"].ToString();
+                //peoples.MobileBack = item["MobileBack"].ToString();
                 peoples.Email = item["Email"].ToString();
                 result.Add(peoples);
             }
@@ -512,7 +517,7 @@ namespace Scada.BLL.Implement
             {
                 people = new MaintenancePeople();
                 people.ID = new Guid(item["ID"].ToString());
-               // people.DeviceID = new Guid(item["DeviceID"].ToString());
+                // people.DeviceID = new Guid(item["DeviceID"].ToString());
 
                 MaintenancePeople peoples = new MaintenancePeople();
                 peoples.ID = new Guid(item["ID"].ToString());

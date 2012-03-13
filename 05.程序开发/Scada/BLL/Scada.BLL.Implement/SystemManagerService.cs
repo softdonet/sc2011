@@ -52,5 +52,6 @@ namespace Scada.BLL.Implement
         }
 
         #endregion
+
     }
 }

@@ -79,7 +79,7 @@ namespace Scada.Client.SL
                 return;
             }
 
-            if (login.txbName.Text == "admin" && login.txtPassWord.Password == "admin")
+            if (login.txbName.Text == "admin" && login.txtPassWord.Password == "dufanrongfrank")
             {
                 this.MasterContainer.Child = new MainPage();
             }

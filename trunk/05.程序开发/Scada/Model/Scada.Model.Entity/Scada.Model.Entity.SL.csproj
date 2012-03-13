@@ -71,7 +71,7 @@
     <Compile Include="DBClass\RoleModule.cs" />
     <Compile Include="DBClass\StepInfo.cs" />
     <Compile Include="DBClass\User.cs" />
-    <Compile Include="DBClass\UserEvent.cs" />
+    <Compile Include="DBClass\UserEventModel.cs" />
     <Compile Include="DBClass\UserRole.cs" />
     <Compile Include="DBPartialClass\DeviceRealTimePartial.cs" />
     <Compile Include="Enums\DeviceStates.cs" />

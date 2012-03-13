@@ -46,7 +46,7 @@
     <Compile Include="DBClass\DeviceInfo.cs" />
     <Compile Include="DBClass\DeviceRealTime.cs" />
     <Compile Include="DBClass\StepInfo.cs" />
-    <Compile Include="DBClass\UserEvent.cs" />
+    <Compile Include="DBClass\UserEventModel.cs" />
     <Compile Include="DBClass\UserEventDealDetail.cs" />
     <Compile Include="DBPartialClass\DeviceRealTimePartial.cs" />
     <Compile Include="DBClass\DeviceTree.cs" />

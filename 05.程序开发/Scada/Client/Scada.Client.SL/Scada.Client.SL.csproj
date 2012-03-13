@@ -124,7 +124,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="CommClass\BinaryObjTransfer.cs" />
-    <Compile Include="CommClass\EnumHelper.cs" />
     <Compile Include="CommClass\ServiceManager.cs" />
     <Compile Include="Controls\ComboBoxTreeView.xaml.cs">
       <DependentUpon>ComboBoxTreeView.xaml</DependentUpon>

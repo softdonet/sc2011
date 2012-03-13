@@ -12,11 +12,13 @@ using System.Windows.Documents;
 using System.Windows.Media.Animation;
 
 using Scada.Model.Entity;
+using Scada.Utility.Common.SL;
 using Scada.Client.SL.CommClass;
 using Scada.Client.SL.ScadaDeviceService;
 
 using Visifire.Charts;
 using Telerik.Windows.Controls.Calendar;
+
 
 
 
@@ -54,6 +56,20 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
                 instance = new CompareByTime();
             }
             return instance;
+        }
+
+        public static DateTime GetEndDateTime(DateTime starDate, DateSelMode dateSelMode)
+        {
+            DateTime result;
+            if (dateSelMode == DateSelMode.天)
+                result = starDate.AddDays(1).AddSeconds(-1);
+            else if (dateSelMode == DateSelMode.月)
+                result = starDate.AddMonths(1).AddSeconds(-1);
+            else if (dateSelMode == DateSelMode.年)
+                result = starDate.AddYears(1).AddSeconds(-1);
+            else
+                result = DateTime.Now;
+            return result;
         }
 
         #endregion
@@ -180,9 +196,9 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
         {
             int dateSelMode = this.cmbSelDateMode.SelectedIndex;
             this.dateFrist.DateSelectionMode =
-                this.dateFrist.DateSelectionMode =
-                this.dateFrist.DateSelectionMode =
-                    this.dateFrist.DateSelectionMode = (DateSelectionMode)Enum.ToObject(typeof(DateSelectionMode), dateSelMode);
+                this.dateSecond.DateSelectionMode =
+                this.dateThird.DateSelectionMode =
+                    this.dateFour.DateSelectionMode = (DateSelectionMode)Enum.ToObject(typeof(DateSelectionMode), dateSelMode);
         }
 
         private void butViewCompare_Click(object sender, RoutedEventArgs e)
@@ -199,23 +215,30 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
             if ((Boolean)chkFrist.IsChecked)
             {
                 checkDateFrom.Add(this._friDate);
-                this._colorArr.Add(Color.FromArgb(255, 199, 54, 59));
+                this._colorArr.Add(Colors.Red);
             }
             if ((Boolean)chkSecond.IsChecked)
             {
                 checkDateFrom.Add(this._secDate);
-                this._colorArr.Add(Color.FromArgb(255, 22, 86, 147));
+                this._colorArr.Add(Color.FromArgb(255, 30, 144, 255));
             }
             if ((Boolean)chkThird.IsChecked)
             {
                 checkDateFrom.Add(this._thiDate);
-                this._colorArr.Add(Color.FromArgb(255, 157, 245, 47));
+                this._colorArr.Add(Color.FromArgb(255, 154, 205, 50));
             }
             if ((Boolean)chkFour.IsChecked)
             {
                 checkDateFrom.Add(this._fouDate);
-                this._colorArr.Add(Color.FromArgb(255, 116, 116, 116));
+                this._colorArr.Add(Color.FromArgb(255, 192, 192, 192));
             }
+
+            if (checkDateFrom.Count == 0)
+            {
+                ScadaMessageBox.ShowWarnMessage("请选择要比较的日期！！！", "重要提示");
+                return;
+            }
+
             IEnumerable<DateTime> checkDateTo = checkDateFrom.Distinct();
             if (checkDateTo.Count() != checkDateFrom.Count())
             {
@@ -240,6 +263,10 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
 
         }
 
+
+
+
+
         #endregion
 
     }
@@ -249,6 +276,7 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
         天 = 0,
         月 = 1,
         年 = 2,
+
     }
 
 }

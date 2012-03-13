@@ -1,11 +1,13 @@
-﻿<UserControl xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  x:Class="Scada.Client.SL.Modules.DiagramAnalysis.CompareByDevice"
+﻿<UserControl xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
+    x:Class="Scada.Client.SL.Modules.DiagramAnalysis.CompareByDevice"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
     mc:Ignorable="d"
     d:DesignHeight="500" d:DesignWidth="1024">
-    
+
     <Grid x:Name="LayoutRoot" Background="White">
         <Border x:Name="content_Border" BorderBrush="#FF4A91BB" BorderThickness="1" Margin="5"  CornerRadius="5" >
             <Border.Background>
@@ -33,70 +35,46 @@
                             <StackPanel Grid.Column="0" Name="stackPanel0" Margin="30,30,20,20">
                                 <StackPanel Margin="20,10,10,10" Name="stackPanel1" Orientation="Horizontal">
                                     <sdk:Label Content="选择周期："/>
-                                    <ComboBox Height="23" Name="comboBox1" Width="194" SelectedIndex="0">
-                                        <ComboBoxItem Content="日"/>
-                                        <ComboBoxItem Content="周"/>
-                                        <ComboBoxItem Content="月"/>
+                                    <ComboBox Height="23" Name="cmbSelDateMode" Width="162">
                                     </ComboBox>
                                 </StackPanel>
                                 <StackPanel Margin="20,10,10,10" Name="stackPanel2" Orientation="Horizontal">
                                     <sdk:Label Content="选择时间："/>
-                                    <sdk:DatePicker Height="23" Name="datePicker1" Width="162" />
+
+                                    <telerik:RadDateTimePicker x:Name="dateFrist" Width="162"  Height="23"
+									   DisplayFormat="Short" InputMode="DatePicker" IsReadOnly="False" DateSelectionMode="Day"/>
+
                                 </StackPanel>
                                 <StackPanel Margin="20,10,10,10" Name="stackPanel3" Orientation="Horizontal">
-                                   <CheckBox IsChecked="True" />
+                                    <CheckBox VerticalAlignment="Center" Name="chkFrist" IsChecked="True" ></CheckBox>
                                     <Image Source="/Scada.Client.SL;component/Modules/DiagramAnalysis/Images/d1.jpg"/>
                                     <sdk:Label Content="设备1：" />
-                                    <ComboBox Height="23" Name="comboBox2" Width="135" SelectedIndex="2">
-                                        <ComboBoxItem Content="总区域" />
-                                        <ComboBoxItem Content="--管理分区1" />
-                                        <ComboBoxItem Content="----设备G1-0001" />
-                                        <ComboBoxItem Content="----设备G1-0002" />
-                                        <ComboBoxItem Content="----设备G1-0003" />
-                                        <ComboBoxItem Content="----设备G1-0004" />
+                                    <ComboBox Height="23" Name="cmbDevFrist" Width="135" SelectedValuePath="NodeKey" DisplayMemberPath="NodeValue">
                                     </ComboBox>
                                 </StackPanel>
                                 <StackPanel Margin="20,10,10,10" Name="stackPanel4" Orientation="Horizontal">
-                                    <CheckBox IsChecked="True" />
+                                    <CheckBox VerticalAlignment="Center" Name="chkSecond" IsChecked="True" ></CheckBox>
                                     <Image Source="/Scada.Client.SL;component/Modules/DiagramAnalysis/Images/d2.jpg"/>
-                                    <sdk:Label Content="设备1：" />
-                                    <ComboBox Height="23" Name="comboBox3" Width="135" SelectedIndex="2">
-                                        <ComboBoxItem Content="总区域" />
-                                        <ComboBoxItem Content="--管理分区1" />
-                                        <ComboBoxItem Content="----设备G1-0001" />
-                                        <ComboBoxItem Content="----设备G1-0002" />
-                                        <ComboBoxItem Content="----设备G1-0003" />
-                                        <ComboBoxItem Content="----设备G1-0004" />
+                                    <sdk:Label Content="设备2：" />
+                                    <ComboBox Height="23" Name="cmbDevSecond" Width="135"  SelectedValuePath="NodeKey" DisplayMemberPath="NodeValue">
                                     </ComboBox>
                                 </StackPanel>
                                 <StackPanel Margin="20,10,10,10" Name="stackPanel5" Orientation="Horizontal">
-                                    <CheckBox IsChecked="True" />
+                                    <CheckBox VerticalAlignment="Center" Name="chkThird" IsChecked="False" ></CheckBox>
                                     <Image Source="/Scada.Client.SL;component/Modules/DiagramAnalysis/Images/d3.jpg"/>
-                                    <sdk:Label Content="设备1：" />
-                                    <ComboBox Height="23" Name="comboBox4" Width="135" SelectedIndex="2">
-                                        <ComboBoxItem Content="总区域" />
-                                        <ComboBoxItem Content="--管理分区1" />
-                                        <ComboBoxItem Content="----设备G1-0001" />
-                                        <ComboBoxItem Content="----设备G1-0002" />
-                                        <ComboBoxItem Content="----设备G1-0003" />
-                                        <ComboBoxItem Content="----设备G1-0004" />
+                                    <sdk:Label Content="设备3：" />
+                                    <ComboBox Height="23" Name="cmbDevThird" Width="135" SelectedValuePath="NodeKey" DisplayMemberPath="NodeValue">
                                     </ComboBox>
                                 </StackPanel>
                                 <StackPanel Margin="20,10,10,10" Name="stackPanel6" Orientation="Horizontal">
-                                    <CheckBox IsChecked="True" />
+                                    <CheckBox VerticalAlignment="Center" Name="chkFour" IsChecked="False" ></CheckBox>
                                     <Image Source="/Scada.Client.SL;component/Modules/DiagramAnalysis/Images/d4.jpg"/>
-                                    <sdk:Label Content="设备1：" />
-                                    <ComboBox Height="23" Name="comboBox5" Width="135" SelectedIndex="2">
-                                        <ComboBoxItem Content="总区域" />
-                                        <ComboBoxItem Content="--管理分区1" />
-                                        <ComboBoxItem Content="----设备G1-0001" />
-                                        <ComboBoxItem Content="----设备G1-0002" />
-                                        <ComboBoxItem Content="----设备G1-0003" />
-                                        <ComboBoxItem Content="----设备G1-0004" />
+                                    <sdk:Label Content="设备4：" />
+                                    <ComboBox Height="23" Name="cmbDevFour" Width="135" SelectedValuePath="NodeKey" DisplayMemberPath="NodeValue">
                                     </ComboBox>
                                 </StackPanel>
                                 <StackPanel  Margin="0,10,20,10"  Orientation="Horizontal" HorizontalAlignment="Right" >
-                                    <Button    Content=" 查看对比" VerticalAlignment="Top" Width="129"/>
+                                    <Button  Content=" 查看对比" Name="butViewCompare" VerticalAlignment="Top" Width="129" Click="butViewCompare_Click" />
                                 </StackPanel>
                             </StackPanel>
 
@@ -263,20 +241,16 @@
                                     </vc:DataSeries>
                                 </vc:Chart.Series>
                             </vc:Chart>
-                           
+
                             <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" >
-                                <Button   Content="&lt;" Height="23" HorizontalAlignment="Left" 
-                                     Name="button1" VerticalAlignment="Top" Width="40" Margin="5,0"  >
-                                </Button>
-
-                                <Button    Content="+" Height="23" HorizontalAlignment="Left" 
-                                     Name="button2" VerticalAlignment="Top" Width="40" Margin="5,0"  />
-
-                                <Button  Content="-" Height="23" HorizontalAlignment="Left" 
-                                     Name="button3" VerticalAlignment="Top" Width="40" Margin="5,0"  />
-
-                                <Button    Content="&gt;" Height="23" HorizontalAlignment="Left" 
-                                     Name="button4" VerticalAlignment="Top" Width="40" Margin="5,0"  />
+                                <Button  Content="&lt;" Height="23" HorizontalAlignment="Left" 
+                                     Name="butFast" VerticalAlignment="Top" Width="40" Margin="5,0" />
+                                <Button Content="+" Height="23" HorizontalAlignment="Left" 
+                                     Name="butUNext" VerticalAlignment="Top" Width="40" Margin="5,0" />
+                                <Button Content="-" Height="23" HorizontalAlignment="Left" 
+                                     Name="butDNext" VerticalAlignment="Top" Width="40" Margin="5,0" />
+                                <Button Content="&gt;" Height="23" HorizontalAlignment="Left" 
+                                     Name="butLast" VerticalAlignment="Top" Width="40" Margin="5,0" />
                             </StackPanel>
                         </Grid>
                     </Border>

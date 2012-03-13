@@ -61,7 +61,9 @@
   <ItemGroup>
     <Compile Include="ConverNumberToText.cs" />
     <Compile Include="ConverNumberToTextAlarm.cs" />
-    <Compile Include="EnumHelpe.cs" />
+    <Compile Include="EnumHelpe.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

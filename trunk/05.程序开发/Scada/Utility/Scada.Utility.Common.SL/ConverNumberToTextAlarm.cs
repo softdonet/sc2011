@@ -15,10 +15,11 @@ using System.Windows.Data;
 
 namespace Scada.Utility.Common.SL
 {
+
+
     /// <summary>
     /// 告警事件
     /// 将数字改成对应的字符
-    /// 
     /// </summary>
     public class ConverNumberToTextAlarm : IValueConverter
     {

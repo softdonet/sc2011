@@ -92,7 +92,7 @@ namespace Scada.BLL.Implement
         private List<DeviceRealTime> LoadDeviceRealTime()
         {
             List<DeviceRealTime> result = new List<DeviceRealTime>();
-            string sSql = @" Select AA.DeviceID,BB.InstallPlace,AA.UpdateTime,AA.Temperature,
+            string sSql = @" Select AA.DeviceID,BB.InstallPlace,AA.UpdateTime,AA.Temperature1,
                                 AA.Electricity,AA.Signal,AA.Status
                             from (
             Select TT.* from DeviceRealTime TT Where TT.UpdateTime =
@@ -281,11 +281,6 @@ namespace Scada.BLL.Implement
                 alarm.StartTime = dtValue;
 
                 dtValue = null;
-                if (item["EndTime"] != DBNull.Value)
-                    dtValue = Convert.ToDateTime(item["EndTime"]);
-                //alarm.EndTime = dtValue;
-
-                dtValue = null;
                 if (item["ConfirmTime"] != DBNull.Value)
                     dtValue = Convert.ToDateTime(item["ConfirmTime"]);
                 alarm.ConfirmTime = dtValue;
@@ -414,7 +409,7 @@ namespace Scada.BLL.Implement
         {
            
             List<UserEventDealDetail> dealDetails = new List<UserEventDealDetail>();
-            string sSql = @" Select ID,EventID,OperatorId,StepNo,StepName,Memo,DealTime
+            string sSql = @" Select ID,EventID,Operator,StepNo,StepName,Memo,DealTime
                                 From UserEventDealDetail 
                                 Where EventID='" + EventKey.ToString().ToUpper() + "' Order by StepNo";
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);

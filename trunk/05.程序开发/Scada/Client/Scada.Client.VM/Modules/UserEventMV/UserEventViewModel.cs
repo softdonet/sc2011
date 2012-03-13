@@ -18,7 +18,7 @@ using System.Linq;
 
 namespace Scada.Client.VM.Modules.UserEventMV
 {
-    public class UserEventViewModel:NotificationObject
+    public class UserEventViewModel : NotificationObject
     {
         #region Variable
 
@@ -45,15 +45,15 @@ namespace Scada.Client.VM.Modules.UserEventMV
             }
         }
 
-        
+
 
         private List<UserEvent> userEventList;
 
         public List<UserEvent> UserEventList
         {
             get { return userEventList; }
-            set 
-            { 
+            set
+            {
                 userEventList = value;
                 this.RaisePropertyChanged("userEventList");
             }
@@ -61,16 +61,13 @@ namespace Scada.Client.VM.Modules.UserEventMV
 
         private List<UserEvent> userEventListTop;
 
-        public List<UserEvent> userEventListTop
+        public List<UserEvent> UserEventListTop
         {
             get { return userEventListTop; }
             set
             {
                 userEventListTop = value;
                 userEventListTop = userEventListTop.OrderBy(e => e.RequestTime).Take(3).ToList();
-              
-              //var aa= from  p in  userEventList select p //.Items[0]
-                    
                 this.RaisePropertyChanged("userEventListTop");
             }
         }

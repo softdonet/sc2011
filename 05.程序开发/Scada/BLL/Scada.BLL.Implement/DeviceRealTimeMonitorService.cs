@@ -109,7 +109,7 @@ namespace Scada.BLL.Implement
                     DeviceID = new Guid(dr["DeviceID"].ToString()),
                     InstallPlace = dr["InstallPlace"].ToString(),
                     UpdateTime = Convert.ToDateTime(dr["UpdateTime"]),
-                    Temperature1 = Convert.ToDecimal(dr["Temperature"]),
+                    Temperature1 = Convert.ToDecimal(dr["Temperature1"]),
                     Electricity = Convert.ToInt32(dr["Electricity"]),
                     Signal = Convert.ToInt32(dr["Signal"]),
                     Status = Convert.ToInt32(dr["Status"])
@@ -194,7 +194,7 @@ namespace Scada.BLL.Implement
                         DeviceRealTime realTime = readTimeDatas.Find(x => x.DeviceID == realThi.NodeKey);
                         if (realTime == null) { continue; }
                         realThi.InstallPlace = realTime.InstallPlace;
-                        realThi.Temperature = realTime.Temperature1;
+                        realThi.Temperature1 = realTime.Temperature1;
                         realThi.Electricity = realTime.Electricity;
                         realThi.Signal = realTime.Signal;
                         realThi.Status = realTime.Status;
@@ -216,10 +216,10 @@ namespace Scada.BLL.Implement
             treeDatas.UpdateTime = realTree.Max(p => p.UpdateTime);
 
             //温度
-            decimal? avgTemperature = realTree.Average(p => p.Temperature);
+            decimal? avgTemperature = realTree.Average(p => p.Temperature1);
             if (avgTemperature != null)
                 avgTemperature = Math.Round((decimal)avgTemperature, 2);
-            treeDatas.Temperature = avgTemperature;
+            treeDatas.Temperature1 = avgTemperature;
 
             //电量
             treeDatas.Electricity = (int?)realTree.Average(p => p.Electricity);

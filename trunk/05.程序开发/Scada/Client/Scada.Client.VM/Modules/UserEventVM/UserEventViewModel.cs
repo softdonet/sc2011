@@ -55,7 +55,7 @@ namespace Scada.Client.VM.Modules.UserEventVM
             set
             {
                 userEventList = value;
-                this.RaisePropertyChanged("userEventList");
+                this.RaisePropertyChanged("UserEventList");
             }
         }
 
@@ -68,7 +68,7 @@ namespace Scada.Client.VM.Modules.UserEventVM
             {
                 userEventListTop = value;
                 userEventListTop = userEventListTop.OrderBy(e => e.RequestTime).Take(3).ToList();
-                this.RaisePropertyChanged("userEventListTop");
+                this.RaisePropertyChanged("UserEventListTop");
             }
         }
 

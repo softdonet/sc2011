@@ -117,6 +117,9 @@
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.GetListStepInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.GetSameDeviceTemperatureDiffDateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.GetUserEventKeyInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

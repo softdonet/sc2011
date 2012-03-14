@@ -61,7 +61,7 @@
   <ItemGroup>
     <Compile Include="ConverNumberToText.cs" />
     <Compile Include="ConverNumberToTextAlarm.cs" />
-    <Compile Include="EnumHelpe.cs">
+    <Compile Include="EnumHelper.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

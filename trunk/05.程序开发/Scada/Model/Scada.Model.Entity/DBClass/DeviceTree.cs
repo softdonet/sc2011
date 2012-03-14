@@ -11,6 +11,7 @@ namespace Scada.Model.Entity
         public string Name { get; set; }
         public Guid ParentID { get; set; }
         public Guid AdminID { get; set; }
+        public int? Level { get; set; }
     }
 }
 

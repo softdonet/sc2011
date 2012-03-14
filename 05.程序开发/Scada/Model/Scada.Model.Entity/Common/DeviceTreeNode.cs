@@ -22,7 +22,7 @@ namespace Scada.Model.Entity
 
         public float? Longitude { get; set; }
 
-        public float? Dimensionality { get; set; }
+        public float? Latitude { get; set; }
         public string InstallPlace { get; set; }
 
     }

@@ -53,7 +53,7 @@ namespace Scada.BLL.Contract
         //string GetListDeviceAlarmInfo();
         ////更秘诀告警状态
         Boolean UpdateDeviceAlarmInfo(Guid AlarmId, DateTime ConfirmTime,
-                                            String Comment, String DealPeople);
+                                            String Comment, Guid DealPeopleId);
 
         #endregion
 

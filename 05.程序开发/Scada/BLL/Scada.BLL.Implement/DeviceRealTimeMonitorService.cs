@@ -293,7 +293,7 @@ namespace Scada.BLL.Implement
 
                 if (item["DealStatus"] != DBNull.Value)
                 {
-                    alarm.DealStatus = Int32.Parse(item["DealStatus"].ToString());
+                    alarm.DealStatus = item["DealStatus"].ToString();
                 }
                 if (item["DealPeopleID"] != DBNull.Value)
                 {

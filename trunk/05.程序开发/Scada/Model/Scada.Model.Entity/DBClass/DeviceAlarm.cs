@@ -17,7 +17,7 @@ namespace Scada.Model.Entity
         public DateTime? StartTime { get; set; }
         public DateTime? ConfirmTime { get; set; }
         public Guid DealPeopleID { get; set; }
-        public int? DealStatus { get; set; }
+        public string DealStatus { get; set; }
         public string Comment { get; set; }
     }
 }

@@ -109,7 +109,7 @@ namespace Scada.BLL.Implement
                     DeviceID = new Guid(dr["DeviceID"].ToString()),
                     InstallPlace = dr["InstallPlace"].ToString(),
                     UpdateTime = Convert.ToDateTime(dr["UpdateTime"]),
-                    //Temperature = Convert.ToDecimal(dr["Temperature"]),
+                    Temperature1 = Convert.ToDecimal(dr["Temperature"]),
                     Electricity = Convert.ToInt32(dr["Electricity"]),
                     Signal = Convert.ToInt32(dr["Signal"]),
                     Status = Convert.ToInt32(dr["Status"])
@@ -194,7 +194,7 @@ namespace Scada.BLL.Implement
                         DeviceRealTime realTime = readTimeDatas.Find(x => x.DeviceID == realThi.NodeKey);
                         if (realTime == null) { continue; }
                         realThi.InstallPlace = realTime.InstallPlace;
-                        //realThi.Temperature = realTime.Temperature;
+                        realThi.Temperature = realTime.Temperature1;
                         realThi.Electricity = realTime.Electricity;
                         realThi.Signal = realTime.Signal;
                         realThi.Status = realTime.Status;

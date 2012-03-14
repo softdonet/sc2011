@@ -342,7 +342,7 @@
                                           ShowGroupPanel="False" 
                                           AutoGenerateColumns="False"
                                           IsReadOnly="True"
-                                          ItemsSource="{Binding UserEventTabListTop}"  RowIndicatorVisibility="Collapsed" >
+                                          ItemsSource="{Binding UserEventListTop}"  RowIndicatorVisibility="Collapsed" >
                         <telerik:RadGridView.Columns>
                             <telerik:GridViewDataColumn Header="设备名称" DataMemberBinding="{Binding DeviceNo}" Width="80" HeaderTextAlignment="Center" TextAlignment="Center"  IsFilterable="False" />
                             <telerik:GridViewDataColumn Header="事件类型" DataMemberBinding="{Binding Converter={StaticResource ConvertNumberToText1},ConverterParameter=EventType}" Width="75" HeaderTextAlignment="Center"  TextAlignment="Center" />

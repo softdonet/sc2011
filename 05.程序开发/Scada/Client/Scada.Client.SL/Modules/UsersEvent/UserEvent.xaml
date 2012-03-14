@@ -80,7 +80,7 @@
         <telerik:RadGridView x:Name="RadGridView1"
 							ShowGroupPanel="False" 
                              AutoGenerateColumns="False"  IsReadOnly="True" 
-                             ItemsSource="{Binding UserEventTabList}">
+                             ItemsSource="{Binding UserEventList}">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Header="事件编号" DataMemberBinding="{Binding EventNo}" Width="80"  HeaderTextAlignment="Center"  />
                 <telerik:GridViewDataColumn Header="设备编号" DataMemberBinding="{Binding DeviceNo}" Width="100"   HeaderTextAlignment="Center"/>

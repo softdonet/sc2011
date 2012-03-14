@@ -144,7 +144,7 @@ namespace Scada.Client.VM.Modules.BingMaps
                             tem.Temperature = 0;
                             tem.Status = (int)DeviceStates.Escape;
                             tem.Longitude = item3.Longitude;
-                            tem.Dimensionality = item3.Dimensionality;
+                            tem.Dimensionality = item3.Latitude;
                             tem.InstallPlace = item3.InstallPlace;
                             if (tem.Longitude.HasValue && tem.Dimensionality.HasValue)
                             {

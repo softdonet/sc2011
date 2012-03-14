@@ -545,7 +545,13 @@ namespace Scada.BLL.Implement
                 List<DeviceTreeNode> ManageTable = this.getTreeNodeChild(area.NodeKey, string.Empty);
                 foreach (DeviceTreeNode manage in ManageTable)
                 {
-                    manage.NodeChild = getTreeNodeDevice(manage.NodeKey, string.Empty);
+                    List<DeviceTreeNode> ManTable = this.getTreeNodeChild(manage.NodeKey, string.Empty);
+                    for (int i = 0; i < ManTable.Count; i++)
+                    {
+                        DeviceTreeNode man = ManTable[i];
+                        man.NodeChild = getTreeNodeDevice(man.NodeKey, string.Empty);
+                        manage.AddNodeKey(man);
+                    }
                     area.AddNodeKey(manage);
                 }
                 treeList.Add(area);
@@ -585,7 +591,7 @@ namespace Scada.BLL.Implement
         private List<DeviceTreeNode> getTreeNodeDevice(Guid nodeKey, String prefix)
         {
             List<DeviceTreeNode> result = new List<DeviceTreeNode>();
-            string sSql = @"select id,DeviceNo,Longitude,Dimensionality,InstallPlace from DeviceInfo 
+            string sSql = @"select id,DeviceNo,Longitude,Latitude,InstallPlace from DeviceInfo 
                                 Where ManageAreaID ='" + nodeKey.ToString().ToUpper() + "'";
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);
             foreach (DataRow item in ds.Rows)
@@ -596,7 +602,7 @@ namespace Scada.BLL.Implement
                     NodeValue = prefix + item["DeviceNo"].ToString(),
                     NodeKey = new Guid(item["id"].ToString()),
                     Longitude = float.Parse(item["Longitude"].ToString()),
-                    Dimensionality = float.Parse(item["Dimensionality"].ToString()),
+                    Latitude = float.Parse(item["Latitude"].ToString()),
                     InstallPlace = item["InstallPlace"].ToString(),
                 });
             }

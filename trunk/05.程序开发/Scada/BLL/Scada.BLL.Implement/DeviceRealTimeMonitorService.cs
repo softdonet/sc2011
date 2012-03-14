@@ -124,10 +124,16 @@ namespace Scada.BLL.Implement
             List<DeviceRealTimeTree> realTree = this.getTreeNodeChild(null);
             foreach (DeviceRealTimeTree area in realTree)
             {
-                List<DeviceRealTimeTree> ManageTable = this.getTreeNodeChild(area.NodeKey);
+                List<DeviceRealTimeTree> ManageTable = getTreeNodeChild(area.NodeKey);
                 foreach (DeviceRealTimeTree manage in ManageTable)
                 {
-                    manage.NodeChild = getTreeNodeDevice(manage.NodeKey);
+                    List<DeviceRealTimeTree> ManTable = getTreeNodeChild(manage.NodeKey);
+                    for (int i = 0; i < ManTable.Count; i++)
+                    {
+                        DeviceRealTimeTree man = ManTable[i];
+                        man.NodeChild = getTreeNodeDevice(man.NodeKey);
+                        manage.AddNodeKey(man);
+                    }
                     area.AddNodeKey(manage);
                 }
                 result.Add(area);
@@ -241,7 +247,7 @@ namespace Scada.BLL.Implement
             //4序列化数据
             string deviceAlarmdata = BinaryObjTransfer.JsonSerializer<List<DeviceAlarm>>(deviceAlarm);
 
-            if (AlarmDataReceived!=null)
+            if (AlarmDataReceived != null)
             {
                 this.AlarmDataReceived(deviceAlarmdata);
             }
@@ -332,7 +338,7 @@ namespace Scada.BLL.Implement
             //if (CallDataReceived != null)
             //    this.CallDataReceived(callData);
             string userEventData = GetListUserEventInfo();
-            if (CallDataReceived!=null)
+            if (CallDataReceived != null)
             {
                 this.CallDataReceived(userEventData);
             }
@@ -387,7 +393,7 @@ namespace Scada.BLL.Implement
                 ///
                 List<UserEventDealDetail> eventDealDetailList = GetUserEventKeyInfo(userEventModel.ID);
                 string joinString = string.Empty;//拼接字符串
-                eventDealDetailList  = eventDealDetailList.OrderBy(tt => tt.StepNo).ToList(); ;//. from p in eventDealDetailList orderby p.StepNo select p;
+                eventDealDetailList = eventDealDetailList.OrderBy(tt => tt.StepNo).ToList(); ;//. from p in eventDealDetailList orderby p.StepNo select p;
                 if (eventDealDetailList.Count != 0)
                 {
                     foreach (UserEventDealDetail eventItem in eventDealDetailList)
@@ -398,7 +404,7 @@ namespace Scada.BLL.Implement
                 }
                 userEventModel.DealInfo = joinString;
                 userEvents.Add(userEventModel);
-                
+
             }
 
             return BinaryObjTransfer.JsonSerializer<List<UserEventModel>>(userEvents);
@@ -407,7 +413,7 @@ namespace Scada.BLL.Implement
 
         public List<UserEventDealDetail> GetUserEventKeyInfo(Guid EventKey)
         {
-           
+
             List<UserEventDealDetail> dealDetails = new List<UserEventDealDetail>();
             string sSql = @" Select ID,EventID,Operator,StepNo,StepName,Memo,DealTime
                                 From UserEventDealDetail 

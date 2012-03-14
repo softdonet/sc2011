@@ -714,11 +714,11 @@ namespace Scada.BLL.Implement
         //        }
 
 
-        public Boolean UpdateDeviceAlarmInfo(Guid AlarmId, DateTime ConfirmTime, String Comment, String DealPeople)
+        public Boolean UpdateDeviceAlarmInfo(Guid AlarmId, DateTime ConfirmTime, String Comment, Guid DealPeopleId)
         {
             string sSql = @" Update DeviceAlarm 
                             Set ConfirmTime='" + ConfirmTime.ToString("yyyy-MM-dd hh:mm:ss") + @"',
-                                   DealStatus='已确认', DealPeople='" + DealPeople + "',Comment='" + Comment + @"'
+                                   DealStatus='已确认', DealPeopleID='" + DealPeopleId + "',Comment='" + Comment + @"'
                             Where ID ='" + AlarmId.ToString().ToUpper() + "'";
             Boolean result = false;
             try

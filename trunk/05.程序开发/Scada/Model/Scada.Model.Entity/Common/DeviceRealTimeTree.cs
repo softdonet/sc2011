@@ -23,7 +23,7 @@ namespace Scada.Model.Entity
             this.NodeChild.Add(treeNode);
         }
         public string InstallPlace { get; set; }
-        public decimal? Temperature { get; set; }
+        public decimal? Temperature1 { get; set; }
         public int? Electricity { get; set; }
         public int? Signal { get; set; }
         public int? Status { get; set; }

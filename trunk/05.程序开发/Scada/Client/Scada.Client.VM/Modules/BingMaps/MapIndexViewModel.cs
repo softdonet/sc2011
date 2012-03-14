@@ -100,7 +100,7 @@ namespace Scada.Client.VM.Modules.BingMaps
                             tem.NodeKey = item3.NodeKey;
                             tem.NodeValue = item3.NodeValue;
                             tem.NodeType = item3.NodeType;
-                            tem.Temperature = item3.Temperature;
+                            tem.Temperature = item3.Temperature1;
                             tem.Status = item3.Status;
                             tem.Longitude = item3.Longitude;
                             tem.Dimensionality = item3.Dimensionality;

@@ -94,7 +94,7 @@
                 </telerik:GridViewDataColumn>
                 <telerik:GridViewDataColumn   DataMemberBinding="{Binding InstallPlace}" Header="安装地点" HeaderTextAlignment="Center"  Width="200"/>
                 <telerik:GridViewDataColumn   DataMemberBinding="{Binding UpdateTime}" Header="更新时间" HeaderTextAlignment="Center"  Width="150"/>
-                <telerik:GridViewDataColumn   DataMemberBinding="{Binding Temperature}" Header="温度(℃)"  HeaderTextAlignment="Center" TextAlignment="Center"  Width="150"/>
+                <telerik:GridViewDataColumn   DataMemberBinding="{Binding Temperature1}" Header="温度(℃)"  HeaderTextAlignment="Center" TextAlignment="Center"  Width="150"/>
                 <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=electricity}"  Width="100" ImageHeight="18" ImageWidth="18"
 											Header="电量" HeaderTextAlignment="Center"/>
                 <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=signal}"  Width="100" ImageHeight="18" ImageWidth="18"

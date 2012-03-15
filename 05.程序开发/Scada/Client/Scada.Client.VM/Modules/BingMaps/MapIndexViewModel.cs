@@ -96,16 +96,19 @@ namespace Scada.Client.VM.Modules.BingMaps
                     {
                         foreach (var item3 in item2.NodeChild)
                         {
-                            PushPinDeviceViewModel tem = new PushPinDeviceViewModel();
-                            tem.NodeKey = item3.NodeKey;
-                            tem.NodeValue = item3.NodeValue;
-                            tem.NodeType = item3.NodeType;
-                            tem.Temperature = item3.Temperature1;
-                            tem.Status = item3.Status;
-                            tem.Longitude = item3.Longitude;
-                            tem.Dimensionality = item3.Dimensionality;
-                            tem.InstallPlace = item3.InstallPlace;
-                            tempList.Add(tem);
+                            foreach (var item4 in item3.NodeChild)
+                            {
+                                PushPinDeviceViewModel tem = new PushPinDeviceViewModel();
+                                tem.NodeKey = item4.NodeKey;
+                                tem.NodeValue = item4.NodeValue;
+                                tem.NodeType = item4.NodeType;
+                                tem.Temperature = item4.Temperature1;
+                                tem.Status = item4.Status;
+                                tem.Longitude = item4.Longitude;
+                                tem.Dimensionality = item4.Dimensionality;
+                                tem.InstallPlace = item4.InstallPlace;
+                                tempList.Add(tem);
+                            }
                         }
                     }
                 }
@@ -137,18 +140,21 @@ namespace Scada.Client.VM.Modules.BingMaps
                     {
                         foreach (var item3 in item2.NodeChild)
                         {
-                            PushPinDeviceViewModel tem = new PushPinDeviceViewModel();
-                            tem.NodeKey = item3.NodeKey;
-                            tem.NodeValue = item3.NodeValue;
-                            tem.NodeType = item3.NodeType;
-                            tem.Temperature = 0;
-                            tem.Status = (int)DeviceStates.Escape;
-                            tem.Longitude = item3.Longitude;
-                            tem.Dimensionality = item3.Latitude;
-                            tem.InstallPlace = item3.InstallPlace;
-                            if (tem.Longitude.HasValue && tem.Dimensionality.HasValue)
+                            foreach (var item4 in item3.NodeChild)
                             {
-                                tempList.Add(tem);
+                                PushPinDeviceViewModel tem = new PushPinDeviceViewModel();
+                                tem.NodeKey = item4.NodeKey;
+                                tem.NodeValue = item4.NodeValue;
+                                tem.NodeType = item4.NodeType;
+                                tem.Temperature = 0;
+                                tem.Status = (int)DeviceStates.Escape;
+                                tem.Longitude = item4.Longitude;
+                                tem.Dimensionality = item4.Latitude;
+                                tem.InstallPlace = item4.InstallPlace;
+                                if (tem.Longitude.HasValue && tem.Dimensionality.HasValue)
+                                {
+                                    tempList.Add(tem);
+                                }
                             }
                         }
                     }

@@ -55,8 +55,10 @@ namespace Scada.Client.SL.Modules.BingMaps
             mapVM.BaseDataResviceEvent += new EventHandler(mapVM_BaseDataResviceEvent);
             mapVM.RealTimeDataResviceEvent += new EventHandler(mapVM_RealTimeDataResviceEvent);
 
-            DeviceAlarmViewModel deviceAlarmViewModel = new DeviceAlarmViewModel();
-            RadGridViewAlarm.DataContext = deviceAlarmViewModel;
+           // DeviceAlarmViewModel deviceAlarmViewModel = new DeviceAlarmViewModel();
+            //RadGridViewAlarm.DataContext = deviceAlarmViewModel;
+            AlarmListViewModel alarmVM = new AlarmListViewModel();
+            RadGridViewAlarm.DataContext = alarmVM;
 
             UserEventViewModel userEventViewModel = new UserEventViewModel();
             RadGridViewUserEvent.DataContext = userEventViewModel;

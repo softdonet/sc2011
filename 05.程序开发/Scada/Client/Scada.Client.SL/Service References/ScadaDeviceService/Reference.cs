@@ -63,10 +63,10 @@ namespace Scada.Client.SL.ScadaDeviceService {
         
         Scada.Client.SL.ScadaDeviceService.UpdateDeviceAlarmInfoResponse EndUpdateDeviceAlarmInfo(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/GetUserEventKeyInfo", ReplyAction="*")]
-        System.IAsyncResult BeginGetUserEventKeyInfo(Scada.Client.SL.ScadaDeviceService.GetUserEventKeyInfoRequest request, System.AsyncCallback callback, object asyncState);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/GetUserEventDetailInfo", ReplyAction="*")]
+        System.IAsyncResult BeginGetUserEventDetailInfo(Scada.Client.SL.ScadaDeviceService.GetUserEventDetailInfoRequest request, System.AsyncCallback callback, object asyncState);
         
-        Scada.Client.SL.ScadaDeviceService.GetUserEventKeyInfoResponse EndGetUserEventKeyInfo(System.IAsyncResult result);
+        Scada.Client.SL.ScadaDeviceService.GetUserEventDetailInfoResponse EndGetUserEventDetailInfo(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/UpdateUserEventInfo", ReplyAction="*")]
         System.IAsyncResult BeginUpdateUserEventInfo(Scada.Client.SL.ScadaDeviceService.UpdateUserEventInfoRequest request, System.AsyncCallback callback, object asyncState);
@@ -589,15 +589,15 @@ namespace Scada.Client.SL.ScadaDeviceService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class GetUserEventKeyInfoRequest {
+    public partial class GetUserEventDetailInfoRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetUserEventKeyInfo", Namespace="http://tempuri.org/", Order=0)]
-        public Scada.Client.SL.ScadaDeviceService.GetUserEventKeyInfoRequestBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetUserEventDetailInfo", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.GetUserEventDetailInfoRequestBody Body;
         
-        public GetUserEventKeyInfoRequest() {
+        public GetUserEventDetailInfoRequest() {
         }
         
-        public GetUserEventKeyInfoRequest(Scada.Client.SL.ScadaDeviceService.GetUserEventKeyInfoRequestBody Body) {
+        public GetUserEventDetailInfoRequest(Scada.Client.SL.ScadaDeviceService.GetUserEventDetailInfoRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -606,15 +606,15 @@ namespace Scada.Client.SL.ScadaDeviceService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class GetUserEventKeyInfoRequestBody {
+    public partial class GetUserEventDetailInfoRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
         public System.Guid EventKey;
         
-        public GetUserEventKeyInfoRequestBody() {
+        public GetUserEventDetailInfoRequestBody() {
         }
         
-        public GetUserEventKeyInfoRequestBody(System.Guid EventKey) {
+        public GetUserEventDetailInfoRequestBody(System.Guid EventKey) {
             this.EventKey = EventKey;
         }
     }
@@ -623,15 +623,15 @@ namespace Scada.Client.SL.ScadaDeviceService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class GetUserEventKeyInfoResponse {
+    public partial class GetUserEventDetailInfoResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetUserEventKeyInfoResponse", Namespace="http://tempuri.org/", Order=0)]
-        public Scada.Client.SL.ScadaDeviceService.GetUserEventKeyInfoResponseBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetUserEventDetailInfoResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.GetUserEventDetailInfoResponseBody Body;
         
-        public GetUserEventKeyInfoResponse() {
+        public GetUserEventDetailInfoResponse() {
         }
         
-        public GetUserEventKeyInfoResponse(Scada.Client.SL.ScadaDeviceService.GetUserEventKeyInfoResponseBody Body) {
+        public GetUserEventDetailInfoResponse(Scada.Client.SL.ScadaDeviceService.GetUserEventDetailInfoResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -640,16 +640,16 @@ namespace Scada.Client.SL.ScadaDeviceService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class GetUserEventKeyInfoResponseBody {
+    public partial class GetUserEventDetailInfoResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string GetUserEventKeyInfoResult;
+        public string GetUserEventDetailInfoResult;
         
-        public GetUserEventKeyInfoResponseBody() {
+        public GetUserEventDetailInfoResponseBody() {
         }
         
-        public GetUserEventKeyInfoResponseBody(string GetUserEventKeyInfoResult) {
-            this.GetUserEventKeyInfoResult = GetUserEventKeyInfoResult;
+        public GetUserEventDetailInfoResponseBody(string GetUserEventDetailInfoResult) {
+            this.GetUserEventDetailInfoResult = GetUserEventDetailInfoResult;
         }
     }
     
@@ -1168,11 +1168,11 @@ namespace Scada.Client.SL.ScadaDeviceService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetUserEventKeyInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetUserEventDetailInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        public GetUserEventKeyInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        public GetUserEventDetailInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1357,11 +1357,11 @@ namespace Scada.Client.SL.ScadaDeviceService {
         
         private System.Threading.SendOrPostCallback onUpdateDeviceAlarmInfoCompletedDelegate;
         
-        private BeginOperationDelegate onBeginGetUserEventKeyInfoDelegate;
+        private BeginOperationDelegate onBeginGetUserEventDetailInfoDelegate;
         
-        private EndOperationDelegate onEndGetUserEventKeyInfoDelegate;
+        private EndOperationDelegate onEndGetUserEventDetailInfoDelegate;
         
-        private System.Threading.SendOrPostCallback onGetUserEventKeyInfoCompletedDelegate;
+        private System.Threading.SendOrPostCallback onGetUserEventDetailInfoCompletedDelegate;
         
         private BeginOperationDelegate onBeginUpdateUserEventInfoDelegate;
         
@@ -1470,7 +1470,7 @@ namespace Scada.Client.SL.ScadaDeviceService {
         
         public event System.EventHandler<UpdateDeviceAlarmInfoCompletedEventArgs> UpdateDeviceAlarmInfoCompleted;
         
-        public event System.EventHandler<GetUserEventKeyInfoCompletedEventArgs> GetUserEventKeyInfoCompleted;
+        public event System.EventHandler<GetUserEventDetailInfoCompletedEventArgs> GetUserEventDetailInfoCompleted;
         
         public event System.EventHandler<UpdateUserEventInfoCompletedEventArgs> UpdateUserEventInfoCompleted;
         
@@ -2015,63 +2015,63 @@ namespace Scada.Client.SL.ScadaDeviceService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.BeginGetUserEventKeyInfo(Scada.Client.SL.ScadaDeviceService.GetUserEventKeyInfoRequest request, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetUserEventKeyInfo(request, callback, asyncState);
+        System.IAsyncResult Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.BeginGetUserEventDetailInfo(Scada.Client.SL.ScadaDeviceService.GetUserEventDetailInfoRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetUserEventDetailInfo(request, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        private System.IAsyncResult BeginGetUserEventKeyInfo(System.Guid EventKey, System.AsyncCallback callback, object asyncState) {
-            Scada.Client.SL.ScadaDeviceService.GetUserEventKeyInfoRequest inValue = new Scada.Client.SL.ScadaDeviceService.GetUserEventKeyInfoRequest();
-            inValue.Body = new Scada.Client.SL.ScadaDeviceService.GetUserEventKeyInfoRequestBody();
+        private System.IAsyncResult BeginGetUserEventDetailInfo(System.Guid EventKey, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.SL.ScadaDeviceService.GetUserEventDetailInfoRequest inValue = new Scada.Client.SL.ScadaDeviceService.GetUserEventDetailInfoRequest();
+            inValue.Body = new Scada.Client.SL.ScadaDeviceService.GetUserEventDetailInfoRequestBody();
             inValue.Body.EventKey = EventKey;
-            return ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginGetUserEventKeyInfo(inValue, callback, asyncState);
+            return ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginGetUserEventDetailInfo(inValue, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Scada.Client.SL.ScadaDeviceService.GetUserEventKeyInfoResponse Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.EndGetUserEventKeyInfo(System.IAsyncResult result) {
-            return base.Channel.EndGetUserEventKeyInfo(result);
+        Scada.Client.SL.ScadaDeviceService.GetUserEventDetailInfoResponse Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.EndGetUserEventDetailInfo(System.IAsyncResult result) {
+            return base.Channel.EndGetUserEventDetailInfo(result);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        private string EndGetUserEventKeyInfo(System.IAsyncResult result) {
-            Scada.Client.SL.ScadaDeviceService.GetUserEventKeyInfoResponse retVal = ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndGetUserEventKeyInfo(result);
-            return retVal.Body.GetUserEventKeyInfoResult;
+        private string EndGetUserEventDetailInfo(System.IAsyncResult result) {
+            Scada.Client.SL.ScadaDeviceService.GetUserEventDetailInfoResponse retVal = ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndGetUserEventDetailInfo(result);
+            return retVal.Body.GetUserEventDetailInfoResult;
         }
         
-        private System.IAsyncResult OnBeginGetUserEventKeyInfo(object[] inValues, System.AsyncCallback callback, object asyncState) {
+        private System.IAsyncResult OnBeginGetUserEventDetailInfo(object[] inValues, System.AsyncCallback callback, object asyncState) {
             System.Guid EventKey = ((System.Guid)(inValues[0]));
-            return this.BeginGetUserEventKeyInfo(EventKey, callback, asyncState);
+            return this.BeginGetUserEventDetailInfo(EventKey, callback, asyncState);
         }
         
-        private object[] OnEndGetUserEventKeyInfo(System.IAsyncResult result) {
-            string retVal = this.EndGetUserEventKeyInfo(result);
+        private object[] OnEndGetUserEventDetailInfo(System.IAsyncResult result) {
+            string retVal = this.EndGetUserEventDetailInfo(result);
             return new object[] {
                     retVal};
         }
         
-        private void OnGetUserEventKeyInfoCompleted(object state) {
-            if ((this.GetUserEventKeyInfoCompleted != null)) {
+        private void OnGetUserEventDetailInfoCompleted(object state) {
+            if ((this.GetUserEventDetailInfoCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.GetUserEventKeyInfoCompleted(this, new GetUserEventKeyInfoCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+                this.GetUserEventDetailInfoCompleted(this, new GetUserEventDetailInfoCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
             }
         }
         
-        public void GetUserEventKeyInfoAsync(System.Guid EventKey) {
-            this.GetUserEventKeyInfoAsync(EventKey, null);
+        public void GetUserEventDetailInfoAsync(System.Guid EventKey) {
+            this.GetUserEventDetailInfoAsync(EventKey, null);
         }
         
-        public void GetUserEventKeyInfoAsync(System.Guid EventKey, object userState) {
-            if ((this.onBeginGetUserEventKeyInfoDelegate == null)) {
-                this.onBeginGetUserEventKeyInfoDelegate = new BeginOperationDelegate(this.OnBeginGetUserEventKeyInfo);
+        public void GetUserEventDetailInfoAsync(System.Guid EventKey, object userState) {
+            if ((this.onBeginGetUserEventDetailInfoDelegate == null)) {
+                this.onBeginGetUserEventDetailInfoDelegate = new BeginOperationDelegate(this.OnBeginGetUserEventDetailInfo);
             }
-            if ((this.onEndGetUserEventKeyInfoDelegate == null)) {
-                this.onEndGetUserEventKeyInfoDelegate = new EndOperationDelegate(this.OnEndGetUserEventKeyInfo);
+            if ((this.onEndGetUserEventDetailInfoDelegate == null)) {
+                this.onEndGetUserEventDetailInfoDelegate = new EndOperationDelegate(this.OnEndGetUserEventDetailInfo);
             }
-            if ((this.onGetUserEventKeyInfoCompletedDelegate == null)) {
-                this.onGetUserEventKeyInfoCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetUserEventKeyInfoCompleted);
+            if ((this.onGetUserEventDetailInfoCompletedDelegate == null)) {
+                this.onGetUserEventDetailInfoCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetUserEventDetailInfoCompleted);
             }
-            base.InvokeAsync(this.onBeginGetUserEventKeyInfoDelegate, new object[] {
-                        EventKey}, this.onEndGetUserEventKeyInfoDelegate, this.onGetUserEventKeyInfoCompletedDelegate, userState);
+            base.InvokeAsync(this.onBeginGetUserEventDetailInfoDelegate, new object[] {
+                        EventKey}, this.onEndGetUserEventDetailInfoDelegate, this.onGetUserEventDetailInfoCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2619,16 +2619,16 @@ namespace Scada.Client.SL.ScadaDeviceService {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetUserEventKeyInfo(Scada.Client.SL.ScadaDeviceService.GetUserEventKeyInfoRequest request, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetUserEventDetailInfo(Scada.Client.SL.ScadaDeviceService.GetUserEventDetailInfoRequest request, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
                 _args[0] = request;
-                System.IAsyncResult _result = base.BeginInvoke("GetUserEventKeyInfo", _args, callback, asyncState);
+                System.IAsyncResult _result = base.BeginInvoke("GetUserEventDetailInfo", _args, callback, asyncState);
                 return _result;
             }
             
-            public Scada.Client.SL.ScadaDeviceService.GetUserEventKeyInfoResponse EndGetUserEventKeyInfo(System.IAsyncResult result) {
+            public Scada.Client.SL.ScadaDeviceService.GetUserEventDetailInfoResponse EndGetUserEventDetailInfo(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                Scada.Client.SL.ScadaDeviceService.GetUserEventKeyInfoResponse _result = ((Scada.Client.SL.ScadaDeviceService.GetUserEventKeyInfoResponse)(base.EndInvoke("GetUserEventKeyInfo", _args, result)));
+                Scada.Client.SL.ScadaDeviceService.GetUserEventDetailInfoResponse _result = ((Scada.Client.SL.ScadaDeviceService.GetUserEventDetailInfoResponse)(base.EndInvoke("GetUserEventDetailInfo", _args, result)));
                 return _result;
             }
             

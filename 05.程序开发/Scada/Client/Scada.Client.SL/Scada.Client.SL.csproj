@@ -399,7 +399,7 @@
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.GetSameDeviceTemperatureDiffDateResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.GetUserEventKeyInfoResponse.datasource">
+    <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.GetUserEventDetailInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.ListDeviceTreeViewResponse.datasource">
@@ -428,9 +428,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\SystemManagerService\Scada.Client.SL.SystemManagerService.GetWeatherResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\SystemManagerService\Scada.Client.SL.SystemManagerService.ListStudentsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\SystemManagerService\SystemManagerService1.wsdl" />

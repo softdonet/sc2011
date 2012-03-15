@@ -17,16 +17,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ListStudents">
-        <s:complexType />
-      </s:element>
-      <s:element name="ListStudentsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ListStudentsResult" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="GetLoginResultType">
         <s:complexType>
           <s:sequence>
@@ -64,12 +54,6 @@
   <wsdl:message name="AddDDSoapOut">
     <wsdl:part name="parameters" element="tns:AddDDResponse" />
   </wsdl:message>
-  <wsdl:message name="ListStudentsSoapIn">
-    <wsdl:part name="parameters" element="tns:ListStudents" />
-  </wsdl:message>
-  <wsdl:message name="ListStudentsSoapOut">
-    <wsdl:part name="parameters" element="tns:ListStudentsResponse" />
-  </wsdl:message>
   <wsdl:message name="GetLoginResultTypeSoapIn">
     <wsdl:part name="parameters" element="tns:GetLoginResultType" />
   </wsdl:message>
@@ -87,10 +71,6 @@
       <wsdl:input message="tns:AddDDSoapIn" />
       <wsdl:output message="tns:AddDDSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="ListStudents">
-      <wsdl:input message="tns:ListStudentsSoapIn" />
-      <wsdl:output message="tns:ListStudentsSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="GetLoginResultType">
       <wsdl:input message="tns:GetLoginResultTypeSoapIn" />
       <wsdl:output message="tns:GetLoginResultTypeSoapOut" />
@@ -104,15 +84,6 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="AddDD">
       <soap:operation soapAction="http://tempuri.org/AddDD" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ListStudents">
-      <soap:operation soapAction="http://tempuri.org/ListStudents" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -143,15 +114,6 @@
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="AddDD">
       <soap12:operation soapAction="http://tempuri.org/AddDD" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ListStudents">
-      <soap12:operation soapAction="http://tempuri.org/ListStudents" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

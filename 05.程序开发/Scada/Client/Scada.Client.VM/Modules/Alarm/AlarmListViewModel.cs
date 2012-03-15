@@ -15,6 +15,7 @@ using Scada.Client.VM.ScadaDeviceService;
 using Scada.Client.VM.CommClass;
 using Scada.Client.VM.DeviceRealTimeService;
 using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace Scada.Client.VM.Modules.Alarm
 {
@@ -34,7 +35,7 @@ namespace Scada.Client.VM.Modules.Alarm
             if (e.Error == null)
             {
                 List<DeviceAlarm> result = BinaryObjTransfer.BinaryDeserialize<List<DeviceAlarm>>(e.data);
-                List<DeviceAlarmViewModel> davmList = new List<DeviceAlarmViewModel>();
+                ObservableCollection<DeviceAlarmViewModel> davmList = new ObservableCollection<DeviceAlarmViewModel>();
                 foreach (var item in result)
                 {
                     DeviceAlarmViewModel davm = new DeviceAlarmViewModel();
@@ -50,8 +51,8 @@ namespace Scada.Client.VM.Modules.Alarm
             }
         }
 
-        private List<DeviceAlarmViewModel> deviceAlarmList;
-        public List<DeviceAlarmViewModel> DeviceAlarmList
+        private ObservableCollection<DeviceAlarmViewModel> deviceAlarmList;
+        public ObservableCollection<DeviceAlarmViewModel> DeviceAlarmList
         {
             get { return deviceAlarmList; }
             set
@@ -61,14 +62,15 @@ namespace Scada.Client.VM.Modules.Alarm
             }
         }
 
-        private List<DeviceAlarmViewModel> deviceAlarmListTop;
-        public List<DeviceAlarmViewModel> DeviceAlarmListTop
+        private ObservableCollection<DeviceAlarmViewModel> deviceAlarmListTop;
+        public ObservableCollection<DeviceAlarmViewModel> DeviceAlarmListTop
         {
             get { return deviceAlarmListTop; }
             set
             {
                 deviceAlarmListTop = value;
-                deviceAlarmListTop = deviceAlarmListTop.OrderBy(e => e.DeviceAlarm.StartTime).Take(4).ToList();
+               // deviceAlarmListTop = deviceAlarmListTop.OrderBy(e => e.DeviceAlarm.StartTime).Take(4).ToList();
+                deviceAlarmListTop = new ObservableCollection<DeviceAlarmViewModel>(deviceAlarmListTop.OrderBy(e => e.DeviceAlarm.StartTime).Take(4));
                 this.RaisePropertyChanged("DeviceAlarmListTop");
             }
         }

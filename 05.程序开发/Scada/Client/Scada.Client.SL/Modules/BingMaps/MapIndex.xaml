@@ -296,7 +296,7 @@
                     <TextBlock Text ="气象信息"  FontSize=" 12"   VerticalAlignment="Center"   Margin=" 5"/>
                 </StackPanel>
                 <toolkit:WrapPanel x:Name="wpArea" Orientation="Horizontal" >
-                  <local:WeatherBar HorizontalAlignment="Left"   VerticalAlignment="Top" />
+                  <!--<local:WeatherBar HorizontalAlignment="Left"   VerticalAlignment="Top" />-->
 
                 </toolkit:WrapPanel>
                 <!-- 工程类型显示区-->
@@ -318,7 +318,7 @@
                                           IsReadOnly="True"
                                           ItemsSource="{Binding DeviceAlarmListTop}"  RowIndicatorVisibility="Collapsed">
                         <telerik:RadGridView.Columns>
-                            <telerik:GridViewDataColumn Header="设备名称" DataMemberBinding="{Binding DeviceNo}" Width="80" HeaderTextAlignment="Center" TextAlignment="Center" IsFilterable="False"  />
+                            <telerik:GridViewDataColumn Header="设备名称" DataMemberBinding="{Binding DeviceAlarm.DeviceNo}" Width="80" HeaderTextAlignment="Center" TextAlignment="Center" IsFilterable="False"  />
                             <telerik:GridViewDataColumn Header="告警类型" DataMemberBinding="{Binding Converter={StaticResource ConverNumberToTextAlarm1},ConverterParameter=EventType}" Width="75" HeaderTextAlignment="Center" TextAlignment="Center"  />
 
                             <telerik:GridViewDataColumn    Width="70" Header="操作" HeaderTextAlignment="Center" TextAlignment="Center" >

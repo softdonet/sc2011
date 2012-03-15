@@ -12,7 +12,8 @@ using Scada.Model.Entity;
 using Scada.Model.Entity.Enums;
 using System.Globalization;
 using System.Windows.Data;
-
+using Scada.Client.VM.Modules.Alarm;
+using Microsoft.Practices.Prism.ViewModel;
 namespace Scada.Utility.Common.SL
 {
 
@@ -26,24 +27,26 @@ namespace Scada.Utility.Common.SL
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string currentText = string.Empty;
-            DeviceAlarm currentValue = value as DeviceAlarm;
-            if (currentValue == null)
+            DeviceAlarmViewModel currentValue = value as DeviceAlarmViewModel;
+            if (currentValue.DeviceAlarm == null)
             {
                 return DependencyProperty.UnsetValue;
             }
-            switch (parameter.ToString().ToLower())
-            {
-                case "eventtype":
-                    if (currentValue.EventType.HasValue)
-                    {
-                        return EnumHelper.Display<EventTypes>(currentValue.EventType.Value);
-                    }
-                    break;
-                case "eventLevel":
-                    break;
-                default:
-                    break;
-            }
+            DeviceAlarm item = currentValue.DeviceAlarm;
+                switch (parameter.ToString().ToLower())
+                {
+                    case "eventtype":
+                        if (item.EventType.HasValue)
+                        {
+                            return EnumHelper.Display<EventTypes>(item.EventType.Value);
+                        }
+                        break;
+                    case "eventLevel":
+                        break;
+                    default:
+                        break;
+                }
+            
             return currentText;
         }
 

@@ -393,7 +393,7 @@ namespace Scada.BLL.Implement
                 ///从从表中读取数据，然后整合
                 ///--------------------------
                 ///
-                List<UserEventDealDetail> eventDealDetailList = GetUserEventKeyInfo(userEventModel.ID);
+                List<UserEventDealDetail> eventDealDetailList = GetUserEventDetailInfo(userEventModel.ID);
                 string joinString = string.Empty;//拼接字符串
                 eventDealDetailList = eventDealDetailList.OrderBy(tt => tt.StepNo).ToList(); ;//. from p in eventDealDetailList orderby p.StepNo select p;
                 if (eventDealDetailList.Count != 0)
@@ -413,7 +413,7 @@ namespace Scada.BLL.Implement
 
         }
 
-        public List<UserEventDealDetail> GetUserEventKeyInfo(Guid EventKey)
+        public List<UserEventDealDetail> GetUserEventDetailInfo(Guid EventKey)
         {
 
             List<UserEventDealDetail> dealDetails = new List<UserEventDealDetail>();

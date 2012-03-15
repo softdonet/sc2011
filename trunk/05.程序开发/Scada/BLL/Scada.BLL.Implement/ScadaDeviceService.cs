@@ -787,11 +787,11 @@ namespace Scada.BLL.Implement
         }
         */
 
-        public string GetUserEventKeyInfo(Guid EventKey)
+        public string GetUserEventDetailInfo(Guid EventKey)
         {
             string result = string.Empty;
             List<UserEventDealDetail> dealDetails = new List<UserEventDealDetail>();
-            string sSql = @" Select ID,EventID,OperatorId,StepNo,StepName,Memo,DealTime
+            string sSql = @" Select ID,EventID,Operator,StepNo,StepName,Memo,DealTime
                                 From UserEventDealDetail 
                                 Where EventID='" + EventKey.ToString().ToUpper() + "' Order by StepNo";
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);
@@ -802,7 +802,7 @@ namespace Scada.BLL.Implement
                 detail = new UserEventDealDetail();
                 detail.ID = new Guid(item["ID"].ToString());
                 detail.EventID = new Guid(item["EventID"].ToString());
-                detail.Operator = new Guid(item["OperatorId"].ToString());
+                detail.Operator = new Guid(item["Operator"].ToString());
                 Int32 intValue = 0;
                 if (item["StepNo"] != DBNull.Value)
                     intValue = Convert.ToInt32(item["StepNo"]);
@@ -867,9 +867,9 @@ namespace Scada.BLL.Implement
             if (String.IsNullOrEmpty(UserEventDealDetail)) { return result; }
             UserEventDealDetail eDealDetail = BinaryObjTransfer.JsonDeserialize<UserEventDealDetail>(UserEventDealDetail);
             if (eDealDetail == null) { return result; }
-            String sSql = @" Insert Into UserEventDealDetail(ID,EventID,OperatorId,StepNo,
+            String sSql = @" Insert Into UserEventDealDetail(ID,EventID,Operator,StepNo,
                                             StepName,Memo,DealTime) 
-                            Values (@ID,@EventID,@OperatorId,@StepNo,@StepName,@Memo,@DealTime)";
+                            Values (@ID,@EventID,@Operator,@StepNo,@StepName,@Memo,@DealTime)";
             SqlParameter para = null;
             List<SqlParameter> sSqlWhere = new List<SqlParameter>();
 
@@ -887,7 +887,7 @@ namespace Scada.BLL.Implement
 
             para = new SqlParameter();
             para.DbType = DbType.Guid;
-            para.ParameterName = "@OperatorId";
+            para.ParameterName = "@Operator";
             para.Value = eDealDetail.Operator;
             sSqlWhere.Add(para);
 

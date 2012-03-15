@@ -61,7 +61,7 @@ namespace Scada.BLL.Contract
         #region 用户事件
 
         //string GetListUserEventInfo();
-        string GetUserEventKeyInfo(Guid EventKey);
+        string GetUserEventDetailInfo(Guid EventKey);
         Boolean UpdateUserEventInfo(string EventDetails);
         string GetListStepInfo();
 

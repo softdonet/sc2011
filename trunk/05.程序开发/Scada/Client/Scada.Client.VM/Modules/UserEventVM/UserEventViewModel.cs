@@ -40,8 +40,8 @@ namespace Scada.Client.VM.Modules.UserEventVM
             if (e.Error == null)
             {
                 List<UserEventModel> result = BinaryObjTransfer.BinaryDeserialize<List<UserEventModel>>(e.data);
-                userEventList = result;
-                userEventListTop = result;
+                UserEventList = result;
+                UserEventListTop = result;
             }
         }
 

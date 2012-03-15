@@ -69,8 +69,8 @@ namespace Scada.Client.SL.Modules.UsersEvent
 
             ///查找用户表中是否处理过该用户事件，有的话，返回结果对象
             //this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
-            this._scadaDeviceServiceSoapClient.GetUserEventKeyInfoCompleted+=new EventHandler<GetUserEventKeyInfoCompletedEventArgs>(_scadaDeviceServiceSoapClient_GetUserEventKeyInfoCompleted);
-            this._scadaDeviceServiceSoapClient.GetUserEventKeyInfoAsync(userEventModel.ID);
+            this._scadaDeviceServiceSoapClient.GetUserEventDetailInfoCompleted+=new EventHandler<GetUserEventDetailInfoCompletedEventArgs>(_scadaDeviceServiceSoapClient_GetUserEventDetailInfoCompleted);
+            this._scadaDeviceServiceSoapClient.GetUserEventDetailInfoAsync(userEventModel.ID);
             
         }
 
@@ -94,7 +94,7 @@ namespace Scada.Client.SL.Modules.UsersEvent
             cmbStep5.ItemsSource = stepInfo;
         }
 
-        void _scadaDeviceServiceSoapClient_GetUserEventKeyInfoCompleted(object sender, GetUserEventKeyInfoCompletedEventArgs e)
+        void _scadaDeviceServiceSoapClient_GetUserEventDetailInfoCompleted(object sender, GetUserEventDetailInfoCompletedEventArgs e)
         {
             List<UserEventDealDetail> eventDealDetail = BinaryObjTransfer.BinaryDeserialize<List<UserEventDealDetail>>(e.Result);
             //UserEventDealDetail[] ArrEventDealDetail = eventDealDetail.ToArray();
@@ -428,7 +428,9 @@ namespace Scada.Client.SL.Modules.UsersEvent
             eventDealDetail = new UserEventDealDetail();
             eventDealDetail.ID = Guid.NewGuid();
             eventDealDetail.EventID = userEventModel.ID;
-            eventDealDetail.Operator= new Guid("B1EE865D-E279-431F-97CD-2BADC04A850D");
+
+            //该处先写死，后续再改
+            eventDealDetail.Operator = new Guid("F0F4F83E-BA93-47A8-8A36-B7CEE7456BAD");
             eventDealDetail.DealTime = DateTime.Now;
 
 

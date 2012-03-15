@@ -143,17 +143,14 @@ namespace Scada.BLL.Implement
 
         private List<DeviceRealTimeTree> getTreeNodeChild(Guid? nodeKey)
         {
-            int nodeIndex;
             List<DeviceRealTimeTree> result = new List<DeviceRealTimeTree>();
-            string sSql = "select id,name from DeviceTree";
+            string sSql = "select id,name,Level from DeviceTree";
             if (nodeKey != null)
             {
-                nodeIndex = 2;
                 sSql = sSql + " where ParentID ='" + nodeKey.ToString().ToUpper() + "'";
             }
             else
             {
-                nodeIndex = 1;
                 sSql = sSql + " Where ParentID Is Null";
             }
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);
@@ -161,7 +158,7 @@ namespace Scada.BLL.Implement
             {
                 result.Add(new DeviceRealTimeTree
                 {
-                    NodeType = nodeIndex,
+                    NodeType = Convert.ToInt32(item["Level"]),
                     NodeValue = item["Name"].ToString(),
                     NodeKey = new Guid(item["id"].ToString())
                 });
@@ -194,17 +191,22 @@ namespace Scada.BLL.Implement
                 //管理分区
                 foreach (DeviceRealTimeTree realSec in realFir.NodeChild)
                 {
-                    //实体设备
+                    //组
                     foreach (DeviceRealTimeTree realThi in realSec.NodeChild)
                     {
-                        DeviceRealTime realTime = readTimeDatas.Find(x => x.DeviceID == realThi.NodeKey);
-                        if (realTime == null) { continue; }
-                        realThi.InstallPlace = realTime.InstallPlace;
-                        realThi.Temperature1 = realTime.Temperature1;
-                        realThi.Electricity = realTime.Electricity;
-                        realThi.Signal = realTime.Signal;
-                        realThi.Status = realTime.Status;
-                        realThi.UpdateTime = realTime.UpdateTime;
+                        //实体设备
+                        foreach (DeviceRealTimeTree realFou in realThi.NodeChild)
+                        {
+                            DeviceRealTime realTime = readTimeDatas.Find(x => x.DeviceID == realFou.NodeKey);
+                            if (realTime == null) { continue; }
+                            realFou.InstallPlace = realTime.InstallPlace;
+                            realFou.Temperature1 = realTime.Temperature1;
+                            realFou.Electricity = realTime.Electricity;
+                            realFou.Signal = realTime.Signal;
+                            realFou.Status = realTime.Status;
+                            realFou.UpdateTime = realTime.UpdateTime;
+                        }
+                        this.UpdateVirtualDevice(realThi);
                     }
                     this.UpdateVirtualDevice(realSec);
                 }

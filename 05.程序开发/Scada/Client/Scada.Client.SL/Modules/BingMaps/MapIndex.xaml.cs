@@ -46,20 +46,22 @@ namespace Scada.Client.SL.Modules.BingMaps
             MyContent.CloseBtn += new EventHandler(MyContent_CloseBtn);
 
             myMapLayerDevice = new MapLayer();
-            myMapLayerDeviceAvg = new MapLayer();
-            map.Children.Add(myMapLayerDeviceAvg);
+            myMapLayerDeviceGroup = new MapLayer();
+            myMapLayerDeviceArea = new MapLayer();
             map.Children.Add(myMapLayerDevice);
+            map.Children.Add(myMapLayerDeviceGroup);
+            map.Children.Add(myMapLayerDeviceArea);
             mapVM = new MapIndexViewModel();
             mapVM.BaseDataResviceEvent += new EventHandler(mapVM_BaseDataResviceEvent);
             mapVM.RealTimeDataResviceEvent += new EventHandler(mapVM_RealTimeDataResviceEvent);
 
             DeviceAlarmViewModel deviceAlarmViewModel = new DeviceAlarmViewModel();
             RadGridViewAlarm.DataContext = deviceAlarmViewModel;
-           
+
             UserEventViewModel userEventViewModel = new UserEventViewModel();
             RadGridViewUserEvent.DataContext = userEventViewModel;
 
-            
+
         }
 
         /// <summary>
@@ -77,11 +79,11 @@ namespace Scada.Client.SL.Modules.BingMaps
                     if (pp != null)
                     {
                         pp.DeviceTemp = (item.Temperature.HasValue ? ((int)(item.Temperature.Value)).ToString() : "0") + "℃";
-                        pp.DevState = (DeviceStates)item.Status;
+                        pp.DevState = (DeviceStates)item.Status.GetValueOrDefault(1);
                         pp.DeviceName = item.NodeValue;
                     }
                 }
-            }  
+            }
         }
 
         Dictionary<Guid, pushPinDevice> dicPin = new Dictionary<Guid, pushPinDevice>();
@@ -103,12 +105,15 @@ namespace Scada.Client.SL.Modules.BingMaps
                 switch (item.NodeType)
                 {
                     case 1:
+                        myMapLayerDeviceArea.Children.Add(myPushPin);
                         break;
                     case 2:
-                        myMapLayerDeviceAvg.Children.Add(myPushPin);
+                        myMapLayerDeviceGroup.Children.Add(myPushPin);
                         break;
                     case 3:
                         myMapLayerDevice.Children.Add(myPushPin);
+                        break;
+                    case 4:
                         break;
                     default:
                         break;
@@ -168,24 +173,34 @@ namespace Scada.Client.SL.Modules.BingMaps
                 if (map.ZoomLevel > 10)
                 {
                     this.myMapLayerDevice.Visibility = Visibility.Visible;
-                    this.myMapLayerDeviceAvg.Visibility = Visibility.Collapsed;
+                    this.myMapLayerDeviceGroup.Visibility = Visibility.Collapsed;
+                    this.myMapLayerDeviceArea.Visibility = Visibility.Collapsed;
                 }
+                //else if (map.ZoomLevel > 5)
+                //{
+                //    this.myMapLayerDeviceGroup.Visibility = Visibility.Visible;
+                //    this.myMapLayerDevice.Visibility = Visibility.Collapsed;
+                //    this.myMapLayerDeviceArea.Visibility = Visibility.Collapsed;
+                //}
                 else
                 {
-                    this.myMapLayerDeviceAvg.Visibility = Visibility.Visible;
+                    this.myMapLayerDeviceGroup.Visibility = Visibility.Visible;
                     this.myMapLayerDevice.Visibility = Visibility.Collapsed;
+                    //this.myMapLayerDeviceArea.Visibility = Visibility.Visible;
+
                 }
             };
         }
 
         MapLayer myMapLayerDevice = null;
-        MapLayer myMapLayerDeviceAvg = null;
+        MapLayer myMapLayerDeviceGroup = null;
+        MapLayer myMapLayerDeviceArea = null;
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             map.ZoomLevel = 12;
             double weidu = (39.9487 + 39.90705 + 39.98698 + 39.96754 + 39.88405) / 5.0;
             double jindu = (116.45072 + 116.37995 + 116.36773 + 116.36932 + 116.33072) / 5.0;
-            map.Center = new Location(weidu, jindu); 
+            map.Center = new Location(weidu, jindu);
         }
 
         void myPushPin_onclickDetails(object sender, RoutedEventArgs e)
@@ -229,13 +244,13 @@ namespace Scada.Client.SL.Modules.BingMaps
 
         private Guid id, deviceid;
         private int? state;
-       
+
 
         private void hlBtnAlarm_Click(object sender, RoutedEventArgs e)
         {
             HyperlinkButton hlB = sender as HyperlinkButton;
             id = (hlB.DataContext as DeviceAlarm).ID;
-           // RadWindow.Prompt("请输入备注：", new EventHandler<WindowClosedEventArgs>(OnClosed));
+            // RadWindow.Prompt("请输入备注：", new EventHandler<WindowClosedEventArgs>(OnClosed));
         }
 
         private void hlBtnUserEvent_Click(object sender, RoutedEventArgs e)

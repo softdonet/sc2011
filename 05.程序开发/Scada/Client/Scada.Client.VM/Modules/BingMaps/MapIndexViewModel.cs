@@ -94,8 +94,30 @@ namespace Scada.Client.VM.Modules.BingMaps
                 {
                     foreach (var item2 in item1.NodeChild)
                     {
+                        //PushPinDeviceViewModel tem2 = new PushPinDeviceViewModel();
+                        //tem2.NodeKey = item2.NodeKey;
+                        //tem2.NodeValue = item2.NodeValue;
+                        //tem2.NodeType = item2.NodeType;
+                        //tem2.Temperature = item2.Temperature1;
+                        //tem2.Status = item2.Status;
+                        ////tem3.Longitude = item3.NodeChild.Select(o => o.Longitude).Average();
+                        ////tem3.Dimensionality = item3.NodeChild.Select(o => o.Dimensionality).Average();
+                        //tem2.InstallPlace = item2.InstallPlace;
+                        //tempList.Add(tem2);
+
                         foreach (var item3 in item2.NodeChild)
                         {
+
+                            PushPinDeviceViewModel tem3 = new PushPinDeviceViewModel();
+                            tem3.NodeKey = item3.NodeKey;
+                            tem3.NodeValue = item3.NodeValue;
+                            tem3.NodeType = item3.NodeType;
+                            tem3.Temperature = item3.Temperature1;
+                            tem3.Status = item3.Status;
+                            //tem3.Longitude = item3.NodeChild.Select(o => o.Longitude).Average();
+                            //tem3.Dimensionality = item3.NodeChild.Select(o => o.Dimensionality).Average();
+                            tem3.InstallPlace = item3.InstallPlace;
+                            tempList.Add(tem3);
                             foreach (var item4 in item3.NodeChild)
                             {
                                 PushPinDeviceViewModel tem = new PushPinDeviceViewModel();
@@ -138,8 +160,29 @@ namespace Scada.Client.VM.Modules.BingMaps
                 {
                     foreach (var item2 in item1.NodeChild)
                     {
+                        //PushPinDeviceViewModel tem2= new PushPinDeviceViewModel();
+                        //tem2.NodeKey = item2.NodeKey;
+                        //tem2.NodeValue = item2.NodeValue;
+                        //tem2.NodeType = item2.NodeType;
+                        //tem2.Temperature = 0;
+                        //tem2.Status = (int)DeviceStates.Escape;
+                        //tem2.Longitude = item2.NodeChild[0].NodeChild[0].Longitude;
+                        //tem2.Dimensionality = item2.NodeChild[0].NodeChild[0].Latitude;
+                        //tem2.InstallPlace = item2.InstallPlace;
+                        //tempList.Add(tem2);
+                       
                         foreach (var item3 in item2.NodeChild)
                         {
+                            PushPinDeviceViewModel tem3 = new PushPinDeviceViewModel();
+                            tem3.NodeKey = item3.NodeKey;
+                            tem3.NodeValue = item3.NodeValue;
+                            tem3.NodeType = item3.NodeType;
+                            tem3.Temperature = 0;
+                            tem3.Status = (int)DeviceStates.Escape;
+                            tem3.Longitude = item3.NodeChild.Select(o => o.Longitude).Average();
+                            tem3.Dimensionality = item3.NodeChild.Select(o => o.Latitude).Average();
+                            tem3.InstallPlace = item3.InstallPlace;
+                            tempList.Add(tem3);
                             foreach (var item4 in item3.NodeChild)
                             {
                                 PushPinDeviceViewModel tem = new PushPinDeviceViewModel();

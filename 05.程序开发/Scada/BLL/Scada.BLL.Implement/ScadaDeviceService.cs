@@ -46,28 +46,37 @@ namespace Scada.BLL.Implement
             List<DeviceRealTime> deviceRealTimes = new List<DeviceRealTime>();
             StringBuilder sSql = new StringBuilder();
             sSql.Append(@" Select AA.ID,BB.DeviceNo,BB.InstallPlace,
-                           AA.UpdateTime,Temperature,Electricity,Signal
+                           AA.UpdateTime,AA.Temperature1,AA.Electricity,AA.Signal
                             from DeviceRealTime AA 
                             Inner Join DeviceInfo BB On AA.DeviceID=BB.ID 
                             Where 1=1 ");
 
             DataTable ds = null;
-            if (DeviceType == 1)
+
+            //区域
+            if (DeviceType == 0)
+            {
+                
+            }
+            //管理分区
+            else if (DeviceType == 1)
             {
                 string sql = string.Format(@" Select ID from DeviceTree 
                                                     Where ParentID = '{0}'", DeviceID.ToString());
                 ds = SqlHelper.ExecuteDataTable(sql);
                 if (ds == null || ds.Rows.Count == 0) { return result; }
-                //string sqlWhere = string.Empty;
-                //foreach (var item in ds.Rows)
-                //{
-                //    sqlWhere = sqlWhere + string.Format("'{0}',", item);
-                //}
-                //sqlWhere = sqlWhere.Substring(0, sqlWhere.Length - 1);
-                //sSql.Append(" And BB.ManageAreaID In (" + sqlWhere + ")");
+                string sqlWhere = string.Empty;
+                foreach (var item in ds.Rows)
+                {
+                    sqlWhere = sqlWhere + string.Format("'{0}',", item);
+                }
+                sqlWhere = sqlWhere.Substring(0, sqlWhere.Length - 1);
+                sSql.Append(" And BB.ManageAreaID In (" + sqlWhere + ")");
             }
+            //组
             else if (DeviceType == 2)
                 sSql.Append(" And BB.ManageAreaID ='" + DeviceID + "'");
+            //设备
             else if (DeviceType == 3)
                 sSql.Append(" And AA.DeviceID='" + DeviceID.ToString().ToUpper() + "'");
 
@@ -93,7 +102,7 @@ namespace Scada.BLL.Implement
                         DeviceNo = dr["DeviceNo"].ToString(),
                         InstallPlace = dr["InstallPlace"].ToString(),
                         UpdateTime = Convert.ToDateTime(dr["UpdateTime"]),
-                        //Temperature = Convert.ToDecimal(dr["Temperature"]),
+                        Temperature1 = Convert.ToDecimal(dr["Temperature1"]),
                         Electricity = Convert.ToInt32(dr["Electricity"]),
                         Signal = Convert.ToInt32(dr["Signal"])
                     }

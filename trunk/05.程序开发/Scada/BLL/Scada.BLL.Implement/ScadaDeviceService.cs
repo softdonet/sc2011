@@ -56,7 +56,7 @@ namespace Scada.BLL.Implement
             //区域
             if (DeviceType == 0)
             {
-                
+
             }
             //管理分区
             else if (DeviceType == 1)
@@ -570,17 +570,14 @@ namespace Scada.BLL.Implement
 
         private List<DeviceTreeNode> getTreeNodeChild(Guid? nodeKey, String prefix)
         {
-            int nodeIndex;
             List<DeviceTreeNode> result = new List<DeviceTreeNode>();
-            string sSql = "select id,name from DeviceTree";
+            string sSql = "select id,name,Level from DeviceTree";
             if (nodeKey != null)
             {
-                nodeIndex = 2;
                 sSql = sSql + " where ParentID ='" + nodeKey.ToString().ToUpper() + "'";
             }
             else
             {
-                nodeIndex = 1;
                 sSql = sSql + " Where ParentID Is Null";
             }
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);
@@ -588,7 +585,7 @@ namespace Scada.BLL.Implement
             {
                 result.Add(new DeviceTreeNode
                 {
-                    NodeType = nodeIndex,
+                    NodeType = Convert.ToInt32(item["Level"]),
                     NodeValue = prefix + item["Name"].ToString(),
                     NodeKey = new Guid(item["id"].ToString()),
 
@@ -941,14 +938,19 @@ namespace Scada.BLL.Implement
             foreach (DeviceTreeNode area in firstNode)
             {
                 treeList.Add(new DeviceTreeNode { NodeKey = area.NodeKey, NodeValue = area.NodeValue, NodeType = area.NodeType });
-                List<DeviceTreeNode> secondNode = this.getTreeNodeChild(area.NodeKey, "--");
+                List<DeviceTreeNode> secondNode = this.getTreeNodeChild(area.NodeKey, "-");
                 foreach (DeviceTreeNode manage in secondNode)
                 {
-                    treeList.Add(new DeviceTreeNode { NodeKey = manage.NodeKey, NodeValue = manage.NodeValue, NodeType = area.NodeType });
-                    List<DeviceTreeNode> thirdNode = getTreeNodeDevice(manage.NodeKey, "----");
-                    foreach (DeviceTreeNode item in thirdNode)
+                    treeList.Add(new DeviceTreeNode { NodeKey = manage.NodeKey, NodeValue = manage.NodeValue, NodeType = manage.NodeType });
+                    List<DeviceTreeNode> thirdNode = getTreeNodeChild(manage.NodeKey, "--");
+                    foreach (DeviceTreeNode fourNode in thirdNode)
                     {
-                        treeList.Add(new DeviceTreeNode { NodeKey = item.NodeKey, NodeValue = item.NodeValue, NodeType = area.NodeType });
+                        treeList.Add(new DeviceTreeNode { NodeKey = fourNode.NodeKey, NodeValue = fourNode.NodeValue, NodeType = fourNode.NodeType });
+                        List<DeviceTreeNode> fiveNode = getTreeNodeDevice(fourNode.NodeKey, "---");
+                        foreach (DeviceTreeNode item in fiveNode)
+                        {
+                            treeList.Add(new DeviceTreeNode { NodeKey = item.NodeKey, NodeValue = item.NodeValue, NodeType = item.NodeType });
+                        }
                     }
                 }
             }
@@ -1000,19 +1002,26 @@ namespace Scada.BLL.Implement
             string sSql = string.Empty;
             string result = string.Empty;
 
-            if (DeviceType == 2)
+
+            if (DeviceType == 0)
             {
-                result = " And AAA.DeviceID ='" + DeviceID.ToString().ToUpper() + "'";
                 return result;
             }
-            else if (DeviceType == 0)
+            else if (DeviceType == 1)
+            {
                 sSql = @" Select Distinct CCC.ID
                                 from DeviceTree AAA 
                                 Inner Join DeviceTree BBB On AAA.ID=BBB.ParentID
                                 Inner Join DeviceInfo CCC On BBB.ID=CCC.ManageAreaID
                                 Where AAA.ID = '" + DeviceID.ToString().ToUpper() + "'";
-            else if (DeviceType == 1)
+            }
+            else if (DeviceType == 2)
                 sSql = " Select Id from DeviceInfo Where ManageAreaID = '" + DeviceID.ToString().ToUpper() + "'";
+            else if (DeviceType == 3)
+            {
+                result = " And AAA.DeviceID ='" + DeviceID.ToString().ToUpper() + "'";
+                return result;
+            }
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);
             if (ds == null || ds.Rows.Count == 0) { return result; }
             StringBuilder sb = new StringBuilder();
@@ -1044,6 +1053,22 @@ namespace Scada.BLL.Implement
                     });
             }
             return result;
+        }
+
+        //3)同时间不同设备获取温度值
+        public string GetSameDateTemperatureDiffDevice(Int32 dataSelMode, DateTime starDate, DateTime endDate, String deviceInfo)
+        {
+            Dictionary<DeviceTree, List<ChartSource>> source = new Dictionary<DeviceTree, List<ChartSource>>();
+            string groupType = string.Empty;
+            DateDiffTime(starDate, dataSelMode, ref groupType);
+            List<DeviceTree> deviceTrees = BinaryObjTransfer.JsonDeserialize<List<DeviceTree>>(deviceInfo);
+            foreach (DeviceTree devTree in deviceTrees)
+            {
+                string where = GetDevicEntityKey((int)devTree.Level, devTree.ID);
+                source.Add(devTree, GetDeviceDateTemperature(starDate, endDate, groupType, where));
+            }
+            return BinaryObjTransfer.JsonSerializer<Dictionary<DeviceTree, List<ChartSource>>>(source);
+
         }
 
         #endregion

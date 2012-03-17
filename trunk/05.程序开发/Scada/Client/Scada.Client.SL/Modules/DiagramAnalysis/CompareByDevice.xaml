@@ -81,7 +81,7 @@
                             <!--图表-->
                             <vc:Chart xmlns:vc="clr-namespace:Visifire.Charts;assembly=SLVisifire.Charts" 
                                 Theme="Theme1" BorderBrush="Gray" ScrollingEnabled="False" AnimatedUpdate="true"
-                                Margin="0"  Grid.Column="1" Grid.Row="0" IndicatorEnabled="true">
+                                Margin="0"  Grid.Column="1" Grid.Row="0" IndicatorEnabled="true" Name="charTemperature">
                                 <vc:Chart.Titles>
                                     <vc:Title Text="同一时段不同设备温度对比" FontFamily="Arial" FontSize="14"/>
                                 </vc:Chart.Titles>
@@ -244,13 +244,13 @@
 
                             <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" >
                                 <Button  Content="&lt;" Height="23" HorizontalAlignment="Left" 
-                                     Name="butFast" VerticalAlignment="Top" Width="40" Margin="5,0" />
+                                     Name="butFast" VerticalAlignment="Top" Width="40" Margin="5,0" Click="butFast_Click" />
                                 <Button Content="+" Height="23" HorizontalAlignment="Left" 
-                                     Name="butUNext" VerticalAlignment="Top" Width="40" Margin="5,0" />
+                                     Name="butUNext" VerticalAlignment="Top" Width="40" Margin="5,0" Click="butUNext_Click" />
                                 <Button Content="-" Height="23" HorizontalAlignment="Left" 
-                                     Name="butDNext" VerticalAlignment="Top" Width="40" Margin="5,0" />
+                                     Name="butDNext" VerticalAlignment="Top" Width="40" Margin="5,0" Click="butDNext_Click" />
                                 <Button Content="&gt;" Height="23" HorizontalAlignment="Left" 
-                                     Name="butLast" VerticalAlignment="Top" Width="40" Margin="5,0" />
+                                     Name="butLast" VerticalAlignment="Top" Width="40" Margin="5,0" Click="butLast_Click" />
                             </StackPanel>
                         </Grid>
                     </Border>

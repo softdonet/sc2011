@@ -40,11 +40,13 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
 
         #region 变量声明
 
+        private Int32 _dateSelectMode;
+
         private DateTime _starDate, _endDate;
 
         private List<Color> _colorArr;
 
-        private List<DeviceTreeNode> _selDeviceTreeNode;
+        private List<DeviceTree> _selDeviceTreeNode;
 
         private ScadaDeviceServiceSoapClient _scadaDeviceServiceSoapClient;
 
@@ -88,7 +90,6 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
             //选择日期
             this.dateFrist.SelectedValue = DateTime.Now;
 
-
             //对比设备
             this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
             this._scadaDeviceServiceSoapClient.GetDeviceTreeListCompleted +=
@@ -97,9 +98,12 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
             this._scadaDeviceServiceSoapClient.GetDeviceTreeListAsync();
 
             //选择设备
-            _selDeviceTreeNode = new List<DeviceTreeNode>();
+            _selDeviceTreeNode = new List<DeviceTree>();
             _selDeviceTreeNode.Clear();
 
+            //初期化图表
+            this._colorArr = new List<Color>();
+            this.charTemperature.Series.Clear();
 
         }
 
@@ -111,30 +115,190 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
         private void butViewCompare_Click(object sender, RoutedEventArgs e)
         {
 
-            int dateSelMode = this.cmbSelDateMode.SelectedIndex;
-
-            _starDate = this.dateFrist.DisplayDate;
-            _endDate = CompareByTime.GetEndDateTime(_starDate, (DateSelMode)dateSelMode);
-
-
             //Check DeviceInfo
+            this._colorArr.Clear();
             this._selDeviceTreeNode.Clear();
-            if ((Boolean)this.chkFrist.IsChecked && 
-                            this.cmbDevFrist.SelectedItem != null)
+
+
+            //选择基础信息
+            this.QueryDeviceTemperature();
+
+            if (this._selDeviceTreeNode.Count == 0)
             {
-
-
-
+                ScadaMessageBox.ShowWarnMessage("请选择要比较的设备！！！", "重要提示");
+                return;
+            }
+            IEnumerable<DeviceTree> checkDeviceTo = _selDeviceTreeNode.Distinct();
+            if (checkDeviceTo.Count() != _selDeviceTreeNode.Count())
+            {
+                ScadaMessageBox.ShowWarnMessage("有相同设备进行比较！！！", "重要提示");
+                return;
             }
 
+            this.LoadChartSource();
+
+        }
+
+        private void LoadChartSource()
+        {
+
+            string jsonDevices = BinaryObjTransfer.BinarySerialize(_selDeviceTreeNode);
+            this._scadaDeviceServiceSoapClient.GetSameDateTemperatureDiffDeviceCompleted +=
+                                          new EventHandler<GetSameDateTemperatureDiffDeviceCompletedEventArgs>
+                                          (scadaDeviceServiceSoapClient_GetSameDateTemperatureDiffDeviceCompleted);
+            this._scadaDeviceServiceSoapClient.GetSameDateTemperatureDiffDeviceAsync(this._dateSelectMode, this._starDate, this._endDate, jsonDevices);
+        }
+
+        private void scadaDeviceServiceSoapClient_GetSameDateTemperatureDiffDeviceCompleted(object sender,
+                                                    GetSameDateTemperatureDiffDeviceCompletedEventArgs e)
+        {
+            if (e.Error == null)
+            {
+                string msgInfo = e.Result;
+                Dictionary<DeviceTree, List<ChartSource>> chartSource =
+                    BinaryObjTransfer.BinaryDeserialize<Dictionary<DeviceTree, List<ChartSource>>>(msgInfo);
+                if (chartSource.Count() == 0) { return; }
+
+                //Clear ChartSource
+                this.charTemperature.Series.Clear();
+
+                int i = 0;
+                foreach (var item in chartSource)
+                {
+                    this.AddService(String.Empty, this._colorArr[i], item.Value);
+                    i++;
+                }
+            }
+            else
+                ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");
+        }
+
+        private void AddService(string serviceName, Color color, List<ChartSource> source)
+        {
+
+            Visifire.Charts.DataSeries dataSeries = new Visifire.Charts.DataSeries();
+            //dataSeries.Name = serviceName;
+            dataSeries.RenderAs = Visifire.Charts.RenderAs.Spline;
+            dataSeries.ShowInLegend = false;
+            dataSeries.SelectionEnabled = true;
+            dataSeries.MarkerEnabled = false;
+            dataSeries.LabelEnabled = false;
+            dataSeries.XValueType = ChartValueTypes.DateTime;
+            dataSeries.XValueFormatString = "yyyy-MM-dd HH:mm:ss";
+            dataSeries.Color = new SolidColorBrush(color);
+
+            DataPoint datapoint;
+            foreach (ChartSource item in source)
+            {
+                datapoint = new DataPoint();
+                datapoint.XValue = item.DeviceDate.ToString("yyyy-MM-dd HH:mm:ss");
+                datapoint.YValue = item.DeviceTemperature;
+                datapoint.ToolTipText = string.Format("{0},{1}", datapoint.XValue, datapoint.YValue);
+                dataSeries.DataPoints.Add(datapoint);
+            }
+            this.charTemperature.Series.Add(dataSeries);
+
+        }
 
 
+        //上一周期
+        private void butFast_Click(object sender, RoutedEventArgs e)
+        {
+            DateSelMode dateSelMode = (DateSelMode)_dateSelectMode;
+            if (dateSelMode == DateSelMode.天)
+                this._starDate = this._starDate.AddDays(-1);
+            else if (dateSelMode == DateSelMode.月)
+                this._starDate = this._starDate.AddMonths(-1);
+            else if (dateSelMode == DateSelMode.年)
+                this._starDate = this._starDate.AddYears(-1);
+            this.LoadChartSource();
+
+        }
+
+        //增加刻度
+        private void butUNext_Click(object sender, RoutedEventArgs e)
+        {
+            DateSelMode dateSelMode = (DateSelMode)_dateSelectMode;
+            if (dateSelMode == DateSelMode.天)
+                this._starDate = this._endDate.AddHours(1);
+            else if (dateSelMode == DateSelMode.月)
+                this._starDate = this._endDate.AddDays(1);
+            else if (dateSelMode == DateSelMode.年)
+                this._starDate = this._starDate.AddMonths(1);
+            this.LoadChartSource();
+        }
+
+        //减少刻度
+        private void butDNext_Click(object sender, RoutedEventArgs e)
+        {
+            DateSelMode dateSelMode = (DateSelMode)_dateSelectMode;
+            if (dateSelMode == DateSelMode.天)
+                this._starDate = this._endDate.AddHours(-1);
+            else if (dateSelMode == DateSelMode.月)
+                this._starDate = this._endDate.AddDays(-1);
+            else if (dateSelMode == DateSelMode.年)
+                this._starDate = this._starDate.AddMonths(-1);
+            this.LoadChartSource();
+        }
+
+        //下一周期
+        private void butLast_Click(object sender, RoutedEventArgs e)
+        {
+            DateSelMode dateSelMode = (DateSelMode)_dateSelectMode;
+            if (dateSelMode == DateSelMode.天)
+                this._starDate = this._starDate.AddDays(1);
+            else if (dateSelMode == DateSelMode.月)
+                this._starDate = this._starDate.AddMonths(1);
+            else if (dateSelMode == DateSelMode.年)
+                this._starDate = this._starDate.AddYears(1);
+            this.LoadChartSource();
         }
 
         #endregion
 
 
         #region 私有方法
+
+        private void QueryDeviceTemperature()
+        {
+
+            //选择日期模式
+            _dateSelectMode = this.cmbSelDateMode.SelectedIndex;
+            _starDate = this.dateFrist.DisplayDate;
+            _endDate = CompareByTime.GetEndDateTime(_starDate, (DateSelMode)_dateSelectMode);
+
+            //选择设备信息
+            this.AddDeviceTreeNode(this.chkFrist, this.cmbDevFrist);
+            this.AddDeviceTreeNode(this.chkSecond, this.cmbDevSecond);
+            this.AddDeviceTreeNode(this.chkThird, this.cmbDevThird);
+            this.AddDeviceTreeNode(this.chkFour, this.cmbDevFour);
+
+        }
+
+        private void AddDeviceTreeNode(CheckBox checkBox, ComboBox cmbBox)
+        {
+
+            if ((Boolean)checkBox.IsChecked && cmbBox.SelectedItem != null)
+            {
+                DeviceTreeNode treeNode = cmbBox.SelectedItem as DeviceTreeNode;
+                this._selDeviceTreeNode.Add(
+                                        new DeviceTree
+                                        {
+                                            ID = treeNode.NodeKey,
+                                            Level = treeNode.NodeType,
+                                            Name = treeNode.NodeValue
+                                        });
+
+                if (checkBox.Name == "chkFrist")
+                    this._colorArr.Add(Colors.Red);
+                else if (checkBox.Name == "chkSecond")
+                    this._colorArr.Add(Color.FromArgb(255, 30, 144, 255));
+                else if (checkBox.Name == "chkThird")
+                    this._colorArr.Add(Color.FromArgb(255, 154, 205, 50));
+                else if (checkBox.Name == "chkFour")
+                    this._colorArr.Add(Color.FromArgb(255, 192, 192, 192));
+            }
+        }
 
         private void cmbSelDateMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

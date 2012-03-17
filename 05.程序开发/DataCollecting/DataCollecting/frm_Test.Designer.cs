@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Test));
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.上行命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,12 +47,17 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.chkUpdateToDB = new System.Windows.Forms.CheckBox();
             this.chkPrintCmd = new System.Windows.Forms.CheckBox();
+            this.chkUpdateToDB = new System.Windows.Forms.CheckBox();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.系统设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -194,17 +201,6 @@
             this.panel2.Size = new System.Drawing.Size(889, 35);
             this.panel2.TabIndex = 2;
             // 
-            // chkUpdateToDB
-            // 
-            this.chkUpdateToDB.AutoSize = true;
-            this.chkUpdateToDB.Location = new System.Drawing.Point(12, 8);
-            this.chkUpdateToDB.Name = "chkUpdateToDB";
-            this.chkUpdateToDB.Size = new System.Drawing.Size(96, 16);
-            this.chkUpdateToDB.TabIndex = 0;
-            this.chkUpdateToDB.Text = "更新到数据库";
-            this.chkUpdateToDB.UseVisualStyleBackColor = true;
-            this.chkUpdateToDB.CheckedChanged += new System.EventHandler(this.chkUpdateToDB_CheckedChanged);
-            // 
             // chkPrintCmd
             // 
             this.chkPrintCmd.AutoSize = true;
@@ -218,6 +214,45 @@
             this.chkPrintCmd.UseVisualStyleBackColor = true;
             this.chkPrintCmd.CheckedChanged += new System.EventHandler(this.chkPrintCmd_CheckedChanged);
             // 
+            // chkUpdateToDB
+            // 
+            this.chkUpdateToDB.AutoSize = true;
+            this.chkUpdateToDB.Location = new System.Drawing.Point(12, 8);
+            this.chkUpdateToDB.Name = "chkUpdateToDB";
+            this.chkUpdateToDB.Size = new System.Drawing.Size(96, 16);
+            this.chkUpdateToDB.TabIndex = 0;
+            this.chkUpdateToDB.Text = "更新到数据库";
+            this.chkUpdateToDB.UseVisualStyleBackColor = true;
+            this.chkUpdateToDB.CheckedChanged += new System.EventHandler(this.chkUpdateToDB_CheckedChanged);
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "温度采集系统正在运行";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.Click += new System.EventHandler(this.notifyIcon1_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.系统设置ToolStripMenuItem,
+            this.退出ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(119, 48);
+            // 
+            // 系统设置ToolStripMenuItem
+            // 
+            this.系统设置ToolStripMenuItem.Name = "系统设置ToolStripMenuItem";
+            this.系统设置ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.系统设置ToolStripMenuItem.Text = "系统设置";
+            // 
+            // 退出ToolStripMenuItem
+            // 
+            this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
+            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.退出ToolStripMenuItem.Text = "退出";
+            // 
             // frm_Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -228,8 +263,11 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frm_Test";
+            this.ShowInTaskbar = false;
             this.Text = "命令测试";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_Test_FormClosing);
             this.Load += new System.EventHandler(this.frm_Test_Load);
+            this.SizeChanged += new System.EventHandler(this.frm_Test_SizeChanged);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.menuStrip2.ResumeLayout(false);
@@ -238,6 +276,7 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -264,6 +303,10 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.CheckBox chkUpdateToDB;
         private System.Windows.Forms.CheckBox chkPrintCmd;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 系统设置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
     }
 }
 

@@ -24,17 +24,21 @@ namespace NetData
             Argument2 = BitConverter.ToUInt16(data, 3);
             Argument3 = BitConverter.ToUInt16(data, 5);
             DeviceNo = StringHelper.GetDefulatStringByByteArr(data, 7, 8);
-
-            DisplayMode = data[15];
-            InstancyBtnEnable = (data[16] == 1 ? true : false);
-            InfoBtnEnable = (data[17] == 1 ? true : false);
-            RepairTel = StringHelper.GetDefulatStringByByteArr(data, 18, 11);
-            MainDNS = StringHelper.DataToIPStr(data, 29, 4);
-            ReserveDNS = StringHelper.DataToIPStr(data, 33, 4);
-            ServerIP = StringHelper.DataToIPStr(data, 37, 4);
-            DomainNameLength = BitConverter.ToUInt16(data, 41);
-            DomainName = StringHelper.GetASCIIStringByByteArr(data, 43, DomainNameLength);
-            Port = BitConverter.ToUInt16(data, 73);
+            //设备安装地点40字节
+            InstalPlaceLength = BitConverter.ToUInt16(data, 15);
+            InstalPlace = StringHelper.GetDefulatStringByByteArr(data, 17, InstalPlaceLength);
+            DisplayMode = data[57];
+            InstancyBtnEnable = (data[58] == 1 ? true : false);
+            InfoBtnEnable = (data[59] == 1 ? true : false);
+            RepairTel = StringHelper.GetDefulatStringByByteArr(data, 60, 11);
+            MainIP = StringHelper.DataToIPStr(data, 71, 4);
+            ReserveIP = StringHelper.DataToIPStr(data, 75, 4);
+            DomainNameLength = BitConverter.ToUInt16(data, 79);
+            DomainName = StringHelper.GetASCIIStringByByteArr(data, 81, DomainNameLength);
+            Port = BitConverter.ToUInt16(data, 111);
+            ConnectionType = data[113];
+            ConnectNameLength = BitConverter.ToUInt16(data, 114);
+            ConnectName = StringHelper.GetASCIIStringByByteArr(data, 116, ConnectNameLength);
         }
 
         /// <summary>
@@ -60,6 +64,16 @@ namespace NetData
         public string DeviceNo { get; set; }
 
         /// <summary>
+        /// 设备安装地点长度
+        /// </summary>
+        public ushort InstalPlaceLength { get; set; }
+
+        /// <summary>
+        /// 设备安装地点
+        /// </summary>
+        public string InstalPlace { get; set; }
+
+        /// <summary>
         /// 显示模式
         /// </summary>
         public byte DisplayMode { get; set; }
@@ -82,17 +96,12 @@ namespace NetData
         /// <summary>
         /// 主DNS
         /// </summary>
-        public string MainDNS { get; set; }
+        public string MainIP { get; set; }
 
         /// <summary>
         /// 备用DNS
         /// </summary>
-        public string ReserveDNS { get; set; }
-
-        /// <summary>
-        /// 服务器IP地址
-        /// </summary>
-        public string ServerIP { get; set; }
+        public string ReserveIP { get; set; }
 
         /// <summary>
         /// 域名长度
@@ -109,6 +118,21 @@ namespace NetData
         /// </summary>
         public ushort Port { get; set; }
 
+        /// <summary>
+        /// 连接方式
+        /// </summary>
+        public byte ConnectionType { get; set; }
+
+        /// <summary>
+        /// 接入点名称长度
+        /// </summary>
+        public ushort ConnectNameLength { get; set; }
+
+        /// <summary>
+        /// 接入点名称
+        /// </summary>
+        public string ConnectName { get; set; }
+
         public byte[] ToByte()
         {
             List<byte> result = new List<byte>();
@@ -117,49 +141,22 @@ namespace NetData
             result.AddRange(BitConverter.GetBytes(Argument2));
             result.AddRange(BitConverter.GetBytes(Argument3));
             result.AddRange(System.Text.Encoding.ASCII.GetBytes(DeviceNo));
+            result.AddRange(BitConverter.GetBytes(StringHelper.GetLength(InstalPlace)));
+            result.AddRange(StringHelper.GetCharactersByte(InstalPlace, 40));
             result.Add(DisplayMode);
             result.Add((byte)(InstancyBtnEnable ? 1 : 0));
             result.Add((byte)(InfoBtnEnable ? 1 : 0));
             result.AddRange(System.Text.Encoding.ASCII.GetBytes(RepairTel));
-            result.AddRange(StringHelper.IPStrData(MainDNS));
-            result.AddRange(StringHelper.IPStrData(ReserveDNS));
-            result.AddRange(StringHelper.IPStrData(ServerIP));
+            result.AddRange(StringHelper.IPStrData(MainIP));
+            result.AddRange(StringHelper.IPStrData(ReserveIP));
             result.AddRange(BitConverter.GetBytes((ushort)DomainName.Length));
-            result.AddRange(GetDomainByte(DomainName));
+            result.AddRange(StringHelper.GetCharactersByte(DomainName, 30));
             result.AddRange(BitConverter.GetBytes(Port));
-            //预留50个字节
-            for (int j = 0; j < 50; j++)
-            {
-                result.Add(0x00);
-            }
-            return result.ToArray();
-        }
-
-        /// <summary>
-        /// 获取域名字节数组
-        /// </summary>
-        /// <param name="dm"></param>
-        /// <returns></returns>
-        private byte[] GetDomainByte(string dm)
-        {
-            List<byte> result = new List<byte>();
-            byte[] arr = System.Text.Encoding.Default.GetBytes(dm);
-            if (arr.Length <= 30)
-            {
-                result.AddRange(arr);
-                //补零
-                for (int j = 0; j < 30 - arr.Length; j++)
-                {
-                    result.Add(0x00);
-                }
-            }
-            else
-            {
-                //大于30直接截断
-                byte[] temp = new byte[30];
-                Array.Copy(arr, 0, temp, 0, 30);
-                result.AddRange(temp);
-            }
+            result.Add(ConnectionType);
+            result.AddRange(BitConverter.GetBytes(StringHelper.GetLength(ConnectName)));
+            result.AddRange(StringHelper.GetCharactersByte(ConnectName, 10));
+            //预留10字节
+            result.AddRange(StringHelper.GetEmptyByte(10));
             return result.ToArray();
         }
     }

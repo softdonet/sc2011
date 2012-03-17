@@ -153,12 +153,7 @@ namespace NetData
             //压入产品型号长度
             result.AddRange(BitConverter.GetBytes((ushort)deviveType.Length));
             //压入产品型号12位
-            byte[] arrtype = System.Text.Encoding.ASCII.GetBytes(deviveType);
-            result.AddRange(arrtype);
-            for (int i = 0; i < 12 - arrtype.Length; i++)
-            {
-                result.Add(0x00);
-            }
+            result.AddRange(StringHelper.GetCharactersByte(deviveType, 12));
             //压入其他信息
             result.Add(hardwareVersionMain);
             result.Add(hardwareVersionChild);

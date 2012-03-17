@@ -151,20 +151,19 @@ namespace DataCollecting
             sb.Append("    参数2：" + realTimeData_S.ConfigData.Argument2.ToString() + Environment.NewLine);
             sb.Append("    参数3：" + realTimeData_S.ConfigData.Argument3.ToString() + Environment.NewLine);
             sb.Append("    设备编号：" + realTimeData_S.ConfigData.DeviceNo.ToString() + Environment.NewLine);
+            sb.Append("    安装地点：" + realTimeData_S.ConfigData.InstalPlace + Environment.NewLine);
             sb.Append("    默认显示方式：" + realTimeData_S.ConfigData.DisplayMode.ToString() + Environment.NewLine);
             sb.Append("    是否启用紧急按钮：" + realTimeData_S.ConfigData.InstancyBtnEnable.ToString() + Environment.NewLine);
             sb.Append("    是否启用信息按钮：" + realTimeData_S.ConfigData.InfoBtnEnable.ToString() + Environment.NewLine);
             sb.Append("    维护人员手机号码：" + realTimeData_S.ConfigData.RepairTel.ToString() + Environment.NewLine);
-            sb.Append("    主DNS：" + realTimeData_S.ConfigData.MainDNS.ToString() + Environment.NewLine);
-            sb.Append("    备用DNS：" + realTimeData_S.ConfigData.ReserveDNS.ToString() + Environment.NewLine);
-            sb.Append("    服务器IP：" + realTimeData_S.ConfigData.ServerIP.ToString() + Environment.NewLine);
+            sb.Append("    主IP：" + realTimeData_S.ConfigData.MainIP.ToString() + Environment.NewLine);
+            sb.Append("    备用IP：" + realTimeData_S.ConfigData.ReserveIP.ToString() + Environment.NewLine);
             sb.Append("    域名：" + realTimeData_S.ConfigData.DomainName.ToString() + Environment.NewLine);
             sb.Append("    端口号：" + realTimeData_S.ConfigData.Port.ToString() + Environment.NewLine);
+            sb.Append("    连接方式：" + realTimeData_S.ConfigData.ConnectionType.ToString() + Environment.NewLine);
+            sb.Append("    接入点名称：" + realTimeData_S.ConfigData.ConnectName + Environment.NewLine);
             sb.Append(Environment.NewLine);
-            sb.Append("    今日天气标识：" + realTimeData_S.WeatherData.TodayMark.ToString() + Environment.NewLine);
             sb.Append("    今日天气信息：" + realTimeData_S.WeatherData.TodayWeather + Environment.NewLine);
-            sb.Append("    明日天气标识：" + realTimeData_S.WeatherData.TomorrowMark.ToString() + Environment.NewLine);
-            sb.Append("    明日天气信息：" + realTimeData_S.WeatherData.TomorrowWeather + Environment.NewLine);
             sb.Append(Environment.NewLine);
             sb.Append("    广播信息：" + realTimeData_S.BroadcastData.Msg + Environment.NewLine);
             sb.Append(GetVerify(realTimeData_S));
@@ -238,9 +237,6 @@ namespace DataCollecting
                 sb.Append("    采集时间：" + item.SateTimeMark.ToString() + Environment.NewLine);
                 sb.Append("    温度1：" + item.Temperature1.ToString() + Environment.NewLine);
                 sb.Append("    温度2：" + item.Temperature2.ToString() + Environment.NewLine);
-                sb.Append("    温度3：" + item.Temperature3.ToString() + Environment.NewLine);
-                sb.Append("    温度4：" + item.Temperature4.ToString() + Environment.NewLine);
-                sb.Append("    温度5：" + item.Temperature5.ToString() + Environment.NewLine);
                 sb.Append("    湿度：" + item.Humidity.ToString() + Environment.NewLine);
                 sb.Append("    电量：" + item.Electric.ToString() + Environment.NewLine);
                 sb.Append("    信号：" + item.Signal.ToString() + Environment.NewLine);
@@ -327,40 +323,21 @@ namespace DataCollecting
             block.SateTimeMark = DateTime.Now;
             block.Temperature1 = (decimal)60;
             block.Temperature2 = (decimal)25.45;
-            block.Temperature3 = (decimal)13.45;
-            block.Temperature4 = (decimal)14.45;
-            block.Temperature5 = (decimal)15.45;
             block.Humidity = (decimal)16.45;
-            block.Electric = (decimal)17.45;
-            block.Signal = (decimal)18.45;
+            block.Electric = 40;
+            block.Signal = 100;
 
             RealTimeDataBlock block1 = new RealTimeDataBlock();
             block1.BlockNo = 2;
             block1.SateTimeMark = DateTime.Now;
             block1.Temperature1 = (decimal)25.45;
             block1.Temperature2 = (decimal)22.45;
-            block1.Temperature3 = (decimal)23.45;
-            block1.Temperature4 = (decimal)24.45;
-            block1.Temperature5 = (decimal)25.45;
             block1.Humidity = (decimal)26.45;
-            block1.Electric = (decimal)27.45;
-            block1.Signal = (decimal)28.45;
-
-            //RealTimeDataBlock block2 = new RealTimeDataBlock();
-            //block2.BlockNo = 3;
-            //block2.SateTimeMark = DateTime.Now;
-            //block2.Temperature1 = (decimal)25.45;
-            //block2.Temperature2 = (decimal)32.45;
-            //block2.Temperature3 = (decimal)33.45;
-            //block2.Temperature4 = (decimal)34.45;
-            //block2.Temperature5 = (decimal)35.45;
-            //block2.Humidity = (decimal)36.45;
-            //block2.Electric = (decimal)37.45;
-            //block2.Signal = (decimal)38.45;
+            block1.Electric = 40;
+            block1.Signal = 80;
 
             rr.RealTimeDataBlocks.Add(block);
             rr.RealTimeDataBlocks.Add(block1);
-            //rr.RealTimeDataBlocks.Add(block2);
 
             SetText(StringHelper.DataToStr(rr.ToByte()) + Environment.NewLine, false);
         }
@@ -490,29 +467,29 @@ namespace DataCollecting
             rs.HaveWeatherInfo = true;
 
 
+            //构造设备配置信息块
             ConfigDataBlock configDataBlock = new ConfigDataBlock();
             configDataBlock.RunMode = 1;
             configDataBlock.Argument1 = 1500;
             configDataBlock.Argument2 = 1600;
             configDataBlock.Argument3 = 1700;
             configDataBlock.DeviceNo = "P-100100";
+            configDataBlock.InstalPlace = "北京市朝阳区双井街道";
             configDataBlock.DisplayMode = 1;
             configDataBlock.InstancyBtnEnable = true;
             configDataBlock.InfoBtnEnable = true;
             configDataBlock.RepairTel = "13801112222";
-            configDataBlock.MainDNS = "202.106.42.1";
-            configDataBlock.ReserveDNS = "202.106.42.2";
-            configDataBlock.ServerIP = "192.168.0.1";
+            configDataBlock.MainIP = "202.106.42.1";
+            configDataBlock.ReserveIP = "202.106.42.2";
+
             configDataBlock.DomainName = "xyz.dddd.com";
             configDataBlock.Port = 1789;
+            configDataBlock.ConnectionType = 0;
+            configDataBlock.ConnectName = "CMNET";
             rs.ConfigData = configDataBlock;
 
-
             WeatherDataBlock weatherDataBlock = new WeatherDataBlock();
-            weatherDataBlock.TodayMark = 0;
             weatherDataBlock.TodayWeather = "晴转XXX多云，有阵雨。";
-            weatherDataBlock.TomorrowMark = 1;
-            weatherDataBlock.TomorrowWeather = "温度很低，有大雪，注意防寒。";
             rs.WeatherData = weatherDataBlock;
 
             BroadcastDataBlock broadcastDataBlock = new BroadcastDataBlock();
@@ -550,5 +527,60 @@ namespace DataCollecting
                 Comm.PrintCmd = false;
             }
         }
+
+
+        #region 窗体通知相关
+
+        private void frm_Test_SizeChanged(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                HidMainForm();
+            }
+        }
+
+        /// <summary>
+        /// 隐藏窗体
+        /// </summary>
+        void HidMainForm()
+        {
+            this.Hide();
+        }
+
+        /// <summary>
+        /// 显示窗体
+        /// </summary>
+        void ShowMainForm()
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void frm_Test_FormClosing(object sender, FormClosingEventArgs e)
+        {
+          DialogResult res=  MessageBox.Show("您确定退出系统吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+          if (res == DialogResult.Yes)
+          {
+              this.Hide();
+              this.notifyIcon1.Visible = false;
+              this.Dispose();
+              Application.Exit();
+          }
+          else
+          {
+              e.Cancel = true;
+          }
+        }
+
+        private void notifyIcon1_Click(object sender, EventArgs e)
+        {
+            MouseEventArgs Mouse_e = (MouseEventArgs)e;
+            if (Mouse_e.Button ==MouseButtons.Left)
+            {
+                ShowMainForm();
+            }
+        }
+
+        #endregion
     }
 }

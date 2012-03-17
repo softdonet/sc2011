@@ -5,24 +5,23 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="600">
-    
+
     <Grid x:Name="LayoutRoot" Background="White">
+        
         <vc:Chart xmlns:vc="clr-namespace:Visifire.Charts;assembly=SLVisifire.Charts" 
-   Theme="Theme2" Name="chart1" BorderThickness="0.5"  BorderBrush="Gray" ScrollingEnabled="False" AnimatedUpdate="true"  
-   IndicatorEnabled="true">
+            Theme="Theme2" Name="charTemperature" BorderThickness="0.5"  BorderBrush="Gray" 
+             ScrollingEnabled="False" AnimatedUpdate="true" IndicatorEnabled="true">
 
             <vc:Chart.Titles>
                 <vc:Title Text="当天温度曲线图" FontFamily="Arial" FontSize="14"/>
             </vc:Chart.Titles>
             <vc:Chart.TrendLines>
-
                 <vc:TrendLine Orientation="Horizontal" StartValue="15" EndValue="18" LineColor="#9FEAF451"/>
                 <vc:TrendLine Orientation="Horizontal" StartValue="18" EndValue="25" LineColor="#9F9AD846"/>
                 <vc:TrendLine Orientation="Horizontal" StartValue="25" EndValue="50" LineColor="#9FF86D5A"/>
-
             </vc:Chart.TrendLines>
             <vc:Chart.AxesX>
-                <vc:Axis Title=""  ValueFormatString="HH" IntervalType="Hours" AxisMaximum="2011-11-12 00:00:00"   AxisMinimum="2011-11-11 00:00:00" >
+                <vc:Axis ValueFormatString="HH" IntervalType="Hours" AxisMaximum="2011-11-12 00:00:00"  AxisMinimum="2011-11-11 00:00:00" >
                     <vc:Axis.Grids>
                         <vc:ChartGrid Interval="4" InterlacedColor="#0efCff6e"  />
                     </vc:Axis.Grids>
@@ -42,8 +41,9 @@
             </vc:Chart.PlotArea>
 
             <vc:Chart.Series>
-                <vc:DataSeries RenderAs="Spline" MarkerScale="0"  MarkerEnabled="false"  XValueFormatString="yyyy-MM-dd HH:mm:ss"    XValueType="DateTime"
-        SelectionEnabled="true" ShowInLegend="false">
+                <vc:DataSeries RenderAs="Spline" MarkerScale="0"  MarkerEnabled="false"  
+                               XValueFormatString="yyyy-MM-dd HH:mm:ss"   XValueType="DateTime"
+                               SelectionEnabled="true" ShowInLegend="false">
                     <vc:DataSeries.DataPoints >
                         <vc:DataPoint XValue="2011-11-11 0:00:00" YValue="16"/>
                         <vc:DataPoint XValue="2011-11-11 0:15:00" YValue="17.5"/>

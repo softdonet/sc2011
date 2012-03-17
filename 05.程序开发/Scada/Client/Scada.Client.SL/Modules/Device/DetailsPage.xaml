@@ -4,7 +4,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="642" d:DesignWidth="1000" xmlns:my="clr-namespace:Scada.Client.UC;assembly=Scada.Client.UC">
+    d:DesignHeight="642" d:DesignWidth="1000"
+    xmlns:my="clr-namespace:Scada.Client.UC;assembly=Scada.Client.UC">
     
     <Grid x:Name="LayoutRoot" Background="White" ShowGridLines="True">
         <Grid.ColumnDefinitions>

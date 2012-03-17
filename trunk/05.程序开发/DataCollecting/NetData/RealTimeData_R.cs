@@ -15,11 +15,11 @@ namespace NetData
             : base(data)
         {
             //每个块占字节数
-            int blockSize = 48;
+            int blockSize = 38;
             //数据块数
             blockCount = Convert.ToInt32(data[21]);
             //数据块长度
-            int blockLength = blockCount * 48;
+            int blockLength = blockCount * blockSize;
             //取出数据块内容
             byte[] dataBlock = new byte[blockLength];
             Array.Copy(data, 22, dataBlock, 0, blockLength);

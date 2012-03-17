@@ -33,23 +33,7 @@ namespace NetData
         {
             List<byte> result = new List<byte>();
             result.AddRange(BitConverter.GetBytes(StringHelper.GetLength(Msg)));
-            byte[] arr = System.Text.Encoding.Default.GetBytes(Msg);
-            if (arr.Length <= 100)
-            {
-                result.AddRange(arr);
-                //补零
-                for (int j = 0; j < 100 - arr.Length; j++)
-                {
-                    result.Add(0x00);
-                }
-            }
-            else
-            {
-                //大于100直接截断
-                byte[] temp = new byte[100];
-                Array.Copy(arr, 0, temp, 0, 50);
-                result.AddRange(temp);
-            }
+            result.AddRange(StringHelper.GetCharactersByte(Msg, 50));
             return result.ToArray();
         }
     }

@@ -13,13 +13,12 @@ namespace Utility
     {
         #region 字节转化为字符相关
         /// <summary>
-        ///通讯数据转换
+        ///通讯数据转换核心方法
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
         public static byte[] ConvertData(byte[] data)
         {
-
             List<byte> result = new List<byte>();
             for (int i = 0; i < data.Length / 2; i = i + 2)
             {
@@ -374,6 +373,54 @@ namespace Utility
         {
             return (ushort)System.Text.Encoding.Default.GetByteCount(str);
         }
+
+
+        /// <summary>
+        ///  获取汉字字节数组
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="length">总长度，不够补零，超出截断</param>
+        /// <returns></returns>
+        public static byte[] GetCharactersByte(string str, int length)
+        {
+            List<byte> result = new List<byte>();
+            byte[] arr = System.Text.Encoding.Default.GetBytes(str);
+            if (arr.Length <= length)
+            {
+                result.AddRange(arr);
+                //补零
+                for (int j = 0; j < length - arr.Length; j++)
+                {
+                    result.Add(0x00);
+                }
+            }
+            else
+            {
+                //大于length直接截断
+                byte[] temp = new byte[length];
+                Array.Copy(arr, 0, temp, 0, length);
+                result.AddRange(temp);
+            }
+            return result.ToArray();
+        }
+        #endregion
+
+        #region 字节处理相关
+        /// <summary>
+        /// 获取空字节数组
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static byte[] GetEmptyByte(int length)
+        {
+            List<byte> result = new List<byte>();
+            for (int j = 0; j < length; j++)
+            {
+                result.Add(0x00);
+            }
+            return result.ToArray();
+        }
+
         #endregion
     }
 }

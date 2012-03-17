@@ -23,24 +23,24 @@ namespace NetData
             int index = 24;
             if (haveConfigInfo)
             {
-                byte[] arr = new byte[125];
-                Array.Copy(data, index, arr, 0, 125);
+                byte[] arr = new byte[136];
+                Array.Copy(data, index, arr, 0, 136);
                 configData = new ConfigDataBlock(arr);
-                index += 125;
+                index += 136;
             }
             if (haveWeatherInfo)
             {
-                byte[] arr = new byte[106];
-                Array.Copy(data, index, arr, 0, 106);
+                byte[] arr = new byte[52];
+                Array.Copy(data, index, arr, 0, 52);
                 weatherData = new WeatherDataBlock(arr);
-                index += 106;
+                index += 52;
             }
             if (haveBroadcastInfo)
             {
-                byte[] arr = new byte[102];
-                Array.Copy(data, index, arr, 0, 102);
+                byte[] arr = new byte[52];
+                Array.Copy(data, index, arr, 0, 52);
                 broadcastData = new BroadcastDataBlock(arr);
-                index += 102;
+                index += 52;
             }
         }
 

@@ -28,18 +28,12 @@ namespace NetData
             Temperature1 = BitConverter.ToUInt16(data, 8) / ratio;
             //温度2
             Temperature2 = BitConverter.ToUInt16(data, 10) / ratio;
-            //温度3
-            Temperature3 = BitConverter.ToUInt16(data, 12) / ratio;
-            //温度4
-            Temperature4 = BitConverter.ToUInt16(data, 14) / ratio;
-            //温度5
-            Temperature5 = BitConverter.ToUInt16(data, 16) / ratio;
             //湿度
-            Humidity = BitConverter.ToUInt16(data, 18) / ratio;
+            Humidity = BitConverter.ToUInt16(data, 12) / ratio;
             //电量
-            Electric = BitConverter.ToUInt16(data, 20) ;
+            Electric = BitConverter.ToUInt16(data, 14) ;
             //信号
-            Signal = BitConverter.ToUInt16(data, 22);
+            Signal = BitConverter.ToUInt16(data, 16);
         }
         /// <summary>
         /// 数据序号
@@ -62,21 +56,6 @@ namespace NetData
         public decimal? Temperature2 { get; set; }
 
         /// <summary>
-        /// 温度3
-        /// </summary>
-        public decimal? Temperature3 { get; set; }
-
-        /// <summary>
-        /// 温度4
-        /// </summary>
-        public decimal? Temperature4 { get; set; }
-
-        /// <summary>
-        /// 温度5
-        /// </summary>
-        public decimal? Temperature5 { get; set; }
-
-        /// <summary>
         /// 湿度
         /// </summary>
         public decimal? Humidity { get; set; }
@@ -84,12 +63,12 @@ namespace NetData
         /// <summary>
         /// 电量
         /// </summary>
-        public decimal? Electric { get; set; }
+        public  ushort?  Electric { get; set; }
 
         /// <summary>
         /// 信号
         /// </summary>
-        public decimal? Signal { get; set; }
+        public ushort? Signal { get; set; }
 
         public byte[] ToByte()
         {
@@ -98,19 +77,12 @@ namespace NetData
             result.AddRange(StringHelper.DateTimeToByte(SateTimeMark));
             result.AddRange(BitConverter.GetBytes((ushort)(Temperature1 * 10)));
             result.AddRange(BitConverter.GetBytes((ushort)(Temperature2 * 10)));
-            result.AddRange(BitConverter.GetBytes((ushort)(Temperature3 * 10)));
-            result.AddRange(BitConverter.GetBytes((ushort)(Temperature4 * 10)));
-            result.AddRange(BitConverter.GetBytes((ushort)(Temperature5 * 10)));
             result.AddRange(BitConverter.GetBytes((ushort)(Humidity * 10)));
-            result.AddRange(BitConverter.GetBytes((ushort)(Electric)));
-            result.AddRange(BitConverter.GetBytes((ushort)(Signal)));
-            //补零
-            for (int j = 0; j < 48 - 24; j++)
-            {
-                result.Add(0x00);
-            }
+            result.AddRange(BitConverter.GetBytes(Electric.Value));
+            result.AddRange(BitConverter.GetBytes(Signal.Value ));
+            //每个块大小 38个字节，有效数据18字节,剩余补零
+            result.AddRange(StringHelper.GetEmptyByte(38 - 18));
             return result.ToArray();
         }
-
     }
 }

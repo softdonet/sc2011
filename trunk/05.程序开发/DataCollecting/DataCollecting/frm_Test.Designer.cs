@@ -53,6 +53,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.系统设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.批量实时数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -72,10 +73,11 @@
             this.固件更新命令ToolStripMenuItem,
             this.注册命令ToolStripMenuItem,
             this.主动关闭告知命令ToolStripMenuItem,
+            this.批量实时数据ToolStripMenuItem,
             this.清除屏幕ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(889, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1019, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -151,7 +153,7 @@
             this.实时数据回复命令ToolStripMenuItem1});
             this.menuStrip2.Location = new System.Drawing.Point(0, 24);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(889, 24);
+            this.menuStrip2.Size = new System.Drawing.Size(1019, 24);
             this.menuStrip2.TabIndex = 8;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -176,7 +178,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 48);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(889, 420);
+            this.panel1.Size = new System.Drawing.Size(1019, 420);
             this.panel1.TabIndex = 9;
             // 
             // textBox1
@@ -188,7 +190,7 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(889, 385);
+            this.textBox1.Size = new System.Drawing.Size(1019, 385);
             this.textBox1.TabIndex = 1;
             // 
             // panel2
@@ -198,7 +200,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(889, 35);
+            this.panel2.Size = new System.Drawing.Size(1019, 35);
             this.panel2.TabIndex = 2;
             // 
             // chkPrintCmd
@@ -253,11 +255,18 @@
             this.退出ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.退出ToolStripMenuItem.Text = "退出";
             // 
+            // 批量实时数据ToolStripMenuItem
+            // 
+            this.批量实时数据ToolStripMenuItem.Name = "批量实时数据ToolStripMenuItem";
+            this.批量实时数据ToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
+            this.批量实时数据ToolStripMenuItem.Text = "批量实时数据";
+            this.批量实时数据ToolStripMenuItem.Click += new System.EventHandler(this.批量实时数据ToolStripMenuItem_Click);
+            // 
             // frm_Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(889, 468);
+            this.ClientSize = new System.Drawing.Size(1019, 468);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip2);
             this.Controls.Add(this.menuStrip1);
@@ -307,6 +316,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 系统设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 批量实时数据ToolStripMenuItem;
     }
 }
 

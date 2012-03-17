@@ -250,12 +250,12 @@ namespace Utility
         public static byte[] DateTimeToByte(DateTime dt)
         {
             List<byte> result = new List<byte>();
-            result.AddRange(BitConverter.GetBytes((ushort)DateTime.Now.Year));
-            result.Add((byte)DateTime.Now.Month);
-            result.Add((byte)DateTime.Now.Day);
-            result.Add((byte)DateTime.Now.Hour);
-            result.Add((byte)DateTime.Now.Minute);
-            result.Add((byte)DateTime.Now.Second);
+            result.AddRange(BitConverter.GetBytes((ushort)dt.Year));
+            result.Add((byte)dt.Month);
+            result.Add((byte)dt.Day);
+            result.Add((byte)dt.Hour);
+            result.Add((byte)dt.Minute);
+            result.Add((byte)dt.Second);
             return result.ToArray();
         }
 

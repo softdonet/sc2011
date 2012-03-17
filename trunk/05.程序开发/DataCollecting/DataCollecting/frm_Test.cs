@@ -312,7 +312,7 @@ namespace DataCollecting
             h.CmdHeader = Const.UP_HEADER;
             h.CmdCommand = Command.cmd_RealTimeDate_R;
             h.DataContext = 42605;
-            h.DeviceSN = "000000000000";
+            h.DeviceSN = "0A5F01CD0001";
             h.State = 0;
             h.SateTimeMark = DateTime.Now;
             RealTimeData_R rr = new RealTimeData_R();
@@ -321,20 +321,20 @@ namespace DataCollecting
             RealTimeDataBlock block = new RealTimeDataBlock();
             block.BlockNo = 1;
             block.SateTimeMark = DateTime.Now;
-            block.Temperature1 = (decimal)60;
-            block.Temperature2 = (decimal)25.45;
-            block.Humidity = (decimal)16.45;
-            block.Electric = 40;
-            block.Signal = 100;
+            block.Temperature1 = RandomHelper.GetRandom(15, 60) + 0.5M;
+            block.Temperature2 = RandomHelper.GetRandom(15, 60) + 0.5M;
+            block.Humidity = 0.2M;
+            block.Electric = (ushort)RandomHelper.GetRandom(0, 400);
+            block.Signal = (ushort)RandomHelper.GetRandom(0, 400);
 
             RealTimeDataBlock block1 = new RealTimeDataBlock();
-            block1.BlockNo = 2;
+            block1.BlockNo = 1;
             block1.SateTimeMark = DateTime.Now;
-            block1.Temperature1 = (decimal)25.45;
-            block1.Temperature2 = (decimal)22.45;
-            block1.Humidity = (decimal)26.45;
-            block1.Electric = 40;
-            block1.Signal = 80;
+            block1.Temperature1 = RandomHelper.GetRandom(15, 60) + 0.5M;
+            block1.Temperature2 = RandomHelper.GetRandom(15, 60) + 0.5M;
+            block1.Humidity = 0.2M;
+            block1.Electric = (ushort)RandomHelper.GetRandom(0, 400);
+            block1.Signal = (ushort)RandomHelper.GetRandom(0, 400);
 
             rr.RealTimeDataBlocks.Add(block);
             rr.RealTimeDataBlocks.Add(block1);
@@ -558,29 +558,59 @@ namespace DataCollecting
 
         private void frm_Test_FormClosing(object sender, FormClosingEventArgs e)
         {
-          DialogResult res=  MessageBox.Show("您确定退出系统吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-          if (res == DialogResult.Yes)
-          {
-              this.Hide();
-              this.notifyIcon1.Visible = false;
-              this.Dispose();
-              Application.Exit();
-          }
-          else
-          {
-              e.Cancel = true;
-          }
+            DialogResult res = MessageBox.Show("您确定退出系统吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (res == DialogResult.Yes)
+            {
+                this.Hide();
+                this.notifyIcon1.Visible = false;
+                this.Dispose();
+                Application.Exit();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
 
         private void notifyIcon1_Click(object sender, EventArgs e)
         {
             MouseEventArgs Mouse_e = (MouseEventArgs)e;
-            if (Mouse_e.Button ==MouseButtons.Left)
+            if (Mouse_e.Button == MouseButtons.Left)
             {
                 ShowMainForm();
             }
         }
 
         #endregion
+
+        private void 批量实时数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        
+
+            DateTime now = Convert.ToDateTime("2012-3-17 1:12:21");
+            while (now < Convert.ToDateTime("2012-3-17 23:59:59"))
+            {
+                now=now.AddMinutes(10);
+                Head h = new Head();
+                h.CmdHeader = Const.UP_HEADER;
+                h.CmdCommand = Command.cmd_RealTimeDate_R;
+                h.DataContext = 42605;
+                h.DeviceSN = "0A5F01CD0001";
+                h.State = 0;
+                h.SateTimeMark = now;
+                RealTimeData_R rr = new RealTimeData_R();
+                rr.Header = h;
+                RealTimeDataBlock block = new RealTimeDataBlock();
+                block.BlockNo = 1;
+                block.SateTimeMark = now;
+                block.Temperature1 = RandomHelper.GetRandom(15, 60) + 0.5M;
+                block.Temperature2 = RandomHelper.GetRandom(15, 60) + 0.5M;
+                block.Humidity = 0.2M;
+                block.Electric = (ushort)RandomHelper.GetRandom(0, 400);
+                block.Signal = (ushort)RandomHelper.GetRandom(0, 400);
+                rr.RealTimeDataBlocks.Add(block);
+                SetText(StringHelper.DataToStr(rr.ToByte()) + Environment.NewLine, false);
+            }
+        }
     }
 }

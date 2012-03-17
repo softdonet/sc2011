@@ -79,6 +79,9 @@ namespace Scada.BLL.Contract
         //2同设备不同时间段获取温度值
         string GetSameDeviceTemperatureDiffDate(Int32 DeviceType, Guid DeviceID, Int32 DateSelMode, string DateList);
 
+        //3)同时间不同设备获取温度值
+        string GetSameDateTemperatureDiffDevice(Int32 dataSelMode, DateTime starDate, DateTime endDate, String deviceInfo);
+
         #endregion
 
 

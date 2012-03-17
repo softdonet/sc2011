@@ -105,6 +105,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Model\Scada.Model.Entity\Scada.Model.Entity.SL.csproj">
+      <Project>{66B7D2F9-31D1-4C6A-A1DC-C5523A8CF27D}</Project>
+      <Name>Scada.Model.Entity.SL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

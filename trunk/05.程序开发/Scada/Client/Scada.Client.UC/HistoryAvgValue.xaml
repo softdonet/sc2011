@@ -8,7 +8,7 @@
     
     <Grid x:Name="LayoutRoot" Background="White">
         <vc:Chart  Watermark="False" xmlns:vc="clr-namespace:Visifire.Charts;assembly=SLVisifire.Charts" Theme="Theme2" 
-                              ScrollingEnabled="False"  ShadowEnabled="True" BorderThickness="0.5" Grid.Row="1" BorderBrush="Gray"   >
+                              ScrollingEnabled="False" Name="charTemperature" ShadowEnabled="True" BorderThickness="0.5" Grid.Row="1" BorderBrush="Gray"   >
             <vc:Chart.Titles>
                 <vc:Title Text="历史平均温度统计图 " FontFamily="Arial" FontSize="14"/>
             </vc:Chart.Titles>
@@ -23,13 +23,12 @@
                 </vc:Axis>
             </vc:Chart.AxesX>
             <vc:Chart.AxesY>
-                <vc:Axis  Title="温度（℃）"  AxisMinimum="-10" AxisMaximum="30" Interval="5"  />
+                <vc:Axis  Title="温度（℃）"  AxisMinimum="0" AxisMaximum="35" Interval="5"  />
             </vc:Chart.AxesY>
             <vc:Chart.Series>
                 <vc:DataSeries RenderAs="Column"   LabelEnabled="true" >
                     <vc:DataSeries.Color>
-                        <SolidColorBrush  Color="Red">
-                        </SolidColorBrush>
+                        <SolidColorBrush  Color="Red"/>
                     </vc:DataSeries.Color>
                     <vc:DataSeries.DataPoints>
                         <vc:DataPoint AxisXLabel="0" YValue="20" Cursor="Hand" />

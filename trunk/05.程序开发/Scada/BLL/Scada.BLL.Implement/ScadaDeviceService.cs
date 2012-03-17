@@ -112,6 +112,27 @@ namespace Scada.BLL.Implement
             return result;
         }
 
+        //设备当天温度
+        public string GetDeviceOnlyDay(Guid DeviceID)
+        {
+            List<ChartSource> result = new List<ChartSource>();
+
+
+
+            return BinaryObjTransfer.JsonSerializer<List<ChartSource>>(result);
+
+        }
+
+        //设备历史温度
+        public string GetDeviceOnlyMonth(Guid DeviceID)
+        {
+            List<ChartSource> result = new List<ChartSource>();
+
+
+
+            return BinaryObjTransfer.JsonSerializer<List<ChartSource>>(result);
+        }
+
         #endregion
 
         #region 设备管理

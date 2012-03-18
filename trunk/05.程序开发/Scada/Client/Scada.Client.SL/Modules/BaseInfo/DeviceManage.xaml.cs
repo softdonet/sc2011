@@ -44,6 +44,8 @@ namespace Scada.Client.SL.Modules.BaseInfo
         {
 
             InitializeComponent();
+
+
             this.scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
 
             //加载树型
@@ -83,6 +85,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
         {
             if (sender == null) { return; }
             DeviceTreeNode node = e.NewValue as DeviceTreeNode;
+            node.NodeParent = e.OldValue as DeviceTreeNode;
             this._userSelTreeNode = node;
 
             this.btnExport.IsEnabled = true;
@@ -107,62 +110,131 @@ namespace Scada.Client.SL.Modules.BaseInfo
                 scadaDeviceServiceSoapClient.ViewDeviceInfoAsync(node.NodeKey.ToString().ToUpper());
             }
 
+
         }
 
         private void scadaDeviceServiceSoapClient_ViewDeviceInfoCompleted(object sender, ViewDeviceInfoCompletedEventArgs e)
         {
-            //string result = e.Result;
-            //if (string.IsNullOrEmpty(result)) { return; }
-            //_userSelDeviceInfo = BinaryObjTransfer.BinaryDeserialize<DeviceInfo>(result);
-            //if (_userSelDeviceInfo == null) { return; }
+            string result = e.Result;
+            if (string.IsNullOrEmpty(result)) { return; }
+            _userSelDeviceInfo = BinaryObjTransfer.BinaryDeserialize<DeviceInfo>(result);
+            if (_userSelDeviceInfo == null) { return; }
 
-            ////设备MAC
-            //this.txtDeviceMac.Text = _userSelDeviceInfo.DeviceMAC;
-            //this.txtSIM.Text = _userSelDeviceInfo.SIMNo;
-            //this.txtManageArea.Text = _userSelTreeNode.NodeValue;
-            //this.txtInstallPlace.Text = _userSelDeviceInfo.InstallPlace;
-            //this.txtComment.Text = _userSelDeviceInfo.Comment;
+            //设备编号
+            this.txtDeviceNo.Text = _userSelDeviceInfo.DeviceNo;
+            //设备MAC
+            this.txtDeviceMac.Text = _userSelDeviceInfo.DeviceMAC;
+            this.txtSIM.Text = _userSelDeviceInfo.SIMNo;
 
-            //this.txtConnPoint.Text = _userSelDeviceInfo.ConnectPoint;
-            //this.txtLongitude.Text = _userSelDeviceInfo.Longitude.ToString();
-            //this.txtDimensionality.Text = _userSelDeviceInfo.Dimensionality.ToString();
-            //this.txtHigh.Text = _userSelDeviceInfo.High.ToString();
+            this.txtHardType.Text = _userSelDeviceInfo.HardType;
+            this.dpProductDate.Text = _userSelDeviceInfo.ProductDate.ToString();
+            //管理分区
+            this.txtManageArea.Text = _userSelTreeNode.NodeValue;
+            this.cmbMaintenancePeople.SelectedValue = _userSelDeviceInfo.MaintenancePeopleID;
+
+            this.txtInstallPlace.Text = _userSelDeviceInfo.InstallPlace;
+            this.txtComment.Text = _userSelDeviceInfo.Comment;
+
+            this.txtLongitude.Text = _userSelDeviceInfo.Longitude.ToString();
+            this.txtLatitude.Text = _userSelDeviceInfo.Latitude.ToString();
+            this.txtHigh.Text = _userSelDeviceInfo.High.ToString();
 
             //this.txtConnType.Text = "";
             //if (_userSelDeviceInfo.ConnectType != null)
             //    this.txtConnType.Text = _userSelDeviceInfo.ConnectType.ToString();
 
-            //this.txtMainDNS.Text = _userSelDeviceInfo.MainDNS;
-            //this.txtSecondDNS.Text = _userSelDeviceInfo.SecondDNS;
-            //this.txtCenterIp.Text = _userSelDeviceInfo.CenterIP;
-            //this.txtDomain.Text = _userSelDeviceInfo.Domain;
 
-            //this.txtPort.Text = "";
-            //if (_userSelDeviceInfo.port != null)
-            //    this.txtPort.Text = _userSelDeviceInfo.port.ToString();
+            this.txtComment.Text = _userSelDeviceInfo.Comment;
 
-            //this.txtVersion.Text = _userSelDeviceInfo.Version;
+            this.txtWindage.Text = _userSelDeviceInfo.Windage.ToString();
 
-            ////硬件配置
-            //Int32? intType = _userSelDeviceInfo.CollectFreq;
-            //if (intType != null)
-            //    this.txtCollectFreq.Text = intType.ToString();
+            this.txtHardwareVersion.Text = _userSelDeviceInfo.HardwareVersion;
+            this.txtSoftVersion.Text = _userSelDeviceInfo.SoftWareVersion;
+           
+            //是否启用紧急按钮
+            this.chkUrgencyBtnEnable.IsChecked = _userSelDeviceInfo.UrgencyBtnEnable;
+            // 主温度报警
+            this.chkHighTemp1Alarm.IsChecked = _userSelDeviceInfo.Temperature1AlarmValid;
+            if (_userSelDeviceInfo.Temperature1HighAlarm!=null)
+            {
+                this.txtHighTemp1Alarm.Text = _userSelDeviceInfo.Temperature1HighAlarm.ToString();
+            }
+            if (_userSelDeviceInfo.Temperature1LowAlarm!=null)
+            {
+                this.txtLowTemp1Alarm.Text = _userSelDeviceInfo.Temperature1LowAlarm.ToString();
 
-            //intType = _userSelDeviceInfo.ReportInterval;
-            //if (intType != null)
-            //    this.txtReportInterval.Text = intType.ToString();
+            }
+            //从温度报警
+            this.chkHighTemp2Alarm.IsChecked = _userSelDeviceInfo.Temperature2AlarmValid;
+            if (_userSelDeviceInfo.Temperature2HighAlarm!=null)
+            {
+                this.txtHighTemp2Alarm.Text = _userSelDeviceInfo.Temperature2HighAlarm.ToString();
+            }
+            if ( _userSelDeviceInfo.Temperature2LowAlarm!=null)
+            {
+                this.txtLowTemp2Alarm.Text = _userSelDeviceInfo.Temperature2LowAlarm.ToString();
+            }
 
-            //decimal? decValue = _userSelDeviceInfo.AlarmTop;
-            //if (decValue != null)
-            //    this.txtAlarnTop.Text = decValue.ToString();
+            //湿度报警
+            this.chkHumidityAlarm.IsChecked = _userSelDeviceInfo.HumidityAlarmValid;
+            if (_userSelDeviceInfo.HumidityHighAlarm!=null)
+            {
+                this.txtHumidityHighAlarm.Text = _userSelDeviceInfo.HumidityHighAlarm.ToString();
+            }
+            if (_userSelDeviceInfo.HumidityLowAlarm!=null)
+            {
+                this.txtHumidityLowAlarm.Text = _userSelDeviceInfo.HumidityLowAlarm.ToString();
+            }
 
-            //decValue = _userSelDeviceInfo.AlarmDown;
-            //if (decValue != null)
-            //    this.txtAlarnDown.Text = decValue.ToString();
+            //信号报警
+            this.chkSignalAlarm.IsChecked = _userSelDeviceInfo.SignalAlarmValid;
+            if (_userSelDeviceInfo.SignalHighAlarm!=null)
+            {
+                this.txtSignalHighAlarm.Text = _userSelDeviceInfo.SignalHighAlarm.ToString();
+            }
+            if (_userSelDeviceInfo.SignalLowAlarm!=null)
+            {
+                this.txtSignalLowAlarm.Text = _userSelDeviceInfo.SignalLowAlarm.ToString();
+            }
 
-            //decValue = _userSelDeviceInfo.Windage;
-            //if (decValue != null)
-            //    this.txtWindage.Text = decValue.ToString();
+            //电量报警
+            this.chkElectricityAlarm.IsChecked = _userSelDeviceInfo.ElectricityAlarmValid;
+            if (_userSelDeviceInfo.ElectricityHighAlarm!=null)
+            {
+                this.txtElectricityHighAlarm.Text = _userSelDeviceInfo.ElectricityHighAlarm.ToString();
+            }
+            if (_userSelDeviceInfo.ElectricityLowAlarm!=null)
+            {
+                this.txtElectricityLowAlarm.Text = _userSelDeviceInfo.ElectricityLowAlarm.ToString();
+            }
+            //实时模式参数
+            if (_userSelDeviceInfo.RealTimeParam!=null)
+            {
+                this.txtRealTimeParam.Text = _userSelDeviceInfo.RealTimeParam.ToString();
+            }
+            //整点模式参数1,2
+            if (_userSelDeviceInfo.FullTimeParam1!=null)
+            {
+                this.txtFullTimeParam1.Text = _userSelDeviceInfo.FullTimeParam1.ToString();
+            }
+            if (_userSelDeviceInfo.FullTimeParam2!=null)
+            {
+                this.txtFullTimeParam2.Text = _userSelDeviceInfo.FullTimeParam2.ToString();
+            }
+
+            //逢变则报模式
+            if (_userSelDeviceInfo.OptimizeParam1!=null)
+            {
+                this.txtOptimizeParam1.Text = _userSelDeviceInfo.OptimizeParam1.ToString();
+            }
+            if (_userSelDeviceInfo.OptimizeParam2!=null)
+            {
+                this.txtOptimizeParam2.Text = _userSelDeviceInfo.OptimizeParam2.ToString();
+            }
+            if (_userSelDeviceInfo.OptimizeParam3!=null)
+            {
+                this.txtOptimizeParam3.Text = _userSelDeviceInfo.OptimizeParam3.ToString();
+            }
 
         }
 
@@ -216,104 +288,164 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
         private void butAdd_Click(object sender, RoutedEventArgs e)
         {
-            //DeviceInfo deviceInfo = new DeviceInfo();
-            //deviceInfo.ID = Guid.NewGuid();
-            //deviceInfo.DeviceMAC = txtDeviceMac.Text.Trim();
-            //deviceInfo.SIMNo = txtSIM.Text.Trim();
-            //deviceInfo.InstallPlace = txtInstallPlace.Text.Trim();
-            //deviceInfo.Comment = txtComment.Text.Trim();
-            //deviceInfo.ConnectPoint = txtConnPoint.Text.Trim();
-            //if (!string.IsNullOrEmpty(txtLongitude.Text.Trim()))
-            //{
-            //    deviceInfo.Longitude = Convert.ToDecimal(txtLongitude.Text.Trim());
-            //}
-            //if (!string.IsNullOrEmpty(txtDimensionality.Text.Trim()))
-            //{
-            //    deviceInfo.Dimensionality = Convert.ToDecimal(txtDimensionality.Text.Trim());
-            //}
-            //if (!string.IsNullOrEmpty(txtHigh.Text.Trim()))
-            //{
-            //    deviceInfo.High = Convert.ToDecimal(txtHigh.Text.Trim());
-            //}
-            //if (!string.IsNullOrEmpty(txtConnType.Text.Trim()))
-            //{
-            //    deviceInfo.ConnectType = Convert.ToInt32(txtConnType.Text.Trim());
-            //}
-            //deviceInfo.MainDNS = txtMainDNS.Text.Trim();
-            //deviceInfo.SecondDNS = txtSecondDNS.Text.Trim();
-            //deviceInfo.CenterIP = txtCenterIp.Text.Trim();
-            //deviceInfo.Domain = txtDomain.Text.Trim();
-            //if (!string.IsNullOrEmpty(txtPort.Text.Trim()))
-            //{
-            //    deviceInfo.port = Convert.ToInt32(txtPort.Text.Trim());
-            //}
-            //if (!string.IsNullOrEmpty((txtCollectFreq.Text.Trim())))
-            //{
-            //    deviceInfo.CollectFreq = Convert.ToInt32(txtCollectFreq.Text.Trim());
-            //}
-            //if (!string.IsNullOrEmpty(txtReportInterval.Text.Trim()))
-            //{
-            //    deviceInfo.ReportInterval = Convert.ToInt32(txtReportInterval.Text.Trim());
-            //}
-            //if (!string.IsNullOrEmpty(txtWindage.Text.Trim()))
-            //{
-            //    deviceInfo.Windage = Convert.ToInt32(txtWindage.Text.Trim());
-            //}
-            //if (!string.IsNullOrEmpty(txtAlarnTop.Text.Trim()))
-            //{
-            //    deviceInfo.AlarmTop = Convert.ToDecimal(txtAlarnTop.Text.Trim());
-            //}
-            //if (!string.IsNullOrEmpty(txtAlarnDown.Text.Trim()))
-            //{
-            //    deviceInfo.AlarmDown = Convert.ToDecimal(txtAlarnDown.Text.Trim());
-            //}
-            //deviceInfo.Version = txtVersion.Text.Trim();
-            //deviceInfo.LCDScreenDisplayType = (cmbDisplayType.SelectedValue as DeviceInfo).LCDScreenDisplayType;
-            //if (chkInstancyBtn.IsChecked == true)
-            //{
-            //    deviceInfo.UseUrgencyButton = 0;
-            //}
-            //else
-            //{
-            //    deviceInfo.UseUrgencyButton = 1;
-            //}
-            //if (chkProcess1.IsChecked == true)
-            //{
-            //    deviceInfo.Process1Enable = 0;
-            //}
-            //else
-            //{
-            //    deviceInfo.Process1Enable = 1;
-            //}
-            //if (!string.IsNullOrEmpty(txtProcess1HigherAlarm.Text.Trim()))
-            //{
+            DeviceInfo deviceInfo = new DeviceInfo();
 
-            //    deviceInfo.Process1HigherValue = Convert.ToDecimal(txtProcess1HigherAlarm.Text.Trim());
-            //}
-            //if (!string.IsNullOrEmpty(txtProcess1HighAlarm.Text.Trim()))
-            //{
+            #region 设备属性
 
-            //    deviceInfo.Process1HigherValue = Convert.ToDecimal(txtProcess1HighAlarm.Text.Trim());
-            //}
-            //if (!string.IsNullOrEmpty(txtProcess1lowAlarm.Text.Trim()))
-            //{
+            
+            deviceInfo.ID = Guid.NewGuid();
+            deviceInfo.DeviceNo = txtDeviceNo.Text.Trim();
+            deviceInfo.DeviceMAC = txtDeviceMac.Text.Trim();
+            deviceInfo.SIMNo = txtSIM.Text.Trim();
+            deviceInfo.HardType = txtHardType.Text.Trim();
 
-            //    deviceInfo.Process1HigherValue = Convert.ToDecimal(txtProcess1lowAlarm.Text.Trim());
-            //}
-            //if (!string.IsNullOrEmpty(txtProcess1lowerAlarm.Text.Trim()))
-            //{
+            if (!string.IsNullOrEmpty( dpProductDate.Text))
+            {
+                deviceInfo.ProductDate = DateTime.Parse(dpProductDate.Text);
+            }
+            //获取管理分区的编号
+            deviceInfo.ManageAreaID = _userSelTreeNode.NodeKey;
+            deviceInfo.InstallPlace = txtInstallPlace.Text.Trim();
+            
+            //经度 维度 高度
+            if (!string.IsNullOrEmpty(txtLongitude.Text.Trim()))
+            {
+                deviceInfo.Longitude = Convert.ToDecimal(txtLongitude.Text.Trim());
+            }
+            if (!string.IsNullOrEmpty(txtLatitude.Text.Trim()))
+            {
+                deviceInfo.Latitude = Convert.ToDecimal(txtLatitude.Text.Trim());
+            }
+            if (!string.IsNullOrEmpty(txtHigh.Text.Trim()))
+            {
+                deviceInfo.High = Convert.ToDecimal(txtHigh.Text.Trim());
+            }
 
-            //    deviceInfo.Process1HigherValue = Convert.ToDecimal(txtProcess1lowerAlarm.Text.Trim());
-            //}
-            //if (!string.IsNullOrEmpty(txtProcess1RateAlarm.Text.Trim()))
-            //{
+            deviceInfo.Comment = txtComment.Text.Trim();
+            if (!string.IsNullOrEmpty(txtWindage.Text.Trim()))
+            {
+                deviceInfo.Windage = Convert.ToInt32(txtWindage.Text.Trim());
+            }
+            if (cmbMaintenancePeople.SelectedIndex != -1)
+            {
+                deviceInfo.MaintenancePeopleID = Guid.Parse(cmbMaintenancePeople.SelectedValue.ToString());
+            }
+            else
+            {
+                MessageBox.Show("请选择维护人员!");
+                return;
+            }
+            deviceInfo.HardwareVersion = txtHardwareVersion.Text.Trim();
+            deviceInfo.SoftWareVersion = txtSoftVersion.Text.Trim();
 
-            //    deviceInfo.Process1HigherValue = Convert.ToDecimal(txtProcess1RateAlarm.Text.Trim());
-            //}
+            
+            chkUrgencyBtnEnable.IsThreeState=true;
+            deviceInfo.UrgencyBtnEnable = chkUrgencyBtnEnable.IsChecked;
 
-            //this.IsAddUpdateType = true;
-            //LoadAddDeviceInfo(deviceInfo);
+            //主温度
+            deviceInfo.Temperature1AlarmValid = chkHighTemp1Alarm.IsChecked;
+            if (!string.IsNullOrEmpty(txtHighTemp1Alarm.Text.Trim()))
+            {
+                deviceInfo.HumidityHighAlarm=Decimal.Parse(txtHighTemp1Alarm.Text.Trim());
+            }
+            if (!string.IsNullOrEmpty(txtLowTemp1Alarm.Text.Trim()))
+            {
+                deviceInfo.Temperature1LowAlarm = Decimal.Parse(txtLowTemp1Alarm.Text.Trim());
+            }
+            
+            //从温度
+            deviceInfo.Temperature2AlarmValid = chkHighTemp2Alarm.IsChecked;
+            if (!string.IsNullOrEmpty(txtHighTemp1Alarm.Text.Trim()))
+            {
+                deviceInfo.Temperature1HighAlarm = Decimal.Parse(txtHighTemp2Alarm.Text.Trim());
+            }
+            if (!string.IsNullOrEmpty(txtLowTemp2Alarm.Text.Trim()))
+            {
+                deviceInfo.Temperature2LowAlarm = Decimal.Parse(txtLowTemp2Alarm.Text.Trim());
+            }
 
+            //湿度
+            deviceInfo.HumidityAlarmValid = chkHumidityAlarm.IsChecked;
+            if (!string.IsNullOrEmpty(txtHumidityHighAlarm.Text.Trim()))
+            {
+                deviceInfo.HumidityHighAlarm = Decimal.Parse(txtHumidityHighAlarm.Text.Trim());
+            }
+            if (!string.IsNullOrEmpty(txtHumidityLowAlarm.Text.Trim()))
+            {
+                deviceInfo.HumidityLowAlarm =Decimal.Parse(txtHumidityLowAlarm.Text.Trim());
+            }
+            //信号
+
+            deviceInfo.SignalAlarmValid = chkSignalAlarm.IsChecked;
+            if (!string.IsNullOrEmpty(txtSignalHighAlarm.Text.Trim()))
+            {
+                deviceInfo.SignalHighAlarm=Int32.Parse(txtSignalHighAlarm.Text.Trim());
+            }
+            if (!string.IsNullOrEmpty(txtSignalLowAlarm.Text.Trim()))
+            {
+                deviceInfo.SignalLowAlarm=Int32.Parse(txtSignalLowAlarm.Text.Trim());
+            }
+
+            //电量
+            deviceInfo.ElectricityAlarmValid = chkElectricityAlarm.IsChecked;
+            if (!string.IsNullOrEmpty(txtElectricityHighAlarm.Text.Trim()))
+            {
+                deviceInfo.ElectricityHighAlarm = Int32.Parse(txtElectricityLowAlarm.Text.Trim());
+            }
+            if (!string.IsNullOrEmpty(txtElectricityLowAlarm.Text.Trim()))
+            {
+                deviceInfo.ElectricityLowAlarm = Int32.Parse(txtElectricityLowAlarm.Text.Trim());
+            }
+            //液晶屏显示类型
+            if (cmbDisplayType.SelectedValue!=DBNull.Value)
+            {
+                deviceInfo.LCDScreenDisplayType = Convert.ToInt32(cmbDisplayType.SelectedValue);
+            }
+            //当前模式：0 实时模式， 1 整点模式 2. 优化模式
+            if (cmbCurrentModel.SelectedIndex!=-1)
+            {
+                deviceInfo.CurrentModel = Int32.Parse(cmbCurrentModel.SelectedValue.ToString());
+
+            }
+            else
+            {
+                MessageBox.Show("请选择模式!");
+                return;
+            }
+
+            //实时模式参数
+            if (!string.IsNullOrEmpty(txtRealTimeParam.Text.Trim()))
+            {
+                deviceInfo.RealTimeParam = Int32.Parse(txtRealTimeParam.Text.Trim());
+            }
+
+            //整点模式参数1,2
+            if (!string.IsNullOrEmpty(txtFullTimeParam1.Text.Trim()))
+            {
+                deviceInfo.FullTimeParam1 = Int32.Parse(txtFullTimeParam1.Text.Trim());
+            }
+            if (!string.IsNullOrEmpty(txtFullTimeParam2.Text.Trim()))
+            {
+                deviceInfo.FullTimeParam2 = Int32.Parse(txtFullTimeParam2.Text.Trim());
+            }
+            //逢变则报模式参数 1,2,3
+            if (!string.IsNullOrEmpty(txtOptimizeParam1.Text.Trim()))
+            {
+                deviceInfo.OptimizeParam1 = Int32.Parse(txtOptimizeParam1.Text.Trim());
+            }
+            if (!string.IsNullOrEmpty(txtOptimizeParam2.Text.Trim()))
+            {
+                deviceInfo.OptimizeParam2 = Int32.Parse(txtOptimizeParam2.Text.Trim());
+            }
+            if (!string.IsNullOrEmpty(txtOptimizeParam3.Text.Trim()))
+            {
+                deviceInfo.OptimizeParam3 = Int32.Parse(txtOptimizeParam3.Text.Trim());
+            }
+
+            #endregion
+
+            this.IsAddUpdateType = true;
+            LoadAddDeviceInfo(deviceInfo);
 
         }
 
@@ -349,74 +481,20 @@ namespace Scada.Client.SL.Modules.BaseInfo
         private void AddDeviceProperty(DeviceInfo deviceInfo)
         {
 
-            //deviceInfo.DeviceMAC = this.txtDeviceMac.Text;
-            //deviceInfo.SIMNo = this.txtSIM.Text;
+            deviceInfo.DeviceMAC = this.txtDeviceMac.Text;
+            deviceInfo.SIMNo = this.txtSIM.Text;
 
-            //deviceInfo.InstallPlace = this.txtInstallPlace.Text;
-            //deviceInfo.Comment = this.txtComment.Text;
+            deviceInfo.InstallPlace = this.txtInstallPlace.Text;
+            deviceInfo.Comment = this.txtComment.Text;
 
-            //deviceInfo.ConnectPoint = this.txtConnPoint.Text;
-            //if (!string.IsNullOrEmpty(txtLongitude.Text))
-            //{
-            //    deviceInfo.Longitude = decimal.Parse(this.txtLongitude.Text);
-            //}
-            //if (!string.IsNullOrEmpty(txtDimensionality.Text))
-            //{
-            //    deviceInfo.Dimensionality = decimal.Parse(this.txtDimensionality.Text);
-            //}
-            //if (string.IsNullOrEmpty(txtHigh.Text))
-            //{
-            //    deviceInfo.High = decimal.Parse(this.txtHigh.Text);
-            //}
-            //deviceInfo.ConnectType = 1;
-
-            //deviceInfo.MainDNS = this.txtMainDNS.Text;
-            //deviceInfo.SecondDNS = this.txtSecondDNS.Text;
-            //deviceInfo.CenterIP = this.txtCenterIp.Text;
-            //deviceInfo.Domain = this.txtDomain.Text;
-
-            //string strValue = this.txtPort.Text;
-            //if (!string.IsNullOrEmpty(strValue))
-            //    deviceInfo.port = Convert.ToInt32(strValue);
-
-            //定时表类型
-            Int32? intType = null;
-            /*
-            if ((Boolean)this.radioButton1.IsChecked)
-                intType = 1;
-            else if ((Boolean)this.radioButton2.IsChecked)
-                intType = 2;
-            else if ((Boolean)this.radioButton3.IsChecked)
-                intType = 3;
-            else if ((Boolean)this.radioButton4.IsChecked)
-                intType = 4;
-            else if ((Boolean)this.radioButton5.IsChecked)
-                intType = 5;
-            */
-            //deviceInfo.TimeType = intType;
-            //deviceInfo.Version = this.txtVersion.Text;
-
-            ////硬件配置
-            //strValue = this.txtCollectFreq.Text;
-            //if (!string.IsNullOrEmpty(strValue))
-            //    deviceInfo.CollectFreq = Convert.ToInt32(strValue);
-
-            //strValue = this.txtReportInterval.Text;
-            //if (!string.IsNullOrEmpty(strValue))
-            //    deviceInfo.ReportInterval = Convert.ToInt32(strValue);
-
-            //strValue = this.txtAlarnTop.Text;
-            //if (!string.IsNullOrEmpty(strValue))
-            //    deviceInfo.AlarmTop = Convert.ToDecimal(strValue);
-
-            //strValue = this.txtAlarnDown.Text;
-            //if (!string.IsNullOrEmpty(strValue))
-            //    deviceInfo.AlarmDown = Convert.ToDecimal(strValue);
-
-            //strValue = this.txtWindage.Text;
-            //if (!string.IsNullOrEmpty(strValue))
-            //    deviceInfo.Windage = Convert.ToDecimal(strValue);
-
+            if (!string.IsNullOrEmpty(txtLongitude.Text))
+            {
+                deviceInfo.Longitude = decimal.Parse(this.txtLongitude.Text);
+            }
+            if (string.IsNullOrEmpty(txtHigh.Text))
+            {
+                deviceInfo.High = decimal.Parse(this.txtHigh.Text);
+            }
 
         }
 

@@ -181,95 +181,171 @@ namespace Scada.BLL.Implement
         {
             Int32 rowNum = 0;
             Boolean result = false;
-            SqlParameter para = null;
+          //  SqlParameter para = null;
 
             StringBuilder sSql = new StringBuilder();
             List<SqlParameter> sSqlWhere = new List<SqlParameter>();
             try
             {
                 DeviceInfo deviceValue = BinaryObjTransfer.JsonDeserialize<DeviceInfo>(deviceInfo);
-                sSql.Append(@" Insert Into DeviceInfo(ID,DeviceNo,HardType,ProductDate,DeviceMAC,
-                                SIMNo,ManageAreaID,InstallPlace,Longitude,Dimensionality,
-                                High,Comment,ConnectPoint) Values (@ID,@DeviceNo,@HardType,@ProductDate,@DeviceMAC,
-                                @SIMNo,@ManageAreaID,@InstallPlace,@Longitude,@Dimensionality,
-                                @High,@Comment,@ConnectPoint)");
-                para = new SqlParameter();
-                para.DbType = DbType.Guid;
-                para.ParameterName = "@ID";
-                para.Value = deviceValue.ID;
-                sSqlWhere.Add(para);
+                sSql.Append(@" Insert Into DeviceInfo
+                               (ID, DeviceNo, DeviceSN, HardType, ProductDate, DeviceMAC, SIMNo, 
+                               ManageAreaID, MaintenancePeopleID, InstallPlace, Longitude, Latitude, High, Comment, Windage,
+                               HardwareVersion, SoftWareVersion, LCDScreenDisplayType, UrgencyBtnEnable, InforBtnEnable,
+                               Temperature1AlarmValid, Temperature1HighAlarm, Temperature1LowAlarm,
+                               Temperature2AlarmValid, Temperature2HighAlarm, Temperature2LowAlarm, 
+                               HumidityAlarmValid, HumidityHighAlarm, HumidityLowAlarm,
+                               SignalAlarmValid, SignalHighAlarm, SignalLowAlarm, 
+                               ElectricityAlarmValid, ElectricityHighAlarm, ElectricityLowAlarm, 
+                               CurrentModel, RealTimeParam, FullTimeParam1, FullTimeParam2, 
+                               OptimizeParam1, OptimizeParam2, OptimizeParam3) 
+                        Values (@ID,@DeviceNo,@DeviceSN,@HardType,@ProductDate,@DeviceMAC,@SIMNo,
+                               @ManageAreaID,@MaintenancePeopleID,@InstallPlace,@Longitude,@Latitude,@High,@Comment,@Windage,
+                               @HardwareVersion,@SoftWareVersion,@LCDScreenDisplayType,@UrgencyBtnEnable,@InforBtnEnable,
+                               @Temperature1AlarmValid,@Temperature1HighAlarm,@Temperature1LowAlarm,
+                               @Temperature2AlarmValid,@Temperature2HighAlarm,@Temperature2LowAlarm,
+                               @HumidityAlarmValid,@HumidityHighAlarm,@HumidityLowAlarm,
+                               @SignalAlarmValid,@SignalHighAlarm,@SignalLowAlarm,
+                               @ElectricityAlarmValid,@ElectricityHighAlarm,@ElectricityLowAlarm,
+                               @CurrentModel,@RealTimeParam,@FullTimeParam1,@FullTimeParam2,
+                               @OptimizeParam1,@OptimizeParam2,@OptimizeParam3)");
+        
+                #region 对应的参数
 
-                para = new SqlParameter();
-                para.DbType = DbType.String;
-                para.ParameterName = "@DeviceNo";
-                para.Value = deviceValue.DeviceNo;
-                sSqlWhere.Add(para);
+                
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@ID", DbType = DbType.Guid, Value = deviceValue.ID });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@DeviceNo", DbType = DbType.String, Value = deviceValue.DeviceNo });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@HardType", DbType = DbType.String, Value = deviceValue.HardType });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@ProductDate", DbType = DbType.Date, Value = deviceValue.ProductDate });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@DeviceMAC", DbType = DbType.String, Value = deviceValue.DeviceMAC });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@SIMNo", DbType = DbType.String, Value = deviceValue.SIMNo });
+                
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@ManageAreaID", DbType = DbType.Guid, Value = deviceValue.ManageAreaID });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@MaintenancePeopleID", DbType = DbType.Guid, Value = deviceValue.MaintenancePeopleID });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@InstallPlace", DbType = DbType.String, Value = deviceValue.InstallPlace });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Longitude", DbType = DbType.Decimal, Value = deviceValue.Longitude });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Latitude", DbType = DbType.Decimal, Value = deviceValue.Latitude });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@High", DbType = DbType.Decimal, Value = deviceValue.High });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Comment", DbType = DbType.String, Value = deviceValue.Comment });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Windage", DbType = DbType.Int32, Value = deviceValue.Windage });
 
-                para = new SqlParameter();
-                para.DbType = DbType.String;
-                para.ParameterName = "@HardType";
-                para.Value = deviceValue.HardType;
-                sSqlWhere.Add(para);
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@HardwareVersion", DbType = DbType.String, Value = deviceValue.HardwareVersion });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@SoftWareVersion", DbType = DbType.String, Value = deviceValue.SoftWareVersion });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@LCDScreenDisplayType", DbType = DbType.Int32, Value = deviceValue.LCDScreenDisplayType });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@UrgencyBtnEnable", DbType = DbType.Boolean, Value = deviceValue.UrgencyBtnEnable });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@InforBtnEnable", DbType = DbType.Boolean, Value = deviceValue.InforBtnEnable });
+                //主温度
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature1AlarmValid", DbType = DbType.Boolean, Value = deviceValue.Temperature1AlarmValid });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature1HighAlarm", DbType = DbType.Decimal, Value = deviceValue.Temperature1HighAlarm });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature1LowAlarm", DbType = DbType.Decimal, Value = deviceValue.Temperature1LowAlarm });
+                //从温度
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature2AlarmValid", DbType = DbType.Boolean, Value = deviceValue.Temperature2AlarmValid });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature2HighAlarm", DbType = DbType.Decimal, Value = deviceValue.Temperature2HighAlarm });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature2LowAlarm", DbType = DbType.Decimal, Value = deviceValue.Temperature2LowAlarm });
+               //湿度
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@HumidityAlarmValid", DbType = DbType.Boolean, Value = deviceValue.HumidityAlarmValid });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@HumidityHighAlarm", DbType = DbType.Decimal, Value = deviceValue.HumidityHighAlarm });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@HumidityLowAlarm", DbType = DbType.Decimal, Value = deviceValue.HumidityLowAlarm });
+                //信号
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@SignalAlarmValid", DbType = DbType.Boolean, Value = deviceValue.SignalAlarmValid });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@SignalHighAlarm", DbType = DbType.Int32, Value = deviceValue.SignalHighAlarm });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@SignalLowAlarm", DbType = DbType.Int32, Value = deviceValue.SignalLowAlarm });
+              //电量
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@ElectricityAlarmValid", DbType = DbType.Boolean, Value = deviceValue.ElectricityAlarmValid });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@ElectricityHighAlarm", DbType = DbType.Int32, Value = deviceValue.ElectricityHighAlarm });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@ElectricityLowAlarm", DbType = DbType.Int32, Value = deviceValue.ElectricityLowAlarm });
 
-                para = new SqlParameter();
-                para.DbType = DbType.DateTime;
-                para.ParameterName = "@ProductDate";
-                para.Value = deviceValue.ProductDate;
-                sSqlWhere.Add(para);
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@CurrentModel", DbType = DbType.Int32, Value = deviceValue.CurrentModel });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@RealTimeParam", DbType = DbType.Int32, Value = deviceValue.RealTimeParam });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@FullTimeParam1", DbType = DbType.Int32, Value = deviceValue.FullTimeParam1 });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@FullTimeParam2", DbType = DbType.Int32, Value = deviceValue.FullTimeParam2 });
 
-                para = new SqlParameter();
-                para.DbType = DbType.String;
-                para.ParameterName = "@DeviceMAC";
-                para.Value = deviceValue.DeviceMAC;
-                sSqlWhere.Add(para);
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@OptimizeParam1", DbType = DbType.Int32, Value = deviceValue.OptimizeParam1 });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@FullTimeParam2", DbType = DbType.Int32, Value = deviceValue.OptimizeParam2 });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@FullTimeParam3", DbType = DbType.Int32, Value = deviceValue.OptimizeParam3 });
+               
+                #endregion
 
-                para = new SqlParameter();
-                para.DbType = DbType.String;
-                para.ParameterName = "@SIMNo";
-                para.Value = deviceValue.SIMNo;
-                sSqlWhere.Add(para);
+                #region Old
+                //para = new SqlParameter();
+                //para.DbType = DbType.Guid;
+                //para.ParameterName = "@ID";
+                //para.Value = deviceValue.ID;
+                //sSqlWhere.Add(para);
 
-                para = new SqlParameter();
-                para.DbType = DbType.Guid;
-                para.ParameterName = "@ManageAreaID";
-                para.Value = deviceValue.ManageAreaID;
-                sSqlWhere.Add(para);
+                //para = new SqlParameter();
+                //para.DbType = DbType.String;
+                //para.ParameterName = "@DeviceNo";
+                //para.Value = deviceValue.DeviceNo;
+                //sSqlWhere.Add(para);
 
-                para = new SqlParameter();
-                para.DbType = DbType.String;
-                para.ParameterName = "@InstallPlace";
-                para.Value = deviceValue.InstallPlace;
-                sSqlWhere.Add(para);
+                //para = new SqlParameter();
+                //para.DbType = DbType.String;
+                //para.ParameterName = "@HardType";
+                //para.Value = deviceValue.HardType;
+                //sSqlWhere.Add(para);
 
-                para = new SqlParameter();
-                para.DbType = DbType.Decimal;
-                para.ParameterName = "@Longitude";
-                para.Value = deviceValue.Longitude;
-                sSqlWhere.Add(para);
+                //para = new SqlParameter();
+                //para.DbType = DbType.DateTime;
+                //para.ParameterName = "@ProductDate";
+                //para.Value = deviceValue.ProductDate;
+                //sSqlWhere.Add(para);
 
-                para = new SqlParameter();
-                para.DbType = DbType.Decimal;
-                para.ParameterName = "@Dimensionality";
-                //para.Value = deviceValue.Dimensionality;
-                sSqlWhere.Add(para);
+                //para = new SqlParameter();
+                //para.DbType = DbType.String;
+                //para.ParameterName = "@DeviceMAC";
+                //para.Value = deviceValue.DeviceMAC;
+                //sSqlWhere.Add(para);
 
-                para = new SqlParameter();
-                para.DbType = DbType.Decimal;
-                para.ParameterName = "@High";
-                para.Value = deviceValue.High;
-                sSqlWhere.Add(para);
+                //para = new SqlParameter();
+                //para.DbType = DbType.String;
+                //para.ParameterName = "@SIMNo";
+                //para.Value = deviceValue.SIMNo;
+                //sSqlWhere.Add(para);
 
-                para = new SqlParameter();
-                para.DbType = DbType.String;
-                para.ParameterName = "@Comment";
-                para.Value = deviceValue.Comment;
-                sSqlWhere.Add(para);
+                //para = new SqlParameter();
+                //para.DbType = DbType.Guid;
+                //para.ParameterName = "@ManageAreaID";
+                //para.Value = deviceValue.ManageAreaID;
+                //sSqlWhere.Add(para);
 
-                para = new SqlParameter();
-                para.DbType = DbType.String;
-                para.ParameterName = "@ConnectPoint";
-                //para.Value = deviceValue.ConnectPoint;
-                sSqlWhere.Add(para);
+                //para = new SqlParameter();
+                //para.DbType = DbType.String;
+                //para.ParameterName = "@InstallPlace";
+                //para.Value = deviceValue.InstallPlace;
+                //sSqlWhere.Add(para);
+
+                //para = new SqlParameter();
+                //para.DbType = DbType.Decimal;
+                //para.ParameterName = "@Longitude";
+                //para.Value = deviceValue.Longitude;
+                //sSqlWhere.Add(para);
+
+                //para = new SqlParameter();
+                //para.DbType = DbType.Decimal;
+                //para.ParameterName = "@Dimensionality";
+                ////para.Value = deviceValue.Dimensionality;
+                //sSqlWhere.Add(para);
+
+                //para = new SqlParameter();
+                //para.DbType = DbType.Decimal;
+                //para.ParameterName = "@High";
+                //para.Value = deviceValue.High;
+                //sSqlWhere.Add(para);
+
+                //para = new SqlParameter();
+                //para.DbType = DbType.String;
+                //para.ParameterName = "@Comment";
+                //para.Value = deviceValue.Comment;
+                //sSqlWhere.Add(para);
+
+                //para = new SqlParameter();
+                //para.DbType = DbType.String;
+                //para.ParameterName = "@ConnectPoint";
+                ////para.Value = deviceValue.ConnectPoint;
+                // sSqlWhere.Add(para);
+                #endregion
+              
 
                 rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql.ToString(), sSqlWhere.ToArray());
                 //设备维护人员
@@ -390,10 +466,20 @@ namespace Scada.BLL.Implement
 
                 //标识
                 deviceInfo.ID = new Guid(item["id"].ToString());
+                //设备编号
+                deviceInfo.DeviceNo = item["DeviceNo"].ToString();
                 //设备MAC
                 deviceInfo.DeviceMAC = item["devicemac"].ToString();
                 //SIM卡号
                 deviceInfo.SIMNo = item["simno"].ToString();
+                //硬件类型
+                deviceInfo.HardType = item["HardType"].ToString();
+                //生产日期
+                if (item["ProductDate"]!=DBNull.Value)
+                {
+                    deviceInfo.ProductDate = Convert.ToDateTime(item["ProductDate"].ToString());
+                }
+               
                 //管理分区
                 deviceInfo.ManageAreaID = new Guid(item["manageareaid"].ToString());
                 //安装位置
@@ -418,115 +504,137 @@ namespace Scada.BLL.Implement
                     decValue = Convert.ToDecimal(item["high"]);
                 deviceInfo.High = decValue;
 
-                /*
-                //连接方式
-                Int32? intValue = null;
-                if (item["connectType"] != DBNull.Value)
-                    intValue = Convert.ToInt32(item["connectType"]);
-                deviceInfo.ConnectType = intValue;
-             
-                //主DNS
-                deviceInfo.MainDNS = item["maindns"].ToString();
-                //从DNS
-                deviceInfo.SecondDNS = item["seconddns"].ToString();
-                //中心IP
-                deviceInfo.CenterIP = item["centerip"].ToString();
-                //域名
-                deviceInfo.Domain = item["domain"].ToString();
-                //端口
-                intValue = null;
-                if (item["port"] != DBNull.Value)
-                    intValue = Convert.ToInt32(item["port"]);
-                deviceInfo.port = intValue;
-                //采集频率
-                intValue = null;
-                if (item["collectfreq"] != DBNull.Value)
-                    intValue = Convert.ToInt32(item["collectfreq"]);
-                deviceInfo.CollectFreq = intValue;
-                //上报间隔
-                intValue = null;
-                if (item["reportinterval"] != DBNull.Value)
-                    intValue = Convert.ToInt32(item["reportinterval"]);
-                deviceInfo.ReportInterval = intValue;
-                */
-
+                deviceInfo.Comment = item["Comment"].ToString();
                 //偏差
                 Int32? intValue = null;
                 if (item["windage"] != DBNull.Value)
                     decValue = Convert.ToDecimal(item["windage"]);
                 deviceInfo.Windage = intValue;
 
-                /*
-                 
-                //报警上限
-                decValue = null;
-                if (item["alarmtop"] != DBNull.Value)
-                    decValue = Convert.ToDecimal(item["alarmtop"]);
-                deviceInfo.AlarmTop = decValue;
-                //报警下限
-                decValue = null;
-                if (item["alarmdown"] != DBNull.Value)
-                    decValue = Convert.ToDecimal(item["alarmdown"]);
-                deviceInfo.AlarmDown = decValue;
                 //硬件版本
-                deviceInfo.Version = item["version"].ToString();
+                deviceInfo.HardwareVersion = item["HardwareVersion"].ToString();
+                deviceInfo.SoftWareVersion = item["SoftWareVersion"].ToString();
+                if (item["UrgencyBtnEnable"] is bool)
+                {
+                    deviceInfo.UrgencyBtnEnable = (bool)item["UrgencyBtnEnable"];
 
-              
-              deviceInfo.DeviceNo = item["deviceno"].ToString();
-              deviceInfo.HardType = item["hardtype"].ToString();
-              deviceInfo.ProductDate = Convert.ToDateTime(item["productdate"]);
-              deviceInfo.UserName = item["username"].ToString();
-              deviceInfo.Password = item["password"].ToString();
-              deviceInfo.Coordinate = item["coordinate"].ToString();
-              intValue = null;
-              if (item["timetype"] != DBNull.Value)
-                  intValue = Convert.ToInt32(item["timetype"]);
-              deviceInfo.TimeType = intValue;
-              */
+                }
+              //是否启用紧急按钮
+                if (item["UrgencyBtnEnable"] is bool)
+                {
+                    deviceInfo.UrgencyBtnEnable = Convert.ToBoolean(item["UrgencyBtnEnable"]);
+                }
+
+                ////////////////////////报警设置////////////////////////////
+                //主温度报警设置有效
+                if (item["Temperature1AlarmValid"] is Boolean)
+                {
+                    deviceInfo.Temperature1AlarmValid =(bool)item["Temperature1AlarmValid"];
+                }
+                if (item["Temperature1HighAlarm"] != DBNull.Value)
+                {
+                    deviceInfo.Temperature1HighAlarm = Convert.ToDecimal(item["Temperature1HighAlarm"]);
+                }
+                if (item["Temperature1LowAlarm"] is bool)
+                {
+                    deviceInfo.Temperature1LowAlarm = Convert.ToDecimal(item["Temperature1LowAlarm"]);
+
+                }
+                //从温度报警设置有效
+                if (item["Temperature2AlarmValid"] is bool)
+                {
+                    deviceInfo.Temperature2AlarmValid = Convert.ToBoolean(item["Temperature2AlarmValid"]);
+                }
+                if (item["Temperature2HighAlarm"]!=DBNull.Value)
+                {
+                    deviceInfo.Temperature2HighAlarm = Convert.ToDecimal(item["Temperature2HighAlarm"]);
+                }
+                if (item["Temperature2LowAlarm"]!=DBNull.Value)
+                {
+                    deviceInfo.Temperature2LowAlarm = Convert.ToDecimal(item["Temperature2LowAlarm"]);
+                }
+
+                //湿度报警设置有效
+                if (item["HumidityAlarmValid"] is bool)
+                {
+                    deviceInfo.HumidityAlarmValid = (bool)item["HumidityAlarmValid"];
+                }
+                if (item["HumidityHighAlarm"]!=DBNull.Value)
+                {
+                    deviceInfo.HumidityHighAlarm = Convert.ToDecimal(item["HumidityHighAlarm"]);
+                }
+                if (item["HumidityLowAlarm"]!=DBNull.Value)
+                {
+                    deviceInfo.HumidityLowAlarm = Convert.ToDecimal(item["HumidityLowAlarm"]);
+                }
+                //信号报警设置有效
+                if (item["SignalAlarmValid"] is bool)
+                {
+                    deviceInfo.SignalAlarmValid = (bool)item["SignalAlarmValid"];
+                }
+                if (item["SignalHighAlarm"]!=DBNull.Value)
+                {
+                    deviceInfo.SignalHighAlarm = Convert.ToInt32(item["SignalHighAlarm"]);
+                }
+                if (item["SignalLowAlarm"] is bool)
+                {
+                    deviceInfo.SignalLowAlarm = Convert.ToInt32(item["SignalLowAlarm"]);
+                }
+
+                //电量报警设置有效
+                if (item["ElectricityAlarmValid"] is bool)
+                {
+                    deviceInfo.ElectricityAlarmValid = (bool)item["ElectricityAlarmValid"];
+                }
+                if (item["ElectricityHighAlarm"]!=DBNull.Value)
+                {
+                    deviceInfo.ElectricityHighAlarm = Convert.ToInt32(item["ElectricityHighAlarm"]);
+                }
+                if (item["ElectricityLowAlarm"]!=DBNull.Value)
+                {
+                    deviceInfo.ElectricityLowAlarm = Convert.ToInt32(item["ElectricityLowAlarm"]);
+                }
 
                 ////////////////////////辅助信息////////////////////////////
                 //液晶屏显示类型
-                //deviceInfo.LCDScreenDisplayType = item["lcdscreendisplaytype"].ToString();
+                if (item["LCDScreenDisplayType"] != DBNull.Value)
+                {
+                    deviceInfo.LCDScreenDisplayType = Convert.ToInt32(item["LCDScreenDisplayType"]);
+                }
+
+                //当前选择模式
+                if (item["CurrentModel"]!=DBNull.Value)
+                {
+                    deviceInfo.CurrentModel = Convert.ToInt32(item["CurrentModel"]);
+                }
 
                 //实时模式参数
-                //整点采集频率
-                //整点发送频率
-                //快速发送频率
-                //速率
-                //发送间隔
-
-                ////////////////////////报警设置////////////////////////////
-                //过程值1报警设置有效
-                intValue = null;
-                if (item["process1enable"] != DBNull.Value)
-                    intValue = Convert.ToInt32(item["process1enable"]);
-                //deviceInfo.Process1Enable = intValue;
-                //过程值1高高报警值
-                decValue = null;
-                if (item["process1highervalue"] != DBNull.Value)
-                    decValue = Convert.ToDecimal(item["process1highervalue"]);
-                //deviceInfo.Process1HigherValue = decValue;
-                //过程值1高报警值
-                intValue = null;
-                if (item["process1highvalue"] != DBNull.Value)
-                    intValue = Convert.ToInt32(item["process1highvalue"]);
-                //deviceInfo.Process1HighValue = intValue;
-                //过程值1低报警值
-                decValue = null;
-                if (item["process1lowervalue"] != DBNull.Value)
-                    decValue = Convert.ToDecimal(item["process1lowervalue"]);
-                //deviceInfo.Process1LowerValue = decValue;
-                //过程值1低低报警值
-                decValue = null;
-                if (item["process1lowvalue"] != DBNull.Value)
-                    decValue = Convert.ToDecimal(item["process1lowvalue"]);
-                //deviceInfo.Process1LowValue = decValue;
-                //过程值1速率报警值
-                decValue = null;
-                if (item["process1ratevalue"] != DBNull.Value)
-                    decValue = Convert.ToDecimal(item["process1ratevalue"]);
-                //deviceInfo.Process1RateValue = decValue;
-
+                if (item["RealTimeParam"]!=DBNull.Value)
+                {
+                    deviceInfo.RealTimeParam = Convert.ToInt32(item["RealTimeParam"]);
+                }
+                //整点模式参数1,2
+                if (item["FullTimeParam1"]!=DBNull.Value)
+                {
+                    deviceInfo.FullTimeParam1 = Convert.ToInt32(item["FullTimeParam1"]);
+                }
+                if (item["FullTimeParam2"]!=DBNull.Value)
+                {
+                    deviceInfo.FullTimeParam2 = Convert.ToInt32(item["FullTimeParam2"]);
+                }
+                //逢变则报参数1,2,3
+                if (item["OptimizeParam1"]!=DBNull.Value)
+                {
+                    deviceInfo.OptimizeParam1 = Convert.ToInt32(item["OptimizeParam1"]);
+                }
+                if (item["OptimizeParam2"]!=DBNull.Value)
+                {
+                    deviceInfo.OptimizeParam2 = Convert.ToInt32(item["OptimizeParam2"]);
+                }
+                if (item["OptimizeParam1"]!=DBNull.Value)
+                {
+                    deviceInfo.OptimizeParam3 = Convert.ToInt32(item["OptimizeParam3"]);
+                }
                 //列出设备的维护人列表
                 //deviceInfo.DeviceMainValue = ListDeviceMaintenancePeople(deviceInfo.ID);
 
@@ -547,11 +655,12 @@ namespace Scada.BLL.Implement
 
         }
 
+        //获取维修人员列表
         private List<MaintenancePeople> ListMaintenancePeopleInfo()
         {
             List<MaintenancePeople> result = new List<MaintenancePeople>();
-            string sSql = @" Select ID,MainNo,MainName,City,Native,
-                                    Telephone,MobileBack,Email from MaintenancePeople";
+            string sSql = @" Select ID, Name, Address, Telephone, Mobile, QQ, MSN, Email, HeadImage
+                             from MaintenancePeople";
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);
             if (ds == null || ds.Rows.Count == 0) { return result; }
             MaintenancePeople peoples = null;
@@ -559,13 +668,15 @@ namespace Scada.BLL.Implement
             {
                 peoples = new MaintenancePeople();
                 peoples.ID = new Guid(item["ID"].ToString());
-                //peoples.MainNo = item["MainNo"].ToString();
-                //peoples.MainName = item["MainName"].ToString();
-                //peoples.City = item["City"].ToString();
-                //peoples.Native = item["Native"].ToString();
+                peoples.Name = item["Name"].ToString();
+                peoples.Address = item["Address"].ToString();
                 peoples.Telephone = item["Telephone"].ToString();
-                //peoples.MobileBack = item["MobileBack"].ToString();
+                peoples.Mobile = item["Mobile"].ToString();
+                peoples.QQ = item["QQ"].ToString();
+                peoples.MSN = item["MSN"].ToString();
                 peoples.Email = item["Email"].ToString();
+                //byte[] getByte = item["HeadImage"];
+                //peoples.HeadImage = Convert.ToByte(item["HeadImage"]);
                 result.Add(peoples);
             }
             return result;

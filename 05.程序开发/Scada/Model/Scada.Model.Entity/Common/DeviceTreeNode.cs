@@ -11,6 +11,8 @@ namespace Scada.Model.Entity
 
         public Int32 NodeType { get; set; }
 
+        public DeviceTreeNode NodeParent { get; set; }
+
         public List<DeviceTreeNode> NodeChild { get; set; }
 
         public void AddNodeKey(DeviceTreeNode treeNode)

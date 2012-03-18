@@ -13,6 +13,13 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 
 
+using Scada.Model.Entity;
+using Scada.Client.SL.CommClass;
+using Scada.Client.SL.ScadaDeviceService;
+
+
+
+
 
 
 namespace Scada.Client.SL.Modules.Device
@@ -30,6 +37,8 @@ namespace Scada.Client.SL.Modules.Device
 
         private Guid _deviceKey;
 
+        private ScadaDeviceServiceSoapClient _scadaDeviceServiceSoapClient;
+
         #endregion
 
 
@@ -44,16 +53,67 @@ namespace Scada.Client.SL.Modules.Device
         {
             InitializeComponent();
             this._deviceKey = deviceKey;
+            this.Init();
         }
 
         #endregion
 
 
         #region 界面初期化
+
+        private void Init()
+        {
+
+            //获取设备服务
+            this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
+
+
+            //设备当天温度
+            this._scadaDeviceServiceSoapClient.GetDeviceOnlyDayCompleted +=
+                new EventHandler<GetDeviceOnlyDayCompletedEventArgs>(scadaDeviceServiceSoapClient_GetDeviceOnlyDayCompleted);
+            this._scadaDeviceServiceSoapClient.GetDeviceOnlyDayAsync(this._deviceKey.ToString());
+
+
+            //设备历史温度
+            this._scadaDeviceServiceSoapClient.GetDeviceOnlyMonthCompleted +=
+                        new EventHandler<GetDeviceOnlyMonthCompletedEventArgs>(scadaDeviceServiceSoapClient_GetDeviceOnlyMonthCompleted);
+            this._scadaDeviceServiceSoapClient.GetDeviceOnlyMonthAsync(this._deviceKey.ToString());
+
+        }
+
         #endregion
 
 
         #region 私有方法
+
+        private void scadaDeviceServiceSoapClient_GetDeviceOnlyDayCompleted(object sender, GetDeviceOnlyDayCompletedEventArgs e)
+        {
+            if (e.Error == null)
+            {
+                string msgInfo = e.Result;
+                List<ChartSource> devicTreeList = BinaryObjTransfer.BinaryDeserialize<List<ChartSource>>(msgInfo);
+                if (devicTreeList.Count() == 0) { return; }
+                this.chartDayTemperature.SetDeviceTemperature(devicTreeList);
+            }
+            else
+                ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");
+        }
+
+
+        private void scadaDeviceServiceSoapClient_GetDeviceOnlyMonthCompleted(object sender, GetDeviceOnlyMonthCompletedEventArgs e)
+        {
+            if (e.Error == null)
+            {
+                string msgInfo = e.Result;
+                List<ChartSource> devicTreeList = BinaryObjTransfer.BinaryDeserialize<List<ChartSource>>(msgInfo);
+                if (devicTreeList.Count() == 0) { return; }
+                this.chartMonthTemperature.SetDeviceTemperature(devicTreeList);
+            }
+            else
+                ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");
+        }
+
+
         #endregion
 
 

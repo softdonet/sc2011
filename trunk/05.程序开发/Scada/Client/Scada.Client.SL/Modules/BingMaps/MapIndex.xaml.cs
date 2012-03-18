@@ -55,7 +55,7 @@ namespace Scada.Client.SL.Modules.BingMaps
             mapVM.BaseDataResviceEvent += new EventHandler(mapVM_BaseDataResviceEvent);
             mapVM.RealTimeDataResviceEvent += new EventHandler(mapVM_RealTimeDataResviceEvent);
 
-           // DeviceAlarmViewModel deviceAlarmViewModel = new DeviceAlarmViewModel();
+            // DeviceAlarmViewModel deviceAlarmViewModel = new DeviceAlarmViewModel();
             //RadGridViewAlarm.DataContext = deviceAlarmViewModel;
             AlarmListViewModel alarmVM = new AlarmListViewModel();
             RadGridViewAlarm.DataContext = alarmVM;
@@ -208,7 +208,7 @@ namespace Scada.Client.SL.Modules.BingMaps
         void myPushPin_onclickDetails(object sender, RoutedEventArgs e)
         {
             Storyboard1.Begin();
-            MyContent.Content = new DetailsPage();
+            MyContent.Content = new DetailsPage(new Guid("7A6A91EC-4B81-4585-BF4E-EFDCC7DD9922"));
             MyContent.Title = "设备详细信息";
         }
 

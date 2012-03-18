@@ -61,7 +61,8 @@ namespace Scada.Client.UC
 
         private void Init()
         {
-            DateTime sameDay = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+            //DateTime sameDay = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+            DateTime sameDay = new DateTime(2012, 3, 17, 0, 0, 0);
             this.charTemperature.AxesX[0].AxisMinimum = sameDay;
             this.charTemperature.AxesX[0].AxisMaximum = sameDay.AddDays(1);
         }

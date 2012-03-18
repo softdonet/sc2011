@@ -28,6 +28,16 @@ namespace Scada.Client.SL.ScadaDeviceService {
         
         Scada.Client.SL.ScadaDeviceService.GetListDeviceInfoResponse EndGetListDeviceInfo(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/GetDeviceOnlyDay", ReplyAction="*")]
+        System.IAsyncResult BeginGetDeviceOnlyDay(Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyDayRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyDayResponse EndGetDeviceOnlyDay(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/GetDeviceOnlyMonth", ReplyAction="*")]
+        System.IAsyncResult BeginGetDeviceOnlyMonth(Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyMonthRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyMonthResponse EndGetDeviceOnlyMonth(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/AddDeviceInfo", ReplyAction="*")]
         System.IAsyncResult BeginAddDeviceInfo(Scada.Client.SL.ScadaDeviceService.AddDeviceInfoRequest request, System.AsyncCallback callback, object asyncState);
         
@@ -181,6 +191,142 @@ namespace Scada.Client.SL.ScadaDeviceService {
         
         public GetListDeviceInfoResponseBody(string GetListDeviceInfoResult) {
             this.GetListDeviceInfoResult = GetListDeviceInfoResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetDeviceOnlyDayRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetDeviceOnlyDay", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyDayRequestBody Body;
+        
+        public GetDeviceOnlyDayRequest() {
+        }
+        
+        public GetDeviceOnlyDayRequest(Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyDayRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetDeviceOnlyDayRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string DeviceID;
+        
+        public GetDeviceOnlyDayRequestBody() {
+        }
+        
+        public GetDeviceOnlyDayRequestBody(string DeviceID) {
+            this.DeviceID = DeviceID;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetDeviceOnlyDayResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetDeviceOnlyDayResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyDayResponseBody Body;
+        
+        public GetDeviceOnlyDayResponse() {
+        }
+        
+        public GetDeviceOnlyDayResponse(Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyDayResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetDeviceOnlyDayResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetDeviceOnlyDayResult;
+        
+        public GetDeviceOnlyDayResponseBody() {
+        }
+        
+        public GetDeviceOnlyDayResponseBody(string GetDeviceOnlyDayResult) {
+            this.GetDeviceOnlyDayResult = GetDeviceOnlyDayResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetDeviceOnlyMonthRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetDeviceOnlyMonth", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyMonthRequestBody Body;
+        
+        public GetDeviceOnlyMonthRequest() {
+        }
+        
+        public GetDeviceOnlyMonthRequest(Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyMonthRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetDeviceOnlyMonthRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string DeviceID;
+        
+        public GetDeviceOnlyMonthRequestBody() {
+        }
+        
+        public GetDeviceOnlyMonthRequestBody(string DeviceID) {
+            this.DeviceID = DeviceID;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetDeviceOnlyMonthResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetDeviceOnlyMonthResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyMonthResponseBody Body;
+        
+        public GetDeviceOnlyMonthResponse() {
+        }
+        
+        public GetDeviceOnlyMonthResponse(Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyMonthResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetDeviceOnlyMonthResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetDeviceOnlyMonthResult;
+        
+        public GetDeviceOnlyMonthResponseBody() {
+        }
+        
+        public GetDeviceOnlyMonthResponseBody(string GetDeviceOnlyMonthResult) {
+            this.GetDeviceOnlyMonthResult = GetDeviceOnlyMonthResult;
         }
     }
     
@@ -1120,6 +1266,44 @@ namespace Scada.Client.SL.ScadaDeviceService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetDeviceOnlyDayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetDeviceOnlyDayCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetDeviceOnlyMonthCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetDeviceOnlyMonthCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class AddDeviceInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -1419,6 +1603,18 @@ namespace Scada.Client.SL.ScadaDeviceService {
         
         private System.Threading.SendOrPostCallback onGetListDeviceInfoCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetDeviceOnlyDayDelegate;
+        
+        private EndOperationDelegate onEndGetDeviceOnlyDayDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetDeviceOnlyDayCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetDeviceOnlyMonthDelegate;
+        
+        private EndOperationDelegate onEndGetDeviceOnlyMonthDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetDeviceOnlyMonthCompletedDelegate;
+        
         private BeginOperationDelegate onBeginAddDeviceInfoDelegate;
         
         private EndOperationDelegate onEndAddDeviceInfoDelegate;
@@ -1564,6 +1760,10 @@ namespace Scada.Client.SL.ScadaDeviceService {
         public event System.EventHandler<AddCompletedEventArgs> AddCompleted;
         
         public event System.EventHandler<GetListDeviceInfoCompletedEventArgs> GetListDeviceInfoCompleted;
+        
+        public event System.EventHandler<GetDeviceOnlyDayCompletedEventArgs> GetDeviceOnlyDayCompleted;
+        
+        public event System.EventHandler<GetDeviceOnlyMonthCompletedEventArgs> GetDeviceOnlyMonthCompleted;
         
         public event System.EventHandler<AddDeviceInfoCompletedEventArgs> AddDeviceInfoCompleted;
         
@@ -1714,6 +1914,126 @@ namespace Scada.Client.SL.ScadaDeviceService {
                         DeviceType,
                         StartDate,
                         EndDate}, this.onEndGetListDeviceInfoDelegate, this.onGetListDeviceInfoCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.BeginGetDeviceOnlyDay(Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyDayRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetDeviceOnlyDay(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginGetDeviceOnlyDay(string DeviceID, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyDayRequest inValue = new Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyDayRequest();
+            inValue.Body = new Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyDayRequestBody();
+            inValue.Body.DeviceID = DeviceID;
+            return ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginGetDeviceOnlyDay(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyDayResponse Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.EndGetDeviceOnlyDay(System.IAsyncResult result) {
+            return base.Channel.EndGetDeviceOnlyDay(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private string EndGetDeviceOnlyDay(System.IAsyncResult result) {
+            Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyDayResponse retVal = ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndGetDeviceOnlyDay(result);
+            return retVal.Body.GetDeviceOnlyDayResult;
+        }
+        
+        private System.IAsyncResult OnBeginGetDeviceOnlyDay(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string DeviceID = ((string)(inValues[0]));
+            return this.BeginGetDeviceOnlyDay(DeviceID, callback, asyncState);
+        }
+        
+        private object[] OnEndGetDeviceOnlyDay(System.IAsyncResult result) {
+            string retVal = this.EndGetDeviceOnlyDay(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetDeviceOnlyDayCompleted(object state) {
+            if ((this.GetDeviceOnlyDayCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetDeviceOnlyDayCompleted(this, new GetDeviceOnlyDayCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetDeviceOnlyDayAsync(string DeviceID) {
+            this.GetDeviceOnlyDayAsync(DeviceID, null);
+        }
+        
+        public void GetDeviceOnlyDayAsync(string DeviceID, object userState) {
+            if ((this.onBeginGetDeviceOnlyDayDelegate == null)) {
+                this.onBeginGetDeviceOnlyDayDelegate = new BeginOperationDelegate(this.OnBeginGetDeviceOnlyDay);
+            }
+            if ((this.onEndGetDeviceOnlyDayDelegate == null)) {
+                this.onEndGetDeviceOnlyDayDelegate = new EndOperationDelegate(this.OnEndGetDeviceOnlyDay);
+            }
+            if ((this.onGetDeviceOnlyDayCompletedDelegate == null)) {
+                this.onGetDeviceOnlyDayCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetDeviceOnlyDayCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetDeviceOnlyDayDelegate, new object[] {
+                        DeviceID}, this.onEndGetDeviceOnlyDayDelegate, this.onGetDeviceOnlyDayCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.BeginGetDeviceOnlyMonth(Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyMonthRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetDeviceOnlyMonth(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginGetDeviceOnlyMonth(string DeviceID, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyMonthRequest inValue = new Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyMonthRequest();
+            inValue.Body = new Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyMonthRequestBody();
+            inValue.Body.DeviceID = DeviceID;
+            return ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginGetDeviceOnlyMonth(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyMonthResponse Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.EndGetDeviceOnlyMonth(System.IAsyncResult result) {
+            return base.Channel.EndGetDeviceOnlyMonth(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private string EndGetDeviceOnlyMonth(System.IAsyncResult result) {
+            Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyMonthResponse retVal = ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndGetDeviceOnlyMonth(result);
+            return retVal.Body.GetDeviceOnlyMonthResult;
+        }
+        
+        private System.IAsyncResult OnBeginGetDeviceOnlyMonth(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string DeviceID = ((string)(inValues[0]));
+            return this.BeginGetDeviceOnlyMonth(DeviceID, callback, asyncState);
+        }
+        
+        private object[] OnEndGetDeviceOnlyMonth(System.IAsyncResult result) {
+            string retVal = this.EndGetDeviceOnlyMonth(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetDeviceOnlyMonthCompleted(object state) {
+            if ((this.GetDeviceOnlyMonthCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetDeviceOnlyMonthCompleted(this, new GetDeviceOnlyMonthCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetDeviceOnlyMonthAsync(string DeviceID) {
+            this.GetDeviceOnlyMonthAsync(DeviceID, null);
+        }
+        
+        public void GetDeviceOnlyMonthAsync(string DeviceID, object userState) {
+            if ((this.onBeginGetDeviceOnlyMonthDelegate == null)) {
+                this.onBeginGetDeviceOnlyMonthDelegate = new BeginOperationDelegate(this.OnBeginGetDeviceOnlyMonth);
+            }
+            if ((this.onEndGetDeviceOnlyMonthDelegate == null)) {
+                this.onEndGetDeviceOnlyMonthDelegate = new EndOperationDelegate(this.OnEndGetDeviceOnlyMonth);
+            }
+            if ((this.onGetDeviceOnlyMonthCompletedDelegate == null)) {
+                this.onGetDeviceOnlyMonthCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetDeviceOnlyMonthCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetDeviceOnlyMonthDelegate, new object[] {
+                        DeviceID}, this.onEndGetDeviceOnlyMonthDelegate, this.onGetDeviceOnlyMonthCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2705,6 +3025,32 @@ namespace Scada.Client.SL.ScadaDeviceService {
             public Scada.Client.SL.ScadaDeviceService.GetListDeviceInfoResponse EndGetListDeviceInfo(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 Scada.Client.SL.ScadaDeviceService.GetListDeviceInfoResponse _result = ((Scada.Client.SL.ScadaDeviceService.GetListDeviceInfoResponse)(base.EndInvoke("GetListDeviceInfo", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetDeviceOnlyDay(Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyDayRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("GetDeviceOnlyDay", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyDayResponse EndGetDeviceOnlyDay(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyDayResponse _result = ((Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyDayResponse)(base.EndInvoke("GetDeviceOnlyDay", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetDeviceOnlyMonth(Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyMonthRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("GetDeviceOnlyMonth", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyMonthResponse EndGetDeviceOnlyMonth(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyMonthResponse _result = ((Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyMonthResponse)(base.EndInvoke("GetDeviceOnlyMonth", _args, result)));
                 return _result;
             }
             

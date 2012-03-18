@@ -22,10 +22,10 @@ namespace Scada.BLL.Contract
                                     DateTime? StartDate, DateTime? EndDate);
 
         //设备当天温度
-        string GetDeviceOnlyDay(Guid DeviceID);
+        string GetDeviceOnlyDay(String DeviceID);
 
         //设备历史温度
-        string GetDeviceOnlyMonth(Guid DeviceID);
+        string GetDeviceOnlyMonth(String DeviceID);
 
         #endregion
 

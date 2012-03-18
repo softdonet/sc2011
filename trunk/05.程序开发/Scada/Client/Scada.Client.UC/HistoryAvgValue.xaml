@@ -23,7 +23,7 @@
                 </vc:Axis>
             </vc:Chart.AxesX>
             <vc:Chart.AxesY>
-                <vc:Axis  Title="温度（℃）"  AxisMinimum="0" AxisMaximum="35" Interval="5"  />
+                <vc:Axis  Title="温度（℃）"  AxisMinimum="0" AxisMaximum="38" Interval="5"  />
             </vc:Chart.AxesY>
             <vc:Chart.Series>
                 <vc:DataSeries RenderAs="Column"   LabelEnabled="true" >

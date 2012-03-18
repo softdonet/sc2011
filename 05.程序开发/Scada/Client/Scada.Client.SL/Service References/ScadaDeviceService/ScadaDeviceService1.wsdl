@@ -35,6 +35,34 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetDeviceOnlyDay">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeviceID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeviceOnlyDayResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDeviceOnlyDayResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeviceOnlyMonth">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeviceID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeviceOnlyMonthResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDeviceOnlyMonthResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="AddDeviceInfo">
         <s:complexType>
           <s:sequence>
@@ -260,6 +288,18 @@
   <wsdl:message name="GetListDeviceInfoSoapOut">
     <wsdl:part name="parameters" element="tns:GetListDeviceInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="GetDeviceOnlyDaySoapIn">
+    <wsdl:part name="parameters" element="tns:GetDeviceOnlyDay" />
+  </wsdl:message>
+  <wsdl:message name="GetDeviceOnlyDaySoapOut">
+    <wsdl:part name="parameters" element="tns:GetDeviceOnlyDayResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDeviceOnlyMonthSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDeviceOnlyMonth" />
+  </wsdl:message>
+  <wsdl:message name="GetDeviceOnlyMonthSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDeviceOnlyMonthResponse" />
+  </wsdl:message>
   <wsdl:message name="AddDeviceInfoSoapIn">
     <wsdl:part name="parameters" element="tns:AddDeviceInfo" />
   </wsdl:message>
@@ -359,6 +399,14 @@
       <wsdl:input message="tns:GetListDeviceInfoSoapIn" />
       <wsdl:output message="tns:GetListDeviceInfoSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetDeviceOnlyDay">
+      <wsdl:input message="tns:GetDeviceOnlyDaySoapIn" />
+      <wsdl:output message="tns:GetDeviceOnlyDaySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeviceOnlyMonth">
+      <wsdl:input message="tns:GetDeviceOnlyMonthSoapIn" />
+      <wsdl:output message="tns:GetDeviceOnlyMonthSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="AddDeviceInfo">
       <wsdl:input message="tns:AddDeviceInfoSoapIn" />
       <wsdl:output message="tns:AddDeviceInfoSoapOut" />
@@ -433,6 +481,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetListDeviceInfo">
       <soap:operation soapAction="http://tempuri.org/GetListDeviceInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeviceOnlyDay">
+      <soap:operation soapAction="http://tempuri.org/GetDeviceOnlyDay" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeviceOnlyMonth">
+      <soap:operation soapAction="http://tempuri.org/GetDeviceOnlyMonth" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -589,6 +655,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetListDeviceInfo">
       <soap12:operation soapAction="http://tempuri.org/GetListDeviceInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeviceOnlyDay">
+      <soap12:operation soapAction="http://tempuri.org/GetDeviceOnlyDay" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeviceOnlyMonth">
+      <soap12:operation soapAction="http://tempuri.org/GetDeviceOnlyMonth" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

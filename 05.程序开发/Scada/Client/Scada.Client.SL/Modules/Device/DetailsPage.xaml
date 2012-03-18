@@ -16,8 +16,8 @@
             <RowDefinition Height="200*"/>
             <RowDefinition Height="200*"/>
         </Grid.RowDefinitions>
-        <my:DaysGraph Grid.Row="0" Margin="5" Name="daysGraph1" />
-        <my:HistoryAvgValue Grid.Row="1"  Margin="5" Name="historyAvgValue1" />
+        <my:DaysGraph Grid.Row="0" Margin="5" Name="chartDayTemperature" />
+        <my:HistoryAvgValue Grid.Row="1"  Margin="5" Name="chartMonthTemperature" />
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
             <StackPanel.Background>
                 <LinearGradientBrush StartPoint=".5,0" EndPoint=".5,1">

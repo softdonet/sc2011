@@ -81,9 +81,9 @@ namespace Scada.BLL.Implement
                 sSql.Append(" And AA.DeviceID='" + DeviceID.ToString().ToUpper() + "'");
 
             if (StartDate != null)
-                sSql.Append(" And AA.UpdateTime >='" + Convert.ToDateTime(StartDate).ToString("yyyy-MM-dd hh:mm:ss") + "'");
+                sSql.Append(" And AA.UpdateTime >='" + Convert.ToDateTime(StartDate).ToString("yyyy-MM-dd HH:mm:ss") + "'");
             if (EndDate != null)
-                sSql.Append(" And AA.UpdateTime <'" + Convert.ToDateTime(EndDate).ToString("yyyy-MM-dd hh:mm:ss") + "'");
+                sSql.Append(" And AA.UpdateTime <'" + Convert.ToDateTime(EndDate).ToString("yyyy-MM-dd HH:mm:ss") + "'");
             try
             {
                 ds = SqlHelper.ExecuteDataTable(sSql.ToString());
@@ -113,23 +113,63 @@ namespace Scada.BLL.Implement
         }
 
         //设备当天温度
-        public string GetDeviceOnlyDay(Guid DeviceID)
+        public string GetDeviceOnlyDay(String DeviceID)
         {
             List<ChartSource> result = new List<ChartSource>();
+            //DateTime start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+            DateTime start = new DateTime(2012, 3, 17, 0, 0, 0);
+            DateTime end = start.AddDays(1);
 
+            StringBuilder sSql = new StringBuilder();
+            sSql.Append(@" Select t.UpdateTime,t.Temperature1 from DeviceRealTime t
+                                Where t.DeviceID='" + DeviceID.ToUpper() + "'");
+            sSql.Append(@" And t.UpdateTime >='" + Convert.ToDateTime(start).ToString("yyyy-MM-dd HH:mm:ss") + "'");
+            sSql.Append(@" And t.UpdateTime <'" + Convert.ToDateTime(end).ToString("yyyy-MM-dd HH:mm:ss") + "'");
+            sSql.Append(@" Order by t.UpdateTime");
 
-
+            DataTable dt = SqlHelper.ExecuteDataTable(sSql.ToString());
+            if (dt == null || dt.Rows.Count == 0) { return String.Empty; }
+            foreach (DataRow dr in dt.Rows)
+            {
+                result.Add(
+                    new ChartSource
+                    {
+                        DeviceDate = Convert.ToDateTime(dr["UpdateTime"]),
+                        DeviceTemperature = Convert.ToDouble(dr["Temperature1"])
+                    }
+                );
+            }
             return BinaryObjTransfer.JsonSerializer<List<ChartSource>>(result);
-
         }
 
         //设备历史温度
-        public string GetDeviceOnlyMonth(Guid DeviceID)
+        public string GetDeviceOnlyMonth(String DeviceID)
         {
             List<ChartSource> result = new List<ChartSource>();
+            DateTime start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0);
+            DateTime end = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0).AddDays(1);
 
+            StringBuilder sSql = new StringBuilder();
+            sSql.Append(@" Select Convert(varchar(10), t.UpdateTime,120) +' 00:00:00' As UpdateDate,
+                                Avg(t.Temperature1) As Temperature from DeviceRealTime t
+                                Where t.DeviceID='" + DeviceID.ToUpper() + "'");
+            sSql.Append(@" And t.UpdateTime >='" + Convert.ToDateTime(start).ToString("yyyy-MM-dd HH:mm:ss") + "'");
+            sSql.Append(@" And t.UpdateTime <'" + Convert.ToDateTime(end).ToString("yyyy-MM-dd HH:mm:ss") + "'");
+            sSql.Append(@" Group by Convert(varchar(10), t.UpdateTime,120) +' 00:00:00'");
+            sSql.Append(@" Order by UpdateDate");
 
-
+            DataTable dt = SqlHelper.ExecuteDataTable(sSql.ToString());
+            if (dt == null || dt.Rows.Count == 0) { return String.Empty; }
+            foreach (DataRow dr in dt.Rows)
+            {
+                result.Add(
+                    new ChartSource
+                    {
+                        DeviceDate = Convert.ToDateTime(dr["UpdateDate"]),
+                        DeviceTemperature = Convert.ToDouble(dr["Temperature"])
+                    }
+                );
+            }
             return BinaryObjTransfer.JsonSerializer<List<ChartSource>>(result);
         }
 
@@ -275,7 +315,7 @@ namespace Scada.BLL.Implement
                 para = new SqlParameter();
                 para.DbType = DbType.DateTime;
                 para.ParameterName = "@ProductDate";
-                para.Value = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+                para.Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 sSqlWhere.Add(para);
 
                 para = new SqlParameter();
@@ -744,7 +784,7 @@ namespace Scada.BLL.Implement
         public Boolean UpdateDeviceAlarmInfo(Guid AlarmId, DateTime ConfirmTime, String Comment, Guid DealPeopleId)
         {
             string sSql = @" Update DeviceAlarm 
-                            Set ConfirmTime='" + ConfirmTime.ToString("yyyy-MM-dd hh:mm:ss") + @"',
+                            Set ConfirmTime='" + ConfirmTime.ToString("yyyy-MM-dd HH:mm:ss") + @"',
                                    DealStatus='已确认', DealPeopleID='" + DealPeopleId + "',Comment='" + Comment + @"'
                             Where ID ='" + AlarmId.ToString().ToUpper() + "'";
             Boolean result = false;

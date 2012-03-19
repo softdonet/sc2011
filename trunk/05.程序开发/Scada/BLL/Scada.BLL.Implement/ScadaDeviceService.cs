@@ -731,6 +731,7 @@ namespace Scada.BLL.Implement
                     {
                         DeviceTreeNode man = ManTable[i];
                         man.NodeChild = getTreeNodeDevice(man.NodeKey, string.Empty);
+                        man.NodeParent = manage;
                         manage.AddNodeKey(man);
                     }
                     area.AddNodeKey(manage);

@@ -64,6 +64,7 @@
     <Compile Include="DBClass\DeviceInfo.cs" />
     <Compile Include="DBClass\DeviceRealTime.cs" />
     <Compile Include="DBClass\DeviceTree.cs" />
+    <Compile Include="DBClass\SystemParameterManage.cs" />
     <Compile Include="DBClass\UserEventDealDetail.cs" />
     <Compile Include="DBClass\MaintenancePeople.cs" />
     <Compile Include="DBClass\Module.cs" />

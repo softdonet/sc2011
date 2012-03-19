@@ -53,5 +53,30 @@ namespace Scada.BLL.Implement
 
         #endregion
 
+
+        #region 系统参数
+
+        public string GetSystemParameterManage()
+        {
+            return string.Empty; 
+        }
+
+        public string GetSystemGlobalParameter()
+        {
+            return string.Empty; 
+        }
+
+        public Boolean UpdateSystemParameterManage(string systemParameterManage)
+        {
+            return false;
+        }
+
+        public Boolean UpdateSystemGlobalParameter(string systemGlobalParameter)
+        {
+            return false;
+        }
+
+        #endregion
+
     }
 }

@@ -24,32 +24,42 @@
                     <Border BorderThickness="1" CornerRadius="5" Margin="2">
                         <Grid Background="AliceBlue">
                             <Grid Height="196" Width="294"  Background="LightSteelBlue" ShowGridLines="True" HorizontalAlignment="Left" Margin="46,23,0,0" Name="grid1" VerticalAlignment="Top" >
-                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="28,21,0,0" Name="textBlock1" Text="系统预警超时:" VerticalAlignment="Top" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="128,18,0,0" Name="textBox1" VerticalAlignment="Top" Width="120" />
-                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="28,51,0,0" Name="textBlock2" Text="系统预警报警:" VerticalAlignment="Top" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="128,48,0,0" Name="textBox2" VerticalAlignment="Top" Width="120" />
-                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="28,81,0,0" Name="textBlock3" Text="系统预警正常:" VerticalAlignment="Top" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="128,78,0,0" Name="textBox3" VerticalAlignment="Top" Width="120" />
-                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="28,110,0,0" Name="textBlock4" Text="设备默认DNS:" VerticalAlignment="Top" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="128,110,0,0" Name="textBox4" VerticalAlignment="Top" Width="120" />
-                                <Button Content="保存" Height="23" HorizontalAlignment="Left" Margin="30,157,0,0" Name="button1" VerticalAlignment="Top" Width="75" />
-                                <Button Content="关闭" Height="23" HorizontalAlignment="Left" Margin="155,157,0,0" Name="button2" VerticalAlignment="Top" Width="75" />
+                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="52,21,0,0" Name="textBlock1" Text="系统预警超时:" VerticalAlignment="Top" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="128,18,0,0" Name="txtEarlyTimeOut" VerticalAlignment="Top" Width="120" />
+                                
+                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="52,0,0,122" Name="textBlock2" Text="系统预警报警:" VerticalAlignment="Bottom" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="128,48,0,0" Name="txtEarlyAlarm" VerticalAlignment="Top" Width="120" />
+                                
+                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="52,81,0,0" Name="textBlock3" Text="系统预警正常:" VerticalAlignment="Top" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="128,78,0,0" Name="txtEarlyNormal" VerticalAlignment="Top" Width="120" />
+                                
+                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="52,114,0,0" Name="textBlock4" Text="设备默认DNS:" VerticalAlignment="Top" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="128,110,0,0" Name="txtDefDns" VerticalAlignment="Top" Width="120" />
+                                
+                                <Button Content="保存" Height="23" HorizontalAlignment="Left" Margin="51,157,0,0" Name="btnSave" VerticalAlignment="Top" Width="75" Click="btnSave_Click" />
+                                <Button Content="关闭" Height="23" HorizontalAlignment="Left" Margin="168,157,0,0" Name="btnClose" VerticalAlignment="Top" Width="75" Click="btnClose_Click" />
                             </Grid>
                             <Grid Height="196" Width="294"  Background="LightSteelBlue" ShowGridLines="True" HorizontalAlignment="Left" Margin="372,23,0,0" Name="grid2" VerticalAlignment="Top">
-                                <TextBlock HorizontalAlignment="Left" Margin="33,18,0,0" Name="textBlock5" Text="主机IP:" Height="23" VerticalAlignment="Top" />
+                                <TextBlock HorizontalAlignment="Left" Margin="77,19,0,159" Name="textBlock5" Text="主机IP:" />
                                 <TextBox Height="23" HorizontalAlignment="Left" Margin="127,15,0,0" Name="textBox5" VerticalAlignment="Top" Width="120" />
-                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="33,42,0,0" Name="textBlock6" Text="备用IP：" VerticalAlignment="Top" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,39,0,0" Name="textBox6" VerticalAlignment="Top" Width="120" />
-                                <TextBlock HorizontalAlignment="Left" Margin="33,69,0,0" Name="textBlock7" Text="域   名：" Height="23" VerticalAlignment="Top" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,63,0,0" Name="textBox7" VerticalAlignment="Top" Width="120" />
-                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="33,97,0,0" Name="textBlock8" Text="端    口：" VerticalAlignment="Top" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,87,0,0" Name="textBox8" VerticalAlignment="Top" Width="120" />
-                                <TextBlock HorizontalAlignment="Left" Margin="27,115,0,0" Name="textBlock9" Text="连接方式：" Height="23" VerticalAlignment="Top" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,111,0,0" Name="textBox9" VerticalAlignment="Top" Width="120" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,137,0,0" Name="textBox10" VerticalAlignment="Top" Width="120" />
-                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="27,141,0,0" Name="textBlock10" Text="连接方式：" VerticalAlignment="Top" />
-                                <Button Content="保存" Height="23" HorizontalAlignment="Left" Margin="50,170,0,0" Name="button3" VerticalAlignment="Top" Width="75" />
-                                <Button Content="关闭" Height="23" HorizontalAlignment="Left" Margin="156,169,0,0" Name="button4" VerticalAlignment="Top" Width="75" />
+                                
+                                <TextBlock Height="18" HorizontalAlignment="Left" Margin="77,42,0,0" Name="textBlock6" Text="备用IP：" VerticalAlignment="Top" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,40,0,0" Name="textBox6" VerticalAlignment="Top" Width="120" />
+                                
+                                <TextBlock HorizontalAlignment="Left" Margin="77,68,0,110" Name="textBlock7" Text="域   名：" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,65,0,0" Name="textBox7" VerticalAlignment="Top" Width="120" />
+
+                                <TextBlock Height="18" HorizontalAlignment="Left" Margin="77,93,0,0" Name="textBlock8" Text="端   口：" VerticalAlignment="Top" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,90,0,0" Name="textBox8" VerticalAlignment="Top" Width="120" />
+                                
+                                <TextBlock HorizontalAlignment="Left" Margin="65,118,0,0" Name="textBlock9" Text="连接方式：" Height="18" VerticalAlignment="Top" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,115,0,0" Name="textBox9" VerticalAlignment="Top" Width="120" />
+
+                                <TextBlock Height="18" HorizontalAlignment="Left" Margin="56,142,0,0" Name="textBlock10" Text="接入点名称：" VerticalAlignment="Top" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,140,0,0" Name="textBox10" VerticalAlignment="Top" Width="120" />
+
+                                <Button Content="保存" Height="23" HorizontalAlignment="Left" Margin="59,170,0,0" Name="butOk" VerticalAlignment="Top" Width="75" Click="btnSave_Click" />
+                                <Button Content="关闭" Height="23" HorizontalAlignment="Left" Margin="172,169,0,0" Name="butOff" VerticalAlignment="Top" Width="75" Click="btnClose_Click" />
                             </Grid>
                         </Grid>
                     </Border>

@@ -46,6 +46,54 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetSystemParameterManage">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSystemParameterManageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemParameterManageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemGlobalParameter">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSystemGlobalParameterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemGlobalParameterResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateSystemParameterManage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="systemParameterManage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateSystemParameterManageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateSystemParameterManageResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateSystemGlobalParameter">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="systemGlobalParameter" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateSystemGlobalParameterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateSystemGlobalParameterResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddDDSoapIn">
@@ -66,6 +114,30 @@
   <wsdl:message name="GetWeatherSoapOut">
     <wsdl:part name="parameters" element="tns:GetWeatherResponse" />
   </wsdl:message>
+  <wsdl:message name="GetSystemParameterManageSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemParameterManage" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemParameterManageSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemParameterManageResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemGlobalParameterSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemGlobalParameter" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemGlobalParameterSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemGlobalParameterResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateSystemParameterManageSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateSystemParameterManage" />
+  </wsdl:message>
+  <wsdl:message name="UpdateSystemParameterManageSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateSystemParameterManageResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateSystemGlobalParameterSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateSystemGlobalParameter" />
+  </wsdl:message>
+  <wsdl:message name="UpdateSystemGlobalParameterSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateSystemGlobalParameterResponse" />
+  </wsdl:message>
   <wsdl:portType name="SystemManagerServiceSoap">
     <wsdl:operation name="AddDD">
       <wsdl:input message="tns:AddDDSoapIn" />
@@ -78,6 +150,22 @@
     <wsdl:operation name="GetWeather">
       <wsdl:input message="tns:GetWeatherSoapIn" />
       <wsdl:output message="tns:GetWeatherSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemParameterManage">
+      <wsdl:input message="tns:GetSystemParameterManageSoapIn" />
+      <wsdl:output message="tns:GetSystemParameterManageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemGlobalParameter">
+      <wsdl:input message="tns:GetSystemGlobalParameterSoapIn" />
+      <wsdl:output message="tns:GetSystemGlobalParameterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSystemParameterManage">
+      <wsdl:input message="tns:UpdateSystemParameterManageSoapIn" />
+      <wsdl:output message="tns:UpdateSystemParameterManageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSystemGlobalParameter">
+      <wsdl:input message="tns:UpdateSystemGlobalParameterSoapIn" />
+      <wsdl:output message="tns:UpdateSystemGlobalParameterSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="SystemManagerServiceSoap" type="tns:SystemManagerServiceSoap">
@@ -109,6 +197,42 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetSystemParameterManage">
+      <soap:operation soapAction="http://tempuri.org/GetSystemParameterManage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemGlobalParameter">
+      <soap:operation soapAction="http://tempuri.org/GetSystemGlobalParameter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSystemParameterManage">
+      <soap:operation soapAction="http://tempuri.org/UpdateSystemParameterManage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSystemGlobalParameter">
+      <soap:operation soapAction="http://tempuri.org/UpdateSystemGlobalParameter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="SystemManagerServiceSoap12" type="tns:SystemManagerServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -132,6 +256,42 @@
     </wsdl:operation>
     <wsdl:operation name="GetWeather">
       <soap12:operation soapAction="http://tempuri.org/GetWeather" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemParameterManage">
+      <soap12:operation soapAction="http://tempuri.org/GetSystemParameterManage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemGlobalParameter">
+      <soap12:operation soapAction="http://tempuri.org/GetSystemGlobalParameter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSystemParameterManage">
+      <soap12:operation soapAction="http://tempuri.org/UpdateSystemParameterManage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSystemGlobalParameter">
+      <soap12:operation soapAction="http://tempuri.org/UpdateSystemGlobalParameter" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

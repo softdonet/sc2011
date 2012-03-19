@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Scada.Model.Entity;
 using Scada.Client.SL.CommClass;
 using Scada.Client.SL.ScadaDeviceService;
+using Scada.Model.Entity.Common;
 
 
 
@@ -50,8 +51,15 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
             //加载树型
             this.LoadTreeViewInfo();
-
-            //删除设备
+          
+            //加载维护人员信息
+            scadaDeviceServiceSoapClient.ListMaintenancePeopleCompleted += new EventHandler<ListMaintenancePeopleCompletedEventArgs>(scadaDeviceServiceSoapClient_ListMaintenancePeopleCompleted);
+            scadaDeviceServiceSoapClient.ListMaintenancePeopleAsync();
+            
+            //加载液晶屏显示
+            LoadDisplayType();
+            //加载当前选择模式
+            LoadCurrentModel();
 
 
 
@@ -60,6 +68,29 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
         #endregion
 
+        #region 初始化基本信息
+        private void LoadDisplayType()
+        {
+            List<KeyValue> keyValueList=new List<KeyValue>();
+            keyValueList.Clear();
+            keyValueList.Add(new KeyValue(){ Key=1, Value="完整显示"});
+            keyValueList.Add(new KeyValue(){ Key=2, Value="基本显示"});
+            keyValueList.Add(new KeyValue(){ Key=3, Value="天气预报"});
+            keyValueList.Add(new KeyValue(){ Key=4, Value="不显示"});
+
+            cmbDisplayType.ItemsSource = keyValueList;
+        }
+
+        private void LoadCurrentModel()
+        {
+            List<KeyValue> keyValueList = new List<KeyValue>();
+            keyValueList.Clear();
+            keyValueList.Add(new KeyValue() { Key=1, Value="实时模式" });
+            keyValueList.Add(new KeyValue() { Key=2, Value="整点模式" });
+            keyValueList.Add(new KeyValue() { Key=3, Value="优化模式" });
+            cmbCurrentModel.ItemsSource = keyValueList;
+        }
+        #endregion
         #region 加载树型结构
 
         private void LoadTreeViewInfo()
@@ -70,10 +101,18 @@ namespace Scada.Client.SL.Modules.BaseInfo
                 new EventHandler<ListDeviceTreeViewCompletedEventArgs>(scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted);
             scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
 
+
             //列设备信息
             scadaDeviceServiceSoapClient.ViewDeviceInfoCompleted +=
                 new EventHandler<ViewDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_ViewDeviceInfoCompleted);
 
+        }
+
+        void scadaDeviceServiceSoapClient_ListMaintenancePeopleCompleted(object sender, ListMaintenancePeopleCompletedEventArgs e)
+        {
+
+            List<MaintenancePeople> maintenancePeopleList = BinaryObjTransfer.BinaryDeserialize<List<MaintenancePeople>>(e.Result);
+            cmbMaintenancePeople.ItemsSource = maintenancePeopleList;
         }
 
         private void scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted(object sender, ListDeviceTreeViewCompletedEventArgs e)
@@ -85,7 +124,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
         {
             if (sender == null) { return; }
             DeviceTreeNode node = e.NewValue as DeviceTreeNode;
-            node.NodeParent = e.OldValue as DeviceTreeNode;
+            //node.NodeParent = e.OldValue as DeviceTreeNode;
             this._userSelTreeNode = node;
 
             this.btnExport.IsEnabled = true;
@@ -130,6 +169,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
             this.dpProductDate.Text = _userSelDeviceInfo.ProductDate.ToString();
             //管理分区
             this.txtManageArea.Text = _userSelTreeNode.NodeValue;
+            //this.txtManageArea.Text = _userSelTreeNode.NodeParent.NodeValue; ;
             this.cmbMaintenancePeople.SelectedValue = _userSelDeviceInfo.MaintenancePeopleID;
 
             this.txtInstallPlace.Text = _userSelDeviceInfo.InstallPlace;
@@ -248,7 +288,8 @@ namespace Scada.Client.SL.Modules.BaseInfo
                              += new EventHandler<AddDeviceInfoCompletedEventArgs>
                                             (scadaDeviceServiceSoapClient_AddDeviceInfoCompleted);
 
-            scadaDeviceServiceSoapClient.AddDeviceInfoAsync(BinaryObjTransfer.BinarySerialize(deviceInfo));
+            string strSerializer = BinaryObjTransfer.BinarySerialize(deviceInfo);
+            scadaDeviceServiceSoapClient.AddDeviceInfoAsync(strSerializer);
         }
 
         private void scadaDeviceServiceSoapClient_AddDeviceInfoCompleted(object sender, AddDeviceInfoCompletedEventArgs e)
@@ -304,7 +345,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
                 deviceInfo.ProductDate = DateTime.Parse(dpProductDate.Text);
             }
             //获取管理分区的编号
-            deviceInfo.ManageAreaID = _userSelTreeNode.NodeKey;
+            deviceInfo.ManageAreaID = new Guid("F5888F32-D7AB-485F-9340-4C65C6851F48");// _userSelTreeNode.NodeKey; ;
             deviceInfo.InstallPlace = txtInstallPlace.Text.Trim();
             
             //经度 维度 高度
@@ -355,7 +396,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
             
             //从温度
             deviceInfo.Temperature2AlarmValid = chkHighTemp2Alarm.IsChecked;
-            if (!string.IsNullOrEmpty(txtHighTemp1Alarm.Text.Trim()))
+            if (!string.IsNullOrEmpty(txtHighTemp2Alarm.Text.Trim()))
             {
                 deviceInfo.Temperature1HighAlarm = Decimal.Parse(txtHighTemp2Alarm.Text.Trim());
             }

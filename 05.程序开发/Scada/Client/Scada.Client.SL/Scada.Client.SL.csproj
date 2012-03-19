@@ -436,7 +436,19 @@
     <None Include="Service References\SystemManagerService\Scada.Client.SL.SystemManagerService.GetLoginResultTypeResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\SystemManagerService\Scada.Client.SL.SystemManagerService.GetSystemGlobalParameterResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SystemManagerService\Scada.Client.SL.SystemManagerService.GetSystemParameterManageResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\SystemManagerService\Scada.Client.SL.SystemManagerService.GetWeatherResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SystemManagerService\Scada.Client.SL.SystemManagerService.UpdateSystemGlobalParameterResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SystemManagerService\Scada.Client.SL.SystemManagerService.UpdateSystemParameterManageResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\SystemManagerService\SystemManagerService1.wsdl" />

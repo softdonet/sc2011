@@ -215,6 +215,7 @@ namespace Scada.BLL.Implement
                 
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@ID", DbType = DbType.Guid, Value = deviceValue.ID });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@DeviceNo", DbType = DbType.String, Value = deviceValue.DeviceNo });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@DeviceSN", DbType = DbType.String, Value = deviceValue.DeviceSN });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@HardType", DbType = DbType.String, Value = deviceValue.HardType });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@ProductDate", DbType = DbType.Date, Value = deviceValue.ProductDate });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@DeviceMAC", DbType = DbType.String, Value = deviceValue.DeviceMAC });
@@ -261,8 +262,8 @@ namespace Scada.BLL.Implement
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@FullTimeParam2", DbType = DbType.Int32, Value = deviceValue.FullTimeParam2 });
 
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@OptimizeParam1", DbType = DbType.Int32, Value = deviceValue.OptimizeParam1 });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@FullTimeParam2", DbType = DbType.Int32, Value = deviceValue.OptimizeParam2 });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@FullTimeParam3", DbType = DbType.Int32, Value = deviceValue.OptimizeParam3 });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@OptimizeParam2", DbType = DbType.Int32, Value = deviceValue.OptimizeParam2 });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@OptimizeParam3", DbType = DbType.Int32, Value = deviceValue.OptimizeParam3 });
                
                 #endregion
 
@@ -731,7 +732,7 @@ namespace Scada.BLL.Implement
                     {
                         DeviceTreeNode man = ManTable[i];
                         man.NodeChild = getTreeNodeDevice(man.NodeKey, string.Empty);
-                        man.NodeParent = manage;
+                        //man.NodeParent = manage;
                         manage.AddNodeKey(man);
                     }
                     area.AddNodeKey(manage);

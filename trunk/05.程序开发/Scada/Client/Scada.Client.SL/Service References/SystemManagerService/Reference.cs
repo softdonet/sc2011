@@ -32,6 +32,26 @@ namespace Scada.Client.SL.SystemManagerService {
         System.IAsyncResult BeginGetWeather(Scada.Client.SL.SystemManagerService.GetWeatherRequest request, System.AsyncCallback callback, object asyncState);
         
         Scada.Client.SL.SystemManagerService.GetWeatherResponse EndGetWeather(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/GetSystemParameterManage", ReplyAction="*")]
+        System.IAsyncResult BeginGetSystemParameterManage(Scada.Client.SL.SystemManagerService.GetSystemParameterManageRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.SL.SystemManagerService.GetSystemParameterManageResponse EndGetSystemParameterManage(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/GetSystemGlobalParameter", ReplyAction="*")]
+        System.IAsyncResult BeginGetSystemGlobalParameter(Scada.Client.SL.SystemManagerService.GetSystemGlobalParameterRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.SL.SystemManagerService.GetSystemGlobalParameterResponse EndGetSystemGlobalParameter(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/UpdateSystemParameterManage", ReplyAction="*")]
+        System.IAsyncResult BeginUpdateSystemParameterManage(Scada.Client.SL.SystemManagerService.UpdateSystemParameterManageRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.SL.SystemManagerService.UpdateSystemParameterManageResponse EndUpdateSystemParameterManage(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/UpdateSystemGlobalParameter", ReplyAction="*")]
+        System.IAsyncResult BeginUpdateSystemGlobalParameter(Scada.Client.SL.SystemManagerService.UpdateSystemGlobalParameterRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.SL.SystemManagerService.UpdateSystemGlobalParameterResponse EndUpdateSystemGlobalParameter(System.IAsyncResult result);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -174,6 +194,264 @@ namespace Scada.Client.SL.SystemManagerService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetSystemParameterManageRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetSystemParameterManage", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.SystemManagerService.GetSystemParameterManageRequestBody Body;
+        
+        public GetSystemParameterManageRequest() {
+        }
+        
+        public GetSystemParameterManageRequest(Scada.Client.SL.SystemManagerService.GetSystemParameterManageRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class GetSystemParameterManageRequestBody {
+        
+        public GetSystemParameterManageRequestBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetSystemParameterManageResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetSystemParameterManageResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.SystemManagerService.GetSystemParameterManageResponseBody Body;
+        
+        public GetSystemParameterManageResponse() {
+        }
+        
+        public GetSystemParameterManageResponse(Scada.Client.SL.SystemManagerService.GetSystemParameterManageResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetSystemParameterManageResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetSystemParameterManageResult;
+        
+        public GetSystemParameterManageResponseBody() {
+        }
+        
+        public GetSystemParameterManageResponseBody(string GetSystemParameterManageResult) {
+            this.GetSystemParameterManageResult = GetSystemParameterManageResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetSystemGlobalParameterRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetSystemGlobalParameter", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.SystemManagerService.GetSystemGlobalParameterRequestBody Body;
+        
+        public GetSystemGlobalParameterRequest() {
+        }
+        
+        public GetSystemGlobalParameterRequest(Scada.Client.SL.SystemManagerService.GetSystemGlobalParameterRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class GetSystemGlobalParameterRequestBody {
+        
+        public GetSystemGlobalParameterRequestBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetSystemGlobalParameterResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetSystemGlobalParameterResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.SystemManagerService.GetSystemGlobalParameterResponseBody Body;
+        
+        public GetSystemGlobalParameterResponse() {
+        }
+        
+        public GetSystemGlobalParameterResponse(Scada.Client.SL.SystemManagerService.GetSystemGlobalParameterResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetSystemGlobalParameterResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetSystemGlobalParameterResult;
+        
+        public GetSystemGlobalParameterResponseBody() {
+        }
+        
+        public GetSystemGlobalParameterResponseBody(string GetSystemGlobalParameterResult) {
+            this.GetSystemGlobalParameterResult = GetSystemGlobalParameterResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UpdateSystemParameterManageRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UpdateSystemParameterManage", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.SystemManagerService.UpdateSystemParameterManageRequestBody Body;
+        
+        public UpdateSystemParameterManageRequest() {
+        }
+        
+        public UpdateSystemParameterManageRequest(Scada.Client.SL.SystemManagerService.UpdateSystemParameterManageRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class UpdateSystemParameterManageRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string systemParameterManage;
+        
+        public UpdateSystemParameterManageRequestBody() {
+        }
+        
+        public UpdateSystemParameterManageRequestBody(string systemParameterManage) {
+            this.systemParameterManage = systemParameterManage;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UpdateSystemParameterManageResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UpdateSystemParameterManageResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.SystemManagerService.UpdateSystemParameterManageResponseBody Body;
+        
+        public UpdateSystemParameterManageResponse() {
+        }
+        
+        public UpdateSystemParameterManageResponse(Scada.Client.SL.SystemManagerService.UpdateSystemParameterManageResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class UpdateSystemParameterManageResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool UpdateSystemParameterManageResult;
+        
+        public UpdateSystemParameterManageResponseBody() {
+        }
+        
+        public UpdateSystemParameterManageResponseBody(bool UpdateSystemParameterManageResult) {
+            this.UpdateSystemParameterManageResult = UpdateSystemParameterManageResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UpdateSystemGlobalParameterRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UpdateSystemGlobalParameter", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.SystemManagerService.UpdateSystemGlobalParameterRequestBody Body;
+        
+        public UpdateSystemGlobalParameterRequest() {
+        }
+        
+        public UpdateSystemGlobalParameterRequest(Scada.Client.SL.SystemManagerService.UpdateSystemGlobalParameterRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class UpdateSystemGlobalParameterRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string systemGlobalParameter;
+        
+        public UpdateSystemGlobalParameterRequestBody() {
+        }
+        
+        public UpdateSystemGlobalParameterRequestBody(string systemGlobalParameter) {
+            this.systemGlobalParameter = systemGlobalParameter;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UpdateSystemGlobalParameterResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UpdateSystemGlobalParameterResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.SystemManagerService.UpdateSystemGlobalParameterResponseBody Body;
+        
+        public UpdateSystemGlobalParameterResponse() {
+        }
+        
+        public UpdateSystemGlobalParameterResponse(Scada.Client.SL.SystemManagerService.UpdateSystemGlobalParameterResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class UpdateSystemGlobalParameterResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool UpdateSystemGlobalParameterResult;
+        
+        public UpdateSystemGlobalParameterResponseBody() {
+        }
+        
+        public UpdateSystemGlobalParameterResponseBody(bool UpdateSystemGlobalParameterResult) {
+            this.UpdateSystemGlobalParameterResult = UpdateSystemGlobalParameterResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface SystemManagerServiceSoapChannel : Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap, System.ServiceModel.IClientChannel {
     }
@@ -237,6 +515,82 @@ namespace Scada.Client.SL.SystemManagerService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetSystemParameterManageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetSystemParameterManageCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetSystemGlobalParameterCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetSystemGlobalParameterCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UpdateSystemParameterManageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UpdateSystemParameterManageCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UpdateSystemGlobalParameterCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UpdateSystemGlobalParameterCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class SystemManagerServiceSoapClient : System.ServiceModel.ClientBase<Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap>, Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap {
         
         private BeginOperationDelegate onBeginAddDDDelegate;
@@ -256,6 +610,30 @@ namespace Scada.Client.SL.SystemManagerService {
         private EndOperationDelegate onEndGetWeatherDelegate;
         
         private System.Threading.SendOrPostCallback onGetWeatherCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetSystemParameterManageDelegate;
+        
+        private EndOperationDelegate onEndGetSystemParameterManageDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetSystemParameterManageCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetSystemGlobalParameterDelegate;
+        
+        private EndOperationDelegate onEndGetSystemGlobalParameterDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetSystemGlobalParameterCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginUpdateSystemParameterManageDelegate;
+        
+        private EndOperationDelegate onEndUpdateSystemParameterManageDelegate;
+        
+        private System.Threading.SendOrPostCallback onUpdateSystemParameterManageCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginUpdateSystemGlobalParameterDelegate;
+        
+        private EndOperationDelegate onEndUpdateSystemGlobalParameterDelegate;
+        
+        private System.Threading.SendOrPostCallback onUpdateSystemGlobalParameterCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -315,6 +693,14 @@ namespace Scada.Client.SL.SystemManagerService {
         public event System.EventHandler<GetLoginResultTypeCompletedEventArgs> GetLoginResultTypeCompleted;
         
         public event System.EventHandler<GetWeatherCompletedEventArgs> GetWeatherCompleted;
+        
+        public event System.EventHandler<GetSystemParameterManageCompletedEventArgs> GetSystemParameterManageCompleted;
+        
+        public event System.EventHandler<GetSystemGlobalParameterCompletedEventArgs> GetSystemGlobalParameterCompleted;
+        
+        public event System.EventHandler<UpdateSystemParameterManageCompletedEventArgs> UpdateSystemParameterManageCompleted;
+        
+        public event System.EventHandler<UpdateSystemGlobalParameterCompletedEventArgs> UpdateSystemGlobalParameterCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -491,6 +877,240 @@ namespace Scada.Client.SL.SystemManagerService {
                         cityName}, this.onEndGetWeatherDelegate, this.onGetWeatherCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap.BeginGetSystemParameterManage(Scada.Client.SL.SystemManagerService.GetSystemParameterManageRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetSystemParameterManage(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginGetSystemParameterManage(System.AsyncCallback callback, object asyncState) {
+            Scada.Client.SL.SystemManagerService.GetSystemParameterManageRequest inValue = new Scada.Client.SL.SystemManagerService.GetSystemParameterManageRequest();
+            inValue.Body = new Scada.Client.SL.SystemManagerService.GetSystemParameterManageRequestBody();
+            return ((Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap)(this)).BeginGetSystemParameterManage(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.SL.SystemManagerService.GetSystemParameterManageResponse Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap.EndGetSystemParameterManage(System.IAsyncResult result) {
+            return base.Channel.EndGetSystemParameterManage(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private string EndGetSystemParameterManage(System.IAsyncResult result) {
+            Scada.Client.SL.SystemManagerService.GetSystemParameterManageResponse retVal = ((Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap)(this)).EndGetSystemParameterManage(result);
+            return retVal.Body.GetSystemParameterManageResult;
+        }
+        
+        private System.IAsyncResult OnBeginGetSystemParameterManage(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetSystemParameterManage(callback, asyncState);
+        }
+        
+        private object[] OnEndGetSystemParameterManage(System.IAsyncResult result) {
+            string retVal = this.EndGetSystemParameterManage(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetSystemParameterManageCompleted(object state) {
+            if ((this.GetSystemParameterManageCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetSystemParameterManageCompleted(this, new GetSystemParameterManageCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetSystemParameterManageAsync() {
+            this.GetSystemParameterManageAsync(null);
+        }
+        
+        public void GetSystemParameterManageAsync(object userState) {
+            if ((this.onBeginGetSystemParameterManageDelegate == null)) {
+                this.onBeginGetSystemParameterManageDelegate = new BeginOperationDelegate(this.OnBeginGetSystemParameterManage);
+            }
+            if ((this.onEndGetSystemParameterManageDelegate == null)) {
+                this.onEndGetSystemParameterManageDelegate = new EndOperationDelegate(this.OnEndGetSystemParameterManage);
+            }
+            if ((this.onGetSystemParameterManageCompletedDelegate == null)) {
+                this.onGetSystemParameterManageCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetSystemParameterManageCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetSystemParameterManageDelegate, null, this.onEndGetSystemParameterManageDelegate, this.onGetSystemParameterManageCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap.BeginGetSystemGlobalParameter(Scada.Client.SL.SystemManagerService.GetSystemGlobalParameterRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetSystemGlobalParameter(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginGetSystemGlobalParameter(System.AsyncCallback callback, object asyncState) {
+            Scada.Client.SL.SystemManagerService.GetSystemGlobalParameterRequest inValue = new Scada.Client.SL.SystemManagerService.GetSystemGlobalParameterRequest();
+            inValue.Body = new Scada.Client.SL.SystemManagerService.GetSystemGlobalParameterRequestBody();
+            return ((Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap)(this)).BeginGetSystemGlobalParameter(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.SL.SystemManagerService.GetSystemGlobalParameterResponse Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap.EndGetSystemGlobalParameter(System.IAsyncResult result) {
+            return base.Channel.EndGetSystemGlobalParameter(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private string EndGetSystemGlobalParameter(System.IAsyncResult result) {
+            Scada.Client.SL.SystemManagerService.GetSystemGlobalParameterResponse retVal = ((Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap)(this)).EndGetSystemGlobalParameter(result);
+            return retVal.Body.GetSystemGlobalParameterResult;
+        }
+        
+        private System.IAsyncResult OnBeginGetSystemGlobalParameter(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetSystemGlobalParameter(callback, asyncState);
+        }
+        
+        private object[] OnEndGetSystemGlobalParameter(System.IAsyncResult result) {
+            string retVal = this.EndGetSystemGlobalParameter(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetSystemGlobalParameterCompleted(object state) {
+            if ((this.GetSystemGlobalParameterCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetSystemGlobalParameterCompleted(this, new GetSystemGlobalParameterCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetSystemGlobalParameterAsync() {
+            this.GetSystemGlobalParameterAsync(null);
+        }
+        
+        public void GetSystemGlobalParameterAsync(object userState) {
+            if ((this.onBeginGetSystemGlobalParameterDelegate == null)) {
+                this.onBeginGetSystemGlobalParameterDelegate = new BeginOperationDelegate(this.OnBeginGetSystemGlobalParameter);
+            }
+            if ((this.onEndGetSystemGlobalParameterDelegate == null)) {
+                this.onEndGetSystemGlobalParameterDelegate = new EndOperationDelegate(this.OnEndGetSystemGlobalParameter);
+            }
+            if ((this.onGetSystemGlobalParameterCompletedDelegate == null)) {
+                this.onGetSystemGlobalParameterCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetSystemGlobalParameterCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetSystemGlobalParameterDelegate, null, this.onEndGetSystemGlobalParameterDelegate, this.onGetSystemGlobalParameterCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap.BeginUpdateSystemParameterManage(Scada.Client.SL.SystemManagerService.UpdateSystemParameterManageRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateSystemParameterManage(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginUpdateSystemParameterManage(string systemParameterManage, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.SL.SystemManagerService.UpdateSystemParameterManageRequest inValue = new Scada.Client.SL.SystemManagerService.UpdateSystemParameterManageRequest();
+            inValue.Body = new Scada.Client.SL.SystemManagerService.UpdateSystemParameterManageRequestBody();
+            inValue.Body.systemParameterManage = systemParameterManage;
+            return ((Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap)(this)).BeginUpdateSystemParameterManage(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.SL.SystemManagerService.UpdateSystemParameterManageResponse Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap.EndUpdateSystemParameterManage(System.IAsyncResult result) {
+            return base.Channel.EndUpdateSystemParameterManage(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private bool EndUpdateSystemParameterManage(System.IAsyncResult result) {
+            Scada.Client.SL.SystemManagerService.UpdateSystemParameterManageResponse retVal = ((Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap)(this)).EndUpdateSystemParameterManage(result);
+            return retVal.Body.UpdateSystemParameterManageResult;
+        }
+        
+        private System.IAsyncResult OnBeginUpdateSystemParameterManage(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string systemParameterManage = ((string)(inValues[0]));
+            return this.BeginUpdateSystemParameterManage(systemParameterManage, callback, asyncState);
+        }
+        
+        private object[] OnEndUpdateSystemParameterManage(System.IAsyncResult result) {
+            bool retVal = this.EndUpdateSystemParameterManage(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUpdateSystemParameterManageCompleted(object state) {
+            if ((this.UpdateSystemParameterManageCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UpdateSystemParameterManageCompleted(this, new UpdateSystemParameterManageCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UpdateSystemParameterManageAsync(string systemParameterManage) {
+            this.UpdateSystemParameterManageAsync(systemParameterManage, null);
+        }
+        
+        public void UpdateSystemParameterManageAsync(string systemParameterManage, object userState) {
+            if ((this.onBeginUpdateSystemParameterManageDelegate == null)) {
+                this.onBeginUpdateSystemParameterManageDelegate = new BeginOperationDelegate(this.OnBeginUpdateSystemParameterManage);
+            }
+            if ((this.onEndUpdateSystemParameterManageDelegate == null)) {
+                this.onEndUpdateSystemParameterManageDelegate = new EndOperationDelegate(this.OnEndUpdateSystemParameterManage);
+            }
+            if ((this.onUpdateSystemParameterManageCompletedDelegate == null)) {
+                this.onUpdateSystemParameterManageCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateSystemParameterManageCompleted);
+            }
+            base.InvokeAsync(this.onBeginUpdateSystemParameterManageDelegate, new object[] {
+                        systemParameterManage}, this.onEndUpdateSystemParameterManageDelegate, this.onUpdateSystemParameterManageCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap.BeginUpdateSystemGlobalParameter(Scada.Client.SL.SystemManagerService.UpdateSystemGlobalParameterRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateSystemGlobalParameter(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginUpdateSystemGlobalParameter(string systemGlobalParameter, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.SL.SystemManagerService.UpdateSystemGlobalParameterRequest inValue = new Scada.Client.SL.SystemManagerService.UpdateSystemGlobalParameterRequest();
+            inValue.Body = new Scada.Client.SL.SystemManagerService.UpdateSystemGlobalParameterRequestBody();
+            inValue.Body.systemGlobalParameter = systemGlobalParameter;
+            return ((Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap)(this)).BeginUpdateSystemGlobalParameter(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.SL.SystemManagerService.UpdateSystemGlobalParameterResponse Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap.EndUpdateSystemGlobalParameter(System.IAsyncResult result) {
+            return base.Channel.EndUpdateSystemGlobalParameter(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private bool EndUpdateSystemGlobalParameter(System.IAsyncResult result) {
+            Scada.Client.SL.SystemManagerService.UpdateSystemGlobalParameterResponse retVal = ((Scada.Client.SL.SystemManagerService.SystemManagerServiceSoap)(this)).EndUpdateSystemGlobalParameter(result);
+            return retVal.Body.UpdateSystemGlobalParameterResult;
+        }
+        
+        private System.IAsyncResult OnBeginUpdateSystemGlobalParameter(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string systemGlobalParameter = ((string)(inValues[0]));
+            return this.BeginUpdateSystemGlobalParameter(systemGlobalParameter, callback, asyncState);
+        }
+        
+        private object[] OnEndUpdateSystemGlobalParameter(System.IAsyncResult result) {
+            bool retVal = this.EndUpdateSystemGlobalParameter(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUpdateSystemGlobalParameterCompleted(object state) {
+            if ((this.UpdateSystemGlobalParameterCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UpdateSystemGlobalParameterCompleted(this, new UpdateSystemGlobalParameterCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UpdateSystemGlobalParameterAsync(string systemGlobalParameter) {
+            this.UpdateSystemGlobalParameterAsync(systemGlobalParameter, null);
+        }
+        
+        public void UpdateSystemGlobalParameterAsync(string systemGlobalParameter, object userState) {
+            if ((this.onBeginUpdateSystemGlobalParameterDelegate == null)) {
+                this.onBeginUpdateSystemGlobalParameterDelegate = new BeginOperationDelegate(this.OnBeginUpdateSystemGlobalParameter);
+            }
+            if ((this.onEndUpdateSystemGlobalParameterDelegate == null)) {
+                this.onEndUpdateSystemGlobalParameterDelegate = new EndOperationDelegate(this.OnEndUpdateSystemGlobalParameter);
+            }
+            if ((this.onUpdateSystemGlobalParameterCompletedDelegate == null)) {
+                this.onUpdateSystemGlobalParameterCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateSystemGlobalParameterCompleted);
+            }
+            base.InvokeAsync(this.onBeginUpdateSystemGlobalParameterDelegate, new object[] {
+                        systemGlobalParameter}, this.onEndUpdateSystemGlobalParameterDelegate, this.onUpdateSystemGlobalParameterCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -604,6 +1224,58 @@ namespace Scada.Client.SL.SystemManagerService {
             public Scada.Client.SL.SystemManagerService.GetWeatherResponse EndGetWeather(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 Scada.Client.SL.SystemManagerService.GetWeatherResponse _result = ((Scada.Client.SL.SystemManagerService.GetWeatherResponse)(base.EndInvoke("GetWeather", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetSystemParameterManage(Scada.Client.SL.SystemManagerService.GetSystemParameterManageRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("GetSystemParameterManage", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.SL.SystemManagerService.GetSystemParameterManageResponse EndGetSystemParameterManage(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.SL.SystemManagerService.GetSystemParameterManageResponse _result = ((Scada.Client.SL.SystemManagerService.GetSystemParameterManageResponse)(base.EndInvoke("GetSystemParameterManage", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetSystemGlobalParameter(Scada.Client.SL.SystemManagerService.GetSystemGlobalParameterRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("GetSystemGlobalParameter", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.SL.SystemManagerService.GetSystemGlobalParameterResponse EndGetSystemGlobalParameter(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.SL.SystemManagerService.GetSystemGlobalParameterResponse _result = ((Scada.Client.SL.SystemManagerService.GetSystemGlobalParameterResponse)(base.EndInvoke("GetSystemGlobalParameter", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginUpdateSystemParameterManage(Scada.Client.SL.SystemManagerService.UpdateSystemParameterManageRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("UpdateSystemParameterManage", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.SL.SystemManagerService.UpdateSystemParameterManageResponse EndUpdateSystemParameterManage(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.SL.SystemManagerService.UpdateSystemParameterManageResponse _result = ((Scada.Client.SL.SystemManagerService.UpdateSystemParameterManageResponse)(base.EndInvoke("UpdateSystemParameterManage", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginUpdateSystemGlobalParameter(Scada.Client.SL.SystemManagerService.UpdateSystemGlobalParameterRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("UpdateSystemGlobalParameter", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.SL.SystemManagerService.UpdateSystemGlobalParameterResponse EndUpdateSystemGlobalParameter(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.SL.SystemManagerService.UpdateSystemGlobalParameterResponse _result = ((Scada.Client.SL.SystemManagerService.UpdateSystemGlobalParameterResponse)(base.EndInvoke("UpdateSystemGlobalParameter", _args, result)));
                 return _result;
             }
         }

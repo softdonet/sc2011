@@ -92,8 +92,8 @@
                             <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,204,0,0" Name="txtOptimizeParam2" VerticalAlignment="Top" Width="120" />
                             <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="222,240,0,0" Name="textBlock6" Text="逢变则报参数3:" VerticalAlignment="Top" />
                             <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,236,0,0" Name="txtOptimizeParam3" VerticalAlignment="Top" Width="120" />
-                            <ComboBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="295,17,0,0" Name="cmbDisplayType" VerticalAlignment="Top" Width="120" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="212,19,0,0" Name="textBlock7" Text="液晶屏显示类型:" VerticalAlignment="Top" />
+                            <ComboBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="303,15,0,0" Name="cmbDisplayType" DisplayMemberPath="Value" SelectedValuePath="Key" VerticalAlignment="Top" Width="120" />
+                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="212,19,0,0" Name="textBlock7" Text="液晶屏显示类型:" VerticalAlignment="Top"  />
                             <CheckBox Content="是否启用紧急按钮" Grid.Column="2" Height="16" HorizontalAlignment="Left" Margin="7,19,0,0" Name="chkUrgencyBtnEnable" VerticalAlignment="Top" />
                             <CheckBox Content="主温度报警设置有效" Grid.Column="2" Height="16" HorizontalAlignment="Left" Margin="5,53,0,0" Name="chkHighTemp1Alarm" VerticalAlignment="Top" />
                             <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="0,90,0,0" Name="textBlock8" Text="主温度高报警值:" VerticalAlignment="Top" />
@@ -120,10 +120,10 @@
                                 <TextBox Height="23" HorizontalAlignment="Left" Margin="106,413,0,0" Name="txtElectricityHighAlarm" VerticalAlignment="Top" Width="97" Grid.Column="2" />
                                 <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,442,0,0" Name="textBlock17" Text="电量低报警值:" VerticalAlignment="Top" Grid.Column="2" />
                                 <TextBox Height="23" HorizontalAlignment="Left" Margin="106,440,0,0" Name="txtElectricityLowAlarm" VerticalAlignment="Top" Width="97" Grid.Column="2" />
-                                <ComboBox Height="23" HorizontalAlignment="Left" Margin="296,50,0,0" Name="cmbCurrentModel" VerticalAlignment="Top" Width="120" Grid.Column="2" />
+                                <ComboBox Height="23" HorizontalAlignment="Left" Margin="302,50,0,0" Name="cmbCurrentModel" DisplayMemberPath="Value" SelectedValuePath="Key" VerticalAlignment="Top" Width="120" Grid.Column="2" />
                                 <TextBlock Height="23" HorizontalAlignment="Left" Margin="213,55,0,0" Name="textBlock18" Text="当前选择模式:" VerticalAlignment="Top" Grid.Column="2" />
                                 <sdk:Label Content="维护人员：" HorizontalAlignment="Left" Margin="9,379,0,0" VerticalAlignment="Top" Width="62" Grid.Column="1" />
-                                <ComboBox Height="23" HorizontalAlignment="Left" Margin="85,376,0,0" Name="cmbMaintenancePeople" VerticalAlignment="Top" Width="204" Grid.Column="1" />
+                                <ComboBox Height="23" HorizontalAlignment="Left" Margin="85,376,0,0" Name="cmbMaintenancePeople"  DisplayMemberPath="Name" SelectedValuePath="ID" VerticalAlignment="Top" Width="204" Grid.Column="1" />
                                 <sdk:DatePicker Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="86,147,0,0" Name="dpProductDate" VerticalAlignment="Top" Width="204" />
                             </Grid>
                     </Border>

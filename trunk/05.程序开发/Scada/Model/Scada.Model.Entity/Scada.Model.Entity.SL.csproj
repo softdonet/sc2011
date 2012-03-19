@@ -59,6 +59,7 @@
     <Compile Include="Common\ChartSource.cs" />
     <Compile Include="Common\DeviceRealTimeTree.cs" />
     <Compile Include="Common\DeviceTreeNode.cs" />
+    <Compile Include="Common\KeyValue.cs" />
     <Compile Include="Common\Weather.cs" />
     <Compile Include="DBClass\DeviceAlarm.cs" />
     <Compile Include="DBClass\DeviceInfo.cs" />

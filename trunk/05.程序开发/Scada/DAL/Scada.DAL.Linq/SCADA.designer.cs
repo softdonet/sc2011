@@ -74,11 +74,6 @@ namespace Scada.DAL.Linq
     partial void DeleteUserEventDealDetail(UserEventDealDetail instance);
     #endregion
 		
-		public SCADADataContext() : 
-				base(global::Scada.DAL.Linq.Properties.Settings.Default.zhengguojiangConnectionString, mappingSource)
-		{
-			OnCreated();
-		}
 		
 		public SCADADataContext(string connection) : 
 				base(connection, mappingSource)

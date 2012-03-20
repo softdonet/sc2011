@@ -179,10 +179,10 @@ namespace Scada.BLL.Implement
 
         public Boolean AddDeviceInfo(string deviceInfo)
         {
-
-            ScadaDeviceServiceLinq sl = new ScadaDeviceServiceLinq();
-            sl.AddDeviceInfo(deviceInfo);
+            ScadaDeviceServiceLinq dd = new ScadaDeviceServiceLinq();
+            dd.AddDeviceInfo(deviceInfo);
             return true;
+
 
             Int32 rowNum = 0;
             Boolean result = false;

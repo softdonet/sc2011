@@ -35,6 +35,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.XML" />
@@ -44,6 +45,7 @@
     <Compile Include="DeviceRealTimeMonitorService.cs" />
     <Compile Include="ScadaDeviceService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScadaDeviceServiceLinq.cs" />
     <Compile Include="Service References\WeatherWebService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -55,6 +57,10 @@
     <ProjectReference Include="..\..\DAL\Scada.DAL.Ado\Scada.DAL.Ado.csproj">
       <Project>{E561BA4F-1A8E-485A-88B2-D35D0CAF5638}</Project>
       <Name>Scada.DAL.Ado</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DAL\Scada.DAL.Linq\Scada.DAL.Linq.csproj">
+      <Project>{ED65D1D1-1FB9-4EF2-BEA0-D28F87A771D7}</Project>
+      <Name>Scada.DAL.Linq</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Model\Scada.Model.Entity\Scada.Model.Entity.csproj">
       <Project>{185CF734-5C46-4496-A65C-1210607D53F4}</Project>

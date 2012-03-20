@@ -173,7 +173,7 @@ namespace Scada.Client.SL
                     break;
                 //统计分析
                 case "childMenuStatistics":
-                    this.ViewHost.Child =new  SCADA.UI.Modules.Statistics.StatisticsAnalyseNew();//StatisticsAnalyse.GetInstance();
+                   // this.ViewHost.Child =new  SCADA.UI.Modules.Statistics.StatisticsAnalyseNew();//StatisticsAnalyse.GetInstance();
 
                     break;
             }

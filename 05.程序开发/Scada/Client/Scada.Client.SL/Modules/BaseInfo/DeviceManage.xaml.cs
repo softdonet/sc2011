@@ -409,11 +409,29 @@ namespace Scada.Client.SL.Modules.BaseInfo
             deviceInfo.HumidityAlarmValid = chkHumidityAlarm.IsChecked;
             if (!string.IsNullOrEmpty(txtHumidityHighAlarm.Text.Trim()))
             {
-                deviceInfo.HumidityHighAlarm = Decimal.Parse(txtHumidityHighAlarm.Text.Trim());
+                decimal value = Decimal.Parse(txtHumidityHighAlarm.Text.Trim());
+                if (value >= 1)
+                {
+                    MessageBox.Show("请输入大于0小于1的数!");
+                    return;
+                }
+                else
+                {
+                    deviceInfo.HumidityHighAlarm = value;
+                }
             }
             if (!string.IsNullOrEmpty(txtHumidityLowAlarm.Text.Trim()))
             {
-                deviceInfo.HumidityLowAlarm =Decimal.Parse(txtHumidityLowAlarm.Text.Trim());
+                decimal value = Decimal.Parse(txtHumidityLowAlarm.Text.Trim());
+                if (value >= 1)
+                {
+                    MessageBox.Show("请输入大于0小于1的数!");
+                    return;
+                }
+                else
+                {
+                    deviceInfo.HumidityLowAlarm = value;
+                }
             }
             //信号
 
@@ -431,7 +449,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
             deviceInfo.ElectricityAlarmValid = chkElectricityAlarm.IsChecked;
             if (!string.IsNullOrEmpty(txtElectricityHighAlarm.Text.Trim()))
             {
-                deviceInfo.ElectricityHighAlarm = Int32.Parse(txtElectricityLowAlarm.Text.Trim());
+                deviceInfo.ElectricityHighAlarm = Int32.Parse(txtElectricityHighAlarm.Text.Trim());
             }
             if (!string.IsNullOrEmpty(txtElectricityLowAlarm.Text.Trim()))
             {

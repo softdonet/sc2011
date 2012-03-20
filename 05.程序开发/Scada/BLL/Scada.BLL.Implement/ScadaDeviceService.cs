@@ -435,6 +435,10 @@ namespace Scada.BLL.Implement
 
         public Boolean DeleteDeviceInfo(Guid deviceGuid)
         {
+            ScadaDeviceServiceLinq dd = new ScadaDeviceServiceLinq();
+            dd.Del(deviceGuid.ToString());
+            return true;
+            //--------------------------------------------------
             Boolean result = false;
             try
             {

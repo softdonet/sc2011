@@ -50,7 +50,7 @@ namespace Scada.BLL.Implement
 
             var obj = sCADADataContext.DeviceInfos.SingleOrDefault(e => e.ID == deviceValue.ID);
             if (obj != null)
-            {
+            {                
                 obj.DeviceNo = deviceValue.DeviceNo;
                 obj.DeviceSN = deviceValue.DeviceSN;
                 //Todo:其他属性

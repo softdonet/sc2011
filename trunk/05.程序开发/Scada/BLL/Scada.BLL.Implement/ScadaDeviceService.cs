@@ -179,6 +179,11 @@ namespace Scada.BLL.Implement
 
         public Boolean AddDeviceInfo(string deviceInfo)
         {
+
+            ScadaDeviceServiceLinq sl = new ScadaDeviceServiceLinq();
+            sl.AddDeviceInfo(deviceInfo);
+            return true;
+
             Int32 rowNum = 0;
             Boolean result = false;
           //  SqlParameter para = null;
@@ -212,7 +217,6 @@ namespace Scada.BLL.Implement
         
                 #region 对应的参数
 
-                
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@ID", DbType = DbType.Guid, Value = deviceValue.ID });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@DeviceNo", DbType = DbType.String, Value = deviceValue.DeviceNo });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@DeviceSN", DbType = DbType.String, Value = deviceValue.DeviceSN });
@@ -224,9 +228,9 @@ namespace Scada.BLL.Implement
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@ManageAreaID", DbType = DbType.Guid, Value = deviceValue.ManageAreaID });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@MaintenancePeopleID", DbType = DbType.Guid, Value = deviceValue.MaintenancePeopleID });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@InstallPlace", DbType = DbType.String, Value = deviceValue.InstallPlace });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Longitude", DbType = DbType.Decimal, Value = deviceValue.Longitude });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Latitude", DbType = DbType.Decimal, Value = deviceValue.Latitude });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@High", DbType = DbType.Decimal, Value = deviceValue.High });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Longitude", DbType = DbType.Decimal,Size=20, Value = deviceValue.Longitude });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Latitude", DbType = DbType.Decimal,Size=20, Value = deviceValue.Latitude });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@High", DbType = DbType.Decimal,Size=20, Value = deviceValue.High });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@Comment", DbType = DbType.String, Value = deviceValue.Comment });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@Windage", DbType = DbType.Int32, Value = deviceValue.Windage });
 
@@ -237,16 +241,16 @@ namespace Scada.BLL.Implement
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@InforBtnEnable", DbType = DbType.Boolean, Value = deviceValue.InforBtnEnable });
                 //主温度
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature1AlarmValid", DbType = DbType.Boolean, Value = deviceValue.Temperature1AlarmValid });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature1HighAlarm", DbType = DbType.Decimal, Value = deviceValue.Temperature1HighAlarm });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature1LowAlarm", DbType = DbType.Decimal, Value = deviceValue.Temperature1LowAlarm });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature1HighAlarm", DbType = DbType.Decimal,Size=5, Value = deviceValue.Temperature1HighAlarm });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature1LowAlarm", DbType = DbType.Decimal,Size=5, Value = deviceValue.Temperature1LowAlarm });
                 //从温度
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature2AlarmValid", DbType = DbType.Boolean, Value = deviceValue.Temperature2AlarmValid });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature2HighAlarm", DbType = DbType.Decimal, Value = deviceValue.Temperature2HighAlarm });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature2LowAlarm", DbType = DbType.Decimal, Value = deviceValue.Temperature2LowAlarm });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature2HighAlarm", DbType = DbType.Decimal, Size=5, Value = deviceValue.Temperature2HighAlarm });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature2LowAlarm", DbType = DbType.Decimal,Size=5, Value = deviceValue.Temperature2LowAlarm });
                //湿度
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@HumidityAlarmValid", DbType = DbType.Boolean, Value = deviceValue.HumidityAlarmValid });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@HumidityHighAlarm", DbType = DbType.Decimal, Value = deviceValue.HumidityHighAlarm });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@HumidityLowAlarm", DbType = DbType.Decimal, Value = deviceValue.HumidityLowAlarm });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@HumidityHighAlarm", DbType = DbType.Decimal, Size=2, Value = deviceValue.HumidityHighAlarm });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@HumidityLowAlarm", DbType = DbType.Decimal, Size=2, Value = deviceValue.HumidityLowAlarm });
                 //信号
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@SignalAlarmValid", DbType = DbType.Boolean, Value = deviceValue.SignalAlarmValid });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@SignalHighAlarm", DbType = DbType.Int32, Value = deviceValue.SignalHighAlarm });
@@ -264,7 +268,7 @@ namespace Scada.BLL.Implement
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@OptimizeParam1", DbType = DbType.Int32, Value = deviceValue.OptimizeParam1 });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@OptimizeParam2", DbType = DbType.Int32, Value = deviceValue.OptimizeParam2 });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@OptimizeParam3", DbType = DbType.Int32, Value = deviceValue.OptimizeParam3 });
-               
+
                 #endregion
 
                 #region Old

@@ -13,7 +13,8 @@ namespace Scada.BLL.Implement
         {
             SCADADataContext sCADADataContext = new SCADADataContext();
             Scada.Model.Entity.DeviceInfo deviceValue = BinaryObjTransfer.JsonDeserialize<Scada.Model.Entity.DeviceInfo>(deviceInfo);
-            sCADADataContext.DeviceInfos.InsertOnSubmit((deviceValue.ConvertTo<Scada.DAL.Linq.DeviceInfo>()));
+            Scada.DAL.Linq.DeviceInfo linDeviceInfor = deviceValue.ConvertTo<Scada.DAL.Linq.DeviceInfo>();
+            sCADADataContext.DeviceInfos.InsertOnSubmit(linDeviceInfor);
             sCADADataContext.SubmitChanges();
             return true;
         }

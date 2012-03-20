@@ -74,11 +74,11 @@ namespace Scada.Client.SL
 
                     ///统计分析移到对比分析的子菜单下
 
-                    ////统计分析
-                    //case "menuStatistics":
-                    //    this.ViewHost.Child = new StatisticsAnalyse();
+                    //统计分析
+                    case "menuStatistics":
+                        this.ViewHost.Child = new StatisticsAnalyse();
 
-                    //    break;
+                        break;
                 }
             }
         }

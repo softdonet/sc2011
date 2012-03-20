@@ -9,7 +9,7 @@ namespace Scada.BLL.Implement
 {
     public class ScadaDeviceServiceLinq
     {
-        public Boolean AddDeviceInfo(string deviceInfo, string aa)
+        public Boolean AddDeviceInfo(string deviceInfo)
         {
             SCADADataContext sCADADataContext = new SCADADataContext();
             Scada.Model.Entity.DeviceInfo deviceValue = BinaryObjTransfer.JsonDeserialize<Scada.Model.Entity.DeviceInfo>(deviceInfo);

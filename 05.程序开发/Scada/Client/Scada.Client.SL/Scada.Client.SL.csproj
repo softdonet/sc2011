@@ -75,9 +75,6 @@
       <HintPath>..\..\Lib\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
-    <Reference Include="SCADA.UI">
-      <HintPath>..\..\..\..\03.需求分析\SCADA_Demo\SCADA.UI\Bin\Debug\SCADA.UI.dll</HintPath>
-    </Reference>
     <Reference Include="SLVisifire.Charts">
       <HintPath>..\..\Lib\SLVisifire.Charts.dll</HintPath>
     </Reference>

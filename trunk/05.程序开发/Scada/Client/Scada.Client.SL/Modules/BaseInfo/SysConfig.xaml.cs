@@ -25,8 +25,6 @@ using Scada.Client.SL.SystemManagerService;
 namespace Scada.Client.SL.Modules.BaseInfo
 {
 
-
-
     /// <summary>
     /// 系统参数配置
     /// </summary>
@@ -59,7 +57,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
             this._systemManagerServiceSoapClient.GetSystemGlobalParameterCompleted
                                      += new EventHandler<GetSystemGlobalParameterCompletedEventArgs>
                                                 (scadaDeviceServiceSoapClient_GetSystemGlobalParameterCompleted);
-            //this._systemManagerServiceSoapClient.GetSystemGlobalParameterAsync();
+            this._systemManagerServiceSoapClient.GetSystemGlobalParameterAsync();
 
 
             //系统参数
@@ -77,24 +75,57 @@ namespace Scada.Client.SL.Modules.BaseInfo
         #region 事件管理
 
 
+        private void butOk_Click(object sender, RoutedEventArgs e)
+        {
+
+            _sysGlobalPar.ConnectType = this.cmbConnectType.SelectedIndex;
+            _sysGlobalPar.ConnectName = this.txtConnectName.Text;
+            _sysGlobalPar.MainDNS = this.txtMainDNS.Text;
+            _sysGlobalPar.SecondDNS = this.txtSecondDNS.Text;
+            _sysGlobalPar.Domain = this.txtDomain.Text;
+            _sysGlobalPar.Port = Convert.ToInt32(this.txtPort.Value);
+
+            string sysGlobal = BinaryObjTransfer.BinarySerialize(this._sysGlobalPar);
+            this._systemManagerServiceSoapClient.UpdateSystemGlobalParameterCompleted
+                += new EventHandler<UpdateSystemGlobalParameterCompletedEventArgs>
+                    (scadaDeviceServiceSoapClient_UpdateSystemGlobalParameterCompleted);
+            this._systemManagerServiceSoapClient.UpdateSystemGlobalParameterAsync(sysGlobal);
+
+        }
+
+
+        private void scadaDeviceServiceSoapClient_UpdateSystemGlobalParameterCompleted(object sender,
+                                                                    UpdateSystemGlobalParameterCompletedEventArgs e)
+        {
+            if (e.Error == null)
+            {
+                Boolean result = Convert.ToBoolean(e.Result);
+                if (result)
+                    ScadaMessageBox.ShowWarnMessage("修改成功", "提示信息");
+            }
+            else
+                ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");
+        }
+
+
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
 
             object obj = this.txtEarlyTimeOut.Value;
             if (obj != null)
-                this._sysParManage[0].ParameterValue = (float)obj;
+                this._sysParManage[0].ParameterValue = Convert.ToSingle(obj);
 
             obj = this.txtEarlyAlarm.Value;
             if (obj != null)
-                this._sysParManage[1].ParameterValue = (float)obj;
+                this._sysParManage[1].ParameterValue = Convert.ToSingle(obj);
 
             obj = this.txtEarlyNormal.Value;
             if (obj != null)
-                this._sysParManage[2].ParameterValue = (float)obj;
+                this._sysParManage[2].ParameterValue = Convert.ToSingle(obj);
 
             obj = this.txtDefDns.Value;
             if (obj != null)
-                this._sysParManage[3].ParameterValue = (float)obj;
+                this._sysParManage[3].ParameterValue = Convert.ToSingle(obj);
 
             string sysManage = BinaryObjTransfer.BinarySerialize(this._sysParManage);
             this._systemManagerServiceSoapClient.UpdateSystemParameterManageCompleted
@@ -137,8 +168,14 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
             if (e.Error == null)
             {
-                SystemGlobalParameter globalPar =
-                            BinaryObjTransfer.BinaryDeserialize<SystemGlobalParameter>(e.Result);
+                _sysGlobalPar = BinaryObjTransfer.BinaryDeserialize<SystemGlobalParameter>(e.Result);
+                if (_sysGlobalPar == null) { return; }
+                this.cmbConnectType.SelectedIndex = _sysGlobalPar.ConnectType;
+                this.txtConnectName.Text = _sysGlobalPar.ConnectName;
+                this.txtMainDNS.Text = _sysGlobalPar.MainDNS;
+                this.txtSecondDNS.Text = _sysGlobalPar.SecondDNS;
+                this.txtDomain.Text = _sysGlobalPar.Domain;
+                this.txtPort.Value = _sysGlobalPar.Port;
 
             }
             else
@@ -151,20 +188,20 @@ namespace Scada.Client.SL.Modules.BaseInfo
         {
             if (e.Error == null)
             {
-                List<SystemParameterManage> sysParMan = BinaryObjTransfer.BinaryDeserialize<List<SystemParameterManage>>(e.Result);
-                if (sysParMan == null) { return; }
+                _sysParManage = BinaryObjTransfer.BinaryDeserialize<List<SystemParameterManage>>(e.Result);
+                if (_sysParManage == null) { return; }
 
-                this.txtEarlyTimeOut.Value = sysParMan[0].ParameterValue;
-                this.txtEarlyTimeOut.Tag = sysParMan[0].ParameterID;
+                this.txtEarlyTimeOut.Value = _sysParManage[0].ParameterValue;
+                this.txtEarlyTimeOut.Tag = _sysParManage[0].ParameterID;
 
-                this.txtEarlyAlarm.Value = sysParMan[1].ParameterValue;
-                this.txtEarlyAlarm.Tag = sysParMan[1].ParameterID;
+                this.txtEarlyAlarm.Value = _sysParManage[1].ParameterValue;
+                this.txtEarlyAlarm.Tag = _sysParManage[1].ParameterID;
 
-                this.txtEarlyNormal.Value = sysParMan[2].ParameterValue;
-                this.txtEarlyNormal.Tag = sysParMan[2].ParameterID;
+                this.txtEarlyNormal.Value = _sysParManage[2].ParameterValue;
+                this.txtEarlyNormal.Tag = _sysParManage[2].ParameterID;
 
-                this.txtDefDns.Value = sysParMan[3].ParameterValue;
-                this.txtDefDns.Tag = sysParMan[3].ParameterID;
+                this.txtDefDns.Value = _sysParManage[3].ParameterValue;
+                this.txtDefDns.Tag = _sysParManage[3].ParameterID;
 
             }
             else

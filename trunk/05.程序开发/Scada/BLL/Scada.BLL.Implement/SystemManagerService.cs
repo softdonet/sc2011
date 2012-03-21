@@ -141,6 +141,7 @@ namespace Scada.BLL.Implement
             sSqlWhere.Add(new SqlParameter { ParameterName = "@ConnectName", DbType = DbType.String, Value = sysGloPar.ConnectName });
             sSqlWhere.Add(new SqlParameter { ParameterName = "@MainDNS", DbType = DbType.String, Value = sysGloPar.MainDNS });
             sSqlWhere.Add(new SqlParameter { ParameterName = "@SecondDNS", DbType = DbType.String, Value = sysGloPar.SecondDNS });
+            sSqlWhere.Add(new SqlParameter { ParameterName = "@Domain", DbType = DbType.String, Value = sysGloPar.Domain });
             sSqlWhere.Add(new SqlParameter { ParameterName = "@Port", DbType = DbType.Int32, Value = sysGloPar.Port });
 
             try

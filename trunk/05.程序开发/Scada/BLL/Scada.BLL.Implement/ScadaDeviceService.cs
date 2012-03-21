@@ -466,6 +466,15 @@ namespace Scada.BLL.Implement
         public string ViewDeviceInfo(string deviceGuid)
         {
             string result = string.Empty;
+            ScadaDeviceServiceLinq sd = new ScadaDeviceServiceLinq();
+            result=sd.Get(deviceGuid);
+            
+            return result;
+
+            //-------------------------------
+            #region Old
+
+            //string result = string.Empty;
             string sSql = " select * from DeviceInfo where id ='" + deviceGuid + "'";
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);
             if (ds == null || ds.Rows.Count == 0) { return result; }
@@ -651,6 +660,9 @@ namespace Scada.BLL.Implement
             }
             result = BinaryObjTransfer.JsonSerializer<DeviceInfo>(deviceInfo);
             return result;
+
+            #endregion
+
         }
 
         public string ListMaintenancePeople()

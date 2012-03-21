@@ -73,6 +73,7 @@
     <Compile Include="CommClass\BinaryObjTransfer.cs" />
     <Compile Include="Modules\Alarm\DeviceAlarmViewModel.cs" />
     <Compile Include="Modules\Alarm\AlarmListViewModel.cs" />
+    <Compile Include="Modules\BaseInfo\DeviceManageViewModel.cs" />
     <Compile Include="Modules\BingMaps\MapIndexViewModel.cs" />
     <Compile Include="Modules\BingMaps\PushPinDeviceViewModel.cs" />
     <Compile Include="Modules\DiagramAnalysis\CompareByTimeViewModel.cs" />

@@ -9,6 +9,8 @@ namespace Scada.BLL.Implement
 {
     public class ScadaDeviceServiceLinq
     {
+
+        private SCADADataContext sCADADataContext = null;
         /// <summary>
         /// 添加
         /// </summary>
@@ -16,7 +18,7 @@ namespace Scada.BLL.Implement
         /// <returns></returns>
         public Boolean AddDeviceInfo(string deviceInfo)
         {
-            SCADADataContext sCADADataContext = new SCADADataContext();
+            sCADADataContext = new SCADADataContext();
             Scada.Model.Entity.DeviceInfo deviceValue = BinaryObjTransfer.JsonDeserialize<Scada.Model.Entity.DeviceInfo>(deviceInfo);
             Scada.DAL.Linq.DeviceInfo linDeviceInfor = deviceValue.ConvertTo<Scada.DAL.Linq.DeviceInfo>();
             sCADADataContext.DeviceInfos.InsertOnSubmit(linDeviceInfor);
@@ -31,7 +33,7 @@ namespace Scada.BLL.Implement
         /// <returns></returns>
         public bool Del(string id)
         {
-            SCADADataContext sCADADataContext = new SCADADataContext();
+            sCADADataContext = new SCADADataContext();
             var obj = sCADADataContext.DeviceInfos.SingleOrDefault(e => e.ID == new Guid(id));
             sCADADataContext.DeviceInfos.DeleteOnSubmit(obj);
             sCADADataContext.SubmitChanges();
@@ -45,7 +47,7 @@ namespace Scada.BLL.Implement
         /// <returns></returns>
         public bool Update(string deviceInfo)
         {
-            SCADADataContext sCADADataContext = new SCADADataContext();
+            sCADADataContext = new SCADADataContext();
             Scada.Model.Entity.DeviceInfo deviceValue = BinaryObjTransfer.JsonDeserialize<Scada.Model.Entity.DeviceInfo>(deviceInfo);
 
             var obj = sCADADataContext.DeviceInfos.SingleOrDefault(e => e.ID == deviceValue.ID);
@@ -66,7 +68,7 @@ namespace Scada.BLL.Implement
         /// <returns></returns>
         public string Get(string id)
         {
-            SCADADataContext sCADADataContext = new SCADADataContext();
+            sCADADataContext = new SCADADataContext();
             var obj = sCADADataContext.DeviceInfos.SingleOrDefault(e => e.ID == new Guid(id));
             if (obj != null)
             {

@@ -41,25 +41,29 @@
                                 <Button Content="关闭" Height="23" HorizontalAlignment="Left" Margin="168,157,0,0" Name="btnClose" VerticalAlignment="Top" Width="75" Click="btnClose_Click" />
                             </Grid>
                             <Grid Height="196" Width="294"  Background="LightSteelBlue" ShowGridLines="True" HorizontalAlignment="Left" Margin="372,23,0,0" Name="grid2" VerticalAlignment="Top">
-                                <TextBlock HorizontalAlignment="Left" Margin="77,19,0,159" Name="textBlock5" Text="主机IP:" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,15,0,0" Name="textBox5" VerticalAlignment="Top" Width="120" />
-                                
-                                <TextBlock Height="18" HorizontalAlignment="Left" Margin="77,42,0,0" Name="textBlock6" Text="备用IP：" VerticalAlignment="Top" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,40,0,0" Name="textBox6" VerticalAlignment="Top" Width="120" />
-                                
-                                <TextBlock HorizontalAlignment="Left" Margin="77,68,0,110" Name="textBlock7" Text="域   名：" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,65,0,0" Name="textBox7" VerticalAlignment="Top" Width="120" />
 
-                                <TextBlock Height="18" HorizontalAlignment="Left" Margin="77,93,0,0" Name="textBlock8" Text="端   口：" VerticalAlignment="Top" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,90,0,0" Name="textBox8" VerticalAlignment="Top" Width="120" />
+                                <TextBlock HorizontalAlignment="Left" Margin="65,20,0,0" Name="textBlock9" Text="连接方式：" Height="18" VerticalAlignment="Top" />
+                                <ComboBox Height="23" HorizontalAlignment="Left" Margin="127,15,0,0" Name="cmbConnectType" SelectedIndex="0" VerticalAlignment="Top" Width="120">
+                                    <ComboBoxItem Content="IP连接" />
+                                    <ComboBoxItem Content="域名连接" />
+                                </ComboBox>
+                                <TextBlock Height="18" HorizontalAlignment="Left" Margin="55,44,0,0" Name="textBlock10" Text="接入点名称：" VerticalAlignment="Top" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,40,0,0" Name="txtConnectName" VerticalAlignment="Top" Width="120" />
+
+                                <TextBlock HorizontalAlignment="Left" Margin="77,70,0,108" Name="textBlock5" Text="主机IP:" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,65,0,0" Name="txtMainDNS" VerticalAlignment="Top" Width="120" />
                                 
-                                <TextBlock HorizontalAlignment="Left" Margin="65,118,0,0" Name="textBlock9" Text="连接方式：" Height="18" VerticalAlignment="Top" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,115,0,0" Name="textBox9" VerticalAlignment="Top" Width="120" />
+                                <TextBlock Height="18" HorizontalAlignment="Left" Margin="77,93,0,0" Name="textBlock6" Text="备用IP：" VerticalAlignment="Top" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,90,0,0" Name="txtSecondDNS" VerticalAlignment="Top" Width="120" />
+                                
+                                <TextBlock HorizontalAlignment="Left" Margin="77,119,0,59" Name="textBlock7" Text="域   名：" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,115,0,0" Name="txtDomain" VerticalAlignment="Top" Width="120" />
 
-                                <TextBlock Height="18" HorizontalAlignment="Left" Margin="56,142,0,0" Name="textBlock10" Text="接入点名称：" VerticalAlignment="Top" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,140,0,0" Name="textBox10" VerticalAlignment="Top" Width="120" />
-
-                                <Button Content="保存" Height="23" HorizontalAlignment="Left" Margin="59,170,0,0" Name="butOk" VerticalAlignment="Top" Width="75" Click="btnSave_Click" />
+                                <TextBlock Height="18" HorizontalAlignment="Left" Margin="77,144,0,0" Name="textBlock8" Text="端   口：" VerticalAlignment="Top" />
+                                <telerik:RadMaskedTextBox MaskType="Numeric" Mask="d" Height="23" HorizontalAlignment="Left" Name="txtPort" VerticalAlignment="Top"  Margin="127,140,0,0" Width="120"/>
+                                
+                                
+                                <Button Content="保存" Height="23" HorizontalAlignment="Left" Margin="59,170,0,0" Name="butOk" VerticalAlignment="Top" Width="75" Click="butOk_Click" />
                                 <Button Content="关闭" Height="23" HorizontalAlignment="Left" Margin="172,169,0,0" Name="butOff" VerticalAlignment="Top" Width="75" Click="btnClose_Click" />
                             </Grid>
                         </Grid>

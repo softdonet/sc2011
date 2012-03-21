@@ -15,6 +15,7 @@ using Scada.Model.Entity;
 using Scada.Client.SL.CommClass;
 using Scada.Client.SL.ScadaDeviceService;
 using Scada.Model.Entity.Common;
+using Scada.Client.VM.Modules.BaseInfo;
 
 
 
@@ -48,7 +49,10 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
 
             this.scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
-
+            
+            //-------------
+            //DeviceManageViewModel deviceManageViewModel = new DeviceManageViewModel();
+            //this.DataContext = deviceManageViewModel;
             //加载树型
             this.LoadTreeViewInfo();
           
@@ -103,8 +107,8 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
 
             //列设备信息
-            scadaDeviceServiceSoapClient.ViewDeviceInfoCompleted +=
-                new EventHandler<ViewDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_ViewDeviceInfoCompleted);
+            //scadaDeviceServiceSoapClient.ViewDeviceInfoCompleted +=
+            //    new EventHandler<ViewDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_ViewDeviceInfoCompleted);
 
         }
 
@@ -146,9 +150,13 @@ namespace Scada.Client.SL.Modules.BaseInfo
                 this.butAdd.IsEnabled = true;
                 this.butDel.IsEnabled = true;
                 this.butSave.IsEnabled = true;
-                scadaDeviceServiceSoapClient.ViewDeviceInfoAsync(node.NodeKey.ToString().ToUpper());
+                //scadaDeviceServiceSoapClient.ViewDeviceInfoAsync(node.NodeKey.ToString().ToUpper());
             }
 
+            DeviceManageViewModel deviceManageViewModel = new DeviceManageViewModel(node.NodeKey.ToString().ToUpper());
+            this.DataContext = deviceManageViewModel;
+            return;
+            //------------------------------
 
         }
 

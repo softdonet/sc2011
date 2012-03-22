@@ -12,6 +12,20 @@ namespace Utility
     public class StringHelper
     {
         #region 字节转化为字符相关
+
+        public static byte[] StrToByte(string str)
+        {
+            List<byte> result = new List<byte>();
+            for (int i = 0; i < str.Length / 2; i+=2)
+            {
+                byte temp = Convert.ToByte(str.Substring(i,2), 16);
+                result.Add(temp);
+            }
+            return result.ToArray();
+        }
+
+
+
         /// <summary>
         ///通讯数据转换核心方法
         /// </summary>

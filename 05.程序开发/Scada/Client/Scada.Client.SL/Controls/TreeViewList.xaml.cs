@@ -40,7 +40,19 @@ namespace Scada.Client.SL.Controls
         }
 
 
-        //选择节点
+        //指定数据源
+        //public List<DeviceTreeNode> Source
+        //{
+        //    get
+        //    {
+        //        return this.myTree.ItemsSource as List<DeviceTreeNode>;
+        //    }
+        //    set
+        //    {
+        //        this.myTree.ItemsSource = value;
+        //    }
+        //}
+
         public delegate void TreeSelectItem(object sender, RoutedPropertyChangedEventArgs<object> e);
         public event TreeSelectItem OnTreeSelectItemClick;
         private void myTree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)

@@ -17,7 +17,7 @@ namespace Scada.BLL.Implement
 
     public class ScadaDeviceService : IScadaDeviceService
     {
-
+        ScadaDeviceServiceLinq scadaDeviceServiceLinq;
 
         #region 测试流程
 
@@ -179,10 +179,19 @@ namespace Scada.BLL.Implement
 
         public Boolean AddDeviceInfo(string deviceInfo)
         {
-            ScadaDeviceServiceLinq dd = new ScadaDeviceServiceLinq();
-            dd.AddDeviceInfo(deviceInfo);
-            return true;
+            scadaDeviceServiceLinq = new ScadaDeviceServiceLinq();
+            try
+            {
+                scadaDeviceServiceLinq.AddDeviceInfo(deviceInfo);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+           
 
+            #region Old
 
             Int32 rowNum = 0;
             Boolean result = false;
@@ -214,7 +223,8 @@ namespace Scada.BLL.Implement
                                @ElectricityAlarmValid,@ElectricityHighAlarm,@ElectricityLowAlarm,
                                @CurrentModel,@RealTimeParam,@FullTimeParam1,@FullTimeParam2,
                                @OptimizeParam1,@OptimizeParam2,@OptimizeParam3)");
-        
+            #endregion
+
                 #region 对应的参数
 
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@ID", DbType = DbType.Guid, Value = deviceValue.ID });
@@ -352,10 +362,10 @@ namespace Scada.BLL.Implement
                 #endregion
               
 
-                rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql.ToString(), sSqlWhere.ToArray());
-                //设备维护人员
-                //UpdateDevicePeople(deviceValue.ID, deviceValue.DeviceMainValue);
-                result = true;
+                //rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql.ToString(), sSqlWhere.ToArray());
+                ////设备维护人员
+                ////UpdateDevicePeople(deviceValue.ID, deviceValue.DeviceMainValue);
+                //result = true;
             }
             catch (Exception ex)
             {
@@ -367,6 +377,20 @@ namespace Scada.BLL.Implement
 
         public Boolean UpdateDeviceInfo(string deviceInfo)
         {
+            scadaDeviceServiceLinq = new ScadaDeviceServiceLinq();
+            try
+            {
+                scadaDeviceServiceLinq.Update(deviceInfo);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            //--------------------------
+            #region Old
+
             Int32 rowNum = 0;
             Boolean result = false;
             SqlParameter para = null;
@@ -431,13 +455,26 @@ namespace Scada.BLL.Implement
                 Console.WriteLine(ex.Message);
             }
             return result;
+
+            #endregion
         }
 
         public Boolean DeleteDeviceInfo(Guid deviceGuid)
         {
-            ScadaDeviceServiceLinq dd = new ScadaDeviceServiceLinq();
-            dd.Del(deviceGuid.ToString());
-            return true;
+            scadaDeviceServiceLinq = new ScadaDeviceServiceLinq();
+            try
+            {
+                scadaDeviceServiceLinq.Del(deviceGuid);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                Console.WriteLine(ex.Message);
+            }
+
+            #region Old
+
             //--------------------------------------------------
             Boolean result = false;
             try
@@ -460,14 +497,23 @@ namespace Scada.BLL.Implement
             }
 
             return result;
+            #endregion
+
 
         }
 
-        public string ViewDeviceInfo(string deviceGuid)
+        public string ViewDeviceInfo(Guid deviceGuid)
         {
             string result = string.Empty;
-            ScadaDeviceServiceLinq sd = new ScadaDeviceServiceLinq();
-            result=sd.Get(deviceGuid);
+            scadaDeviceServiceLinq = new ScadaDeviceServiceLinq();
+            try
+            {
+                result=scadaDeviceServiceLinq.Get(deviceGuid);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             
             return result;
 

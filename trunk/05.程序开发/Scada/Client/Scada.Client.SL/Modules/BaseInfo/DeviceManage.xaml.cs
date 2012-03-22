@@ -32,6 +32,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
         #region 变量声明
 
         private ScadaDeviceServiceSoapClient scadaDeviceServiceSoapClient = null;
+        private DeviceManageViewModel deviceManageViewModel;
 
         //默认修改
         private Boolean IsAddUpdateType = false;
@@ -44,20 +45,21 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
         public DeviceManage()
         {
-
             InitializeComponent();
 
+            SetButtonState(false);
 
-            this.scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
-            
-            //-------------
-            //DeviceManageViewModel deviceManageViewModel = new DeviceManageViewModel();
-            //this.DataContext = deviceManageViewModel;
-            //加载树型
-            this.LoadTreeViewInfo();
-          
+            //加载设备树
+            deviceManageViewModel = new DeviceManageViewModel();
+            this.DataContext = deviceManageViewModel;
+            deviceManageViewModel.PropertyChanged += 
+                new System.ComponentModel.PropertyChangedEventHandler(deviceManageViewModel_PropertyChanged);
+  
             //加载维护人员信息
-            scadaDeviceServiceSoapClient.ListMaintenancePeopleCompleted += new EventHandler<ListMaintenancePeopleCompletedEventArgs>(scadaDeviceServiceSoapClient_ListMaintenancePeopleCompleted);
+            this.scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
+
+            scadaDeviceServiceSoapClient.ListMaintenancePeopleCompleted += 
+                new EventHandler<ListMaintenancePeopleCompletedEventArgs>(scadaDeviceServiceSoapClient_ListMaintenancePeopleCompleted);
             scadaDeviceServiceSoapClient.ListMaintenancePeopleAsync();
             
             //加载液晶屏显示
@@ -65,9 +67,14 @@ namespace Scada.Client.SL.Modules.BaseInfo
             //加载当前选择模式
             LoadCurrentModel();
 
+        }
 
-
-
+        void deviceManageViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName=="DeviceTreeNodeList")
+            {
+                this.treeViewList1.Source = deviceManageViewModel.DeviceTreeNodeList;
+            }
         }
 
         #endregion
@@ -95,33 +102,15 @@ namespace Scada.Client.SL.Modules.BaseInfo
             cmbCurrentModel.ItemsSource = keyValueList;
         }
         #endregion
+
         #region 加载树型结构
 
-        private void LoadTreeViewInfo()
-        {
-
-            //刷新树结构
-            scadaDeviceServiceSoapClient.ListDeviceTreeViewCompleted +=
-                new EventHandler<ListDeviceTreeViewCompletedEventArgs>(scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted);
-            scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
-
-
-            //列设备信息
-            //scadaDeviceServiceSoapClient.ViewDeviceInfoCompleted +=
-            //    new EventHandler<ViewDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_ViewDeviceInfoCompleted);
-
-        }
 
         void scadaDeviceServiceSoapClient_ListMaintenancePeopleCompleted(object sender, ListMaintenancePeopleCompletedEventArgs e)
         {
 
             List<MaintenancePeople> maintenancePeopleList = BinaryObjTransfer.BinaryDeserialize<List<MaintenancePeople>>(e.Result);
             cmbMaintenancePeople.ItemsSource = maintenancePeopleList;
-        }
-
-        private void scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted(object sender, ListDeviceTreeViewCompletedEventArgs e)
-        {
-            this.treeViewList1.Source = BinaryObjTransfer.BinaryDeserialize<List<DeviceTreeNode>>(e.Result);
         }
 
         private void treeViewList1_OnTreeSelectItemClick(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -155,134 +144,140 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
             DeviceManageViewModel deviceManageViewModel = new DeviceManageViewModel(node.NodeKey.ToString().ToUpper());
             this.DataContext = deviceManageViewModel;
-            return;
-            //------------------------------
 
+        }
+
+        //设置按钮的状态
+        private void SetButtonState(bool flag)
+        {
+            this.butAdd.IsEnabled = flag;
+            this.butDel.IsEnabled = flag;
+            this.butSave.IsEnabled = flag;
         }
 
         private void scadaDeviceServiceSoapClient_ViewDeviceInfoCompleted(object sender, ViewDeviceInfoCompletedEventArgs e)
         {
-            string result = e.Result;
-            if (string.IsNullOrEmpty(result)) { return; }
-            _userSelDeviceInfo = BinaryObjTransfer.BinaryDeserialize<DeviceInfo>(result);
-            if (_userSelDeviceInfo == null) { return; }
+            //string result = e.Result;
+            //if (string.IsNullOrEmpty(result)) { return; }
+            //_userSelDeviceInfo = BinaryObjTransfer.BinaryDeserialize<DeviceInfo>(result);
+            //if (_userSelDeviceInfo == null) { return; }
 
-            //设备编号
-            this.txtDeviceNo.Text = _userSelDeviceInfo.DeviceNo;
-            //设备MAC
-            this.txtDeviceMac.Text = _userSelDeviceInfo.DeviceMAC;
-            this.txtSIM.Text = _userSelDeviceInfo.SIMNo;
+            ////设备编号
+            //this.txtDeviceNo.Text = _userSelDeviceInfo.DeviceNo;
+            ////设备MAC
+            //this.txtDeviceMac.Text = _userSelDeviceInfo.DeviceMAC;
+            //this.txtSIM.Text = _userSelDeviceInfo.SIMNo;
 
-            this.txtHardType.Text = _userSelDeviceInfo.HardType;
-            this.dpProductDate.Text = _userSelDeviceInfo.ProductDate.ToString();
-            //管理分区
-            this.txtManageArea.Text = _userSelTreeNode.NodeValue;
-            //this.txtManageArea.Text = _userSelTreeNode.NodeParent.NodeValue; ;
-            this.cmbMaintenancePeople.SelectedValue = _userSelDeviceInfo.MaintenancePeopleID;
+            //this.txtHardType.Text = _userSelDeviceInfo.HardType;
+            //this.dpProductDate.Text = _userSelDeviceInfo.ProductDate.ToString();
+            ////管理分区
+            //this.txtManageArea.Text = _userSelTreeNode.NodeValue;
+            ////this.txtManageArea.Text = _userSelTreeNode.NodeParent.NodeValue; ;
+            //this.cmbMaintenancePeople.SelectedValue = _userSelDeviceInfo.MaintenancePeopleID;
 
-            this.txtInstallPlace.Text = _userSelDeviceInfo.InstallPlace;
-            this.txtComment.Text = _userSelDeviceInfo.Comment;
+            //this.txtInstallPlace.Text = _userSelDeviceInfo.InstallPlace;
+            //this.txtComment.Text = _userSelDeviceInfo.Comment;
 
-            this.txtLongitude.Text = _userSelDeviceInfo.Longitude.ToString();
-            this.txtLatitude.Text = _userSelDeviceInfo.Latitude.ToString();
-            this.txtHigh.Text = _userSelDeviceInfo.High.ToString();
+            //this.txtLongitude.Text = _userSelDeviceInfo.Longitude.ToString();
+            //this.txtLatitude.Text = _userSelDeviceInfo.Latitude.ToString();
+            //this.txtHigh.Text = _userSelDeviceInfo.High.ToString();
 
-            //this.txtConnType.Text = "";
-            //if (_userSelDeviceInfo.ConnectType != null)
-            //    this.txtConnType.Text = _userSelDeviceInfo.ConnectType.ToString();
+            ////this.txtConnType.Text = "";
+            ////if (_userSelDeviceInfo.ConnectType != null)
+            ////    this.txtConnType.Text = _userSelDeviceInfo.ConnectType.ToString();
 
 
-            this.txtComment.Text = _userSelDeviceInfo.Comment;
+            //this.txtComment.Text = _userSelDeviceInfo.Comment;
 
-            this.txtWindage.Text = _userSelDeviceInfo.Windage.ToString();
+            //this.txtWindage.Text = _userSelDeviceInfo.Windage.ToString();
 
-            this.txtHardwareVersion.Text = _userSelDeviceInfo.HardwareVersion;
-            this.txtSoftVersion.Text = _userSelDeviceInfo.SoftWareVersion;
+            //this.txtHardwareVersion.Text = _userSelDeviceInfo.HardwareVersion;
+            //this.txtSoftVersion.Text = _userSelDeviceInfo.SoftWareVersion;
            
-            //是否启用紧急按钮
-            this.chkUrgencyBtnEnable.IsChecked = _userSelDeviceInfo.UrgencyBtnEnable;
-            // 主温度报警
-            this.chkHighTemp1Alarm.IsChecked = _userSelDeviceInfo.Temperature1AlarmValid;
-            if (_userSelDeviceInfo.Temperature1HighAlarm!=null)
-            {
-                this.txtHighTemp1Alarm.Text = _userSelDeviceInfo.Temperature1HighAlarm.ToString();
-            }
-            if (_userSelDeviceInfo.Temperature1LowAlarm!=null)
-            {
-                this.txtLowTemp1Alarm.Text = _userSelDeviceInfo.Temperature1LowAlarm.ToString();
+            ////是否启用紧急按钮
+            //this.chkUrgencyBtnEnable.IsChecked = _userSelDeviceInfo.UrgencyBtnEnable;
+            //// 主温度报警
+            //this.chkHighTemp1Alarm.IsChecked = _userSelDeviceInfo.Temperature1AlarmValid;
+            //if (_userSelDeviceInfo.Temperature1HighAlarm!=null)
+            //{
+            //    this.txtHighTemp1Alarm.Text = _userSelDeviceInfo.Temperature1HighAlarm.ToString();
+            //}
+            //if (_userSelDeviceInfo.Temperature1LowAlarm!=null)
+            //{
+            //    this.txtLowTemp1Alarm.Text = _userSelDeviceInfo.Temperature1LowAlarm.ToString();
 
-            }
-            //从温度报警
-            this.chkHighTemp2Alarm.IsChecked = _userSelDeviceInfo.Temperature2AlarmValid;
-            if (_userSelDeviceInfo.Temperature2HighAlarm!=null)
-            {
-                this.txtHighTemp2Alarm.Text = _userSelDeviceInfo.Temperature2HighAlarm.ToString();
-            }
-            if ( _userSelDeviceInfo.Temperature2LowAlarm!=null)
-            {
-                this.txtLowTemp2Alarm.Text = _userSelDeviceInfo.Temperature2LowAlarm.ToString();
-            }
+            //}
+            ////从温度报警
+            //this.chkHighTemp2Alarm.IsChecked = _userSelDeviceInfo.Temperature2AlarmValid;
+            //if (_userSelDeviceInfo.Temperature2HighAlarm!=null)
+            //{
+            //    this.txtHighTemp2Alarm.Text = _userSelDeviceInfo.Temperature2HighAlarm.ToString();
+            //}
+            //if ( _userSelDeviceInfo.Temperature2LowAlarm!=null)
+            //{
+            //    this.txtLowTemp2Alarm.Text = _userSelDeviceInfo.Temperature2LowAlarm.ToString();
+            //}
 
-            //湿度报警
-            this.chkHumidityAlarm.IsChecked = _userSelDeviceInfo.HumidityAlarmValid;
-            if (_userSelDeviceInfo.HumidityHighAlarm!=null)
-            {
-                this.txtHumidityHighAlarm.Text = _userSelDeviceInfo.HumidityHighAlarm.ToString();
-            }
-            if (_userSelDeviceInfo.HumidityLowAlarm!=null)
-            {
-                this.txtHumidityLowAlarm.Text = _userSelDeviceInfo.HumidityLowAlarm.ToString();
-            }
+            ////湿度报警
+            //this.chkHumidityAlarm.IsChecked = _userSelDeviceInfo.HumidityAlarmValid;
+            //if (_userSelDeviceInfo.HumidityHighAlarm!=null)
+            //{
+            //    this.txtHumidityHighAlarm.Text = _userSelDeviceInfo.HumidityHighAlarm.ToString();
+            //}
+            //if (_userSelDeviceInfo.HumidityLowAlarm!=null)
+            //{
+            //    this.txtHumidityLowAlarm.Text = _userSelDeviceInfo.HumidityLowAlarm.ToString();
+            //}
 
-            //信号报警
-            this.chkSignalAlarm.IsChecked = _userSelDeviceInfo.SignalAlarmValid;
-            if (_userSelDeviceInfo.SignalHighAlarm!=null)
-            {
-                this.txtSignalHighAlarm.Text = _userSelDeviceInfo.SignalHighAlarm.ToString();
-            }
-            if (_userSelDeviceInfo.SignalLowAlarm!=null)
-            {
-                this.txtSignalLowAlarm.Text = _userSelDeviceInfo.SignalLowAlarm.ToString();
-            }
+            ////信号报警
+            //this.chkSignalAlarm.IsChecked = _userSelDeviceInfo.SignalAlarmValid;
+            //if (_userSelDeviceInfo.SignalHighAlarm!=null)
+            //{
+            //    this.txtSignalHighAlarm.Text = _userSelDeviceInfo.SignalHighAlarm.ToString();
+            //}
+            //if (_userSelDeviceInfo.SignalLowAlarm!=null)
+            //{
+            //    this.txtSignalLowAlarm.Text = _userSelDeviceInfo.SignalLowAlarm.ToString();
+            //}
 
-            //电量报警
-            this.chkElectricityAlarm.IsChecked = _userSelDeviceInfo.ElectricityAlarmValid;
-            if (_userSelDeviceInfo.ElectricityHighAlarm!=null)
-            {
-                this.txtElectricityHighAlarm.Text = _userSelDeviceInfo.ElectricityHighAlarm.ToString();
-            }
-            if (_userSelDeviceInfo.ElectricityLowAlarm!=null)
-            {
-                this.txtElectricityLowAlarm.Text = _userSelDeviceInfo.ElectricityLowAlarm.ToString();
-            }
-            //实时模式参数
-            if (_userSelDeviceInfo.RealTimeParam!=null)
-            {
-                this.txtRealTimeParam.Text = _userSelDeviceInfo.RealTimeParam.ToString();
-            }
-            //整点模式参数1,2
-            if (_userSelDeviceInfo.FullTimeParam1!=null)
-            {
-                this.txtFullTimeParam1.Text = _userSelDeviceInfo.FullTimeParam1.ToString();
-            }
-            if (_userSelDeviceInfo.FullTimeParam2!=null)
-            {
-                this.txtFullTimeParam2.Text = _userSelDeviceInfo.FullTimeParam2.ToString();
-            }
+            ////电量报警
+            //this.chkElectricityAlarm.IsChecked = _userSelDeviceInfo.ElectricityAlarmValid;
+            //if (_userSelDeviceInfo.ElectricityHighAlarm!=null)
+            //{
+            //    this.txtElectricityHighAlarm.Text = _userSelDeviceInfo.ElectricityHighAlarm.ToString();
+            //}
+            //if (_userSelDeviceInfo.ElectricityLowAlarm!=null)
+            //{
+            //    this.txtElectricityLowAlarm.Text = _userSelDeviceInfo.ElectricityLowAlarm.ToString();
+            //}
+            ////实时模式参数
+            //if (_userSelDeviceInfo.RealTimeParam!=null)
+            //{
+            //    this.txtRealTimeParam.Text = _userSelDeviceInfo.RealTimeParam.ToString();
+            //}
+            ////整点模式参数1,2
+            //if (_userSelDeviceInfo.FullTimeParam1!=null)
+            //{
+            //    this.txtFullTimeParam1.Text = _userSelDeviceInfo.FullTimeParam1.ToString();
+            //}
+            //if (_userSelDeviceInfo.FullTimeParam2!=null)
+            //{
+            //    this.txtFullTimeParam2.Text = _userSelDeviceInfo.FullTimeParam2.ToString();
+            //}
 
-            //逢变则报模式
-            if (_userSelDeviceInfo.OptimizeParam1!=null)
-            {
-                this.txtOptimizeParam1.Text = _userSelDeviceInfo.OptimizeParam1.ToString();
-            }
-            if (_userSelDeviceInfo.OptimizeParam2!=null)
-            {
-                this.txtOptimizeParam2.Text = _userSelDeviceInfo.OptimizeParam2.ToString();
-            }
-            if (_userSelDeviceInfo.OptimizeParam3!=null)
-            {
-                this.txtOptimizeParam3.Text = _userSelDeviceInfo.OptimizeParam3.ToString();
-            }
+            ////逢变则报模式
+            //if (_userSelDeviceInfo.OptimizeParam1!=null)
+            //{
+            //    this.txtOptimizeParam1.Text = _userSelDeviceInfo.OptimizeParam1.ToString();
+            //}
+            //if (_userSelDeviceInfo.OptimizeParam2!=null)
+            //{
+            //    this.txtOptimizeParam2.Text = _userSelDeviceInfo.OptimizeParam2.ToString();
+            //}
+            //if (_userSelDeviceInfo.OptimizeParam3!=null)
+            //{
+            //    this.txtOptimizeParam3.Text = _userSelDeviceInfo.OptimizeParam3.ToString();
+            //}
 
         }
 
@@ -307,26 +302,19 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
         #endregion
 
-
-
         #region 修改设备
 
         private void LoadUpdateDeviceInfo(DeviceInfo deviceInfo)
         {
             scadaDeviceServiceSoapClient.UpdateDeviceInfoCompleted
                             += new EventHandler<UpdateDeviceInfoCompletedEventArgs>
-                                        (scadaDeviceServiceSoapClient_UpdateDeviceInfoCompleted);
-
-            
-
+                                        (scadaDeviceServiceSoapClient_UpdateDeviceInfoCompleted);         
         }
 
         private void scadaDeviceServiceSoapClient_UpdateDeviceInfoCompleted(object sender, UpdateDeviceInfoCompletedEventArgs e)
         {
             string result = e.Result.ToString();
         }
-
-
 
         #endregion
 
@@ -547,7 +535,6 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
         private void AddDeviceProperty(DeviceInfo deviceInfo)
         {
-
             deviceInfo.DeviceMAC = this.txtDeviceMac.Text;
             deviceInfo.SIMNo = this.txtSIM.Text;
 
@@ -566,11 +553,6 @@ namespace Scada.Client.SL.Modules.BaseInfo
         }
 
         #endregion
-
-        private void dataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
 
 
         #region 私有方法

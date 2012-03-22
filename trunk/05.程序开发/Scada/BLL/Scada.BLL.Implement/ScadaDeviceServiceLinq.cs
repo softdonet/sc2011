@@ -31,10 +31,10 @@ namespace Scada.BLL.Implement
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public bool Del(string id)
+        public bool Del(Guid id)
         {
             sCADADataContext = new SCADADataContext();
-            var obj = sCADADataContext.DeviceInfos.SingleOrDefault(e => e.ID == new Guid(id));
+            var obj = sCADADataContext.DeviceInfos.SingleOrDefault(e => e.ID == id);
             sCADADataContext.DeviceInfos.DeleteOnSubmit(obj);
             sCADADataContext.SubmitChanges();
             return true;
@@ -66,10 +66,10 @@ namespace Scada.BLL.Implement
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public string Get(string id)
+        public string Get(Guid id)
         {
             sCADADataContext = new SCADADataContext();
-            var obj = sCADADataContext.DeviceInfos.SingleOrDefault(e => e.ID == new Guid(id));
+            var obj = sCADADataContext.DeviceInfos.SingleOrDefault(e => e.ID == id);
             if (obj != null)
             {
                 Scada.Model.Entity.DeviceInfo deviceInfo = obj.ConvertTo<Scada.Model.Entity.DeviceInfo>();

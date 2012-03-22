@@ -27,8 +27,8 @@ namespace Scada.Client.VM.Modules.BaseInfo
         {
             scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
 
-            //scadaDeviceServiceSoapClient.ListDeviceTreeViewCompleted += new EventHandler<ListDeviceTreeViewCompletedEventArgs>(scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted);
-            //scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
+            scadaDeviceServiceSoapClient.ListDeviceTreeViewCompleted += new EventHandler<ListDeviceTreeViewCompletedEventArgs>(scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted);
+            scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
 
             
         }
@@ -49,13 +49,14 @@ namespace Scada.Client.VM.Modules.BaseInfo
         {
             if (e.Error==null)
             {
-                ObservableCollection<DeviceTreeNode> result = BinaryObjTransfer.BinaryDeserialize<ObservableCollection<DeviceTreeNode>>(e.Result);
+                List<DeviceTreeNode> result = BinaryObjTransfer.BinaryDeserialize<List<DeviceTreeNode>>(e.Result);
+                DeviceTreeNodeList = result;
             }
         }
 
-        private ObservableCollection<DeviceTreeNode> deviceTreeNodeList;
+        private List<DeviceTreeNode> deviceTreeNodeList;
 
-        public ObservableCollection<DeviceTreeNode> DeviceTreeNodeList
+        public List<DeviceTreeNode> DeviceTreeNodeList
         {
             get { return deviceTreeNodeList; }
             set 

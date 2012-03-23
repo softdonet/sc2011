@@ -189,13 +189,13 @@ namespace Scada.BLL.Implement
             {
                 return false;
             }
-           
+
 
             #region Old
 
             Int32 rowNum = 0;
             Boolean result = false;
-          //  SqlParameter para = null;
+            //  SqlParameter para = null;
 
             StringBuilder sSql = new StringBuilder();
             List<SqlParameter> sSqlWhere = new List<SqlParameter>();
@@ -234,13 +234,13 @@ namespace Scada.BLL.Implement
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@ProductDate", DbType = DbType.Date, Value = deviceValue.ProductDate });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@DeviceMAC", DbType = DbType.String, Value = deviceValue.DeviceMAC });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@SIMNo", DbType = DbType.String, Value = deviceValue.SIMNo });
-                
+
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@ManageAreaID", DbType = DbType.Guid, Value = deviceValue.ManageAreaID });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@MaintenancePeopleID", DbType = DbType.Guid, Value = deviceValue.MaintenancePeopleID });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@InstallPlace", DbType = DbType.String, Value = deviceValue.InstallPlace });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Longitude", DbType = DbType.Decimal,Size=20, Value = deviceValue.Longitude });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Latitude", DbType = DbType.Decimal,Size=20, Value = deviceValue.Latitude });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@High", DbType = DbType.Decimal,Size=20, Value = deviceValue.High });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Longitude", DbType = DbType.Decimal, Size = 20, Value = deviceValue.Longitude });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Latitude", DbType = DbType.Decimal, Size = 20, Value = deviceValue.Latitude });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@High", DbType = DbType.Decimal, Size = 20, Value = deviceValue.High });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@Comment", DbType = DbType.String, Value = deviceValue.Comment });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@Windage", DbType = DbType.Int32, Value = deviceValue.Windage });
 
@@ -251,21 +251,21 @@ namespace Scada.BLL.Implement
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@InforBtnEnable", DbType = DbType.Boolean, Value = deviceValue.InforBtnEnable });
                 //主温度
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature1AlarmValid", DbType = DbType.Boolean, Value = deviceValue.Temperature1AlarmValid });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature1HighAlarm", DbType = DbType.Decimal,Size=5, Value = deviceValue.Temperature1HighAlarm });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature1LowAlarm", DbType = DbType.Decimal,Size=5, Value = deviceValue.Temperature1LowAlarm });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature1HighAlarm", DbType = DbType.Decimal, Size = 5, Value = deviceValue.Temperature1HighAlarm });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature1LowAlarm", DbType = DbType.Decimal, Size = 5, Value = deviceValue.Temperature1LowAlarm });
                 //从温度
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature2AlarmValid", DbType = DbType.Boolean, Value = deviceValue.Temperature2AlarmValid });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature2HighAlarm", DbType = DbType.Decimal, Size=5, Value = deviceValue.Temperature2HighAlarm });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature2LowAlarm", DbType = DbType.Decimal,Size=5, Value = deviceValue.Temperature2LowAlarm });
-               //湿度
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature2HighAlarm", DbType = DbType.Decimal, Size = 5, Value = deviceValue.Temperature2HighAlarm });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Temperature2LowAlarm", DbType = DbType.Decimal, Size = 5, Value = deviceValue.Temperature2LowAlarm });
+                //湿度
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@HumidityAlarmValid", DbType = DbType.Boolean, Value = deviceValue.HumidityAlarmValid });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@HumidityHighAlarm", DbType = DbType.Decimal, Size=2, Value = deviceValue.HumidityHighAlarm });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@HumidityLowAlarm", DbType = DbType.Decimal, Size=2, Value = deviceValue.HumidityLowAlarm });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@HumidityHighAlarm", DbType = DbType.Decimal, Size = 2, Value = deviceValue.HumidityHighAlarm });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@HumidityLowAlarm", DbType = DbType.Decimal, Size = 2, Value = deviceValue.HumidityLowAlarm });
                 //信号
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@SignalAlarmValid", DbType = DbType.Boolean, Value = deviceValue.SignalAlarmValid });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@SignalHighAlarm", DbType = DbType.Int32, Value = deviceValue.SignalHighAlarm });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@SignalLowAlarm", DbType = DbType.Int32, Value = deviceValue.SignalLowAlarm });
-              //电量
+                //电量
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@ElectricityAlarmValid", DbType = DbType.Boolean, Value = deviceValue.ElectricityAlarmValid });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@ElectricityHighAlarm", DbType = DbType.Int32, Value = deviceValue.ElectricityHighAlarm });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@ElectricityLowAlarm", DbType = DbType.Int32, Value = deviceValue.ElectricityLowAlarm });
@@ -360,7 +360,7 @@ namespace Scada.BLL.Implement
                 ////para.Value = deviceValue.ConnectPoint;
                 // sSqlWhere.Add(para);
                 #endregion
-              
+
 
                 //rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql.ToString(), sSqlWhere.ToArray());
                 ////设备维护人员
@@ -508,13 +508,13 @@ namespace Scada.BLL.Implement
             scadaDeviceServiceLinq = new ScadaDeviceServiceLinq();
             try
             {
-                result=scadaDeviceServiceLinq.Get(deviceGuid);
+                result = scadaDeviceServiceLinq.Get(deviceGuid);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            
+
             return result;
 
             //-------------------------------
@@ -539,11 +539,11 @@ namespace Scada.BLL.Implement
                 //硬件类型
                 deviceInfo.HardType = item["HardType"].ToString();
                 //生产日期
-                if (item["ProductDate"]!=DBNull.Value)
+                if (item["ProductDate"] != DBNull.Value)
                 {
                     deviceInfo.ProductDate = Convert.ToDateTime(item["ProductDate"].ToString());
                 }
-               
+
                 //管理分区
                 deviceInfo.ManageAreaID = new Guid(item["manageareaid"].ToString());
                 //安装位置
@@ -583,7 +583,7 @@ namespace Scada.BLL.Implement
                     deviceInfo.UrgencyBtnEnable = (bool)item["UrgencyBtnEnable"];
 
                 }
-              //是否启用紧急按钮
+                //是否启用紧急按钮
                 if (item["UrgencyBtnEnable"] is bool)
                 {
                     deviceInfo.UrgencyBtnEnable = Convert.ToBoolean(item["UrgencyBtnEnable"]);
@@ -593,7 +593,7 @@ namespace Scada.BLL.Implement
                 //主温度报警设置有效
                 if (item["Temperature1AlarmValid"] is Boolean)
                 {
-                    deviceInfo.Temperature1AlarmValid =(bool)item["Temperature1AlarmValid"];
+                    deviceInfo.Temperature1AlarmValid = (bool)item["Temperature1AlarmValid"];
                 }
                 if (item["Temperature1HighAlarm"] != DBNull.Value)
                 {
@@ -609,11 +609,11 @@ namespace Scada.BLL.Implement
                 {
                     deviceInfo.Temperature2AlarmValid = Convert.ToBoolean(item["Temperature2AlarmValid"]);
                 }
-                if (item["Temperature2HighAlarm"]!=DBNull.Value)
+                if (item["Temperature2HighAlarm"] != DBNull.Value)
                 {
                     deviceInfo.Temperature2HighAlarm = Convert.ToDecimal(item["Temperature2HighAlarm"]);
                 }
-                if (item["Temperature2LowAlarm"]!=DBNull.Value)
+                if (item["Temperature2LowAlarm"] != DBNull.Value)
                 {
                     deviceInfo.Temperature2LowAlarm = Convert.ToDecimal(item["Temperature2LowAlarm"]);
                 }
@@ -623,11 +623,11 @@ namespace Scada.BLL.Implement
                 {
                     deviceInfo.HumidityAlarmValid = (bool)item["HumidityAlarmValid"];
                 }
-                if (item["HumidityHighAlarm"]!=DBNull.Value)
+                if (item["HumidityHighAlarm"] != DBNull.Value)
                 {
                     deviceInfo.HumidityHighAlarm = Convert.ToDecimal(item["HumidityHighAlarm"]);
                 }
-                if (item["HumidityLowAlarm"]!=DBNull.Value)
+                if (item["HumidityLowAlarm"] != DBNull.Value)
                 {
                     deviceInfo.HumidityLowAlarm = Convert.ToDecimal(item["HumidityLowAlarm"]);
                 }
@@ -636,7 +636,7 @@ namespace Scada.BLL.Implement
                 {
                     deviceInfo.SignalAlarmValid = (bool)item["SignalAlarmValid"];
                 }
-                if (item["SignalHighAlarm"]!=DBNull.Value)
+                if (item["SignalHighAlarm"] != DBNull.Value)
                 {
                     deviceInfo.SignalHighAlarm = Convert.ToInt32(item["SignalHighAlarm"]);
                 }
@@ -650,11 +650,11 @@ namespace Scada.BLL.Implement
                 {
                     deviceInfo.ElectricityAlarmValid = (bool)item["ElectricityAlarmValid"];
                 }
-                if (item["ElectricityHighAlarm"]!=DBNull.Value)
+                if (item["ElectricityHighAlarm"] != DBNull.Value)
                 {
                     deviceInfo.ElectricityHighAlarm = Convert.ToInt32(item["ElectricityHighAlarm"]);
                 }
-                if (item["ElectricityLowAlarm"]!=DBNull.Value)
+                if (item["ElectricityLowAlarm"] != DBNull.Value)
                 {
                     deviceInfo.ElectricityLowAlarm = Convert.ToInt32(item["ElectricityLowAlarm"]);
                 }
@@ -667,35 +667,35 @@ namespace Scada.BLL.Implement
                 }
 
                 //当前选择模式
-                if (item["CurrentModel"]!=DBNull.Value)
+                if (item["CurrentModel"] != DBNull.Value)
                 {
                     deviceInfo.CurrentModel = Convert.ToInt32(item["CurrentModel"]);
                 }
 
                 //实时模式参数
-                if (item["RealTimeParam"]!=DBNull.Value)
+                if (item["RealTimeParam"] != DBNull.Value)
                 {
                     deviceInfo.RealTimeParam = Convert.ToInt32(item["RealTimeParam"]);
                 }
                 //整点模式参数1,2
-                if (item["FullTimeParam1"]!=DBNull.Value)
+                if (item["FullTimeParam1"] != DBNull.Value)
                 {
                     deviceInfo.FullTimeParam1 = Convert.ToInt32(item["FullTimeParam1"]);
                 }
-                if (item["FullTimeParam2"]!=DBNull.Value)
+                if (item["FullTimeParam2"] != DBNull.Value)
                 {
                     deviceInfo.FullTimeParam2 = Convert.ToInt32(item["FullTimeParam2"]);
                 }
                 //逢变则报参数1,2,3
-                if (item["OptimizeParam1"]!=DBNull.Value)
+                if (item["OptimizeParam1"] != DBNull.Value)
                 {
                     deviceInfo.OptimizeParam1 = Convert.ToInt32(item["OptimizeParam1"]);
                 }
-                if (item["OptimizeParam2"]!=DBNull.Value)
+                if (item["OptimizeParam2"] != DBNull.Value)
                 {
                     deviceInfo.OptimizeParam2 = Convert.ToInt32(item["OptimizeParam2"]);
                 }
-                if (item["OptimizeParam1"]!=DBNull.Value)
+                if (item["OptimizeParam1"] != DBNull.Value)
                 {
                     deviceInfo.OptimizeParam3 = Convert.ToInt32(item["OptimizeParam3"]);
                 }
@@ -1313,6 +1313,29 @@ namespace Scada.BLL.Implement
 
         #endregion
 
+        #region 维护人员
+
+        public string GetMaintenancePeople()
+        {
+            return string.Empty;
+        }
+
+        public Boolean AddMaintenancePeople(string people)
+        {
+            return false;
+        }
+
+        public Boolean UpdateMaintenancePeople(string people)
+        {
+            return false;
+        }
+
+        public Boolean DeleteMaintenancePeople(Guid peopleKey)
+        {
+            return false;
+        }
+
+        #endregion
 
     }
 

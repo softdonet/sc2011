@@ -91,5 +91,18 @@ namespace Scada.BLL.Contract
         #endregion
 
 
+        #region 维护人员
+
+        string GetMaintenancePeople();
+
+        Boolean AddMaintenancePeople(string people);
+
+        Boolean UpdateMaintenancePeople(string people);
+
+        Boolean DeleteMaintenancePeople(Guid peopleKey);
+
+        #endregion
+
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿<UserControl x:Class="Scada.Client.SL.Modules.BaseInfo.RepairUserManage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -27,21 +28,46 @@
                                 <ColumnDefinition Width="300*"/>
                                 <ColumnDefinition Width="300" />
                             </Grid.ColumnDefinitions>
-                            <sdk:DataGrid AutoGenerateColumns="False"  Name="dataGrid1"  />
-                            <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="92,17,0,0" Name="textBlock1" Text="姓名：" VerticalAlignment="Top" />
-                            <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="138,14,0,0" Name="textBox1" VerticalAlignment="Top" Width="120" />
-                            <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="92,40,0,0" Name="textBlock2" Text="城市：" VerticalAlignment="Top" />
-                            <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="138,38,0,0" Name="textBox2" VerticalAlignment="Top" Width="120" />
-                            <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="93,65,0,0" Name="textBlock3" Text="籍贯：" VerticalAlignment="Top" />
-                            <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="138,63,0,0" Name="textBox3" VerticalAlignment="Top" Width="120" />
-                            <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="93,92,0,0" Name="textBlock4" Text="手机：" VerticalAlignment="Top" />
-                            <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="138,88,0,0" Name="textBox4" VerticalAlignment="Top" Width="120" />
-                            <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="93,119,0,0" Name="textBlock5" Text="技能：" VerticalAlignment="Top" />
-                            <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="138,115,0,0" Name="textBox5" VerticalAlignment="Top" Width="120" />
-                            <Image Grid.Column="1" Height="150" HorizontalAlignment="Left" Margin="100,139,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="200" Source="/Scada.Client.SL;component/Images/whry.jpg" />
-                            <Button Content="增加" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="55,296,0,0" Name="button1" VerticalAlignment="Top" Width="75" />
-                            <Button Content="删除" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="146,296,0,0" Name="button2" VerticalAlignment="Top" Width="75" />
-                            <Button Content="保存" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="237,296,0,0" Name="button3" VerticalAlignment="Top" Width="75" />
+
+
+                            <telerik:RadGridView  x:Name="RadGridViewAlarm"  Width="230"
+                                          ShowGroupPanel="False" 
+                                          AutoGenerateColumns="False"
+                                          IsReadOnly="True"
+                                          ItemsSource="{Binding DeviceAlarmListTop}"  RowIndicatorVisibility="Collapsed">
+                                <telerik:RadGridView.Columns>
+                                    <telerik:GridViewDataColumn Header="ID" IsVisible="False" DataMemberBinding="{Binding DeviceAlarm.DeviceNo}" Width="80" HeaderTextAlignment="Center" TextAlignment="Center" IsFilterable="False"  />
+                                    <telerik:GridViewDataColumn Header="姓名"  DataMemberBinding="{Binding MaintenancePeople.DeviceNo}" Width="80" HeaderTextAlignment="Center" TextAlignment="Center" IsFilterable="False"  />
+                                    <telerik:GridViewDataColumn Header="座机"  DataMemberBinding="{Binding DeviceAlarm.DeviceNo}" Width="60" HeaderTextAlignment="Center" TextAlignment="Center" IsFilterable="False"  />
+                                    <telerik:GridViewDataColumn Header="手机"  DataMemberBinding="{Binding DeviceAlarm.DeviceNo}" Width="60" HeaderTextAlignment="Center" TextAlignment="Center" IsFilterable="False"  />
+                                    <telerik:GridViewDataColumn Header="QQ"  DataMemberBinding="{Binding DeviceAlarm.DeviceNo}" Width="40" HeaderTextAlignment="Center" TextAlignment="Center" IsFilterable="False"  />
+                                    <telerik:GridViewDataColumn Header="MSN"  DataMemberBinding="{Binding DeviceAlarm.DeviceNo}" Width="80" HeaderTextAlignment="Center" TextAlignment="Center" IsFilterable="False"  />
+                                    <telerik:GridViewDataColumn Header="Email"  DataMemberBinding="{Binding DeviceAlarm.DeviceNo}" Width="80" HeaderTextAlignment="Center" TextAlignment="Center" IsFilterable="False"  />
+                                    <telerik:GridViewDataColumn Header="地址"  DataMemberBinding="{Binding DeviceAlarm.DeviceNo}" Width="160" HeaderTextAlignment="Center" TextAlignment="Center" IsFilterable="False"  />
+                                    <telerik:GridViewDataColumn Header="头像" IsVisible="False"  DataMemberBinding="{Binding DeviceAlarm.DeviceNo}" Width="80" HeaderTextAlignment="Center" TextAlignment="Center" IsFilterable="False"  />
+                                </telerik:RadGridView.Columns>
+
+                            </telerik:RadGridView>
+
+
+                            <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="69,14,0,0" Name="textBlock1" Text="姓名：" VerticalAlignment="Top" />
+                            <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="115,11,0,0" Name="textBox1" VerticalAlignment="Top" Width="120" />
+                            <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="69,37,0,0" Name="textBlock2" Text="城市：" VerticalAlignment="Top" />
+                            <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="115,35,0,0" Name="textBox2" VerticalAlignment="Top" Width="120" />
+                            <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="70,62,0,0" Name="textBlock3" Text="籍贯：" VerticalAlignment="Top" />
+                            <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="115,60,0,0" Name="textBox3" VerticalAlignment="Top" Width="120" />
+                            <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="70,89,0,0" Name="textBlock4" Text="手机：" VerticalAlignment="Top" />
+                            <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="115,85,0,0" Name="textBox4" VerticalAlignment="Top" Width="120" />
+                            <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="70,116,0,0" Name="textBlock5" Text="技能：" VerticalAlignment="Top" />
+                            <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="115,112,0,0" Name="textBox5" VerticalAlignment="Top" Width="120" />
+                            <Image Grid.Column="1" Height="130" HorizontalAlignment="Left" Margin="76,139,0,0" Name="imageInput" Stretch="Fill" VerticalAlignment="Top" Width="160" Source="/Scada.Client.SL;component/Images/whry.jpg" />
+                            <Button Name="butOpen" Content="选择" Margin="235,250,0,0" Grid.Column="1" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="30" Click="butOpen_Click" />
+                            <Button Name="butClear" Content="清空" Margin="235,225,0,0" Grid.Column="1" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="30" Click="butClear_Click" />
+
+                            <Button Content="增加" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="32,296,0,0" Name="button1" VerticalAlignment="Top" Width="75" />
+                            <Button Content="删除" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="123,296,0,0" Name="button2" VerticalAlignment="Top" Width="75" />
+                            <Button Content="保存" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="214,296,0,0" Name="button3" VerticalAlignment="Top" Width="75" />
+                            
                         </Grid>
                     </Border>
                 </Border>

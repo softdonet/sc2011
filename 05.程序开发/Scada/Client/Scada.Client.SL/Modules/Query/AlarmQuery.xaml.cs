@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Scada.Client.VM.Modules.Query;
 
 namespace Scada.Client.SL.Modules.Query
 {
@@ -17,6 +18,8 @@ namespace Scada.Client.SL.Modules.Query
         private AlarmQuery()
         {
             InitializeComponent();
+            AlarmQueryViewModel alarmQueryViewModel = new AlarmQueryViewModel();
+
         }
         private static AlarmQuery instance;
         public static AlarmQuery GetInstance()

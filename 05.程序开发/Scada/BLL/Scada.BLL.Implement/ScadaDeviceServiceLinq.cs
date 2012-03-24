@@ -5,6 +5,7 @@ using System.Text;
 using Scada.DAL.Linq;
 using Scada.Utility.Common.Transfer;
 using Scada.Utility.Common.Extensions;
+
 namespace Scada.BLL.Implement
 {
     public class ScadaDeviceServiceLinq
@@ -52,9 +53,53 @@ namespace Scada.BLL.Implement
 
             var obj = sCADADataContext.DeviceInfos.SingleOrDefault(e => e.ID == deviceValue.ID);
             if (obj != null)
-            {                
+            {
                 obj.DeviceNo = deviceValue.DeviceNo;
                 obj.DeviceSN = deviceValue.DeviceSN;
+                obj.HardType = deviceValue.HardType;
+                obj.ProductDate = deviceValue.ProductDate;
+                obj.DeviceMAC = deviceValue.DeviceMAC;
+                obj.SIMNo = deviceValue.SIMNo;
+                obj.ManageAreaID = deviceValue.ManageAreaID;
+                obj.MaintenancePeopleID = deviceValue.MaintenancePeopleID;
+                obj.InstallPlace = deviceValue.InstallPlace;
+                obj.Longitude = deviceValue.Longitude;
+                obj.Latitude = deviceValue.Latitude;
+                obj.High = deviceValue.High;
+                obj.Comment = deviceValue.Comment;
+                obj.Windage = deviceValue.Windage;
+                obj.HardwareVersion = deviceValue.HardwareVersion;
+                obj.SoftWareVersion = deviceValue.SoftWareVersion;
+                obj.LCDScreenDisplayType = deviceValue.LCDScreenDisplayType;
+                obj.UrgencyBtnEnable = deviceValue.UrgencyBtnEnable;
+                obj.InforBtnEnable = deviceValue.InforBtnEnable;
+
+                obj.Temperature1AlarmValid = deviceValue.Temperature1AlarmValid;
+                obj.Temperature1HighAlarm = deviceValue.Temperature1HighAlarm;
+                obj.Temperature1LowAlarm = deviceValue.Temperature1LowAlarm;
+                obj.Temperature2AlarmValid = deviceValue.Temperature2AlarmValid;
+                obj.Temperature2HighAlarm = deviceValue.Temperature2HighAlarm;
+                obj.Temperature2LowAlarm = deviceValue.Temperature2LowAlarm;
+
+                obj.HumidityAlarmValid = deviceValue.HumidityAlarmValid;
+                obj.HumidityHighAlarm = deviceValue.HumidityHighAlarm;
+                obj.HumidityLowAlarm = deviceValue.HumidityLowAlarm;
+                obj.SignalAlarmValid = deviceValue.SignalAlarmValid;
+                obj.SignalHighAlarm = deviceValue.SignalHighAlarm;
+                obj.SignalLowAlarm = deviceValue.SignalLowAlarm;
+
+                obj.ElectricityAlarmValid = deviceValue.ElectricityAlarmValid;
+                obj.ElectricityHighAlarm = deviceValue.ElectricityHighAlarm;
+                obj.ElectricityLowAlarm = deviceValue.ElectricityLowAlarm;
+
+                obj.CurrentModel = deviceValue.CurrentModel;
+                obj.RealTimeParam = deviceValue.RealTimeParam;
+                obj.FullTimeParam1 = deviceValue.FullTimeParam1;
+                obj.FullTimeParam2 = deviceValue.FullTimeParam2;
+                obj.OptimizeParam1 = deviceValue.OptimizeParam1;
+                obj.OptimizeParam2 = deviceValue.OptimizeParam2;
+                obj.OptimizeParam3 = deviceValue.OptimizeParam3;
+
                 //Todo:其他属性
             }
             sCADADataContext.SubmitChanges();
@@ -78,5 +123,7 @@ namespace Scada.BLL.Implement
             }
             return string.Empty;
         }
+
+
     }
 }

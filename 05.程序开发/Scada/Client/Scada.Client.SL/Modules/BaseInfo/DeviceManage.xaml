@@ -78,8 +78,8 @@
 
                                 <StackPanel Name="stackPanel11" Orientation="Horizontal" Grid.Column="2" Margin="53,5,126,-1" Grid.Row="1">
                                     <Button Content="增加" Height="23" Name="butAdd" Width="60" Command="{Binding AddCommand}"  />
-                                <Button Content="删除" Height="23" Name="butDel" Width="60" Click="butDel_Click" />
-                                <Button Content="保存" Height="23" Name="butSave" Width="60" Click="butSave_Click" />
+                                    <Button Content="删除" Height="23" Name="butDel" Width="60" Command="{Binding DeleteCommand}"  />
+                                    <Button Content="保存" Height="23" Name="butSave" Width="60" Command="{Binding UpdateCommand}"  />
                                 <Button Content="导出" Height="23" Name="btnExport" Width="60" />
                             </StackPanel>
                             <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="220,86,0,0" Name="textBlock1" Text="实时模式参数：" VerticalAlignment="Top" />

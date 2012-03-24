@@ -117,34 +117,38 @@ namespace Scada.Client.SL.Modules.BaseInfo
         {
             if (sender == null) { return; }
             DeviceTreeNode node = e.NewValue as DeviceTreeNode;
-            //node.NodeParent = e.OldValue as DeviceTreeNode;
-            this._userSelTreeNode = node;
-
-            this.btnExport.IsEnabled = true;
-
-            if (node.NodeType == 1)
+            if (node != null)
             {
-                this.butAdd.IsEnabled = false;
-                this.butDel.IsEnabled = false;
-                this.butSave.IsEnabled = false;
-            }
-            else if (node.NodeType == 2)
-            {
-                this.butAdd.IsEnabled = true;
-                this.butDel.IsEnabled = false;
-                this.butSave.IsEnabled = true;
-            }
-            else if (node.NodeType == 3)
-            {
-                this.butAdd.IsEnabled = true;
-                this.butDel.IsEnabled = true;
-                this.butSave.IsEnabled = true;
-                //scadaDeviceServiceSoapClient.ViewDeviceInfoAsync(node.NodeKey.ToString().ToUpper());
-            }
 
-            DeviceManageViewModel deviceManageViewModel = new DeviceManageViewModel(node.NodeKey.ToString().ToUpper());
-            this.DataContext = deviceManageViewModel;
+                //node.NodeParent = e.OldValue as DeviceTreeNode;
+                this._userSelTreeNode = node;
 
+                this.btnExport.IsEnabled = true;
+
+                if (node.NodeType == 1)
+                {
+                    this.butAdd.IsEnabled = false;
+                    this.butDel.IsEnabled = false;
+                    this.butSave.IsEnabled = false;
+                }
+                else if (node.NodeType == 2)
+                {
+                    this.butAdd.IsEnabled = true;
+                    this.butDel.IsEnabled = false;
+                    this.butSave.IsEnabled = true;
+                }
+                else if (node.NodeType == 3)
+                {
+                    this.butAdd.IsEnabled = true;
+                    this.butDel.IsEnabled = true;
+                    this.butSave.IsEnabled = true;
+                    //scadaDeviceServiceSoapClient.ViewDeviceInfoAsync(node.NodeKey.ToString().ToUpper());
+                }
+
+                DeviceManageViewModel deviceManageViewModel = new DeviceManageViewModel(node.NodeKey.ToString().ToUpper());
+                this.DataContext = deviceManageViewModel;
+            }
+          
         }
 
         //设置按钮的状态
@@ -504,10 +508,6 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
         }
 
-        private void butDel_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void butSave_Click(object sender, RoutedEventArgs e)
         {

@@ -9,7 +9,9 @@ using Scada.DAL.Ado;
 using Scada.BLL.Contract;
 using Scada.Model.Entity;
 using Scada.Utility.Common.Transfer;
-
+using Scada.Utility.Common.Extensions;
+using Scada.DAL.Linq;
+using System.Linq;
 
 
 namespace Scada.BLL.Implement
@@ -18,6 +20,8 @@ namespace Scada.BLL.Implement
     public class ScadaDeviceService : IScadaDeviceService
     {
         ScadaDeviceServiceLinq scadaDeviceServiceLinq;
+        private SCADADataContext sCADADataContext = null;
+
 
         #region 测试流程
 
@@ -1165,6 +1169,51 @@ namespace Scada.BLL.Implement
             return result;
         }
 
+        #endregion
+
+        #region 告警查询
+
+        public string GetAlarmQueryInfo(Guid id, DateTime startdDate, DateTime endDate)
+        {
+            string result = string.Empty;
+            try
+            {
+                sCADADataContext = new SCADADataContext();
+                var obj = sCADADataContext.DeviceAlarms.Select(e => e.ID == id && e.StartTime > startdDate && e.StartTime < endDate);
+                if (obj != null)
+                {
+                    Scada.Model.Entity.DeviceAlarm deviceAlarm = obj.ConvertTo<Scada.Model.Entity.DeviceAlarm>();
+                    result = BinaryObjTransfer.JsonSerializer<Scada.Model.Entity.DeviceAlarm>(deviceAlarm);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return result;
+        }
+        #endregion
+
+        #region 用户事件查询
+        public string GetUserEventQueryInfo(Guid id, DateTime startDate, DateTime endDate)
+        {
+            string result = string.Empty;
+            try
+            {
+                sCADADataContext = new SCADADataContext();
+                var obj = sCADADataContext.UserEvents.Select(e => e.ID == id && e.RequestTime > startDate && e.RequestTime < endDate);
+                if (obj!=null)
+                {
+                    Scada.Model.Entity.UserEventModel userEventModel = obj.ConvertTo<Scada.Model.Entity.UserEventModel>();
+                    result = BinaryObjTransfer.JsonSerializer<Scada.Model.Entity.UserEventModel>(userEventModel);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return result;
+        }
         #endregion
 
         #region 图表分析

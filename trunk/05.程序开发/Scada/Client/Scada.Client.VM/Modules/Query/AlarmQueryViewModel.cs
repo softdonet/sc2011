@@ -11,12 +11,14 @@ using System.Windows.Shapes;
 using Microsoft.Practices.Prism.ViewModel;
 using System.Collections.Generic;
 using Scada.Model.Entity;
+using Microsoft.Practices.Prism.Commands;
 
 namespace Scada.Client.VM.Modules.Query
 {
     public class AlarmQueryViewModel : NotificationObject
     {
         #region Variable
+        public DelegateCommand queryCommand;
         public List<DeviceAlarm> deviceAlarmQuery;
         #endregion
 

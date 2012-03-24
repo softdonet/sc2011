@@ -110,21 +110,11 @@
                 <telerik:GridViewDataColumn Header="事件类型" Width="60" HeaderTextAlignment="Center"  />
                 <telerik:GridViewDataColumn Header="事件等级" Width="60" HeaderTextAlignment="Center" />
                 <telerik:GridViewDataColumn Header="开始时间" Width="140" HeaderTextAlignment="Center"  />
-                <telerik:GridViewDataColumn Header="完成时间" Width="140" HeaderTextAlignment="Center" />
+                <!--<telerik:GridViewDataColumn Header="完成时间" Width="140" HeaderTextAlignment="Center" />-->
                 <telerik:GridViewDataColumn Header="确认时间" Width="140" HeaderTextAlignment="Center" />
                 <telerik:GridViewDataColumn Header="确认人" Width="80" HeaderTextAlignment="Center"  />
                 <telerik:GridViewDataColumn Header="备注" Width="10*"  HeaderTextAlignment="Center" />
                 <telerik:GridViewDataColumn Header="处理状态"  Width="90" HeaderTextAlignment="Center" />
-                <telerik:GridViewDataColumn    Width="100"
-											Header="操作" HeaderTextAlignment="Center" TextAlignment="Center" >
-                    <telerik:GridViewColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel  Orientation="Horizontal"   HorizontalAlignment="Center">
-                                <HyperlinkButton x:Name="hlUrl"   IsEnabled="False"   HorizontalAlignment="Center"  Content="处理"  Foreground="#FF0000CC"    />
-                            </StackPanel>
-                        </DataTemplate>
-                    </telerik:GridViewColumn.CellTemplate>
-                </telerik:GridViewDataColumn>
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>
     </Grid>

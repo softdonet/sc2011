@@ -10,7 +10,6 @@ using Scada.BLL.Contract;
 using Scada.Model.Entity;
 using Scada.Utility.Common.Transfer;
 using Scada.Utility.Common.Extensions;
-using Scada.DAL.Linq;
 using System.Linq;
 
 
@@ -20,7 +19,7 @@ namespace Scada.BLL.Implement
     public class ScadaDeviceService : IScadaDeviceService
     {
         ScadaDeviceServiceLinq scadaDeviceServiceLinq;
-        private SCADADataContext sCADADataContext = null;
+        private Scada.DAL.Linq.SCADADataContext sCADADataContext = null;
 
 
         #region 测试流程
@@ -1178,7 +1177,7 @@ namespace Scada.BLL.Implement
             string result = string.Empty;
             try
             {
-                sCADADataContext = new SCADADataContext();
+                sCADADataContext = new Scada.DAL.Linq.SCADADataContext();
                 var obj = sCADADataContext.DeviceAlarms.Select(e => e.ID == id && e.StartTime > startdDate && e.StartTime < endDate);
                 if (obj != null)
                 {
@@ -1200,7 +1199,7 @@ namespace Scada.BLL.Implement
             string result = string.Empty;
             try
             {
-                sCADADataContext = new SCADADataContext();
+                sCADADataContext = new Scada.DAL.Linq.SCADADataContext();
                 var obj = sCADADataContext.UserEvents.Select(e => e.ID == id && e.RequestTime > startDate && e.RequestTime < endDate);
                 if (obj!=null)
                 {

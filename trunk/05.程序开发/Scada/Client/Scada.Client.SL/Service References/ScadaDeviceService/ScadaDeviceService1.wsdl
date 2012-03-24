@@ -108,7 +108,7 @@
       <s:element name="ViewDeviceInfo">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="deviceGuid" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="deviceGuid" type="s1:guid" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -267,6 +267,58 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetMaintenancePeople">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMaintenancePeopleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMaintenancePeopleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddMaintenancePeople">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="people" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddMaintenancePeopleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddMaintenancePeopleResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateMaintenancePeople">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="people" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateMaintenancePeopleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateMaintenancePeopleResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteMaintenancePeople">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="peopleKey" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteMaintenancePeopleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteMaintenancePeopleResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="guid">
@@ -390,6 +442,30 @@
   <wsdl:message name="GetSameDateTemperatureDiffDeviceSoapOut">
     <wsdl:part name="parameters" element="tns:GetSameDateTemperatureDiffDeviceResponse" />
   </wsdl:message>
+  <wsdl:message name="GetMaintenancePeopleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMaintenancePeople" />
+  </wsdl:message>
+  <wsdl:message name="GetMaintenancePeopleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMaintenancePeopleResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddMaintenancePeopleSoapIn">
+    <wsdl:part name="parameters" element="tns:AddMaintenancePeople" />
+  </wsdl:message>
+  <wsdl:message name="AddMaintenancePeopleSoapOut">
+    <wsdl:part name="parameters" element="tns:AddMaintenancePeopleResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMaintenancePeopleSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateMaintenancePeople" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMaintenancePeopleSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateMaintenancePeopleResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMaintenancePeopleSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteMaintenancePeople" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMaintenancePeopleSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteMaintenancePeopleResponse" />
+  </wsdl:message>
   <wsdl:portType name="ScadaDeviceServiceSoap">
     <wsdl:operation name="Add">
       <wsdl:input message="tns:AddSoapIn" />
@@ -466,6 +542,22 @@
     <wsdl:operation name="GetSameDateTemperatureDiffDevice">
       <wsdl:input message="tns:GetSameDateTemperatureDiffDeviceSoapIn" />
       <wsdl:output message="tns:GetSameDateTemperatureDiffDeviceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMaintenancePeople">
+      <wsdl:input message="tns:GetMaintenancePeopleSoapIn" />
+      <wsdl:output message="tns:GetMaintenancePeopleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddMaintenancePeople">
+      <wsdl:input message="tns:AddMaintenancePeopleSoapIn" />
+      <wsdl:output message="tns:AddMaintenancePeopleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMaintenancePeople">
+      <wsdl:input message="tns:UpdateMaintenancePeopleSoapIn" />
+      <wsdl:output message="tns:UpdateMaintenancePeopleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMaintenancePeople">
+      <wsdl:input message="tns:DeleteMaintenancePeopleSoapIn" />
+      <wsdl:output message="tns:DeleteMaintenancePeopleSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ScadaDeviceServiceSoap" type="tns:ScadaDeviceServiceSoap">
@@ -641,6 +733,42 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetMaintenancePeople">
+      <soap:operation soapAction="http://tempuri.org/GetMaintenancePeople" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMaintenancePeople">
+      <soap:operation soapAction="http://tempuri.org/AddMaintenancePeople" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMaintenancePeople">
+      <soap:operation soapAction="http://tempuri.org/UpdateMaintenancePeople" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMaintenancePeople">
+      <soap:operation soapAction="http://tempuri.org/DeleteMaintenancePeople" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ScadaDeviceServiceSoap12" type="tns:ScadaDeviceServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -808,6 +936,42 @@
     </wsdl:operation>
     <wsdl:operation name="GetSameDateTemperatureDiffDevice">
       <soap12:operation soapAction="http://tempuri.org/GetSameDateTemperatureDiffDevice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMaintenancePeople">
+      <soap12:operation soapAction="http://tempuri.org/GetMaintenancePeople" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMaintenancePeople">
+      <soap12:operation soapAction="http://tempuri.org/AddMaintenancePeople" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMaintenancePeople">
+      <soap12:operation soapAction="http://tempuri.org/UpdateMaintenancePeople" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMaintenancePeople">
+      <soap12:operation soapAction="http://tempuri.org/DeleteMaintenancePeople" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

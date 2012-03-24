@@ -22,6 +22,8 @@ namespace Scada.Client.VM.Modules.BaseInfo
     public class DeviceManageViewModel : NotificationObject
     {
         public DelegateCommand AddCommand { get; set; }
+        public DelegateCommand UpdateCommand { get; set; }
+        public DelegateCommand DeleteCommand { get; set; }
         private ScadaDeviceServiceSoapClient scadaDeviceServiceSoapClient = null;
         DeviceInfo deviceInfo;
         string myDeviceId;
@@ -40,71 +42,41 @@ namespace Scada.Client.VM.Modules.BaseInfo
 
         public DeviceManageViewModel(string DeviceId)
         {
+            //查看设备树
             myDeviceId = DeviceId;
             scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
             scadaDeviceServiceSoapClient.ViewDeviceInfoCompleted += new EventHandler<ViewDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_ViewDeviceInfoCompleted);
             scadaDeviceServiceSoapClient.ViewDeviceInfoAsync(myDeviceId);
 
-
+            //添加设备
             scadaDeviceServiceSoapClient.AddDeviceInfoCompleted += new EventHandler<AddDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_AddDeviceInfoCompleted);
-
             this.AddCommand = new DelegateCommand(new Action(this.AddDeviceInfo));
-
+            
+            //修改设备
+            this.scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoCompleted += new EventHandler<UpdateDeviceAlarmInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoCompleted);
+            this.UpdateCommand = new DelegateCommand(new Action(this.UpdateDeviceInfo));
+            
+            //删除设备
+            this.scadaDeviceServiceSoapClient.DeleteDeviceInfoCompleted += new EventHandler<DeleteDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_DeleteDeviceInfoCompleted);
+            this.DeleteCommand = new DelegateCommand(new Action(this.DeleteDeviceInfo));
         }
+
 
         void scadaDeviceServiceSoapClient_AddDeviceInfoCompleted(object sender, AddDeviceInfoCompletedEventArgs e)
         {
             bool flag = e.Result;
+            if (flag)
+            {
+                MessageBox.Show("添加新设备成功!");
+                //scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
+            }
+            else
+            {
+                MessageBox.Show("添加新设备失败!");
+            }
         }
         private void AddDeviceInfo()
         {
-            #region Common
-            
-            //DeviceInfo addDevice = new DeviceInfo();
-
-            //addDevice.ID = Guid.NewGuid();
-            //addDevice.DeviceNo = DeviceNo;
-            //addDevice.DeviceMAC = DeviceMAC;
-            //addDevice.DeviceSN = DeviceSN;
-            //addDevice.HardType = HardType;
-            //addDevice.ProductDate = ProductDate;
-            //addDevice.SIMNo = SIMNo;
-            //addDevice.ManageAreaID = ManageAreaID;
-            //addDevice.MaintenancePeopleID = maintenancePeopleID;
-            //addDevice.InstallPlace = InstallPlace;
-            //addDevice.Longitude = Longitude;
-            //addDevice.Latitude = Latitude;
-            //addDevice.High = High;
-            //addDevice.Comment = Comment;
-            //addDevice.Windage = Windage;
-            //addDevice.HardwareVersion = HardwareVersion;
-            //addDevice.SoftWareVersion = SoftWareVersion;
-            //addDevice.LCDScreenDisplayType = LCDScreenDisplayType;
-            //addDevice.UrgencyBtnEnable = UrgencyBtnEnable;
-            //addDevice.InforBtnEnable = InforBtnEnable;
-            //addDevice.Temperature1AlarmValid = Temperature1AlarmValid;
-            //addDevice.Temperature1HighAlarm = Temperature1HighAlarm;
-            //addDevice.Temperature1LowAlarm = Temperature1LowAlarm;
-            //addDevice.Temperature2AlarmValid = Temperature2AlarmValid;
-            //addDevice.Temperature2HighAlarm = Temperature2HighAlarm;
-            //addDevice.Temperature2LowAlarm = Temperature2LowAlarm;
-            //addDevice.HumidityAlarmValid = HumidityAlarmValid;
-            //addDevice.HumidityHighAlarm = HumidityHighAlarm;
-            //addDevice.HumidityLowAlarm = HumidityLowAlarm;
-            //addDevice.SignalAlarmValid = SignalAlarmValid;
-            //addDevice.SignalHighAlarm = SignalHighAlarm;
-            //addDevice.SignalLowAlarm = SignalLowAlarm;
-            //addDevice.ElectricityAlarmValid = ElectricityAlarmValid;
-            //addDevice.ElectricityHighAlarm = ElectricityHighAlarm;
-            //addDevice.ElectricityLowAlarm = ElectricityLowAlarm;
-            //addDevice.CurrentModel = CurrentModel;
-            //addDevice.RealTimeParam = RealTimeParam;
-            //addDevice.FullTimeParam1 = FullTimeParam1;
-            //addDevice.FullTimeParam2 = FullTimeParam2;
-            //addDevice.OptimizeParam1 = OptimizeParam1;
-            //addDevice.OptimizeParam2 = OptimizeParam2;
-            //addDevice.OptimizeParam3 = OptimizeParam3;
-            #endregion
 
             //--------------------
             DeviceInfoList.ID = Guid.NewGuid();
@@ -112,6 +84,43 @@ namespace Scada.Client.VM.Modules.BaseInfo
             string deviceInfo = BinaryObjTransfer.BinarySerialize(DeviceInfoList);
             scadaDeviceServiceSoapClient.AddDeviceInfoAsync(deviceInfo);
 
+        }
+
+        void scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoCompleted(object sender, UpdateDeviceAlarmInfoCompletedEventArgs e)
+        {
+            bool flag = e.Result;
+            if (flag)
+            {
+                MessageBox.Show("修改设备信息成功!");
+            }
+            else
+            {
+                MessageBox.Show("修改设备信息失败!");
+            }
+        }
+
+        private void UpdateDeviceInfo()
+        {
+            string deviceInfo = BinaryObjTransfer.BinarySerialize(DeviceInfoList);
+            scadaDeviceServiceSoapClient.UpdateDeviceInfoAsync(deviceInfo);
+        }
+
+        void scadaDeviceServiceSoapClient_DeleteDeviceInfoCompleted(object sender, DeleteDeviceInfoCompletedEventArgs e)
+        {
+            bool flag = e.Result;
+            if (flag)
+            {
+                MessageBox.Show("删除设备信息成功!");
+            }
+            else
+            {
+                MessageBox.Show("删除设备信息失败!");
+            }
+        }
+
+        private void DeleteDeviceInfo()
+        {
+            scadaDeviceServiceSoapClient.DeleteDeviceInfoAsync(DeviceInfoList.ID);
         }
 
         #region 设备树

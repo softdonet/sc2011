@@ -125,6 +125,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="CommClass\BinaryObjTransfer.cs" />
+    <Compile Include="CommClass\BitmapImageByte.cs" />
     <Compile Include="CommClass\ServiceManager.cs" />
     <Compile Include="Controls\ComboBoxTreeView.xaml.cs">
       <DependentUpon>ComboBoxTreeView.xaml</DependentUpon>
@@ -388,6 +389,9 @@
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.AddDeviceInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.AddMaintenancePeopleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyDayResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -401,6 +405,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.GetListStepInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.GetMaintenancePeopleResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.GetSameDateTemperatureDiffDeviceResponse.datasource">
@@ -425,6 +432,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.UpdateDeviceInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.UpdateMaintenancePeopleResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.UpdateUserEventInfoResponse.datasource">

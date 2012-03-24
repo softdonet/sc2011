@@ -1317,22 +1317,114 @@ namespace Scada.BLL.Implement
 
         public string GetMaintenancePeople()
         {
-            return string.Empty;
+            List<MaintenancePeople> mainPeople = new List<MaintenancePeople>();
+            string sSql = " Select * from MaintenancePeople ";
+            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            MaintenancePeople people = null;
+            foreach (DataRow item in ds.Rows)
+            {
+                people = new MaintenancePeople();
+                people.ID = new Guid(item["ID"].ToString());
+                people.Name = item["Name"].ToString();
+                people.Address = item["Address"].ToString();
+                people.Telephone = item["Telephone"].ToString();
+                people.Mobile = item["Mobile"].ToString();
+                people.QQ = item["QQ"].ToString();
+                people.MSN = item["MSN"].ToString();
+                people.Email = item["Email"].ToString();
+                if (item["HeadImage"] != DBNull.Value)
+                    people.HeadImage = (byte[])item["HeadImage"];
+                mainPeople.Add(people);
+            }
+            return BinaryObjTransfer.JsonSerializer<List<MaintenancePeople>>(mainPeople);
         }
 
         public Boolean AddMaintenancePeople(string people)
         {
-            return false;
+            Boolean result = false;
+            string sSql = @" Insert Into MaintenancePeople(ID,Name,Address,Telephone,
+                                    Mobile,QQ,MSN,Email,HeadImage) Values (@ID,@Name,@Address,@Telephone,
+                                    @Mobile,@QQ,@MSN,@Email,@HeadImage)";
+            List<SqlParameter> sSqlWhere = new List<SqlParameter>();
+            try
+            {
+                MaintenancePeople mainPeople = BinaryObjTransfer.JsonDeserialize<MaintenancePeople>(people);
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@ID", DbType = DbType.Guid, Value = mainPeople.ID });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Name", DbType = DbType.String, Value = mainPeople.Name });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Address", DbType = DbType.String, Value = mainPeople.Address });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Telephone", DbType = DbType.String, Value = mainPeople.Telephone });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Mobile", DbType = DbType.String, Value = mainPeople.Mobile });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@QQ", DbType = DbType.String, Value = mainPeople.QQ });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@MSN", DbType = DbType.String, Value = mainPeople.MSN });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Email", DbType = DbType.String, Value = mainPeople.Email });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@HeadImage", DbType = DbType.Binary, Value = mainPeople.HeadImage });
+                int rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql, sSqlWhere.ToArray());
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                result = false;
+            }
+            return result;
         }
 
         public Boolean UpdateMaintenancePeople(string people)
         {
-            return false;
+            Boolean result = false;
+            string sSql = @" Update MaintenancePeople Set Name=@Name,Address=@Address,Telephone=@Telephone,
+                                    Mobile=@Mobile,QQ=@QQ,MSN=@MSN,Email=@Email,HeadImage=@HeadImage Where ID=@ID";
+            List<SqlParameter> sSqlWhere = new List<SqlParameter>();
+            try
+            {
+                MaintenancePeople mainPeople = BinaryObjTransfer.JsonDeserialize<MaintenancePeople>(people);
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Name", DbType = DbType.String, Value = mainPeople.Name });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Address", DbType = DbType.String, Value = mainPeople.Address });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Telephone", DbType = DbType.String, Value = mainPeople.Telephone });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Mobile", DbType = DbType.String, Value = mainPeople.Mobile });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@QQ", DbType = DbType.String, Value = mainPeople.QQ });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@MSN", DbType = DbType.String, Value = mainPeople.MSN });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Email", DbType = DbType.String, Value = mainPeople.Email });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@HeadImage", DbType = DbType.Binary, Value = mainPeople.HeadImage });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@ID", DbType = DbType.Guid, Value = mainPeople.ID });
+                int rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql, sSqlWhere.ToArray());
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                result = false;
+            }
+            return result;
         }
 
         public Boolean DeleteMaintenancePeople(Guid peopleKey)
         {
-            return false;
+            Boolean result = false;
+            string sSql = @" Delete MaintenancePeople Where ID=@ID";
+            List<SqlParameter> sSqlWhere = new List<SqlParameter>();
+            try
+            {
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@ID", DbType = DbType.Guid, Value = peopleKey });
+                int rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql, sSqlWhere.ToArray());
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                result = false;
+            }
+            return result;
+        }
+
+        private byte[] StringToByte(string strValue)
+        {
+            return System.Text.Encoding.Default.GetBytes(strValue);
+        }
+
+        private string ByteToString(byte[] bytes)
+        {
+            return System.Text.Encoding.Default.GetString(bytes);
         }
 
         #endregion

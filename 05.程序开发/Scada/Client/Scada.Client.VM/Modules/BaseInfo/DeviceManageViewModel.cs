@@ -36,33 +36,42 @@ namespace Scada.Client.VM.Modules.BaseInfo
             scadaDeviceServiceSoapClient.ListDeviceTreeViewCompleted += new EventHandler<ListDeviceTreeViewCompletedEventArgs>(scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted);
             scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
 
-            //scadaDeviceServiceSoapClient.AddDeviceInfoCompleted += new EventHandler<AddDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_AddDeviceInfoCompleted);
-
-            //this.AddCommand = new DelegateCommand(new Action(this.AddDeviceInfo));
-
-        }
-
-        public DeviceManageViewModel(string DeviceId)
-        {
-            //查看设备树
-            myDeviceId = DeviceId;
-            scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
+            //查看设备
             scadaDeviceServiceSoapClient.ViewDeviceInfoCompleted += new EventHandler<ViewDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_ViewDeviceInfoCompleted);
-            scadaDeviceServiceSoapClient.ViewDeviceInfoAsync(myDeviceId);
 
             //添加设备
             scadaDeviceServiceSoapClient.AddDeviceInfoCompleted += new EventHandler<AddDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_AddDeviceInfoCompleted);
             this.AddCommand = new DelegateCommand(new Action(this.AddDeviceInfo));
-            
+
             //修改设备
             this.scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoCompleted += new EventHandler<UpdateDeviceAlarmInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoCompleted);
             this.UpdateCommand = new DelegateCommand(new Action(this.UpdateDeviceInfo));
-            
+
             //删除设备
             this.scadaDeviceServiceSoapClient.DeleteDeviceInfoCompleted += new EventHandler<DeleteDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_DeleteDeviceInfoCompleted);
             this.DeleteCommand = new DelegateCommand(new Action(this.DeleteDeviceInfo));
         }
 
+        public DeviceManageViewModel(string aa,string bb)
+        {
+            //查看设备
+            //myDeviceId = DeviceId;
+            scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
+            scadaDeviceServiceSoapClient.ViewDeviceInfoCompleted += new EventHandler<ViewDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_ViewDeviceInfoCompleted);
+         //   scadaDeviceServiceSoapClient.ViewDeviceInfoAsync(myDeviceId);
+
+            //添加设备
+            scadaDeviceServiceSoapClient.AddDeviceInfoCompleted += new EventHandler<AddDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_AddDeviceInfoCompleted);
+            this.AddCommand = new DelegateCommand(new Action(this.AddDeviceInfo));
+
+            //修改设备
+            this.scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoCompleted += new EventHandler<UpdateDeviceAlarmInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoCompleted);
+            this.UpdateCommand = new DelegateCommand(new Action(this.UpdateDeviceInfo));
+
+            //删除设备
+            this.scadaDeviceServiceSoapClient.DeleteDeviceInfoCompleted += new EventHandler<DeleteDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_DeleteDeviceInfoCompleted);
+            this.DeleteCommand = new DelegateCommand(new Action(this.DeleteDeviceInfo));
+        }
 
         void scadaDeviceServiceSoapClient_AddDeviceInfoCompleted(object sender, AddDeviceInfoCompletedEventArgs e)
         {
@@ -77,15 +86,32 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 MessageBox.Show("添加新设备失败!");
             }
         }
+       
+        public void ViewDeviceInfoById(string myDeviceId)
+        {
+            scadaDeviceServiceSoapClient.ViewDeviceInfoAsync(myDeviceId);
+
+        }
         private void AddDeviceInfo()
         {
+            if (DeviceInfoList != null)
+            {
+                //--------------------
+                DeviceInfoList.ID = Guid.NewGuid();
+                //string deviceInfo = BinaryObjTransfer.BinarySerialize(addDevice);
+                string deviceInfo = BinaryObjTransfer.BinarySerialize(DeviceInfoList);
+                scadaDeviceServiceSoapClient.AddDeviceInfoAsync(deviceInfo);
+                scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
+            }
+            else
+            {
+                DeviceInfoList = new DeviceInfo();
 
-            //--------------------
-            DeviceInfoList.ID = Guid.NewGuid();
-            //string deviceInfo = BinaryObjTransfer.BinarySerialize(addDevice);
-            string deviceInfo = BinaryObjTransfer.BinarySerialize(DeviceInfoList);
-            scadaDeviceServiceSoapClient.AddDeviceInfoAsync(deviceInfo);
-            scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
+                DeviceInfoList.ID = Guid.NewGuid();
+                DeviceInfoList.DeviceNo = DeviceNo;
+                DeviceInfoList.DeviceSN = DeviceSN;
+
+            }
 
         }
 
@@ -127,10 +153,6 @@ namespace Scada.Client.VM.Modules.BaseInfo
             scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
         }
 
-        public void GetDeviceTreeNodeResult()
-        {
-            scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
-        }
         #region 设备树
 
         void scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted(object sender, ListDeviceTreeViewCompletedEventArgs e)

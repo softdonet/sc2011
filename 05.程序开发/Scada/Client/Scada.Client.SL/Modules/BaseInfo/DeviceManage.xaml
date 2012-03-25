@@ -79,7 +79,7 @@
                                 <StackPanel Name="stackPanel11" Orientation="Horizontal" Grid.Column="2" Margin="226,360,13,20" Width="186" Height="30">
                                     <Button Content="增加" Height="23" Name="butAdd" Width="60" Command="{Binding AddCommand}"  />
                                     <Button Content="删除" Height="23" Name="butDel" Width="60" Command="{Binding DeleteCommand}"  />
-                                    <Button Content="保存" Height="23" Name="butSave" Width="60" Command="{Binding UpdateCommand}"  />
+                                    <Button Content="修改" Height="23" Name="butSave" Width="60" Command="{Binding UpdateCommand}"  />
                                 </StackPanel>
                             <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="220,119,0,0" Name="textBlock1" Text="实时模式参数：" VerticalAlignment="Top" />
                                 <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,115,0,0" Name="txtRealTimeParam" Text="{Binding DeviceInfoList.RealTimeParam, Mode=TwoWay}" VerticalAlignment="Top" Width="120" />

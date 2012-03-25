@@ -16,7 +16,7 @@ using Scada.Client.SL.CommClass;
 using Scada.Client.SL.ScadaDeviceService;
 using Scada.Model.Entity.Common;
 using Scada.Client.VM.Modules.BaseInfo;
-
+using System.ComponentModel.DataAnnotations;
 
 
 namespace Scada.Client.SL.Modules.BaseInfo
@@ -52,16 +52,16 @@ namespace Scada.Client.SL.Modules.BaseInfo
             //加载设备树
             deviceManageViewModel = new DeviceManageViewModel();
             this.DataContext = deviceManageViewModel;
-            deviceManageViewModel.PropertyChanged += 
+            deviceManageViewModel.PropertyChanged +=
                 new System.ComponentModel.PropertyChangedEventHandler(deviceManageViewModel_PropertyChanged);
-  
+
             //加载维护人员信息
             this.scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
 
-            scadaDeviceServiceSoapClient.ListMaintenancePeopleCompleted += 
+            scadaDeviceServiceSoapClient.ListMaintenancePeopleCompleted +=
                 new EventHandler<ListMaintenancePeopleCompletedEventArgs>(scadaDeviceServiceSoapClient_ListMaintenancePeopleCompleted);
             scadaDeviceServiceSoapClient.ListMaintenancePeopleAsync();
-            
+
             //加载液晶屏显示
             LoadDisplayType();
             //加载当前选择模式
@@ -71,7 +71,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
         void deviceManageViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName=="DeviceTreeNodeList")
+            if (e.PropertyName == "DeviceTreeNodeList")
             {
                 this.treeViewList1.Source = deviceManageViewModel.DeviceTreeNodeList;
             }
@@ -82,12 +82,12 @@ namespace Scada.Client.SL.Modules.BaseInfo
         #region 初始化基本信息
         private void LoadDisplayType()
         {
-            List<KeyValue> keyValueList=new List<KeyValue>();
+            List<KeyValue> keyValueList = new List<KeyValue>();
             keyValueList.Clear();
-            keyValueList.Add(new KeyValue(){ Key=1, Value="完整显示"});
-            keyValueList.Add(new KeyValue(){ Key=2, Value="基本显示"});
-            keyValueList.Add(new KeyValue(){ Key=3, Value="天气预报"});
-            keyValueList.Add(new KeyValue(){ Key=4, Value="不显示"});
+            keyValueList.Add(new KeyValue() { Key = 1, Value = "完整显示" });
+            keyValueList.Add(new KeyValue() { Key = 2, Value = "基本显示" });
+            keyValueList.Add(new KeyValue() { Key = 3, Value = "天气预报" });
+            keyValueList.Add(new KeyValue() { Key = 4, Value = "不显示" });
 
             cmbDisplayType.ItemsSource = keyValueList;
         }
@@ -96,9 +96,9 @@ namespace Scada.Client.SL.Modules.BaseInfo
         {
             List<KeyValue> keyValueList = new List<KeyValue>();
             keyValueList.Clear();
-            keyValueList.Add(new KeyValue() { Key=1, Value="实时模式" });
-            keyValueList.Add(new KeyValue() { Key=2, Value="整点模式" });
-            keyValueList.Add(new KeyValue() { Key=3, Value="优化模式" });
+            keyValueList.Add(new KeyValue() { Key = 1, Value = "实时模式" });
+            keyValueList.Add(new KeyValue() { Key = 2, Value = "整点模式" });
+            keyValueList.Add(new KeyValue() { Key = 3, Value = "优化模式" });
             cmbCurrentModel.ItemsSource = keyValueList;
         }
         #endregion
@@ -149,7 +149,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
                 deviceManageViewModel.ViewDeviceInfoById(node.NodeKey.ToString());
                 this.DataContext = deviceManageViewModel;
             }
-          
+
         }
 
         //设置按钮的状态
@@ -198,7 +198,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
             //this.txtHardwareVersion.Text = _userSelDeviceInfo.HardwareVersion;
             //this.txtSoftVersion.Text = _userSelDeviceInfo.SoftWareVersion;
-           
+
             ////是否启用紧急按钮
             //this.chkUrgencyBtnEnable.IsChecked = _userSelDeviceInfo.UrgencyBtnEnable;
             //// 主温度报警
@@ -315,7 +315,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
         {
             scadaDeviceServiceSoapClient.UpdateDeviceInfoCompleted
                             += new EventHandler<UpdateDeviceInfoCompletedEventArgs>
-                                        (scadaDeviceServiceSoapClient_UpdateDeviceInfoCompleted);         
+                                        (scadaDeviceServiceSoapClient_UpdateDeviceInfoCompleted);
         }
 
         private void scadaDeviceServiceSoapClient_UpdateDeviceInfoCompleted(object sender, UpdateDeviceInfoCompletedEventArgs e)
@@ -339,21 +339,21 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
             #region 设备属性
 
-            
+
             deviceInfo.ID = Guid.NewGuid();
             deviceInfo.DeviceNo = txtDeviceNo.Text.Trim();
             deviceInfo.DeviceMAC = txtDeviceMac.Text.Trim();
             deviceInfo.SIMNo = txtSIM.Text.Trim();
             deviceInfo.HardType = txtHardType.Text.Trim();
 
-            if (!string.IsNullOrEmpty( dpProductDate.Text))
+            if (!string.IsNullOrEmpty(dpProductDate.Text))
             {
                 deviceInfo.ProductDate = DateTime.Parse(dpProductDate.Text);
             }
             //获取管理分区的编号
             deviceInfo.ManageAreaID = new Guid("F5888F32-D7AB-485F-9340-4C65C6851F48");// _userSelTreeNode.NodeKey; ;
             deviceInfo.InstallPlace = txtInstallPlace.Text.Trim();
-            
+
             //经度 维度 高度
             if (!string.IsNullOrEmpty(txtLongitude.Text.Trim()))
             {
@@ -385,21 +385,21 @@ namespace Scada.Client.SL.Modules.BaseInfo
             deviceInfo.HardwareVersion = txtHardwareVersion.Text.Trim();
             deviceInfo.SoftWareVersion = txtSoftVersion.Text.Trim();
 
-            
-            chkUrgencyBtnEnable.IsThreeState=true;
+
+            chkUrgencyBtnEnable.IsThreeState = true;
             deviceInfo.UrgencyBtnEnable = chkUrgencyBtnEnable.IsChecked;
 
             //主温度
             deviceInfo.Temperature1AlarmValid = chkHighTemp1Alarm.IsChecked;
             if (!string.IsNullOrEmpty(txtHighTemp1Alarm.Text.Trim()))
             {
-                deviceInfo.HumidityHighAlarm=Decimal.Parse(txtHighTemp1Alarm.Text.Trim());
+                deviceInfo.HumidityHighAlarm = Decimal.Parse(txtHighTemp1Alarm.Text.Trim());
             }
             if (!string.IsNullOrEmpty(txtLowTemp1Alarm.Text.Trim()))
             {
                 deviceInfo.Temperature1LowAlarm = Decimal.Parse(txtLowTemp1Alarm.Text.Trim());
             }
-            
+
             //从温度
             deviceInfo.Temperature2AlarmValid = chkHighTemp2Alarm.IsChecked;
             if (!string.IsNullOrEmpty(txtHighTemp2Alarm.Text.Trim()))
@@ -444,11 +444,11 @@ namespace Scada.Client.SL.Modules.BaseInfo
             deviceInfo.SignalAlarmValid = chkSignalAlarm.IsChecked;
             if (!string.IsNullOrEmpty(txtSignalHighAlarm.Text.Trim()))
             {
-                deviceInfo.SignalHighAlarm=Int32.Parse(txtSignalHighAlarm.Text.Trim());
+                deviceInfo.SignalHighAlarm = Int32.Parse(txtSignalHighAlarm.Text.Trim());
             }
             if (!string.IsNullOrEmpty(txtSignalLowAlarm.Text.Trim()))
             {
-                deviceInfo.SignalLowAlarm=Int32.Parse(txtSignalLowAlarm.Text.Trim());
+                deviceInfo.SignalLowAlarm = Int32.Parse(txtSignalLowAlarm.Text.Trim());
             }
 
             //电量
@@ -462,12 +462,12 @@ namespace Scada.Client.SL.Modules.BaseInfo
                 deviceInfo.ElectricityLowAlarm = Int32.Parse(txtElectricityLowAlarm.Text.Trim());
             }
             //液晶屏显示类型
-            if (cmbDisplayType.SelectedValue!=DBNull.Value)
+            if (cmbDisplayType.SelectedValue != DBNull.Value)
             {
                 deviceInfo.LCDScreenDisplayType = Convert.ToInt32(cmbDisplayType.SelectedValue);
             }
             //当前模式：0 实时模式， 1 整点模式 2. 优化模式
-            if (cmbCurrentModel.SelectedIndex!=-1)
+            if (cmbCurrentModel.SelectedIndex != -1)
             {
                 deviceInfo.CurrentModel = Int32.Parse(cmbCurrentModel.SelectedValue.ToString());
 
@@ -559,6 +559,14 @@ namespace Scada.Client.SL.Modules.BaseInfo
         }
 
         #endregion
+
+        private void LayoutRoot_BindingValidationError(object sender, ValidationErrorEventArgs e)
+        {
+            if (e.Action == ValidationErrorEventAction.Added) 
+                (e.OriginalSource as Control).Background = new SolidColorBrush(Colors.Yellow);
+            if (e.Action == ValidationErrorEventAction.Removed)
+                (e.OriginalSource as Control).Background = new SolidColorBrush(Colors.White);
+        }
 
 
         #region 私有方法

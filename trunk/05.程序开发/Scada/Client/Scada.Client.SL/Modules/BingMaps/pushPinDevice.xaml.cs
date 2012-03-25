@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using System.Windows.Media.Imaging;
 using Microsoft.Maps.MapControl;
 using Scada.Model.Entity.Enums;
+using Scada.Client.VM.Modules.BingMaps;
 
 namespace Scada.Client.SL.Modules.BingMaps
 {
@@ -29,6 +30,40 @@ namespace Scada.Client.SL.Modules.BingMaps
                 plane.Children.Remove(item);
                 plane.Children.Add(item);
             };
+        }
+
+        /// <summary>
+        /// 设备ID
+        /// </summary>
+        public Guid DeviceID { get; set; }
+
+        /// <summary>
+        /// 设备名称
+        /// </summary>
+        private string deviceName;
+        public string DeviceName
+        {
+            get { return deviceName; }
+            set
+            {
+                deviceName = value;
+                this.txtDeviceName.Text = deviceName;
+                this.txtTitle.Text = deviceName;
+            }
+        }
+
+        /// <summary>
+        /// 设备温度
+        /// </summary>
+        private string deviceTemp;
+        public string DeviceTemp
+        {
+            get { return deviceTemp; }
+            set
+            {
+                deviceTemp = value;
+                this.txtTemp.Text = deviceTemp;
+            }
         }
 
         /// <summary>
@@ -67,35 +102,6 @@ namespace Scada.Client.SL.Modules.BingMaps
             }
         }
 
-        /// <summary>
-        /// 设备名称
-        /// </summary>
-        private string deviceName;
-        public string DeviceName
-        {
-            get { return deviceName; }
-            set
-            {
-                deviceName = value;
-                this.txtDeviceName.Text = deviceName;
-                this.txtTitle.Text = deviceName;
-            }
-        }
-
-        /// <summary>
-        /// 设备温度
-        /// </summary>
-        private string deviceTemp;
-        public string DeviceTemp
-        {
-            get { return deviceTemp; }
-            set
-            {
-                deviceTemp = value;
-                this.txtTemp.Text = deviceTemp;
-            }
-        }
-
         private void GoToEnter(object sender, MouseEventArgs e)
         {
             VisualStateManager.GoToState(this, "Enter", false);
@@ -105,13 +111,23 @@ namespace Scada.Client.SL.Modules.BingMaps
         {
             VisualStateManager.GoToState(this, "Leave", false);
         }
-        public event RoutedEventHandler onclickDetails;
+        public delegate void PushPinDeviceRoutedEventHander(object sender, PushPinRoutedEventArgs e);
+        public event PushPinDeviceRoutedEventHander onclickDetails;
         private void hlUrl_Click(object sender, RoutedEventArgs e)
         {
             if (onclickDetails != null)
             {
-                this.onclickDetails(this, new RoutedEventArgs());
+                var obj = this.DataContext as PushPinDeviceViewModel;
+                this.onclickDetails(this, new PushPinRoutedEventArgs() { ID = obj.NodeKey });
             }
         }
+    }
+
+    /// <summary>
+    /// 单击设备详情事件
+    /// </summary>
+    public class PushPinRoutedEventArgs : RoutedEventArgs
+    {
+        public Guid ID { get; set; }
     }
 }

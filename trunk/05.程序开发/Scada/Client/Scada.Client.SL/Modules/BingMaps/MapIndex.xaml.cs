@@ -103,7 +103,14 @@ namespace Scada.Client.SL.Modules.BingMaps
                 dicPin.Add(item.NodeKey, myPushPin);
                 myPushPin.DataContext = item;
                 MapLayer.SetPosition(myPushPin, new Location(item.Longitude.Value, item.Dimensionality.Value));
-                myPushPin.onclickDetails += new RoutedEventHandler(myPushPin_onclickDetails);
+                //设备详情单击事件
+                myPushPin.onclickDetails += (sender1, e1) =>
+                {
+                    Storyboard1.Begin();
+                    MyContent.Content = new DetailsPage(e1.ID);
+                    MyContent.Title = "设备详细信息";
+                };
+
                 switch (item.NodeType)
                 {
                     case 1:
@@ -122,6 +129,8 @@ namespace Scada.Client.SL.Modules.BingMaps
                 }
             }
         }
+
+
 
         void MyContent_CloseBtn(object sender, EventArgs e)
         {
@@ -205,12 +214,7 @@ namespace Scada.Client.SL.Modules.BingMaps
             map.Center = new Location(weidu, jindu);
         }
 
-        void myPushPin_onclickDetails(object sender, RoutedEventArgs e)
-        {
-            Storyboard1.Begin();
-            MyContent.Content = new DetailsPage(new Guid("7A6A91EC-4B81-4585-BF4E-EFDCC7DD9922"));
-            MyContent.Title = "设备详细信息";
-        }
+
 
         /// <summary>
         /// 图例折叠效果

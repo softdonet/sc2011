@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="600" d:DesignWidth="1024" xmlns:my="clr-namespace:Scada.Client.UC;assembly=Scada.Client.UC" 
+    d:DesignHeight="500" d:DesignWidth="1024" xmlns:my="clr-namespace:Scada.Client.UC;assembly=Scada.Client.UC" 
              xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
              xmlns:my1="clr-namespace:Scada.Client.SL.Controls" DataContext="{Binding}">
 
@@ -19,7 +19,7 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto">
             <Grid>
                 <TextBlock Text="设备信息管理" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,5,0,0" Height="25" FontSize="16" Foreground="White"   TextWrapping="Wrap"  />
-                <Border BorderBrush="#FF4A91BB" BorderThickness="1" Margin="10,35,10,20" CornerRadius="5" >
+                <Border BorderBrush="#FF4A91BB" BorderThickness="1" Margin="10,30,10,20" CornerRadius="5" >
                     <Border.Background>
                         <SolidColorBrush Color="White"/>
                     </Border.Background>
@@ -32,10 +32,10 @@
                                 <ColumnDefinition Width="425" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="489"/>
-                                <RowDefinition Height="36"/>
-
-                            </Grid.RowDefinitions>
+                                <RowDefinition Height="420"/>
+                                <RowDefinition Height="5"/>
+                                    <RowDefinition Height="10*" />
+                                </Grid.RowDefinitions>
                                 <my1:TreeViewList   x:Name="treeViewList1"  OnTreeSelectItemClick="treeViewList1_OnTreeSelectItemClick"/>
                             <sdk:Label Content="设备编号：" HorizontalAlignment="Left" Margin="14,17,0,0" VerticalAlignment="Top" Width="62" Grid.Column="1" />
                                 <TextBox Name="txtDeviceNo" Text="{Binding DeviceInfoList.DeviceNo, Mode=TwoWay}" Height="23" HorizontalAlignment="Left" Margin="86,14,0,0"  VerticalAlignment="Top" Width="204" Grid.Column="1" />
@@ -67,63 +67,62 @@
                                 <TextBox Height="23" HorizontalAlignment="Left" Margin="86,309,0,0" x:Name="txtConnType" Text="" VerticalAlignment="Top" Width="204" Grid.Column="1" />-->
                                 <sdk:Label Content="备      注：" Grid.Column="1"  HorizontalAlignment="Left" Margin="9,316,0,0" VerticalAlignment="Top" Width="62"  />
                                 <TextBox x:Name="txtComment" Text="{Binding DeviceInfoList.Comment, Mode=TwoWay}" Height="23" HorizontalAlignment="Left" Margin="85,313,0,0"  VerticalAlignment="Top" Width="204" Grid.Column="1" />
-                                <sdk:Label Content="时间偏差：" Grid.Column="1"  HorizontalAlignment="Left" Margin="8,348,0,0" VerticalAlignment="Top" Width="62"  />
-                                <TextBox x:Name="txtWindage" Text="{Binding DeviceInfoList.Windage, Mode=TwoWay}" Height="23" HorizontalAlignment="Left" Margin="85,345,0,0"  VerticalAlignment="Top" Width="205" Grid.Column="1" />
-                                <sdk:Label Content="维护人员：" HorizontalAlignment="Left" Margin="9,379,0,0" VerticalAlignment="Top" Width="62" Grid.Column="1" />
-                                <ComboBox Name="cmbMaintenancePeople" SelectedItem="{Binding DeviceInfoList.MaintenancePeopleID, Mode=TwoWay}" Height="23" HorizontalAlignment="Left" Margin="85,376,0,0"   DisplayMemberPath="Name" SelectedValuePath="ID" VerticalAlignment="Top" Width="204" Grid.Column="1" />
-                                <sdk:Label Content="硬件版本：" Height="18" x:Name="label33" Width="50" Margin="7,418,256,53" Grid.Column="1" />
-                                <TextBox  x:Name="txtHardwareVersion" Text="{Binding DeviceInfoList.HardwareVersion, Mode=TwoWay}" Height="23" Width="48" Margin="85,415,180,51" Grid.Column="1" />
-                                <sdk:Label Content="软件版本：" Height="18"  Width="50" Margin="165,417,98,54" Grid.Column="1" />
-                                <TextBox Height="23" x:Name="txtSoftVersion" Text="{Binding DeviceInfoList.SoftWareVersion, Mode=TwoWay}" Width="48" Margin="242,417,23,49" Grid.Column="1" />
+                                <sdk:Label Content="时间偏差：" Grid.Column="1"  HorizontalAlignment="Left" Margin="8,344,0,0" VerticalAlignment="Top" Width="62"  />
+                                <TextBox x:Name="txtWindage" Text="{Binding DeviceInfoList.Windage, Mode=TwoWay}" Height="23" HorizontalAlignment="Left" Margin="85,341,0,0"  VerticalAlignment="Top" Width="205" Grid.Column="1" />
+                                <sdk:Label Content="维护人员：" HorizontalAlignment="Left" Margin="224,304,0,0" VerticalAlignment="Top" Width="62" Grid.Column="2" />
+                                <ComboBox Name="cmbMaintenancePeople" SelectedItem="{Binding DeviceInfoList.MaintenancePeopleID, Mode=TwoWay}" Height="23" HorizontalAlignment="Left" Margin="303,301,0,0"   DisplayMemberPath="Name" SelectedValuePath="ID" VerticalAlignment="Top" Width="120" Grid.Column="2" />
+                                <sdk:Label Content="硬件版本：" Height="18" x:Name="label33" Width="50" Margin="8,380,255,22" Grid.Column="1" />
+                                <TextBox  x:Name="txtHardwareVersion" Text="{Binding DeviceInfoList.HardwareVersion, Mode=TwoWay}" Height="23" Width="48" Margin="85,377,180,20" Grid.Column="1" />
+                                <sdk:Label Content="软件版本：" Height="18"  Width="50" Margin="175,381,88,21" Grid.Column="1" />
+                                <TextBox Height="23" x:Name="txtSoftVersion" Text="{Binding DeviceInfoList.SoftWareVersion, Mode=TwoWay}" Width="48" Margin="241,377,24,20" Grid.Column="1" />
 
-                                <StackPanel Name="stackPanel11" Orientation="Horizontal" Grid.Column="2" Margin="53,5,126,-1" Grid.Row="1">
+                                <StackPanel Name="stackPanel11" Orientation="Horizontal" Grid.Column="2" Margin="226,360,13,20" Width="186" Height="30">
                                     <Button Content="增加" Height="23" Name="butAdd" Width="60" Command="{Binding AddCommand}"  />
                                     <Button Content="删除" Height="23" Name="butDel" Width="60" Command="{Binding DeleteCommand}"  />
                                     <Button Content="保存" Height="23" Name="butSave" Width="60" Command="{Binding UpdateCommand}"  />
-                                <Button Content="导出" Height="23" Name="btnExport" Width="60" />
-                            </StackPanel>
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="220,86,0,0" Name="textBlock1" Text="实时模式参数：" VerticalAlignment="Top" />
-                                <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,82,0,0" Name="txtRealTimeParam" Text="{Binding DeviceInfoList.RealTimeParam, Mode=TwoWay}" VerticalAlignment="Top" Width="120" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="220,116,0,0" Name="textBlock2" Text="整点模式参数1：" VerticalAlignment="Top" />
-                                <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,112,0,0" Name="txtFullTimeParam1" Text="{Binding DeviceInfoList.FullTimeParam1, Mode=TwoWay}" VerticalAlignment="Top" Width="120" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="220,147,0,0" Name="textBlock3" Text="整点模式参数2：" VerticalAlignment="Top" />
-                                <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,145,0,0" Name="txtFullTimeParam2" Text="{Binding DeviceInfoList.FullTimeParam2, Mode=TwoWay}" VerticalAlignment="Top" Width="120" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="221,180,0,0" Name="textBlock4" Text="逢变则报参数1:" VerticalAlignment="Top" />
-                                <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,176,0,0" Name="txtOptimizeParam1" Text="{Binding DeviceInfoList.OptimizeParam1, Mode=TwoWay}" VerticalAlignment="Top" Width="120" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="221,206,0,0" Name="textBlock5" Text="逢变则报参数2:" VerticalAlignment="Top" />
-                                <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,204,0,0" Name="txtOptimizeParam2" Text="{Binding DeviceInfoList.OptimizeParam2, Mode=TwoWay}" VerticalAlignment="Top" Width="120" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="222,240,0,0" Name="textBlock6" Text="逢变则报参数3:" VerticalAlignment="Top" />
-                                <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,236,0,0" Name="txtOptimizeParam3" Text="{Binding DeviceInfoList.OptimizeParam3, Mode=TwoWay}" VerticalAlignment="Top" Width="120" />
-                                <ComboBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="303,15,0,0" Name="cmbDisplayType" SelectedItem="{Binding DeviceInfoList.LCDScreenDisplayType, Mode=TwoWay}" DisplayMemberPath="Value" SelectedValuePath="Key" VerticalAlignment="Top" Width="120" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="212,19,0,0" Name="textBlock7" Text="液晶屏显示类型:" VerticalAlignment="Top"  />
-                                <CheckBox Name="chkUrgencyBtnEnable" Content="是否启用紧急按钮" IsChecked="{Binding DeviceInfoList.UrgencyBtnEnable, Mode=TwoWay}" Grid.Column="2" Height="16" HorizontalAlignment="Left" Margin="7,19,0,0"  VerticalAlignment="Top" />
-                                <CheckBox Name="chkHighTemp1Alarm" Content="主温度报警设置有效" IsChecked="{Binding DeviceInfoList.Temperature1AlarmValid, Mode=TwoWay}" Grid.Column="2" Height="16" HorizontalAlignment="Left" Margin="5,53,0,0"  VerticalAlignment="Top" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="0,90,0,0" Name="textBlock8" Text="主温度高报警值:" VerticalAlignment="Top" />
-                            <TextBox Name="txtHighTemp1Alarm" Text="{Binding DeviceInfoList.Temperature1HighAlarm, Mode=TwoWay}" Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="106,86,0,0"  VerticalAlignment="Top" Width="97" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="0,115,0,0" Name="textBlock9" Text="主温度低报警值:" VerticalAlignment="Top" />
-                            <TextBox Name="txtLowTemp1Alarm" Text="{Binding DeviceInfoList.Temperature1LowAlarm, Mode=TwoWay}" Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="106,113,0,0"  VerticalAlignment="Top" Width="97" />
-                                <CheckBox Content="从温度报警设置有效" IsChecked="{Binding DeviceInfoList.Temperature2AlarmValid}" Height="16" HorizontalAlignment="Left" Margin="7,141,0,0" Name="chkHighTemp2Alarm" VerticalAlignment="Top" Grid.Column="2" />
-                            <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,165,0,0" Name="textBlock10" Text="从温度高报警值:" VerticalAlignment="Top" Grid.Column="2" />
-                                <TextBox Name="txtHighTemp2Alarm" Text="{Binding DeviceInfoList.Temperature2HighAlarm}" Height="23" HorizontalAlignment="Left" Margin="106,161,0,0"  VerticalAlignment="Top" Width="97" Grid.Column="2" />
-                            <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,190,0,0" Name="textBlock13" Text="从温度低报警值:" VerticalAlignment="Top" Grid.Column="2" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,188,0,0" Name="txtLowTemp2Alarm" Text="{Binding DeviceInfoList.Temperature2LowAlarm}" VerticalAlignment="Top" Width="97" Grid.Column="2" />
-                                <CheckBox Content="湿度报警设置有效" IsChecked="{Binding DeviceInfoList.HumidityAlarmValid}" Height="16" HorizontalAlignment="Left" Margin="0,219,0,0" Name="chkHumidityAlarm" VerticalAlignment="Top" Grid.Column="2" />
-                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,248,0,0" Name="textBlock14" Text="湿度高报警值:" VerticalAlignment="Top" Grid.Column="2" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,244,0,0" Name="txtHumidityHighAlarm" Text="{Binding DeviceInfoList.HumidityHighAlarm}" VerticalAlignment="Top" Width="97" Grid.Column="2" />
-                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,273,0,0" Name="textBlock15" Text="湿度低报警值:" VerticalAlignment="Top" Grid.Column="2" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,271,0,0" Name="txtHumidityLowAlarm" Text="{Binding DeviceInfoList.HumidityLowAlarm}" VerticalAlignment="Top" Width="97" Grid.Column="2" />
-                                <CheckBox Content="信号报警设置有效" IsChecked="{Binding DeviceInfoList.SignalAlarmValid}" Height="16" HorizontalAlignment="Left" Margin="0,312,0,0" Name="chkSignalAlarm" VerticalAlignment="Top" Grid.Column="2" />
-                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,334,0,0" Name="textBlock11" Text="信号高报警值:" VerticalAlignment="Top" Grid.Column="2" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,330,0,0" Name="txtSignalHighAlarm" Text="{Binding DeviceInfoList.SignalHighAlarm}" VerticalAlignment="Top" Width="97" Grid.Column="2" />
-                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,359,0,0" Name="textBlock12" Text="信号低报警值:" VerticalAlignment="Top" Grid.Column="2" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,357,0,0" Name="txtSignalLowAlarm" Text="{Binding DeviceInfoList.SignalLowAlarm}" VerticalAlignment="Top" Width="97" Grid.Column="2" />
-                                <CheckBox Content="电量报警设置有效"  IsChecked="{Binding DeviceInfoList.ElectricityAlarmValid}" Height="16" HorizontalAlignment="Left" Margin="1,394,0,0" Name="chkElectricityAlarm" VerticalAlignment="Top" Grid.Column="2" />
-                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,417,0,0" Name="textBlock16" Text="电量高报警值:" VerticalAlignment="Top" Grid.Column="2" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,413,0,0" Name="txtElectricityHighAlarm" Text="{Binding DeviceInfoList.ElectricityHighAlarm}" VerticalAlignment="Top" Width="97" Grid.Column="2" />
-                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,442,0,0" Name="textBlock17" Text="电量低报警值:" VerticalAlignment="Top" Grid.Column="2" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,440,0,0" Name="txtElectricityLowAlarm" Text="{Binding DeviceInfoList.ElectricityLowAlarm}" VerticalAlignment="Top" Width="97" Grid.Column="2" />
-                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="213,55,0,0" Name="textBlock18" Text="当前选择模式:"  VerticalAlignment="Top" Grid.Column="2" />
-                                <ComboBox Height="23" HorizontalAlignment="Left" Margin="302,50,0,0" Name="cmbCurrentModel" SelectedItem="{Binding DeviceInfoList.CurrentModel}" DisplayMemberPath="Value" SelectedValuePath="Key" VerticalAlignment="Top" Width="120" Grid.Column="2" />
+                                </StackPanel>
+                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="220,119,0,0" Name="textBlock1" Text="实时模式参数：" VerticalAlignment="Top" />
+                                <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,115,0,0" Name="txtRealTimeParam" Text="{Binding DeviceInfoList.RealTimeParam, Mode=TwoWay}" VerticalAlignment="Top" Width="120" />
+                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="220,149,0,0" Name="textBlock2" Text="整点模式参数1：" VerticalAlignment="Top" />
+                                <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,145,0,0" Name="txtFullTimeParam1" Text="{Binding DeviceInfoList.FullTimeParam1, Mode=TwoWay}" VerticalAlignment="Top" Width="120" />
+                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="220,180,0,0" Name="textBlock3" Text="整点模式参数2：" VerticalAlignment="Top" />
+                                <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,178,0,0" Name="txtFullTimeParam2" Text="{Binding DeviceInfoList.FullTimeParam2, Mode=TwoWay}" VerticalAlignment="Top" Width="120" />
+                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="221,213,0,0" Name="textBlock4" Text="逢变则报参数1:" VerticalAlignment="Top" />
+                                <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,209,0,0" Name="txtOptimizeParam1" Text="{Binding DeviceInfoList.OptimizeParam1, Mode=TwoWay}" VerticalAlignment="Top" Width="120" />
+                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="221,239,0,0" Name="textBlock5" Text="逢变则报参数2:" VerticalAlignment="Top" />
+                                <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,237,0,0" Name="txtOptimizeParam2" Text="{Binding DeviceInfoList.OptimizeParam2, Mode=TwoWay}" VerticalAlignment="Top" Width="120" />
+                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="222,273,0,0" Name="textBlock6" Text="逢变则报参数3:" VerticalAlignment="Top" />
+                                <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,269,0,0" Name="txtOptimizeParam3" Text="{Binding DeviceInfoList.OptimizeParam3, Mode=TwoWay}" VerticalAlignment="Top" Width="120" />
+                                <ComboBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="303,48,0,0" Name="cmbDisplayType" SelectedItem="{Binding DeviceInfoList.LCDScreenDisplayType, Mode=TwoWay}" DisplayMemberPath="Value" SelectedValuePath="Key" VerticalAlignment="Top" Width="120" />
+                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="212,52,0,0" Name="textBlock7" Text="液晶屏显示类型:" VerticalAlignment="Top"  />
+                                <CheckBox Name="chkUrgencyBtnEnable" Content="是否启用紧急按钮" IsChecked="{Binding DeviceInfoList.UrgencyBtnEnable, Mode=TwoWay}" Grid.Column="2" Height="16" HorizontalAlignment="Left" Margin="215,14,0,0"  VerticalAlignment="Top" />
+                                <CheckBox Name="chkHighTemp1Alarm" Content="主温度报警设置有效" IsChecked="{Binding DeviceInfoList.Temperature1AlarmValid, Mode=TwoWay}" Grid.Column="2" Height="16" HorizontalAlignment="Left" Margin="5,18,0,0"  VerticalAlignment="Top" />
+                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="0,46,0,0" Name="textBlock8" Text="主温度高报警值:" VerticalAlignment="Top" />
+                            <TextBox Name="txtHighTemp1Alarm" Text="{Binding DeviceInfoList.Temperature1HighAlarm, Mode=TwoWay}" Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="106,42,0,0"  VerticalAlignment="Top" Width="97" />
+                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="0,71,0,0" Name="textBlock9" Text="主温度低报警值:" VerticalAlignment="Top" />
+                            <TextBox Name="txtLowTemp1Alarm" Text="{Binding DeviceInfoList.Temperature1LowAlarm, Mode=TwoWay}" Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="106,69,0,0"  VerticalAlignment="Top" Width="97" />
+                                <CheckBox Content="从温度报警设置有效" IsChecked="{Binding DeviceInfoList.Temperature2AlarmValid}" Height="16" HorizontalAlignment="Left" Margin="3,101,0,0" Name="chkHighTemp2Alarm" VerticalAlignment="Top" Grid.Column="2" />
+                            <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,125,0,0" Name="textBlock10" Text="从温度高报警值:" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBox Name="txtHighTemp2Alarm" Text="{Binding DeviceInfoList.Temperature2HighAlarm}" Height="23" HorizontalAlignment="Left" Margin="106,121,0,0"  VerticalAlignment="Top" Width="97" Grid.Column="2" />
+                            <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,150,0,0" Name="textBlock13" Text="从温度低报警值:" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,148,0,0" Name="txtLowTemp2Alarm" Text="{Binding DeviceInfoList.Temperature2LowAlarm}" VerticalAlignment="Top" Width="97" Grid.Column="2" />
+                                <CheckBox Content="湿度报警设置有效" IsChecked="{Binding DeviceInfoList.HumidityAlarmValid}" Height="16" HorizontalAlignment="Left" Margin="0,179,0,0" Name="chkHumidityAlarm" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,205,0,0" Name="textBlock14" Text="湿度高报警值:" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,201,0,0" Name="txtHumidityHighAlarm" Text="{Binding DeviceInfoList.HumidityHighAlarm}" VerticalAlignment="Top" Width="97" Grid.Column="2" />
+                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,230,0,0" Name="textBlock15" Text="湿度低报警值:" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,228,0,0" Name="txtHumidityLowAlarm" Text="{Binding DeviceInfoList.HumidityLowAlarm}" VerticalAlignment="Top" Width="97" Grid.Column="2" />
+                                <CheckBox Content="信号报警设置有效" IsChecked="{Binding DeviceInfoList.SignalAlarmValid}" Height="16" HorizontalAlignment="Left" Margin="0,263,0,0" Name="chkSignalAlarm" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,285,0,0" Name="textBlock11" Text="信号高报警值:" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,281,0,0" Name="txtSignalHighAlarm" Text="{Binding DeviceInfoList.SignalHighAlarm}" VerticalAlignment="Top" Width="97" Grid.Column="2" />
+                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,310,0,0" Name="textBlock12" Text="信号低报警值:" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,308,0,0" Name="txtSignalLowAlarm" Text="{Binding DeviceInfoList.SignalLowAlarm}" VerticalAlignment="Top" Width="97" Grid.Column="2" />
+                                <CheckBox Content="电量报警设置有效"  IsChecked="{Binding DeviceInfoList.ElectricityAlarmValid}" Height="16" HorizontalAlignment="Left" Margin="1,341,0,0" Name="chkElectricityAlarm" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,364,0,0" Name="textBlock16" Text="电量高报警值:" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,360,0,0" Name="txtElectricityHighAlarm" Text="{Binding DeviceInfoList.ElectricityHighAlarm}" VerticalAlignment="Top" Width="97" Grid.Column="2" />
+                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,389,0,0" Name="textBlock17" Text="电量低报警值:" VerticalAlignment="Top" Grid.Column="2" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="106,387,0,0" Name="txtElectricityLowAlarm" Text="{Binding DeviceInfoList.ElectricityLowAlarm}" VerticalAlignment="Top" Width="97" Grid.Column="2" />
+                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="213,88,0,0" Name="textBlock18" Text="当前选择模式:"  VerticalAlignment="Top" Grid.Column="2" />
+                                <ComboBox Height="23" HorizontalAlignment="Left" Margin="302,83,0,0" Name="cmbCurrentModel" SelectedItem="{Binding DeviceInfoList.CurrentModel}" DisplayMemberPath="Value" SelectedValuePath="Key" VerticalAlignment="Top" Width="120" Grid.Column="2" />
                             </Grid>
                     </Border>
                 </Border>

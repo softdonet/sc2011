@@ -24,11 +24,70 @@ namespace Scada.Client.VM.Modules.Query
 
 
         #region Constructor
-        
+
         public AlarmQueryViewModel()
         {
 
         }
         #endregion
+
+        /// <summary>
+        /// 选择树节点
+        /// </summary>
+        private DeviceTreeNode selectDeviceTreeNode;
+        public DeviceTreeNode SelectDeviceTreeNode
+        {
+            get { return selectDeviceTreeNode; }
+            set
+            {
+                selectDeviceTreeNode = value;
+                this.RaisePropertyChanged("SelectDeviceTreeNode");
+            }
+        }
+
+        /// <summary>
+        /// 选择设备
+        /// </summary>
+        private List<DeviceAlarm> deviceAlarmList;
+        public List<DeviceAlarm> DeviceAlarmList
+        {
+            get { return deviceAlarmList; }
+            set
+            {
+                deviceAlarmList = value;
+                this.RaisePropertyChanged("DeviceAlarmList");
+            }
+        }
+
+        /// <summary>
+        /// 开始时间
+        /// </summary>
+        private DateTime startDate;
+        public DateTime StartDate
+        {
+            get { return startDate; }
+            set
+            {
+                startDate = value;
+                this.RaisePropertyChanged("StartDate");
+            }
+        }
+
+        /// <summary>
+        /// 结束日期
+        /// </summary>
+        private DateTime endDate;
+        public DateTime EndDate
+        {
+            get { return endDate; }
+            set
+            {
+                endDate = value;
+                this.RaisePropertyChanged("EndDate");
+            }
+        }
+
+
+
     }
 }

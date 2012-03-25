@@ -119,11 +119,13 @@ namespace DataCollecting
                 {
                     if (isClear)
                     {
-                        this.textBox1.Text = str + Environment.NewLine;
+                        //this.textBox1.Text = str + Environment.NewLine;
+                        this.textBox1.Text = DateTime.Now.ToString();
                     }
                     else
                     {
-                        this.textBox1.Text += str + Environment.NewLine;
+                        //this.textBox1.Text += str + Environment.NewLine;
+                        this.textBox1.Text = DateTime.Now.ToString();
                     }
                     textBox1.SelectionStart = textBox1.TextLength;
                     textBox1.ScrollToCaret();

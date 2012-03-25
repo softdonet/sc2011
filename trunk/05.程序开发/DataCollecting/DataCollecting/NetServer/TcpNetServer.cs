@@ -333,7 +333,7 @@ namespace DataCollecting.NetServer
                     }
                     ReplyBase_S replyBase_S_realTime = bll.GetDeviceInfor(rr.Header.DeviceSN);
                     replyBase_S_realTime.Header = hRealTime;
-                    clientSocket.Send(replyBase_S_realTime.ToByte());
+                    //clientSocket.Send(replyBase_S_realTime.ToByte());
                     if (this.realTimeDataEvent_S != null)
                     {
                         this.realTimeDataEvent_S(new RealTimeData_S(replyBase_S_realTime.ToByte()));

@@ -84,7 +84,7 @@ namespace BusinessRules
             configDataBlock.InstancyBtnEnable = true;
             configDataBlock.InfoBtnEnable = true;
             configDataBlock.RepairTel = "13801112222";
-            configDataBlock.MainIP= "202.106.42.1";
+            configDataBlock.MainIP = "202.106.42.1";
             configDataBlock.ReserveIP = "202.106.42.2";
 
             configDataBlock.DomainName = "xyz.dddd.com";
@@ -113,59 +113,62 @@ namespace BusinessRules
         /// <returns></returns>
         public bool SaveRealTimeData(RealTimeData_R realTimeData_R)
         {
-            DeviceInfo deviceInfor = DataContext.DeviceInfos.SingleOrDefault(e => e.DeviceSN == realTimeData_R.Header.DeviceSN);
-            if (deviceInfor != null)
+            using (SCADADataContext DataContext = new SCADADataContext())
             {
-                foreach (RealTimeDataBlock item in realTimeData_R.RealTimeDataBlocks)
+                DeviceInfo deviceInfor = DataContext.DeviceInfos.SingleOrDefault(e => e.DeviceSN == realTimeData_R.Header.DeviceSN);
+                if (deviceInfor != null)
                 {
-                    DeviceRealTime drt = new DeviceRealTime();
-                    drt.ID = Guid.NewGuid();
-                    drt.DeviceID = deviceInfor.ID;
-                    drt.DeviceNo = deviceInfor.DeviceNo;
-                    //温度1
-                    drt.Temperature1 = item.Temperature1;
-                    //温度2
-                    drt.Temperature2 = item.Temperature2;
-                    //信号
-                    drt.Signal = item.Signal;
-                    //湿度
-                    drt.Humidity = item.Humidity;
-                    //电量
-                    drt.Electricity = item.Electric;
-                    //设备状态
-                    drt.Status = 1;
-                    drt.UpdateTime = item.SateTimeMark;
-                    DataContext.DeviceRealTimes.InsertOnSubmit(drt);
-                    //判断告警的逻辑
-                    if (deviceInfor.Temperature1AlarmValid.Value)
+                    foreach (RealTimeDataBlock item in realTimeData_R.RealTimeDataBlocks)
                     {
-                        if (drt.Temperature1.Value > deviceInfor.Temperature1HighAlarm.Value ||
-                            drt.Temperature1.Value < deviceInfor.Temperature1LowAlarm.Value)
+                        DeviceRealTime drt = new DeviceRealTime();
+                        drt.ID = Guid.NewGuid();
+                        drt.DeviceID = deviceInfor.ID;
+                        drt.DeviceNo = deviceInfor.DeviceNo;
+                        //温度1
+                        drt.Temperature1 = item.Temperature1;
+                        //温度2
+                        drt.Temperature2 = item.Temperature2;
+                        //信号
+                        drt.Signal = item.Signal;
+                        //湿度
+                        drt.Humidity = item.Humidity;
+                        //电量
+                        drt.Electricity = item.Electric;
+                        //设备状态
+                        drt.Status = 1;
+                        drt.UpdateTime = item.SateTimeMark;
+                        DataContext.DeviceRealTimes.InsertOnSubmit(drt);
+                        //判断告警的逻辑
+                        if (deviceInfor.Temperature1AlarmValid.Value)
                         {
-                            //设备告警
-                            drt.Status = 3;
-                            DeviceAlarm da = new DeviceAlarm();
-                            da.ID = Guid.NewGuid();
-                            da.DeviceID = deviceInfor.ID;
-                            da.DeviceNo = deviceInfor.DeviceNo;
-                            da.StartTime = item.SateTimeMark;
-                            if (drt.Temperature1.Value > deviceInfor.Temperature1HighAlarm.Value)
+                            if (drt.Temperature1.Value > deviceInfor.Temperature1HighAlarm.Value ||
+                                drt.Temperature1.Value < deviceInfor.Temperature1LowAlarm.Value)
                             {
-                                //超高报警
-                                da.EventType = 1;
+                                //设备告警
+                                drt.Status = 3;
+                                DeviceAlarm da = new DeviceAlarm();
+                                da.ID = Guid.NewGuid();
+                                da.DeviceID = deviceInfor.ID;
+                                da.DeviceNo = deviceInfor.DeviceNo;
+                                da.StartTime = item.SateTimeMark;
+                                if (drt.Temperature1.Value > deviceInfor.Temperature1HighAlarm.Value)
+                                {
+                                    //超高报警
+                                    da.EventType = 1;
+                                }
+                                else
+                                {
+                                    //超低报警
+                                    da.EventType = 2;
+                                }
+                                da.EventLevel = 1;
+                                DataContext.DeviceAlarms.InsertOnSubmit(da);
                             }
-                            else
-                            {
-                                //超低报警
-                                da.EventType = 2;
-                            }
-                            da.EventLevel = 1;
-                            DataContext.DeviceAlarms.InsertOnSubmit(da);
                         }
                     }
+                    DataContext.SubmitChanges();
+                    return true;
                 }
-                DataContext.SubmitChanges();
-                return true;
             }
             return false;
         }

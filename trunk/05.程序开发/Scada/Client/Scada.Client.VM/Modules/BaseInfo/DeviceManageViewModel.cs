@@ -25,6 +25,8 @@ namespace Scada.Client.VM.Modules.BaseInfo
         public DelegateCommand UpdateCommand { get; set; }
         public DelegateCommand DeleteCommand { get; set; }
         private ScadaDeviceServiceSoapClient scadaDeviceServiceSoapClient = null;
+
+        //public List<DeviceTreeNode> DeviceTreeNodeResult { get; set; }
         DeviceInfo deviceInfo;
         string myDeviceId;
         public DeviceManageViewModel()
@@ -83,6 +85,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
             //string deviceInfo = BinaryObjTransfer.BinarySerialize(addDevice);
             string deviceInfo = BinaryObjTransfer.BinarySerialize(DeviceInfoList);
             scadaDeviceServiceSoapClient.AddDeviceInfoAsync(deviceInfo);
+            scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
 
         }
 
@@ -121,8 +124,13 @@ namespace Scada.Client.VM.Modules.BaseInfo
         private void DeleteDeviceInfo()
         {
             scadaDeviceServiceSoapClient.DeleteDeviceInfoAsync(DeviceInfoList.ID);
+            scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
         }
 
+        public void GetDeviceTreeNodeResult()
+        {
+            scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
+        }
         #region 设备树
 
         void scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted(object sender, ListDeviceTreeViewCompletedEventArgs e)
@@ -131,6 +139,8 @@ namespace Scada.Client.VM.Modules.BaseInfo
             {
                 List<DeviceTreeNode> result = BinaryObjTransfer.BinaryDeserialize<List<DeviceTreeNode>>(e.Result);
                 DeviceTreeNodeList = result;
+
+                //DeviceTreeNodeResult = result;
             }
         }
 

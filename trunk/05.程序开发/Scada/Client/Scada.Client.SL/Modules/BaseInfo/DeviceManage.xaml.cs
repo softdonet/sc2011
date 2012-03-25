@@ -123,7 +123,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
                 //node.NodeParent = e.OldValue as DeviceTreeNode;
                 this._userSelTreeNode = node;
 
-                this.btnExport.IsEnabled = true;
+                //this.btnExport.IsEnabled = true;
 
                 if (node.NodeType == 1)
                 {
@@ -147,6 +147,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
                 DeviceManageViewModel deviceManageViewModel = new DeviceManageViewModel(node.NodeKey.ToString().ToUpper());
                 this.DataContext = deviceManageViewModel;
+                this.treeViewList1.Source = deviceManageViewModel.DeviceTreeNodeResult;
             }
           
         }
@@ -287,6 +288,8 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
         #endregion
 
+        #region Old
+
         #region 增加设备
 
         private void LoadAddDeviceInfo(DeviceInfo deviceInfo)
@@ -324,6 +327,9 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
         #region 删除设备
         #endregion
+
+        #endregion
+
 
         #region 事件处理
 

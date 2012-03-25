@@ -16,6 +16,7 @@ using Scada.Model.Entity;
 using Scada.Client.VM.CommClass;
 using System.Collections.ObjectModel;
 using Microsoft.Practices.Prism.Commands;
+using System.ComponentModel.DataAnnotations;
 
 namespace Scada.Client.VM.Modules.BaseInfo
 {
@@ -232,13 +233,19 @@ namespace Scada.Client.VM.Modules.BaseInfo
         }
 
         private string deviceNo;
+        [Required(ErrorMessage = "设备编号不能为空!")]
         public string DeviceNo
         {
             get { return deviceNo; }
             set
             {
-                deviceNo = value;
-                this.RaisePropertyChanged("DeviceNo");
+                if (deviceNo != value)
+                {
+                    deviceNo = value;
+                    this.RaisePropertyChanged("DeviceNo");
+
+                    Validator.ValidateProperty(value, new ValidationContext(this, null, null) { MemberName = "DeviceNo" });
+                }
             }
         }
 

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetData", "NetData\NetData.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{C5739201-FC7E-4EB0-A98B-B6568731EC34}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketTestTool", "SocketTestTool\SocketTestTool\SocketTestTool.csproj", "{697BD7C9-EE9B-45EC-820B-15B81B213B2D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,16 @@ Global
 		{C5739201-FC7E-4EB0-A98B-B6568731EC34}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{C5739201-FC7E-4EB0-A98B-B6568731EC34}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C5739201-FC7E-4EB0-A98B-B6568731EC34}.Release|x86.ActiveCfg = Release|Any CPU
+		{697BD7C9-EE9B-45EC-820B-15B81B213B2D}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{697BD7C9-EE9B-45EC-820B-15B81B213B2D}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{697BD7C9-EE9B-45EC-820B-15B81B213B2D}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{697BD7C9-EE9B-45EC-820B-15B81B213B2D}.Debug|x86.ActiveCfg = Debug|x86
+		{697BD7C9-EE9B-45EC-820B-15B81B213B2D}.Debug|x86.Build.0 = Debug|x86
+		{697BD7C9-EE9B-45EC-820B-15B81B213B2D}.Release|Any CPU.ActiveCfg = Release|x86
+		{697BD7C9-EE9B-45EC-820B-15B81B213B2D}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{697BD7C9-EE9B-45EC-820B-15B81B213B2D}.Release|Mixed Platforms.Build.0 = Release|x86
+		{697BD7C9-EE9B-45EC-820B-15B81B213B2D}.Release|x86.ActiveCfg = Release|x86
+		{697BD7C9-EE9B-45EC-820B-15B81B213B2D}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

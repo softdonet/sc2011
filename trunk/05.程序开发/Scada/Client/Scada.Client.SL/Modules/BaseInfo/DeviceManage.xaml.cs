@@ -145,9 +145,9 @@ namespace Scada.Client.SL.Modules.BaseInfo
                     //scadaDeviceServiceSoapClient.ViewDeviceInfoAsync(node.NodeKey.ToString().ToUpper());
                 }
 
-                DeviceManageViewModel deviceManageViewModel = new DeviceManageViewModel(node.NodeKey.ToString().ToUpper());
+                //DeviceManageViewModel deviceManageViewModel = new DeviceManageViewModel(node.NodeKey.ToString().ToUpper());
+                deviceManageViewModel.ViewDeviceInfoById(node.NodeKey.ToString());
                 this.DataContext = deviceManageViewModel;
-                //this.treeViewList1.Source = deviceManageViewModel.DeviceTreeNodeResult;
             }
           
         }

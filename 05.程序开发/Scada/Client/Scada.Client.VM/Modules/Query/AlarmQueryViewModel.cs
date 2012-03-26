@@ -12,13 +12,19 @@ using Microsoft.Practices.Prism.ViewModel;
 using System.Collections.Generic;
 using Scada.Model.Entity;
 using Microsoft.Practices.Prism.Commands;
+using Scada.Client.VM.ScadaDeviceService;
+using Scada.Client.VM.CommClass;
+
 
 namespace Scada.Client.VM.Modules.Query
 {
     public class AlarmQueryViewModel : NotificationObject
     {
         #region Variable
-        public DelegateCommand queryCommand;
+        public DelegateCommand queryCommand { get; set; }
+        ScadaDeviceServiceSoapClient scadaDeviceServiceSoapClient = null;
+
+
         public List<DeviceAlarm> deviceAlarmQuery;
         #endregion
 
@@ -27,10 +33,16 @@ namespace Scada.Client.VM.Modules.Query
 
         public AlarmQueryViewModel()
         {
-
+            this.queryCommand = new DelegateCommand(new Action(this.Query));
+            scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
+            //scadaDeviceServiceSoapClient.
         }
         #endregion
 
+        public void Query()
+        {
+ 
+        }
         /// <summary>
         /// 选择树节点
         /// </summary>

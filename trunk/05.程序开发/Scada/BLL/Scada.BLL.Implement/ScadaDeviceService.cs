@@ -1172,13 +1172,60 @@ namespace Scada.BLL.Implement
 
         #region 告警查询
 
-        public string GetAlarmQueryInfo(Guid id, DateTime startdDate, DateTime endDate)
+        public string GetAlarmQueryInfo(Guid id, int DeviceType, DateTime startdDate, DateTime endDate)
         {
             string result = string.Empty;
+            object obj = null;
             try
             {
                 sCADADataContext = new Scada.DAL.Linq.SCADADataContext();
-                var obj = sCADADataContext.DeviceAlarms.Select(e => e.ID == id && e.StartTime > startdDate && e.StartTime < endDate);
+
+                if (DeviceType==0)
+                {
+
+                }
+                else if (DeviceType == 1)//管理分区
+                {
+                    var obj1 = from dt in sCADADataContext.DeviceTrees
+                               from di in sCADADataContext.DeviceInfos
+                               from da in sCADADataContext.DeviceAlarms
+                               where dt.ParentID==id
+                               where dt.ID == di.ManageAreaID
+                               where da.DeviceID == di.ID
+                               where da.StartTime>startdDate
+                               where da.StartTime<endDate
+                               select da; // select new {da.DeviceID, };
+
+                   
+                    if (obj1 != null)
+                    {
+                        obj = obj1;
+                        //Scada.Model.Entity.DeviceAlarm deviceAlarm = (obj1.ConvertTo<Scada.Model.Entity.DeviceAlarm>());
+                        //result = BinaryObjTransfer.JsonSerializer<Scada.Model.Entity.DeviceAlarm>(deviceAlarm);
+                    }
+                }
+                else if (DeviceType == 2)//组
+                {
+                    var obj2 = from di in sCADADataContext.DeviceInfos
+                               from da in sCADADataContext.DeviceAlarms
+                               where di.ManageAreaID == id
+                               where da.DeviceID == di.ID
+                               where da.StartTime > startdDate
+                               where da.StartTime<endDate
+                               select da;
+                    if (obj2!=null)
+                    {
+                        obj = obj2;
+                    }
+                }
+                else // (DeviceType==3)
+                {
+                    var obj3 = sCADADataContext.DeviceAlarms.Select(e => e.DeviceID == id && e.StartTime > startdDate && e.StartTime < endDate);
+                    if (obj3!=null)
+                    {
+                        obj = obj3;
+                    }    
+                }
                 if (obj != null)
                 {
                     Scada.Model.Entity.DeviceAlarm deviceAlarm = obj.ConvertTo<Scada.Model.Entity.DeviceAlarm>();

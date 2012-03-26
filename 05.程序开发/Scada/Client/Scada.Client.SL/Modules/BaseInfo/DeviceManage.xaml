@@ -3,11 +3,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:myConvertDisplayType="clr-namespace:Scada.Utility.Common.SL;assembly=Scada.Utility.Common.SL"
     mc:Ignorable="d"
     d:DesignHeight="500" d:DesignWidth="1024" xmlns:my="clr-namespace:Scada.Client.UC;assembly=Scada.Client.UC" 
              xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
              xmlns:my1="clr-namespace:Scada.Client.SL.Controls" DataContext="{Binding}">
 
+    <UserControl.Resources>
+        <myConvertDisplayType:ConverNumberToDisplayType x:Key="ConverNumberToDisplayType1"/>
+    </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Background="White" BindingValidationError="LayoutRoot_BindingValidationError">
         <Border Name="content_Border" BorderBrush="#FF4A91BB" BorderThickness="1" Margin="5" CornerRadius="5">
             <Border.Background>
@@ -93,7 +97,7 @@
                                 <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,237,0,0" Name="txtOptimizeParam2" Text="{Binding DeviceInfoList.OptimizeParam2, Mode=TwoWay}" VerticalAlignment="Top" Width="120" />
                             <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="222,273,0,0" Name="textBlock6" Text="逢变则报参数3:" VerticalAlignment="Top" />
                                 <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,269,0,0" Name="txtOptimizeParam3" Text="{Binding DeviceInfoList.OptimizeParam3, Mode=TwoWay}" VerticalAlignment="Top" Width="120" />
-                                <ComboBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="303,48,0,0" Name="cmbDisplayType" SelectedItem="{Binding DeviceInfoList.LCDScreenDisplayType, Mode=TwoWay}" DisplayMemberPath="Value" SelectedValuePath="Key" VerticalAlignment="Top" Width="120" />
+                                <ComboBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="303,48,0,0" Name="cmbDisplayType"  SelectedItem="{Binding DeviceInfoList.LCDScreenDisplayType, Mode= TwoWay}" DisplayMemberPath="LCDScreenDisplayTypeName" SelectedValuePath="LCDScreenDisplayType" VerticalAlignment="Top" Width="120" />
                             <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="212,52,0,0" Name="textBlock7" Text="液晶屏显示类型:" VerticalAlignment="Top"  />
                                 <CheckBox Name="chkUrgencyBtnEnable" Content="是否启用紧急按钮" IsChecked="{Binding DeviceInfoList.UrgencyBtnEnable, Mode=TwoWay}" Grid.Column="2" Height="16" HorizontalAlignment="Left" Margin="215,14,0,0"  VerticalAlignment="Top" />
                                 <CheckBox Name="chkHighTemp1Alarm" Content="主温度报警设置有效" IsChecked="{Binding DeviceInfoList.Temperature1AlarmValid, Mode=TwoWay}" Grid.Column="2" Height="16" HorizontalAlignment="Left" Margin="5,18,0,0"  VerticalAlignment="Top" />

@@ -62,6 +62,7 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConverNumberToDisplayType.cs" />
     <Compile Include="ConverNumberToText.cs" />
     <Compile Include="ConverNumberToTextAlarm.cs" />
     <Compile Include="EnumHelper.cs">

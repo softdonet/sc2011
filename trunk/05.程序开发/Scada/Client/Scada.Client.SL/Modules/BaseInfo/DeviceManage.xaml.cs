@@ -82,23 +82,30 @@ namespace Scada.Client.SL.Modules.BaseInfo
         #region 初始化基本信息
         private void LoadDisplayType()
         {
-            List<KeyValue> keyValueList = new List<KeyValue>();
-            keyValueList.Clear();
-            keyValueList.Add(new KeyValue() { Key = 1, Value = "完整显示" });
-            keyValueList.Add(new KeyValue() { Key = 2, Value = "基本显示" });
-            keyValueList.Add(new KeyValue() { Key = 3, Value = "天气预报" });
-            keyValueList.Add(new KeyValue() { Key = 4, Value = "不显示" });
+            List<DeviceInfo> deviceInfoList = new List<DeviceInfo>();
+            deviceInfoList.Clear();
+            deviceInfoList.Add(new DeviceInfo() { LCDScreenDisplayType = 1, LCDScreenDisplayTypeName = "完整显示" });
+            deviceInfoList.Add(new DeviceInfo() { LCDScreenDisplayType = 2, LCDScreenDisplayTypeName = "基本显示" });
+            deviceInfoList.Add(new DeviceInfo() { LCDScreenDisplayType = 3, LCDScreenDisplayTypeName = "天气预报" });
+            deviceInfoList.Add(new DeviceInfo() { LCDScreenDisplayType = 4, LCDScreenDisplayTypeName = "不显示" });
 
-            cmbDisplayType.ItemsSource = keyValueList;
+            //List<KeyValue> keyValueList = new List<KeyValue>();
+            //keyValueList.Clear();
+            //keyValueList.Add(new KeyValue() { cKey = 1, cValue = "完整显示" });
+            //keyValueList.Add(new KeyValue() { cKey = 2, cValue = "基本显示" });
+            //keyValueList.Add(new KeyValue() { cKey = 3, cValue = "天气预报" });
+            //keyValueList.Add(new KeyValue() { cKey = 4, cValue = "不显示" });
+
+            cmbDisplayType.ItemsSource = deviceInfoList;
         }
 
         private void LoadCurrentModel()
         {
             List<KeyValue> keyValueList = new List<KeyValue>();
             keyValueList.Clear();
-            keyValueList.Add(new KeyValue() { Key = 1, Value = "实时模式" });
-            keyValueList.Add(new KeyValue() { Key = 2, Value = "整点模式" });
-            keyValueList.Add(new KeyValue() { Key = 3, Value = "优化模式" });
+            keyValueList.Add(new KeyValue() { cKey = 1, cValue = "实时模式" });
+            keyValueList.Add(new KeyValue() { cKey = 2, cValue = "整点模式" });
+            keyValueList.Add(new KeyValue() { cKey = 3, cValue = "优化模式" });
             cmbCurrentModel.ItemsSource = keyValueList;
         }
         #endregion

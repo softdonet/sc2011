@@ -6,7 +6,7 @@ namespace Scada.Model.Entity
     /// <summary>
     /// 设备信息
     /// </summary>
-    public class DeviceInfo
+    public partial class DeviceInfo
     {
         public Guid ID { get; set; }
         //设备编号

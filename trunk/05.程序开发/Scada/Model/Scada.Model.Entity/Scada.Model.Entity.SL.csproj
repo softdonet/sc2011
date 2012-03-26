@@ -59,6 +59,7 @@
     <Compile Include="Common\ChartSource.cs" />
     <Compile Include="Common\DeviceRealTimeTree.cs" />
     <Compile Include="Common\DeviceTreeNode.cs" />
+    <Compile Include="Common\DisplayType.cs" />
     <Compile Include="Common\KeyValue.cs" />
     <Compile Include="Common\Weather.cs" />
     <Compile Include="DBClass\DeviceAlarm.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="DBClass\User.cs" />
     <Compile Include="DBClass\UserEventModel.cs" />
     <Compile Include="DBClass\UserRole.cs" />
+    <Compile Include="DBPartialClass\DeviceInfoPartial.cs" />
     <Compile Include="DBPartialClass\DeviceRealTimePartial.cs" />
     <Compile Include="Enums\DeviceStates.cs" />
     <Compile Include="Enums\EventTypes.cs" />

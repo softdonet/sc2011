@@ -95,6 +95,8 @@ namespace Scada.BLL.Contract
 
         string GetMaintenancePeople();
 
+        string GetMaintenancePeople(Guid MainPeopleId);
+
         Boolean AddMaintenancePeople(string people);
 
         Boolean UpdateMaintenancePeople(string people);

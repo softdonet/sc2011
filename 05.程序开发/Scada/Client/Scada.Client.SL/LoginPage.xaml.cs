@@ -60,7 +60,6 @@ namespace Scada.Client.SL
                 App.CurUser = u;
                 this.MasterContainer.Child = new MainPage();
             }
-            return;
 
 
             //1)Check UserName

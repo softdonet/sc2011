@@ -513,7 +513,7 @@
                 <ListBoxItem x:Name="childMenuDataSearch" Content="设备查询" VerticalAlignment="Center" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiDataSearch"/>
                 <ListBoxItem x:Name="childMenuAlertSearch" Content="告警查询" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiAlertSearch"/>
                 <ListBoxItem x:Name="childMenuUserEventSearch" Content="事件查询" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiAlertSearch"/>
-                <ListBoxItem x:Name="childMenuRepairLogSearch" Content="日志查询" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiAlertSearch"/>
+                <!--<ListBoxItem x:Name="childMenuRepairLogSearch" Content="日志查询" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiAlertSearch"/>-->
             </ListBox>
         </Border>
         <!--图表分析子菜单-->
@@ -566,7 +566,7 @@
                 </ListBox.ItemTemplate>
                 <ListBoxItem x:Name="childMenuByDateCompare" Content="设备对比" VerticalAlignment="Center" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDateCompare"/>
                 <ListBoxItem x:Name="childMenuDeviceCompare" Content="时间对比" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDeviceCompare"/>
-                <ListBoxItem x:Name="childMenuStatistics" Content="统计分析" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDeviceCompare"/>
+                <!--<ListBoxItem x:Name="childMenuStatistics" Content="统计分析" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDeviceCompare"/>-->
             </ListBox>
         </Border>
         <!--系统配置子菜单-->
@@ -620,8 +620,8 @@
                 <ListBoxItem x:Name="childMenuDeviceManage" Content="设备管理" VerticalAlignment="Center" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDateCompare"/>
                 <ListBoxItem x:Name="childMenuRepairUserManage" Content="维护人员" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDeviceCompare"/>
                 <ListBoxItem x:Name="childMenuSysConfig" Content="系统参数" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDeviceCompare"/>
-                <ListBoxItem x:Name="childMenuDevideLog" Content="设备日志" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDeviceCompare"/>
-                <ListBoxItem x:Name="childMenuDatabaseBak" Content="数据库备份" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDeviceCompare"/>
+                <!--<ListBoxItem x:Name="childMenuDevideLog" Content="设备日志" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDeviceCompare"/>
+                <ListBoxItem x:Name="childMenuDatabaseBak" Content="数据库备份" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByDeviceCompare"/>-->
 
             </ListBox>
         </Border>

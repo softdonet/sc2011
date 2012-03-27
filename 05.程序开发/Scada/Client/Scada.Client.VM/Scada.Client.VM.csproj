@@ -77,6 +77,7 @@
     <Compile Include="Modules\BaseInfo\DeviceManageViewModel.cs" />
     <Compile Include="Modules\BingMaps\MapIndexViewModel.cs" />
     <Compile Include="Modules\BingMaps\PushPinDeviceViewModel.cs" />
+    <Compile Include="Modules\Device\DetailsPageViewModel.cs" />
     <Compile Include="Modules\DiagramAnalysis\CompareByTimeViewModel.cs" />
     <Compile Include="Modules\Query\AlarmQueryViewModel.cs" />
     <Compile Include="Modules\Query\DeviceListQueryViewModel.cs" />
@@ -164,15 +165,15 @@
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.ViewDeviceInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ScadaDeviceService\ScadaDeviceService.disco" />
     <None Include="Service References\ScadaDeviceService\configuration91.svcinfo" />
     <None Include="Service References\ScadaDeviceService\configuration.svcinfo" />
     <None Include="Service References\ScadaDeviceService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\ScadaDeviceService\ScadaDeviceService1.disco" />
     <Content Include="ServiceReferences.ClientConfig" />
-    <None Include="Service References\ScadaDeviceService\ScadaDeviceService.wsdl" />
+    <None Include="Service References\ScadaDeviceService\ScadaDeviceService1.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\DeviceRealTimeService\" />

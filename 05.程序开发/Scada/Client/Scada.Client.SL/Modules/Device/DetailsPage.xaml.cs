@@ -16,6 +16,7 @@ using System.Windows.Media.Animation;
 using Scada.Model.Entity;
 using Scada.Client.SL.CommClass;
 using Scada.Client.SL.ScadaDeviceService;
+using Scada.Client.VM.Modules.Device;
 
 
 
@@ -54,6 +55,9 @@ namespace Scada.Client.SL.Modules.Device
             InitializeComponent();
             this._deviceKey = deviceKey;
             this.Init();
+
+            DetailsPageViewModel detailsPageViewModel = new DetailsPageViewModel(deviceKey);
+            this.DataContext = detailsPageViewModel;
         }
 
         #endregion

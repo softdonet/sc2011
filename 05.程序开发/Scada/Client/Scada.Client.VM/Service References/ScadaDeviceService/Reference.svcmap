@@ -20,11 +20,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:2823/WebServices/ScadaDeviceService.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:8000/WebServices/ScadaDeviceService.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ScadaDeviceService.wsdl" MetadataType="Wsdl" ID="baee36a6-ae11-4b71-b8c4-e4012a83dc28" SourceId="1" SourceUrl="http://localhost:2823/WebServices/ScadaDeviceService.asmx?wsdl" />
-    <MetadataFile FileName="ScadaDeviceService.disco" MetadataType="Disco" ID="b93338bf-2fc8-4fd1-9ebb-d3c97e01e7ff" SourceId="1" SourceUrl="http://localhost:2823/WebServices/ScadaDeviceService.asmx?disco" />
+    <MetadataFile FileName="ScadaDeviceService1.disco" MetadataType="Disco" ID="6e3d8112-0ac8-4eee-b591-421c53f0367e" SourceId="1" SourceUrl="http://localhost:8000/WebServices/ScadaDeviceService.asmx?disco" />
+    <MetadataFile FileName="ScadaDeviceService1.wsdl" MetadataType="Wsdl" ID="c69139bc-a5ad-4d3f-909c-3359136d33a7" SourceId="1" SourceUrl="http://localhost:8000/WebServices/ScadaDeviceService.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

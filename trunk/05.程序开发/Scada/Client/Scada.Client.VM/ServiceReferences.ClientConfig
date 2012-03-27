@@ -9,7 +9,7 @@
             </basicHttpBinding>
         </bindings>
         <client>
-            <endpoint address="http://localhost:2823/WebServices/ScadaDeviceService.asmx"
+            <endpoint address="http://localhost:8000/WebServices/ScadaDeviceService.asmx"
                 binding="basicHttpBinding" bindingConfiguration="ScadaDeviceServiceSoap"
                 contract="ScadaDeviceService.ScadaDeviceServiceSoap" name="ScadaDeviceServiceSoap" />
         </client>

@@ -982,10 +982,10 @@
   </wsdl:binding>
   <wsdl:service name="ScadaDeviceService">
     <wsdl:port name="ScadaDeviceServiceSoap" binding="tns:ScadaDeviceServiceSoap">
-      <soap:address location="http://localhost:2823/WebServices/ScadaDeviceService.asmx" />
+      <soap:address location="http://localhost:8000/WebServices/ScadaDeviceService.asmx" />
     </wsdl:port>
     <wsdl:port name="ScadaDeviceServiceSoap12" binding="tns:ScadaDeviceServiceSoap12">
-      <soap12:address location="http://localhost:2823/WebServices/ScadaDeviceService.asmx" />
+      <soap12:address location="http://localhost:8000/WebServices/ScadaDeviceService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

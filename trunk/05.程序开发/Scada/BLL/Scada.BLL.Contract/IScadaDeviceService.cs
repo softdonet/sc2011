@@ -94,7 +94,6 @@ namespace Scada.BLL.Contract
         #region 维护人员
 
         string GetMaintenancePeople();
-
         //string GetMaintenancePeople(Guid MainPeopleId);
 
         Boolean AddMaintenancePeople(string people);

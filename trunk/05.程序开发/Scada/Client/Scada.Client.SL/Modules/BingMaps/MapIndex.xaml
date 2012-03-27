@@ -296,7 +296,7 @@
                     <TextBlock Text ="气象信息"  FontSize=" 12"   VerticalAlignment="Center"   Margin=" 5"/>
                 </StackPanel>
                 <toolkit:WrapPanel x:Name="wpArea" Orientation="Horizontal" >
-                  <!--<local:WeatherBar HorizontalAlignment="Left"   VerticalAlignment="Top" />-->
+                 <local:WeatherBar HorizontalAlignment="Left"   VerticalAlignment="Top" />
 
                 </toolkit:WrapPanel>
                 <!-- 工程类型显示区-->

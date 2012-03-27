@@ -146,6 +146,10 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
             this._scadaDeviceServiceSoapClient.GetSameDateTemperatureDiffDeviceCompleted +=
                                           new EventHandler<GetSameDateTemperatureDiffDeviceCompletedEventArgs>
                                           (scadaDeviceServiceSoapClient_GetSameDateTemperatureDiffDeviceCompleted);
+
+            //this.charTemperature.AxesX[0].AxisMinimum = this._starDate;
+            //this.charTemperature.AxesX[0].AxisMaximum = this._endDate;
+
             this._scadaDeviceServiceSoapClient.GetSameDateTemperatureDiffDeviceAsync(this._dateSelectMode, this._starDate, this._endDate, jsonDevices);
         }
 
@@ -184,14 +188,15 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
             dataSeries.MarkerEnabled = false;
             dataSeries.LabelEnabled = false;
             dataSeries.XValueType = ChartValueTypes.DateTime;
-            dataSeries.XValueFormatString = "yyyy-MM-dd HH:mm:ss";
+            //dataSeries.XValueFormatString = "yyyy-MM-dd HH:mm:ss";
+            dataSeries.XValueFormatString = "HH:mm:ss";
             dataSeries.Color = new SolidColorBrush(color);
 
             DataPoint datapoint;
             foreach (ChartSource item in source)
             {
                 datapoint = new DataPoint();
-                datapoint.XValue = item.DeviceDate.ToString("yyyy-MM-dd HH:mm:ss");
+                datapoint.XValue = item.DeviceDate.ToString("HH:mm");
                 datapoint.YValue = item.DeviceTemperature;
                 datapoint.ToolTipText = string.Format("{0},{1}", datapoint.XValue, datapoint.YValue);
                 dataSeries.DataPoints.Add(datapoint);

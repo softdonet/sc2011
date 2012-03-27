@@ -1438,7 +1438,7 @@ namespace Scada.BLL.Implement
         /// </summary>
         /// <param name="MainPeopleId"></param>
         /// <returns></returns>
-        public string GetMaintenancePeople(Guid MainPeopleId)
+        public string MPeopleById(Guid MainPeopleId)
         {
             List<MaintenancePeople> mainPeople = new List<MaintenancePeople>();
             string sSql = " Select * from MaintenancePeople where ID = " + "'" + MainPeopleId.ToString() + "'";

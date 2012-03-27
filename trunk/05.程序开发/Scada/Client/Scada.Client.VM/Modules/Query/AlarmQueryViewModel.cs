@@ -35,7 +35,7 @@ namespace Scada.Client.VM.Modules.Query
         {
             this.queryCommand = new DelegateCommand(new Action(this.Query));
             scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
-            //scadaDeviceServiceSoapClient.
+            //scadaDeviceServiceSoapClient
         }
         #endregion
 

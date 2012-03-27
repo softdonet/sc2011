@@ -147,6 +147,7 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
 
                 //Clear ChartSource
                 this.charTemperature.Series.Clear();
+                //this.charTemperature.AxesX[0].ValueFormatString = "HH";
 
                 int i = 0;
                 foreach (var item in chartSource)
@@ -163,21 +164,22 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
         {
 
             Visifire.Charts.DataSeries dataSeries = new Visifire.Charts.DataSeries();
-            //dataSeries.Name = serviceName;
             dataSeries.RenderAs = Visifire.Charts.RenderAs.Spline;
             dataSeries.ShowInLegend = false;
             dataSeries.SelectionEnabled = true;
             dataSeries.MarkerEnabled = false;
             dataSeries.LabelEnabled = false;
             dataSeries.XValueType = ChartValueTypes.DateTime;
-            dataSeries.XValueFormatString = "yyyy-MM-dd HH:mm:ss";
+            //dataSeries.XValueFormatString = "yyyy-MM-dd HH:mm:ss";
+            dataSeries.XValueFormatString = "HH:mm:ss";
             dataSeries.Color = new SolidColorBrush(color);
 
             DataPoint datapoint;
             foreach (ChartSource item in source)
             {
                 datapoint = new DataPoint();
-                datapoint.XValue = item.DeviceDate.ToString("yyyy-MM-dd HH:mm:ss");
+                datapoint.XValue = item.DeviceDate.ToString("HH:mm");
+                //datapoint.XValue = item.DeviceDate.ToString("yyyy-MM-dd HH:mm:ss");
                 datapoint.YValue = item.DeviceTemperature;
                 datapoint.ToolTipText = string.Format("{0},{1}", datapoint.XValue, datapoint.YValue);
                 dataSeries.DataPoints.Add(datapoint);

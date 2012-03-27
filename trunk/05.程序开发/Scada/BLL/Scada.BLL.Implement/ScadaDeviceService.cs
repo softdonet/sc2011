@@ -1180,7 +1180,7 @@ namespace Scada.BLL.Implement
             {
                 sCADADataContext = new Scada.DAL.Linq.SCADADataContext();
 
-                if (DeviceType==0)
+                if (DeviceType == 0)
                 {
 
                 }
@@ -1189,14 +1189,14 @@ namespace Scada.BLL.Implement
                     var obj1 = from dt in sCADADataContext.DeviceTrees
                                from di in sCADADataContext.DeviceInfos
                                from da in sCADADataContext.DeviceAlarms
-                               where dt.ParentID==id
+                               where dt.ParentID == id
                                where dt.ID == di.ManageAreaID
                                where da.DeviceID == di.ID
-                               where da.StartTime>startdDate
-                               where da.StartTime<endDate
+                               where da.StartTime > startdDate
+                               where da.StartTime < endDate
                                select da; // select new {da.DeviceID, };
 
-                   
+
                     if (obj1 != null)
                     {
                         obj = obj1;
@@ -1211,9 +1211,9 @@ namespace Scada.BLL.Implement
                                where di.ManageAreaID == id
                                where da.DeviceID == di.ID
                                where da.StartTime > startdDate
-                               where da.StartTime<endDate
+                               where da.StartTime < endDate
                                select da;
-                    if (obj2!=null)
+                    if (obj2 != null)
                     {
                         obj = obj2;
                     }
@@ -1221,10 +1221,10 @@ namespace Scada.BLL.Implement
                 else // (DeviceType==3)
                 {
                     var obj3 = sCADADataContext.DeviceAlarms.Select(e => e.DeviceID == id && e.StartTime > startdDate && e.StartTime < endDate);
-                    if (obj3!=null)
+                    if (obj3 != null)
                     {
                         obj = obj3;
-                    }    
+                    }
                 }
                 if (obj != null)
                 {
@@ -1248,7 +1248,7 @@ namespace Scada.BLL.Implement
             {
                 sCADADataContext = new Scada.DAL.Linq.SCADADataContext();
                 var obj = sCADADataContext.UserEvents.Select(e => e.ID == id && e.RequestTime > startDate && e.RequestTime < endDate);
-                if (obj!=null)
+                if (obj != null)
                 {
                     Scada.Model.Entity.UserEventModel userEventModel = obj.ConvertTo<Scada.Model.Entity.UserEventModel>();
                     result = BinaryObjTransfer.JsonSerializer<Scada.Model.Entity.UserEventModel>(userEventModel);
@@ -1371,9 +1371,9 @@ namespace Scada.BLL.Implement
         private List<ChartSource> GetDeviceDateTemperature(DateTime start, DateTime end, string groupType, string whereType)
         {
             List<ChartSource> result = new List<ChartSource>();
-            string sSql = @" Select " + groupType + @" As DeviceDate ,Round(Avg(AAA.Temperature),2) As DeviceTemperature
+            string sSql = @" Select " + groupType + @" As DeviceDate ,Round(Avg(AAA.Temperature1),2) As DeviceTemperature
                                 from DeviceRealTime AAA  
-                                Where 1=1 And AAA.Temperature >0 
+                                Where 1=1 And AAA.Temperature1 >0 
                                 And AAA.UpdateTime >='" + start.ToString("yyyy-MM-dd HH:mm:ss") + @"'
                                 And AAA.UpdateTime <'" + end.ToString("yyyy-MM-dd HH:mm:ss") + "' Group by " + groupType + " Order by DeviceDate";
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);

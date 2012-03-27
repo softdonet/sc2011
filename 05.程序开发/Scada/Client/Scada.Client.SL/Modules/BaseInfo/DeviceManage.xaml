@@ -42,7 +42,7 @@
                                 </Grid.RowDefinitions>
                                 <my1:TreeViewList   x:Name="treeViewList1"  OnTreeSelectItemClick="treeViewList1_OnTreeSelectItemClick"/>
                             <sdk:Label Content="设备编号：" HorizontalAlignment="Left" Margin="14,17,0,0" VerticalAlignment="Top" Width="62" Grid.Column="1" />
-                                <TextBox Name="txtDeviceNo" Text="{Binding DeviceNo, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" Height="23" HorizontalAlignment="Left" Margin="86,14,0,0"  VerticalAlignment="Top" Width="204" Grid.Column="1" />
+                                <TextBox Name="txtDeviceNo" Text="{Binding DeviceInfoList.DeviceNo, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" Height="23" HorizontalAlignment="Left" Margin="86,14,0,0"  VerticalAlignment="Top" Width="204" Grid.Column="1" />
                             <sdk:Label Content="设备SN号：" HorizontalAlignment="Left" Margin="14,44,0,0" VerticalAlignment="Top" Width="62" Grid.Column="1" />
                                 <TextBox  Name="txtDeviceSN" Text="{Binding DeviceInfoList.DeviceSN, Mode=TwoWay}" Height="23" HorizontalAlignment="Left" Margin="86,40,0,0" VerticalAlignment="Top" Width="204" Grid.Column="1" />
                             <sdk:Label Content="设备MAC：" Grid.Column="1"  HorizontalAlignment="Left" Margin="10,74,0,0" x:Name="label1" VerticalAlignment="Top" Width="62"  />

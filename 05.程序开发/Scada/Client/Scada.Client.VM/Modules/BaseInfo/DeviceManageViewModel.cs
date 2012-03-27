@@ -88,7 +88,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
             }
         }
        
-        public void ViewDeviceInfoById(string myDeviceId)
+        public void ViewDeviceInfoById(Guid myDeviceId)
         {
             scadaDeviceServiceSoapClient.ViewDeviceInfoAsync(myDeviceId);
 
@@ -104,15 +104,15 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 scadaDeviceServiceSoapClient.AddDeviceInfoAsync(deviceInfo);
                 scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
             }
-            else
-            {
-                DeviceInfoList = new DeviceInfo();
+            //else
+            //{
+            //    DeviceInfoList = new DeviceInfo();
 
-                DeviceInfoList.ID = Guid.NewGuid();
-                DeviceInfoList.DeviceNo = DeviceNo;
-                DeviceInfoList.DeviceSN = DeviceSN;
+            //    DeviceInfoList.ID = Guid.NewGuid();
+            //    DeviceInfoList.DeviceNo = DeviceNo;
+            //    DeviceInfoList.DeviceSN = DeviceSN;
 
-            }
+            //}
 
         }
 
@@ -187,6 +187,10 @@ namespace Scada.Client.VM.Modules.BaseInfo
             if (e.Error == null)
             {
                 deviceInfo = BinaryObjTransfer.BinaryDeserialize<DeviceInfo>(e.Result);
+                if (deviceInfo==null)
+                {
+                    deviceInfo = new DeviceInfo();
+                }
                 DeviceInfoList = deviceInfo;
             }
         }
@@ -219,504 +223,583 @@ namespace Scada.Client.VM.Modules.BaseInfo
         }
 
         //---------------------------------------------------------------
+
+        #region 测试方法
+
+        //public DeviceInfo DeviceInfoSingleChanged { get; set; }
+
+        //public Guid ID
+        //{
+        //    get { return DeviceInfoSingleChanged.ID; }
+
+        //    set
+        //    {
+        //        if (DeviceInfoSingleChanged.ID != value)
+        //        {
+        //            DeviceInfoSingleChanged.ID = value;
+        //            RaisePropertyChanged("ID");
+        //        }
+        //    }
+        //}
+
+        //[Required(ErrorMessage = "设备编号不能为空!")]
+        //public string DeviceNo
+        //{
+        //    get
+        //    {
+        //        if (DeviceInfoSingleChanged == null)
+        //        {
+        //            DeviceInfoSingleChanged = new DeviceInfo();
+        //        }
+        //        return DeviceInfoSingleChanged.DeviceNo;
+        //    }
+        //    set
+        //    {
+        //        DeviceInfoSingleChanged.DeviceNo = value;
+        //        RaisePropertyChanged("DeviceNo");
+        //    }
+        //}
+
+        //public string DeviceMAC
+        //{
+        //    get
+        //    {
+        //        if (DeviceInfoSingleChanged == null)
+        //        {
+        //            DeviceInfoSingleChanged = new DeviceInfo();
+        //        }
+
+        //        return DeviceInfoSingleChanged.DeviceMAC;
+        //    }
+        //    set
+        //    {
+        //        DeviceInfoSingleChanged.DeviceMAC = value;
+        //        RaisePropertyChanged("DeviceMAC");
+
+        //    }
+        //}
+
+        //public string DeviceSN
+        //{
+        //    get
+        //    {
+        //        if (DeviceInfoSingleChanged == null)
+        //        {
+        //            DeviceInfoSingleChanged = new DeviceInfo();
+        //        }
+        //        return DeviceInfoSingleChanged.DeviceSN;
+        //    }
+        //    set
+        //    {
+        //        DeviceInfoSingleChanged.DeviceSN = value;
+        //        RaisePropertyChanged("DeviceSN");
+
+        //    }
+        //}
+
+        #endregion
+
+        //-----------------------
         #region 设备属性
 
-        private Guid id;
-        public Guid ID
-        {
-            get { return id; }
-            set
-            {
-                id = value;
-                this.RaisePropertyChanged("ID");
-            }
-        }
-
-        private string deviceNo;
-        [Required(ErrorMessage = "设备编号不能为空!")]
-        public string DeviceNo
-        {
-            get { return deviceNo; }
-            set
-            {
-                if (deviceNo != value)
-                {
-                    deviceNo = value;
-                    this.RaisePropertyChanged("DeviceNo");
-
-                    Validator.ValidateProperty(value, new ValidationContext(this, null, null) { MemberName = "DeviceNo" });
-                }
-            }
-        }
-
-        private string deviceMAC;
-        public string DeviceMAC
-        {
-            get { return deviceMAC; }
-            set
-            {
-                deviceMAC = value;
-                this.RaisePropertyChanged("DeviceMAC");
-            }
-        }
-        //设备SN号
-        private string deviceSN;
-        public string DeviceSN
-        {
-            get { return deviceSN; }
-            set
-            {
-                deviceSN = value;
-                this.RaisePropertyChanged("DeviceSN");
-            }
-        }
-
-        //硬件类型
-        private string hardType;
-        public string HardType
-        {
-            get { return hardType; }
-            set
-            {
-                hardType = value;
-                this.RaisePropertyChanged("HardType");
-            }
-        }
-        //生产日期
-        private DateTime productDate;
-        public DateTime ProductDate
-        {
-            get { return productDate; }
-            set
-            {
-                productDate = value;
-                this.RaisePropertyChanged("ProductDate");
-            }
-        }
-
-        private string sIMNo;
-        public string SIMNo
-        {
-            get { return sIMNo; }
-            set
-            {
-                sIMNo = value;
-                this.RaisePropertyChanged("SIMNo");
-            }
-        }
-
-        //管理分区
-        private Guid manageAreaID;
-        public Guid ManageAreaID
-        {
-            get { return manageAreaID; }
-            set
-            {
-                manageAreaID = value;
-                this.RaisePropertyChanged("ManageAreaID");
-            }
-        }
 
 
-        //维修人员ID
-        private Guid maintenancePeopleID;
-        public Guid MaintenancePeopleID
-        {
-            get { return maintenancePeopleID; }
-            set
-            {
-                maintenancePeopleID = value;
-                this.RaisePropertyChanged("MaintenancePeopleID");
-            }
-        }
+        //private Guid id;
+        //public Guid ID
+        //{
+        //    get { return id; }
+        //    set
+        //    {
+        //        id = value;
+        //        this.RaisePropertyChanged("ID");
+        //    }
+        //}
 
-        //安装地点
-        private string installPlace;
-        public string InstallPlace
-        {
-            get { return installPlace; }
-            set
-            {
-                installPlace = value;
-                this.RaisePropertyChanged("InstallPlace");
-            }
-        }
+        //private string deviceNo;
+        //[Required(ErrorMessage = "设备编号不能为空!")]
+        //public string DeviceNo
+        //{
+        //    get { return deviceNo; }
+        //    set
+        //    {
+        //        if (deviceNo != value)
+        //        {
+        //            deviceNo = value;
+        //            this.RaisePropertyChanged("DeviceNo");
 
-        //经度
-        private decimal longitude;
-        public decimal Longitude
-        {
-            get { return longitude; }
-            set
-            {
-                longitude = value;
-                this.RaisePropertyChanged("Longitude");
-            }
-        }
+        //            Validator.ValidateProperty(value, new ValidationContext(this, null, null) { MemberName = "DeviceNo" });
+        //        }
+        //    }
+        //}
 
-        //维度
-        private decimal latitude;
-        public decimal Latitude
-        {
-            get { return latitude; }
-            set
-            {
-                latitude = value;
-                this.RaisePropertyChanged("Latitude");
-            }
-        }
+        //private string deviceMAC;
+        //public string DeviceMAC
+        //{
+        //    get { return deviceMAC; }
+        //    set
+        //    {
+        //        deviceMAC = value;
+        //        this.RaisePropertyChanged("DeviceMAC");
+        //    }
+        //}
+        ////设备SN号
+        //private string deviceSN;
+        //public string DeviceSN
+        //{
+        //    get { return deviceSN; }
+        //    set
+        //    {
+        //        deviceSN = value;
+        //        this.RaisePropertyChanged("DeviceSN");
+        //    }
+        //}
 
-        private decimal high;
-        public decimal High
-        {
-            get { return high; }
-            set
-            {
-                high = value;
-                this.RaisePropertyChanged("High");
-            }
-        }
+        ////硬件类型
+        //private string hardType;
+        //public string HardType
+        //{
+        //    get { return hardType; }
+        //    set
+        //    {
+        //        hardType = value;
+        //        this.RaisePropertyChanged("HardType");
+        //    }
+        //}
+        ////生产日期
+        //private DateTime productDate;
+        //public DateTime ProductDate
+        //{
+        //    get { return productDate; }
+        //    set
+        //    {
+        //        productDate = value;
+        //        this.RaisePropertyChanged("ProductDate");
+        //    }
+        //}
 
-        private string comment;
-        public string Comment
-        {
-            get { return comment; }
-            set
-            {
-                comment = value;
-                this.RaisePropertyChanged("Comment");
-            }
-        }
+        //private string sIMNo;
+        //public string SIMNo
+        //{
+        //    get { return sIMNo; }
+        //    set
+        //    {
+        //        sIMNo = value;
+        //        this.RaisePropertyChanged("SIMNo");
+        //    }
+        //}
 
-        //偏差
-        private int windage;
-        public int Windage
-        {
-            get { return windage; }
-            set
-            {
-                windage = value;
-                this.RaisePropertyChanged("Windage");
-            }
-        }
+        ////管理分区
+        //private Guid manageAreaID;
+        //public Guid ManageAreaID
+        //{
+        //    get { return manageAreaID; }
+        //    set
+        //    {
+        //        manageAreaID = value;
+        //        this.RaisePropertyChanged("ManageAreaID");
+        //    }
+        //}
 
-        //硬件版本
-        private string hardwareVersion;
-        public string HardwareVersion
-        {
-            get { return hardwareVersion; }
-            set
-            {
-                hardwareVersion = value;
-                this.RaisePropertyChanged("HardwareVersion");
-            }
-        }
 
-        //软件版本
-        private string softWareVersion;
-        public string SoftWareVersion
-        {
-            get { return softWareVersion; }
-            set
-            {
-                softWareVersion = value;
-                this.RaisePropertyChanged("SoftWareVersion");
-            }
-        }
+        ////维修人员ID
+        //private Guid maintenancePeopleID;
+        //public Guid MaintenancePeopleID
+        //{
+        //    get { return maintenancePeopleID; }
+        //    set
+        //    {
+        //        maintenancePeopleID = value;
+        //        this.RaisePropertyChanged("MaintenancePeopleID");
+        //    }
+        //}
 
-        //LCD显示类型
-        private int lCDScreenDisplayType;
-        public int LCDScreenDisplayType
-        {
-            get { return lCDScreenDisplayType; }
-            set
-            {
-                lCDScreenDisplayType = value;
-                this.RaisePropertyChanged("LCDScreenDisplayType");
-            }
-        }
+        ////安装地点
+        //private string installPlace;
+        //public string InstallPlace
+        //{
+        //    get { return installPlace; }
+        //    set
+        //    {
+        //        installPlace = value;
+        //        this.RaisePropertyChanged("InstallPlace");
+        //    }
+        //}
 
-        private bool urgencyBtnEnable;
-        public bool UrgencyBtnEnable
-        {
-            get { return urgencyBtnEnable; }
-            set
-            {
-                urgencyBtnEnable = value;
-                this.RaisePropertyChanged("UrgencyBtnEnable");
-            }
-        }
+        ////经度
+        //private decimal longitude;
+        //public decimal Longitude
+        //{
+        //    get { return longitude; }
+        //    set
+        //    {
+        //        longitude = value;
+        //        this.RaisePropertyChanged("Longitude");
+        //    }
+        //}
 
-        private bool inforBtnEnable;
-        public bool InforBtnEnable
-        {
-            get { return inforBtnEnable; }
-            set
-            {
-                inforBtnEnable = value;
-                this.RaisePropertyChanged("InforBtnEnable");
-            }
-        }
+        ////维度
+        //private decimal latitude;
+        //public decimal Latitude
+        //{
+        //    get { return latitude; }
+        //    set
+        //    {
+        //        latitude = value;
+        //        this.RaisePropertyChanged("Latitude");
+        //    }
+        //}
 
-        //主温度设置有效
+        //private decimal high;
+        //public decimal High
+        //{
+        //    get { return high; }
+        //    set
+        //    {
+        //        high = value;
+        //        this.RaisePropertyChanged("High");
+        //    }
+        //}
 
-        private bool temperature1AlarmValid;
-        public bool Temperature1AlarmValid
-        {
-            get { return temperature1AlarmValid; }
-            set
-            {
-                temperature1AlarmValid = value;
-                this.RaisePropertyChanged("Temperature1AlarmValid");
-            }
-        }
+        //private string comment;
+        //public string Comment
+        //{
+        //    get { return comment; }
+        //    set
+        //    {
+        //        comment = value;
+        //        this.RaisePropertyChanged("Comment");
+        //    }
+        //}
 
-        //主温度高报警
-        private decimal temperature1HighAlarm;
-        public decimal Temperature1HighAlarm
-        {
-            get { return temperature1HighAlarm; }
-            set
-            {
-                temperature1HighAlarm = value;
-                this.RaisePropertyChanged("Temperature1HighAlarm");
-            }
-        }
+        ////偏差
+        //private int windage;
+        //public int Windage
+        //{
+        //    get { return windage; }
+        //    set
+        //    {
+        //        windage = value;
+        //        this.RaisePropertyChanged("Windage");
+        //    }
+        //}
 
-        //主温度低报警
-        private decimal temperature1LowAlarm;
-        public decimal Temperature1LowAlarm
-        {
-            get { return temperature1LowAlarm; }
-            set
-            {
-                temperature1LowAlarm = value;
-                this.RaisePropertyChanged("Temperature1LowAlarm");
-            }
-        }
+        ////硬件版本
+        //private string hardwareVersion;
+        //public string HardwareVersion
+        //{
+        //    get { return hardwareVersion; }
+        //    set
+        //    {
+        //        hardwareVersion = value;
+        //        this.RaisePropertyChanged("HardwareVersion");
+        //    }
+        //}
 
-        //从温度设置有效
-        private bool temperature2AlarmValid;
-        public bool Temperature2AlarmValid
-        {
-            get { return temperature2AlarmValid; }
-            set
-            {
-                temperature2AlarmValid = value;
-                this.RaisePropertyChanged("Temperature2AlarmValid");
-            }
-        }
+        ////软件版本
+        //private string softWareVersion;
+        //public string SoftWareVersion
+        //{
+        //    get { return softWareVersion; }
+        //    set
+        //    {
+        //        softWareVersion = value;
+        //        this.RaisePropertyChanged("SoftWareVersion");
+        //    }
+        //}
 
-        //从温度高报警
-        private decimal temperature2HighAlarm;
-        public decimal Temperature2HighAlarm
-        {
-            get { return temperature2HighAlarm; }
-            set
-            {
-                temperature2HighAlarm = value;
-                this.RaisePropertyChanged("Temperature2HighAlarm");
-            }
-        }
+        ////LCD显示类型
+        //private int lCDScreenDisplayType;
+        //public int LCDScreenDisplayType
+        //{
+        //    get { return lCDScreenDisplayType; }
+        //    set
+        //    {
+        //        lCDScreenDisplayType = value;
+        //        this.RaisePropertyChanged("LCDScreenDisplayType");
+        //    }
+        //}
 
-        //从温度低报警
-        private decimal temperature2LowAlarm;
-        public decimal Temperature2LowAlarm
-        {
-            get { return temperature2LowAlarm; }
-            set
-            {
-                temperature2LowAlarm = value;
-                this.RaisePropertyChanged("Temperature2LowAlarm");
-            }
-        }
+        //private bool urgencyBtnEnable;
+        //public bool UrgencyBtnEnable
+        //{
+        //    get { return urgencyBtnEnable; }
+        //    set
+        //    {
+        //        urgencyBtnEnable = value;
+        //        this.RaisePropertyChanged("UrgencyBtnEnable");
+        //    }
+        //}
 
-        //湿度设置有效
-        private bool humidityAlarmValid;
-        public bool HumidityAlarmValid
-        {
-            get { return humidityAlarmValid; }
-            set
-            {
-                humidityAlarmValid = value;
-                this.RaisePropertyChanged("HumidityAlarmValid");
-            }
-        }
+        //private bool inforBtnEnable;
+        //public bool InforBtnEnable
+        //{
+        //    get { return inforBtnEnable; }
+        //    set
+        //    {
+        //        inforBtnEnable = value;
+        //        this.RaisePropertyChanged("InforBtnEnable");
+        //    }
+        //}
 
-        //湿度高报警
-        private decimal humidityHighAlarm;
-        public decimal HumidityHighAlarm
-        {
-            get { return humidityHighAlarm; }
-            set
-            {
-                humidityHighAlarm = value;
-                this.RaisePropertyChanged("HumidityHighAlarm");
-            }
-        }
+        ////主温度设置有效
 
-        //湿度低报警
-        private decimal humidityLowAlarm;
-        public decimal HumidityLowAlarm
-        {
-            get { return humidityLowAlarm; }
-            set
-            {
-                humidityLowAlarm = value;
-                this.RaisePropertyChanged("HumidityLowAlarm");
-            }
-        }
+        //private bool temperature1AlarmValid;
+        //public bool Temperature1AlarmValid
+        //{
+        //    get { return temperature1AlarmValid; }
+        //    set
+        //    {
+        //        temperature1AlarmValid = value;
+        //        this.RaisePropertyChanged("Temperature1AlarmValid");
+        //    }
+        //}
 
-        //信号设置有效
-        private bool signalAlarmValid;
-        public bool SignalAlarmValid
-        {
-            get { return signalAlarmValid; }
-            set
-            {
-                signalAlarmValid = value;
-                this.RaisePropertyChanged("SignalAlarmValid");
-            }
-        }
-        private int signalHighAlarm;
-        public int SignalHighAlarm
-        {
-            get { return signalHighAlarm; }
-            set
-            {
-                signalHighAlarm = value;
-                this.RaisePropertyChanged("SignalHighAlarm");
-            }
-        }
+        ////主温度高报警
+        //private decimal temperature1HighAlarm;
+        //public decimal Temperature1HighAlarm
+        //{
+        //    get { return temperature1HighAlarm; }
+        //    set
+        //    {
+        //        temperature1HighAlarm = value;
+        //        this.RaisePropertyChanged("Temperature1HighAlarm");
+        //    }
+        //}
 
-        private int signalLowAlarm;
-        public int SignalLowAlarm
-        {
-            get { return signalLowAlarm; }
-            set
-            {
-                signalLowAlarm = value;
-                this.RaisePropertyChanged("SignalLowAlarm");
-            }
-        }
+        ////主温度低报警
+        //private decimal temperature1LowAlarm;
+        //public decimal Temperature1LowAlarm
+        //{
+        //    get { return temperature1LowAlarm; }
+        //    set
+        //    {
+        //        temperature1LowAlarm = value;
+        //        this.RaisePropertyChanged("Temperature1LowAlarm");
+        //    }
+        //}
 
-        //电量设置有效
-        private bool electricityAlarmValid;
-        public bool ElectricityAlarmValid
-        {
-            get { return electricityAlarmValid; }
-            set
-            {
-                electricityAlarmValid = value;
-                this.RaisePropertyChanged("ElectricityAlarmValid");
-            }
-        }
+        ////从温度设置有效
+        //private bool temperature2AlarmValid;
+        //public bool Temperature2AlarmValid
+        //{
+        //    get { return temperature2AlarmValid; }
+        //    set
+        //    {
+        //        temperature2AlarmValid = value;
+        //        this.RaisePropertyChanged("Temperature2AlarmValid");
+        //    }
+        //}
 
-        private int electricityHighAlarm;
-        public int ElectricityHighAlarm
-        {
-            get { return electricityHighAlarm; }
-            set
-            {
-                electricityHighAlarm = value;
-                this.RaisePropertyChanged("ElectricityHighAlarm");
-            }
-        }
+        ////从温度高报警
+        //private decimal temperature2HighAlarm;
+        //public decimal Temperature2HighAlarm
+        //{
+        //    get { return temperature2HighAlarm; }
+        //    set
+        //    {
+        //        temperature2HighAlarm = value;
+        //        this.RaisePropertyChanged("Temperature2HighAlarm");
+        //    }
+        //}
 
-        private int electricityLowAlarm;
-        public int ElectricityLowAlarm
-        {
-            get { return electricityLowAlarm; }
-            set
-            {
-                electricityLowAlarm = value;
-                this.RaisePropertyChanged("ElectricityLowAlarm");
-            }
-        }
+        ////从温度低报警
+        //private decimal temperature2LowAlarm;
+        //public decimal Temperature2LowAlarm
+        //{
+        //    get { return temperature2LowAlarm; }
+        //    set
+        //    {
+        //        temperature2LowAlarm = value;
+        //        this.RaisePropertyChanged("Temperature2LowAlarm");
+        //    }
+        //}
 
-        //当前模式
-        private int currentModel;
-        public int CurrentModel
-        {
-            get { return currentModel; }
-            set
-            {
-                currentModel = value;
-                this.RaisePropertyChanged("CurrentModel");
-            }
-        }
+        ////湿度设置有效
+        //private bool humidityAlarmValid;
+        //public bool HumidityAlarmValid
+        //{
+        //    get { return humidityAlarmValid; }
+        //    set
+        //    {
+        //        humidityAlarmValid = value;
+        //        this.RaisePropertyChanged("HumidityAlarmValid");
+        //    }
+        //}
 
-        //实时模式参数
-        private int realTimeParam;
-        public int RealTimeParam
-        {
-            get { return realTimeParam; }
-            set
-            {
-                realTimeParam = value;
-                this.RaisePropertyChanged("RealTimeParam");
-            }
-        }
+        ////湿度高报警
+        //private decimal humidityHighAlarm;
+        //public decimal HumidityHighAlarm
+        //{
+        //    get { return humidityHighAlarm; }
+        //    set
+        //    {
+        //        humidityHighAlarm = value;
+        //        this.RaisePropertyChanged("HumidityHighAlarm");
+        //    }
+        //}
 
-        //整点模式参数1
-        private int fullTimeParam1;
-        public int FullTimeParam1
-        {
-            get { return fullTimeParam1; }
-            set
-            {
-                fullTimeParam1 = value;
-                this.RaisePropertyChanged("FullTimeParam1");
-            }
-        }
+        ////湿度低报警
+        //private decimal humidityLowAlarm;
+        //public decimal HumidityLowAlarm
+        //{
+        //    get { return humidityLowAlarm; }
+        //    set
+        //    {
+        //        humidityLowAlarm = value;
+        //        this.RaisePropertyChanged("HumidityLowAlarm");
+        //    }
+        //}
 
-        //整点模式参数2
-        private int fullTimeParam2;
-        public int FullTimeParam2
-        {
-            get { return fullTimeParam2; }
-            set
-            {
-                fullTimeParam2 = value;
-                this.RaisePropertyChanged("FullTimeParam2");
-            }
-        }
+        ////信号设置有效
+        //private bool signalAlarmValid;
+        //public bool SignalAlarmValid
+        //{
+        //    get { return signalAlarmValid; }
+        //    set
+        //    {
+        //        signalAlarmValid = value;
+        //        this.RaisePropertyChanged("SignalAlarmValid");
+        //    }
+        //}
+        //private int signalHighAlarm;
+        //public int SignalHighAlarm
+        //{
+        //    get { return signalHighAlarm; }
+        //    set
+        //    {
+        //        signalHighAlarm = value;
+        //        this.RaisePropertyChanged("SignalHighAlarm");
+        //    }
+        //}
 
-        //逢变则报参数1
-        private int optimizeParam1;
-        public int OptimizeParam1
-        {
-            get { return optimizeParam1; }
-            set
-            {
-                optimizeParam1 = value;
-                this.RaisePropertyChanged("OptimizeParam1");
-            }
-        }
+        //private int signalLowAlarm;
+        //public int SignalLowAlarm
+        //{
+        //    get { return signalLowAlarm; }
+        //    set
+        //    {
+        //        signalLowAlarm = value;
+        //        this.RaisePropertyChanged("SignalLowAlarm");
+        //    }
+        //}
 
-        //逢变则报参数1
-        private int optimizeParam2;
-        public int OptimizeParam2
-        {
-            get { return optimizeParam2; }
-            set
-            {
-                optimizeParam2 = value;
-                this.RaisePropertyChanged("OptimizeParam2");
-            }
-        }
+        ////电量设置有效
+        //private bool electricityAlarmValid;
+        //public bool ElectricityAlarmValid
+        //{
+        //    get { return electricityAlarmValid; }
+        //    set
+        //    {
+        //        electricityAlarmValid = value;
+        //        this.RaisePropertyChanged("ElectricityAlarmValid");
+        //    }
+        //}
 
-        //逢变则报参数1
-        private int optimizeParam3;
-        public int OptimizeParam3
-        {
-            get { return optimizeParam3; }
-            set
-            {
-                optimizeParam3 = value;
-                this.RaisePropertyChanged("OptimizeParam3");
-            }
-        }
+        //private int electricityHighAlarm;
+        //public int ElectricityHighAlarm
+        //{
+        //    get { return electricityHighAlarm; }
+        //    set
+        //    {
+        //        electricityHighAlarm = value;
+        //        this.RaisePropertyChanged("ElectricityHighAlarm");
+        //    }
+        //}
+
+        //private int electricityLowAlarm;
+        //public int ElectricityLowAlarm
+        //{
+        //    get { return electricityLowAlarm; }
+        //    set
+        //    {
+        //        electricityLowAlarm = value;
+        //        this.RaisePropertyChanged("ElectricityLowAlarm");
+        //    }
+        //}
+
+        ////当前模式
+        //private int currentModel;
+        //public int CurrentModel
+        //{
+        //    get { return currentModel; }
+        //    set
+        //    {
+        //        currentModel = value;
+        //        this.RaisePropertyChanged("CurrentModel");
+        //    }
+        //}
+
+        ////实时模式参数
+        //private int realTimeParam;
+        //public int RealTimeParam
+        //{
+        //    get { return realTimeParam; }
+        //    set
+        //    {
+        //        realTimeParam = value;
+        //        this.RaisePropertyChanged("RealTimeParam");
+        //    }
+        //}
+
+        ////整点模式参数1
+        //private int fullTimeParam1;
+        //public int FullTimeParam1
+        //{
+        //    get { return fullTimeParam1; }
+        //    set
+        //    {
+        //        fullTimeParam1 = value;
+        //        this.RaisePropertyChanged("FullTimeParam1");
+        //    }
+        //}
+
+        ////整点模式参数2
+        //private int fullTimeParam2;
+        //public int FullTimeParam2
+        //{
+        //    get { return fullTimeParam2; }
+        //    set
+        //    {
+        //        fullTimeParam2 = value;
+        //        this.RaisePropertyChanged("FullTimeParam2");
+        //    }
+        //}
+
+        ////逢变则报参数1
+        //private int optimizeParam1;
+        //public int OptimizeParam1
+        //{
+        //    get { return optimizeParam1; }
+        //    set
+        //    {
+        //        optimizeParam1 = value;
+        //        this.RaisePropertyChanged("OptimizeParam1");
+        //    }
+        //}
+
+        ////逢变则报参数1
+        //private int optimizeParam2;
+        //public int OptimizeParam2
+        //{
+        //    get { return optimizeParam2; }
+        //    set
+        //    {
+        //        optimizeParam2 = value;
+        //        this.RaisePropertyChanged("OptimizeParam2");
+        //    }
+        //}
+
+        ////逢变则报参数1
+        //private int optimizeParam3;
+        //public int OptimizeParam3
+        //{
+        //    get { return optimizeParam3; }
+        //    set
+        //    {
+        //        optimizeParam3 = value;
+        //        this.RaisePropertyChanged("OptimizeParam3");
+        //    }
+        //}
 
         #endregion
 

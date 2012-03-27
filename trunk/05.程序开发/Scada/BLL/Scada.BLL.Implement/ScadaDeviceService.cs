@@ -1441,7 +1441,7 @@ namespace Scada.BLL.Implement
         public string GetMaintenancePeople(Guid MainPeopleId)
         {
             List<MaintenancePeople> mainPeople = new List<MaintenancePeople>();
-            string sSql = " Select * from MaintenancePeople where ID = " + "'" + MainPeopleId + "'";
+            string sSql = " Select * from MaintenancePeople where ID = " + "'" + MainPeopleId.ToString() + "'";
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);
             MaintenancePeople people = null;
             foreach (DataRow item in ds.Rows)

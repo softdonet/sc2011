@@ -183,7 +183,7 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
             dataSeries.MarkerEnabled = false;
             dataSeries.LabelEnabled = false;
             dataSeries.XValueType = ChartValueTypes.DateTime;
-            dataSeries.XValueFormatString = "yyyy/MM/dd HH:mm:ss";
+            //dataSeries.XValueFormatString = "yyyy/MM/dd HH:mm:ss";
             dataSeries.Color = new SolidColorBrush(color);
 
             DataPoint datapoint;

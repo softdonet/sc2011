@@ -120,7 +120,7 @@ namespace Scada.BLL.Implement
         {
             List<ChartSource> result = new List<ChartSource>();
             //DateTime start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-            DateTime start = new DateTime(2012, 3, 17, 0, 0, 0);
+            DateTime start = new DateTime(2012, 3, 24, 0, 0, 0);
             DateTime end = start.AddDays(1);
 
             StringBuilder sSql = new StringBuilder();
@@ -1373,7 +1373,7 @@ namespace Scada.BLL.Implement
             List<ChartSource> result = new List<ChartSource>();
             string sSql = @" Select " + groupType + @" As DeviceDate ,Round(Avg(AAA.Temperature1),2) As DeviceTemperature
                                 from DeviceRealTime AAA  
-                                Where 1=1 And AAA.Temperature1 >0 
+                                Where 1=1 And AAA.Temperature1 >0 " + whereType + @"
                                 And AAA.UpdateTime >='" + start.ToString("yyyy-MM-dd HH:mm:ss") + @"'
                                 And AAA.UpdateTime <'" + end.ToString("yyyy-MM-dd HH:mm:ss") + "' Group by " + groupType + " Order by DeviceDate";
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);

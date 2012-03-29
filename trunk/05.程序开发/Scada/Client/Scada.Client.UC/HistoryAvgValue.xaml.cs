@@ -71,11 +71,19 @@ namespace Scada.Client.UC
             DataPoint datapoint;
             for (int i = 0; i < _chartSource.Count; i++)
             {
+
+                if (i == 0)
+                {
+                    datapoint = new DataPoint();
+                    datapoint.XValue = 0;
+                    datapoint.YValue = 0;
+                    dataSeries.DataPoints.Add(datapoint);
+                }
+
                 ChartSource item = _chartSource[i];
                 datapoint = new DataPoint();
-                //datapoint.XValue = item.DeviceDate.ToString("yyyy-MM-dd HH:mm:ss");
-                datapoint.XValue = i;
-                datapoint.YValue = item.DeviceTemperature;
+                datapoint.XValue = i + 1;
+                datapoint.YValue = Math.Round(item.DeviceTemperature, 2);
                 datapoint.ToolTipText = string.Format("{0},{1}", datapoint.XValue, datapoint.YValue);
                 dataSeries.DataPoints.Add(datapoint);
             }

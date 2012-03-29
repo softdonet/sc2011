@@ -61,10 +61,7 @@ namespace Scada.Client.UC
 
         private void Init()
         {
-            //DateTime sameDay = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-            DateTime sameDay = new DateTime(2012, 3, 17, 0, 0, 0);
-            this.charTemperature.AxesX[0].AxisMinimum = sameDay;
-            this.charTemperature.AxesX[0].AxisMaximum = sameDay.AddDays(1);
+
         }
 
         #endregion
@@ -92,8 +89,8 @@ namespace Scada.Client.UC
             foreach (ChartSource item in _chartSource)
             {
                 datapoint = new DataPoint();
-                datapoint.XValue = item.DeviceDate.ToString("yyyy-MM-dd HH:mm:ss");
-                datapoint.YValue = item.DeviceTemperature;
+                datapoint.XValue = item.DeviceDate.ToString("HH:mm");
+                datapoint.YValue = Math.Round(item.DeviceTemperature, 2);
                 datapoint.ToolTipText = string.Format("{0},{1}", datapoint.XValue, datapoint.YValue);
                 dataSeries.DataPoints.Add(datapoint);
             }

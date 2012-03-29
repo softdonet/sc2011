@@ -16,7 +16,7 @@
                 <vc:PlotArea BorderThickness="0,1,1,0" BorderColor="LightGray" />
             </vc:Chart.PlotArea>
             <vc:Chart.AxesX>
-                <vc:Axis Title="" >
+                <vc:Axis Title="" AxisMinimum="0"  AxisMaximum="31">
                     <vc:Axis.AxisLabels>
                         <vc:AxisLabels Interval="1"  />
                     </vc:Axis.AxisLabels>
@@ -31,7 +31,7 @@
                         <SolidColorBrush  Color="Red"/>
                     </vc:DataSeries.Color>
                     <vc:DataSeries.DataPoints>
-                        <vc:DataPoint AxisXLabel="0" YValue="20" Cursor="Hand" />
+                        
                         <vc:DataPoint AxisXLabel="1" YValue="24"  Cursor="Hand"/>
                         <vc:DataPoint AxisXLabel="2" YValue="13" Cursor="Hand" />
                         <vc:DataPoint AxisXLabel="3" YValue="18" Cursor="Hand" />

@@ -147,7 +147,6 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
 
                 //Clear ChartSource
                 this.charTemperature.Series.Clear();
-                //this.charTemperature.AxesX[0].ValueFormatString = "HH";
 
                 int i = 0;
                 foreach (var item in chartSource)

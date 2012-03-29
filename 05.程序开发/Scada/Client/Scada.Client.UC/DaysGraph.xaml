@@ -18,10 +18,10 @@
             <vc:Chart.TrendLines>
                 <vc:TrendLine Orientation="Horizontal" StartValue="15" EndValue="18" LineColor="#9FEAF451"/>
                 <vc:TrendLine Orientation="Horizontal" StartValue="18" EndValue="25" LineColor="#9F9AD846"/>
-                <vc:TrendLine Orientation="Horizontal" StartValue="25" EndValue="50" LineColor="#9FF86D5A"/>
+                <vc:TrendLine Orientation="Horizontal" StartValue="25" EndValue="32" LineColor="#9FF86D5A"/>
             </vc:Chart.TrendLines>
             <vc:Chart.AxesX>
-                <vc:Axis ValueFormatString="HH" IntervalType="Hours" AxisMaximum="2011-11-12 00:00:00"  AxisMinimum="2011-11-11 00:00:00" >
+                <vc:Axis ValueFormatString="HH" IntervalType="Hours" >
                     <vc:Axis.Grids>
                         <vc:ChartGrid Interval="4" InterlacedColor="#0efCff6e"  />
                     </vc:Axis.Grids>
@@ -29,7 +29,7 @@
             </vc:Chart.AxesX>
 
             <vc:Chart.AxesY>
-                <vc:Axis Title="温度（℃）" LineThickness="0" AxisMaximum="31"   AxisMinimum="15">
+                <vc:Axis Title="温度（℃）" LineThickness="0" AxisMaximum="60"   AxisMinimum="0">
                     <vc:Axis.Grids>
                         <vc:ChartGrid Interval="1" InterlacedColor="#0efCff6e" />
                     </vc:Axis.Grids>

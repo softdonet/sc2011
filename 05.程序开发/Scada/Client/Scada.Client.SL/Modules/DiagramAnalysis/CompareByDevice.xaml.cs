@@ -105,6 +105,10 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
             this._colorArr = new List<Color>();
             this.charTemperature.Series.Clear();
 
+            this._scadaDeviceServiceSoapClient.GetSameDateTemperatureDiffDeviceCompleted +=
+                                       new EventHandler<GetSameDateTemperatureDiffDeviceCompletedEventArgs>
+                                       (scadaDeviceServiceSoapClient_GetSameDateTemperatureDiffDeviceCompleted);
+
         }
 
         #endregion
@@ -141,15 +145,7 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
 
         private void LoadChartSource()
         {
-
             string jsonDevices = BinaryObjTransfer.BinarySerialize(_selDeviceTreeNode);
-            this._scadaDeviceServiceSoapClient.GetSameDateTemperatureDiffDeviceCompleted +=
-                                          new EventHandler<GetSameDateTemperatureDiffDeviceCompletedEventArgs>
-                                          (scadaDeviceServiceSoapClient_GetSameDateTemperatureDiffDeviceCompleted);
-
-            //this.charTemperature.AxesX[0].AxisMinimum = this._starDate;
-            //this.charTemperature.AxesX[0].AxisMaximum = this._endDate;
-
             this._scadaDeviceServiceSoapClient.GetSameDateTemperatureDiffDeviceAsync(this._dateSelectMode, this._starDate, this._endDate, jsonDevices);
         }
 
@@ -181,22 +177,20 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
         {
 
             Visifire.Charts.DataSeries dataSeries = new Visifire.Charts.DataSeries();
-            //dataSeries.Name = serviceName;
             dataSeries.RenderAs = Visifire.Charts.RenderAs.Spline;
             dataSeries.ShowInLegend = false;
             dataSeries.SelectionEnabled = true;
             dataSeries.MarkerEnabled = false;
             dataSeries.LabelEnabled = false;
             dataSeries.XValueType = ChartValueTypes.DateTime;
-            //dataSeries.XValueFormatString = "yyyy-MM-dd HH:mm:ss";
-            dataSeries.XValueFormatString = "HH:mm:ss";
+            dataSeries.XValueFormatString = "yyyy/MM/dd HH:mm:ss";
             dataSeries.Color = new SolidColorBrush(color);
 
             DataPoint datapoint;
             foreach (ChartSource item in source)
             {
                 datapoint = new DataPoint();
-                datapoint.XValue = item.DeviceDate.ToString("HH:mm");
+                datapoint.XValue = item.DeviceDate;
                 datapoint.YValue = item.DeviceTemperature;
                 datapoint.ToolTipText = string.Format("{0},{1}", datapoint.XValue, datapoint.YValue);
                 dataSeries.DataPoints.Add(datapoint);
@@ -211,11 +205,11 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
         {
             DateSelMode dateSelMode = (DateSelMode)_dateSelectMode;
             if (dateSelMode == DateSelMode.天)
-                this._starDate = this._starDate.AddDays(-1);
+                this._endDate = this._endDate.AddDays(-1);
             else if (dateSelMode == DateSelMode.月)
-                this._starDate = this._starDate.AddMonths(-1);
+                this._endDate = this._endDate.AddMonths(-1);
             else if (dateSelMode == DateSelMode.年)
-                this._starDate = this._starDate.AddYears(-1);
+                this._endDate = this._endDate.AddYears(-1);
             this.LoadChartSource();
 
         }
@@ -225,11 +219,11 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
         {
             DateSelMode dateSelMode = (DateSelMode)_dateSelectMode;
             if (dateSelMode == DateSelMode.天)
-                this._starDate = this._endDate.AddHours(1);
+                this._endDate = this._endDate.AddHours(1);
             else if (dateSelMode == DateSelMode.月)
-                this._starDate = this._endDate.AddDays(1);
+                this._endDate = this._endDate.AddDays(1);
             else if (dateSelMode == DateSelMode.年)
-                this._starDate = this._starDate.AddMonths(1);
+                this._endDate = this._endDate.AddMonths(1);
             this.LoadChartSource();
         }
 
@@ -238,11 +232,11 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
         {
             DateSelMode dateSelMode = (DateSelMode)_dateSelectMode;
             if (dateSelMode == DateSelMode.天)
-                this._starDate = this._endDate.AddHours(-1);
+                this._endDate = this._endDate.AddHours(-1);
             else if (dateSelMode == DateSelMode.月)
-                this._starDate = this._endDate.AddDays(-1);
+                this._endDate = this._endDate.AddDays(-1);
             else if (dateSelMode == DateSelMode.年)
-                this._starDate = this._starDate.AddMonths(-1);
+                this._endDate = this._endDate.AddMonths(-1);
             this.LoadChartSource();
         }
 
@@ -251,11 +245,11 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
         {
             DateSelMode dateSelMode = (DateSelMode)_dateSelectMode;
             if (dateSelMode == DateSelMode.天)
-                this._starDate = this._starDate.AddDays(1);
+                this._endDate = this._endDate.AddDays(1);
             else if (dateSelMode == DateSelMode.月)
-                this._starDate = this._starDate.AddMonths(1);
+                this._endDate = this._endDate.AddMonths(1);
             else if (dateSelMode == DateSelMode.年)
-                this._starDate = this._starDate.AddYears(1);
+                this._endDate = this._endDate.AddYears(1);
             this.LoadChartSource();
         }
 

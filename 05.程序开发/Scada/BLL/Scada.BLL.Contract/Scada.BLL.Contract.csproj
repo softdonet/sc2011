@@ -39,6 +39,12 @@
     <Compile Include="ISystemManagerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Model\Scada.Model.Entity\Scada.Model.Entity.csproj">
+      <Project>{185CF734-5C46-4496-A65C-1210607D53F4}</Project>
+      <Name>Scada.Model.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

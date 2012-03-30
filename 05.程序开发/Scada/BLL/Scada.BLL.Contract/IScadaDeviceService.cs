@@ -1,4 +1,7 @@
 ﻿using System;
+using Scada.Model.Entity;
+using System.Collections.Generic;
+
 
 namespace Scada.BLL.Contract
 {
@@ -100,7 +103,7 @@ namespace Scada.BLL.Contract
 
         string GetMaintenancePeople();
         //string GetMaintenancePeople(Guid MainPeopleId);
-
+        string ListDeviceMaintenancePeople(Guid deviceID);
         Boolean AddMaintenancePeople(string people);
 
         Boolean UpdateMaintenancePeople(string people);

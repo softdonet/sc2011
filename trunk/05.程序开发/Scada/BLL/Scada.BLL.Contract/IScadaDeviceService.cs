@@ -76,6 +76,11 @@ namespace Scada.BLL.Contract
 
         #endregion
 
+        #region 告警查询
+
+        string GetAlarmQueryInfo(Guid id, int DeviceType, DateTime startdDate, DateTime endDate);
+
+        #endregion
 
         #region 图表分析
 

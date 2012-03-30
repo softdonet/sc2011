@@ -114,6 +114,9 @@
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.AddMaintenancePeopleResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.GetAlarmQueryInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.GetDeviceOnlyDayResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -139,6 +142,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.GetUserEventDetailInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.ListDeviceMaintenancePeopleResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.ListDeviceTreeViewResponse.datasource">
@@ -171,9 +177,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\ScadaDeviceService\ScadaDeviceService1.disco" />
+    <None Include="Service References\ScadaDeviceService\ScadaDeviceService.disco" />
     <Content Include="ServiceReferences.ClientConfig" />
-    <None Include="Service References\ScadaDeviceService\ScadaDeviceService1.wsdl" />
+    <None Include="Service References\ScadaDeviceService\ScadaDeviceService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\DeviceRealTimeService\" />

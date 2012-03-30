@@ -223,6 +223,23 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetAlarmQueryInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeviceType" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="startdDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAlarmQueryInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAlarmQueryInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetDeviceTreeList">
         <s:complexType />
       </s:element>
@@ -274,6 +291,20 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="GetMaintenancePeopleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListDeviceMaintenancePeople">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deviceID" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListDeviceMaintenancePeopleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListDeviceMaintenancePeopleResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -424,6 +455,12 @@
   <wsdl:message name="ProcessingStepNoSoapOut">
     <wsdl:part name="parameters" element="tns:ProcessingStepNoResponse" />
   </wsdl:message>
+  <wsdl:message name="GetAlarmQueryInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAlarmQueryInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetAlarmQueryInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAlarmQueryInfoResponse" />
+  </wsdl:message>
   <wsdl:message name="GetDeviceTreeListSoapIn">
     <wsdl:part name="parameters" element="tns:GetDeviceTreeList" />
   </wsdl:message>
@@ -447,6 +484,12 @@
   </wsdl:message>
   <wsdl:message name="GetMaintenancePeopleSoapOut">
     <wsdl:part name="parameters" element="tns:GetMaintenancePeopleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListDeviceMaintenancePeopleSoapIn">
+    <wsdl:part name="parameters" element="tns:ListDeviceMaintenancePeople" />
+  </wsdl:message>
+  <wsdl:message name="ListDeviceMaintenancePeopleSoapOut">
+    <wsdl:part name="parameters" element="tns:ListDeviceMaintenancePeopleResponse" />
   </wsdl:message>
   <wsdl:message name="AddMaintenancePeopleSoapIn">
     <wsdl:part name="parameters" element="tns:AddMaintenancePeople" />
@@ -531,6 +574,10 @@
       <wsdl:input message="tns:ProcessingStepNoSoapIn" />
       <wsdl:output message="tns:ProcessingStepNoSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetAlarmQueryInfo">
+      <wsdl:input message="tns:GetAlarmQueryInfoSoapIn" />
+      <wsdl:output message="tns:GetAlarmQueryInfoSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetDeviceTreeList">
       <wsdl:input message="tns:GetDeviceTreeListSoapIn" />
       <wsdl:output message="tns:GetDeviceTreeListSoapOut" />
@@ -546,6 +593,10 @@
     <wsdl:operation name="GetMaintenancePeople">
       <wsdl:input message="tns:GetMaintenancePeopleSoapIn" />
       <wsdl:output message="tns:GetMaintenancePeopleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListDeviceMaintenancePeople">
+      <wsdl:input message="tns:ListDeviceMaintenancePeopleSoapIn" />
+      <wsdl:output message="tns:ListDeviceMaintenancePeopleSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="AddMaintenancePeople">
       <wsdl:input message="tns:AddMaintenancePeopleSoapIn" />
@@ -706,6 +757,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAlarmQueryInfo">
+      <soap:operation soapAction="http://tempuri.org/GetAlarmQueryInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetDeviceTreeList">
       <soap:operation soapAction="http://tempuri.org/GetDeviceTreeList" style="document" />
       <wsdl:input>
@@ -735,6 +795,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetMaintenancePeople">
       <soap:operation soapAction="http://tempuri.org/GetMaintenancePeople" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListDeviceMaintenancePeople">
+      <soap:operation soapAction="http://tempuri.org/ListDeviceMaintenancePeople" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -916,6 +985,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAlarmQueryInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetAlarmQueryInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetDeviceTreeList">
       <soap12:operation soapAction="http://tempuri.org/GetDeviceTreeList" style="document" />
       <wsdl:input>
@@ -945,6 +1023,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetMaintenancePeople">
       <soap12:operation soapAction="http://tempuri.org/GetMaintenancePeople" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListDeviceMaintenancePeople">
+      <soap12:operation soapAction="http://tempuri.org/ListDeviceMaintenancePeople" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -982,10 +1069,10 @@
   </wsdl:binding>
   <wsdl:service name="ScadaDeviceService">
     <wsdl:port name="ScadaDeviceServiceSoap" binding="tns:ScadaDeviceServiceSoap">
-      <soap:address location="http://localhost:8000/WebServices/ScadaDeviceService.asmx" />
+      <soap:address location="http://localhost:2823/WebServices/ScadaDeviceService.asmx" />
     </wsdl:port>
     <wsdl:port name="ScadaDeviceServiceSoap12" binding="tns:ScadaDeviceServiceSoap12">
-      <soap12:address location="http://localhost:8000/WebServices/ScadaDeviceService.asmx" />
+      <soap12:address location="http://localhost:2823/WebServices/ScadaDeviceService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

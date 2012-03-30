@@ -98,6 +98,11 @@ namespace Scada.Client.SL.ScadaDeviceService {
         
         Scada.Client.SL.ScadaDeviceService.ProcessingStepNoResponse EndProcessingStepNo(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/GetAlarmQueryInfo", ReplyAction="*")]
+        System.IAsyncResult BeginGetAlarmQueryInfo(Scada.Client.SL.ScadaDeviceService.GetAlarmQueryInfoRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.SL.ScadaDeviceService.GetAlarmQueryInfoResponse EndGetAlarmQueryInfo(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/GetDeviceTreeList", ReplyAction="*")]
         System.IAsyncResult BeginGetDeviceTreeList(Scada.Client.SL.ScadaDeviceService.GetDeviceTreeListRequest request, System.AsyncCallback callback, object asyncState);
         
@@ -117,6 +122,11 @@ namespace Scada.Client.SL.ScadaDeviceService {
         System.IAsyncResult BeginGetMaintenancePeople(Scada.Client.SL.ScadaDeviceService.GetMaintenancePeopleRequest request, System.AsyncCallback callback, object asyncState);
         
         Scada.Client.SL.ScadaDeviceService.GetMaintenancePeopleResponse EndGetMaintenancePeople(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ListDeviceMaintenancePeople", ReplyAction="*")]
+        System.IAsyncResult BeginListDeviceMaintenancePeople(Scada.Client.SL.ScadaDeviceService.ListDeviceMaintenancePeopleRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.SL.ScadaDeviceService.ListDeviceMaintenancePeopleResponse EndListDeviceMaintenancePeople(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/AddMaintenancePeople", ReplyAction="*")]
         System.IAsyncResult BeginAddMaintenancePeople(Scada.Client.SL.ScadaDeviceService.AddMaintenancePeopleRequest request, System.AsyncCallback callback, object asyncState);
@@ -1025,6 +1035,86 @@ namespace Scada.Client.SL.ScadaDeviceService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetAlarmQueryInfoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetAlarmQueryInfo", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.GetAlarmQueryInfoRequestBody Body;
+        
+        public GetAlarmQueryInfoRequest() {
+        }
+        
+        public GetAlarmQueryInfoRequest(Scada.Client.SL.ScadaDeviceService.GetAlarmQueryInfoRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetAlarmQueryInfoRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public System.Guid id;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public int DeviceType;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public System.DateTime startdDate;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=3)]
+        public System.DateTime endDate;
+        
+        public GetAlarmQueryInfoRequestBody() {
+        }
+        
+        public GetAlarmQueryInfoRequestBody(System.Guid id, int DeviceType, System.DateTime startdDate, System.DateTime endDate) {
+            this.id = id;
+            this.DeviceType = DeviceType;
+            this.startdDate = startdDate;
+            this.endDate = endDate;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetAlarmQueryInfoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetAlarmQueryInfoResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.GetAlarmQueryInfoResponseBody Body;
+        
+        public GetAlarmQueryInfoResponse() {
+        }
+        
+        public GetAlarmQueryInfoResponse(Scada.Client.SL.ScadaDeviceService.GetAlarmQueryInfoResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetAlarmQueryInfoResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetAlarmQueryInfoResult;
+        
+        public GetAlarmQueryInfoResponseBody() {
+        }
+        
+        public GetAlarmQueryInfoResponseBody(string GetAlarmQueryInfoResult) {
+            this.GetAlarmQueryInfoResult = GetAlarmQueryInfoResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class GetDeviceTreeListRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="GetDeviceTreeList", Namespace="http://tempuri.org/", Order=0)]
@@ -1300,6 +1390,74 @@ namespace Scada.Client.SL.ScadaDeviceService {
         
         public GetMaintenancePeopleResponseBody(string GetMaintenancePeopleResult) {
             this.GetMaintenancePeopleResult = GetMaintenancePeopleResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ListDeviceMaintenancePeopleRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ListDeviceMaintenancePeople", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.ListDeviceMaintenancePeopleRequestBody Body;
+        
+        public ListDeviceMaintenancePeopleRequest() {
+        }
+        
+        public ListDeviceMaintenancePeopleRequest(Scada.Client.SL.ScadaDeviceService.ListDeviceMaintenancePeopleRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class ListDeviceMaintenancePeopleRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public System.Guid deviceID;
+        
+        public ListDeviceMaintenancePeopleRequestBody() {
+        }
+        
+        public ListDeviceMaintenancePeopleRequestBody(System.Guid deviceID) {
+            this.deviceID = deviceID;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class ListDeviceMaintenancePeopleResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ListDeviceMaintenancePeopleResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.SL.ScadaDeviceService.ListDeviceMaintenancePeopleResponseBody Body;
+        
+        public ListDeviceMaintenancePeopleResponse() {
+        }
+        
+        public ListDeviceMaintenancePeopleResponse(Scada.Client.SL.ScadaDeviceService.ListDeviceMaintenancePeopleResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class ListDeviceMaintenancePeopleResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string ListDeviceMaintenancePeopleResult;
+        
+        public ListDeviceMaintenancePeopleResponseBody() {
+        }
+        
+        public ListDeviceMaintenancePeopleResponseBody(string ListDeviceMaintenancePeopleResult) {
+            this.ListDeviceMaintenancePeopleResult = ListDeviceMaintenancePeopleResult;
         }
     }
     
@@ -1749,6 +1907,25 @@ namespace Scada.Client.SL.ScadaDeviceService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetAlarmQueryInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetAlarmQueryInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class GetDeviceTreeListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -1811,6 +1988,25 @@ namespace Scada.Client.SL.ScadaDeviceService {
         private object[] results;
         
         public GetMaintenancePeopleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ListDeviceMaintenancePeopleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public ListDeviceMaintenancePeopleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1980,6 +2176,12 @@ namespace Scada.Client.SL.ScadaDeviceService {
         
         private System.Threading.SendOrPostCallback onProcessingStepNoCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetAlarmQueryInfoDelegate;
+        
+        private EndOperationDelegate onEndGetAlarmQueryInfoDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetAlarmQueryInfoCompletedDelegate;
+        
         private BeginOperationDelegate onBeginGetDeviceTreeListDelegate;
         
         private EndOperationDelegate onEndGetDeviceTreeListDelegate;
@@ -2003,6 +2205,12 @@ namespace Scada.Client.SL.ScadaDeviceService {
         private EndOperationDelegate onEndGetMaintenancePeopleDelegate;
         
         private System.Threading.SendOrPostCallback onGetMaintenancePeopleCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginListDeviceMaintenancePeopleDelegate;
+        
+        private EndOperationDelegate onEndListDeviceMaintenancePeopleDelegate;
+        
+        private System.Threading.SendOrPostCallback onListDeviceMaintenancePeopleCompletedDelegate;
         
         private BeginOperationDelegate onBeginAddMaintenancePeopleDelegate;
         
@@ -2107,6 +2315,8 @@ namespace Scada.Client.SL.ScadaDeviceService {
         
         public event System.EventHandler<ProcessingStepNoCompletedEventArgs> ProcessingStepNoCompleted;
         
+        public event System.EventHandler<GetAlarmQueryInfoCompletedEventArgs> GetAlarmQueryInfoCompleted;
+        
         public event System.EventHandler<GetDeviceTreeListCompletedEventArgs> GetDeviceTreeListCompleted;
         
         public event System.EventHandler<GetSameDeviceTemperatureDiffDateCompletedEventArgs> GetSameDeviceTemperatureDiffDateCompleted;
@@ -2114,6 +2324,8 @@ namespace Scada.Client.SL.ScadaDeviceService {
         public event System.EventHandler<GetSameDateTemperatureDiffDeviceCompletedEventArgs> GetSameDateTemperatureDiffDeviceCompleted;
         
         public event System.EventHandler<GetMaintenancePeopleCompletedEventArgs> GetMaintenancePeopleCompleted;
+        
+        public event System.EventHandler<ListDeviceMaintenancePeopleCompletedEventArgs> ListDeviceMaintenancePeopleCompleted;
         
         public event System.EventHandler<AddMaintenancePeopleCompletedEventArgs> AddMaintenancePeopleCompleted;
         
@@ -3057,6 +3269,75 @@ namespace Scada.Client.SL.ScadaDeviceService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.BeginGetAlarmQueryInfo(Scada.Client.SL.ScadaDeviceService.GetAlarmQueryInfoRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetAlarmQueryInfo(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginGetAlarmQueryInfo(System.Guid id, int DeviceType, System.DateTime startdDate, System.DateTime endDate, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.SL.ScadaDeviceService.GetAlarmQueryInfoRequest inValue = new Scada.Client.SL.ScadaDeviceService.GetAlarmQueryInfoRequest();
+            inValue.Body = new Scada.Client.SL.ScadaDeviceService.GetAlarmQueryInfoRequestBody();
+            inValue.Body.id = id;
+            inValue.Body.DeviceType = DeviceType;
+            inValue.Body.startdDate = startdDate;
+            inValue.Body.endDate = endDate;
+            return ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginGetAlarmQueryInfo(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.SL.ScadaDeviceService.GetAlarmQueryInfoResponse Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.EndGetAlarmQueryInfo(System.IAsyncResult result) {
+            return base.Channel.EndGetAlarmQueryInfo(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private string EndGetAlarmQueryInfo(System.IAsyncResult result) {
+            Scada.Client.SL.ScadaDeviceService.GetAlarmQueryInfoResponse retVal = ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndGetAlarmQueryInfo(result);
+            return retVal.Body.GetAlarmQueryInfoResult;
+        }
+        
+        private System.IAsyncResult OnBeginGetAlarmQueryInfo(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            System.Guid id = ((System.Guid)(inValues[0]));
+            int DeviceType = ((int)(inValues[1]));
+            System.DateTime startdDate = ((System.DateTime)(inValues[2]));
+            System.DateTime endDate = ((System.DateTime)(inValues[3]));
+            return this.BeginGetAlarmQueryInfo(id, DeviceType, startdDate, endDate, callback, asyncState);
+        }
+        
+        private object[] OnEndGetAlarmQueryInfo(System.IAsyncResult result) {
+            string retVal = this.EndGetAlarmQueryInfo(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetAlarmQueryInfoCompleted(object state) {
+            if ((this.GetAlarmQueryInfoCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetAlarmQueryInfoCompleted(this, new GetAlarmQueryInfoCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetAlarmQueryInfoAsync(System.Guid id, int DeviceType, System.DateTime startdDate, System.DateTime endDate) {
+            this.GetAlarmQueryInfoAsync(id, DeviceType, startdDate, endDate, null);
+        }
+        
+        public void GetAlarmQueryInfoAsync(System.Guid id, int DeviceType, System.DateTime startdDate, System.DateTime endDate, object userState) {
+            if ((this.onBeginGetAlarmQueryInfoDelegate == null)) {
+                this.onBeginGetAlarmQueryInfoDelegate = new BeginOperationDelegate(this.OnBeginGetAlarmQueryInfo);
+            }
+            if ((this.onEndGetAlarmQueryInfoDelegate == null)) {
+                this.onEndGetAlarmQueryInfoDelegate = new EndOperationDelegate(this.OnEndGetAlarmQueryInfo);
+            }
+            if ((this.onGetAlarmQueryInfoCompletedDelegate == null)) {
+                this.onGetAlarmQueryInfoCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetAlarmQueryInfoCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetAlarmQueryInfoDelegate, new object[] {
+                        id,
+                        DeviceType,
+                        startdDate,
+                        endDate}, this.onEndGetAlarmQueryInfoDelegate, this.onGetAlarmQueryInfoCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.IAsyncResult Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.BeginGetDeviceTreeList(Scada.Client.SL.ScadaDeviceService.GetDeviceTreeListRequest request, System.AsyncCallback callback, object asyncState) {
             return base.Channel.BeginGetDeviceTreeList(request, callback, asyncState);
         }
@@ -3306,6 +3587,66 @@ namespace Scada.Client.SL.ScadaDeviceService {
                 this.onGetMaintenancePeopleCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetMaintenancePeopleCompleted);
             }
             base.InvokeAsync(this.onBeginGetMaintenancePeopleDelegate, null, this.onEndGetMaintenancePeopleDelegate, this.onGetMaintenancePeopleCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.BeginListDeviceMaintenancePeople(Scada.Client.SL.ScadaDeviceService.ListDeviceMaintenancePeopleRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginListDeviceMaintenancePeople(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginListDeviceMaintenancePeople(System.Guid deviceID, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.SL.ScadaDeviceService.ListDeviceMaintenancePeopleRequest inValue = new Scada.Client.SL.ScadaDeviceService.ListDeviceMaintenancePeopleRequest();
+            inValue.Body = new Scada.Client.SL.ScadaDeviceService.ListDeviceMaintenancePeopleRequestBody();
+            inValue.Body.deviceID = deviceID;
+            return ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginListDeviceMaintenancePeople(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.SL.ScadaDeviceService.ListDeviceMaintenancePeopleResponse Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap.EndListDeviceMaintenancePeople(System.IAsyncResult result) {
+            return base.Channel.EndListDeviceMaintenancePeople(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private string EndListDeviceMaintenancePeople(System.IAsyncResult result) {
+            Scada.Client.SL.ScadaDeviceService.ListDeviceMaintenancePeopleResponse retVal = ((Scada.Client.SL.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndListDeviceMaintenancePeople(result);
+            return retVal.Body.ListDeviceMaintenancePeopleResult;
+        }
+        
+        private System.IAsyncResult OnBeginListDeviceMaintenancePeople(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            System.Guid deviceID = ((System.Guid)(inValues[0]));
+            return this.BeginListDeviceMaintenancePeople(deviceID, callback, asyncState);
+        }
+        
+        private object[] OnEndListDeviceMaintenancePeople(System.IAsyncResult result) {
+            string retVal = this.EndListDeviceMaintenancePeople(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnListDeviceMaintenancePeopleCompleted(object state) {
+            if ((this.ListDeviceMaintenancePeopleCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.ListDeviceMaintenancePeopleCompleted(this, new ListDeviceMaintenancePeopleCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void ListDeviceMaintenancePeopleAsync(System.Guid deviceID) {
+            this.ListDeviceMaintenancePeopleAsync(deviceID, null);
+        }
+        
+        public void ListDeviceMaintenancePeopleAsync(System.Guid deviceID, object userState) {
+            if ((this.onBeginListDeviceMaintenancePeopleDelegate == null)) {
+                this.onBeginListDeviceMaintenancePeopleDelegate = new BeginOperationDelegate(this.OnBeginListDeviceMaintenancePeople);
+            }
+            if ((this.onEndListDeviceMaintenancePeopleDelegate == null)) {
+                this.onEndListDeviceMaintenancePeopleDelegate = new EndOperationDelegate(this.OnEndListDeviceMaintenancePeople);
+            }
+            if ((this.onListDeviceMaintenancePeopleCompletedDelegate == null)) {
+                this.onListDeviceMaintenancePeopleCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnListDeviceMaintenancePeopleCompleted);
+            }
+            base.InvokeAsync(this.onBeginListDeviceMaintenancePeopleDelegate, new object[] {
+                        deviceID}, this.onEndListDeviceMaintenancePeopleDelegate, this.onListDeviceMaintenancePeopleCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3760,6 +4101,19 @@ namespace Scada.Client.SL.ScadaDeviceService {
                 return _result;
             }
             
+            public System.IAsyncResult BeginGetAlarmQueryInfo(Scada.Client.SL.ScadaDeviceService.GetAlarmQueryInfoRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("GetAlarmQueryInfo", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.SL.ScadaDeviceService.GetAlarmQueryInfoResponse EndGetAlarmQueryInfo(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.SL.ScadaDeviceService.GetAlarmQueryInfoResponse _result = ((Scada.Client.SL.ScadaDeviceService.GetAlarmQueryInfoResponse)(base.EndInvoke("GetAlarmQueryInfo", _args, result)));
+                return _result;
+            }
+            
             public System.IAsyncResult BeginGetDeviceTreeList(Scada.Client.SL.ScadaDeviceService.GetDeviceTreeListRequest request, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
                 _args[0] = request;
@@ -3809,6 +4163,19 @@ namespace Scada.Client.SL.ScadaDeviceService {
             public Scada.Client.SL.ScadaDeviceService.GetMaintenancePeopleResponse EndGetMaintenancePeople(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 Scada.Client.SL.ScadaDeviceService.GetMaintenancePeopleResponse _result = ((Scada.Client.SL.ScadaDeviceService.GetMaintenancePeopleResponse)(base.EndInvoke("GetMaintenancePeople", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginListDeviceMaintenancePeople(Scada.Client.SL.ScadaDeviceService.ListDeviceMaintenancePeopleRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("ListDeviceMaintenancePeople", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.SL.ScadaDeviceService.ListDeviceMaintenancePeopleResponse EndListDeviceMaintenancePeople(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.SL.ScadaDeviceService.ListDeviceMaintenancePeopleResponse _result = ((Scada.Client.SL.ScadaDeviceService.ListDeviceMaintenancePeopleResponse)(base.EndInvoke("ListDeviceMaintenancePeople", _args, result)));
                 return _result;
             }
             

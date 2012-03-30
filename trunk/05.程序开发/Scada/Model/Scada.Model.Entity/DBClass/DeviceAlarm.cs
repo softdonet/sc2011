@@ -7,7 +7,7 @@ namespace Scada.Model.Entity
     /// <summary>
     ///Éè±¸¸æ¾¯
     /// </summary>
-    public class DeviceAlarm
+    public partial class DeviceAlarm
     {
         public Guid ID { get; set; }
         public Guid DeviceID { get; set; }

@@ -83,11 +83,8 @@
             <sdk:Label Content="结束时间:" Margin="20,0,0,0" Height="28"   Name="lblEnd" Width="50"   />
             <sdk:DatePicker  Height="23"  Name="datePicker2"  Width="120" SelectedDate="{Binding EndDate, Mode=TwoWay}" />
             <sdk:Label Content="事件类型:"  Margin="20,0,0,0"  Height="28"  Name="label2" Width="50" />
-            <ComboBox Grid.Column="7" Height="23"   Name="comboBox1"  Width="120">
-                <ComboBoxItem Content="故障" />
-                <ComboBoxItem Content="超高" />
-                <ComboBoxItem Content="超低" />
-            </ComboBox>
+            <ComboBox Grid.Column="7" Height="23"   Name="cmbEventType"  Width="120" SelectedItem="{Binding EventType}" DisplayMemberPath="EventTypeName" SelectedValuePath="EventType" />
+       
             <Button Content="查询"  Height="23" Margin="20,0,0,0"  Name="btnCheck"  Width="75" />
             <Button Content="导出"  Height="23"  Margin="20,0,0,0"  Name="btnExport"  Width="75" />
         </StackPanel>

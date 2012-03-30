@@ -20,12 +20,16 @@ namespace Scada.Utility.Common.SL
 
         public static string Display(Type enumType, object enumObj)
         {
+            EnumMemberAttribute customAttribute = null;
             if (!enumType.IsEnum)
             {
                 throw new Exception("enumType必须是枚举类型！");
             }
             string str = Enum.GetName(enumType, enumObj);
-            EnumMemberAttribute customAttribute = (EnumMemberAttribute)Attribute.GetCustomAttribute(enumType.GetField(str), typeof(EnumMemberAttribute));
+            if (!string.IsNullOrEmpty(str))
+            {
+                customAttribute = (EnumMemberAttribute)Attribute.GetCustomAttribute(enumType.GetField(str), typeof(EnumMemberAttribute));
+            }
             return (customAttribute == null) ? str : customAttribute.Value;
         }
 

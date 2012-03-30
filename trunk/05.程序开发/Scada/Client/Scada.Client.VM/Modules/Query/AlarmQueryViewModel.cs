@@ -33,6 +33,7 @@ namespace Scada.Client.VM.Modules.Query
 
         public AlarmQueryViewModel()
         {
+            scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
             scadaDeviceServiceSoapClient.ListDeviceTreeViewCompleted += new EventHandler<ListDeviceTreeViewCompletedEventArgs>(scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted);
             scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
 
@@ -75,13 +76,12 @@ namespace Scada.Client.VM.Modules.Query
 
         public void Query()
         {
-            if (SelectDeviceTreeNode==null||SelectDeviceTreeNode.NodeKey==Guid.Empty)
+            if (SelectDeviceTreeNode == null || SelectDeviceTreeNode.NodeKey == Guid.Empty)
             {
                 DeviceAlarmList = new List<DeviceAlarm>();
                 return;
             }
-                scadaDeviceServiceSoapClient.GetAlarmQueryInfoAsync(SelectDeviceTreeNode.NodeKey,SelectDeviceTreeNode.NodeType,StartDate,EndDate);
- 
+            scadaDeviceServiceSoapClient.GetAlarmQueryInfoAsync(SelectDeviceTreeNode.NodeKey, SelectDeviceTreeNode.NodeType, StartDate, EndDate);
         }
 
         /// <summary>

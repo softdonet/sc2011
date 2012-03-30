@@ -31,7 +31,6 @@ namespace Scada.Client.VM.Modules.Device
                     DeviceInfo = BinaryObjTransfer.BinaryDeserialize<DeviceInfo>(e.Result);
                 }
             };
-
             maintenancePeople = new MaintenancePeople();
             maintenancePeople.Name = "杨红康";
             maintenancePeople.Telephone = "13800000000";

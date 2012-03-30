@@ -79,9 +79,9 @@
             <sdk:Label Content="设备名称:" Height="23"   Name="label1" Width="50" />
             <my:ComboBoxTreeView x:Name="comboBoxTreeView1" Width="120" Height="28"     SelectValue="{Binding SelectDeviceTreeNode,  Mode=TwoWay}"/>
             <sdk:Label Content="开始时间:"  Name="lblSat" Width="50" Margin="20,0,0,0"/>
-            <sdk:DatePicker Height="23"   Name="datePicker1"  Width="120" />
+            <sdk:DatePicker Height="23"   Name="datePicker1"  Width="120" SelectedDate="{Binding StartDate, Mode=TwoWay}" />
             <sdk:Label Content="结束时间:" Margin="20,0,0,0" Height="28"   Name="lblEnd" Width="50"   />
-            <sdk:DatePicker  Height="23"  Name="datePicker2"  Width="120" />
+            <sdk:DatePicker  Height="23"  Name="datePicker2"  Width="120" SelectedDate="{Binding EndDate, Mode=TwoWay}" />
             <sdk:Label Content="事件类型:"  Margin="20,0,0,0"  Height="28"  Name="label2" Width="50" />
             <ComboBox Grid.Column="7" Height="23"   Name="comboBox1"  Width="120">
                 <ComboBoxItem Content="故障" />

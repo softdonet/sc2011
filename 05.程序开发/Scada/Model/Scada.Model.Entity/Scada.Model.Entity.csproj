@@ -50,6 +50,7 @@
     <Compile Include="DBClass\SystemParameterManage.cs" />
     <Compile Include="DBClass\UserEventModel.cs" />
     <Compile Include="DBClass\UserEventDealDetail.cs" />
+    <Compile Include="DBPartialClass\DeviceAlarmPartial.cs" />
     <Compile Include="DBPartialClass\DeviceInfoPartial.cs" />
     <Compile Include="DBPartialClass\DeviceRealTimePartial.cs" />
     <Compile Include="DBClass\DeviceTree.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="DBClass\UserRole.cs" />
     <Compile Include="Common\DeviceRealTimeTree.cs" />
     <Compile Include="Common\DeviceTreeNode.cs" />
+    <Compile Include="DBPartialClass\UserEventModelPartial.cs" />
     <Compile Include="Enums\DisplayType.cs" />
     <Compile Include="Enums\EventTypes.cs" />
     <Compile Include="Enums\DeviceStates.cs" />

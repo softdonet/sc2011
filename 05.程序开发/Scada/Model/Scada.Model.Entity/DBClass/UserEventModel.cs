@@ -6,7 +6,7 @@ namespace Scada.Model.Entity
     /// <summary>
     /// 用户事件
     /// </summary>
-    public class UserEventModel
+    public partial class UserEventModel
     {
         public Guid ID { get; set; }
         public string EventNo { get; set; }

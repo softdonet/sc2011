@@ -33,16 +33,71 @@ namespace Scada.Client.VM.Modules.Query
 
         public AlarmQueryViewModel()
         {
+            scadaDeviceServiceSoapClient.ListDeviceTreeViewCompleted += new EventHandler<ListDeviceTreeViewCompletedEventArgs>(scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted);
+            scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
+
             this.queryCommand = new DelegateCommand(new Action(this.Query));
             scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
-            //scadaDeviceServiceSoapClient
+            scadaDeviceServiceSoapClient.GetAlarmQueryInfoCompleted += new EventHandler<GetAlarmQueryInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_GetAlarmQueryInfoCompleted);
+        }
+
+        void scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted(object sender, ListDeviceTreeViewCompletedEventArgs e)
+        {
+            if (e.Error == null)
+            {
+                var result = BinaryObjTransfer.BinaryDeserialize<List<DeviceTreeNode>>(e.Result);
+                DeviceTreeNode temp = new DeviceTreeNode();
+                temp.NodeKey = Guid.Empty;
+                temp.NodeType = -1;
+                temp.NodeValue = "清空选择";
+                result.Insert(0, temp);
+                DeviceTreeSource = result;
+            }
+            else
+            {
+                MessageBox.Show("获取数据失败！");
+            }
+        }
+
+        void scadaDeviceServiceSoapClient_GetAlarmQueryInfoCompleted(object sender, GetAlarmQueryInfoCompletedEventArgs e)
+        {
+            if (e.Error == null)
+            {
+                List<DeviceAlarm> result = BinaryObjTransfer.BinaryDeserialize<List<DeviceAlarm>>(e.Result);
+                DeviceAlarmList = result;
+            }
+            else
+            {
+                MessageBox.Show("获取数据失败！");
+            }
         }
         #endregion
 
         public void Query()
         {
+            if (SelectDeviceTreeNode==null||SelectDeviceTreeNode.NodeKey==Guid.Empty)
+            {
+                DeviceAlarmList = new List<DeviceAlarm>();
+                return;
+            }
+                scadaDeviceServiceSoapClient.GetAlarmQueryInfoAsync(SelectDeviceTreeNode.NodeKey,SelectDeviceTreeNode.NodeType,StartDate,EndDate);
  
         }
+
+        /// <summary>
+        /// 设备树数据源
+        /// </summary>
+        private List<DeviceTreeNode> deviceTreeSource;
+        public List<DeviceTreeNode> DeviceTreeSource
+        {
+            get { return deviceTreeSource; }
+            set
+            {
+                deviceTreeSource = value;
+                this.RaisePropertyChanged("DeviceTreeSource");
+            }
+        }
+
         /// <summary>
         /// 选择树节点
         /// </summary>

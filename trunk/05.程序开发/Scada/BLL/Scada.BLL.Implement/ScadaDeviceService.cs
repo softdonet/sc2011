@@ -752,7 +752,7 @@ namespace Scada.BLL.Implement
             return result;
         }
 
-        private List<MaintenancePeople> ListDeviceMaintenancePeople(Guid deviceID)
+        private List<MaintenancePeople> ListDeviceMaintenancePeople1(Guid deviceID)
         {
             List<MaintenancePeople> result = new List<MaintenancePeople>();
             String sSql = @" Select AA.ID,BB.ID,BB.MainNo,BB.MainName,BB.City,
@@ -785,6 +785,44 @@ namespace Scada.BLL.Implement
                 result.Add(people);
             }
             return result;
+
+        }
+
+        public string ListDeviceMaintenancePeople(Guid deviceID)
+        {
+            string result = string.Empty;
+            List<MaintenancePeople> maintenancePeople = new List<MaintenancePeople>();
+            String sSql = @" Select AA.ID,BB.ID,BB.MainNo,BB.MainName,BB.City,
+                             BB.Native,BB.Telephone,BB.MobileBack,BB.Email,AA.DeviceID
+                            From MaintenancePeople AA
+                            Inner JOIN MaintenancePeople BB On AA.MaintenanceID=BB.ID
+                            Where AA.DeviceID ='" + deviceID.ToString().ToUpper() + "'";
+
+            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            if (ds == null || ds.Rows.Count == 0) { return result; }
+            MaintenancePeople people = null;
+            foreach (DataRow item in ds.Rows)
+            {
+                people = new MaintenancePeople();
+                people.ID = new Guid(item["ID"].ToString());
+                // people.DeviceID = new Guid(item["DeviceID"].ToString());
+
+                MaintenancePeople peoples = new MaintenancePeople();
+                peoples.ID = new Guid(item["ID"].ToString());
+                //peoples.MainNo = item["MainNo"].ToString();
+                peoples.Name = item["Name"].ToString();
+                peoples.Address = item["Address"].ToString();
+                peoples.Telephone = item["Telephone"].ToString();
+                peoples.Mobile = item["Mobile"].ToString();
+                peoples.QQ = item["QQ"].ToString();
+                peoples.MSN = item["MSN"].ToString();
+                peoples.Email = item["Email"].ToString();
+
+                //people.MaintenancePeopleInfo = peoples;
+                maintenancePeople.Add(people);
+            }
+            return BinaryObjTransfer.JsonSerializer<List<MaintenancePeople>>(maintenancePeople);
+
         }
 
         public string ListDeviceTreeView()

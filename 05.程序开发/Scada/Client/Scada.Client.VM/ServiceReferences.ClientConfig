@@ -6,12 +6,19 @@
                     maxReceivedMessageSize="2147483647">
                     <security mode="None" />
                 </binding>
+                <binding name="ScadaDeviceServiceSoap1" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
             </basicHttpBinding>
         </bindings>
         <client>
             <endpoint address="http://localhost:2823/WebServices/ScadaDeviceService.asmx"
                 binding="basicHttpBinding" bindingConfiguration="ScadaDeviceServiceSoap"
                 contract="ScadaDeviceService.ScadaDeviceServiceSoap" name="ScadaDeviceServiceSoap" />
+            <endpoint address="http://localhost:2823/WebServices/ScadaDeviceService.asmx"
+                binding="basicHttpBinding" bindingConfiguration="ScadaDeviceServiceSoap1"
+                contract="ScadaDeviceService.ScadaDeviceServiceSoap" name="ScadaDeviceServiceSoap1" />
         </client>
     </system.serviceModel>
 </configuration>

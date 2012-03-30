@@ -391,6 +391,9 @@
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.AddMaintenancePeopleResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.GetAlarmQueryInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.GetDeviceOnlyDayResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -416,6 +419,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.GetUserEventDetailInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.ListDeviceMaintenancePeopleResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.ListDeviceTreeViewResponse.datasource">

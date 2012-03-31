@@ -1258,7 +1258,13 @@ namespace Scada.BLL.Implement
                 }
                 else // (DeviceType==3)
                 {
-                    var obj3 = sCADADataContext.DeviceAlarms.Select(e => e.DeviceID == id && e.StartTime > startdDate && e.StartTime < endDate);
+                    //var obj3 = sCADADataContext.DeviceAlarms.Select(e => e.DeviceID == id && e.StartTime > startdDate && e.StartTime < endDate);
+                    var obj3 = from di in sCADADataContext.DeviceAlarms
+                               where di.DeviceID == id
+                               where di.StartTime >= startdDate
+                               where di.StartTime < endDate
+                               select di;
+
                     if (obj3 != null)
                     {
                         obj = obj3;

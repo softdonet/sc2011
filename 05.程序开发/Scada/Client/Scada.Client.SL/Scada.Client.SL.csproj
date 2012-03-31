@@ -125,6 +125,7 @@
     </Compile>
     <Compile Include="CommClass\BinaryObjTransfer.cs" />
     <Compile Include="CommClass\BitmapImageByte.cs" />
+    <Compile Include="CommClass\DecEncMd5Util.cs" />
     <Compile Include="CommClass\ServiceManager.cs" />
     <Compile Include="Controls\ComboBoxTreeView.xaml.cs">
       <DependentUpon>ComboBoxTreeView.xaml</DependentUpon>

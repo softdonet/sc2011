@@ -18,23 +18,34 @@ namespace Scada.Client.SL.Modules.Query
 {
     public partial class AlarmQuery : UserControl
     {
-        private AlarmQuery()
+        private static AlarmQuery instance;
+        public static AlarmQuery GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new AlarmQuery();
+            }
+            return instance;
+        }
+
+        AlarmQueryViewModel alarmQueryViewModel;
+        public AlarmQuery()
         {
             InitializeComponent();
 
             LoadEventType();
 
-            AlarmQueryViewModel alarmQueryViewModel = new AlarmQueryViewModel();
-
+            alarmQueryViewModel = new AlarmQueryViewModel();
+            this.DataContext = alarmQueryViewModel;
+            alarmQueryViewModel.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(alarmQueryViewModel_PropertyChanged);
         }
-        private static AlarmQuery instance;
-        public static AlarmQuery GetInstance()
+
+        void alarmQueryViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (instance==null)
+            if (e.PropertyName=="DeviceTreeSource")
             {
-                instance = new AlarmQuery();
+                this.comboBoxTreeView1.Source = alarmQueryViewModel.DeviceTreeSource;
             }
-            return instance;
         }
 
         #region 初始化基本信息

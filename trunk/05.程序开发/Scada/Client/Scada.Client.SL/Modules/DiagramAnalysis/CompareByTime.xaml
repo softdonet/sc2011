@@ -103,9 +103,9 @@
                                 <vc:TrendLine Orientation="Horizontal" StartValue="25" EndValue="32" LineColor="#9FF86D5A"/>
                             </vc:Chart.TrendLines>
                             <vc:Chart.AxesX>
-                                <vc:Axis Title="小时" ValueFormatString="HH">
+                                <vc:Axis Title="小时" ValueFormatString="HH" IntervalType="Hours">
                                     <vc:Axis.Grids>
-                                        <vc:ChartGrid Interval="8" InterlacedColor="#0efCff6e"  />
+                                        <vc:ChartGrid Interval="4" InterlacedColor="#0efCff6e"  />
                                     </vc:Axis.Grids>
                                 </vc:Axis>
                             </vc:Chart.AxesX>

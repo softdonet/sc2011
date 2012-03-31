@@ -162,6 +162,10 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
                 //Clear ChartSource
                 this.charTemperature.Series.Clear();
 
+                //更改X轴间隔
+                Int32 dateSelMode = this.cmbSelDateMode.SelectedIndex;
+                CompareByTime.SetChartAxesXFormat(this.charTemperature.AxesX[0], dateSelMode);
+
                 int i = 0;
                 foreach (var item in chartSource)
                 {
@@ -183,7 +187,6 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
             dataSeries.MarkerEnabled = false;
             dataSeries.LabelEnabled = false;
             dataSeries.XValueType = ChartValueTypes.DateTime;
-            //dataSeries.XValueFormatString = "yyyy/MM/dd HH:mm:ss";
             dataSeries.Color = new SolidColorBrush(color);
 
             DataPoint datapoint;
@@ -264,7 +267,7 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
             //选择日期模式
             _dateSelectMode = this.cmbSelDateMode.SelectedIndex;
             _starDate = this.dateFrist.DisplayDate;
-            _endDate = CompareByTime.GetEndDateTime(_starDate, (DateSelMode)_dateSelectMode);
+            _endDate = CompareByTime.GetEndDateTime(ref _starDate, (DateSelMode)_dateSelectMode);
 
             //选择设备信息
             this.AddDeviceTreeNode(this.chkFrist, this.cmbDevFrist);

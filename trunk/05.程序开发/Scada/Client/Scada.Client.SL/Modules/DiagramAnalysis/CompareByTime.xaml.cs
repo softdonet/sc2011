@@ -58,15 +58,21 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
             return instance;
         }
 
-        public static DateTime GetEndDateTime(DateTime starDate, DateSelMode dateSelMode)
+        public static DateTime GetEndDateTime(ref DateTime starDate, DateSelMode dateSelMode)
         {
             DateTime result;
             if (dateSelMode == DateSelMode.天)
                 result = starDate.AddDays(1).AddSeconds(-1);
             else if (dateSelMode == DateSelMode.月)
+            {
+                starDate = new DateTime(starDate.Year, starDate.Month, 1, 0, 0, 0);
                 result = starDate.AddMonths(1).AddSeconds(-1);
+            }
             else if (dateSelMode == DateSelMode.年)
+            {
+                starDate = new DateTime(starDate.Year, 1, 1, 0, 0, 0);
                 result = starDate.AddYears(1).AddSeconds(-1);
+            }
             else
                 result = DateTime.Now;
             return result;
@@ -148,6 +154,10 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
                 //Clear ChartSource
                 this.charTemperature.Series.Clear();
 
+                //更改X轴间隔
+                Int32 dateSelMode = this.cmbSelDateMode.SelectedIndex;
+                SetChartAxesXFormat(this.charTemperature.AxesX[0], dateSelMode);
+
                 int i = 0;
                 foreach (var item in chartSource)
                 {
@@ -169,16 +179,14 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
             dataSeries.MarkerEnabled = false;
             dataSeries.LabelEnabled = false;
             dataSeries.XValueType = ChartValueTypes.DateTime;
-            //dataSeries.XValueFormatString = "yyyy-MM-dd HH:mm:ss";
-            dataSeries.XValueFormatString = "HH:mm:ss";
+            //dataSeries.XValueFormatString = "HH:mm";
             dataSeries.Color = new SolidColorBrush(color);
 
             DataPoint datapoint;
             foreach (ChartSource item in source)
             {
                 datapoint = new DataPoint();
-                datapoint.XValue = item.DeviceDate.ToString("HH:mm");
-                //datapoint.XValue = item.DeviceDate.ToString("yyyy-MM-dd HH:mm:ss");
+                datapoint.XValue = item.DeviceDate;
                 datapoint.YValue = item.DeviceTemperature;
                 datapoint.ToolTipText = string.Format("{0},{1}", datapoint.XValue, datapoint.YValue);
                 dataSeries.DataPoints.Add(datapoint);
@@ -187,6 +195,26 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
 
         }
 
+        public static void SetChartAxesXFormat(Axis axis, Int32 scale)
+        {
+
+            if (scale == 0)
+            {
+                axis.ValueFormatString = "HH";
+                axis.IntervalType = IntervalTypes.Hours;
+            }
+            else if (scale == 1)
+            {
+                axis.ValueFormatString = "dd";
+                axis.IntervalType = IntervalTypes.Days;
+            }
+            else if (scale == 2)
+            {
+                axis.ValueFormatString = "MM";
+                axis.IntervalType = IntervalTypes.Months;
+            }
+
+        }
 
         #endregion
 

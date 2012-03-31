@@ -1341,13 +1341,13 @@ namespace Scada.BLL.Implement
                 string groupType = string.Empty;
                 start = item;
                 string where = GetDevicEntityKey(DeviceType, DeviceID);
-                end = DateDiffTime(item, DateSelMode, ref groupType);
+                end = DateDiffTime(ref start, DateSelMode, ref groupType);
                 source.Add(item, GetDeviceDateTemperature(start, end, groupType, where));
             }
             return BinaryObjTransfer.JsonSerializer<Dictionary<DateTime, List<ChartSource>>>(source);
         }
 
-        private DateTime DateDiffTime(DateTime start, Int32 dateSelMode, ref string groupType)
+        private DateTime DateDiffTime(ref DateTime start, Int32 dateSelMode, ref string groupType)
         {
             DateTime result = DateTime.MinValue;
             if (dateSelMode == 0)
@@ -1359,13 +1359,15 @@ namespace Scada.BLL.Implement
             }
             else if (dateSelMode == 1)
             {
+                start = new DateTime(start.Year, start.Month, 1, 0, 0, 0);
                 result = start.AddMonths(1);
-                groupType = @" convert(varchar(13), AAA.UpdateTime,120) +':00:00' ";
+                groupType = @" convert(varchar(10), AAA.UpdateTime,120) +' 00:00:00' ";
             }
             else
             {
+                start = new DateTime(start.Year, 1, 1, 0, 0, 0);
                 result = start.AddYears(1);
-                groupType = @" convert(varchar(7), AAA.UpdateTime,120) +'-01:00:00' ";
+                groupType = @" convert(varchar(7), AAA.UpdateTime,120) +'-01 00:00:00' ";
             }
             return result;
         }
@@ -1433,7 +1435,7 @@ namespace Scada.BLL.Implement
         {
             Dictionary<DeviceTree, List<ChartSource>> source = new Dictionary<DeviceTree, List<ChartSource>>();
             string groupType = string.Empty;
-            DateDiffTime(starDate, dataSelMode, ref groupType);
+            DateDiffTime(ref starDate, dataSelMode, ref groupType);
             List<DeviceTree> deviceTrees = BinaryObjTransfer.JsonDeserialize<List<DeviceTree>>(deviceInfo);
             foreach (DeviceTree devTree in deviceTrees)
             {

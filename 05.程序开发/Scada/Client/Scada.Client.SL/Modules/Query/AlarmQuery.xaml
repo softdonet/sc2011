@@ -92,7 +92,7 @@
             <!--<Button Content="导出"  Height="23"  Margin="20,0,0,0"  Name="btnExport"  Width="75" />-->
         </StackPanel>
         <telerik:RadGridView x:Name="RadGridView1" 
-							ShowGroupPanel="False" AutoGenerateColumns="False"  IsReadOnly="True"  ItemsSource="{Binding Collection}"  Grid.Row="1">
+							ShowGroupPanel="False" AutoGenerateColumns="False"  IsReadOnly="True"  ItemsSource="{Binding DeviceAlarmList}"  Grid.Row="1">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Header="设备标识" DataMemberBinding="{Binding DeviceAlarmList.ID}" IsVisible="False" HeaderTextAlignment="Center"  />
                 <telerik:GridViewDataColumn Header="设备名" DataMemberBinding="{Binding DeviceAlarmList.DeviceNo}" Width="100"   HeaderTextAlignment="Center" DisplayIndex="0"/>

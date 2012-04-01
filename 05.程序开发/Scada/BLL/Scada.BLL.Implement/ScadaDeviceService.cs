@@ -1213,7 +1213,8 @@ namespace Scada.BLL.Implement
         public string GetAlarmQueryInfo(Guid id, int DeviceType, DateTime startdDate, DateTime endDate)
         {
             string result = string.Empty;
-            object obj = new Object();
+            //object obj = new Object();
+            List<DeviceAlarm> deviceAlarmList = new List<DeviceAlarm>();
             try
             {
                 sCADADataContext = new Scada.DAL.Linq.SCADADataContext();
@@ -1224,6 +1225,15 @@ namespace Scada.BLL.Implement
                 }
                 else if (DeviceType == 1)//管理分区
                 {
+                    //var objnew = sCADADataContext.DeviceAlarms.Where(e =>
+                    //           e.DeviceInfo.DeviceTree.ParentID == id &&
+                    //           e.DeviceInfo.DeviceTree.ID == e.DeviceInfo.ManageAreaID &&
+                    //           e.DeviceID == e.DeviceInfo.ID &&
+                    //           e.StartTime > startdDate &&
+                    //           e.StartTime < endDate)
+                    //           .Select(e => e.ConvertTo<DeviceAlarm>()).ToList();
+                              
+                               
                     var obj1 = from dt in sCADADataContext.DeviceTrees
                                from di in sCADADataContext.DeviceInfos
                                from da in sCADADataContext.DeviceAlarms
@@ -1237,7 +1247,7 @@ namespace Scada.BLL.Implement
 
                     if (obj1 != null)
                     {
-                        obj = obj1;
+                        deviceAlarmList = obj1.Select(e => e.ConvertTo<DeviceAlarm>()).ToList();
                         //Scada.Model.Entity.DeviceAlarm deviceAlarm = (obj1.ConvertTo<Scada.Model.Entity.DeviceAlarm>());
                         //result = BinaryObjTransfer.JsonSerializer<Scada.Model.Entity.DeviceAlarm>(deviceAlarm);
                     }
@@ -1253,7 +1263,8 @@ namespace Scada.BLL.Implement
                                select da;
                     if (obj2 != null)
                     {
-                        obj = obj2;
+                        deviceAlarmList = obj2.Select(e => e.ConvertTo<DeviceAlarm>()).ToList();
+
                     }
                 }
                 else // (DeviceType==3)
@@ -1267,13 +1278,14 @@ namespace Scada.BLL.Implement
 
                     if (obj3 != null)
                     {
-                        obj = obj3;
+                        deviceAlarmList = obj3.Select(e => e.ConvertTo<DeviceAlarm>()).ToList();
+
                     }
                 }
-                if (obj != null)
+                if (deviceAlarmList != null)
                 {
-                    Scada.Model.Entity.DeviceAlarm deviceAlarm = obj.ConvertTo<Scada.Model.Entity.DeviceAlarm>();
-                    result = BinaryObjTransfer.JsonSerializer<Scada.Model.Entity.DeviceAlarm>(deviceAlarm);
+                    //Scada.Model.Entity.DeviceAlarm deviceAlarm = deviceAlarmList.ConvertTo<Scada.Model.Entity.DeviceAlarm>();
+                    result = BinaryObjTransfer.JsonSerializer<List<DeviceAlarm>>(deviceAlarmList);
                 }
             }
             catch (Exception ex)
@@ -1291,11 +1303,20 @@ namespace Scada.BLL.Implement
             try
             {
                 sCADADataContext = new Scada.DAL.Linq.SCADADataContext();
-                var obj = sCADADataContext.UserEvents.Select(e => e.DeviceID == id && e.RequestTime > startDate && e.RequestTime < endDate);
+                //var obj = sCADADataContext.UserEvents.Select(e => e.DeviceID == id && e.RequestTime > startDate && e.RequestTime < endDate).ToList();
+                var obj = sCADADataContext.UserEvents.Where(e => e.DeviceID == id && e.RequestTime > startDate && e.RequestTime < endDate);
+
+                //var objnew = from ue in sCADADataContext.UserEvents
+                //             from ued in sCADADataContext.UserEventDealDetails
+                //             where ue.DeviceID == id && ue.RequestTime > startDate && ue.RequestTime < endDate
+                //             where ued.EventID == ue.ID
+                //             select new { ue, ued.StepName };
+
+
                 if (obj != null)
                 {
-                    Scada.Model.Entity.UserEventModel userEventModel = obj.ConvertTo<Scada.Model.Entity.UserEventModel>();
-                    result = BinaryObjTransfer.JsonSerializer<Scada.Model.Entity.UserEventModel>(userEventModel);
+                    List<UserEventModel> userEventModelList = obj.Select(e => e.ConvertTo<UserEventModel>()).ToList();// ConvertTo<Scada.Model.Entity.UserEventModel>();
+                    result = BinaryObjTransfer.JsonSerializer<List<UserEventModel>>(userEventModelList);
                 }
             }
             catch (Exception ex)

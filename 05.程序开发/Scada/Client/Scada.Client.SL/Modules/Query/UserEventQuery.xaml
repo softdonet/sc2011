@@ -24,24 +24,24 @@
             <my:ComboBoxTreeView x:Name="comboBoxTreeView1" Width="120" Height="28"     SelectValue="{Binding SelectDeviceTreeNode,  Mode=TwoWay}"/>
 
             <sdk:Label Content="开始时间:"  Margin="20,0,0,0" Height="28"  Name="lblSat" Width="50"  />
-            <sdk:DatePicker Height="23"   Name="datePicker1"  Width="120" />
+            <sdk:DatePicker Height="23"   Name="datePicker1"  Width="120" SelectedDate="{Binding StartDate, Mode=TwoWay}" />
             <sdk:Label Content="结束时间:" Margin="20,0,0,0" Height="28"   Name="lblEnd" Width="50"   />
-            <sdk:DatePicker  Height="23"  Name="datePicker2"  Width="120" />
+            <sdk:DatePicker  Height="23"  Name="datePicker2"  Width="120" SelectedDate="{Binding EndDate, Mode=TwoWay}" />
             <Button Content="查询" Margin="20,0,0,0" Height="23" Name="btnCheck"  Width="75" Command="{Binding queryCommand}" />
             <!--<Button Content="导出" Margin="20,0,0,0"  Height="23" Name="btnExport"  Width="75" />-->
         </StackPanel>
-        <telerik:RadGridView x:Name="RadGridView1" Grid.Row="1"   ShowGroupPanel="False" IsReadOnly="True"   CanUserFreezeColumns="False" AutoGenerateColumns="False" >
+        <telerik:RadGridView x:Name="RadGridView1" Grid.Row="1"   ShowGroupPanel="False" IsReadOnly="True"  
+                             ItemsSource="{Binding UserEventModelList}" CanUserFreezeColumns="False" AutoGenerateColumns="False" >
             <telerik:RadGridView.Columns>
-                <telerik:GridViewDataColumn Header="编号" DataMemberBinding="{Binding ID}" Width="80"  HeaderTextAlignment="Center"  />
-                <telerik:GridViewDataColumn Header="用户事件ID" DataMemberBinding="{Binding ID}" Width="100" HeaderTextAlignment="Center"  />
-                <telerik:GridViewDataColumn Header="设备编号" DataMemberBinding="{Binding DeviceNo}" Width="100"   HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn Header="请求时间" DataMemberBinding="{Binding StartTime}" Width="140" HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn Header="用户请求次数" DataMemberBinding="{Binding EventLevel}" Width="60" HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn Header="步骤1" DataMemberBinding="{Binding EventLevel}" Width="100" HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn Header="步骤2" DataMemberBinding="{Binding EventLevel}" Width="100" HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn Header="步骤3" DataMemberBinding="{Binding EventLevel}" Width="100" HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn Header="步骤4" DataMemberBinding="{Binding EventLevel}" Width="100" HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn Header="步骤5" DataMemberBinding="{Binding EventLevel}" Width="100" HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn Header="用户事件ID" DataMemberBinding="{Binding EventNo, Mode=TwoWay}" Width="100" HeaderTextAlignment="Center"  />
+                <telerik:GridViewDataColumn Header="设备编号" DataMemberBinding="{Binding DeviceNo, Mode=TwoWay}" Width="100"   HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn Header="请求时间" DataMemberBinding="{Binding RequestTime, Mode=TwoWay}" Width="140" HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn Header="用户请求次数" DataMemberBinding="{Binding Count}" Width="60" HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn Header="步骤1" DataMemberBinding="{Binding Step1}" Width="100" HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn Header="步骤2" DataMemberBinding="{Binding Step2}" Width="100" HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn Header="步骤3" DataMemberBinding="{Binding Step3}" Width="100" HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn Header="步骤4" DataMemberBinding="{Binding Step4}" Width="100" HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn Header="步骤5" DataMemberBinding="{Binding Step5}" Width="100" HeaderTextAlignment="Center"/>
 
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>

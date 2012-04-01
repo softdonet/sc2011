@@ -156,12 +156,12 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
 
                 //更改X轴间隔
                 Int32 dateSelMode = this.cmbSelDateMode.SelectedIndex;
-                SetChartAxesXFormat(this.charTemperature.AxesX[0], dateSelMode);
+                string formatDate = SetChartAxesXFormat(this.charTemperature.AxesX[0], dateSelMode);
 
                 int i = 0;
                 foreach (var item in chartSource)
                 {
-                    this.AddService(String.Empty, this._colorArr[i], item.Value);
+                    this.AddService(String.Empty, this._colorArr[i], item.Value, formatDate);
                     i++;
                 }
             }
@@ -169,7 +169,7 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
                 ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");
         }
 
-        private void AddService(string serviceName, Color color, List<ChartSource> source)
+        private void AddService(string serviceName, Color color, List<ChartSource> source, string formatdate)
         {
 
             Visifire.Charts.DataSeries dataSeries = new Visifire.Charts.DataSeries();
@@ -179,14 +179,13 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
             dataSeries.MarkerEnabled = false;
             dataSeries.LabelEnabled = false;
             dataSeries.XValueType = ChartValueTypes.DateTime;
-            //dataSeries.XValueFormatString = "HH:mm";
             dataSeries.Color = new SolidColorBrush(color);
 
             DataPoint datapoint;
             foreach (ChartSource item in source)
             {
                 datapoint = new DataPoint();
-                datapoint.XValue = item.DeviceDate;
+                datapoint.XValue = item.DeviceDate.ToString(formatdate);
                 datapoint.YValue = item.DeviceTemperature;
                 datapoint.ToolTipText = string.Format("{0},{1}", datapoint.XValue, datapoint.YValue);
                 dataSeries.DataPoints.Add(datapoint);
@@ -195,24 +194,29 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
 
         }
 
-        public static void SetChartAxesXFormat(Axis axis, Int32 scale)
+        public static string SetChartAxesXFormat(Axis axis, Int32 scale)
         {
-
+            string result = string.Empty;
             if (scale == 0)
             {
                 axis.ValueFormatString = "HH";
                 axis.IntervalType = IntervalTypes.Hours;
+                result = "HH:mm";
             }
             else if (scale == 1)
             {
                 axis.ValueFormatString = "dd";
                 axis.IntervalType = IntervalTypes.Days;
+                result = "2001-01-dd";
             }
             else if (scale == 2)
             {
                 axis.ValueFormatString = "MM";
                 axis.IntervalType = IntervalTypes.Months;
+                result = "2001-MM-01";
             }
+
+            return result;
 
         }
 

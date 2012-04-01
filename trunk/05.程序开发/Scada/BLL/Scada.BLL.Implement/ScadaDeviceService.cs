@@ -1213,7 +1213,7 @@ namespace Scada.BLL.Implement
         public string GetAlarmQueryInfo(Guid id, int DeviceType, DateTime startdDate, DateTime endDate)
         {
             string result = string.Empty;
-            object obj = null;
+            object obj = new Object();
             try
             {
                 sCADADataContext = new Scada.DAL.Linq.SCADADataContext();

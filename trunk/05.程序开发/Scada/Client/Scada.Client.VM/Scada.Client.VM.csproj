@@ -82,6 +82,7 @@
     <Compile Include="Modules\Query\AlarmQueryViewModel.cs" />
     <Compile Include="Modules\Query\DeviceListQueryViewModel.cs" />
     <Compile Include="Modules\Device\DeviceListViewModel.cs" />
+    <Compile Include="Modules\Query\UserEventQueryViewModel.cs" />
     <Compile Include="Modules\UserEventVM\UserEventViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\DeviceRealTimeService\Reference.cs">
@@ -142,6 +143,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.GetUserEventDetailInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.GetUserEventQueryInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.ListDeviceMaintenancePeopleResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.ListDeviceTreeViewResponse.datasource">

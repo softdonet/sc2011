@@ -85,6 +85,11 @@ namespace Scada.BLL.Contract
 
         #endregion
 
+        string GetUserEventQueryInfo(Guid id, DateTime startDate, DateTime endDate);
+
+        #region 用户事件查询
+
+        #endregion
         #region 图表分析
 
         //1)获取树型设备(combox)

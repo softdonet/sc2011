@@ -22,7 +22,7 @@ namespace Scada.DAL.Linq
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="zhengguojiang")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="SCADA_DEV_NEW")]
 	public partial class SCADADataContext : System.Data.Linq.DataContext
 	{
 		
@@ -48,6 +48,9 @@ namespace Scada.DAL.Linq
     partial void InsertMaintenancePeople(MaintenancePeople instance);
     partial void UpdateMaintenancePeople(MaintenancePeople instance);
     partial void DeleteMaintenancePeople(MaintenancePeople instance);
+    partial void InsertMenuTree(MenuTree instance);
+    partial void UpdateMenuTree(MenuTree instance);
+    partial void DeleteMenuTree(MenuTree instance);
     partial void InsertModule(Module instance);
     partial void UpdateModule(Module instance);
     partial void DeleteModule(Module instance);
@@ -73,7 +76,6 @@ namespace Scada.DAL.Linq
     partial void UpdateUserEventDealDetail(UserEventDealDetail instance);
     partial void DeleteUserEventDealDetail(UserEventDealDetail instance);
     #endregion
-		
 		
 		public SCADADataContext(string connection) : 
 				base(connection, mappingSource)
@@ -147,11 +149,27 @@ namespace Scada.DAL.Linq
 			}
 		}
 		
+		public System.Data.Linq.Table<MenuTree> MenuTrees
+		{
+			get
+			{
+				return this.GetTable<MenuTree>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Module> Modules
 		{
 			get
 			{
 				return this.GetTable<Module>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PublicParameter> PublicParameters
+		{
+			get
+			{
+				return this.GetTable<PublicParameter>();
 			}
 		}
 		
@@ -176,14 +194,6 @@ namespace Scada.DAL.Linq
 			get
 			{
 				return this.GetTable<StepInfo>();
-			}
-		}
-		
-		public System.Data.Linq.Table<SystemGlobalParamete> SystemGlobalParametes
-		{
-			get
-			{
-				return this.GetTable<SystemGlobalParamete>();
 			}
 		}
 		
@@ -216,6 +226,14 @@ namespace Scada.DAL.Linq
 			get
 			{
 				return this.GetTable<UserEventDealDetail>();
+			}
+		}
+		
+		public System.Data.Linq.Table<UserMenu> UserMenus
+		{
+			get
+			{
+				return this.GetTable<UserMenu>();
 			}
 		}
 	}
@@ -2881,6 +2899,209 @@ namespace Scada.DAL.Linq
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MenuTree")]
+	public partial class MenuTree : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _MenuId;
+		
+		private string _MeunName;
+		
+		private System.Nullable<System.Guid> _ParentId;
+		
+		private string _Remark;
+		
+		private EntitySet<MenuTree> _MenuTrees;
+		
+		private EntityRef<MenuTree> _MenuTree1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMenuIdChanging(System.Guid value);
+    partial void OnMenuIdChanged();
+    partial void OnMeunNameChanging(string value);
+    partial void OnMeunNameChanged();
+    partial void OnParentIdChanging(System.Nullable<System.Guid> value);
+    partial void OnParentIdChanged();
+    partial void OnRemarkChanging(string value);
+    partial void OnRemarkChanged();
+    #endregion
+		
+		public MenuTree()
+		{
+			this._MenuTrees = new EntitySet<MenuTree>(new Action<MenuTree>(this.attach_MenuTrees), new Action<MenuTree>(this.detach_MenuTrees));
+			this._MenuTree1 = default(EntityRef<MenuTree>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuId", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid MenuId
+		{
+			get
+			{
+				return this._MenuId;
+			}
+			set
+			{
+				if ((this._MenuId != value))
+				{
+					this.OnMenuIdChanging(value);
+					this.SendPropertyChanging();
+					this._MenuId = value;
+					this.SendPropertyChanged("MenuId");
+					this.OnMenuIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MeunName", DbType="VarChar(50)")]
+		public string MeunName
+		{
+			get
+			{
+				return this._MeunName;
+			}
+			set
+			{
+				if ((this._MeunName != value))
+				{
+					this.OnMeunNameChanging(value);
+					this.SendPropertyChanging();
+					this._MeunName = value;
+					this.SendPropertyChanged("MeunName");
+					this.OnMeunNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> ParentId
+		{
+			get
+			{
+				return this._ParentId;
+			}
+			set
+			{
+				if ((this._ParentId != value))
+				{
+					if (this._MenuTree1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnParentIdChanging(value);
+					this.SendPropertyChanging();
+					this._ParentId = value;
+					this.SendPropertyChanged("ParentId");
+					this.OnParentIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="VarChar(50)")]
+		public string Remark
+		{
+			get
+			{
+				return this._Remark;
+			}
+			set
+			{
+				if ((this._Remark != value))
+				{
+					this.OnRemarkChanging(value);
+					this.SendPropertyChanging();
+					this._Remark = value;
+					this.SendPropertyChanged("Remark");
+					this.OnRemarkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MenuTree_MenuTree", Storage="_MenuTrees", ThisKey="MenuId", OtherKey="ParentId")]
+		public EntitySet<MenuTree> MenuTrees
+		{
+			get
+			{
+				return this._MenuTrees;
+			}
+			set
+			{
+				this._MenuTrees.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MenuTree_MenuTree", Storage="_MenuTree1", ThisKey="ParentId", OtherKey="MenuId", IsForeignKey=true)]
+		public MenuTree MenuTree1
+		{
+			get
+			{
+				return this._MenuTree1.Entity;
+			}
+			set
+			{
+				MenuTree previousValue = this._MenuTree1.Entity;
+				if (((previousValue != value) 
+							|| (this._MenuTree1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MenuTree1.Entity = null;
+						previousValue.MenuTrees.Remove(this);
+					}
+					this._MenuTree1.Entity = value;
+					if ((value != null))
+					{
+						value.MenuTrees.Add(this);
+						this._ParentId = value.MenuId;
+					}
+					else
+					{
+						this._ParentId = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("MenuTree1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_MenuTrees(MenuTree entity)
+		{
+			this.SendPropertyChanging();
+			entity.MenuTree1 = this;
+		}
+		
+		private void detach_MenuTrees(MenuTree entity)
+		{
+			this.SendPropertyChanging();
+			entity.MenuTree1 = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Module")]
 	public partial class Module : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2992,6 +3213,123 @@ namespace Scada.DAL.Linq
 		{
 			this.SendPropertyChanging();
 			entity.Module = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PublicParameter")]
+	public partial class PublicParameter
+	{
+		
+		private System.Nullable<int> _ConnectType;
+		
+		private string _ConnectName;
+		
+		private string _MainDNS;
+		
+		private string _SecondDNS;
+		
+		private string _Domain;
+		
+		private System.Nullable<int> _Port;
+		
+		public PublicParameter()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConnectType", DbType="Int")]
+		public System.Nullable<int> ConnectType
+		{
+			get
+			{
+				return this._ConnectType;
+			}
+			set
+			{
+				if ((this._ConnectType != value))
+				{
+					this._ConnectType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConnectName", DbType="VarChar(50)")]
+		public string ConnectName
+		{
+			get
+			{
+				return this._ConnectName;
+			}
+			set
+			{
+				if ((this._ConnectName != value))
+				{
+					this._ConnectName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MainDNS", DbType="NVarChar(20)")]
+		public string MainDNS
+		{
+			get
+			{
+				return this._MainDNS;
+			}
+			set
+			{
+				if ((this._MainDNS != value))
+				{
+					this._MainDNS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecondDNS", DbType="NVarChar(20)")]
+		public string SecondDNS
+		{
+			get
+			{
+				return this._SecondDNS;
+			}
+			set
+			{
+				if ((this._SecondDNS != value))
+				{
+					this._SecondDNS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Domain", DbType="NVarChar(50)")]
+		public string Domain
+		{
+			get
+			{
+				return this._Domain;
+			}
+			set
+			{
+				if ((this._Domain != value))
+				{
+					this._Domain = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Port", DbType="Int")]
+		public System.Nullable<int> Port
+		{
+			get
+			{
+				return this._Port;
+			}
+			set
+			{
+				if ((this._Port != value))
+				{
+					this._Port = value;
+				}
+			}
 		}
 	}
 	
@@ -3411,123 +3749,6 @@ namespace Scada.DAL.Linq
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SystemGlobalParamete")]
-	public partial class SystemGlobalParamete
-	{
-		
-		private System.Nullable<int> _ConnectType;
-		
-		private string _ConnectName;
-		
-		private string _MainDNS;
-		
-		private string _SecondDNS;
-		
-		private string _Domain;
-		
-		private System.Nullable<int> _Port;
-		
-		public SystemGlobalParamete()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConnectType", DbType="Int")]
-		public System.Nullable<int> ConnectType
-		{
-			get
-			{
-				return this._ConnectType;
-			}
-			set
-			{
-				if ((this._ConnectType != value))
-				{
-					this._ConnectType = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConnectName", DbType="VarChar(50)")]
-		public string ConnectName
-		{
-			get
-			{
-				return this._ConnectName;
-			}
-			set
-			{
-				if ((this._ConnectName != value))
-				{
-					this._ConnectName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MainDNS", DbType="NVarChar(20)")]
-		public string MainDNS
-		{
-			get
-			{
-				return this._MainDNS;
-			}
-			set
-			{
-				if ((this._MainDNS != value))
-				{
-					this._MainDNS = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecondDNS", DbType="NVarChar(20)")]
-		public string SecondDNS
-		{
-			get
-			{
-				return this._SecondDNS;
-			}
-			set
-			{
-				if ((this._SecondDNS != value))
-				{
-					this._SecondDNS = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Domain", DbType="NVarChar(50)")]
-		public string Domain
-		{
-			get
-			{
-				return this._Domain;
-			}
-			set
-			{
-				if ((this._Domain != value))
-				{
-					this._Domain = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Port", DbType="Int")]
-		public System.Nullable<int> Port
-		{
-			get
-			{
-				return this._Port;
-			}
-			set
-			{
-				if ((this._Port != value))
-				{
-					this._Port = value;
-				}
 			}
 		}
 	}
@@ -4471,6 +4692,105 @@ namespace Scada.DAL.Linq
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserMenu")]
+	public partial class UserMenu
+	{
+		
+		private System.Guid _Id;
+		
+		private System.Nullable<System.Guid> _UserId;
+		
+		private System.Nullable<System.Guid> _MenuId;
+		
+		private System.Nullable<int> _Level;
+		
+		private string _Remark;
+		
+		public UserMenu()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this._UserId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> MenuId
+		{
+			get
+			{
+				return this._MenuId;
+			}
+			set
+			{
+				if ((this._MenuId != value))
+				{
+					this._MenuId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Level]", Storage="_Level", DbType="Int")]
+		public System.Nullable<int> Level
+		{
+			get
+			{
+				return this._Level;
+			}
+			set
+			{
+				if ((this._Level != value))
+				{
+					this._Level = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="VarChar(200)")]
+		public string Remark
+		{
+			get
+			{
+				return this._Remark;
+			}
+			set
+			{
+				if ((this._Remark != value))
+				{
+					this._Remark = value;
+				}
 			}
 		}
 	}

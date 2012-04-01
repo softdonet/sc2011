@@ -8,39 +8,51 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+
 using Microsoft.Practices.Prism.ViewModel;
-using System.Collections.Generic;
-using Scada.Model.Entity;
 using Microsoft.Practices.Prism.Commands;
 using Scada.Client.VM.ScadaDeviceService;
+using Scada.Model.Entity;
+using System.Collections.Generic;
 using Scada.Client.VM.CommClass;
-
 
 namespace Scada.Client.VM.Modules.Query
 {
-    public class AlarmQueryViewModel : NotificationObject
+    public class UserEventQueryViewModel : NotificationObject
     {
         #region Variable
         public DelegateCommand queryCommand { get; set; }
         ScadaDeviceServiceSoapClient scadaDeviceServiceSoapClient = null;
-
         #endregion
 
-
         #region Constructor
-
-        public AlarmQueryViewModel()
+        public UserEventQueryViewModel()
         {
-            this.StartDate = DateTime.Now.AddDays(-1);
-            this.EndDate = DateTime.Now;
+            StartDate = DateTime.Now.AddDays(-1);
+            EndDate = DateTime.Now;
 
             scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
             scadaDeviceServiceSoapClient.ListDeviceTreeViewCompleted += new EventHandler<ListDeviceTreeViewCompletedEventArgs>(scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted);
             scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
 
-            this.queryCommand = new DelegateCommand(new Action(this.Query));
-            scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
-            scadaDeviceServiceSoapClient.GetAlarmQueryInfoCompleted += new EventHandler<GetAlarmQueryInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_GetAlarmQueryInfoCompleted);
+            this.queryCommand = new DelegateCommand(this.Query);
+            scadaDeviceServiceSoapClient.GetUserEventQueryInfoCompleted += new EventHandler<GetUserEventQueryInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_GetUserEventQueryInfoCompleted);
+        
+        
+        }
+  #endregion
+
+        void scadaDeviceServiceSoapClient_GetUserEventQueryInfoCompleted(object sender, GetUserEventQueryInfoCompletedEventArgs e)
+        {
+            if (e.Error == null)
+            {
+                List<UserEventModel> result = BinaryObjTransfer.BinaryDeserialize<List<UserEventModel>>(e.Result);
+                UserEventModelList = result;
+            }
+            else
+            {
+                MessageBox.Show("获取数据失败！");
+            }
         }
 
         void scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted(object sender, ListDeviceTreeViewCompletedEventArgs e)
@@ -60,29 +72,16 @@ namespace Scada.Client.VM.Modules.Query
                 MessageBox.Show("获取数据失败！");
             }
         }
+      
 
-        void scadaDeviceServiceSoapClient_GetAlarmQueryInfoCompleted(object sender, GetAlarmQueryInfoCompletedEventArgs e)
+        private void Query()
         {
-            if (e.Error == null)
+            if (SelectDeviceTreeNode == null || SelectDeviceTreeNode.NodeKey==Guid.Empty)
             {
-                List<DeviceAlarm> result = BinaryObjTransfer.BinaryDeserialize<List<DeviceAlarm>>(e.Result);
-                DeviceAlarmList = result;
-            }
-            else
-            {
-                MessageBox.Show("获取数据失败！");
-            }
-        }
-        #endregion
-
-        public void Query()
-        {
-            if (SelectDeviceTreeNode == null || SelectDeviceTreeNode.NodeKey == Guid.Empty)
-            {
-                DeviceAlarmList = new List<DeviceAlarm>();
+                UserEventModelList = new List<UserEventModel>();
                 return;
             }
-            scadaDeviceServiceSoapClient.GetAlarmQueryInfoAsync(SelectDeviceTreeNode.NodeKey, SelectDeviceTreeNode.NodeType, StartDate, EndDate);
+            scadaDeviceServiceSoapClient.GetUserEventQueryInfoAsync(SelectDeviceTreeNode.NodeKey, StartDate, EndDate);
         }
 
         /// <summary>
@@ -100,7 +99,7 @@ namespace Scada.Client.VM.Modules.Query
         }
 
         /// <summary>
-        /// 选择树节点
+        /// 选择的设备
         /// </summary>
         private DeviceTreeNode selectDeviceTreeNode;
         public DeviceTreeNode SelectDeviceTreeNode
@@ -113,24 +112,18 @@ namespace Scada.Client.VM.Modules.Query
             }
         }
 
-        /// <summary>
-        /// 选择设备
-        /// </summary>
-        private List<DeviceAlarm> deviceAlarmList;
-        public List<DeviceAlarm> DeviceAlarmList
+        private List<UserEventModel> userEventModelList;
+        public List<UserEventModel> UserEventModelList
         {
-            get { return deviceAlarmList; }
-            set
-            {
-                deviceAlarmList = value;
-                this.RaisePropertyChanged("DeviceAlarmList");
+            get { return userEventModelList; }
+            set {
+                userEventModelList = value;
+                this.RaisePropertyChanged("UserEventModelList");
             }
         }
 
-        /// <summary>
-        /// 开始时间
-        /// </summary>
         private DateTime startDate;
+
         public DateTime StartDate
         {
             get { return startDate; }
@@ -140,21 +133,13 @@ namespace Scada.Client.VM.Modules.Query
                 this.RaisePropertyChanged("StartDate");
             }
         }
-
-        /// <summary>
-        /// 结束日期
-        /// </summary>
         private DateTime endDate;
+
         public DateTime EndDate
         {
             get { return endDate; }
-            set
-            {
-                endDate = value;
-                this.RaisePropertyChanged("EndDate");
-            }
+            set { endDate = value; }
         }
-
 
 
     }

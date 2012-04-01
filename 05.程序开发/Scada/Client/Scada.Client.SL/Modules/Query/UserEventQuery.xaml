@@ -5,9 +5,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     
-     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"          
+     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"   
+             
+    xmlns:my="clr-namespace:Scada.Client.SL.Controls"
+    xmlns:myConvertAlarm="clr-namespace:Scada.Utility.Common.SL;assembly=Scada.Utility.Common.SL"
+
     d:DesignHeight="768" d:DesignWidth="1024">
-    
+    <UserControl.Resources>
+        <myConvertAlarm:ConverNumberToTextAlarm  x:Key="ConverNumberToTextAlarm1"/>
+    </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -15,25 +21,14 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
             <sdk:Label Content="设备名称:"  Height="28"   Name="label1" Width="50" />
-            <ComboBox  Height="23" HorizontalAlignment="Left"  Name="comboBox11"  Width="146" SelectedIndex="2">
-                <ComboBoxItem Content="总区域" />
-                <ComboBoxItem Content="--管理分区1" />
-                <ComboBoxItem Content="----设备G1-0001" />
-                <ComboBoxItem Content="----设备G1-0002" />
-                <ComboBoxItem Content="----设备G1-0003" />
-                <ComboBoxItem Content="----设备G1-0004" />
-                <ComboBoxItem Content="--管理分区2" />
-                <ComboBoxItem Content="----设备G2-0001" />
-                <ComboBoxItem Content="----设备G2-0002" />
-                <ComboBoxItem Content="----设备G2-0003" />
-                <ComboBoxItem Content="----设备G2-0004" />
-            </ComboBox>
+            <my:ComboBoxTreeView x:Name="comboBoxTreeView1" Width="120" Height="28"     SelectValue="{Binding SelectDeviceTreeNode,  Mode=TwoWay}"/>
+
             <sdk:Label Content="开始时间:"  Margin="20,0,0,0" Height="28"  Name="lblSat" Width="50"  />
             <sdk:DatePicker Height="23"   Name="datePicker1"  Width="120" />
             <sdk:Label Content="结束时间:" Margin="20,0,0,0" Height="28"   Name="lblEnd" Width="50"   />
             <sdk:DatePicker  Height="23"  Name="datePicker2"  Width="120" />
-            <Button Content="查询" Margin="20,0,0,0" Height="23" Name="btnCheck"  Width="75" />
-            <Button Content="导出" Margin="20,0,0,0"  Height="23" Name="btnExport"  Width="75" />
+            <Button Content="查询" Margin="20,0,0,0" Height="23" Name="btnCheck"  Width="75" Command="{Binding queryCommand}" />
+            <!--<Button Content="导出" Margin="20,0,0,0"  Height="23" Name="btnExport"  Width="75" />-->
         </StackPanel>
         <telerik:RadGridView x:Name="RadGridView1" Grid.Row="1"   ShowGroupPanel="False" IsReadOnly="True"   CanUserFreezeColumns="False" AutoGenerateColumns="False" >
             <telerik:RadGridView.Columns>

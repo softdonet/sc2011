@@ -106,7 +106,7 @@ namespace Scada.Client.SL
                     break;
                 //用户事件查询
                 case "childMenuUserEventSearch":
-                    this.ViewHost.Child = new UserEventQuery();
+                    this.ViewHost.Child = UserEventQuery.GetInstance();
                     break;
                 //维护日志
                 case "childMenuRepairLogSearch":

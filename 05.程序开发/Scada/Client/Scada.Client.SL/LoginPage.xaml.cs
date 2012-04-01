@@ -58,9 +58,9 @@ namespace Scada.Client.SL
                 User u = new User();
                 u.UserName = "admin";
                 App.CurUser = u;
-                //this.MasterContainer.Child = new MainPage();
+                this.MasterContainer.Child = new MainPage();
             }
-
+            return;
 
             //1)Check UserName
             if (string.IsNullOrEmpty(login.txbName.Text))

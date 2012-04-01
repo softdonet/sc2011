@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="zhengguojiang" Class="SCADADataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=124.248.35.194\SYMMSSQL,14330;Initial Catalog=zhengguojiang;Persist Security Info=True;User ID=zhengguojiang" SettingsObjectName="Scada.DAL.Linq.Properties.Settings" SettingsPropertyName="zhengguojiangConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SCADA_DEV_NEW" Class="SCADADataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=112.125.33.194;Initial Catalog=SCADA_DEV_NEW;User ID=sa" SettingsObjectName="Scada.DAL.Linq.Properties.Settings" SettingsPropertyName="SCADA_DEV_NEWConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.DeviceAlarm" Member="DeviceAlarms">
     <Type Name="DeviceAlarm">
       <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -118,11 +118,32 @@
       <Association Name="MaintenancePeople_DeviceInfo" Member="DeviceInfos" ThisKey="ID" OtherKey="MaintenancePeopleID" Type="DeviceInfo" />
     </Type>
   </Table>
+  <Table Name="dbo.MenuTree" Member="MenuTrees">
+    <Type Name="MenuTree">
+      <Column Name="MenuId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MeunName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ParentId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Remark" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="MenuTree_MenuTree" Member="MenuTrees" ThisKey="MenuId" OtherKey="ParentId" Type="MenuTree" />
+      <Association Name="MenuTree_UserMenu" Member="UserMenus" ThisKey="MenuId" OtherKey="MenuId" Type="UserMenu" />
+      <Association Name="MenuTree_MenuTree" Member="MenuTree1" ThisKey="ParentId" OtherKey="MenuId" Type="MenuTree" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.Module" Member="Modules">
     <Type Name="Module">
       <Column Name="ModuleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="ModuleName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="Module_RoleModule" Member="RoleModules" ThisKey="ModuleID" OtherKey="ModuleID" Type="RoleModule" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PublicParameter" Member="PublicParameters">
+    <Type Name="PublicParameter">
+      <Column Name="ConnectType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ConnectName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MainDNS" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="SecondDNS" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Domain" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Port" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Role" Member="Roles">
@@ -148,16 +169,6 @@
       <Column Name="StepName" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.SystemGlobalParamete" Member="SystemGlobalParametes">
-    <Type Name="SystemGlobalParamete">
-      <Column Name="ConnectType" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ConnectName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="MainDNS" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="SecondDNS" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="Domain" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Port" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.SystemParameterManage" Member="SystemParameterManages">
     <Type Name="SystemParameterManage">
       <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -175,6 +186,7 @@
       <Association Name="User_UserRole" Member="UserRoles" ThisKey="UserID" OtherKey="UserID" Type="UserRole" />
       <Association Name="User_DeviceTree" Member="DeviceTrees" ThisKey="UserID" OtherKey="AdminID" Type="DeviceTree" />
       <Association Name="User_UserEventDealDetail" Member="UserEventDealDetails" ThisKey="UserID" OtherKey="Operator" Type="UserEventDealDetail" />
+      <Association Name="User_UserMenu" Member="UserMenus" ThisKey="UserID" OtherKey="UserId" Type="UserMenu" />
     </Type>
   </Table>
   <Table Name="dbo.UserEvent" Member="UserEvents">
@@ -202,6 +214,17 @@
       <Column Name="DealTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="User_UserEventDealDetail" Member="User" ThisKey="Operator" OtherKey="UserID" Type="User" IsForeignKey="true" />
       <Association Name="UserEvent_UserEventDealDetail" Member="UserEvent" ThisKey="EventID" OtherKey="ID" Type="UserEvent" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserMenu" Member="UserMenus">
+    <Type Name="UserMenu">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="MenuId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="[Level]" Member="Level" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Remark" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Association Name="MenuTree_UserMenu" Member="MenuTree" ThisKey="MenuId" OtherKey="MenuId" Type="MenuTree" IsForeignKey="true" />
+      <Association Name="User_UserMenu" Member="User" ThisKey="UserId" OtherKey="UserID" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

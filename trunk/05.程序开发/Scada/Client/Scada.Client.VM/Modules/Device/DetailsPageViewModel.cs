@@ -31,11 +31,16 @@ namespace Scada.Client.VM.Modules.Device
                     DeviceInfo = BinaryObjTransfer.BinaryDeserialize<DeviceInfo>(e.Result);
                 }
             };
-            maintenancePeople = new MaintenancePeople();
-            maintenancePeople.Name = "杨红康";
-            maintenancePeople.Telephone = "13800000000";
-            maintenancePeople.Email = "yhk@gamil.com";
-            maintenancePeople.Address = "北京市大兴区";
+            //加载设备维护人员信息
+            scadaDeviceServiceSoapClient.ListDeviceMaintenancePeopleAsync(id);
+            scadaDeviceServiceSoapClient.ListDeviceMaintenancePeopleCompleted += (sender, e) =>
+            {
+                string result = e.Result;
+                if (e.Error == null)
+                {
+                    maintenancePeople = BinaryObjTransfer.BinaryDeserialize<MaintenancePeople>(e.Result);
+                }
+            };
         }
 
 

@@ -1291,7 +1291,7 @@ namespace Scada.BLL.Implement
             try
             {
                 sCADADataContext = new Scada.DAL.Linq.SCADADataContext();
-                var obj = sCADADataContext.UserEvents.Select(e => e.ID == id && e.RequestTime > startDate && e.RequestTime < endDate);
+                var obj = sCADADataContext.UserEvents.Select(e => e.DeviceID == id && e.RequestTime > startDate && e.RequestTime < endDate);
                 if (obj != null)
                 {
                     Scada.Model.Entity.UserEventModel userEventModel = obj.ConvertTo<Scada.Model.Entity.UserEventModel>();

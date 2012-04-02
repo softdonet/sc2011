@@ -21,6 +21,10 @@ namespace Scada.BLL.Implement
         ScadaDeviceServiceLinq scadaDeviceServiceLinq;
         private Scada.DAL.Linq.SCADADataContext sCADADataContext = null;
 
+        public ScadaDeviceService()
+        {
+            sCADADataContext = new DAL.Linq.SCADADataContext();
+        }
 
         #region 测试流程
 
@@ -1217,7 +1221,7 @@ namespace Scada.BLL.Implement
             List<DeviceAlarm> deviceAlarmList = new List<DeviceAlarm>();
             try
             {
-                sCADADataContext = new Scada.DAL.Linq.SCADADataContext();
+                //sCADADataContext = new Scada.DAL.Linq.SCADADataContext();
 
                 if (DeviceType == 0)
                 {
@@ -1302,7 +1306,7 @@ namespace Scada.BLL.Implement
             string result = string.Empty;
             try
             {
-                sCADADataContext = new Scada.DAL.Linq.SCADADataContext();
+               // sCADADataContext = new Scada.DAL.Linq.SCADADataContext();
                 //var obj = sCADADataContext.UserEvents.Select(e => e.DeviceID == id && e.RequestTime > startDate && e.RequestTime < endDate).ToList();
                 var obj = sCADADataContext.UserEvents.Where(e => e.DeviceID == id && e.RequestTime > startDate && e.RequestTime < endDate);
 

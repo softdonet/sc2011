@@ -8,7 +8,7 @@ namespace Utility
     public class RandomHelper
     {
         /// <summary>
-        /// 生成一个整数
+        /// 生成一个随机整数
         /// </summary>
         /// <param name="start"></param>
         /// <param name="end"></param>

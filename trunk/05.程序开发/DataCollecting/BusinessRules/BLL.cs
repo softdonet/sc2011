@@ -32,28 +32,26 @@ namespace BusinessRules
             //                固件版本
             //                工作状态
             //            }
-            //     *     成功则返回true
-            //     *     没有找到或者执行失败返回false
-            //    */
-            //    SCADADataContext DataContext = new SCADADataContext();
-            //    var obj = DataContext.DeviceInfos.SingleOrDefault(e => e.DeviceNo == dc_r.Header.DeviceSN);
-            //    if (obj != null)
-            //    {
-            //        obj.DeviceMAC = dc_r.MAC;
-            //        obj.SIMNo = dc_r.SIM;
-            //        obj.HardType = dc_r.DeviveType;
-            //        obj.Version = string.Format("{0}.{1}", dc_r.HardwareVersionMain.ToString(), dc_r.HardwareVersionChild.ToString());
-            //        //TODO:数据库字段不全。其他相关属性
-            //        DataContext.SubmitChanges();
-            //        return true;
-            //    }
-            //    else
-            //    {
-            //        return false;
-            //    }
-
-            return true;
-
+            //          成功则返回true
+            //          没有找到或者执行失败返回false
+            //    
+            using (SCADADataContext DataContext = new SCADADataContext())
+            {
+                DeviceInfo deviceInfor = DataContext.DeviceInfos.SingleOrDefault(e => e.DeviceSN == dc_r.Header.DeviceSN);
+                if (deviceInfor != null)
+                {
+                    deviceInfor.DeviceMAC = dc_r.MAC;
+                    deviceInfor.SIMNo = dc_r.SIM;
+                    deviceInfor.HardType = dc_r.DeviveType;
+                    deviceInfor.HardwareVersion = string.Format("{0}.{1}", dc_r.HardwareVersionMain.ToString(),
+                        dc_r.HardwareVersionChild);
+                    deviceInfor.SoftWareVersion = string.Format("{0}.{1}", dc_r.SoftwareVersionMain.ToString(),
+                        dc_r.SoftwareVersionMain);
+                    DataContext.SubmitChanges();
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
@@ -180,7 +178,6 @@ namespace BusinessRules
         /// <returns></returns>
         public bool SaveUserEvent(UserEvent_R userEvent_R)
         {
-
             //逻辑较复杂些
             DeviceInfo deviceInfor = DataContext.DeviceInfos.SingleOrDefault(e => e.DeviceSN == userEvent_R.Header.DeviceSN);
             if (deviceInfor != null)

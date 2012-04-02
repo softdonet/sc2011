@@ -210,10 +210,10 @@ namespace DataCollecting.NetServer
                         tmpcp = tmpcp + tmpsize;
                         //CRC16校验
                         MessageBase mb = new MessageBase(tmpdata);
-                        //if (mb.Verify())
-                        //{
-                        ReceivedCommand(clientSocket, tmpdata, header.CmdCommand);
-                        //}
+                        if (mb.Verify())
+                        {
+                            ReceivedCommand(clientSocket, tmpdata, header.CmdCommand);
+                        }
                     }
                 }
             }

@@ -40,6 +40,7 @@
             this.固件更新命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.注册命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.主动关闭告知命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.批量实时数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.清除屏幕ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.下行命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,7 +54,6 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.系统设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.批量实时数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -137,6 +137,13 @@
             this.主动关闭告知命令ToolStripMenuItem.Size = new System.Drawing.Size(113, 20);
             this.主动关闭告知命令ToolStripMenuItem.Text = "主动关闭告知命令";
             this.主动关闭告知命令ToolStripMenuItem.Click += new System.EventHandler(this.主动关闭告知命令ToolStripMenuItem_Click);
+            // 
+            // 批量实时数据ToolStripMenuItem
+            // 
+            this.批量实时数据ToolStripMenuItem.Name = "批量实时数据ToolStripMenuItem";
+            this.批量实时数据ToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
+            this.批量实时数据ToolStripMenuItem.Text = "批量实时数据";
+            this.批量实时数据ToolStripMenuItem.Click += new System.EventHandler(this.批量实时数据ToolStripMenuItem_Click);
             // 
             // 清除屏幕ToolStripMenuItem
             // 
@@ -254,13 +261,6 @@
             this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
             this.退出ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.退出ToolStripMenuItem.Text = "退出";
-            // 
-            // 批量实时数据ToolStripMenuItem
-            // 
-            this.批量实时数据ToolStripMenuItem.Name = "批量实时数据ToolStripMenuItem";
-            this.批量实时数据ToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
-            this.批量实时数据ToolStripMenuItem.Text = "批量实时数据";
-            this.批量实时数据ToolStripMenuItem.Click += new System.EventHandler(this.批量实时数据ToolStripMenuItem_Click);
             // 
             // frm_Test
             // 

@@ -119,13 +119,11 @@ namespace DataCollecting
                 {
                     if (isClear)
                     {
-                        //this.textBox1.Text = str + Environment.NewLine;
-                        this.textBox1.Text = DateTime.Now.ToString();
+                        this.textBox1.Text = str + Environment.NewLine;
                     }
                     else
                     {
-                        //this.textBox1.Text += str + Environment.NewLine;
-                        this.textBox1.Text = DateTime.Now.ToString();
+                        this.textBox1.Text += str + Environment.NewLine;
                     }
                     textBox1.SelectionStart = textBox1.TextLength;
                     textBox1.ScrollToCaret();
@@ -587,12 +585,12 @@ namespace DataCollecting
 
         private void 批量实时数据ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-        
+
 
             DateTime now = Convert.ToDateTime("2012-3-17 1:12:21");
             while (now < Convert.ToDateTime("2012-3-17 23:59:59"))
             {
-                now=now.AddMinutes(10);
+                now = now.AddMinutes(10);
                 Head h = new Head();
                 h.CmdHeader = Const.UP_HEADER;
                 h.CmdCommand = Command.cmd_RealTimeDate_R;

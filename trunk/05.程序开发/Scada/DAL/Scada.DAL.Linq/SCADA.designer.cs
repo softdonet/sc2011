@@ -77,6 +77,7 @@ namespace Scada.DAL.Linq
     partial void DeleteUserEventDealDetail(UserEventDealDetail instance);
     #endregion
 		
+		
 		public SCADADataContext(string connection) : 
 				base(connection, mappingSource)
 		{

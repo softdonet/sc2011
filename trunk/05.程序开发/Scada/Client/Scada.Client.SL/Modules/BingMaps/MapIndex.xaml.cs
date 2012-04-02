@@ -102,7 +102,10 @@ namespace Scada.Client.SL.Modules.BingMaps
                 pushPinDevice myPushPin = new pushPinDevice();
                 dicPin.Add(item.NodeKey, myPushPin);
                 myPushPin.DataContext = item;
-                MapLayer.SetPosition(myPushPin, new Location(item.Longitude.Value, item.Dimensionality.Value));
+                if (item.Longitude != null || item.Dimensionality != null)
+                {
+                    MapLayer.SetPosition(myPushPin, new Location(item.Longitude.Value, item.Dimensionality.Value));
+                }
                 //设备详情单击事件
                 myPushPin.onclickDetails += (sender1, e1) =>
                 {

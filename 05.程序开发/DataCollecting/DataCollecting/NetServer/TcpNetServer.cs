@@ -12,6 +12,42 @@ using Utility;
 namespace DataCollecting.NetServer
 {
     /// <summary>
+    /// 客户端信息
+    /// </summary>
+    public class DeviceClient
+    {
+
+        public DeviceClient(Socket clientSocket)
+        {
+            ByteData = new byte[1024];
+            ClientSocket = clientSocket;
+        }
+        public Socket ClientSocket { get; set; }
+        public byte[] ByteData { get; set; }
+
+        /// <summary>
+        /// 清除缓冲区
+        /// </summary>
+        public void ClearBuffer()
+        {
+            for (int i = 0; i < ByteData.Length; i++)
+            {
+                ByteData[i] = 0x00;
+            }
+        }
+
+        /// <summary>
+        /// 获取转化后的字节数组
+        /// </summary>
+        /// <returns></returns>
+        public byte[] GetRealByteData()
+        {
+            return StringHelper.ConvertData(ByteData);
+        }
+    }
+
+
+    /// <summary>
     /// TCP Socket通讯
     /// yanghk at 2012-01-01
     /// </summary>
@@ -142,7 +178,6 @@ namespace DataCollecting.NetServer
 
         //服务器socket,主侦听socket
         private Socket serverSocket;
-        ArrayList clientList;
         public TcpNetServer()
         {
             //We are using TCP sockets
@@ -167,8 +202,9 @@ namespace DataCollecting.NetServer
                 //Start listening for more clients
                 serverSocket.BeginAccept(new AsyncCallback(OnAccept), null);
                 //Once the client connects then start receiving the commands from her
-                clientSocket.BeginReceive(byteData, 0, byteData.Length, SocketFlags.None,
-                    new AsyncCallback(OnReceive), clientSocket);
+                DeviceClient deviceClient = new DeviceClient(clientSocket);
+                clientSocket.BeginReceive(deviceClient.ByteData, 0, deviceClient.ByteData.Length, SocketFlags.None,
+                    new AsyncCallback(OnReceive), deviceClient);
             }
             catch (Exception ex)
             {
@@ -176,15 +212,15 @@ namespace DataCollecting.NetServer
                     System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
             }
         }
-        byte[] byteData = new byte[1024];
+
         private void OnReceive(IAsyncResult ar)
         {
             try
             {
-                Socket clientSocket = (Socket)ar.AsyncState;
-                clientSocket.EndReceive(ar);
+                DeviceClient deviceClient = (DeviceClient)ar.AsyncState;
+                deviceClient.ClientSocket.EndReceive(ar);
                 //数据转化
-                byte[] realData = StringHelper.ConvertData(byteData);
+                byte[] realData = deviceClient.GetRealByteData();
                 bool wexit = false;
                 int tmpcp = 0;//数组位置指针
                 int tmpsize = 0;
@@ -212,16 +248,16 @@ namespace DataCollecting.NetServer
                         MessageBase mb = new MessageBase(tmpdata);
                         if (mb.Verify())
                         {
-                            ReceivedCommand(clientSocket, tmpdata, header.CmdCommand);
+                            ReceivedCommand(deviceClient, tmpdata, header.CmdCommand);
                         }
                     }
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                Socket clientSocket = (Socket)ar.AsyncState;
-                clientSocket.Close();
-                //System.Windows.Forms.MessageBox.Show("数据解析出现异常", "提示");
+                DeviceClient deviceClient = (DeviceClient)ar.AsyncState;
+                deviceClient.ClientSocket.Close();
+                LogHelper.WriteExceptionLog(ex);
             }
 
         }
@@ -231,7 +267,7 @@ namespace DataCollecting.NetServer
         /// </summary>
         /// <param name="clientSocket"></param>
         /// <param name="tmpdata"></param>
-        private void ReceivedCommand(Socket clientSocket, byte[] tmpdata, Command cmd)
+        private void ReceivedCommand(DeviceClient deviceClient, byte[] tmpdata, Command cmd)
         {
             switch (cmd)
             {
@@ -254,7 +290,7 @@ namespace DataCollecting.NetServer
                     Test_S ts = new Test_S();
                     ts.Header = h;
                     ts.Content = tr.Content;
-                    clientSocket.Send(ts.ToByte());
+                    deviceClient.ClientSocket.Send(ts.ToByte());
                     if (testEvent_S != null)
                     {
                         this.testEvent_S(new Test_S(ts.ToByte()));
@@ -295,7 +331,7 @@ namespace DataCollecting.NetServer
                     }
                     ReplyBase_S replyBase_S_config = bll.GetDeviceInfor(cr.Header.DeviceSN);
                     replyBase_S_config.Header = hconfig;
-                    clientSocket.Send(replyBase_S_config.ToByte());
+                    deviceClient.ClientSocket.Send(replyBase_S_config.ToByte());
                     if (this.realTimeDataEvent_S != null)
                     {
                         this.realTimeDataEvent_S(new RealTimeData_S(replyBase_S_config.ToByte()));
@@ -371,7 +407,7 @@ namespace DataCollecting.NetServer
                     }
                     ReplyBase_S replyBase_S_userEvent = bll.GetDeviceInfor(ur.Header.DeviceSN);
                     replyBase_S_userEvent.Header = hUserEvent;
-                    clientSocket.Send(replyBase_S_userEvent.ToByte());
+                    deviceClient.ClientSocket.Send(replyBase_S_userEvent.ToByte());
                     if (this.realTimeDataEvent_S != null)
                     {
                         this.realTimeDataEvent_S(new RealTimeData_S(replyBase_S_userEvent.ToByte()));
@@ -410,7 +446,8 @@ namespace DataCollecting.NetServer
                     break;
             }
             //保持常连接
-            clientSocket.BeginReceive(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(OnReceive), clientSocket);
+            deviceClient.ClearBuffer();
+            deviceClient.ClientSocket.BeginReceive(deviceClient.ByteData, 0, deviceClient.ByteData.Length, SocketFlags.None, new AsyncCallback(OnReceive), deviceClient);
         }
     }
 }

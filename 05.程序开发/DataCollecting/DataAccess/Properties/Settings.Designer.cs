@@ -53,5 +53,15 @@ namespace DataAccess.Properties {
                 return ((string)(this["SCADAConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=112.125.33.194;Initial Catalog=SCADA_DEV_NEW;User ID=sa")]
+        public string SCADA_DEV_NEWConnectionString {
+            get {
+                return ((string)(this["SCADA_DEV_NEWConnectionString"]));
+            }
+        }
     }
 }

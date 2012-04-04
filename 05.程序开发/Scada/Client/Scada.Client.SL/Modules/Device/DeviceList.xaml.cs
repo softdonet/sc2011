@@ -25,18 +25,14 @@ using Scada.Client.SL.CommClass;
 using Scada.Client.SL.DeviceRealTimeService;
 using Scada.Model.Entity.Enums;
 
-
-
 namespace Scada.Client.SL.Modules.Device
 {
-
 
     /// <summary>
     /// 设备列表
     /// </summary>
     public partial class DeviceList : UserControl
     {
-
         #region 单例构造
 
         private static DeviceList instance;
@@ -51,12 +47,12 @@ namespace Scada.Client.SL.Modules.Device
 
         #endregion
 
-
         #region 构造函数
 
         public DeviceList()
         {
             InitializeComponent();
+            MyContent.CloseBtn += new EventHandler(MyContent_CloseBtn);
             //注意：以下代码必须放在构造函数中
             DeviceListViewModel dlvm = new DeviceListViewModel();
             this.DataContext = dlvm;
@@ -65,14 +61,7 @@ namespace Scada.Client.SL.Modules.Device
 
         #endregion
 
-
         #region 界面初期化
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-
-
-        }
 
         private void dlvm_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -107,8 +96,7 @@ namespace Scada.Client.SL.Modules.Device
 
         #endregion
 
-
-        #region 废弃代码
+        #region 设备详情
 
         private void MyContent_CloseBtn(object sender, EventArgs e)
         {
@@ -118,28 +106,14 @@ namespace Scada.Client.SL.Modules.Device
 
         private void hlUrl_Click(object sender, RoutedEventArgs e)
         {
+            HyperlinkButton hlB = sender as HyperlinkButton;
+            Guid id = (hlB.DataContext as DeviceRealTimeTree).NodeKey;
             Storyboard1.Begin();
+            MyContent.Content = new DetailsPage(id);
+            MyContent.Title = "设备详细信息";
         }
 
         #endregion
-
-    }
-
-    /// <summary>
-    /// 备用查看
-    /// </summary>
-    internal class RelativeBlocksValueConverter : IValueConverter
-    {
-
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return "查看";
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return DependencyProperty.UnsetValue;
-        }
     }
 
     /// <summary>

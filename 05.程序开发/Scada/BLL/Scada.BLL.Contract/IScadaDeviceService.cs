@@ -107,8 +107,9 @@ namespace Scada.BLL.Contract
         #region 维护人员
 
         string GetMaintenancePeople();
-        //string GetMaintenancePeople(Guid MainPeopleId);
+
         string ListDeviceMaintenancePeople(Guid deviceID);
+
         Boolean AddMaintenancePeople(string people);
 
         Boolean UpdateMaintenancePeople(string people);

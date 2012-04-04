@@ -18,5 +18,16 @@ namespace Scada.Client.UC
         {
             InitializeComponent();
         }
+
+        public decimal? Temperature
+        {
+            set
+            {
+                if (value.HasValue)
+                {
+                    this.myTemp.Indicators[0].Value = (double)value;
+                }
+            }
+        }
     }
 }

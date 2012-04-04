@@ -14,6 +14,10 @@ namespace Scada.Model.Entity
         public string ManageAreaName { get; set; }
         public string LCDScreenDisplayTypeName { get; set; }
         public string CurrentModelName { get; set; }
+        /// <summary>
+        /// 实时温度
+        /// </summary>
+        public decimal? RealTimeTemperature { get; set; }
 
     }
 }

@@ -792,41 +792,19 @@ namespace Scada.BLL.Implement
 
         }
 
+        /// <summary>
+        /// 根据设备ID获取维护人员信息
+        /// </summary>
+        /// <param name="deviceID"></param>
+        /// <returns></returns>
         public string ListDeviceMaintenancePeople(Guid deviceID)
         {
-            string result = string.Empty;
-            List<MaintenancePeople> maintenancePeople = new List<MaintenancePeople>();
-            String sSql = @" Select AA.ID,BB.ID,BB.MainNo,BB.MainName,BB.City,
-                             BB.Native,BB.Telephone,BB.MobileBack,BB.Email,AA.DeviceID
-                            From MaintenancePeople AA
-                            Inner JOIN MaintenancePeople BB On AA.MaintenanceID=BB.ID
-                            Where AA.DeviceID ='" + deviceID.ToString().ToUpper() + "'";
-
-            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
-            if (ds == null || ds.Rows.Count == 0) { return result; }
-            MaintenancePeople people = null;
-            foreach (DataRow item in ds.Rows)
+            var obj = sCADADataContext.DeviceInfos.SingleOrDefault(e => e.ID == deviceID);
+            if (obj != null && obj.MaintenancePeople != null)
             {
-                people = new MaintenancePeople();
-                people.ID = new Guid(item["ID"].ToString());
-                // people.DeviceID = new Guid(item["DeviceID"].ToString());
-
-                MaintenancePeople peoples = new MaintenancePeople();
-                peoples.ID = new Guid(item["ID"].ToString());
-                //peoples.MainNo = item["MainNo"].ToString();
-                peoples.Name = item["Name"].ToString();
-                peoples.Address = item["Address"].ToString();
-                peoples.Telephone = item["Telephone"].ToString();
-                peoples.Mobile = item["Mobile"].ToString();
-                peoples.QQ = item["QQ"].ToString();
-                peoples.MSN = item["MSN"].ToString();
-                peoples.Email = item["Email"].ToString();
-
-                //people.MaintenancePeopleInfo = peoples;
-                maintenancePeople.Add(people);
+                return BinaryObjTransfer.JsonSerializer<MaintenancePeople>(obj.MaintenancePeople.ConvertTo<MaintenancePeople>());
             }
-            return BinaryObjTransfer.JsonSerializer<List<MaintenancePeople>>(maintenancePeople);
-
+            return null;
         }
 
         public string ListDeviceTreeView()
@@ -1236,8 +1214,8 @@ namespace Scada.BLL.Implement
                     //           e.StartTime > startdDate &&
                     //           e.StartTime < endDate)
                     //           .Select(e => e.ConvertTo<DeviceAlarm>()).ToList();
-                              
-                               
+
+
                     var obj1 = from dt in sCADADataContext.DeviceTrees
                                from di in sCADADataContext.DeviceInfos
                                from da in sCADADataContext.DeviceAlarms
@@ -1306,7 +1284,7 @@ namespace Scada.BLL.Implement
             string result = string.Empty;
             try
             {
-               // sCADADataContext = new Scada.DAL.Linq.SCADADataContext();
+                // sCADADataContext = new Scada.DAL.Linq.SCADADataContext();
                 //var obj = sCADADataContext.UserEvents.Select(e => e.DeviceID == id && e.RequestTime > startDate && e.RequestTime < endDate).ToList();
                 var obj = sCADADataContext.UserEvents.Where(e => e.DeviceID == id && e.RequestTime > startDate && e.RequestTime < endDate);
 

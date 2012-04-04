@@ -117,7 +117,14 @@ namespace Scada.BLL.Implement
             var obj = sCADADataContext.DeviceInfos.SingleOrDefault(e => e.ID == id);
             if (obj != null)
             {
-                Scada.Model.Entity.DeviceInfo deviceInfo = obj.ConvertTo<Scada.Model.Entity.DeviceInfo>();
+                Scada.Model.Entity.DeviceInfo deviceInfo = obj.ConvertTo<Scada.Model.Entity.DeviceInfo>(d =>
+                {
+                    d.ManageAreaName = obj.DeviceTree.Name;
+                    if (obj.DeviceRealTimes.Any())
+                    {
+                        d.RealTimeTemperature = obj.DeviceRealTimes.OrderByDescending(e => e.UpdateTime).First().Temperature1;
+                    }
+                });
                 var result = BinaryObjTransfer.JsonSerializer<Scada.Model.Entity.DeviceInfo>(deviceInfo);
                 return result;
             }

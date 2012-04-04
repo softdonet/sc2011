@@ -57,11 +57,11 @@ namespace Scada.Client.SL.Modules.BaseInfo
                 new System.ComponentModel.PropertyChangedEventHandler(deviceManageViewModel_PropertyChanged);
 
             //加载维护人员信息
-            this.scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
+            //this.scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
 
-            scadaDeviceServiceSoapClient.ListMaintenancePeopleCompleted +=
-                new EventHandler<ListMaintenancePeopleCompletedEventArgs>(scadaDeviceServiceSoapClient_ListMaintenancePeopleCompleted);
-            scadaDeviceServiceSoapClient.ListMaintenancePeopleAsync();
+            //scadaDeviceServiceSoapClient.ListMaintenancePeopleCompleted +=
+            //    new EventHandler<ListMaintenancePeopleCompletedEventArgs>(scadaDeviceServiceSoapClient_ListMaintenancePeopleCompleted);
+            //scadaDeviceServiceSoapClient.ListMaintenancePeopleAsync();
 
             //加载液晶屏显示
             //LoadDisplayType();
@@ -79,38 +79,6 @@ namespace Scada.Client.SL.Modules.BaseInfo
         }
 
         #endregion
-
-        #region 初始化基本信息
-        private void LoadDisplayType()
-        {
-            List<DeviceInfo> deviceInfoList = new List<DeviceInfo>();
-            deviceInfoList.Clear();
-            deviceInfoList.Add(new DeviceInfo() { LCDScreenDisplayType = 1, LCDScreenDisplayTypeName = EnumHelper.Display<DisplayType>(1) });
-            deviceInfoList.Add(new DeviceInfo() { LCDScreenDisplayType = 2, LCDScreenDisplayTypeName = EnumHelper.Display<DisplayType>(2) });
-            deviceInfoList.Add(new DeviceInfo() { LCDScreenDisplayType = 3, LCDScreenDisplayTypeName = EnumHelper.Display<DisplayType>(3) });
-            deviceInfoList.Add(new DeviceInfo() { LCDScreenDisplayType = 4, LCDScreenDisplayTypeName = EnumHelper.Display<DisplayType>(4) });
-
-            cmbDisplayType.ItemsSource = deviceInfoList;
-        }
-
-        private void LoadCurrentModel()
-        {
-            List<DeviceInfo> deviceInfoList = new List<DeviceInfo>();
-            deviceInfoList.Clear();
-            deviceInfoList.Add(new DeviceInfo() { CurrentModel = 1, CurrentModelName = EnumHelper.Display<CurrentModel>(1) });
-            deviceInfoList.Add(new DeviceInfo() { CurrentModel = 2, CurrentModelName = EnumHelper.Display<CurrentModel>(2) });
-            deviceInfoList.Add(new DeviceInfo() { CurrentModel = 3, CurrentModelName = EnumHelper.Display<CurrentModel>(3) });
-            cmbCurrentModel.ItemsSource = deviceInfoList;     
-        }
-        #endregion   
-
-        //private void cmbDisplayType_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    //DeviceInfo mySelectItem = cmbDisplayType.SelectedItem as DeviceInfo;
-        //    cmbDisplayType.SelectedItem = deviceManageViewModel.DeviceInfoList.LCDScreenDisplayType;
-        //}
-
-
 
 
         #region 加载树型结构

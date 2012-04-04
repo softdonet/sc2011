@@ -718,6 +718,21 @@ namespace Scada.BLL.Implement
 
         }
 
+        public Boolean CheckDeviceInfoByDeviceNo(string deviceNo)
+        {
+            bool flag;
+            scadaDeviceServiceLinq = new ScadaDeviceServiceLinq();
+            try
+            {
+                flag = scadaDeviceServiceLinq.GetCountDeviceName(deviceNo);
+            }
+            catch (Exception ex)
+            {
+                flag = false;
+               
+            }
+            return flag;
+        }
         public string ListMaintenancePeople()
         {
             string result = string.Empty;

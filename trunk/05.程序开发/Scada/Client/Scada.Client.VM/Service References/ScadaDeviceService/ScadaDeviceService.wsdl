@@ -119,6 +119,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="CheckDeviceInfoByDeviceNo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="deviceNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckDeviceInfoByDeviceNoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckDeviceInfoByDeviceNoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="ListMaintenancePeople">
         <s:complexType />
       </s:element>
@@ -423,6 +437,12 @@
   <wsdl:message name="ViewDeviceInfoSoapOut">
     <wsdl:part name="parameters" element="tns:ViewDeviceInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="CheckDeviceInfoByDeviceNoSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckDeviceInfoByDeviceNo" />
+  </wsdl:message>
+  <wsdl:message name="CheckDeviceInfoByDeviceNoSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckDeviceInfoByDeviceNoResponse" />
+  </wsdl:message>
   <wsdl:message name="ListMaintenancePeopleSoapIn">
     <wsdl:part name="parameters" element="tns:ListMaintenancePeople" />
   </wsdl:message>
@@ -564,6 +584,10 @@
       <wsdl:input message="tns:ViewDeviceInfoSoapIn" />
       <wsdl:output message="tns:ViewDeviceInfoSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="CheckDeviceInfoByDeviceNo">
+      <wsdl:input message="tns:CheckDeviceInfoByDeviceNoSoapIn" />
+      <wsdl:output message="tns:CheckDeviceInfoByDeviceNoSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="ListMaintenancePeople">
       <wsdl:input message="tns:ListMaintenancePeopleSoapIn" />
       <wsdl:output message="tns:ListMaintenancePeopleSoapOut" />
@@ -704,6 +728,15 @@
     </wsdl:operation>
     <wsdl:operation name="ViewDeviceInfo">
       <soap:operation soapAction="http://tempuri.org/ViewDeviceInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDeviceInfoByDeviceNo">
+      <soap:operation soapAction="http://tempuri.org/CheckDeviceInfoByDeviceNo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -941,6 +974,15 @@
     </wsdl:operation>
     <wsdl:operation name="ViewDeviceInfo">
       <soap12:operation soapAction="http://tempuri.org/ViewDeviceInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDeviceInfoByDeviceNo">
+      <soap12:operation soapAction="http://tempuri.org/CheckDeviceInfoByDeviceNo" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

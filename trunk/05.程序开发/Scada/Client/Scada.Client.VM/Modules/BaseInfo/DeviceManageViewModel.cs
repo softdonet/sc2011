@@ -42,6 +42,13 @@ namespace Scada.Client.VM.Modules.BaseInfo
             scadaDeviceServiceSoapClient.ListDeviceTreeViewCompleted += new EventHandler<ListDeviceTreeViewCompletedEventArgs>(scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted);
             scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
 
+            //查看设备By DeviceId
+            this.scadaDeviceServiceSoapClient.CheckDeviceInfoByDeviceNoCompleted += new EventHandler<CheckDeviceInfoByDeviceNoCompletedEventArgs>(scadaDeviceServiceSoapClient_CheckDeviceInfoByDeviceNoCompleted);
+
+            //维护人员
+            scadaDeviceServiceSoapClient.GetMaintenancePeopleCompleted += new EventHandler<GetMaintenancePeopleCompletedEventArgs>(scadaDeviceServiceSoapClient_GetMaintenancePeopleCompleted);
+            scadaDeviceServiceSoapClient.GetMaintenancePeopleAsync();
+            
             //查看设备
             scadaDeviceServiceSoapClient.ViewDeviceInfoCompleted += new EventHandler<ViewDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_ViewDeviceInfoCompleted);
 
@@ -56,27 +63,31 @@ namespace Scada.Client.VM.Modules.BaseInfo
             //删除设备
             this.scadaDeviceServiceSoapClient.DeleteDeviceInfoCompleted += new EventHandler<DeleteDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_DeleteDeviceInfoCompleted);
             this.DeleteCommand = new DelegateCommand(new Action(this.DeleteDeviceInfo));
+
         }
 
-        public DeviceManageViewModel(string aa,string bb)
+        bool flag;
+        void scadaDeviceServiceSoapClient_CheckDeviceInfoByDeviceNoCompleted(object sender, CheckDeviceInfoByDeviceNoCompletedEventArgs e)
         {
-            //查看设备
-            //myDeviceId = DeviceId;
-            scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
-            scadaDeviceServiceSoapClient.ViewDeviceInfoCompleted += new EventHandler<ViewDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_ViewDeviceInfoCompleted);
-         //   scadaDeviceServiceSoapClient.ViewDeviceInfoAsync(myDeviceId);
+            if (e.Error==null)
+            {
+                flag = e.Result;
+            }
+        }
 
-            //添加设备
-            scadaDeviceServiceSoapClient.AddDeviceInfoCompleted += new EventHandler<AddDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_AddDeviceInfoCompleted);
-            this.AddCommand = new DelegateCommand(new Action(this.AddDeviceInfo));
+        void scadaDeviceServiceSoapClient_GetMaintenancePeopleCompleted(object sender, GetMaintenancePeopleCompletedEventArgs e)
+        {
+            string result = e.Result;
+            if (e.Error == null)
+            {
+                List<MaintenancePeople> maintenancePeopleList = BinaryObjTransfer.BinaryDeserialize<List<MaintenancePeople>>(e.Result);
 
-            //修改设备
-            this.scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoCompleted += new EventHandler<UpdateDeviceAlarmInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoCompleted);
-            this.UpdateCommand = new DelegateCommand(new Action(this.UpdateDeviceInfo));
-
-            //删除设备
-            this.scadaDeviceServiceSoapClient.DeleteDeviceInfoCompleted += new EventHandler<DeleteDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_DeleteDeviceInfoCompleted);
-            this.DeleteCommand = new DelegateCommand(new Action(this.DeleteDeviceInfo));
+                if (maintenancePeopleList == null)
+                {
+                    maintenancePeopleList = new List<MaintenancePeople>();
+                }
+                MaintenancePeopleList = maintenancePeopleList;
+            }
         }
 
         void scadaDeviceServiceSoapClient_AddDeviceInfoCompleted(object sender, AddDeviceInfoCompletedEventArgs e)
@@ -102,6 +113,14 @@ namespace Scada.Client.VM.Modules.BaseInfo
         {
             if (DeviceInfoList != null)
             {
+                string deviceNo = DeviceInfoList.DeviceNo;
+                this.scadaDeviceServiceSoapClient.CheckDeviceInfoByDeviceNoAsync(deviceNo);
+
+                if (flag==true)
+                {
+                    MessageBox.Show("该设备名称已存在，请选择其他的名字!");
+                    return;
+                }
                 //--------------------
                 DeviceInfoList.ID = Guid.NewGuid();
                 //string deviceInfo = BinaryObjTransfer.BinarySerialize(addDevice);
@@ -212,6 +231,47 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 this.RaisePropertyChanged("SelectDeviceTreeNode");
             }
         }
+
+        /// <summary>
+        /// 绑定维护人员信息
+        /// </summary>
+        private List<MaintenancePeople> maintenancePeopleList;
+        public List<MaintenancePeople> MaintenancePeopleList
+        {
+            get { return maintenancePeopleList; }
+            set
+            {
+                maintenancePeopleList = value;
+                this.RaisePropertyChanged("MaintenancePeopleList");
+            }
+        }
+
+        /// <summary>
+        /// 获取选择的维护人员信息
+        /// </summary>
+        private MaintenancePeople selectedMaintenancePeople;
+        public MaintenancePeople SelectedMaintenancePeople
+        {
+            get
+            {
+                if (DeviceInfoList!=null)
+                {
+                    selectedMaintenancePeople = MaintenancePeopleList.Where(e => e.ID == DeviceInfoList.MaintenancePeopleID).SingleOrDefault();
+                }
+                return selectedMaintenancePeople;
+            }
+            set
+            {
+                selectedMaintenancePeople = value;
+                this.RaisePropertyChanged("SelectedMaintenancePeople");
+                if (DeviceInfoList != null && selectedMaintenancePeople!=null)
+                {
+                    DeviceInfoList.MaintenancePeopleID = selectedMaintenancePeople.ID;
+                }
+            }
+        }
+        
+
         /// <summary>
         /// 设备信息
         /// </summary>
@@ -232,6 +292,8 @@ namespace Scada.Client.VM.Modules.BaseInfo
 
                 SelectedLcdItem = deviceInfoList;
                 SelectedCurrentModelItem = deviceInfoList;
+
+                SelectedMaintenancePeople = selectedMaintenancePeople;//用于设置界面上的显示
             }
         }
 
@@ -262,8 +324,8 @@ namespace Scada.Client.VM.Modules.BaseInfo
             set
             {
                 selectedLcdItem = value;
-                this.RaisePropertyChanged("SelectedItem");
-                if (DeviceInfoList != null)
+                this.RaisePropertyChanged("SelectedLcdItem");
+                if (DeviceInfoList != null && selectedLcdItem!=null)
                 {
                     DeviceInfoList.LCDScreenDisplayType = selectedLcdItem.LCDScreenDisplayType;
                 }
@@ -299,7 +361,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 selectedCurrentModelItem = value;
                 this.RaisePropertyChanged("SelectedCurrentModelItem");
 
-                if (DeviceInfoList != null)
+                if (DeviceInfoList != null && selectedCurrentModelItem!=null)
                 {
                     DeviceInfoList.CurrentModel = selectedCurrentModelItem.CurrentModel;
                 }

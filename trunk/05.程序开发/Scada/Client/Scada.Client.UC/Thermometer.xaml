@@ -8,9 +8,9 @@
     xmlns:MyVg="clr-namespace:Scada.Client.UC"
     mc:Ignorable="d"
     d:DesignHeight="200" d:DesignWidth="500">
-    
+
     <Grid x:Name="LayoutRoot" Background="White">
-        <MyVg:MyGauge Type="Circular"  
+        <MyVg:MyGauge Type="Circular"   x:Name="myTemp"
            DefaultTemplate="LinearGaugeBasic" Background="Transparent" OuterCornerRadius="5"  
          >
             <vg:Gauge.OuterBackground>
@@ -25,7 +25,7 @@
             </vg:Gauge.OuterBackground>
 
             <vg:Gauge.CircularScales>
-                <vg:CircularScale  Minimum="10" Maximum="35" BorderThickness="0" ScaleThickness="0" Radius="1.3" Center="0.5,0.84"  
+                <vg:CircularScale  Minimum="0" Maximum="60" BorderThickness="0" ScaleThickness="0" Radius="1.3" Center="0.5,0.84"  
                 StartAngle="180" SweepAngle="180">
                     <vg:CircularScale.MajorTicks>
                         <vg:MajorTicks Placement="Outside" Background="#e4f1f3" TickLength="0.15"  
@@ -42,7 +42,7 @@
             </vg:Gauge.CircularScales>
 
             <vg:Gauge.Indicators>
-                <vg:NeedleIndicator Value="20" IndicatorWidth="0.12" CapWidth="0.35" BorderThickness="0">
+                <vg:NeedleIndicator Value="0" IndicatorWidth="0.12" CapWidth="0.35" BorderThickness="0">
                     <vg:NeedleIndicator.Background>
                         <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                             <GradientStop Color="#e0e0da" Offset="1"/>
@@ -63,7 +63,7 @@
             </vg:Gauge.Indicators>
 
             <vg:Gauge.Ranges>
-                <vg:Range StartValue="10" EndValue="18" StartWidth="0.6" EndWidth="0.6" BorderThickness="1"  
+                <vg:Range StartValue="0" EndValue="18" StartWidth="0.6" EndWidth="0.6" BorderThickness="1"  
                 BorderBrush="#8a8431" ShadowEnabled="True">
                     <vg:Range.Background>
                         <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1"  
@@ -73,7 +73,7 @@
                         </LinearGradientBrush>
                     </vg:Range.Background>
                 </vg:Range>
-                <vg:Range StartValue="18" EndValue="25" StartWidth="0.6" EndWidth="0.6" BorderThickness="1"  
+                <vg:Range StartValue="18" EndValue="40" StartWidth="0.6" EndWidth="0.6" BorderThickness="1"  
                 BorderBrush="#32a8ab" ShadowEnabled="True">
                     <vg:Range.Background>
                         <LinearGradientBrush StartPoint="0.5,1" EndPoint="1,0.5"  
@@ -84,7 +84,7 @@
                     </vg:Range.Background>
                 </vg:Range>
 
-                <vg:Range StartValue="25" EndValue="35" StartWidth="0.6" EndWidth="0.6" BorderThickness="1"  
+                <vg:Range StartValue="40" EndValue="60" StartWidth="0.6" EndWidth="0.6" BorderThickness="1"  
                 BorderBrush="#753226" ShadowEnabled="True">
                     <vg:Range.Background>
                         <LinearGradientBrush StartPoint="0,0.4" EndPoint="1,0.9"  

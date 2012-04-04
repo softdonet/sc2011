@@ -38,7 +38,7 @@ namespace Scada.Client.VM.Modules.Device
                 string result = e.Result;
                 if (e.Error == null)
                 {
-                    maintenancePeople = BinaryObjTransfer.BinaryDeserialize<MaintenancePeople>(e.Result);
+                    MaintenancePeople = BinaryObjTransfer.BinaryDeserialize<MaintenancePeople>(e.Result);
                 }
             };
         }

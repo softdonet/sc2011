@@ -160,17 +160,6 @@ namespace Scada.Client.VM.Modules.BingMaps
                 {
                     foreach (var item2 in item1.NodeChild)
                     {
-                        //PushPinDeviceViewModel tem2= new PushPinDeviceViewModel();
-                        //tem2.NodeKey = item2.NodeKey;
-                        //tem2.NodeValue = item2.NodeValue;
-                        //tem2.NodeType = item2.NodeType;
-                        //tem2.Temperature = 0;
-                        //tem2.Status = (int)DeviceStates.Escape;
-                        //tem2.Longitude = item2.NodeChild[0].NodeChild[0].Longitude;
-                        //tem2.Dimensionality = item2.NodeChild[0].NodeChild[0].Latitude;
-                        //tem2.InstallPlace = item2.InstallPlace;
-                        //tempList.Add(tem2);
-                       
                         foreach (var item3 in item2.NodeChild)
                         {
                             PushPinDeviceViewModel tem3 = new PushPinDeviceViewModel();

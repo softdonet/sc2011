@@ -58,6 +58,14 @@ namespace Scada.Client.SL.Modules.Device
 
             DetailsPageViewModel detailsPageViewModel = new DetailsPageViewModel(deviceKey);
             this.DataContext = detailsPageViewModel;
+            detailsPageViewModel.PropertyChanged += (sender, e) =>
+            {
+                if (e.PropertyName == "DeviceInfo")
+                {
+                    if (detailsPageViewModel.DeviceInfo != null)
+                        this.myTemperature.Temperature = detailsPageViewModel.DeviceInfo.RealTimeTemperature;
+                }
+            };
         }
 
         #endregion
@@ -72,16 +80,16 @@ namespace Scada.Client.SL.Modules.Device
             this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
 
 
-            //设备当天温度
-            this._scadaDeviceServiceSoapClient.GetDeviceOnlyDayCompleted +=
-                new EventHandler<GetDeviceOnlyDayCompletedEventArgs>(scadaDeviceServiceSoapClient_GetDeviceOnlyDayCompleted);
-            this._scadaDeviceServiceSoapClient.GetDeviceOnlyDayAsync(this._deviceKey.ToString());
+            ////设备当天温度
+            //this._scadaDeviceServiceSoapClient.GetDeviceOnlyDayCompleted +=
+            //    new EventHandler<GetDeviceOnlyDayCompletedEventArgs>(scadaDeviceServiceSoapClient_GetDeviceOnlyDayCompleted);
+            //this._scadaDeviceServiceSoapClient.GetDeviceOnlyDayAsync(this._deviceKey.ToString());
 
 
-            //设备历史温度
-            this._scadaDeviceServiceSoapClient.GetDeviceOnlyMonthCompleted +=
-                        new EventHandler<GetDeviceOnlyMonthCompletedEventArgs>(scadaDeviceServiceSoapClient_GetDeviceOnlyMonthCompleted);
-            this._scadaDeviceServiceSoapClient.GetDeviceOnlyMonthAsync(this._deviceKey.ToString());
+            ////设备历史温度
+            //this._scadaDeviceServiceSoapClient.GetDeviceOnlyMonthCompleted +=
+            //            new EventHandler<GetDeviceOnlyMonthCompletedEventArgs>(scadaDeviceServiceSoapClient_GetDeviceOnlyMonthCompleted);
+            //this._scadaDeviceServiceSoapClient.GetDeviceOnlyMonthAsync(this._deviceKey.ToString());
 
         }
 
@@ -96,7 +104,7 @@ namespace Scada.Client.SL.Modules.Device
             {
                 string msgInfo = e.Result;
                 List<ChartSource> devicTreeList = BinaryObjTransfer.BinaryDeserialize<List<ChartSource>>(msgInfo);
-                if (devicTreeList.Count() == 0) { return; }
+                if (devicTreeList != null && devicTreeList.Count() == 0) { return; }
                 this.chartDayTemperature.SetDeviceTemperature(devicTreeList);
             }
             else
@@ -110,7 +118,7 @@ namespace Scada.Client.SL.Modules.Device
             {
                 string msgInfo = e.Result;
                 List<ChartSource> devicTreeList = BinaryObjTransfer.BinaryDeserialize<List<ChartSource>>(msgInfo);
-                if (devicTreeList.Count() == 0) { return; }
+                if (devicTreeList != null && devicTreeList.Count() == 0) { return; }
                 this.chartMonthTemperature.SetDeviceTemperature(devicTreeList);
             }
             else

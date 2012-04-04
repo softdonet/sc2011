@@ -73,6 +73,25 @@ namespace Scada.Client.VM.Modules.BaseInfo
             {
                 flag = e.Result;
             }
+            if (flag == true)
+            {
+                MessageBox.Show("该设备名称已存在，请选择其他的名字!");
+                return;
+            }
+            else
+            {
+                if (DeviceInfoList != null)
+                {
+                    string deviceNo = DeviceInfoList.DeviceNo;
+                    this.scadaDeviceServiceSoapClient.CheckDeviceInfoByDeviceNoAsync(deviceNo);
+                    //--------------------
+                    DeviceInfoList.ID = Guid.NewGuid();
+                    //string deviceInfo = BinaryObjTransfer.BinarySerialize(addDevice);
+                    string deviceInfo = BinaryObjTransfer.BinarySerialize(DeviceInfoList);
+                    scadaDeviceServiceSoapClient.AddDeviceInfoAsync(deviceInfo);
+                    scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
+                }
+            }
         }
 
         void scadaDeviceServiceSoapClient_GetMaintenancePeopleCompleted(object sender, GetMaintenancePeopleCompletedEventArgs e)
@@ -115,18 +134,12 @@ namespace Scada.Client.VM.Modules.BaseInfo
             {
                 string deviceNo = DeviceInfoList.DeviceNo;
                 this.scadaDeviceServiceSoapClient.CheckDeviceInfoByDeviceNoAsync(deviceNo);
-
-                if (flag==true)
-                {
-                    MessageBox.Show("该设备名称已存在，请选择其他的名字!");
-                    return;
-                }
                 //--------------------
-                DeviceInfoList.ID = Guid.NewGuid();
-                //string deviceInfo = BinaryObjTransfer.BinarySerialize(addDevice);
-                string deviceInfo = BinaryObjTransfer.BinarySerialize(DeviceInfoList);
-                scadaDeviceServiceSoapClient.AddDeviceInfoAsync(deviceInfo);
-                scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
+                //DeviceInfoList.ID = Guid.NewGuid();
+                ////string deviceInfo = BinaryObjTransfer.BinarySerialize(addDevice);
+                //string deviceInfo = BinaryObjTransfer.BinarySerialize(DeviceInfoList);
+                //scadaDeviceServiceSoapClient.AddDeviceInfoAsync(deviceInfo);
+                //scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
             }
             //else
             //{

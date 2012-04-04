@@ -92,6 +92,14 @@ namespace Scada.Client.UC
 
         public void SetDeviceTemperature(List<ChartSource> source)
         {
+
+
+            if (source == null || source.Count == 0)
+            {
+                this.charTemperature.Series.Clear();
+                return;
+            }
+
             this._chartSource = source;
             this.SetDeviceTemperature();
         }

@@ -16,7 +16,10 @@ using Scada.Model.Entity;
 using Scada.Client.VM.CommClass;
 using System.Collections.ObjectModel;
 using Microsoft.Practices.Prism.Commands;
+using Scada.Model.Entity.Enums;
+using System.Linq;
 using System.ComponentModel.DataAnnotations;
+using Scada.Utility.Common.SL;
 
 namespace Scada.Client.VM.Modules.BaseInfo
 {
@@ -32,6 +35,8 @@ namespace Scada.Client.VM.Modules.BaseInfo
         string myDeviceId;
         public DeviceManageViewModel()
         {
+            LoadDisplayType();
+            LoadCurrentModel();
             scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
 
             scadaDeviceServiceSoapClient.ListDeviceTreeViewCompleted += new EventHandler<ListDeviceTreeViewCompletedEventArgs>(scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted);
@@ -113,7 +118,6 @@ namespace Scada.Client.VM.Modules.BaseInfo
             //    DeviceInfoList.DeviceSN = DeviceSN;
 
             //}
-
         }
 
         void scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoCompleted(object sender, UpdateDeviceAlarmInfoCompletedEventArgs e)
@@ -214,15 +218,134 @@ namespace Scada.Client.VM.Modules.BaseInfo
         private DeviceInfo deviceInfoList;
         public DeviceInfo DeviceInfoList
         {
-            get { return deviceInfoList; }
+            get {
+                //if (selectedItem != null)
+                //{
+                //    deviceInfoList.LCDScreenDisplayType = selectedItem.LCDScreenDisplayType;
+                //}
+                return deviceInfoList;
+            }
             set
             {
                 deviceInfoList = value;
                 this.RaisePropertyChanged("DeviceInfoList");
+
+                SelectedLcdItem = deviceInfoList;
+                SelectedCurrentModelItem = deviceInfoList;
             }
         }
 
+        private List<DeviceInfo>  deviceInfoLcdList;
+        public List<DeviceInfo> DeviceInfoLcdList
+        {
+            get { return deviceInfoLcdList; }
+            set
+            {
+                deviceInfoLcdList = value;
+                this.RaisePropertyChanged("DeviceInfoLcdList");
+            }
+        }
+        /// <summary>
+        /// 绑定选择的对象
+        /// </summary>
+        private DeviceInfo selectedLcdItem;
+        public DeviceInfo SelectedLcdItem
+        {
+            get
+            {
+                if (DeviceInfoList != null)
+                {
+                    selectedLcdItem = DeviceInfoLcdList.Where(e => e.LCDScreenDisplayType == DeviceInfoList.LCDScreenDisplayType).SingleOrDefault();
+                }
+                return selectedLcdItem;
+            }
+            set
+            {
+                selectedLcdItem = value;
+                this.RaisePropertyChanged("SelectedItem");
+                if (DeviceInfoList != null)
+                {
+                    DeviceInfoList.LCDScreenDisplayType = selectedLcdItem.LCDScreenDisplayType;
+                }
+            }
+        }
+
+        private List<DeviceInfo> deviceInfoCurrentModelList;
+        public List<DeviceInfo> DeviceInfoCurrentModelList
+        {
+            get { return deviceInfoCurrentModelList; }
+            set
+            {
+                deviceInfoCurrentModelList = value;
+                this.RaisePropertyChanged("DeviceInfoCurrentModelList");
+            }
+        }
+        /// <summary>
+        /// 当前选择的项
+        /// </summary>
+        private DeviceInfo selectedCurrentModelItem;
+        public DeviceInfo SelectedCurrentModelItem
+        {
+            get
+            {
+                if (DeviceInfoList != null)
+                {
+                    selectedCurrentModelItem = DeviceInfoCurrentModelList.Where(e => e.CurrentModel == DeviceInfoList.CurrentModel).SingleOrDefault();
+                }
+                
+                return selectedCurrentModelItem; }
+            set
+            {
+                selectedCurrentModelItem = value;
+                this.RaisePropertyChanged("SelectedCurrentModelItem");
+
+                if (DeviceInfoList != null)
+                {
+                    DeviceInfoList.CurrentModel = selectedCurrentModelItem.CurrentModel;
+                }
+            }
+        }
+
+
+
+        /// <summary>
+        /// 数据源
+        /// </summary>
+        private void LoadDisplayType()
+        {
+            List<DeviceInfo> temp = new List<DeviceInfo>();
+            temp.Clear();
+            temp.Add(new DeviceInfo() { LCDScreenDisplayType = 1, LCDScreenDisplayTypeName = "完整显示" });
+            temp.Add(new DeviceInfo() { LCDScreenDisplayType = 2, LCDScreenDisplayTypeName = "基本显示" });
+            temp.Add(new DeviceInfo() { LCDScreenDisplayType = 3, LCDScreenDisplayTypeName = "天气预报" });
+            temp.Add(new DeviceInfo() { LCDScreenDisplayType = 4, LCDScreenDisplayTypeName = "不显示" });
+            DeviceInfoLcdList = temp;
+        }
+        private void LoadCurrentModel()
+        {
+            List<DeviceInfo> temp = new List<DeviceInfo>();
+            temp.Clear();
+            temp.Add(new DeviceInfo() { CurrentModel = 1, CurrentModelName = EnumHelper.Display<CurrentModel>(1) });
+            temp.Add(new DeviceInfo() { CurrentModel = 2, CurrentModelName = EnumHelper.Display<CurrentModel>(2) });
+            temp.Add(new DeviceInfo() { CurrentModel = 3, CurrentModelName = EnumHelper.Display<CurrentModel>(3) });
+            DeviceInfoCurrentModelList = temp;
+        }
+
+
+
         //---------------------------------------------------------------
+        //[Required(ErrorMessage = "设备编号不能为空!")]
+        //public string DeviceNo
+        //{
+        //    get { return DeviceInfoList.DeviceNo; }
+        //    set
+        //    {
+        //        DeviceInfoList.DeviceNo = value;
+        //        this.RaisePropertyChanged("DeviceNo");
+        //        Validator.ValidateProperty(value, new ValidationContext(this, null, null) { MemberName = "DeviceNo" });
+
+        //    }
+        //}
 
         #region 测试方法
 

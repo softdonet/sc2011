@@ -80,16 +80,16 @@ namespace Scada.Client.SL.Modules.Device
             this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
 
 
-            ////设备当天温度
-            //this._scadaDeviceServiceSoapClient.GetDeviceOnlyDayCompleted +=
-            //    new EventHandler<GetDeviceOnlyDayCompletedEventArgs>(scadaDeviceServiceSoapClient_GetDeviceOnlyDayCompleted);
-            //this._scadaDeviceServiceSoapClient.GetDeviceOnlyDayAsync(this._deviceKey.ToString());
+            //设备当天温度
+            this._scadaDeviceServiceSoapClient.GetDeviceOnlyDayCompleted +=
+                new EventHandler<GetDeviceOnlyDayCompletedEventArgs>(scadaDeviceServiceSoapClient_GetDeviceOnlyDayCompleted);
+            this._scadaDeviceServiceSoapClient.GetDeviceOnlyDayAsync(this._deviceKey.ToString());
 
 
-            ////设备历史温度
-            //this._scadaDeviceServiceSoapClient.GetDeviceOnlyMonthCompleted +=
-            //            new EventHandler<GetDeviceOnlyMonthCompletedEventArgs>(scadaDeviceServiceSoapClient_GetDeviceOnlyMonthCompleted);
-            //this._scadaDeviceServiceSoapClient.GetDeviceOnlyMonthAsync(this._deviceKey.ToString());
+            //设备历史温度
+            this._scadaDeviceServiceSoapClient.GetDeviceOnlyMonthCompleted +=
+                        new EventHandler<GetDeviceOnlyMonthCompletedEventArgs>(scadaDeviceServiceSoapClient_GetDeviceOnlyMonthCompleted);
+            this._scadaDeviceServiceSoapClient.GetDeviceOnlyMonthAsync(this._deviceKey.ToString());
 
         }
 

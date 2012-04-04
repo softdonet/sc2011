@@ -29,7 +29,11 @@ namespace Scada.Client.VM.Modules.BaseInfo
         public DelegateCommand UpdateCommand { get; set; }
         public DelegateCommand DeleteCommand { get; set; }
         private ScadaDeviceServiceSoapClient scadaDeviceServiceSoapClient = null;
-
+     
+        public Guid CurrentNodeGuid { get; set; }
+        public int CurrentNodeLevel { get; set; }
+        
+         
         //public List<DeviceTreeNode> DeviceTreeNodeResult { get; set; }
         DeviceInfo deviceInfo;
         string myDeviceId;
@@ -82,8 +86,11 @@ namespace Scada.Client.VM.Modules.BaseInfo
             {
                 if (DeviceInfoList != null)
                 {
+                    if (CurrentNodeLevel==2)//组
+                    {
+                        DeviceInfoList.ManageAreaID = CurrentNodeGuid;
+                    }
                     string deviceNo = DeviceInfoList.DeviceNo;
-                    this.scadaDeviceServiceSoapClient.CheckDeviceInfoByDeviceNoAsync(deviceNo);
                     //--------------------
                     DeviceInfoList.ID = Guid.NewGuid();
                     //string deviceInfo = BinaryObjTransfer.BinarySerialize(addDevice);

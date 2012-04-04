@@ -47,6 +47,9 @@ namespace Scada.BLL.Contract
         //列设备信息
         string ViewDeviceInfo(Guid deviceGuid);
 
+        //查询重复设备
+        Boolean CheckDeviceInfoByDeviceNo(string deviceNo);
+
         //列出维护人员信息
         string ListMaintenancePeople();
 

@@ -58,6 +58,11 @@ namespace Scada.Client.VM.ScadaDeviceService {
         
         Scada.Client.VM.ScadaDeviceService.ViewDeviceInfoResponse EndViewDeviceInfo(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/CheckDeviceInfoByDeviceNo", ReplyAction="*")]
+        System.IAsyncResult BeginCheckDeviceInfoByDeviceNo(Scada.Client.VM.ScadaDeviceService.CheckDeviceInfoByDeviceNoRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.VM.ScadaDeviceService.CheckDeviceInfoByDeviceNoResponse EndCheckDeviceInfoByDeviceNo(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ListMaintenancePeople", ReplyAction="*")]
         System.IAsyncResult BeginListMaintenancePeople(Scada.Client.VM.ScadaDeviceService.ListMaintenancePeopleRequest request, System.AsyncCallback callback, object asyncState);
         
@@ -566,6 +571,74 @@ namespace Scada.Client.VM.ScadaDeviceService {
         
         public ViewDeviceInfoResponseBody(string ViewDeviceInfoResult) {
             this.ViewDeviceInfoResult = ViewDeviceInfoResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class CheckDeviceInfoByDeviceNoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="CheckDeviceInfoByDeviceNo", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.CheckDeviceInfoByDeviceNoRequestBody Body;
+        
+        public CheckDeviceInfoByDeviceNoRequest() {
+        }
+        
+        public CheckDeviceInfoByDeviceNoRequest(Scada.Client.VM.ScadaDeviceService.CheckDeviceInfoByDeviceNoRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class CheckDeviceInfoByDeviceNoRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string deviceNo;
+        
+        public CheckDeviceInfoByDeviceNoRequestBody() {
+        }
+        
+        public CheckDeviceInfoByDeviceNoRequestBody(string deviceNo) {
+            this.deviceNo = deviceNo;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class CheckDeviceInfoByDeviceNoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="CheckDeviceInfoByDeviceNoResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.CheckDeviceInfoByDeviceNoResponseBody Body;
+        
+        public CheckDeviceInfoByDeviceNoResponse() {
+        }
+        
+        public CheckDeviceInfoByDeviceNoResponse(Scada.Client.VM.ScadaDeviceService.CheckDeviceInfoByDeviceNoResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class CheckDeviceInfoByDeviceNoResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool CheckDeviceInfoByDeviceNoResult;
+        
+        public CheckDeviceInfoByDeviceNoResponseBody() {
+        }
+        
+        public CheckDeviceInfoByDeviceNoResponseBody(bool CheckDeviceInfoByDeviceNoResult) {
+            this.CheckDeviceInfoByDeviceNoResult = CheckDeviceInfoByDeviceNoResult;
         }
     }
     
@@ -1836,6 +1909,25 @@ namespace Scada.Client.VM.ScadaDeviceService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class CheckDeviceInfoByDeviceNoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public CheckDeviceInfoByDeviceNoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class ListMaintenancePeopleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -2228,6 +2320,12 @@ namespace Scada.Client.VM.ScadaDeviceService {
         
         private System.Threading.SendOrPostCallback onViewDeviceInfoCompletedDelegate;
         
+        private BeginOperationDelegate onBeginCheckDeviceInfoByDeviceNoDelegate;
+        
+        private EndOperationDelegate onEndCheckDeviceInfoByDeviceNoDelegate;
+        
+        private System.Threading.SendOrPostCallback onCheckDeviceInfoByDeviceNoCompletedDelegate;
+        
         private BeginOperationDelegate onBeginListMaintenancePeopleDelegate;
         
         private EndOperationDelegate onEndListMaintenancePeopleDelegate;
@@ -2404,6 +2502,8 @@ namespace Scada.Client.VM.ScadaDeviceService {
         public event System.EventHandler<DeleteDeviceInfoCompletedEventArgs> DeleteDeviceInfoCompleted;
         
         public event System.EventHandler<ViewDeviceInfoCompletedEventArgs> ViewDeviceInfoCompleted;
+        
+        public event System.EventHandler<CheckDeviceInfoByDeviceNoCompletedEventArgs> CheckDeviceInfoByDeviceNoCompleted;
         
         public event System.EventHandler<ListMaintenancePeopleCompletedEventArgs> ListMaintenancePeopleCompleted;
         
@@ -2906,6 +3006,66 @@ namespace Scada.Client.VM.ScadaDeviceService {
             }
             base.InvokeAsync(this.onBeginViewDeviceInfoDelegate, new object[] {
                         deviceGuid}, this.onEndViewDeviceInfoDelegate, this.onViewDeviceInfoCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.BeginCheckDeviceInfoByDeviceNo(Scada.Client.VM.ScadaDeviceService.CheckDeviceInfoByDeviceNoRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginCheckDeviceInfoByDeviceNo(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginCheckDeviceInfoByDeviceNo(string deviceNo, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.VM.ScadaDeviceService.CheckDeviceInfoByDeviceNoRequest inValue = new Scada.Client.VM.ScadaDeviceService.CheckDeviceInfoByDeviceNoRequest();
+            inValue.Body = new Scada.Client.VM.ScadaDeviceService.CheckDeviceInfoByDeviceNoRequestBody();
+            inValue.Body.deviceNo = deviceNo;
+            return ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginCheckDeviceInfoByDeviceNo(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.VM.ScadaDeviceService.CheckDeviceInfoByDeviceNoResponse Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.EndCheckDeviceInfoByDeviceNo(System.IAsyncResult result) {
+            return base.Channel.EndCheckDeviceInfoByDeviceNo(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private bool EndCheckDeviceInfoByDeviceNo(System.IAsyncResult result) {
+            Scada.Client.VM.ScadaDeviceService.CheckDeviceInfoByDeviceNoResponse retVal = ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndCheckDeviceInfoByDeviceNo(result);
+            return retVal.Body.CheckDeviceInfoByDeviceNoResult;
+        }
+        
+        private System.IAsyncResult OnBeginCheckDeviceInfoByDeviceNo(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string deviceNo = ((string)(inValues[0]));
+            return this.BeginCheckDeviceInfoByDeviceNo(deviceNo, callback, asyncState);
+        }
+        
+        private object[] OnEndCheckDeviceInfoByDeviceNo(System.IAsyncResult result) {
+            bool retVal = this.EndCheckDeviceInfoByDeviceNo(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnCheckDeviceInfoByDeviceNoCompleted(object state) {
+            if ((this.CheckDeviceInfoByDeviceNoCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.CheckDeviceInfoByDeviceNoCompleted(this, new CheckDeviceInfoByDeviceNoCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void CheckDeviceInfoByDeviceNoAsync(string deviceNo) {
+            this.CheckDeviceInfoByDeviceNoAsync(deviceNo, null);
+        }
+        
+        public void CheckDeviceInfoByDeviceNoAsync(string deviceNo, object userState) {
+            if ((this.onBeginCheckDeviceInfoByDeviceNoDelegate == null)) {
+                this.onBeginCheckDeviceInfoByDeviceNoDelegate = new BeginOperationDelegate(this.OnBeginCheckDeviceInfoByDeviceNo);
+            }
+            if ((this.onEndCheckDeviceInfoByDeviceNoDelegate == null)) {
+                this.onEndCheckDeviceInfoByDeviceNoDelegate = new EndOperationDelegate(this.OnEndCheckDeviceInfoByDeviceNo);
+            }
+            if ((this.onCheckDeviceInfoByDeviceNoCompletedDelegate == null)) {
+                this.onCheckDeviceInfoByDeviceNoCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnCheckDeviceInfoByDeviceNoCompleted);
+            }
+            base.InvokeAsync(this.onBeginCheckDeviceInfoByDeviceNoDelegate, new object[] {
+                        deviceNo}, this.onEndCheckDeviceInfoByDeviceNoDelegate, this.onCheckDeviceInfoByDeviceNoCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -4167,6 +4327,19 @@ namespace Scada.Client.VM.ScadaDeviceService {
             public Scada.Client.VM.ScadaDeviceService.ViewDeviceInfoResponse EndViewDeviceInfo(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 Scada.Client.VM.ScadaDeviceService.ViewDeviceInfoResponse _result = ((Scada.Client.VM.ScadaDeviceService.ViewDeviceInfoResponse)(base.EndInvoke("ViewDeviceInfo", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginCheckDeviceInfoByDeviceNo(Scada.Client.VM.ScadaDeviceService.CheckDeviceInfoByDeviceNoRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("CheckDeviceInfoByDeviceNo", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.VM.ScadaDeviceService.CheckDeviceInfoByDeviceNoResponse EndCheckDeviceInfoByDeviceNo(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.VM.ScadaDeviceService.CheckDeviceInfoByDeviceNoResponse _result = ((Scada.Client.VM.ScadaDeviceService.CheckDeviceInfoByDeviceNoResponse)(base.EndInvoke("CheckDeviceInfoByDeviceNo", _args, result)));
                 return _result;
             }
             

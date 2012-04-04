@@ -131,6 +131,21 @@ namespace Scada.BLL.Implement
             return string.Empty;
         }
 
+        public bool GetCountDeviceName(string deviceNo)
+        {
+            sCADADataContext = new SCADADataContext();
+            var obj = sCADADataContext.DeviceInfos.SingleOrDefault(e => e.DeviceNo == deviceNo);
+            if (obj != null)
+            {
+                Scada.Model.Entity.DeviceInfo deviceInfo = obj.ConvertTo<Scada.Model.Entity.DeviceInfo>();
+
+                if (deviceInfo.DeviceNo != null)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
     }
 }

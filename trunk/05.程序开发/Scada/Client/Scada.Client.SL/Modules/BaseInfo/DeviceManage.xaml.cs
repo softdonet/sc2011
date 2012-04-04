@@ -55,19 +55,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
             this.DataContext = deviceManageViewModel;
             deviceManageViewModel.PropertyChanged +=
                 new System.ComponentModel.PropertyChangedEventHandler(deviceManageViewModel_PropertyChanged);
-
-            //加载维护人员信息
-            //this.scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
-
-            //scadaDeviceServiceSoapClient.ListMaintenancePeopleCompleted +=
-            //    new EventHandler<ListMaintenancePeopleCompletedEventArgs>(scadaDeviceServiceSoapClient_ListMaintenancePeopleCompleted);
-            //scadaDeviceServiceSoapClient.ListMaintenancePeopleAsync();
-
-            //加载液晶屏显示
-            //LoadDisplayType();
-            //加载当前选择模式
-           // LoadCurrentModel();
-
+ 
         }
 
         void deviceManageViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -84,12 +72,6 @@ namespace Scada.Client.SL.Modules.BaseInfo
         #region 加载树型结构
 
 
-        void scadaDeviceServiceSoapClient_ListMaintenancePeopleCompleted(object sender, ListMaintenancePeopleCompletedEventArgs e)
-        {
-
-            List<MaintenancePeople> maintenancePeopleList = BinaryObjTransfer.BinaryDeserialize<List<MaintenancePeople>>(e.Result);
-            cmbMaintenancePeople.ItemsSource = maintenancePeopleList;
-        }
 
         private void treeViewList1_OnTreeSelectItemClick(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
@@ -97,7 +79,21 @@ namespace Scada.Client.SL.Modules.BaseInfo
             DeviceTreeNode node = e.NewValue as DeviceTreeNode;
             if (node != null)
             {
-
+                switch (node.NodeType)
+                {
+                    case 0:
+                    case 1:
+                        return;
+                    // break;
+                    case 2:
+                    case 3:
+                        deviceManageViewModel.CurrentNodeGuid = node.NodeKey;
+                        deviceManageViewModel.CurrentNodeLevel = node.NodeType;
+                        break;
+                    default:
+                        break;
+                }
+              
                 //node.NodeParent = e.OldValue as DeviceTreeNode;
                 this._userSelTreeNode = node;
 
@@ -265,281 +261,6 @@ namespace Scada.Client.SL.Modules.BaseInfo
         }
 
         #endregion
-
-        #region Old
-
-        #region 增加设备
-
-        private void LoadAddDeviceInfo(DeviceInfo deviceInfo)
-        {
-            scadaDeviceServiceSoapClient.AddDeviceInfoCompleted
-                             += new EventHandler<AddDeviceInfoCompletedEventArgs>
-                                            (scadaDeviceServiceSoapClient_AddDeviceInfoCompleted);
-
-            string strSerializer = BinaryObjTransfer.BinarySerialize(deviceInfo);
-            scadaDeviceServiceSoapClient.AddDeviceInfoAsync(strSerializer);
-        }
-
-        private void scadaDeviceServiceSoapClient_AddDeviceInfoCompleted(object sender, AddDeviceInfoCompletedEventArgs e)
-        {
-            bool Flag = BinaryObjTransfer.BinaryDeserialize<Boolean>(e.Result.ToString());
-        }
-
-        #endregion
-
-        #region 修改设备
-
-        private void LoadUpdateDeviceInfo(DeviceInfo deviceInfo)
-        {
-            scadaDeviceServiceSoapClient.UpdateDeviceInfoCompleted
-                            += new EventHandler<UpdateDeviceInfoCompletedEventArgs>
-                                        (scadaDeviceServiceSoapClient_UpdateDeviceInfoCompleted);
-        }
-
-        private void scadaDeviceServiceSoapClient_UpdateDeviceInfoCompleted(object sender, UpdateDeviceInfoCompletedEventArgs e)
-        {
-            string result = e.Result.ToString();
-        }
-
-        #endregion
-
-        #region 删除设备
-        #endregion
-
-        #endregion
-
-
-        #region 事件处理
-
-        private void butAdd_Click(object sender, RoutedEventArgs e)
-        {
-            DeviceInfo deviceInfo = new DeviceInfo();
-
-            #region 设备属性
-
-
-            deviceInfo.ID = Guid.NewGuid();
-            deviceInfo.DeviceNo = txtDeviceNo.Text.Trim();
-            deviceInfo.DeviceMAC = txtDeviceMac.Text.Trim();
-            deviceInfo.SIMNo = txtSIM.Text.Trim();
-            deviceInfo.HardType = txtHardType.Text.Trim();
-
-            if (!string.IsNullOrEmpty(dpProductDate.Text))
-            {
-                deviceInfo.ProductDate = DateTime.Parse(dpProductDate.Text);
-            }
-            //获取管理分区的编号
-            deviceInfo.ManageAreaID = new Guid("F5888F32-D7AB-485F-9340-4C65C6851F48");// _userSelTreeNode.NodeKey; ;
-            deviceInfo.InstallPlace = txtInstallPlace.Text.Trim();
-
-            //经度 维度 高度
-            if (!string.IsNullOrEmpty(txtLongitude.Text.Trim()))
-            {
-                deviceInfo.Longitude = Convert.ToDecimal(txtLongitude.Text.Trim());
-            }
-            if (!string.IsNullOrEmpty(txtLatitude.Text.Trim()))
-            {
-                deviceInfo.Latitude = Convert.ToDecimal(txtLatitude.Text.Trim());
-            }
-            if (!string.IsNullOrEmpty(txtHigh.Text.Trim()))
-            {
-                deviceInfo.High = Convert.ToDecimal(txtHigh.Text.Trim());
-            }
-
-            deviceInfo.Comment = txtComment.Text.Trim();
-            if (!string.IsNullOrEmpty(txtWindage.Text.Trim()))
-            {
-                deviceInfo.Windage = Convert.ToInt32(txtWindage.Text.Trim());
-            }
-            if (cmbMaintenancePeople.SelectedIndex != -1)
-            {
-                deviceInfo.MaintenancePeopleID = Guid.Parse(cmbMaintenancePeople.SelectedValue.ToString());
-            }
-            else
-            {
-                MessageBox.Show("请选择维护人员!");
-                return;
-            }
-            deviceInfo.HardwareVersion = txtHardwareVersion.Text.Trim();
-            deviceInfo.SoftWareVersion = txtSoftVersion.Text.Trim();
-
-
-            chkUrgencyBtnEnable.IsThreeState = true;
-            deviceInfo.UrgencyBtnEnable = chkUrgencyBtnEnable.IsChecked;
-
-            //主温度
-            deviceInfo.Temperature1AlarmValid = chkHighTemp1Alarm.IsChecked;
-            if (!string.IsNullOrEmpty(txtHighTemp1Alarm.Text.Trim()))
-            {
-                deviceInfo.HumidityHighAlarm = Decimal.Parse(txtHighTemp1Alarm.Text.Trim());
-            }
-            if (!string.IsNullOrEmpty(txtLowTemp1Alarm.Text.Trim()))
-            {
-                deviceInfo.Temperature1LowAlarm = Decimal.Parse(txtLowTemp1Alarm.Text.Trim());
-            }
-
-            //从温度
-            deviceInfo.Temperature2AlarmValid = chkHighTemp2Alarm.IsChecked;
-            if (!string.IsNullOrEmpty(txtHighTemp2Alarm.Text.Trim()))
-            {
-                deviceInfo.Temperature1HighAlarm = Decimal.Parse(txtHighTemp2Alarm.Text.Trim());
-            }
-            if (!string.IsNullOrEmpty(txtLowTemp2Alarm.Text.Trim()))
-            {
-                deviceInfo.Temperature2LowAlarm = Decimal.Parse(txtLowTemp2Alarm.Text.Trim());
-            }
-
-            //湿度
-            deviceInfo.HumidityAlarmValid = chkHumidityAlarm.IsChecked;
-            if (!string.IsNullOrEmpty(txtHumidityHighAlarm.Text.Trim()))
-            {
-                decimal value = Decimal.Parse(txtHumidityHighAlarm.Text.Trim());
-                if (value >= 1)
-                {
-                    MessageBox.Show("请输入大于0小于1的数!");
-                    return;
-                }
-                else
-                {
-                    deviceInfo.HumidityHighAlarm = value;
-                }
-            }
-            if (!string.IsNullOrEmpty(txtHumidityLowAlarm.Text.Trim()))
-            {
-                decimal value = Decimal.Parse(txtHumidityLowAlarm.Text.Trim());
-                if (value >= 1)
-                {
-                    MessageBox.Show("请输入大于0小于1的数!");
-                    return;
-                }
-                else
-                {
-                    deviceInfo.HumidityLowAlarm = value;
-                }
-            }
-            //信号
-
-            deviceInfo.SignalAlarmValid = chkSignalAlarm.IsChecked;
-            if (!string.IsNullOrEmpty(txtSignalHighAlarm.Text.Trim()))
-            {
-                deviceInfo.SignalHighAlarm = Int32.Parse(txtSignalHighAlarm.Text.Trim());
-            }
-            if (!string.IsNullOrEmpty(txtSignalLowAlarm.Text.Trim()))
-            {
-                deviceInfo.SignalLowAlarm = Int32.Parse(txtSignalLowAlarm.Text.Trim());
-            }
-
-            //电量
-            deviceInfo.ElectricityAlarmValid = chkElectricityAlarm.IsChecked;
-            if (!string.IsNullOrEmpty(txtElectricityHighAlarm.Text.Trim()))
-            {
-                deviceInfo.ElectricityHighAlarm = Int32.Parse(txtElectricityHighAlarm.Text.Trim());
-            }
-            if (!string.IsNullOrEmpty(txtElectricityLowAlarm.Text.Trim()))
-            {
-                deviceInfo.ElectricityLowAlarm = Int32.Parse(txtElectricityLowAlarm.Text.Trim());
-            }
-            //液晶屏显示类型
-            if (cmbDisplayType.SelectedValue != DBNull.Value)
-            {
-                deviceInfo.LCDScreenDisplayType = Convert.ToInt32(cmbDisplayType.SelectedValue);
-            }
-            //当前模式：0 实时模式， 1 整点模式 2. 优化模式
-            if (cmbCurrentModel.SelectedIndex != -1)
-            {
-                deviceInfo.CurrentModel = Int32.Parse(cmbCurrentModel.SelectedValue.ToString());
-
-            }
-            else
-            {
-                MessageBox.Show("请选择模式!");
-                return;
-            }
-
-            //实时模式参数
-            if (!string.IsNullOrEmpty(txtRealTimeParam.Text.Trim()))
-            {
-                deviceInfo.RealTimeParam = Int32.Parse(txtRealTimeParam.Text.Trim());
-            }
-
-            //整点模式参数1,2
-            if (!string.IsNullOrEmpty(txtFullTimeParam1.Text.Trim()))
-            {
-                deviceInfo.FullTimeParam1 = Int32.Parse(txtFullTimeParam1.Text.Trim());
-            }
-            if (!string.IsNullOrEmpty(txtFullTimeParam2.Text.Trim()))
-            {
-                deviceInfo.FullTimeParam2 = Int32.Parse(txtFullTimeParam2.Text.Trim());
-            }
-            //逢变则报模式参数 1,2,3
-            if (!string.IsNullOrEmpty(txtOptimizeParam1.Text.Trim()))
-            {
-                deviceInfo.OptimizeParam1 = Int32.Parse(txtOptimizeParam1.Text.Trim());
-            }
-            if (!string.IsNullOrEmpty(txtOptimizeParam2.Text.Trim()))
-            {
-                deviceInfo.OptimizeParam2 = Int32.Parse(txtOptimizeParam2.Text.Trim());
-            }
-            if (!string.IsNullOrEmpty(txtOptimizeParam3.Text.Trim()))
-            {
-                deviceInfo.OptimizeParam3 = Int32.Parse(txtOptimizeParam3.Text.Trim());
-            }
-
-            #endregion
-
-            this.IsAddUpdateType = true;
-            LoadAddDeviceInfo(deviceInfo);
-
-        }
-
-
-        private void butSave_Click(object sender, RoutedEventArgs e)
-        {
-            if (_userSelDeviceInfo != null)
-            {
-                //_userSelDeviceInfo = new DeviceInfo();
-                if (IsAddUpdateType)
-                    _userSelDeviceInfo.ID = Guid.NewGuid();
-
-                this.AddDeviceProperty(_userSelDeviceInfo);
-
-                string deviceInfo = string.Empty;
-                if (IsAddUpdateType)
-                {
-                    deviceInfo = BinaryObjTransfer.BinarySerialize<DeviceInfo>(_userSelDeviceInfo);
-                    scadaDeviceServiceSoapClient.AddDeviceInfoAsync(deviceInfo);
-                }
-                else
-                {
-                    deviceInfo = BinaryObjTransfer.BinarySerialize<DeviceInfo>(_userSelDeviceInfo);
-                    scadaDeviceServiceSoapClient.UpdateDeviceInfoAsync(deviceInfo);
-                }
-            }
-        }
-
-        private void AddDeviceProperty(DeviceInfo deviceInfo)
-        {
-            deviceInfo.DeviceMAC = this.txtDeviceMac.Text;
-            deviceInfo.SIMNo = this.txtSIM.Text;
-
-            deviceInfo.InstallPlace = this.txtInstallPlace.Text;
-            deviceInfo.Comment = this.txtComment.Text;
-
-            if (!string.IsNullOrEmpty(txtLongitude.Text))
-            {
-                deviceInfo.Longitude = decimal.Parse(this.txtLongitude.Text);
-            }
-            if (string.IsNullOrEmpty(txtHigh.Text))
-            {
-                deviceInfo.High = decimal.Parse(this.txtHigh.Text);
-            }
-
-        }
-
-        #endregion
-
-
-
 
         //验证输入
         private void LayoutRoot_BindingValidationError(object sender, ValidationErrorEventArgs e)

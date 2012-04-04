@@ -124,6 +124,7 @@ namespace DataCollecting
                     else
                     {
                         this.textBox1.Text += str + Environment.NewLine;
+                        LogHelper.WriteInformationLog(str + Environment.NewLine);
                     }
                     textBox1.SelectionStart = textBox1.TextLength;
                     textBox1.ScrollToCaret();

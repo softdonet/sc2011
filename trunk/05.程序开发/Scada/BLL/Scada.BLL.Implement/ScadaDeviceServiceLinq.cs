@@ -134,16 +134,25 @@ namespace Scada.BLL.Implement
         public bool GetCountDeviceName(string deviceNo)
         {
             sCADADataContext = new SCADADataContext();
+            //单条用SingleOrDefault，如果有多条则会报错
             var obj = sCADADataContext.DeviceInfos.SingleOrDefault(e => e.DeviceNo == deviceNo);
-            if (obj != null)
+            if (obj == null)
             {
-                Scada.Model.Entity.DeviceInfo deviceInfo = obj.ConvertTo<Scada.Model.Entity.DeviceInfo>();
-
-                if (deviceInfo.DeviceNo != null)
-                {
-                    return true;
-                }
+                return false;
             }
+            else
+            {
+                return true;
+            }
+            ////多条可以用如下方法
+            //var obj1 = sCADADataContext.DeviceInfos.Where(e => e.DeviceNo == deviceNo);
+            //obj1.Any();
+
+            ////////-------------------------
+            //if (obj != null)
+            //{
+            //    List<DeviceInfo> deviceInfo = obj.Select(e => e.ConvertTo<DeviceInfo>()).ToList();
+            //}
             return false;
         }
 

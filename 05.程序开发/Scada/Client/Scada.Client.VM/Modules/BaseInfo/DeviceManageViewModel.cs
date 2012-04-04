@@ -314,6 +314,8 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 SelectedCurrentModelItem = deviceInfoList;
 
                 SelectedMaintenancePeople = selectedMaintenancePeople;//用于设置界面上的显示
+
+               // DeviceNo = deviceInfoList.DeviceNo;
             }
         }
 
@@ -416,18 +418,18 @@ namespace Scada.Client.VM.Modules.BaseInfo
 
 
         //---------------------------------------------------------------
-        //[Required(ErrorMessage = "设备编号不能为空!")]
-        //public string DeviceNo
-        //{
-        //    get { return DeviceInfoList.DeviceNo; }
-        //    set
-        //    {
-        //        DeviceInfoList.DeviceNo = value;
-        //        this.RaisePropertyChanged("DeviceNo");
-        //        Validator.ValidateProperty(value, new ValidationContext(this, null, null) { MemberName = "DeviceNo" });
+        [Required(ErrorMessage = "设备编号不能为空!")]
+        public string DeviceNo
+        {
+            get { return DeviceInfoList.DeviceNo; }
+            set
+            {
+                DeviceInfoList.DeviceNo = value;
+                this.RaisePropertyChanged("DeviceNo");
+                Validator.ValidateProperty(value, new ValidationContext(this, null, null) { MemberName = "DeviceNo" });
 
-        //    }
-        //}
+            }
+        }
 
         #region 测试方法
 

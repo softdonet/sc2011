@@ -17,7 +17,8 @@ using Scada.Client.SL.ScadaDeviceService;
 using Scada.Model.Entity.Common;
 using Scada.Client.VM.Modules.BaseInfo;
 using System.ComponentModel.DataAnnotations;
-
+using Scada.Utility.Common.SL;
+using Scada.Model.Entity.Enums;
 
 namespace Scada.Client.SL.Modules.BaseInfo
 {
@@ -63,9 +64,9 @@ namespace Scada.Client.SL.Modules.BaseInfo
             scadaDeviceServiceSoapClient.ListMaintenancePeopleAsync();
 
             //加载液晶屏显示
-            LoadDisplayType();
+            //LoadDisplayType();
             //加载当前选择模式
-            LoadCurrentModel();
+           // LoadCurrentModel();
 
         }
 
@@ -84,31 +85,33 @@ namespace Scada.Client.SL.Modules.BaseInfo
         {
             List<DeviceInfo> deviceInfoList = new List<DeviceInfo>();
             deviceInfoList.Clear();
-            deviceInfoList.Add(new DeviceInfo() { LCDScreenDisplayType = 1, LCDScreenDisplayTypeName = "完整显示" });
-            deviceInfoList.Add(new DeviceInfo() { LCDScreenDisplayType = 2, LCDScreenDisplayTypeName = "基本显示" });
-            deviceInfoList.Add(new DeviceInfo() { LCDScreenDisplayType = 3, LCDScreenDisplayTypeName = "天气预报" });
-            deviceInfoList.Add(new DeviceInfo() { LCDScreenDisplayType = 4, LCDScreenDisplayTypeName = "不显示" });
-
-            //List<KeyValue> keyValueList = new List<KeyValue>();
-            //keyValueList.Clear();
-            //keyValueList.Add(new KeyValue() { cKey = 1, cValue = "完整显示" });
-            //keyValueList.Add(new KeyValue() { cKey = 2, cValue = "基本显示" });
-            //keyValueList.Add(new KeyValue() { cKey = 3, cValue = "天气预报" });
-            //keyValueList.Add(new KeyValue() { cKey = 4, cValue = "不显示" });
+            deviceInfoList.Add(new DeviceInfo() { LCDScreenDisplayType = 1, LCDScreenDisplayTypeName = EnumHelper.Display<DisplayType>(1) });
+            deviceInfoList.Add(new DeviceInfo() { LCDScreenDisplayType = 2, LCDScreenDisplayTypeName = EnumHelper.Display<DisplayType>(2) });
+            deviceInfoList.Add(new DeviceInfo() { LCDScreenDisplayType = 3, LCDScreenDisplayTypeName = EnumHelper.Display<DisplayType>(3) });
+            deviceInfoList.Add(new DeviceInfo() { LCDScreenDisplayType = 4, LCDScreenDisplayTypeName = EnumHelper.Display<DisplayType>(4) });
 
             cmbDisplayType.ItemsSource = deviceInfoList;
         }
 
         private void LoadCurrentModel()
         {
-            List<KeyValue> keyValueList = new List<KeyValue>();
-            keyValueList.Clear();
-            keyValueList.Add(new KeyValue() { cKey = 1, cValue = "实时模式" });
-            keyValueList.Add(new KeyValue() { cKey = 2, cValue = "整点模式" });
-            keyValueList.Add(new KeyValue() { cKey = 3, cValue = "优化模式" });
-            cmbCurrentModel.ItemsSource = keyValueList;
+            List<DeviceInfo> deviceInfoList = new List<DeviceInfo>();
+            deviceInfoList.Clear();
+            deviceInfoList.Add(new DeviceInfo() { CurrentModel = 1, CurrentModelName = EnumHelper.Display<CurrentModel>(1) });
+            deviceInfoList.Add(new DeviceInfo() { CurrentModel = 2, CurrentModelName = EnumHelper.Display<CurrentModel>(2) });
+            deviceInfoList.Add(new DeviceInfo() { CurrentModel = 3, CurrentModelName = EnumHelper.Display<CurrentModel>(3) });
+            cmbCurrentModel.ItemsSource = deviceInfoList;     
         }
-        #endregion
+        #endregion   
+
+        //private void cmbDisplayType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    //DeviceInfo mySelectItem = cmbDisplayType.SelectedItem as DeviceInfo;
+        //    cmbDisplayType.SelectedItem = deviceManageViewModel.DeviceInfoList.LCDScreenDisplayType;
+        //}
+
+
+
 
         #region 加载树型结构
 
@@ -567,6 +570,10 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
         #endregion
 
+
+
+
+        //验证输入
         private void LayoutRoot_BindingValidationError(object sender, ValidationErrorEventArgs e)
         {
             if (e.Action == ValidationErrorEventAction.Added) 
@@ -574,6 +581,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
             if (e.Action == ValidationErrorEventAction.Removed)
                 (e.OriginalSource as Control).Background = new SolidColorBrush(Colors.White);
         }
+
 
 
         #region 私有方法

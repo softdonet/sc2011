@@ -97,8 +97,10 @@
                                 <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,237,0,0" Name="txtOptimizeParam2" Text="{Binding DeviceInfoList.OptimizeParam2, Mode=TwoWay}" VerticalAlignment="Top" Width="120" />
                             <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="222,273,0,0" Name="textBlock6" Text="逢变则报参数3:" VerticalAlignment="Top" />
                                 <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="302,269,0,0" Name="txtOptimizeParam3" Text="{Binding DeviceInfoList.OptimizeParam3, Mode=TwoWay}" VerticalAlignment="Top" Width="120" />
-                                <ComboBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="303,48,0,0" Name="cmbDisplayType"  SelectedItem="{Binding DeviceInfoList.LCDScreenDisplayType, Mode= TwoWay}" DisplayMemberPath="LCDScreenDisplayTypeName" SelectedValuePath="LCDScreenDisplayType" VerticalAlignment="Top" Width="120" />
-                            <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="212,52,0,0" Name="textBlock7" Text="液晶屏显示类型:" VerticalAlignment="Top"  />
+                                <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="212,52,0,0" Name="textBlock7" Text="液晶屏显示类型:" VerticalAlignment="Top"  />
+                                <ComboBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="303,48,0,0" Name="cmbDisplayType"  ItemsSource="{Binding DeviceInfoLcdList, Mode=TwoWay}"  SelectedItem="{Binding SelectedLcdItem, Mode= TwoWay}" DisplayMemberPath="LCDScreenDisplayTypeName" SelectedValuePath="LCDScreenDisplayType" VerticalAlignment="Top" Width="120" />
+                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="213,88,0,0" Name="textBlock18" Text="当前选择模式:"  VerticalAlignment="Top" Grid.Column="2" />
+                                <ComboBox Height="23" HorizontalAlignment="Left" Margin="302,83,0,0" Name="cmbCurrentModel" ItemsSource="{Binding DeviceInfoCurrentModelList, Mode=TwoWay}"  SelectedItem="{Binding SelectedCurrentModelItem, Mode=TwoWay}" DisplayMemberPath="CurrentModelName" SelectedValuePath="CurrentModel" VerticalAlignment="Top" Width="120" Grid.Column="2" />
                                 <CheckBox Name="chkUrgencyBtnEnable" Content="是否启用紧急按钮" IsChecked="{Binding DeviceInfoList.UrgencyBtnEnable, Mode=TwoWay}" Grid.Column="2" Height="16" HorizontalAlignment="Left" Margin="215,14,0,0"  VerticalAlignment="Top" />
                                 <CheckBox Name="chkHighTemp1Alarm" Content="主温度报警设置有效" IsChecked="{Binding DeviceInfoList.Temperature1AlarmValid, Mode=TwoWay}" Grid.Column="2" Height="16" HorizontalAlignment="Left" Margin="5,18,0,0"  VerticalAlignment="Top" />
                             <TextBlock Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="0,46,0,0" Name="textBlock8" Text="主温度高报警值:" VerticalAlignment="Top" />
@@ -125,8 +127,6 @@
                                 <TextBox Height="23" HorizontalAlignment="Left" Margin="106,360,0,0" Name="txtElectricityHighAlarm" Text="{Binding DeviceInfoList.ElectricityHighAlarm}" VerticalAlignment="Top" Width="97" Grid.Column="2" />
                                 <TextBlock Height="23" HorizontalAlignment="Left" Margin="0,389,0,0" Name="textBlock17" Text="电量低报警值:" VerticalAlignment="Top" Grid.Column="2" />
                                 <TextBox Height="23" HorizontalAlignment="Left" Margin="106,387,0,0" Name="txtElectricityLowAlarm" Text="{Binding DeviceInfoList.ElectricityLowAlarm}" VerticalAlignment="Top" Width="97" Grid.Column="2" />
-                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="213,88,0,0" Name="textBlock18" Text="当前选择模式:"  VerticalAlignment="Top" Grid.Column="2" />
-                                <ComboBox Height="23" HorizontalAlignment="Left" Margin="302,83,0,0" Name="cmbCurrentModel" SelectedItem="{Binding DeviceInfoList.CurrentModel}" DisplayMemberPath="Value" SelectedValuePath="Key" VerticalAlignment="Top" Width="120" Grid.Column="2" />
                             </Grid>
                     </Border>
                 </Border>

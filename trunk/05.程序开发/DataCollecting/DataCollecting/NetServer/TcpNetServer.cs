@@ -176,6 +176,22 @@ namespace DataCollecting.NetServer
             }
         }
 
+        //系统异常事件
+        public delegate void SystenErrorHandle(Exception ex);
+        private SystenErrorHandle systenError;
+        public event SystenErrorHandle SystenErrorEvent
+        {
+            add
+            {
+                systenError += value;
+            }
+            remove
+            {
+                systenError -= value;
+            }
+        }
+
+
         //服务器socket,主侦听socket
         private Socket serverSocket;
         public TcpNetServer()
@@ -258,6 +274,11 @@ namespace DataCollecting.NetServer
                 DeviceClient deviceClient = (DeviceClient)ar.AsyncState;
                 deviceClient.ClientSocket.Close();
                 LogHelper.WriteExceptionLog(ex);
+                if (this.systenError!= null)
+                {
+                    this.systenError(ex);
+                }
+
             }
 
         }

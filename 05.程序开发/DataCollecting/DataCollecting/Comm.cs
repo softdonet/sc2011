@@ -10,4 +10,24 @@ namespace DataCollecting
         public static bool UpdateToDB = false;
         public static bool PrintCmd = true;
     }
+
+    /// <summary>
+    /// 日志项对象
+    /// </summary>
+    public class LogItem
+    {
+        /// <summary>
+        /// 时间
+        /// </summary>
+        public DateTime Time;
+        /// <summary>
+        /// 事件
+        /// </summary>
+        public string Event;
+        /// <summary>
+        /// 说明
+        /// </summary>
+        public string Memo;
+
+    }
 }

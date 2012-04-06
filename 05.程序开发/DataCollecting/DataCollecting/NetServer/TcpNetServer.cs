@@ -234,7 +234,21 @@ namespace DataCollecting.NetServer
             try
             {
                 DeviceClient deviceClient = (DeviceClient)ar.AsyncState;
-                deviceClient.ClientSocket.EndReceive(ar);
+                try
+                {
+                    deviceClient.ClientSocket.EndReceive(ar);
+                }
+                catch
+                {
+                    deviceClient.ClientSocket.Close();
+                    return;
+                }
+                //如果客户端发来一串0x00,就说明其主动关闭了连接
+                if (deviceClient.ByteData[0] == 0x00)
+                {
+                    deviceClient.ClientSocket.Close();
+                    return;
+                }
                 //数据转化
                 byte[] realData = deviceClient.GetRealByteData();
                 bool wexit = false;
@@ -269,12 +283,12 @@ namespace DataCollecting.NetServer
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 DeviceClient deviceClient = (DeviceClient)ar.AsyncState;
                 deviceClient.ClientSocket.Close();
                 LogHelper.WriteExceptionLog(ex);
-                if (this.systenError!= null)
+                if (this.systenError != null)
                 {
                     this.systenError(ex);
                 }
@@ -468,7 +482,14 @@ namespace DataCollecting.NetServer
             }
             //保持常连接
             deviceClient.ClearBuffer();
-            deviceClient.ClientSocket.BeginReceive(deviceClient.ByteData, 0, deviceClient.ByteData.Length, SocketFlags.None, new AsyncCallback(OnReceive), deviceClient);
+            try
+            {
+                deviceClient.ClientSocket.BeginReceive(deviceClient.ByteData, 0, deviceClient.ByteData.Length, SocketFlags.None, new AsyncCallback(OnReceive), deviceClient);
+            }
+            catch
+            {
+
+            }
         }
     }
 }

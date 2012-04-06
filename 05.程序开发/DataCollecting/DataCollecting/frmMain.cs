@@ -439,6 +439,40 @@ namespace DataCollecting
 
         #endregion
 
-       
+        private void 实时入库ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var obj = sender as ToolStripMenuItem;
+            if (obj.Checked)
+            {
+                obj.Checked = false;
+                Comm.UpdateToDB = false;
+                this.toolStripStatusDBMode.Text = "实时入库模式：已关闭";
+
+                Image StopImage = Image.FromFile(System.Windows.Forms.Application.StartupPath + "//STOP.ico");
+                this.toolStripStatusDBMode.Image = StopImage;
+            }
+            else
+            {
+                obj.Checked = true;
+                Comm.UpdateToDB = true;
+                Image RunImage = Image.FromFile(System.Windows.Forms.Application.StartupPath + "//RUN.ico");
+                this.toolStripStatusDBMode.Image = RunImage;
+                this.toolStripStatusDBMode.Text = "实时入库模式：已开启";
+            }
+        }
+
+        private void 查看日志ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Multiselect = false;
+            openFileDialog1.Filter = "日志文件|*.txt";
+            openFileDialog1.Title = "选择日志文件";
+            openFileDialog1.InitialDirectory = System.Windows.Forms.Application.StartupPath + "\\logs";
+            //openFileDialog1.RestoreDirectory = true;
+            openFileDialog1.FileName = DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                System.Diagnostics.Process.Start(openFileDialog1.FileName);
+            }
+        }
     }
 }

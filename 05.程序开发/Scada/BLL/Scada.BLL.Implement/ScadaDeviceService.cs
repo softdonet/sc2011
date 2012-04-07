@@ -729,7 +729,7 @@ namespace Scada.BLL.Implement
             catch (Exception ex)
             {
                 flag = false;
-               
+
             }
             return flag;
         }
@@ -1612,6 +1612,25 @@ namespace Scada.BLL.Implement
         private string ByteToString(byte[] bytes)
         {
             return System.Text.Encoding.Default.GetString(bytes);
+        }
+
+        #endregion
+
+        #region 菜单权限管理
+
+        public String GetUserList()
+        {
+            return null;
+        }
+
+        public String GetMenuTreeList()
+        {
+            return null;
+        }
+
+        public String GetUserMenuTreeList(String UserKey)
+        {
+            return null;
         }
 
         #endregion

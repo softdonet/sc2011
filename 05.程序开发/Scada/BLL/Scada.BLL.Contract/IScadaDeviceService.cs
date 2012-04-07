@@ -88,11 +88,13 @@ namespace Scada.BLL.Contract
 
         #endregion
 
-        string GetUserEventQueryInfo(Guid id, DateTime startDate, DateTime endDate);
-
         #region 用户事件查询
 
+        string GetUserEventQueryInfo(Guid id, DateTime startDate, DateTime endDate);
+
         #endregion
+
+
         #region 图表分析
 
         //1)获取树型设备(combox)
@@ -118,6 +120,16 @@ namespace Scada.BLL.Contract
         Boolean UpdateMaintenancePeople(string people);
 
         Boolean DeleteMaintenancePeople(Guid peopleKey);
+
+        #endregion
+
+        #region 菜单权限管理
+
+        String GetUserList();
+
+        String GetMenuTreeList();
+
+        String GetUserMenuTreeList(String UserKey);
 
         #endregion
 

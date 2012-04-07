@@ -12,7 +12,7 @@ using System.Windows.Documents;
 using System.Windows.Media.Animation;
 
 using Scada.Model.Entity;
-using Scada.Utility.Common.SL;
+using Scada.Utility.Common.SL.Enums;
 using Scada.Client.SL.CommClass;
 using Scada.Client.SL.ScadaDeviceService;
 

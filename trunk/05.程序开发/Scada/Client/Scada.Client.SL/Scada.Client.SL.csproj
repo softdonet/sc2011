@@ -78,6 +78,9 @@
       <HintPath>..\..\Lib\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
+    <Reference Include="Scada.Utility.Common.SL.Enums">
+      <HintPath>..\..\Utility\Scada.Utility.Common.SL.Enums\Bin\Debug\Scada.Utility.Common.SL.Enums.dll</HintPath>
+    </Reference>
     <Reference Include="SLVisifire.Charts">
       <HintPath>..\..\Lib\SLVisifire.Charts.dll</HintPath>
     </Reference>

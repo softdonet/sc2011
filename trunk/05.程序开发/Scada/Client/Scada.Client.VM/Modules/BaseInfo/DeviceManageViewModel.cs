@@ -19,7 +19,7 @@ using Microsoft.Practices.Prism.Commands;
 using Scada.Model.Entity.Enums;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
-using Scada.Utility.Common.SL;
+using Scada.Utility.Common.SL.Enums;
 
 namespace Scada.Client.VM.Modules.BaseInfo
 {

@@ -4,12 +4,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:myConvertDisplayType="clr-namespace:Scada.Utility.Common.SL;assembly=Scada.Utility.Common.SL"
+    
+    xmlns:DeviceInfoVM="clr-namespace:Scada.Client.VM.Modules.BaseInfo;assembly=Scada.Client.VM"
     mc:Ignorable="d"
     d:DesignHeight="500" d:DesignWidth="1024" xmlns:my="clr-namespace:Scada.Client.UC;assembly=Scada.Client.UC" 
              xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
              xmlns:my1="clr-namespace:Scada.Client.SL.Controls" DataContext="{Binding}">
 
     <UserControl.Resources>
+        <!--<DeviceInfoVM:DeviceManageViewModel x:Key="deviceInfoVM"/>-->
         <myConvertDisplayType:ConverNumberToDisplayType x:Key="ConverNumberToDisplayType1"/>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Background="White" BindingValidationError="LayoutRoot_BindingValidationError">
@@ -42,7 +45,7 @@
                                 </Grid.RowDefinitions>
                                 <my1:TreeViewList   x:Name="treeViewList1"  OnTreeSelectItemClick="treeViewList1_OnTreeSelectItemClick"/>
                             <sdk:Label Content="设备编号：" HorizontalAlignment="Left" Margin="14,17,0,0" VerticalAlignment="Top" Width="62" Grid.Column="1" />
-                                <TextBox Name="txtDeviceNo" Text="{Binding DeviceInfoList.DeviceNo, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" Height="23" HorizontalAlignment="Left" Margin="86,14,0,0"  VerticalAlignment="Top" Width="204" Grid.Column="1" />
+                                <TextBox Name="txtDeviceNo" DataContext="{Binding Source={StaticResource DeviceInfoList} }" Text="{Binding DeviceInfoList.DeviceNo, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" Height="23" HorizontalAlignment="Left" Margin="86,14,0,0"  VerticalAlignment="Top" Width="204" Grid.Column="1" />
                             <sdk:Label Content="设备SN号：" HorizontalAlignment="Left" Margin="14,44,0,0" VerticalAlignment="Top" Width="62" Grid.Column="1" />
                                 <TextBox  Name="txtDeviceSN" Text="{Binding DeviceInfoList.DeviceSN, Mode=TwoWay}" Height="23" HorizontalAlignment="Left" Margin="86,40,0,0" VerticalAlignment="Top" Width="204" Grid.Column="1" />
                             <sdk:Label Content="设备MAC：" Grid.Column="1"  HorizontalAlignment="Left" Margin="10,74,0,0" x:Name="label1" VerticalAlignment="Top" Width="62"  />

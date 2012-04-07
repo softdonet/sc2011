@@ -11,7 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Scada.Client.VM.Modules.Query;
 using Scada.Model.Entity;
-using Scada.Utility.Common.SL;
+using Scada.Utility.Common.SL.Enums;
 using Scada.Model.Entity.Enums;
 
 namespace Scada.Client.SL.Modules.Query

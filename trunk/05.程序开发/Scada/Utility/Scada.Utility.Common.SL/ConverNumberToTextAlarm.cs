@@ -14,6 +14,7 @@ using System.Globalization;
 using System.Windows.Data;
 using Scada.Client.VM.Modules.Alarm;
 using Microsoft.Practices.Prism.ViewModel;
+using Scada.Utility.Common.SL.Enums;
 namespace Scada.Utility.Common.SL
 {
 

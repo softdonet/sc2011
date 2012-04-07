@@ -11,6 +11,7 @@ using System.Windows.Shapes;
 using System.Windows.Data;
 using Scada.Model.Entity.Common;
 using Scada.Model.Entity.Enums;
+using Scada.Utility.Common.SL.Enums;
 
 namespace Scada.Utility.Common.SL
 {

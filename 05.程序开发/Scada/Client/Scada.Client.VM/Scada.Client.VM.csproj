@@ -59,6 +59,9 @@
     <Reference Include="Scada.Utility.Common.SL">
       <HintPath>..\..\Utility\Scada.Utility.Common.SL\Bin\Debug\Scada.Utility.Common.SL.dll</HintPath>
     </Reference>
+    <Reference Include="Scada.Utility.Common.SL.Enums">
+      <HintPath>..\..\Utility\Scada.Utility.Common.SL.Enums\Bin\Debug\Scada.Utility.Common.SL.Enums.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations, Version=2.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Json, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -77,6 +80,7 @@
     <Compile Include="CommClass\BinaryObjTransfer.cs" />
     <Compile Include="Modules\Alarm\DeviceAlarmViewModel.cs" />
     <Compile Include="Modules\Alarm\AlarmListViewModel.cs" />
+    <Compile Include="Modules\BaseInfo\DeviceInfoViewModel.cs" />
     <Compile Include="Modules\BaseInfo\DeviceManageViewModel.cs" />
     <Compile Include="Modules\BingMaps\MapIndexViewModel.cs" />
     <Compile Include="Modules\BingMaps\PushPinDeviceViewModel.cs" />

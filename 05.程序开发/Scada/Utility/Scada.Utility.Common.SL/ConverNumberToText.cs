@@ -13,6 +13,7 @@ using System.Windows.Data;
 using Scada.Model.Entity;
 using System.Globalization;
 using Scada.Model.Entity.Enums;
+using Scada.Utility.Common.SL.Enums;
 
 
 namespace Scada.Utility.Common.SL

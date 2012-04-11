@@ -11,6 +11,8 @@ using Scada.Model.Entity;
 using Scada.Utility.Common.Transfer;
 using Scada.Utility.Common.Extensions;
 using System.Linq;
+using Scada.Model.Entity.Common;
+using Scada.Utility.Common.Helper;
 
 
 namespace Scada.BLL.Implement
@@ -1294,6 +1296,7 @@ namespace Scada.BLL.Implement
         #endregion
 
         #region 用户事件查询
+
         public string GetUserEventQueryInfo(Guid id, DateTime startDate, DateTime endDate)
         {
             string result = string.Empty;
@@ -1322,6 +1325,7 @@ namespace Scada.BLL.Implement
             }
             return result;
         }
+
         #endregion
 
         #region 图表分析
@@ -1620,17 +1624,107 @@ namespace Scada.BLL.Implement
 
         public String GetUserList()
         {
-            return null;
+            List<User> users = new List<User>();
+            string sSql = " Select * from [User]";
+            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            User user = null;
+            foreach (DataRow item in ds.Rows)
+            {
+                user = new User();
+                user.UserID = new Guid(item["UserID"].ToString());
+                user.LoginID = item["LoginID"].ToString();
+                user.UserName = item["UserName"].ToString();
+                user.Password = item["Password"].ToString();
+                users.Add(user);
+            }
+            return BinaryObjTransfer.JsonSerializer<List<User>>(users);
+
         }
 
         public String GetMenuTreeList()
         {
-            return null;
+            List<MenuTree> menuTrees = new List<MenuTree>();
+            string sSql = " Select * from MenuTree";
+            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            MenuTree menuTree = null;
+            foreach (DataRow item in ds.Rows)
+            {
+                menuTree = new MenuTree();
+                menuTree.MenuId = new Guid(item["MenuId"].ToString());
+                menuTree.MeunName = item["MeunName"].ToString();
+
+                Guid? parenid = null;
+                if (item["ParentId"] != DBNull.Value)
+                    parenid = new Guid(item["ParentId"].ToString());
+                menuTree.ParentID = parenid;
+                menuTree.Remark = item["Remark"].ToString();
+                menuTrees.Add(menuTree);
+            }
+            return BinaryObjTransfer.JsonSerializer<List<MenuTree>>(menuTrees);
         }
 
         public String GetUserMenuTreeList(String UserKey)
         {
-            return null;
+            List<UserMenu> userMenus = new List<UserMenu>();
+            string sSql = " Select * from MenuTree ";
+            if (!String.IsNullOrEmpty(UserKey))
+                sSql = sSql + " Where UserId = '" + UserKey.ToUpper() + "'";
+            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            UserMenu userMenu = null;
+            foreach (DataRow item in ds.Rows)
+            {
+                userMenu = new UserMenu();
+                userMenu.Id = new Guid(item["Id"].ToString());
+                userMenu.UserId = new Guid(item["UserId"].ToString());
+                userMenu.MenuId = new Guid(item["MenuId"].ToString());
+                userMenu.Level = Convert.ToInt32(item["Level"]);
+                userMenu.Remark = item["Remark"].ToString();
+                userMenus.Add(userMenu);
+            }
+            return BinaryObjTransfer.JsonSerializer<List<UserMenu>>(userMenus);
+        }
+
+        public String LogIn(String userName, String userPwd, String userIp)
+        {
+            LoginResult result = new LoginResult();
+
+            //1)Check Lock IPList
+
+            //2) Check UserName
+            User user = new User();
+            string sSql = " Select * from [User] where LoginID='" + userName + "'";
+            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+
+            if (ds.Rows.Count == 0)
+            {
+                result.loginResultType = LoginResultType.账户无效;
+                return BinaryObjTransfer.JsonSerializer<LoginResult>(result);
+            }
+            else
+            {
+                foreach (DataRow item in ds.Rows)
+                {
+                    user.UserID = new Guid(item["UserID"].ToString());
+                    user.LoginID = item["LoginID"].ToString();
+                    user.UserName = item["UserName"].ToString();
+                    user.Password = item["Password"].ToString();
+                    result.sysUser = user;
+                }
+
+                //3) Check User Locked
+
+                //4) Check IP And User Binding
+
+                //5)Check User Password
+                String MidPassword = Md5Helper.Hash(userPwd);
+                if (MidPassword.ToUpper() == user.Password.ToUpper())
+                    result.loginResultType = LoginResultType.成功;
+                else
+                    result.loginResultType = LoginResultType.密码错误;
+
+                return BinaryObjTransfer.JsonSerializer<LoginResult>(result);
+
+            }
         }
 
         #endregion

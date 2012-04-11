@@ -1,48 +1,80 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
+using System.Collections.Generic;
+
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+
+
+using Scada.Client.SL.Controls;
 using Scada.Client.SL.Modules.BingMaps;
 using Scada.Client.SL.Modules.Query;
 using Scada.Client.SL.Modules.BaseInfo;
 using Scada.Client.SL.Modules.Device;
 using Scada.Client.SL.Modules.Alarm;
 using Scada.Client.SL.Modules.UsersEvent;
-using Scada.Client.SL.Controls;
 using Scada.Client.SL.Modules.DiagramAnalysis;
+
 
 
 namespace Scada.Client.SL
 {
+
+    /// <summary>
+    /// 主界面管理
+    /// </summary>
     public partial class MainPage : UserControl
     {
+
+        #region 构造函数
+
         public MainPage()
         {
+
             InitializeComponent();
+
+            //加载菜单
+            this.InitMenu(); 
+
+            //默认管理员全部权限
+            if (App.CurUser.LoginID == "admin") { return; }
+
+            //加载权限
+            this.InitCurrentUserMenu(); 
+           
+        }
+
+        private void InitMenu()
+        {
+
             //初始页面加载地图
             this.ViewHost.Child = MapIndex.GetInstance();
+
             //注册主导航菜单点击事件
             Header.menuMap.Checked += new RoutedEventHandler(menu_Checked);
             Header.menuSearch.Checked += new RoutedEventHandler(menu_Checked);
             Header.menuCompare.Checked += new RoutedEventHandler(menu_Checked);
             Header.menuAlertList.Checked += new RoutedEventHandler(menu_Checked);
             Header.menuUserEvent.Checked += new RoutedEventHandler(menu_Checked);
-            // Header.menuStatistics.Checked += new RoutedEventHandler(menu_Checked);
             Header.menuSysSettings.Checked += new RoutedEventHandler(menu_Checked);
             Header.menuDeviceList.Checked += new RoutedEventHandler(menu_Checked);
+
             //注册子菜单点击事件
             Header.lstbCompare.SelectionChanged += new SelectionChangedEventHandler(lstbCompare_SelectionChanged);
             Header.lstbSysSettings.SelectionChanged += new SelectionChangedEventHandler(lstbSysSettings_SelectionChanged);
             Header.lstbSearch.SelectionChanged += new SelectionChangedEventHandler(lstbSearch_SelectionChanged);
         }
-    
+
+        private void InitCurrentUserMenu()
+        {
+ 
+        }
+
+        #endregion
+
+
+        #region 主菜单选择事件
+
         /// <summary>
         /// 主菜单选择事件
         /// </summary>
@@ -61,27 +93,23 @@ namespace Scada.Client.SL
                         break;
                     //设备列表
                     case "menuDeviceList":
-                        this.ViewHost.Child =  DeviceList.GetInstance();
+                        this.ViewHost.Child = DeviceList.GetInstance();
                         break;
                     //设备告警
                     case "menuAlertList":
-                        this.ViewHost.Child =  AlarmList.GetInstance();
+                        this.ViewHost.Child = AlarmList.GetInstance();
                         break;
                     //用户事件
                     case "menuUserEvent":
                         this.ViewHost.Child = UserEvent.GetInstance();
                         break;
 
-                    ///统计分析移到对比分析的子菜单下
-
-                    //统计分析
-                    case "menuStatistics":
-                        this.ViewHost.Child = new StatisticsAnalyse();
-
-                        break;
                 }
             }
         }
+
+        #endregion
+
 
         #region 子菜单选择事件
 
@@ -98,7 +126,7 @@ namespace Scada.Client.SL
             {
                 //设备查询
                 case "childMenuDataSearch":
-                    this.ViewHost.Child = DeviceListQuery.GetInstance();;
+                    this.ViewHost.Child = DeviceListQuery.GetInstance(); ;
                     break;
                 //系统告警日志
                 case "childMenuAlertSearch":
@@ -143,7 +171,7 @@ namespace Scada.Client.SL
                 case "childMenuDevideLog":
                     this.ViewHost.Child = new DevideLog();
                     break;
-                    //数据库备份管理
+                //数据库备份管理
                 case "childMenuDatabaseBak":
                     this.ViewHost.Child = new DatabaseBackUp();
                     break;
@@ -168,17 +196,19 @@ namespace Scada.Client.SL
                     break;
                 //按设备对比
                 case "childMenuDeviceCompare":
-                    this.ViewHost.Child =  CompareByDevice.GetInstance();
+                    this.ViewHost.Child = CompareByDevice.GetInstance();
 
                     break;
                 //统计分析
                 case "childMenuStatistics":
-                   // this.ViewHost.Child =new  SCADA.UI.Modules.Statistics.StatisticsAnalyseNew();//StatisticsAnalyse.GetInstance();
+                    // this.ViewHost.Child =new  SCADA.UI.Modules.Statistics.StatisticsAnalyseNew();//StatisticsAnalyse.GetInstance();
 
                     break;
             }
         }
 
         #endregion
+
+
     }
 }

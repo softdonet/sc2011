@@ -123,6 +123,7 @@ namespace Scada.BLL.Contract
 
         #endregion
 
+
         #region 菜单权限管理
 
         String GetUserList();
@@ -131,6 +132,8 @@ namespace Scada.BLL.Contract
 
         String GetUserMenuTreeList(String UserKey);
 
+        String LogIn(String userName, String userPwd, String userIp);
+          
         #endregion
 
 

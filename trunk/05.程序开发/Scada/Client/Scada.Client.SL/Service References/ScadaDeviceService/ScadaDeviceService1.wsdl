@@ -119,6 +119,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="CheckDeviceInfoByDeviceNo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="deviceNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckDeviceInfoByDeviceNoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckDeviceInfoByDeviceNoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="ListMaintenancePeople">
         <s:complexType />
       </s:element>
@@ -240,6 +254,22 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetUserEventQueryInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="startDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserEventQueryInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserEventQueryInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetDeviceTreeList">
         <s:complexType />
       </s:element>
@@ -350,6 +380,56 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetUserList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUserListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMenuTreeList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMenuTreeListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMenuTreeListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserMenuTreeList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserMenuTreeListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserMenuTreeListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogIn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userIp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogInResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LogInResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="guid">
@@ -407,6 +487,12 @@
   <wsdl:message name="ViewDeviceInfoSoapOut">
     <wsdl:part name="parameters" element="tns:ViewDeviceInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="CheckDeviceInfoByDeviceNoSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckDeviceInfoByDeviceNo" />
+  </wsdl:message>
+  <wsdl:message name="CheckDeviceInfoByDeviceNoSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckDeviceInfoByDeviceNoResponse" />
+  </wsdl:message>
   <wsdl:message name="ListMaintenancePeopleSoapIn">
     <wsdl:part name="parameters" element="tns:ListMaintenancePeople" />
   </wsdl:message>
@@ -461,6 +547,12 @@
   <wsdl:message name="GetAlarmQueryInfoSoapOut">
     <wsdl:part name="parameters" element="tns:GetAlarmQueryInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="GetUserEventQueryInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserEventQueryInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetUserEventQueryInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserEventQueryInfoResponse" />
+  </wsdl:message>
   <wsdl:message name="GetDeviceTreeListSoapIn">
     <wsdl:part name="parameters" element="tns:GetDeviceTreeList" />
   </wsdl:message>
@@ -509,6 +601,30 @@
   <wsdl:message name="DeleteMaintenancePeopleSoapOut">
     <wsdl:part name="parameters" element="tns:DeleteMaintenancePeopleResponse" />
   </wsdl:message>
+  <wsdl:message name="GetUserListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserList" />
+  </wsdl:message>
+  <wsdl:message name="GetUserListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMenuTreeListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMenuTreeList" />
+  </wsdl:message>
+  <wsdl:message name="GetMenuTreeListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMenuTreeListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserMenuTreeListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserMenuTreeList" />
+  </wsdl:message>
+  <wsdl:message name="GetUserMenuTreeListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserMenuTreeListResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogInSoapIn">
+    <wsdl:part name="parameters" element="tns:LogIn" />
+  </wsdl:message>
+  <wsdl:message name="LogInSoapOut">
+    <wsdl:part name="parameters" element="tns:LogInResponse" />
+  </wsdl:message>
   <wsdl:portType name="ScadaDeviceServiceSoap">
     <wsdl:operation name="Add">
       <wsdl:input message="tns:AddSoapIn" />
@@ -541,6 +657,10 @@
     <wsdl:operation name="ViewDeviceInfo">
       <wsdl:input message="tns:ViewDeviceInfoSoapIn" />
       <wsdl:output message="tns:ViewDeviceInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckDeviceInfoByDeviceNo">
+      <wsdl:input message="tns:CheckDeviceInfoByDeviceNoSoapIn" />
+      <wsdl:output message="tns:CheckDeviceInfoByDeviceNoSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="ListMaintenancePeople">
       <wsdl:input message="tns:ListMaintenancePeopleSoapIn" />
@@ -578,6 +698,10 @@
       <wsdl:input message="tns:GetAlarmQueryInfoSoapIn" />
       <wsdl:output message="tns:GetAlarmQueryInfoSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetUserEventQueryInfo">
+      <wsdl:input message="tns:GetUserEventQueryInfoSoapIn" />
+      <wsdl:output message="tns:GetUserEventQueryInfoSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetDeviceTreeList">
       <wsdl:input message="tns:GetDeviceTreeListSoapIn" />
       <wsdl:output message="tns:GetDeviceTreeListSoapOut" />
@@ -609,6 +733,22 @@
     <wsdl:operation name="DeleteMaintenancePeople">
       <wsdl:input message="tns:DeleteMaintenancePeopleSoapIn" />
       <wsdl:output message="tns:DeleteMaintenancePeopleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserList">
+      <wsdl:input message="tns:GetUserListSoapIn" />
+      <wsdl:output message="tns:GetUserListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMenuTreeList">
+      <wsdl:input message="tns:GetMenuTreeListSoapIn" />
+      <wsdl:output message="tns:GetMenuTreeListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserMenuTreeList">
+      <wsdl:input message="tns:GetUserMenuTreeListSoapIn" />
+      <wsdl:output message="tns:GetUserMenuTreeListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogIn">
+      <wsdl:input message="tns:LogInSoapIn" />
+      <wsdl:output message="tns:LogInSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ScadaDeviceServiceSoap" type="tns:ScadaDeviceServiceSoap">
@@ -678,6 +818,15 @@
     </wsdl:operation>
     <wsdl:operation name="ViewDeviceInfo">
       <soap:operation soapAction="http://tempuri.org/ViewDeviceInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDeviceInfoByDeviceNo">
+      <soap:operation soapAction="http://tempuri.org/CheckDeviceInfoByDeviceNo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -766,6 +915,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetUserEventQueryInfo">
+      <soap:operation soapAction="http://tempuri.org/GetUserEventQueryInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetDeviceTreeList">
       <soap:operation soapAction="http://tempuri.org/GetDeviceTreeList" style="document" />
       <wsdl:input>
@@ -831,6 +989,42 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteMaintenancePeople">
       <soap:operation soapAction="http://tempuri.org/DeleteMaintenancePeople" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserList">
+      <soap:operation soapAction="http://tempuri.org/GetUserList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMenuTreeList">
+      <soap:operation soapAction="http://tempuri.org/GetMenuTreeList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserMenuTreeList">
+      <soap:operation soapAction="http://tempuri.org/GetUserMenuTreeList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogIn">
+      <soap:operation soapAction="http://tempuri.org/LogIn" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -906,6 +1100,15 @@
     </wsdl:operation>
     <wsdl:operation name="ViewDeviceInfo">
       <soap12:operation soapAction="http://tempuri.org/ViewDeviceInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDeviceInfoByDeviceNo">
+      <soap12:operation soapAction="http://tempuri.org/CheckDeviceInfoByDeviceNo" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -994,6 +1197,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetUserEventQueryInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetUserEventQueryInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetDeviceTreeList">
       <soap12:operation soapAction="http://tempuri.org/GetDeviceTreeList" style="document" />
       <wsdl:input>
@@ -1059,6 +1271,42 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteMaintenancePeople">
       <soap12:operation soapAction="http://tempuri.org/DeleteMaintenancePeople" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserList">
+      <soap12:operation soapAction="http://tempuri.org/GetUserList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMenuTreeList">
+      <soap12:operation soapAction="http://tempuri.org/GetMenuTreeList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserMenuTreeList">
+      <soap12:operation soapAction="http://tempuri.org/GetUserMenuTreeList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogIn">
+      <soap12:operation soapAction="http://tempuri.org/LogIn" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -1,26 +1,72 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
+using System.Collections.Generic;
+
+
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+
+
+using Scada.Model.Entity;
+
+
 
 namespace Scada.Client.SL.Controls
 {
+
+
+    //主界面共通部分
     public partial class Header : UserControl
     {
+
+        #region 变量声明
+
+        private List<MenuTree> _menuTree;
+        private List<UserMenu> _userMenu;
+
+        #endregion
+
+        #region 构造函数
+
         public Header()
         {
             InitializeComponent();
+
             Application.Current.Host.Content.FullScreenChanged += new EventHandler(Content_FullScreenChanged);
+
         }
 
-        void Content_FullScreenChanged(object sender, EventArgs e)
+
+        #endregion
+
+        #region 开放方法
+
+        public void CurrentUserAuthorization(List<MenuTree> menuTree, List<UserMenu> userMenu)
+        {
+            this._menuTree = menuTree;
+            this._userMenu = userMenu;
+
+        }
+
+        #endregion
+
+        #region 私有方法
+
+        private void UnCheckAll()
+        {
+
+        }
+
+        private void CheckUser()
+        {
+
+        }
+
+        #endregion
+
+        #region 事件处理
+
+        private void Content_FullScreenChanged(object sender, EventArgs e)
         {
             if (Application.Current.Host.Content.IsFullScreen)
             {
@@ -49,5 +95,8 @@ namespace Scada.Client.SL.Controls
                 ToolTipService.SetToolTip(btnFull, "点击退出全屏");
             }
         }
+
+        #endregion
+
     }
 }

@@ -14,9 +14,11 @@ using System.Windows.Browser;
 using System.Windows.Media.Animation;
 
 
+using Scada.Model.Entity;
 using Scada.Client.SL.Controls;
 using Scada.Client.SL.CommClass;
-using Scada.Model.Entity;
+using Scada.Client.SL.ScadaDeviceService;
+using Scada.Model.Entity.Common;
 
 
 
@@ -32,6 +34,8 @@ namespace Scada.Client.SL
 
         #region 变量声明
 
+        private ScadaDeviceServiceSoapClient _scadaDeviceServiceSoapClient;
+
         private Login login;
 
         #endregion
@@ -41,6 +45,10 @@ namespace Scada.Client.SL
         public LoginPage()
         {
             InitializeComponent();
+            this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
+
+            this._scadaDeviceServiceSoapClient.LogInCompleted += new EventHandler<LogInCompletedEventArgs>(scadaDeviceServiceSoapClient_LogInCompleted);
+
             login = new Login();
             this.MasterContainer.Child = login;
             login.myKeyDownEvent += new RoutedEventHandler(login_myKeyDowmEvent);
@@ -50,17 +58,38 @@ namespace Scada.Client.SL
 
         #region 事件处理
 
-        private void login_myKeyDowmEvent(object sender, RoutedEventArgs e)
-        {  
-            //测试用户 admin
-            if (login.txbName.Text == "admin")
+
+        private void scadaDeviceServiceSoapClient_LogInCompleted(object sender, LogInCompletedEventArgs e)
+        {
+            if (e.Error == null)
             {
-                User u = new User();
-                u.UserName = "admin";
-                App.CurUser = u;
-                this.MasterContainer.Child = new MainPage();
+                string msgInfo = e.Result;
+                LoginResult loginResult = BinaryObjTransfer.BinaryDeserialize<LoginResult>(msgInfo);
+
+                if (loginResult.loginResultType == LoginResultType.成功)
+                {
+                    App.CurUser = loginResult.sysUser;
+                    this.MasterContainer.Child = new MainPage();
+                }
+                else if (loginResult.loginResultType == LoginResultType.密码错误)
+                {
+                    ScadaMessageBox.ShowWarnMessage("密码错误！", "警告信息");
+                    login.txtPassWord.Password = string.Empty;
+                    login.txtPassWord.Focus();
+                }
+                else if (loginResult.loginResultType == LoginResultType.账户无效)
+                {
+                    ScadaMessageBox.ShowWarnMessage("系统无此账户！", "警告信息");
+                    login.txbName.Text = string.Empty;
+                    login.txtPassWord.Password = string.Empty;
+                }
             }
-            return;
+            else
+                ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");
+        }
+
+        private void login_myKeyDowmEvent(object sender, RoutedEventArgs e)
+        {
 
             //1)Check UserName
             if (string.IsNullOrEmpty(login.txbName.Text))
@@ -78,17 +107,10 @@ namespace Scada.Client.SL
                 return;
             }
 
-            if (login.txbName.Text == "admin" && login.txtPassWord.Password == "dufanrongfrank")
-            {
-                this.MasterContainer.Child = new MainPage();
-            }
-            else
-            {
-                MessageBox.Show("用户名或密码错误!，请重新输入");
-                login.txbName.Text = string.Empty;
-                login.txtPassWord.Password = string.Empty;
-                return;
-            }
+            this._scadaDeviceServiceSoapClient.LogInAsync(login.txbName.Text,
+                                                            login.txtPassWord.Password,
+                                                                "127.0.0.1");
+
         }
 
         #endregion

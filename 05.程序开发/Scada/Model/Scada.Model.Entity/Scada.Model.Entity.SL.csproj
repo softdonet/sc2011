@@ -61,6 +61,7 @@
     <Compile Include="Common\DeviceTreeNode.cs" />
     <Compile Include="Common\DisplayType.cs" />
     <Compile Include="Common\KeyValue.cs" />
+    <Compile Include="Common\LoginResult.cs" />
     <Compile Include="Common\Weather.cs" />
     <Compile Include="DBClass\DeviceAlarm.cs" />
     <Compile Include="DBClass\DeviceInfo.cs" />

@@ -139,6 +139,8 @@ namespace Scada.Client.VM.Modules.BaseInfo
         {
             if (DeviceInfoList != null)
             {
+                if (!ValidationProprety()) return;
+
                 string deviceNo = DeviceInfoList.DeviceNo;
                 this.scadaDeviceServiceSoapClient.CheckDeviceInfoByDeviceNoAsync(deviceNo);
                 //--------------------
@@ -175,6 +177,8 @@ namespace Scada.Client.VM.Modules.BaseInfo
         private void UpdateDeviceInfo()
         {
             string deviceInfo = BinaryObjTransfer.BinarySerialize(DeviceInfoList);
+            if (!ValidationProprety()) return;
+
             scadaDeviceServiceSoapClient.UpdateDeviceInfoAsync(deviceInfo);
         }
 
@@ -503,6 +507,36 @@ namespace Scada.Client.VM.Modules.BaseInfo
             }
         }
 
+        /// <summary>
+        /// 验证对象中属性不能为空
+        /// </summary>
+        private bool ValidationProprety()
+        {
+            bool ValidationFlag=true;
+            if (string.IsNullOrEmpty(DeviceInfoList.DeviceNo))
+            {
+                MessageBox.Show("设备编号不能为空!");
+                ValidationFlag = false;
+            }
+            decimal result;
+            if (!decimal.TryParse( DeviceInfoList.Longitude.ToString(),out result))
+            {
+                MessageBox.Show("经度，请填写正确的格式!");
+                ValidationFlag = false;
+            }
+            if (!decimal.TryParse(DeviceInfoList.Latitude.ToString(),out result))
+            {
+                MessageBox.Show("维度，请填写正确的格式!");
+                ValidationFlag = false;
+            }
+            Guid gValue;
+            if (!Guid.TryParse(DeviceInfoList.MaintenancePeopleID.ToString(),out gValue))
+            {
+                MessageBox.Show("请选择维护人员!");
+                ValidationFlag = false;
+            }
+            return ValidationFlag;
+        }
         #region 测试方法
 
         //public DeviceInfo DeviceInfoSingleChanged { get; set; }

@@ -274,9 +274,12 @@ namespace Scada.Client.VM.Modules.BaseInfo
         {
             get
             {
-                if (DeviceInfoList!=null)
+                if (DeviceInfoList != null)
                 {
-                    selectedMaintenancePeople = MaintenancePeopleList.Where(e => e.ID == DeviceInfoList.MaintenancePeopleID).SingleOrDefault();
+                    if (MaintenancePeopleList != null)
+                    {
+                        selectedMaintenancePeople = MaintenancePeopleList.Where(e => e.ID == DeviceInfoList.MaintenancePeopleID).SingleOrDefault();
+                    }
                 }
                 return selectedMaintenancePeople;
             }
@@ -316,6 +319,11 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 SelectedMaintenancePeople = selectedMaintenancePeople;//用于设置界面上的显示
 
                // DeviceNo = deviceInfoList.DeviceNo;
+
+                this.RaisePropertyChanged("DeviceNo");
+                this.RaisePropertyChanged("Longitude");
+                this.RaisePropertyChanged("Latitude");
+                this.RaisePropertyChanged("MaintenancePeopleID");
             }
         }
 
@@ -421,13 +429,77 @@ namespace Scada.Client.VM.Modules.BaseInfo
         [Required(ErrorMessage = "设备编号不能为空!")]
         public string DeviceNo
         {
-            get { return DeviceInfoList.DeviceNo; }
+            get {
+                if (DeviceInfoList==null)
+                {
+                    DeviceInfoList = new DeviceInfo();
+                }
+                return DeviceInfoList.DeviceNo; 
+            }
             set
             {
                 DeviceInfoList.DeviceNo = value;
                 this.RaisePropertyChanged("DeviceNo");
                 Validator.ValidateProperty(value, new ValidationContext(this, null, null) { MemberName = "DeviceNo" });
 
+            }
+        }
+
+        [Required(ErrorMessage = "经度不能为空!")]
+        public decimal Longitude
+        {
+            get
+            {
+                if (DeviceInfoList==null)
+                {
+                    DeviceInfoList = new DeviceInfo();
+                }
+                return DeviceInfoList.Longitude;
+            }
+
+            set 
+            {
+                DeviceInfoList.Longitude = value;
+                this.RaisePropertyChanged("Longitude");
+                Validator.ValidateProperty(value, new ValidationContext(this, null, null) { MemberName = "Longitude" });
+            }
+        }
+
+        [Required(ErrorMessage = "维度不能为空!")]
+        public decimal Latitude 
+        {
+            get
+            {
+                if (DeviceInfoList == null)
+                {
+                    DeviceInfoList = new DeviceInfo();
+                }
+                return DeviceInfoList.Latitude;
+            }
+            set
+            {
+                DeviceInfoList.Latitude = value;
+                this.RaisePropertyChanged("Latitude");
+                Validator.ValidateProperty(value, new ValidationContext(this, null, null) { MemberName = "Latitude" });
+            }
+        }
+
+        [Required(ErrorMessage = "请选择维修人员!")]
+        public Guid MaintenancePeopleID
+        {
+            get
+            {
+                if (DeviceInfoList == null)
+                {
+                    DeviceInfoList = new DeviceInfo();
+                }
+                return DeviceInfoList.MaintenancePeopleID;
+            }
+            set
+            {
+                DeviceInfoList.MaintenancePeopleID = value;
+                this.RaisePropertyChanged("MaintenancePeopleID");
+                Validator.ValidateProperty(value, new ValidationContext(this, null, null) { MemberName = "MaintenancePeopleID" });
             }
         }
 

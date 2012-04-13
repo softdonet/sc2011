@@ -12,7 +12,7 @@
              xmlns:my1="clr-namespace:Scada.Client.SL.Controls" DataContext="{Binding}">
 
     <UserControl.Resources>
-        <!--<DeviceInfoVM:DeviceManageViewModel x:Key="deviceInfoVM"/>-->
+        <!--<DeviceInfoVM:DeviceManageViewModel x:Key="AAA"/>-->
         <myConvertDisplayType:ConverNumberToDisplayType x:Key="ConverNumberToDisplayType1"/>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Background="White" BindingValidationError="LayoutRoot_BindingValidationError">
@@ -45,7 +45,7 @@
                                 </Grid.RowDefinitions>
                                 <my1:TreeViewList   x:Name="treeViewList1"  OnTreeSelectItemClick="treeViewList1_OnTreeSelectItemClick"/>
                             <sdk:Label Content="设备编号：" HorizontalAlignment="Left" Margin="14,17,0,0" VerticalAlignment="Top" Width="62" Grid.Column="1" />
-                                <TextBox Name="txtDeviceNo" DataContext="{Binding Source={StaticResource DeviceInfoList} }" Text="{Binding DeviceInfoList.DeviceNo, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" Height="23" HorizontalAlignment="Left" Margin="86,14,0,0"  VerticalAlignment="Top" Width="204" Grid.Column="1" />
+                                <TextBox Name="txtDeviceNo"  Text="{Binding Path=DeviceNo, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" Height="23" HorizontalAlignment="Left" Margin="86,14,0,0"  VerticalAlignment="Top" Width="204" Grid.Column="1" />
                             <sdk:Label Content="设备SN号：" HorizontalAlignment="Left" Margin="14,44,0,0" VerticalAlignment="Top" Width="62" Grid.Column="1" />
                                 <TextBox  Name="txtDeviceSN" Text="{Binding DeviceInfoList.DeviceSN, Mode=TwoWay}" Height="23" HorizontalAlignment="Left" Margin="86,40,0,0" VerticalAlignment="Top" Width="204" Grid.Column="1" />
                             <sdk:Label Content="设备MAC：" Grid.Column="1"  HorizontalAlignment="Left" Margin="10,74,0,0" x:Name="label1" VerticalAlignment="Top" Width="62"  />
@@ -63,10 +63,10 @@
                             <sdk:Label Content="安装位置：" Grid.Column="1"  HorizontalAlignment="Left" Margin="10,204,0,0" x:Name="label4" VerticalAlignment="Top" Width="62"  />
                                 <TextBox x:Name="txtInstallPlace" Text="{Binding DeviceInfoList.InstallPlace, Mode=TwoWay}" Height="23" HorizontalAlignment="Left" Margin="86,202,0,0"  VerticalAlignment="Top" Width="204" Grid.Column="1" />
                                 <sdk:Label Content="经      度：" Grid.Column="1"  HorizontalAlignment="Left" Margin="11,234,0,0" VerticalAlignment="Top" Width="62"  />
-                                <TextBox x:Name="txtLongitude" Text="{Binding DeviceInfoList.Longitude, Mode=TwoWay}" Height="23" HorizontalAlignment="Right" Margin="0,231,22,0" VerticalAlignment="Top" Width="205" Grid.Column="1" />
+                                <TextBox x:Name="txtLongitude" Text="{Binding Longitude, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" Height="23" HorizontalAlignment="Right" Margin="0,231,22,0" VerticalAlignment="Top" Width="205" Grid.Column="1" />
 
                                 <sdk:Label Content="维      度：" Grid.Column="1"  HorizontalAlignment="Left" Margin="11,262,0,0" VerticalAlignment="Top" Width="62"  />
-                                <TextBox x:Name="txtLatitude" Text="{Binding DeviceInfoList.Latitude, Mode=TwoWay}" Height="23" HorizontalAlignment="Left" Margin="86,258,0,0"  VerticalAlignment="Top" Width="205" Grid.Column="1" />
+                                <TextBox x:Name="txtLatitude" Text="{Binding Latitude, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}" Height="23" HorizontalAlignment="Left" Margin="86,258,0,0"  VerticalAlignment="Top" Width="205" Grid.Column="1" />
 
                                 <sdk:Label Content="高      度：" Grid.Column="1"  HorizontalAlignment="Left" Margin="9,291,0,0" VerticalAlignment="Top" Width="62"  />
                                 <TextBox  x:Name="txtHigh" Text="{Binding DeviceInfoList.High, Mode=TwoWay}" Height="23" HorizontalAlignment="Left" Margin="86,286,0,0" VerticalAlignment="Top" Width="205" Grid.Column="1" />
@@ -77,7 +77,7 @@
                                 <sdk:Label Content="时间偏差：" Grid.Column="1"  HorizontalAlignment="Left" Margin="8,344,0,0" VerticalAlignment="Top" Width="62"  />
                                 <TextBox x:Name="txtWindage" Text="{Binding DeviceInfoList.Windage, Mode=TwoWay}" Height="23" HorizontalAlignment="Left" Margin="85,341,0,0"  VerticalAlignment="Top" Width="205" Grid.Column="1" />
                                 <sdk:Label Content="维护人员：" HorizontalAlignment="Left" Margin="224,304,0,0" VerticalAlignment="Top" Width="62" Grid.Column="2" />
-                                <ComboBox Name="cmbMaintenancePeople" ItemsSource="{Binding MaintenancePeopleList,Mode=TwoWay}"  SelectedItem="{Binding SelectedMaintenancePeople, Mode=TwoWay}" DisplayMemberPath="Name" SelectedValuePath="ID" Height="23" HorizontalAlignment="Left" Margin="303,301,0,0"  VerticalAlignment="Top" Width="120" Grid.Column="2" />
+                                <ComboBox Name="cmbMaintenancePeople" ItemsSource="{Binding MaintenancePeopleList,Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True}"  SelectedItem="{Binding SelectedMaintenancePeople, Mode=TwoWay}" DisplayMemberPath="Name" SelectedValuePath="ID" Height="23" HorizontalAlignment="Left" Margin="303,301,0,0"  VerticalAlignment="Top" Width="120" Grid.Column="2" />
                                 <sdk:Label Content="硬件版本：" Height="18" x:Name="label33" Width="50" Margin="8,380,255,22" Grid.Column="1" />
                                 <TextBox  x:Name="txtHardwareVersion" Text="{Binding DeviceInfoList.HardwareVersion, Mode=TwoWay}" Height="23" Width="48" Margin="85,377,180,20" Grid.Column="1" />
                                 <sdk:Label Content="软件版本：" Height="18"  Width="50" Margin="175,381,88,21" Grid.Column="1" />

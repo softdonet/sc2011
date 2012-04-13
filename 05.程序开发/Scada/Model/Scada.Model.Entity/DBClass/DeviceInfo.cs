@@ -26,9 +26,9 @@ namespace Scada.Model.Entity
         //安装地点
         public string InstallPlace { get; set; }
         //经度
-        public decimal? Longitude { get; set; }
+        public decimal Longitude { get; set; }
         //维度
-        public decimal? Latitude { get; set; }
+        public decimal Latitude { get; set; }
         public decimal? High { get; set; }
         public string Comment { get; set; }
         //偏差

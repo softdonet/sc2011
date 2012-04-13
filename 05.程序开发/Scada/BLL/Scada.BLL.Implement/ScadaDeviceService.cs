@@ -529,192 +529,192 @@ namespace Scada.BLL.Implement
             //-------------------------------
             #region Old
 
-            //string result = string.Empty;
-            string sSql = " select * from DeviceInfo where id ='" + deviceGuid + "'";
-            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
-            if (ds == null || ds.Rows.Count == 0) { return result; }
-            DeviceInfo deviceInfo = new DeviceInfo();
-            foreach (DataRow item in ds.Rows)
-            {
+            ////string result = string.Empty;
+            //string sSql = " select * from DeviceInfo where id ='" + deviceGuid + "'";
+            //DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            //if (ds == null || ds.Rows.Count == 0) { return result; }
+            //DeviceInfo deviceInfo = new DeviceInfo();
+            //foreach (DataRow item in ds.Rows)
+            //{
 
-                //标识
-                deviceInfo.ID = new Guid(item["id"].ToString());
-                //设备编号
-                deviceInfo.DeviceNo = item["DeviceNo"].ToString();
-                //设备MAC
-                deviceInfo.DeviceMAC = item["devicemac"].ToString();
-                //SIM卡号
-                deviceInfo.SIMNo = item["simno"].ToString();
-                //硬件类型
-                deviceInfo.HardType = item["HardType"].ToString();
-                //生产日期
-                if (item["ProductDate"] != DBNull.Value)
-                {
-                    deviceInfo.ProductDate = Convert.ToDateTime(item["ProductDate"].ToString());
-                }
+            //    //标识
+            //    deviceInfo.ID = new Guid(item["id"].ToString());
+            //    //设备编号
+            //    deviceInfo.DeviceNo = item["DeviceNo"].ToString();
+            //    //设备MAC
+            //    deviceInfo.DeviceMAC = item["devicemac"].ToString();
+            //    //SIM卡号
+            //    deviceInfo.SIMNo = item["simno"].ToString();
+            //    //硬件类型
+            //    deviceInfo.HardType = item["HardType"].ToString();
+            //    //生产日期
+            //    if (item["ProductDate"] != DBNull.Value)
+            //    {
+            //        deviceInfo.ProductDate = Convert.ToDateTime(item["ProductDate"].ToString());
+            //    }
 
-                //管理分区
-                deviceInfo.ManageAreaID = new Guid(item["manageareaid"].ToString());
-                //安装位置
-                deviceInfo.InstallPlace = item["installplace"].ToString();
-                //备注
-                deviceInfo.Comment = item["comment"].ToString();
-                //接入点
-                //deviceInfo.ConnectPoint = item["connectpoint"].ToString();
-                //经度
-                decimal? decValue = null;
-                if (item["longitude"] != DBNull.Value)
-                    decValue = Convert.ToDecimal(item["longitude"]);
-                deviceInfo.Longitude = decValue;
-                //纬度
-                decValue = null;
-                if (item["latitude"] != DBNull.Value)
-                    decValue = Convert.ToDecimal(item["latitude"]);
-                deviceInfo.Latitude = decValue;
-                //高度
-                decValue = null;
-                if (item["high"] != DBNull.Value)
-                    decValue = Convert.ToDecimal(item["high"]);
-                deviceInfo.High = decValue;
+            //    //管理分区
+            //    deviceInfo.ManageAreaID = new Guid(item["manageareaid"].ToString());
+            //    //安装位置
+            //    deviceInfo.InstallPlace = item["installplace"].ToString();
+            //    //备注
+            //    deviceInfo.Comment = item["comment"].ToString();
+            //    //接入点
+            //    //deviceInfo.ConnectPoint = item["connectpoint"].ToString();
+            //    //经度
+            //    decimal decValue = null;
+            //    if (item["longitude"] != DBNull.Value)
+            //        decValue = Convert.ToDecimal(item["longitude"]);
+            //    deviceInfo.Longitude = decValue;
+            //    //纬度
+            //    decValue = null;
+            //    if (item["latitude"] != DBNull.Value)
+            //        decValue = Convert.ToDecimal(item["latitude"]);
+            //    deviceInfo.Latitude = decValue;
+            //    //高度
+            //    decValue = null;
+            //    if (item["high"] != DBNull.Value)
+            //        decValue = Convert.ToDecimal(item["high"]);
+            //    deviceInfo.High = decValue;
 
-                deviceInfo.Comment = item["Comment"].ToString();
-                //偏差
-                Int32? intValue = null;
-                if (item["windage"] != DBNull.Value)
-                    decValue = Convert.ToDecimal(item["windage"]);
-                deviceInfo.Windage = intValue;
+            //    deviceInfo.Comment = item["Comment"].ToString();
+            //    //偏差
+            //    Int32? intValue = null;
+            //    if (item["windage"] != DBNull.Value)
+            //        decValue = Convert.ToDecimal(item["windage"]);
+            //    deviceInfo.Windage = intValue;
 
-                //硬件版本
-                deviceInfo.HardwareVersion = item["HardwareVersion"].ToString();
-                deviceInfo.SoftWareVersion = item["SoftWareVersion"].ToString();
-                if (item["UrgencyBtnEnable"] is bool)
-                {
-                    deviceInfo.UrgencyBtnEnable = (bool)item["UrgencyBtnEnable"];
+            //    //硬件版本
+            //    deviceInfo.HardwareVersion = item["HardwareVersion"].ToString();
+            //    deviceInfo.SoftWareVersion = item["SoftWareVersion"].ToString();
+            //    if (item["UrgencyBtnEnable"] is bool)
+            //    {
+            //        deviceInfo.UrgencyBtnEnable = (bool)item["UrgencyBtnEnable"];
 
-                }
-                //是否启用紧急按钮
-                if (item["UrgencyBtnEnable"] is bool)
-                {
-                    deviceInfo.UrgencyBtnEnable = Convert.ToBoolean(item["UrgencyBtnEnable"]);
-                }
+            //    }
+            //    //是否启用紧急按钮
+            //    if (item["UrgencyBtnEnable"] is bool)
+            //    {
+            //        deviceInfo.UrgencyBtnEnable = Convert.ToBoolean(item["UrgencyBtnEnable"]);
+            //    }
 
-                ////////////////////////报警设置////////////////////////////
-                //主温度报警设置有效
-                if (item["Temperature1AlarmValid"] is Boolean)
-                {
-                    deviceInfo.Temperature1AlarmValid = (bool)item["Temperature1AlarmValid"];
-                }
-                if (item["Temperature1HighAlarm"] != DBNull.Value)
-                {
-                    deviceInfo.Temperature1HighAlarm = Convert.ToDecimal(item["Temperature1HighAlarm"]);
-                }
-                if (item["Temperature1LowAlarm"] is bool)
-                {
-                    deviceInfo.Temperature1LowAlarm = Convert.ToDecimal(item["Temperature1LowAlarm"]);
+            //    ////////////////////////报警设置////////////////////////////
+            //    //主温度报警设置有效
+            //    if (item["Temperature1AlarmValid"] is Boolean)
+            //    {
+            //        deviceInfo.Temperature1AlarmValid = (bool)item["Temperature1AlarmValid"];
+            //    }
+            //    if (item["Temperature1HighAlarm"] != DBNull.Value)
+            //    {
+            //        deviceInfo.Temperature1HighAlarm = Convert.ToDecimal(item["Temperature1HighAlarm"]);
+            //    }
+            //    if (item["Temperature1LowAlarm"] is bool)
+            //    {
+            //        deviceInfo.Temperature1LowAlarm = Convert.ToDecimal(item["Temperature1LowAlarm"]);
 
-                }
-                //从温度报警设置有效
-                if (item["Temperature2AlarmValid"] is bool)
-                {
-                    deviceInfo.Temperature2AlarmValid = Convert.ToBoolean(item["Temperature2AlarmValid"]);
-                }
-                if (item["Temperature2HighAlarm"] != DBNull.Value)
-                {
-                    deviceInfo.Temperature2HighAlarm = Convert.ToDecimal(item["Temperature2HighAlarm"]);
-                }
-                if (item["Temperature2LowAlarm"] != DBNull.Value)
-                {
-                    deviceInfo.Temperature2LowAlarm = Convert.ToDecimal(item["Temperature2LowAlarm"]);
-                }
+            //    }
+            //    //从温度报警设置有效
+            //    if (item["Temperature2AlarmValid"] is bool)
+            //    {
+            //        deviceInfo.Temperature2AlarmValid = Convert.ToBoolean(item["Temperature2AlarmValid"]);
+            //    }
+            //    if (item["Temperature2HighAlarm"] != DBNull.Value)
+            //    {
+            //        deviceInfo.Temperature2HighAlarm = Convert.ToDecimal(item["Temperature2HighAlarm"]);
+            //    }
+            //    if (item["Temperature2LowAlarm"] != DBNull.Value)
+            //    {
+            //        deviceInfo.Temperature2LowAlarm = Convert.ToDecimal(item["Temperature2LowAlarm"]);
+            //    }
 
-                //湿度报警设置有效
-                if (item["HumidityAlarmValid"] is bool)
-                {
-                    deviceInfo.HumidityAlarmValid = (bool)item["HumidityAlarmValid"];
-                }
-                if (item["HumidityHighAlarm"] != DBNull.Value)
-                {
-                    deviceInfo.HumidityHighAlarm = Convert.ToDecimal(item["HumidityHighAlarm"]);
-                }
-                if (item["HumidityLowAlarm"] != DBNull.Value)
-                {
-                    deviceInfo.HumidityLowAlarm = Convert.ToDecimal(item["HumidityLowAlarm"]);
-                }
-                //信号报警设置有效
-                if (item["SignalAlarmValid"] is bool)
-                {
-                    deviceInfo.SignalAlarmValid = (bool)item["SignalAlarmValid"];
-                }
-                if (item["SignalHighAlarm"] != DBNull.Value)
-                {
-                    deviceInfo.SignalHighAlarm = Convert.ToInt32(item["SignalHighAlarm"]);
-                }
-                if (item["SignalLowAlarm"] is bool)
-                {
-                    deviceInfo.SignalLowAlarm = Convert.ToInt32(item["SignalLowAlarm"]);
-                }
+            //    //湿度报警设置有效
+            //    if (item["HumidityAlarmValid"] is bool)
+            //    {
+            //        deviceInfo.HumidityAlarmValid = (bool)item["HumidityAlarmValid"];
+            //    }
+            //    if (item["HumidityHighAlarm"] != DBNull.Value)
+            //    {
+            //        deviceInfo.HumidityHighAlarm = Convert.ToDecimal(item["HumidityHighAlarm"]);
+            //    }
+            //    if (item["HumidityLowAlarm"] != DBNull.Value)
+            //    {
+            //        deviceInfo.HumidityLowAlarm = Convert.ToDecimal(item["HumidityLowAlarm"]);
+            //    }
+            //    //信号报警设置有效
+            //    if (item["SignalAlarmValid"] is bool)
+            //    {
+            //        deviceInfo.SignalAlarmValid = (bool)item["SignalAlarmValid"];
+            //    }
+            //    if (item["SignalHighAlarm"] != DBNull.Value)
+            //    {
+            //        deviceInfo.SignalHighAlarm = Convert.ToInt32(item["SignalHighAlarm"]);
+            //    }
+            //    if (item["SignalLowAlarm"] is bool)
+            //    {
+            //        deviceInfo.SignalLowAlarm = Convert.ToInt32(item["SignalLowAlarm"]);
+            //    }
 
-                //电量报警设置有效
-                if (item["ElectricityAlarmValid"] is bool)
-                {
-                    deviceInfo.ElectricityAlarmValid = (bool)item["ElectricityAlarmValid"];
-                }
-                if (item["ElectricityHighAlarm"] != DBNull.Value)
-                {
-                    deviceInfo.ElectricityHighAlarm = Convert.ToInt32(item["ElectricityHighAlarm"]);
-                }
-                if (item["ElectricityLowAlarm"] != DBNull.Value)
-                {
-                    deviceInfo.ElectricityLowAlarm = Convert.ToInt32(item["ElectricityLowAlarm"]);
-                }
+            //    //电量报警设置有效
+            //    if (item["ElectricityAlarmValid"] is bool)
+            //    {
+            //        deviceInfo.ElectricityAlarmValid = (bool)item["ElectricityAlarmValid"];
+            //    }
+            //    if (item["ElectricityHighAlarm"] != DBNull.Value)
+            //    {
+            //        deviceInfo.ElectricityHighAlarm = Convert.ToInt32(item["ElectricityHighAlarm"]);
+            //    }
+            //    if (item["ElectricityLowAlarm"] != DBNull.Value)
+            //    {
+            //        deviceInfo.ElectricityLowAlarm = Convert.ToInt32(item["ElectricityLowAlarm"]);
+            //    }
 
-                ////////////////////////辅助信息////////////////////////////
-                //液晶屏显示类型
-                if (item["LCDScreenDisplayType"] != DBNull.Value)
-                {
-                    deviceInfo.LCDScreenDisplayType = Convert.ToInt32(item["LCDScreenDisplayType"]);
-                }
+            //    ////////////////////////辅助信息////////////////////////////
+            //    //液晶屏显示类型
+            //    if (item["LCDScreenDisplayType"] != DBNull.Value)
+            //    {
+            //        deviceInfo.LCDScreenDisplayType = Convert.ToInt32(item["LCDScreenDisplayType"]);
+            //    }
 
-                //当前选择模式
-                if (item["CurrentModel"] != DBNull.Value)
-                {
-                    deviceInfo.CurrentModel = Convert.ToInt32(item["CurrentModel"]);
-                }
+            //    //当前选择模式
+            //    if (item["CurrentModel"] != DBNull.Value)
+            //    {
+            //        deviceInfo.CurrentModel = Convert.ToInt32(item["CurrentModel"]);
+            //    }
 
-                //实时模式参数
-                if (item["RealTimeParam"] != DBNull.Value)
-                {
-                    deviceInfo.RealTimeParam = Convert.ToInt32(item["RealTimeParam"]);
-                }
-                //整点模式参数1,2
-                if (item["FullTimeParam1"] != DBNull.Value)
-                {
-                    deviceInfo.FullTimeParam1 = Convert.ToInt32(item["FullTimeParam1"]);
-                }
-                if (item["FullTimeParam2"] != DBNull.Value)
-                {
-                    deviceInfo.FullTimeParam2 = Convert.ToInt32(item["FullTimeParam2"]);
-                }
-                //逢变则报参数1,2,3
-                if (item["OptimizeParam1"] != DBNull.Value)
-                {
-                    deviceInfo.OptimizeParam1 = Convert.ToInt32(item["OptimizeParam1"]);
-                }
-                if (item["OptimizeParam2"] != DBNull.Value)
-                {
-                    deviceInfo.OptimizeParam2 = Convert.ToInt32(item["OptimizeParam2"]);
-                }
-                if (item["OptimizeParam1"] != DBNull.Value)
-                {
-                    deviceInfo.OptimizeParam3 = Convert.ToInt32(item["OptimizeParam3"]);
-                }
-                //列出设备的维护人列表
-                //deviceInfo.DeviceMainValue = ListDeviceMaintenancePeople(deviceInfo.ID);
+            //    //实时模式参数
+            //    if (item["RealTimeParam"] != DBNull.Value)
+            //    {
+            //        deviceInfo.RealTimeParam = Convert.ToInt32(item["RealTimeParam"]);
+            //    }
+            //    //整点模式参数1,2
+            //    if (item["FullTimeParam1"] != DBNull.Value)
+            //    {
+            //        deviceInfo.FullTimeParam1 = Convert.ToInt32(item["FullTimeParam1"]);
+            //    }
+            //    if (item["FullTimeParam2"] != DBNull.Value)
+            //    {
+            //        deviceInfo.FullTimeParam2 = Convert.ToInt32(item["FullTimeParam2"]);
+            //    }
+            //    //逢变则报参数1,2,3
+            //    if (item["OptimizeParam1"] != DBNull.Value)
+            //    {
+            //        deviceInfo.OptimizeParam1 = Convert.ToInt32(item["OptimizeParam1"]);
+            //    }
+            //    if (item["OptimizeParam2"] != DBNull.Value)
+            //    {
+            //        deviceInfo.OptimizeParam2 = Convert.ToInt32(item["OptimizeParam2"]);
+            //    }
+            //    if (item["OptimizeParam1"] != DBNull.Value)
+            //    {
+            //        deviceInfo.OptimizeParam3 = Convert.ToInt32(item["OptimizeParam3"]);
+            //    }
+            //    //列出设备的维护人列表
+            //    //deviceInfo.DeviceMainValue = ListDeviceMaintenancePeople(deviceInfo.ID);
 
 
-            }
-            result = BinaryObjTransfer.JsonSerializer<DeviceInfo>(deviceInfo);
-            return result;
+            //}
+            //result = BinaryObjTransfer.JsonSerializer<DeviceInfo>(deviceInfo);
+            //return result;
 
             #endregion
 

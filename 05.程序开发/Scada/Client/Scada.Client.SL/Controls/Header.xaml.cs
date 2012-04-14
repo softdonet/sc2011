@@ -45,7 +45,7 @@ namespace Scada.Client.SL.Controls
         {
             this._menuTree = menuTree;
             this._userMenu = userMenu;
-
+            this.SetMenuItemEnable();
         }
 
         #endregion
@@ -93,6 +93,85 @@ namespace Scada.Client.SL.Controls
                 Application.Current.Host.Content.IsFullScreen = true;
                 btnFull.Content = "退出全屏";
                 ToolTipService.SetToolTip(btnFull, "点击退出全屏");
+            }
+        }
+
+        private void UnAllMenuEnable(Boolean isEnable)
+        {
+
+            this.menuMap.IsEnabled = isEnable;
+            this.menuDeviceList.IsEnabled = isEnable;
+            this.menuAlertList.IsEnabled = isEnable;
+            this.menuUserEvent.IsEnabled = isEnable;
+            this.menuSearch.IsEnabled = isEnable;
+            this.menuCompare.IsEnabled = isEnable;
+            this.menuSysSettings.IsEnabled = isEnable;
+
+            this.childMenuDataSearch.IsEnabled = isEnable;
+            this.childMenuAlertSearch.IsEnabled = isEnable;
+            this.childMenuUserEventSearch.IsEnabled = isEnable;
+
+            this.childMenuByDateCompare.IsEnabled = isEnable;
+            this.childMenuDeviceCompare.IsEnabled = isEnable;
+
+            this.childMenuDeviceManage.IsEnabled = isEnable;
+            this.childMenuRepairUserManage.IsEnabled = isEnable;
+            this.childMenuSysConfig.IsEnabled = isEnable;
+
+        }
+
+        private void MenuItemEnable(string menuKey)
+        {
+            if (menuKey == "menuMap")
+                this.menuMap.IsEnabled = true;
+            else if (menuKey == "menuDeviceList")
+                this.menuDeviceList.IsEnabled = true;
+            else if (menuKey == "menuAlertList")
+                this.menuAlertList.IsEnabled = true;
+            else if (menuKey == "menuUserEvent")
+                this.menuUserEvent.IsEnabled = true;
+            else if (menuKey == "menuSearch")
+                this.menuSearch.IsEnabled = true;
+            else if (menuKey == "menuCompare")
+                this.menuCompare.IsEnabled = true;
+            else if (menuKey == "menuSysSettings")
+                this.menuSysSettings.IsEnabled = true;
+
+            else if (menuKey == "childMenuDataSearch")
+                this.childMenuDataSearch.IsEnabled = true;
+            else if (menuKey == "childMenuAlertSearch")
+                this.childMenuAlertSearch.IsEnabled = true;
+            else if (menuKey == "childMenuUserEventSearch")
+                this.childMenuUserEventSearch.IsEnabled = true;
+
+            else if (menuKey == "childMenuByDateCompare")
+                this.childMenuByDateCompare.IsEnabled = true;
+            else if (menuKey == "childMenuDeviceCompare")
+                this.childMenuDeviceCompare.IsEnabled = true;
+
+            else if (menuKey == "childMenuDeviceManage")
+                this.childMenuDeviceManage.IsEnabled = true;
+            else if (menuKey == "childMenuRepairUserManage")
+                this.childMenuRepairUserManage.IsEnabled = true;
+            else if (menuKey == "childMenuSysConfig")
+                this.childMenuSysConfig.IsEnabled = true;
+
+        }
+
+        private void SetMenuItemEnable()
+        {
+
+            //全部置灰
+            this.UnAllMenuEnable(false);
+
+            //授权置亮
+            foreach (UserMenu item in this._userMenu)
+            {
+                MenuTree menuTree = this._menuTree.First(x => x.MenuId == item.MenuId);
+                if (menuTree != null)
+                {
+                    this.MenuItemEnable(menuTree.Remark);
+                }
             }
         }
 

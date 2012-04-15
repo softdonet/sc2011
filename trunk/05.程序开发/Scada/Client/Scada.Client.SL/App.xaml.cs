@@ -19,6 +19,8 @@ namespace Scada.Client.SL
         /// 系统当前用户
         /// </summary>
         public static User CurUser = null;
+        public static List<MenuTree> CurrMenu = null;
+
         public App()
         {
             this.Startup += this.Application_Startup;

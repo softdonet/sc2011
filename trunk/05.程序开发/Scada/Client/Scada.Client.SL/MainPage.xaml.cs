@@ -31,8 +31,6 @@ namespace Scada.Client.SL
 
         #region 变量声明
 
-        private List<MenuTree> _menuTreeList;
-
         private ScadaDeviceServiceSoapClient _scadaDeviceServiceSoapClient;
 
         #endregion
@@ -46,34 +44,23 @@ namespace Scada.Client.SL
             InitializeComponent();
 
             this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
-            this._scadaDeviceServiceSoapClient.GetMenuTreeListCompleted +=
-                                new EventHandler<GetMenuTreeListCompletedEventArgs>(scadaDeviceServiceSoapClient_GetMenuTreeListCompleted);
-            this._scadaDeviceServiceSoapClient.GetMenuTreeListAsync();
 
+            this._scadaDeviceServiceSoapClient.GetUserMenuTreeListCompleted +=
+                                            new EventHandler<GetUserMenuTreeListCompletedEventArgs>(scadaDeviceServiceSoapClient_GetUserMenuTreeListCompleted);
 
-            //加载菜单
-            this.InitMenu();
 
             //默认管理员全部权限
             if (App.CurUser.LoginID == "admin") { return; }
 
             //加载权限
-            this.InitCurrentUserMenu();
+            this._scadaDeviceServiceSoapClient.GetUserMenuTreeListAsync(App.CurUser.UserID.ToString());
+
+            //加载菜单
+            this.InitMenu();
 
         }
 
-        private void scadaDeviceServiceSoapClient_GetMenuTreeListCompleted(object sender,
-                                                                    GetMenuTreeListCompletedEventArgs e)
-        {
-            if (e.Error == null)
-            {
-                string msgInfo = e.Result;
-                _menuTreeList = BinaryObjTransfer.BinaryDeserialize<List<MenuTree>>(msgInfo);
-            }
-            else
-                ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");
 
-        }
 
 
         private void InitMenu()
@@ -97,15 +84,6 @@ namespace Scada.Client.SL
             Header.lstbSearch.SelectionChanged += new SelectionChangedEventHandler(lstbSearch_SelectionChanged);
         }
 
-        private void InitCurrentUserMenu()
-        {
-
-            this._scadaDeviceServiceSoapClient.GetUserMenuTreeListCompleted +=
-                                            new EventHandler<GetUserMenuTreeListCompletedEventArgs>(scadaDeviceServiceSoapClient_GetUserMenuTreeListCompleted);
-            this._scadaDeviceServiceSoapClient.GetUserMenuTreeListAsync(App.CurUser.UserID.ToString());
-
-        }
-
         private void scadaDeviceServiceSoapClient_GetUserMenuTreeListCompleted(object sender, GetUserMenuTreeListCompletedEventArgs e)
         {
 
@@ -114,7 +92,7 @@ namespace Scada.Client.SL
                 string msgInfo = e.Result;
                 List<UserMenu> userMenu = BinaryObjTransfer.BinaryDeserialize<List<UserMenu>>(msgInfo);
                 if (userMenu.Count() == 0) { return; }
-                this.Header.CurrentUserAuthorization(this._menuTreeList, userMenu);
+                this.Header.CurrentUserAuthorization(App.CurrMenu, userMenu);
             }
             else
                 ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");

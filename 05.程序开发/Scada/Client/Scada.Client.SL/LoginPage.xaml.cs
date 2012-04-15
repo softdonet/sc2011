@@ -46,13 +46,32 @@ namespace Scada.Client.SL
         {
             InitializeComponent();
             this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
-
             this._scadaDeviceServiceSoapClient.LogInCompleted += new EventHandler<LogInCompletedEventArgs>(scadaDeviceServiceSoapClient_LogInCompleted);
+
+            //加载全局菜单
+            this._scadaDeviceServiceSoapClient.GetMenuTreeListCompleted +=
+                    new EventHandler<GetMenuTreeListCompletedEventArgs>(scadaDeviceServiceSoapClient_GetMenuTreeListCompleted);
+            this._scadaDeviceServiceSoapClient.GetMenuTreeListAsync();
+
 
             login = new Login();
             this.MasterContainer.Child = login;
             login.myKeyDownEvent += new RoutedEventHandler(login_myKeyDowmEvent);
         }
+
+        private void scadaDeviceServiceSoapClient_GetMenuTreeListCompleted(object sender,
+                                                                   GetMenuTreeListCompletedEventArgs e)
+        {
+            if (e.Error == null)
+            {
+                string msgInfo = e.Result;
+                App.CurrMenu = BinaryObjTransfer.BinaryDeserialize<List<MenuTree>>(msgInfo);
+            }
+            else
+                ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");
+
+        }
+
 
         #endregion
 

@@ -1666,7 +1666,7 @@ namespace Scada.BLL.Implement
         public String GetUserMenuTreeList(String UserKey)
         {
             List<UserMenu> userMenus = new List<UserMenu>();
-            string sSql = " Select * from MenuTree ";
+            string sSql = " Select * from UserMenu";
             if (!String.IsNullOrEmpty(UserKey))
                 sSql = sSql + " Where UserId = '" + UserKey.ToUpper() + "'";
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);

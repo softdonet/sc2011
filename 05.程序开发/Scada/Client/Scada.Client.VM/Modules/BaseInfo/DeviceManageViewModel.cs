@@ -537,6 +537,21 @@ namespace Scada.Client.VM.Modules.BaseInfo
             }
             return ValidationFlag;
         }
+
+        /// <summary>
+        /// 判断用户输入的值是否合法
+        /// </summary>
+        private bool ValidateUIValue()
+        {
+            bool ValidationFlag=true;
+            //DeviceInfoList//用这个对象来判断
+            if (string.IsNullOrEmpty(DeviceInfoList.DeviceNo))
+            {
+                ValidationFlag = false;
+            }
+
+            return ValidationFlag;
+        }
         #region 测试方法
 
         //public DeviceInfo DeviceInfoSingleChanged { get; set; }

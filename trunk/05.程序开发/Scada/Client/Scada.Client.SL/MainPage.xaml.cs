@@ -48,15 +48,14 @@ namespace Scada.Client.SL
             this._scadaDeviceServiceSoapClient.GetUserMenuTreeListCompleted +=
                                             new EventHandler<GetUserMenuTreeListCompletedEventArgs>(scadaDeviceServiceSoapClient_GetUserMenuTreeListCompleted);
 
+            //加载菜单
+            this.InitMenu();
 
             //默认管理员全部权限
             if (App.CurUser.LoginID == "admin") { return; }
 
             //加载权限
             this._scadaDeviceServiceSoapClient.GetUserMenuTreeListAsync(App.CurUser.UserID.ToString());
-
-            //加载菜单
-            this.InitMenu();
 
         }
 

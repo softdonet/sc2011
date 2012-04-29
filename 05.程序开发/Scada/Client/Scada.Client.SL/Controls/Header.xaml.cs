@@ -66,35 +66,38 @@ namespace Scada.Client.SL.Controls
 
         #region 事件处理
 
-        private void Content_FullScreenChanged(object sender, EventArgs e)
-        {
-            if (Application.Current.Host.Content.IsFullScreen)
-            {
-                btnFull.Content = "退出全屏";
-                ToolTipService.SetToolTip(btnFull, "点击退出全屏");
-            }
-            else
-            {
-                btnFull.Content = "全屏模式";
-                ToolTipService.SetToolTip(btnFull, "点击放大到全屏");
-            }
-        }
+        #region 设置Silverlight全屏代码
+       
+        //private void Content_FullScreenChanged(object sender, EventArgs e)
+        //{
+        //    if (Application.Current.Host.Content.IsFullScreen)
+        //    {
+        //        btnFull.Content = "退出全屏";
+        //        ToolTipService.SetToolTip(btnFull, "点击退出全屏");
+        //    }
+        //    else
+        //    {
+        //        btnFull.Content = "全屏模式";
+        //        ToolTipService.SetToolTip(btnFull, "点击放大到全屏");
+        //    }
+        //}
 
-        private void btnFull_Click(object sender, RoutedEventArgs e)
-        {
-            if (Application.Current.Host.Content.IsFullScreen)
-            {
-                Application.Current.Host.Content.IsFullScreen = false;
-                btnFull.Content = "全屏模式";
-                ToolTipService.SetToolTip(btnFull, "点击放大到全屏");
-            }
-            else
-            {
-                Application.Current.Host.Content.IsFullScreen = true;
-                btnFull.Content = "退出全屏";
-                ToolTipService.SetToolTip(btnFull, "点击退出全屏");
-            }
-        }
+        //private void btnFull_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (Application.Current.Host.Content.IsFullScreen)
+        //    {
+        //        Application.Current.Host.Content.IsFullScreen = false;
+        //        btnFull.Content = "全屏模式";
+        //        ToolTipService.SetToolTip(btnFull, "点击放大到全屏");
+        //    }
+        //    else
+        //    {
+        //        Application.Current.Host.Content.IsFullScreen = true;
+        //        btnFull.Content = "退出全屏";
+        //        ToolTipService.SetToolTip(btnFull, "点击退出全屏");
+        //    }
+        //}
+        #endregion
 
         private void UnAllMenuEnable(Boolean isEnable)
         {

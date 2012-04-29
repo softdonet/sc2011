@@ -430,7 +430,7 @@ namespace Scada.Client.SL.Modules.UsersEvent
             eventDealDetail.EventID = userEventModel.ID;
 
             //该处先写死，后续再改
-            eventDealDetail.Operator = new Guid("F0F4F83E-BA93-47A8-8A36-B7CEE7456BAD");
+            eventDealDetail.Operator = new Guid("3978CBD6-AE73-4F03-A7ED-5A16C059D574");
             eventDealDetail.DealTime = DateTime.Now;
 
 

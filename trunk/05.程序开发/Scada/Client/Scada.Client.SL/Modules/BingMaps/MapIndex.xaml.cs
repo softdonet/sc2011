@@ -258,7 +258,9 @@ namespace Scada.Client.SL.Modules.BingMaps
         private void hlBtnAlarm_Click(object sender, RoutedEventArgs e)
         {
             HyperlinkButton hlB = sender as HyperlinkButton;
-            id = (hlB.DataContext as DeviceAlarm).ID;
+            //id = (hlB.DataContext as Scada.Model.Entity.DeviceAlarm).ID;
+            id = ((Scada.Client.VM.Modules.Alarm.DeviceAlarmViewModel)(hlB.DataContext)).DeviceAlarm.ID;
+
             // RadWindow.Prompt("请输入备注：", new EventHandler<WindowClosedEventArgs>(OnClosed));
         }
 

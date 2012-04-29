@@ -460,10 +460,10 @@
            
         </StackPanel>
         
-        <!--<StackPanel HorizontalAlignment="Left" Height="26" Grid.Row="3"  Width="72" Margin="0,6" Orientation="Horizontal">
+        <StackPanel HorizontalAlignment="Left" Height="26" Grid.Row="3"  Width="72" Margin="0,6" Orientation="Horizontal" Visibility="Collapsed" >
            
             <HyperlinkButton x:Name="btnFull"  ToolTipService.ToolTip="点击放大到全屏"   Click="btnFull_Click"  VerticalAlignment="Center"  Margin="5"  HorizontalAlignment="Center"  Content="全屏模式"  Foreground="White"    />
-        </StackPanel>-->
+        </StackPanel>
         
         <StackPanel HorizontalAlignment="Right" Height="26" Grid.Row="3" VerticalAlignment="Center" Width="90" Margin="0,0,20,0" Orientation="Horizontal">
             <TextBlock Text="欢迎 管理员 登录 "  Foreground="White"  VerticalAlignment="Center" ></TextBlock>

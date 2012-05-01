@@ -46,7 +46,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
             scadaDeviceServiceSoapClient.ListDeviceTreeViewCompleted += new EventHandler<ListDeviceTreeViewCompletedEventArgs>(scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted);
             scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
 
-            //查看设备By DeviceId
+            //查看是否有重复名字的设备By DeviceId
             this.scadaDeviceServiceSoapClient.CheckDeviceInfoByDeviceNoCompleted += new EventHandler<CheckDeviceInfoByDeviceNoCompletedEventArgs>(scadaDeviceServiceSoapClient_CheckDeviceInfoByDeviceNoCompleted);
 
             //维护人员
@@ -61,7 +61,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
             this.AddCommand = new DelegateCommand(new Action(this.AddDeviceInfo));
 
             //修改设备
-            this.scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoCompleted += new EventHandler<UpdateDeviceAlarmInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoCompleted);
+            this.scadaDeviceServiceSoapClient.UpdateDeviceInfoCompleted += new EventHandler<UpdateDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_UpdateDeviceInfoCompleted);
             this.UpdateCommand = new DelegateCommand(new Action(this.UpdateDeviceInfo));
 
             //删除设备
@@ -69,6 +69,8 @@ namespace Scada.Client.VM.Modules.BaseInfo
             this.DeleteCommand = new DelegateCommand(new Action(this.DeleteDeviceInfo));
 
         }
+
+       
 
         bool flag;
         void scadaDeviceServiceSoapClient_CheckDeviceInfoByDeviceNoCompleted(object sender, CheckDeviceInfoByDeviceNoCompletedEventArgs e)
@@ -161,7 +163,8 @@ namespace Scada.Client.VM.Modules.BaseInfo
             //}
         }
 
-        void scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoCompleted(object sender, UpdateDeviceAlarmInfoCompletedEventArgs e)
+
+        void scadaDeviceServiceSoapClient_UpdateDeviceInfoCompleted(object sender, UpdateDeviceInfoCompletedEventArgs e)
         {
             bool flag = e.Result;
             if (flag)
@@ -173,6 +176,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 MessageBox.Show("修改设备信息失败!");
             }
         }
+        
 
         private void UpdateDeviceInfo()
         {
@@ -187,18 +191,21 @@ namespace Scada.Client.VM.Modules.BaseInfo
             bool flag = e.Result;
             if (flag)
             {
-                MessageBox.Show("删除设备信息成功!");
+                MessageBox.Show("删除设备成功!");
             }
             else
             {
-                MessageBox.Show("删除设备信息失败!");
+                MessageBox.Show("删除设备失败或该设备不能被删除!");
             }
+
+            scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
+
         }
 
         private void DeleteDeviceInfo()
         {
             scadaDeviceServiceSoapClient.DeleteDeviceInfoAsync(DeviceInfoList.ID);
-            scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
+           // scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
         }
 
         #region 设备树
@@ -430,7 +437,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
 
 
         //---------------------------------------------------------------
-        [Required(ErrorMessage = "设备编号不能为空!")]
+       // [Required(ErrorMessage = "设备编号不能为空!")]
         public string DeviceNo
         {
             get {
@@ -442,10 +449,14 @@ namespace Scada.Client.VM.Modules.BaseInfo
             }
             set
             {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new Exception("设备编号不能为空!");
+                    
+                }
                 DeviceInfoList.DeviceNo = value;
-                this.RaisePropertyChanged("DeviceNo");
-                Validator.ValidateProperty(value, new ValidationContext(this, null, null) { MemberName = "DeviceNo" });
-
+                //this.RaisePropertyChanged("DeviceNo");
+                //Validator.ValidateProperty(value, new ValidationContext(this, null, null) { MemberName = "DeviceNo" });
             }
         }
 
@@ -512,30 +523,30 @@ namespace Scada.Client.VM.Modules.BaseInfo
         /// </summary>
         private bool ValidationProprety()
         {
-            bool ValidationFlag=true;
+           
             if (string.IsNullOrEmpty(DeviceInfoList.DeviceNo))
             {
                 MessageBox.Show("设备编号不能为空!");
-                ValidationFlag = false;
+                return false;
+
             }
             decimal result;
-            if (!decimal.TryParse( DeviceInfoList.Longitude.ToString(),out result))
+            if (!decimal.TryParse(DeviceInfoList.Longitude.ToString(), out result))
             {
                 MessageBox.Show("经度，请填写正确的格式!");
-                ValidationFlag = false;
+                return false;
             }
-            if (!decimal.TryParse(DeviceInfoList.Latitude.ToString(),out result))
+            if (!decimal.TryParse(DeviceInfoList.Latitude.ToString(), out result))
             {
                 MessageBox.Show("维度，请填写正确的格式!");
-                ValidationFlag = false;
+                return false;
             }
-            Guid gValue;
-            if (!Guid.TryParse(DeviceInfoList.MaintenancePeopleID.ToString(),out gValue))
+            if (DeviceInfoList.MaintenancePeopleID == new Guid())
             {
                 MessageBox.Show("请选择维护人员!");
-                ValidationFlag = false;
+                return false;
             }
-            return ValidationFlag;
+            return true; ;
         }
 
         /// <summary>

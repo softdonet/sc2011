@@ -26,7 +26,7 @@ namespace Scada.Client.VM.Modules.UserEventVM
 
         #endregion
 
-        #region Constroctor
+        #region Constructor
 
         public UserEventViewModel()
         {

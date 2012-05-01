@@ -13,6 +13,7 @@ using Scada.Utility.Common.Extensions;
 using System.Linq;
 using Scada.Model.Entity.Common;
 using Scada.Utility.Common.Helper;
+using System.Windows;
 
 
 namespace Scada.BLL.Implement
@@ -478,8 +479,8 @@ namespace Scada.BLL.Implement
             }
             catch (Exception ex)
             {
-                return false;
                 Console.WriteLine(ex.Message);
+                return false;
             }
 
             #region Old
@@ -819,7 +820,12 @@ namespace Scada.BLL.Implement
             var obj = sCADADataContext.DeviceInfos.SingleOrDefault(e => e.ID == deviceID);
             if (obj != null && obj.MaintenancePeople != null)
             {
-                return BinaryObjTransfer.JsonSerializer<MaintenancePeople>(obj.MaintenancePeople.ConvertTo<MaintenancePeople>());
+                //return BinaryObjTransfer.JsonSerializer<MaintenancePeople>(obj.MaintenancePeople.ConvertTo<MaintenancePeople>());
+
+                Scada.Model.Entity.MaintenancePeople maintenancePeople = obj.MaintenancePeople.ConvertTo<Scada.Model.Entity.MaintenancePeople>();
+
+                var result = BinaryObjTransfer.JsonSerializer<Scada.Model.Entity.MaintenancePeople>(maintenancePeople);
+                return result;
             }
             return null;
         }

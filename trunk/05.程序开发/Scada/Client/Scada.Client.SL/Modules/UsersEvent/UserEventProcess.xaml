@@ -82,38 +82,43 @@
                     </LinearGradientBrush>
                 </StackPanel.Background>
                     <TextBlock  Text="详细信息" FontWeight="Bold" FontSize="14" Margin="5"  Foreground="#FFF8F9F9"/>
-                    <StackPanel  Orientation="Horizontal" Background="#FF739796">
+                    <StackPanel  Orientation="Horizontal" Background="#FF739796" Height="160">
                         <StackPanel Orientation="Vertical">
                               <StackPanel Orientation="Horizontal">
                             <TextBlock  Text="设备编号：" Margin="3" Foreground="#FFF6F9F9"></TextBlock>
-                            <TextBlock  Text="D00001" Margin="3" Foreground="#FFF6F9F9"></TextBlock>
+                                <TextBlock  Text="{Binding DeviceInfo.DeviceNo}" Margin="3" Foreground="#FFF6F9F9" Name="txtDeviceNo"></TextBlock>
                         </StackPanel>
                               <StackPanel Orientation="Horizontal">
-                                 <TextBlock  Text="设备名称：" Margin="3" Foreground="#FFE8F5F5"></TextBlock>
-                                  <TextBlock  Text="温度采集仪" Margin="3" Foreground="#FFE8F5F5"></TextBlock>
+                                 <TextBlock  Text="设备SN号：" Margin="3" Foreground="#FFE8F5F5"></TextBlock>
+                                <TextBlock  Text="{Binding DeviceInfo.DeviceSN}" Margin="3" Foreground="#FFE8F5F5" Name="txtDeviceName"></TextBlock>
                         </StackPanel>
                               <StackPanel Orientation="Horizontal">
                             <TextBlock  Text="安装地点：" Margin="3" Foreground="#FFE8F3F3"></TextBlock>
-                            <TextBlock  Text="北京海淀区祁家豁子" Margin="3" Foreground="#FFE8F3F3"></TextBlock>
+                                <TextBlock  Text="{Binding DeviceInfo.InstallPlace}" Margin="3" Foreground="#FFE8F3F3" Name="txtInstallPlace"></TextBlock>
                         </StackPanel>
                         
                         <StackPanel Orientation="Horizontal">
                             <TextBlock  Text="所属分区：" Margin="3" Foreground="#FFEFF5F5"></TextBlock>
-                            <TextBlock  Text="分区1" Margin="3" Foreground="#FFEFF5F5"></TextBlock>
+                                <TextBlock  Text="{Binding DeviceInfo.InstallPlace}" Margin="3" Foreground="#FFEFF5F5" Name="txtManageArea"></TextBlock>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
+                        <!--<StackPanel Orientation="Horizontal">
                             <TextBlock  Text="实时温度：" Margin="3" Foreground="#FFDCE7E7"></TextBlock>
                             <TextBlock  Text="50℃" Margin="3" Foreground="#FFDCE7E7"></TextBlock>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock  Text="实时压强：" Margin="3" Foreground="#FFEDF3F3"></TextBlock>
                             <TextBlock  Text="78KP" Margin="3" Foreground="#FFEDF3F3"></TextBlock>
-                        </StackPanel>
+                        </StackPanel>-->
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock  Text="坐标信息：" Margin="3" Foreground="#FFE6EDED"></TextBlock>
-                            <TextBlock  Text="78.3459,45.4566" Margin="3" Foreground="#FFE6EDED"></TextBlock>
+                            <TextBlock  Text="经       度：" Margin="3" Foreground="#FFE6EDED"></TextBlock>
+                                <TextBlock  Text="{Binding DeviceInfo.Longitude}" Margin="3" Foreground="#FFE6EDED" Name="txtLongitude"></TextBlock>
                         </StackPanel>
-                    </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock  Text="纬      度：" Margin="3" Foreground="#FFE6EDED"></TextBlock>
+                                <TextBlock  Text="{Binding DeviceInfo.Latitude}" Margin="3" Foreground="#FFE6EDED" Name="txtLatitude"></TextBlock>
+                            </StackPanel>
+
+                        </StackPanel>
             </StackPanel>
             </StackPanel>
                 <StackPanel >
@@ -128,23 +133,23 @@
                      <StackPanel Orientation="Vertical"  >
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock  Text="姓名：" Margin="3" Foreground="#FFF6F9F9"></TextBlock>
-                                <TextBlock  Text="刘征占" Margin="3" Foreground="#FFF6F9F9"></TextBlock>
+                                <TextBlock  Text="{Binding MaintenancePeople.Name}" Margin="3" Foreground="#FFF6F9F9"></TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock  Text="电话：" Margin="3" Foreground="#FFE8F5F5"></TextBlock>
-                                <TextBlock  Text="13800138000" Margin="3" Foreground="#FFE8F5F5"></TextBlock>
+                                <TextBlock  Text="{Binding MaintenancePeople.Mobile}" Margin="3" Foreground="#FFE8F5F5"></TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock  Text="邮件：" Margin="3" Foreground="#FFE8F3F3"></TextBlock>
-                                <TextBlock  Text="lzz@hotmail.com" Margin="3" Foreground="#FFE8F3F3"></TextBlock>
+                                <TextBlock  Text="{Binding MaintenancePeople.Email}" Margin="3" Foreground="#FFE8F3F3"></TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock  Text="住址：" Margin="3" Foreground="#FFEFF5F5"></TextBlock>
-                                <TextBlock  Text="北京体育大学" Margin="3" Foreground="#FFEFF5F5"></TextBlock>
+                                <TextBlock  Text="{Binding MaintenancePeople.Address}" Margin="3" Foreground="#FFEFF5F5"></TextBlock>
                             </StackPanel>
                         </StackPanel>
                     <StackPanel Margin="5" VerticalAlignment="Top"  HorizontalAlignment="Center">
-                            <Image Source="/Scada.Client.SL;component/Images/Worker.png" Width="120" Height="120" Margin="2,0,0,0" HorizontalAlignment="Left">
+                            <Image  Width="120"  Source="{Binding MyHeadImage}" Height="120" Margin="2,0,0,0" HorizontalAlignment="Left" Name="imgHeader">
                             <Image.OpacityMask>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="Black" Offset="0"/>

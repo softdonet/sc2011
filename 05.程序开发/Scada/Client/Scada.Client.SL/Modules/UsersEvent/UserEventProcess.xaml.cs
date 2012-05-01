@@ -13,6 +13,9 @@ using Scada.Client.SL.ScadaDeviceService;
 using Scada.Client.SL.CommClass;
 using Scada.Model.Entity;
 using System.Windows.Controls.Primitives;
+using Scada.Client.VM.Modules.UserEventVM;
+using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace Scada.Client.SL.Modules.UsersEvent
 {
@@ -71,7 +74,20 @@ namespace Scada.Client.SL.Modules.UsersEvent
             //this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
             this._scadaDeviceServiceSoapClient.GetUserEventDetailInfoCompleted+=new EventHandler<GetUserEventDetailInfoCompletedEventArgs>(_scadaDeviceServiceSoapClient_GetUserEventDetailInfoCompleted);
             this._scadaDeviceServiceSoapClient.GetUserEventDetailInfoAsync(userEventModel.ID);
-            
+           
+ 
+            //---------VM层取数据
+            UserEventProcessViewModel userEventProcessViewModel = new UserEventProcessViewModel(userEventModel.DeviceID);
+            this.DataContext = userEventProcessViewModel;
+
+             //byte[] image = userEventProcessViewModel.MaintenancePeople.HeadImage;
+             //   if (image!=null)
+             //   {
+             //       Stream stream = new MemoryStream(image);
+             //       BitmapImage bitmapImage = new BitmapImage();
+             //       bitmapImage.SetSource(stream);
+             //       imgHeader.Source = bitmapImage;
+             //   }
         }
 
        

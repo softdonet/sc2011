@@ -121,6 +121,10 @@ namespace Scada.Client.SL.Controls
             this.childMenuRepairUserManage.IsEnabled = isEnable;
             this.childMenuSysConfig.IsEnabled = isEnable;
 
+            this.childMenuUserManage.IsEnabled = isEnable;
+            this.childMenuManage.IsEnabled = isEnable;
+
+
         }
 
         private void MenuItemEnable(string menuKey)
@@ -158,6 +162,10 @@ namespace Scada.Client.SL.Controls
                 this.childMenuRepairUserManage.IsEnabled = true;
             else if (menuKey == "childMenuSysConfig")
                 this.childMenuSysConfig.IsEnabled = true;
+            else if (menuKey == "childMenuUserManage")
+                this.childMenuUserManage.IsEnabled = true;
+            else if (menuKey == "childMenuManage")
+                this.childMenuManage.IsEnabled = true;
 
         }
 

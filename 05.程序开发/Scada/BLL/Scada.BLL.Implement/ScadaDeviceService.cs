@@ -1626,7 +1626,8 @@ namespace Scada.BLL.Implement
 
         #endregion
 
-        #region 菜单权限管理
+
+        #region 用户菜单权限管理
 
         public String GetUserList()
         {

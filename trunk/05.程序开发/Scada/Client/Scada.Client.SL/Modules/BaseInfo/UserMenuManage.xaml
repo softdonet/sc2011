@@ -4,7 +4,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="500" d:DesignWidth="800" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk">
+    d:DesignHeight="500" d:DesignWidth="800" 
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" 
+    xmlns:my="clr-namespace:Scada.Client.UC;assembly=Scada.Client.UC" 
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+    xmlns:my1="clr-namespace:System;assembly=mscorlib">
 
     <Grid x:Name="LayoutRoot" Background="White">
         <Border Name="content_Border" BorderBrush="#FF4A91BB" BorderThickness="1" Margin="5" CornerRadius="5">
@@ -15,7 +19,7 @@
                 </LinearGradientBrush>
             </Border.Background>
             <Grid>
-                <TextBlock Text="菜单控制" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,5,0,0" Height="25" FontSize="16" Foreground="White"   TextWrapping="Wrap"  />
+                <TextBlock Text="权限控制" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,5,0,0" Height="25" FontSize="16" Foreground="White"   TextWrapping="Wrap"  />
                 <Border BorderBrush="#FF4A91BB" BorderThickness="1" Margin="10,35,10,20" CornerRadius="5" >
                     <Border.Background>
                         <SolidColorBrush Color="White"/>
@@ -31,9 +35,43 @@
                                 <RowDefinition Height="393"/>
                                 <RowDefinition Height="32"/>
                             </Grid.RowDefinitions>
-                            <sdk:TreeView Grid.Column="0"   Name="treeView1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,2,0,8" Width="290" Height="391" />
-                            <sdk:TreeView Grid.Column="1" Name="treeView2" Margin="4,2,0,8" Height="387" Width="413" />
-                            <Button Content="保存" Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="26,8,0,0" Name="BtnSave" VerticalAlignment="Top" Width="75" />
+
+                            <ListBox Height="387" HorizontalAlignment="Left" Margin="0,0,0,0" Name="lstUserInfo" 
+                                             VerticalAlignment="Top" Width="290"  DisplayMemberPath="UserName"/>
+
+                            <telerik:RadTreeView  Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Top" 
+                                                  SelectionMode="Extended" IsLineEnabled="True" IsRootLinesEnabled="True" 
+                                                  Name="RadTreeView1" IsTriStateMode="True" 
+                                                  ItemsOptionListType="CheckList" IsOptionElementsEnabled="True"
+                                                  Margin="0,0,0,0" Height="387" Width="413">
+
+                                <telerik:RadTreeViewItem Header="信息地图" Name="menuMap" />
+                                <telerik:RadTreeViewItem Header="设备列表" Name="menuDeviceList"/>
+                                <telerik:RadTreeViewItem Header="设备告警" Name="menuAlertList"/>
+                                <telerik:RadTreeViewItem Header="用户事件" Name="menuUserEvent"/>
+                                <telerik:RadTreeViewItem Header="查询" Name="menuSearch" IsExpanded="True">
+                                    <telerik:RadTreeViewItem Header="设备查询" Name="childMenuDataSearch"/>
+                                    <telerik:RadTreeViewItem Header="告警查询" Name="childMenuAlertSearch"/>
+                                    <telerik:RadTreeViewItem Header="事件查询" Name="childMenuUserEventSearch"/>
+                                </telerik:RadTreeViewItem>
+                                <telerik:RadTreeViewItem Header="图表分析" Name="menuCompare" IsExpanded="True">
+                                    <telerik:RadTreeViewItem Header="设备对比" Name="childMenuDeviceCompare"/>
+                                    <telerik:RadTreeViewItem Header="时间对比" Name="childMenuByDateCompare"/>
+                                </telerik:RadTreeViewItem>
+
+                                <telerik:RadTreeViewItem Header="系统配置" Name="menuSysSettings" IsExpanded="True">
+                                    <telerik:RadTreeViewItem Header="设备管理" Name="childMenuDeviceManage"/>
+                                    <telerik:RadTreeViewItem Header="维护人员" Name="childMenuRepairUserManage"/>
+                                    <telerik:RadTreeViewItem Header="系统参数" Name="childMenuSysConfig"/>
+                                    <telerik:RadTreeViewItem Header="用户管理" Name="childMenuUserManage"/>
+                                    <telerik:RadTreeViewItem Header="权限管理" Name="childMenuManage"/>
+                                    
+                                </telerik:RadTreeViewItem>
+
+                            </telerik:RadTreeView>
+
+                            <Button Content="保存" Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="30,0,0,0" Name="BtnSave" VerticalAlignment="Top" Width="75" />
+
                         </Grid>
                     </Border>
                 </Border>

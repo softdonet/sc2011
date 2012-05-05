@@ -207,6 +207,10 @@ namespace Scada.Client.SL
                 case "childMenuUserManage":
                     this.ViewHost.Child = new UserManage();
                     break;
+               //菜单管理
+                case "childMenuManage":
+                    this.ViewHost.Child = new UserMenuManage();
+                    break;
             }
         }
 

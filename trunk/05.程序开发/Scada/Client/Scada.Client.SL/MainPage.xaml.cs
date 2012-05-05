@@ -194,13 +194,18 @@ namespace Scada.Client.SL
                     this.ViewHost.Child = new SysConfig();
                     break;
 
-                //设备日志管理
-                case "childMenuDevideLog":
-                    this.ViewHost.Child = new DevideLog();
-                    break;
-                //数据库备份管理
-                case "childMenuDatabaseBak":
-                    this.ViewHost.Child = new DatabaseBackUp();
+                ////设备日志管理
+                //case "childMenuDevideLog":
+                //    this.ViewHost.Child = new DevideLog();
+                //    break;
+                ////数据库备份管理
+                //case "childMenuDatabaseBak":
+                //    this.ViewHost.Child = new DatabaseBackUp();
+                //    break;
+
+                //用户权限管理
+                case "childMenuUserManage":
+                    this.ViewHost.Child = new UserManage();
                     break;
             }
         }

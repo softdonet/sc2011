@@ -172,6 +172,9 @@
     <Compile Include="Modules\BaseInfo\UserEventItems.xaml.cs">
       <DependentUpon>UserEventItems.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\BaseInfo\UserManage.xaml.cs">
+      <DependentUpon>UserManage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\BaseInfo\UserMenuManage.xaml.cs">
       <DependentUpon>UserMenuManage.xaml</DependentUpon>
     </Compile>
@@ -300,6 +303,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modules\BaseInfo\UserEventItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\BaseInfo\UserManage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

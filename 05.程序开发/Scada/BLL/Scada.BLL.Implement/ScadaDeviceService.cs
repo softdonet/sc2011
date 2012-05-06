@@ -14,6 +14,7 @@ using System.Linq;
 using Scada.Model.Entity.Common;
 using Scada.Utility.Common.Helper;
 using System.Windows;
+using System.Data.Linq;
 
 
 namespace Scada.BLL.Implement
@@ -24,6 +25,7 @@ namespace Scada.BLL.Implement
         ScadaDeviceServiceLinq scadaDeviceServiceLinq;
         private Scada.DAL.Linq.SCADADataContext sCADADataContext = null;
 
+        private readonly  string OrientPwd = "123456";
         public ScadaDeviceService()
         {
             sCADADataContext = new DAL.Linq.SCADADataContext();
@@ -1629,6 +1631,136 @@ namespace Scada.BLL.Implement
 
         #region 用户菜单权限管理
 
+        public Boolean AddUser(string user)
+        {
+            Scada.Model.Entity.User userValue = BinaryObjTransfer.JsonDeserialize<Scada.Model.Entity.User>(user);
+            userValue.Password = OrientPwd;//新增用户初始密码
+            userValue.Password = Md5Helper.Hash(userValue.Password);
+            Scada.DAL.Linq.User linqUser = userValue.ConvertTo<Scada.DAL.Linq.User>();
+            sCADADataContext.Users.InsertOnSubmit(linqUser);
+            try
+            {
+                sCADADataContext.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
+
+            }
+            catch (ChangeConflictException e)
+            {
+                string msg = e.Message;
+                MessageBox.Show("插入数据失败!");
+                return false;
+            }
+            return true;
+        }
+
+        public Boolean DelUser(Guid id)
+        {
+            var obj = sCADADataContext.Users.Where(e => e.UserID == id).SingleOrDefault();
+            sCADADataContext.Users.DeleteOnSubmit(obj);
+            try
+            {
+                sCADADataContext.SubmitChanges(ConflictMode.FailOnFirstConflict);
+            }
+            catch (ChangeConflictException e)
+            {
+                string msg = e.Message;
+                MessageBox.Show("删除数据失败!");
+                return false;
+            }
+            return true;
+        }
+
+        public Boolean UpdateUser(string user)
+        {
+            Scada.Model.Entity.User userValue = BinaryObjTransfer.JsonDeserialize<Scada.Model.Entity.User>(user);
+            var obj = sCADADataContext.Users.SingleOrDefault(e => e.UserID == userValue.UserID);
+            if (obj!=null)
+            {
+                //obj.LoginID = userValue.LoginID;
+                obj.UserName = userValue.UserName;
+               // obj.Password = userValue.Password;
+                obj.Status = userValue.Status;
+            }
+            try
+            {
+                sCADADataContext.SubmitChanges(ConflictMode.FailOnFirstConflict);
+            }
+            catch (ChangeConflictException e)
+            {
+                string msg = e.Message;
+                MessageBox.Show("修改数据失败!");
+                return false;
+            }
+            return true;
+
+        }
+
+        public string SearchUser(string loginID, string userName, char status)
+        {
+            List<User> userList = new List<User>();
+            StringBuilder sb = new StringBuilder();
+            sb.Append("select * from [User] where 1=1 ");
+            
+            string sWhere = string.Empty;
+            
+            if (!string.IsNullOrEmpty(loginID))
+            {
+                sWhere += " and LoginID='" + loginID + "'";
+            }
+            if (!string.IsNullOrEmpty( userName))
+            {
+                sWhere += " and UserName= '" + userName + "'";
+            }
+            if (!(status=='\0'))
+            {
+                sWhere += " and Status= '" + status + "'";
+            }
+            sb.Append(sWhere);
+            DataTable dt = SqlHelper.ExecuteDataTable(sb.ToString());
+            foreach (DataRow item in dt.Rows)
+            {
+                User user = new User();
+                user.UserID = new Guid(item["UserID"].ToString());
+                user.LoginID = item["LoginID"].ToString();
+                user.UserName = item["UserName"].ToString();
+                user.Password = item["PassWord"].ToString();
+                user.Status = Convert.ToChar(item["Status"]);
+                userList.Add(user);
+            }
+            return BinaryObjTransfer.JsonSerializer<List<User>>(userList);
+
+        }
+
+        public Boolean CheckUserByLoginID(string loginID)
+        {
+            bool flag = false;
+            var obj=sCADADataContext.Users.SingleOrDefault(e=>e.LoginID==loginID);
+            if (obj==null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public Boolean ResertUserPwd(Guid userID)
+        {
+            var obj = sCADADataContext.Users.SingleOrDefault(e => e.UserID == userID);
+            if (obj != null)
+            {
+
+                obj.Password = Md5Helper.Hash(OrientPwd);
+            }
+            try
+            {
+                sCADADataContext.SubmitChanges(ConflictMode.FailOnFirstConflict);
+            }
+            catch (ChangeConflictException e)
+            {
+                string msg = e.Message;
+                MessageBox.Show("重置密码失败!");
+                return false;
+            }
+            return true;
+        }
         public String GetUserList()
         {
             List<User> users = new List<User>();
@@ -1642,6 +1774,7 @@ namespace Scada.BLL.Implement
                 user.LoginID = item["LoginID"].ToString();
                 user.UserName = item["UserName"].ToString();
                 user.Password = item["Password"].ToString();
+                user.Status = Convert.ToChar(item["Status"]);
                 users.Add(user);
             }
             return BinaryObjTransfer.JsonSerializer<List<User>>(users);

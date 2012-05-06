@@ -81,6 +81,7 @@
     <Compile Include="Modules\Alarm\DeviceAlarmViewModel.cs" />
     <Compile Include="Modules\Alarm\AlarmListViewModel.cs" />
     <Compile Include="Modules\BaseInfo\DeviceManageViewModel.cs" />
+    <Compile Include="Modules\BaseInfo\UserManageViewModel.cs" />
     <Compile Include="Modules\BingMaps\MapIndexViewModel.cs" />
     <Compile Include="Modules\BingMaps\PushPinDeviceViewModel.cs" />
     <Compile Include="Modules\Device\DetailsPageViewModel.cs" />
@@ -122,7 +123,13 @@
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.AddMaintenancePeopleResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.AddUserResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.CheckDeviceInfoByDeviceNoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.CheckUserByLoginIDResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.GetAlarmQueryInfoResponse.datasource">
@@ -146,6 +153,9 @@
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.GetMaintenancePeopleResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.GetMenuTreeListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.GetSameDateTemperatureDiffDeviceResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -158,6 +168,12 @@
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.GetUserEventQueryInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.GetUserListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.GetUserMenuTreeListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.ListDeviceMaintenancePeopleResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -167,7 +183,13 @@
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.ListMaintenancePeopleResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.LogInResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.ProcessingStepNoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.SearchUserResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoResponse.datasource">
@@ -180,6 +202,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.UpdateUserEventInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.UpdateUserResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.ViewDeviceInfoResponse.datasource">

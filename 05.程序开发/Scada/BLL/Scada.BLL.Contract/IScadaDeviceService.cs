@@ -126,6 +126,13 @@ namespace Scada.BLL.Contract
 
         #region 用户菜单权限管理
 
+        Boolean CheckUserByLoginID(string loginID);
+        Boolean AddUser(string user);
+        Boolean DelUser(Guid id);
+        Boolean UpdateUser(string user);
+        string SearchUser(string loginID, string userName, char status);
+
+        Boolean ResertUserPwd(Guid userID);
         String GetUserList();
 
         String GetMenuTreeList();

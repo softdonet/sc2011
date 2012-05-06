@@ -82,11 +82,13 @@
     <Compile Include="DBPartialClass\DeviceAlarmPartial.cs" />
     <Compile Include="DBPartialClass\DeviceInfoPartial.cs" />
     <Compile Include="DBPartialClass\DeviceRealTimePartial.cs" />
+    <Compile Include="DBPartialClass\User.cs" />
     <Compile Include="DBPartialClass\UserEventModelPartial.cs" />
     <Compile Include="Enums\DeviceStates.cs" />
     <Compile Include="Enums\EventTypes.cs" />
     <Compile Include="Enums\UserDealState.cs" />
     <Compile Include="Enums\UserEventType.cs" />
+    <Compile Include="Enums\UserStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

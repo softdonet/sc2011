@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SCADA_DEV_NEW" Class="SCADADataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=112.125.33.194;Initial Catalog=SCADA_DEV_NEW;User ID=sa" SettingsObjectName="Scada.DAL.Linq.Properties.Settings" SettingsPropertyName="SCADA_DEV_NEWConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=112.125.33.194;Initial Catalog=SCADA_DEV_NEW;Persist Security Info=True;User ID=sa" SettingsObjectName="Scada.DAL.Linq.Properties.Settings" SettingsPropertyName="SCADA_DEV_NEWConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.DeviceAlarm" Member="DeviceAlarms">
     <Type Name="DeviceAlarm">
       <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -124,9 +124,7 @@
       <Column Name="MeunName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="ParentId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Remark" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="MenuTree_MenuTree" Member="MenuTrees" ThisKey="MenuId" OtherKey="ParentId" Type="MenuTree" />
       <Association Name="MenuTree_UserMenu" Member="UserMenus" ThisKey="MenuId" OtherKey="MenuId" Type="UserMenu" />
-      <Association Name="MenuTree_MenuTree" Member="MenuTree1" ThisKey="ParentId" OtherKey="MenuId" Type="MenuTree" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Module" Member="Modules">
@@ -181,7 +179,8 @@
       <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="LoginID" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="UserName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="Password" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
       <Association Name="User_DeviceAlarm" Member="DeviceAlarms" ThisKey="UserID" OtherKey="DealPeopleID" Type="DeviceAlarm" />
       <Association Name="User_UserRole" Member="UserRoles" ThisKey="UserID" OtherKey="UserID" Type="UserRole" />
       <Association Name="User_DeviceTree" Member="DeviceTrees" ThisKey="UserID" OtherKey="AdminID" Type="DeviceTree" />
@@ -218,7 +217,7 @@
   </Table>
   <Table Name="dbo.UserMenu" Member="UserMenus">
     <Type Name="UserMenu">
-      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="MenuId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="[Level]" Member="Level" Type="System.Int32" DbType="Int" CanBeNull="true" />

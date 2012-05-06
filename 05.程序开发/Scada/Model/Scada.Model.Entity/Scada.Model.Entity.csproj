@@ -65,12 +65,14 @@
     <Compile Include="DBClass\UserRole.cs" />
     <Compile Include="Common\DeviceRealTimeTree.cs" />
     <Compile Include="Common\DeviceTreeNode.cs" />
+    <Compile Include="DBPartialClass\User.cs" />
     <Compile Include="DBPartialClass\UserEventModelPartial.cs" />
     <Compile Include="Enums\DisplayType.cs" />
     <Compile Include="Enums\EventTypes.cs" />
     <Compile Include="Enums\DeviceStates.cs" />
     <Compile Include="Enums\UserDealState.cs" />
     <Compile Include="Enums\UserEventType.cs" />
+    <Compile Include="Enums\UserStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

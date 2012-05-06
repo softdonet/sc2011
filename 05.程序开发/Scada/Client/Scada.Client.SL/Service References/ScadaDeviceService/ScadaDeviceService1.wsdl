@@ -430,6 +430,21 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="SetUserMenuTreeList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userMenuList" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserMenuTreeListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetUserMenuTreeListResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="guid">
@@ -625,6 +640,12 @@
   <wsdl:message name="LogInSoapOut">
     <wsdl:part name="parameters" element="tns:LogInResponse" />
   </wsdl:message>
+  <wsdl:message name="SetUserMenuTreeListSoapIn">
+    <wsdl:part name="parameters" element="tns:SetUserMenuTreeList" />
+  </wsdl:message>
+  <wsdl:message name="SetUserMenuTreeListSoapOut">
+    <wsdl:part name="parameters" element="tns:SetUserMenuTreeListResponse" />
+  </wsdl:message>
   <wsdl:portType name="ScadaDeviceServiceSoap">
     <wsdl:operation name="Add">
       <wsdl:input message="tns:AddSoapIn" />
@@ -749,6 +770,10 @@
     <wsdl:operation name="LogIn">
       <wsdl:input message="tns:LogInSoapIn" />
       <wsdl:output message="tns:LogInSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserMenuTreeList">
+      <wsdl:input message="tns:SetUserMenuTreeListSoapIn" />
+      <wsdl:output message="tns:SetUserMenuTreeListSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ScadaDeviceServiceSoap" type="tns:ScadaDeviceServiceSoap">
@@ -1032,6 +1057,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SetUserMenuTreeList">
+      <soap:operation soapAction="http://tempuri.org/SetUserMenuTreeList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ScadaDeviceServiceSoap12" type="tns:ScadaDeviceServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -1307,6 +1341,15 @@
     </wsdl:operation>
     <wsdl:operation name="LogIn">
       <soap12:operation soapAction="http://tempuri.org/LogIn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserMenuTreeList">
+      <soap12:operation soapAction="http://tempuri.org/SetUserMenuTreeList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -1734,6 +1734,49 @@ namespace Scada.BLL.Implement
             }
         }
 
+        public Boolean SetUserMenuTreeList(String userKey, String userMenuList)
+        {
+            Boolean result = false;
+            try
+            {
+                //1)Clear User Menu Permission
+                this.ClrUserMenuPermission(userKey);
+                //2)Add User Menu  Permission
+                List<UserMenu> userMenus = BinaryObjTransfer.JsonDeserialize<List<UserMenu>>(userMenuList);
+                this.AddUserMenuPermission(userMenus);
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                result = false;
+            }
+            return result;
+        }
+
+        private void ClrUserMenuPermission(string userKey)
+        {
+            string sSql = @" Delete UserMenu Where UserId='" + userKey + "'";
+            SqlHelper.ExecuteNonQuery(sSql);
+        }
+
+        private void AddUserMenuPermission(List<UserMenu> userMenus)
+        {
+            string sSql = @" Insert Into UserMenu(Id,UserId,MenuId,Level) 
+                                    Values (@Id,@UserId,@MenuId,@Level)";
+            List<SqlParameter> sSqlWhere = new List<SqlParameter>();
+            foreach (UserMenu item in userMenus)
+            {
+                sSqlWhere.Clear();
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Id", DbType = DbType.Guid, Value = item.Id });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@UserId", DbType = DbType.Guid, Value = item.UserId });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@MenuId", DbType = DbType.Guid, Value = item.MenuId });
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Level", DbType = DbType.Int32, Value = item.Level });
+                int rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql, sSqlWhere.ToArray());
+            }
+
+        }
+
         #endregion
 
     }

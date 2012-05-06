@@ -62,6 +62,11 @@ namespace Scada.Client.SL.Modules.BaseInfo
                    += new EventHandler<GetUserMenuTreeListCompletedEventArgs>
                       (scadaDeviceServiceSoapClient_GetUserMenuTreeListCompleted);
 
+            //注册用户菜单权限
+            this._scadaDeviceServiceSoapClient.SetUserMenuTreeListCompleted
+                += new EventHandler<SetUserMenuTreeListCompletedEventArgs>
+                     (scadaDeviceServiceSoapClient_SetUserMenuTreeListCompleted);
+
         }
 
         #endregion
@@ -151,7 +156,71 @@ namespace Scada.Client.SL.Modules.BaseInfo
         #endregion
 
 
+
         #region 保存用户权限
+
+        private void btnSave_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+            //获取用户Key
+            if (this.lstUserInfo.SelectedItem == null) { return; }
+            object selObj = this.lstUserInfo.SelectedItem;
+            if (!(selObj is User)) { return; }
+            Guid userKey = (selObj as User).UserID;
+
+            //获取菜单权限
+            List<UserMenu> userMenus = new List<UserMenu>();
+            this.GetMenuPermission(userKey, userMenus, this.RadTreeView1.Items);
+
+            //保存数据库
+            this._scadaDeviceServiceSoapClient.SetUserMenuTreeListAsync(
+                               userKey.ToString(),
+                               BinaryObjTransfer.BinarySerialize(userMenus));
+
+        }
+
+        private void GetMenuPermission(Guid userKey, List<UserMenu> userMenus, ItemCollection nodes)
+        {
+            foreach (RadTreeViewItem node in nodes)
+            {
+
+                if (node.CheckState != System.Windows.Automation.ToggleState.Off)
+                {
+                    this.AddUserMenu(node, userKey, 0, userMenus);
+                    foreach (RadTreeViewItem childNode in node.Items)
+                    {
+                        if (childNode.CheckState != System.Windows.Automation.ToggleState.Off)
+                            this.AddUserMenu(childNode, userKey, 1, userMenus);
+                    }
+                }
+            }
+        }
+
+        private void AddUserMenu(RadTreeViewItem node, Guid userKey, Int32 levelId, List<UserMenu> userMenus)
+        {
+            MenuTree menuTree = _menuTree.First(x => x.Remark == node.Name);
+            if (menuTree == null) { return; }
+            UserMenu userMenu = new UserMenu();
+            userMenu.Id = Guid.NewGuid();
+            userMenu.UserId = userKey;
+            userMenu.MenuId = menuTree.MenuId;
+            userMenu.Level = levelId;
+            userMenus.Add(userMenu);
+        }
+
+        private void scadaDeviceServiceSoapClient_SetUserMenuTreeListCompleted(object sender,
+                                                                                SetUserMenuTreeListCompletedEventArgs e)
+        {
+            if (e.Error == null)
+            {
+                Boolean result = e.Result;
+                ScadaMessageBox.ShowWarnMessage("保存成功！", "提示信息");
+            }
+            else
+                ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");
+
+        }
+
         #endregion
 
 

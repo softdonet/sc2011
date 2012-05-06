@@ -152,6 +152,56 @@ namespace Scada.Client.VM.ScadaDeviceService {
         System.IAsyncResult BeginDeleteMaintenancePeople(System.Guid peopleKey, System.AsyncCallback callback, object asyncState);
         
         bool EndDeleteMaintenancePeople(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/CheckUserByLoginID", ReplyAction="*")]
+        System.IAsyncResult BeginCheckUserByLoginID(Scada.Client.VM.ScadaDeviceService.CheckUserByLoginIDRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.VM.ScadaDeviceService.CheckUserByLoginIDResponse EndCheckUserByLoginID(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/AddUser", ReplyAction="*")]
+        System.IAsyncResult BeginAddUser(Scada.Client.VM.ScadaDeviceService.AddUserRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.VM.ScadaDeviceService.AddUserResponse EndAddUser(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/DelUser", ReplyAction="*")]
+        System.IAsyncResult BeginDelUser(System.Guid id, System.AsyncCallback callback, object asyncState);
+        
+        bool EndDelUser(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/UpdateUser", ReplyAction="*")]
+        System.IAsyncResult BeginUpdateUser(Scada.Client.VM.ScadaDeviceService.UpdateUserRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.VM.ScadaDeviceService.UpdateUserResponse EndUpdateUser(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/SearchUser", ReplyAction="*")]
+        System.IAsyncResult BeginSearchUser(Scada.Client.VM.ScadaDeviceService.SearchUserRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.VM.ScadaDeviceService.SearchUserResponse EndSearchUser(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ResertUserPwd", ReplyAction="*")]
+        System.IAsyncResult BeginResertUserPwd(System.Guid userID, System.AsyncCallback callback, object asyncState);
+        
+        bool EndResertUserPwd(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/GetUserList", ReplyAction="*")]
+        System.IAsyncResult BeginGetUserList(Scada.Client.VM.ScadaDeviceService.GetUserListRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.VM.ScadaDeviceService.GetUserListResponse EndGetUserList(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/GetMenuTreeList", ReplyAction="*")]
+        System.IAsyncResult BeginGetMenuTreeList(Scada.Client.VM.ScadaDeviceService.GetMenuTreeListRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.VM.ScadaDeviceService.GetMenuTreeListResponse EndGetMenuTreeList(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/GetUserMenuTreeList", ReplyAction="*")]
+        System.IAsyncResult BeginGetUserMenuTreeList(Scada.Client.VM.ScadaDeviceService.GetUserMenuTreeListRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.VM.ScadaDeviceService.GetUserMenuTreeListResponse EndGetUserMenuTreeList(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/LogIn", ReplyAction="*")]
+        System.IAsyncResult BeginLogIn(Scada.Client.VM.ScadaDeviceService.LogInRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.VM.ScadaDeviceService.LogInResponse EndLogIn(System.IAsyncResult result);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1751,6 +1801,552 @@ namespace Scada.Client.VM.ScadaDeviceService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class CheckUserByLoginIDRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="CheckUserByLoginID", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.CheckUserByLoginIDRequestBody Body;
+        
+        public CheckUserByLoginIDRequest() {
+        }
+        
+        public CheckUserByLoginIDRequest(Scada.Client.VM.ScadaDeviceService.CheckUserByLoginIDRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class CheckUserByLoginIDRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string loginID;
+        
+        public CheckUserByLoginIDRequestBody() {
+        }
+        
+        public CheckUserByLoginIDRequestBody(string loginID) {
+            this.loginID = loginID;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class CheckUserByLoginIDResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="CheckUserByLoginIDResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.CheckUserByLoginIDResponseBody Body;
+        
+        public CheckUserByLoginIDResponse() {
+        }
+        
+        public CheckUserByLoginIDResponse(Scada.Client.VM.ScadaDeviceService.CheckUserByLoginIDResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class CheckUserByLoginIDResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool CheckUserByLoginIDResult;
+        
+        public CheckUserByLoginIDResponseBody() {
+        }
+        
+        public CheckUserByLoginIDResponseBody(bool CheckUserByLoginIDResult) {
+            this.CheckUserByLoginIDResult = CheckUserByLoginIDResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class AddUserRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="AddUser", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.AddUserRequestBody Body;
+        
+        public AddUserRequest() {
+        }
+        
+        public AddUserRequest(Scada.Client.VM.ScadaDeviceService.AddUserRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class AddUserRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string user;
+        
+        public AddUserRequestBody() {
+        }
+        
+        public AddUserRequestBody(string user) {
+            this.user = user;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class AddUserResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="AddUserResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.AddUserResponseBody Body;
+        
+        public AddUserResponse() {
+        }
+        
+        public AddUserResponse(Scada.Client.VM.ScadaDeviceService.AddUserResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class AddUserResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool AddUserResult;
+        
+        public AddUserResponseBody() {
+        }
+        
+        public AddUserResponseBody(bool AddUserResult) {
+            this.AddUserResult = AddUserResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UpdateUserRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UpdateUser", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.UpdateUserRequestBody Body;
+        
+        public UpdateUserRequest() {
+        }
+        
+        public UpdateUserRequest(Scada.Client.VM.ScadaDeviceService.UpdateUserRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class UpdateUserRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string user;
+        
+        public UpdateUserRequestBody() {
+        }
+        
+        public UpdateUserRequestBody(string user) {
+            this.user = user;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UpdateUserResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UpdateUserResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.UpdateUserResponseBody Body;
+        
+        public UpdateUserResponse() {
+        }
+        
+        public UpdateUserResponse(Scada.Client.VM.ScadaDeviceService.UpdateUserResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class UpdateUserResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool UpdateUserResult;
+        
+        public UpdateUserResponseBody() {
+        }
+        
+        public UpdateUserResponseBody(bool UpdateUserResult) {
+            this.UpdateUserResult = UpdateUserResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class SearchUserRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SearchUser", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.SearchUserRequestBody Body;
+        
+        public SearchUserRequest() {
+        }
+        
+        public SearchUserRequest(Scada.Client.VM.ScadaDeviceService.SearchUserRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class SearchUserRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string loginID;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string userName;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public char status;
+        
+        public SearchUserRequestBody() {
+        }
+        
+        public SearchUserRequestBody(string loginID, string userName, char status) {
+            this.loginID = loginID;
+            this.userName = userName;
+            this.status = status;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class SearchUserResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SearchUserResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.SearchUserResponseBody Body;
+        
+        public SearchUserResponse() {
+        }
+        
+        public SearchUserResponse(Scada.Client.VM.ScadaDeviceService.SearchUserResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class SearchUserResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string SearchUserResult;
+        
+        public SearchUserResponseBody() {
+        }
+        
+        public SearchUserResponseBody(string SearchUserResult) {
+            this.SearchUserResult = SearchUserResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetUserListRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetUserList", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.GetUserListRequestBody Body;
+        
+        public GetUserListRequest() {
+        }
+        
+        public GetUserListRequest(Scada.Client.VM.ScadaDeviceService.GetUserListRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class GetUserListRequestBody {
+        
+        public GetUserListRequestBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetUserListResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetUserListResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.GetUserListResponseBody Body;
+        
+        public GetUserListResponse() {
+        }
+        
+        public GetUserListResponse(Scada.Client.VM.ScadaDeviceService.GetUserListResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetUserListResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetUserListResult;
+        
+        public GetUserListResponseBody() {
+        }
+        
+        public GetUserListResponseBody(string GetUserListResult) {
+            this.GetUserListResult = GetUserListResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetMenuTreeListRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetMenuTreeList", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.GetMenuTreeListRequestBody Body;
+        
+        public GetMenuTreeListRequest() {
+        }
+        
+        public GetMenuTreeListRequest(Scada.Client.VM.ScadaDeviceService.GetMenuTreeListRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class GetMenuTreeListRequestBody {
+        
+        public GetMenuTreeListRequestBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetMenuTreeListResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetMenuTreeListResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.GetMenuTreeListResponseBody Body;
+        
+        public GetMenuTreeListResponse() {
+        }
+        
+        public GetMenuTreeListResponse(Scada.Client.VM.ScadaDeviceService.GetMenuTreeListResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetMenuTreeListResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetMenuTreeListResult;
+        
+        public GetMenuTreeListResponseBody() {
+        }
+        
+        public GetMenuTreeListResponseBody(string GetMenuTreeListResult) {
+            this.GetMenuTreeListResult = GetMenuTreeListResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetUserMenuTreeListRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetUserMenuTreeList", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.GetUserMenuTreeListRequestBody Body;
+        
+        public GetUserMenuTreeListRequest() {
+        }
+        
+        public GetUserMenuTreeListRequest(Scada.Client.VM.ScadaDeviceService.GetUserMenuTreeListRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetUserMenuTreeListRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string UserKey;
+        
+        public GetUserMenuTreeListRequestBody() {
+        }
+        
+        public GetUserMenuTreeListRequestBody(string UserKey) {
+            this.UserKey = UserKey;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetUserMenuTreeListResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetUserMenuTreeListResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.GetUserMenuTreeListResponseBody Body;
+        
+        public GetUserMenuTreeListResponse() {
+        }
+        
+        public GetUserMenuTreeListResponse(Scada.Client.VM.ScadaDeviceService.GetUserMenuTreeListResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetUserMenuTreeListResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetUserMenuTreeListResult;
+        
+        public GetUserMenuTreeListResponseBody() {
+        }
+        
+        public GetUserMenuTreeListResponseBody(string GetUserMenuTreeListResult) {
+            this.GetUserMenuTreeListResult = GetUserMenuTreeListResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class LogInRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="LogIn", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.LogInRequestBody Body;
+        
+        public LogInRequest() {
+        }
+        
+        public LogInRequest(Scada.Client.VM.ScadaDeviceService.LogInRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class LogInRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string userName;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string userPwd;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string userIp;
+        
+        public LogInRequestBody() {
+        }
+        
+        public LogInRequestBody(string userName, string userPwd, string userIp) {
+            this.userName = userName;
+            this.userPwd = userPwd;
+            this.userIp = userIp;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class LogInResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="LogInResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.LogInResponseBody Body;
+        
+        public LogInResponse() {
+        }
+        
+        public LogInResponse(Scada.Client.VM.ScadaDeviceService.LogInResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class LogInResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string LogInResult;
+        
+        public LogInResponseBody() {
+        }
+        
+        public LogInResponseBody(string LogInResult) {
+            this.LogInResult = LogInResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface ScadaDeviceServiceSoapChannel : Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap, System.ServiceModel.IClientChannel {
     }
@@ -2270,6 +2866,196 @@ namespace Scada.Client.VM.ScadaDeviceService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class CheckUserByLoginIDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public CheckUserByLoginIDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AddUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public AddUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class DelUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public DelUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UpdateUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UpdateUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class SearchUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public SearchUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ResertUserPwdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public ResertUserPwdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetUserListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetUserListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetMenuTreeListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetMenuTreeListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetUserMenuTreeListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetUserMenuTreeListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class LogInCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public LogInCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class ScadaDeviceServiceSoapClient : System.ServiceModel.ClientBase<Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap>, Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap {
         
         private BeginOperationDelegate onBeginAddDelegate;
@@ -2434,6 +3220,66 @@ namespace Scada.Client.VM.ScadaDeviceService {
         
         private System.Threading.SendOrPostCallback onDeleteMaintenancePeopleCompletedDelegate;
         
+        private BeginOperationDelegate onBeginCheckUserByLoginIDDelegate;
+        
+        private EndOperationDelegate onEndCheckUserByLoginIDDelegate;
+        
+        private System.Threading.SendOrPostCallback onCheckUserByLoginIDCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginAddUserDelegate;
+        
+        private EndOperationDelegate onEndAddUserDelegate;
+        
+        private System.Threading.SendOrPostCallback onAddUserCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginDelUserDelegate;
+        
+        private EndOperationDelegate onEndDelUserDelegate;
+        
+        private System.Threading.SendOrPostCallback onDelUserCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginUpdateUserDelegate;
+        
+        private EndOperationDelegate onEndUpdateUserDelegate;
+        
+        private System.Threading.SendOrPostCallback onUpdateUserCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginSearchUserDelegate;
+        
+        private EndOperationDelegate onEndSearchUserDelegate;
+        
+        private System.Threading.SendOrPostCallback onSearchUserCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginResertUserPwdDelegate;
+        
+        private EndOperationDelegate onEndResertUserPwdDelegate;
+        
+        private System.Threading.SendOrPostCallback onResertUserPwdCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetUserListDelegate;
+        
+        private EndOperationDelegate onEndGetUserListDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetUserListCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetMenuTreeListDelegate;
+        
+        private EndOperationDelegate onEndGetMenuTreeListDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetMenuTreeListCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetUserMenuTreeListDelegate;
+        
+        private EndOperationDelegate onEndGetUserMenuTreeListDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetUserMenuTreeListCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginLogInDelegate;
+        
+        private EndOperationDelegate onEndLogInDelegate;
+        
+        private System.Threading.SendOrPostCallback onLogInCompletedDelegate;
+        
         private BeginOperationDelegate onBeginOpenDelegate;
         
         private EndOperationDelegate onEndOpenDelegate;
@@ -2540,6 +3386,26 @@ namespace Scada.Client.VM.ScadaDeviceService {
         public event System.EventHandler<UpdateMaintenancePeopleCompletedEventArgs> UpdateMaintenancePeopleCompleted;
         
         public event System.EventHandler<DeleteMaintenancePeopleCompletedEventArgs> DeleteMaintenancePeopleCompleted;
+        
+        public event System.EventHandler<CheckUserByLoginIDCompletedEventArgs> CheckUserByLoginIDCompleted;
+        
+        public event System.EventHandler<AddUserCompletedEventArgs> AddUserCompleted;
+        
+        public event System.EventHandler<DelUserCompletedEventArgs> DelUserCompleted;
+        
+        public event System.EventHandler<UpdateUserCompletedEventArgs> UpdateUserCompleted;
+        
+        public event System.EventHandler<SearchUserCompletedEventArgs> SearchUserCompleted;
+        
+        public event System.EventHandler<ResertUserPwdCompletedEventArgs> ResertUserPwdCompleted;
+        
+        public event System.EventHandler<GetUserListCompletedEventArgs> GetUserListCompleted;
+        
+        public event System.EventHandler<GetMenuTreeListCompletedEventArgs> GetMenuTreeListCompleted;
+        
+        public event System.EventHandler<GetUserMenuTreeListCompletedEventArgs> GetUserMenuTreeListCompleted;
+        
+        public event System.EventHandler<LogInCompletedEventArgs> LogInCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -4149,6 +5015,584 @@ namespace Scada.Client.VM.ScadaDeviceService {
                         peopleKey}, this.onEndDeleteMaintenancePeopleDelegate, this.onDeleteMaintenancePeopleCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.BeginCheckUserByLoginID(Scada.Client.VM.ScadaDeviceService.CheckUserByLoginIDRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginCheckUserByLoginID(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginCheckUserByLoginID(string loginID, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.VM.ScadaDeviceService.CheckUserByLoginIDRequest inValue = new Scada.Client.VM.ScadaDeviceService.CheckUserByLoginIDRequest();
+            inValue.Body = new Scada.Client.VM.ScadaDeviceService.CheckUserByLoginIDRequestBody();
+            inValue.Body.loginID = loginID;
+            return ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginCheckUserByLoginID(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.VM.ScadaDeviceService.CheckUserByLoginIDResponse Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.EndCheckUserByLoginID(System.IAsyncResult result) {
+            return base.Channel.EndCheckUserByLoginID(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private bool EndCheckUserByLoginID(System.IAsyncResult result) {
+            Scada.Client.VM.ScadaDeviceService.CheckUserByLoginIDResponse retVal = ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndCheckUserByLoginID(result);
+            return retVal.Body.CheckUserByLoginIDResult;
+        }
+        
+        private System.IAsyncResult OnBeginCheckUserByLoginID(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string loginID = ((string)(inValues[0]));
+            return this.BeginCheckUserByLoginID(loginID, callback, asyncState);
+        }
+        
+        private object[] OnEndCheckUserByLoginID(System.IAsyncResult result) {
+            bool retVal = this.EndCheckUserByLoginID(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnCheckUserByLoginIDCompleted(object state) {
+            if ((this.CheckUserByLoginIDCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.CheckUserByLoginIDCompleted(this, new CheckUserByLoginIDCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void CheckUserByLoginIDAsync(string loginID) {
+            this.CheckUserByLoginIDAsync(loginID, null);
+        }
+        
+        public void CheckUserByLoginIDAsync(string loginID, object userState) {
+            if ((this.onBeginCheckUserByLoginIDDelegate == null)) {
+                this.onBeginCheckUserByLoginIDDelegate = new BeginOperationDelegate(this.OnBeginCheckUserByLoginID);
+            }
+            if ((this.onEndCheckUserByLoginIDDelegate == null)) {
+                this.onEndCheckUserByLoginIDDelegate = new EndOperationDelegate(this.OnEndCheckUserByLoginID);
+            }
+            if ((this.onCheckUserByLoginIDCompletedDelegate == null)) {
+                this.onCheckUserByLoginIDCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnCheckUserByLoginIDCompleted);
+            }
+            base.InvokeAsync(this.onBeginCheckUserByLoginIDDelegate, new object[] {
+                        loginID}, this.onEndCheckUserByLoginIDDelegate, this.onCheckUserByLoginIDCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.BeginAddUser(Scada.Client.VM.ScadaDeviceService.AddUserRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddUser(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginAddUser(string user, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.VM.ScadaDeviceService.AddUserRequest inValue = new Scada.Client.VM.ScadaDeviceService.AddUserRequest();
+            inValue.Body = new Scada.Client.VM.ScadaDeviceService.AddUserRequestBody();
+            inValue.Body.user = user;
+            return ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginAddUser(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.VM.ScadaDeviceService.AddUserResponse Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.EndAddUser(System.IAsyncResult result) {
+            return base.Channel.EndAddUser(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private bool EndAddUser(System.IAsyncResult result) {
+            Scada.Client.VM.ScadaDeviceService.AddUserResponse retVal = ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndAddUser(result);
+            return retVal.Body.AddUserResult;
+        }
+        
+        private System.IAsyncResult OnBeginAddUser(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string user = ((string)(inValues[0]));
+            return this.BeginAddUser(user, callback, asyncState);
+        }
+        
+        private object[] OnEndAddUser(System.IAsyncResult result) {
+            bool retVal = this.EndAddUser(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnAddUserCompleted(object state) {
+            if ((this.AddUserCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AddUserCompleted(this, new AddUserCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AddUserAsync(string user) {
+            this.AddUserAsync(user, null);
+        }
+        
+        public void AddUserAsync(string user, object userState) {
+            if ((this.onBeginAddUserDelegate == null)) {
+                this.onBeginAddUserDelegate = new BeginOperationDelegate(this.OnBeginAddUser);
+            }
+            if ((this.onEndAddUserDelegate == null)) {
+                this.onEndAddUserDelegate = new EndOperationDelegate(this.OnEndAddUser);
+            }
+            if ((this.onAddUserCompletedDelegate == null)) {
+                this.onAddUserCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddUserCompleted);
+            }
+            base.InvokeAsync(this.onBeginAddUserDelegate, new object[] {
+                        user}, this.onEndAddUserDelegate, this.onAddUserCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.BeginDelUser(System.Guid id, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginDelUser(id, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        bool Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.EndDelUser(System.IAsyncResult result) {
+            return base.Channel.EndDelUser(result);
+        }
+        
+        private System.IAsyncResult OnBeginDelUser(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            System.Guid id = ((System.Guid)(inValues[0]));
+            return ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginDelUser(id, callback, asyncState);
+        }
+        
+        private object[] OnEndDelUser(System.IAsyncResult result) {
+            bool retVal = ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndDelUser(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnDelUserCompleted(object state) {
+            if ((this.DelUserCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.DelUserCompleted(this, new DelUserCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void DelUserAsync(System.Guid id) {
+            this.DelUserAsync(id, null);
+        }
+        
+        public void DelUserAsync(System.Guid id, object userState) {
+            if ((this.onBeginDelUserDelegate == null)) {
+                this.onBeginDelUserDelegate = new BeginOperationDelegate(this.OnBeginDelUser);
+            }
+            if ((this.onEndDelUserDelegate == null)) {
+                this.onEndDelUserDelegate = new EndOperationDelegate(this.OnEndDelUser);
+            }
+            if ((this.onDelUserCompletedDelegate == null)) {
+                this.onDelUserCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDelUserCompleted);
+            }
+            base.InvokeAsync(this.onBeginDelUserDelegate, new object[] {
+                        id}, this.onEndDelUserDelegate, this.onDelUserCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.BeginUpdateUser(Scada.Client.VM.ScadaDeviceService.UpdateUserRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateUser(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginUpdateUser(string user, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.VM.ScadaDeviceService.UpdateUserRequest inValue = new Scada.Client.VM.ScadaDeviceService.UpdateUserRequest();
+            inValue.Body = new Scada.Client.VM.ScadaDeviceService.UpdateUserRequestBody();
+            inValue.Body.user = user;
+            return ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginUpdateUser(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.VM.ScadaDeviceService.UpdateUserResponse Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.EndUpdateUser(System.IAsyncResult result) {
+            return base.Channel.EndUpdateUser(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private bool EndUpdateUser(System.IAsyncResult result) {
+            Scada.Client.VM.ScadaDeviceService.UpdateUserResponse retVal = ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndUpdateUser(result);
+            return retVal.Body.UpdateUserResult;
+        }
+        
+        private System.IAsyncResult OnBeginUpdateUser(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string user = ((string)(inValues[0]));
+            return this.BeginUpdateUser(user, callback, asyncState);
+        }
+        
+        private object[] OnEndUpdateUser(System.IAsyncResult result) {
+            bool retVal = this.EndUpdateUser(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUpdateUserCompleted(object state) {
+            if ((this.UpdateUserCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UpdateUserCompleted(this, new UpdateUserCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UpdateUserAsync(string user) {
+            this.UpdateUserAsync(user, null);
+        }
+        
+        public void UpdateUserAsync(string user, object userState) {
+            if ((this.onBeginUpdateUserDelegate == null)) {
+                this.onBeginUpdateUserDelegate = new BeginOperationDelegate(this.OnBeginUpdateUser);
+            }
+            if ((this.onEndUpdateUserDelegate == null)) {
+                this.onEndUpdateUserDelegate = new EndOperationDelegate(this.OnEndUpdateUser);
+            }
+            if ((this.onUpdateUserCompletedDelegate == null)) {
+                this.onUpdateUserCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateUserCompleted);
+            }
+            base.InvokeAsync(this.onBeginUpdateUserDelegate, new object[] {
+                        user}, this.onEndUpdateUserDelegate, this.onUpdateUserCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.BeginSearchUser(Scada.Client.VM.ScadaDeviceService.SearchUserRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSearchUser(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginSearchUser(string loginID, string userName, char status, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.VM.ScadaDeviceService.SearchUserRequest inValue = new Scada.Client.VM.ScadaDeviceService.SearchUserRequest();
+            inValue.Body = new Scada.Client.VM.ScadaDeviceService.SearchUserRequestBody();
+            inValue.Body.loginID = loginID;
+            inValue.Body.userName = userName;
+            inValue.Body.status = status;
+            return ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginSearchUser(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.VM.ScadaDeviceService.SearchUserResponse Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.EndSearchUser(System.IAsyncResult result) {
+            return base.Channel.EndSearchUser(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private string EndSearchUser(System.IAsyncResult result) {
+            Scada.Client.VM.ScadaDeviceService.SearchUserResponse retVal = ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndSearchUser(result);
+            return retVal.Body.SearchUserResult;
+        }
+        
+        private System.IAsyncResult OnBeginSearchUser(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string loginID = ((string)(inValues[0]));
+            string userName = ((string)(inValues[1]));
+            char status = ((char)(inValues[2]));
+            return this.BeginSearchUser(loginID, userName, status, callback, asyncState);
+        }
+        
+        private object[] OnEndSearchUser(System.IAsyncResult result) {
+            string retVal = this.EndSearchUser(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnSearchUserCompleted(object state) {
+            if ((this.SearchUserCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SearchUserCompleted(this, new SearchUserCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SearchUserAsync(string loginID, string userName, char status) {
+            this.SearchUserAsync(loginID, userName, status, null);
+        }
+        
+        public void SearchUserAsync(string loginID, string userName, char status, object userState) {
+            if ((this.onBeginSearchUserDelegate == null)) {
+                this.onBeginSearchUserDelegate = new BeginOperationDelegate(this.OnBeginSearchUser);
+            }
+            if ((this.onEndSearchUserDelegate == null)) {
+                this.onEndSearchUserDelegate = new EndOperationDelegate(this.OnEndSearchUser);
+            }
+            if ((this.onSearchUserCompletedDelegate == null)) {
+                this.onSearchUserCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSearchUserCompleted);
+            }
+            base.InvokeAsync(this.onBeginSearchUserDelegate, new object[] {
+                        loginID,
+                        userName,
+                        status}, this.onEndSearchUserDelegate, this.onSearchUserCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.BeginResertUserPwd(System.Guid userID, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginResertUserPwd(userID, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        bool Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.EndResertUserPwd(System.IAsyncResult result) {
+            return base.Channel.EndResertUserPwd(result);
+        }
+        
+        private System.IAsyncResult OnBeginResertUserPwd(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            System.Guid userID = ((System.Guid)(inValues[0]));
+            return ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginResertUserPwd(userID, callback, asyncState);
+        }
+        
+        private object[] OnEndResertUserPwd(System.IAsyncResult result) {
+            bool retVal = ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndResertUserPwd(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnResertUserPwdCompleted(object state) {
+            if ((this.ResertUserPwdCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.ResertUserPwdCompleted(this, new ResertUserPwdCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void ResertUserPwdAsync(System.Guid userID) {
+            this.ResertUserPwdAsync(userID, null);
+        }
+        
+        public void ResertUserPwdAsync(System.Guid userID, object userState) {
+            if ((this.onBeginResertUserPwdDelegate == null)) {
+                this.onBeginResertUserPwdDelegate = new BeginOperationDelegate(this.OnBeginResertUserPwd);
+            }
+            if ((this.onEndResertUserPwdDelegate == null)) {
+                this.onEndResertUserPwdDelegate = new EndOperationDelegate(this.OnEndResertUserPwd);
+            }
+            if ((this.onResertUserPwdCompletedDelegate == null)) {
+                this.onResertUserPwdCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnResertUserPwdCompleted);
+            }
+            base.InvokeAsync(this.onBeginResertUserPwdDelegate, new object[] {
+                        userID}, this.onEndResertUserPwdDelegate, this.onResertUserPwdCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.BeginGetUserList(Scada.Client.VM.ScadaDeviceService.GetUserListRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetUserList(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginGetUserList(System.AsyncCallback callback, object asyncState) {
+            Scada.Client.VM.ScadaDeviceService.GetUserListRequest inValue = new Scada.Client.VM.ScadaDeviceService.GetUserListRequest();
+            inValue.Body = new Scada.Client.VM.ScadaDeviceService.GetUserListRequestBody();
+            return ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginGetUserList(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.VM.ScadaDeviceService.GetUserListResponse Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.EndGetUserList(System.IAsyncResult result) {
+            return base.Channel.EndGetUserList(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private string EndGetUserList(System.IAsyncResult result) {
+            Scada.Client.VM.ScadaDeviceService.GetUserListResponse retVal = ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndGetUserList(result);
+            return retVal.Body.GetUserListResult;
+        }
+        
+        private System.IAsyncResult OnBeginGetUserList(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetUserList(callback, asyncState);
+        }
+        
+        private object[] OnEndGetUserList(System.IAsyncResult result) {
+            string retVal = this.EndGetUserList(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetUserListCompleted(object state) {
+            if ((this.GetUserListCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetUserListCompleted(this, new GetUserListCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetUserListAsync() {
+            this.GetUserListAsync(null);
+        }
+        
+        public void GetUserListAsync(object userState) {
+            if ((this.onBeginGetUserListDelegate == null)) {
+                this.onBeginGetUserListDelegate = new BeginOperationDelegate(this.OnBeginGetUserList);
+            }
+            if ((this.onEndGetUserListDelegate == null)) {
+                this.onEndGetUserListDelegate = new EndOperationDelegate(this.OnEndGetUserList);
+            }
+            if ((this.onGetUserListCompletedDelegate == null)) {
+                this.onGetUserListCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetUserListCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetUserListDelegate, null, this.onEndGetUserListDelegate, this.onGetUserListCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.BeginGetMenuTreeList(Scada.Client.VM.ScadaDeviceService.GetMenuTreeListRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetMenuTreeList(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginGetMenuTreeList(System.AsyncCallback callback, object asyncState) {
+            Scada.Client.VM.ScadaDeviceService.GetMenuTreeListRequest inValue = new Scada.Client.VM.ScadaDeviceService.GetMenuTreeListRequest();
+            inValue.Body = new Scada.Client.VM.ScadaDeviceService.GetMenuTreeListRequestBody();
+            return ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginGetMenuTreeList(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.VM.ScadaDeviceService.GetMenuTreeListResponse Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.EndGetMenuTreeList(System.IAsyncResult result) {
+            return base.Channel.EndGetMenuTreeList(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private string EndGetMenuTreeList(System.IAsyncResult result) {
+            Scada.Client.VM.ScadaDeviceService.GetMenuTreeListResponse retVal = ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndGetMenuTreeList(result);
+            return retVal.Body.GetMenuTreeListResult;
+        }
+        
+        private System.IAsyncResult OnBeginGetMenuTreeList(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetMenuTreeList(callback, asyncState);
+        }
+        
+        private object[] OnEndGetMenuTreeList(System.IAsyncResult result) {
+            string retVal = this.EndGetMenuTreeList(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetMenuTreeListCompleted(object state) {
+            if ((this.GetMenuTreeListCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetMenuTreeListCompleted(this, new GetMenuTreeListCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetMenuTreeListAsync() {
+            this.GetMenuTreeListAsync(null);
+        }
+        
+        public void GetMenuTreeListAsync(object userState) {
+            if ((this.onBeginGetMenuTreeListDelegate == null)) {
+                this.onBeginGetMenuTreeListDelegate = new BeginOperationDelegate(this.OnBeginGetMenuTreeList);
+            }
+            if ((this.onEndGetMenuTreeListDelegate == null)) {
+                this.onEndGetMenuTreeListDelegate = new EndOperationDelegate(this.OnEndGetMenuTreeList);
+            }
+            if ((this.onGetMenuTreeListCompletedDelegate == null)) {
+                this.onGetMenuTreeListCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetMenuTreeListCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetMenuTreeListDelegate, null, this.onEndGetMenuTreeListDelegate, this.onGetMenuTreeListCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.BeginGetUserMenuTreeList(Scada.Client.VM.ScadaDeviceService.GetUserMenuTreeListRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetUserMenuTreeList(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginGetUserMenuTreeList(string UserKey, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.VM.ScadaDeviceService.GetUserMenuTreeListRequest inValue = new Scada.Client.VM.ScadaDeviceService.GetUserMenuTreeListRequest();
+            inValue.Body = new Scada.Client.VM.ScadaDeviceService.GetUserMenuTreeListRequestBody();
+            inValue.Body.UserKey = UserKey;
+            return ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginGetUserMenuTreeList(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.VM.ScadaDeviceService.GetUserMenuTreeListResponse Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.EndGetUserMenuTreeList(System.IAsyncResult result) {
+            return base.Channel.EndGetUserMenuTreeList(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private string EndGetUserMenuTreeList(System.IAsyncResult result) {
+            Scada.Client.VM.ScadaDeviceService.GetUserMenuTreeListResponse retVal = ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndGetUserMenuTreeList(result);
+            return retVal.Body.GetUserMenuTreeListResult;
+        }
+        
+        private System.IAsyncResult OnBeginGetUserMenuTreeList(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string UserKey = ((string)(inValues[0]));
+            return this.BeginGetUserMenuTreeList(UserKey, callback, asyncState);
+        }
+        
+        private object[] OnEndGetUserMenuTreeList(System.IAsyncResult result) {
+            string retVal = this.EndGetUserMenuTreeList(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetUserMenuTreeListCompleted(object state) {
+            if ((this.GetUserMenuTreeListCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetUserMenuTreeListCompleted(this, new GetUserMenuTreeListCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetUserMenuTreeListAsync(string UserKey) {
+            this.GetUserMenuTreeListAsync(UserKey, null);
+        }
+        
+        public void GetUserMenuTreeListAsync(string UserKey, object userState) {
+            if ((this.onBeginGetUserMenuTreeListDelegate == null)) {
+                this.onBeginGetUserMenuTreeListDelegate = new BeginOperationDelegate(this.OnBeginGetUserMenuTreeList);
+            }
+            if ((this.onEndGetUserMenuTreeListDelegate == null)) {
+                this.onEndGetUserMenuTreeListDelegate = new EndOperationDelegate(this.OnEndGetUserMenuTreeList);
+            }
+            if ((this.onGetUserMenuTreeListCompletedDelegate == null)) {
+                this.onGetUserMenuTreeListCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetUserMenuTreeListCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetUserMenuTreeListDelegate, new object[] {
+                        UserKey}, this.onEndGetUserMenuTreeListDelegate, this.onGetUserMenuTreeListCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.BeginLogIn(Scada.Client.VM.ScadaDeviceService.LogInRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginLogIn(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginLogIn(string userName, string userPwd, string userIp, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.VM.ScadaDeviceService.LogInRequest inValue = new Scada.Client.VM.ScadaDeviceService.LogInRequest();
+            inValue.Body = new Scada.Client.VM.ScadaDeviceService.LogInRequestBody();
+            inValue.Body.userName = userName;
+            inValue.Body.userPwd = userPwd;
+            inValue.Body.userIp = userIp;
+            return ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginLogIn(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.VM.ScadaDeviceService.LogInResponse Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.EndLogIn(System.IAsyncResult result) {
+            return base.Channel.EndLogIn(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private string EndLogIn(System.IAsyncResult result) {
+            Scada.Client.VM.ScadaDeviceService.LogInResponse retVal = ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndLogIn(result);
+            return retVal.Body.LogInResult;
+        }
+        
+        private System.IAsyncResult OnBeginLogIn(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string userName = ((string)(inValues[0]));
+            string userPwd = ((string)(inValues[1]));
+            string userIp = ((string)(inValues[2]));
+            return this.BeginLogIn(userName, userPwd, userIp, callback, asyncState);
+        }
+        
+        private object[] OnEndLogIn(System.IAsyncResult result) {
+            string retVal = this.EndLogIn(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnLogInCompleted(object state) {
+            if ((this.LogInCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.LogInCompleted(this, new LogInCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void LogInAsync(string userName, string userPwd, string userIp) {
+            this.LogInAsync(userName, userPwd, userIp, null);
+        }
+        
+        public void LogInAsync(string userName, string userPwd, string userIp, object userState) {
+            if ((this.onBeginLogInDelegate == null)) {
+                this.onBeginLogInDelegate = new BeginOperationDelegate(this.OnBeginLogIn);
+            }
+            if ((this.onEndLogInDelegate == null)) {
+                this.onEndLogInDelegate = new EndOperationDelegate(this.OnEndLogIn);
+            }
+            if ((this.onLogInCompletedDelegate == null)) {
+                this.onLogInCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnLogInCompleted);
+            }
+            base.InvokeAsync(this.onBeginLogInDelegate, new object[] {
+                        userName,
+                        userPwd,
+                        userIp}, this.onEndLogInDelegate, this.onLogInCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -4575,6 +6019,136 @@ namespace Scada.Client.VM.ScadaDeviceService {
             public bool EndDeleteMaintenancePeople(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 bool _result = ((bool)(base.EndInvoke("DeleteMaintenancePeople", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginCheckUserByLoginID(Scada.Client.VM.ScadaDeviceService.CheckUserByLoginIDRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("CheckUserByLoginID", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.VM.ScadaDeviceService.CheckUserByLoginIDResponse EndCheckUserByLoginID(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.VM.ScadaDeviceService.CheckUserByLoginIDResponse _result = ((Scada.Client.VM.ScadaDeviceService.CheckUserByLoginIDResponse)(base.EndInvoke("CheckUserByLoginID", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginAddUser(Scada.Client.VM.ScadaDeviceService.AddUserRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("AddUser", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.VM.ScadaDeviceService.AddUserResponse EndAddUser(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.VM.ScadaDeviceService.AddUserResponse _result = ((Scada.Client.VM.ScadaDeviceService.AddUserResponse)(base.EndInvoke("AddUser", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginDelUser(System.Guid id, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = id;
+                System.IAsyncResult _result = base.BeginInvoke("DelUser", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public bool EndDelUser(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                bool _result = ((bool)(base.EndInvoke("DelUser", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginUpdateUser(Scada.Client.VM.ScadaDeviceService.UpdateUserRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("UpdateUser", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.VM.ScadaDeviceService.UpdateUserResponse EndUpdateUser(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.VM.ScadaDeviceService.UpdateUserResponse _result = ((Scada.Client.VM.ScadaDeviceService.UpdateUserResponse)(base.EndInvoke("UpdateUser", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginSearchUser(Scada.Client.VM.ScadaDeviceService.SearchUserRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("SearchUser", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.VM.ScadaDeviceService.SearchUserResponse EndSearchUser(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.VM.ScadaDeviceService.SearchUserResponse _result = ((Scada.Client.VM.ScadaDeviceService.SearchUserResponse)(base.EndInvoke("SearchUser", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginResertUserPwd(System.Guid userID, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = userID;
+                System.IAsyncResult _result = base.BeginInvoke("ResertUserPwd", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public bool EndResertUserPwd(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                bool _result = ((bool)(base.EndInvoke("ResertUserPwd", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetUserList(Scada.Client.VM.ScadaDeviceService.GetUserListRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("GetUserList", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.VM.ScadaDeviceService.GetUserListResponse EndGetUserList(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.VM.ScadaDeviceService.GetUserListResponse _result = ((Scada.Client.VM.ScadaDeviceService.GetUserListResponse)(base.EndInvoke("GetUserList", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetMenuTreeList(Scada.Client.VM.ScadaDeviceService.GetMenuTreeListRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("GetMenuTreeList", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.VM.ScadaDeviceService.GetMenuTreeListResponse EndGetMenuTreeList(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.VM.ScadaDeviceService.GetMenuTreeListResponse _result = ((Scada.Client.VM.ScadaDeviceService.GetMenuTreeListResponse)(base.EndInvoke("GetMenuTreeList", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetUserMenuTreeList(Scada.Client.VM.ScadaDeviceService.GetUserMenuTreeListRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("GetUserMenuTreeList", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.VM.ScadaDeviceService.GetUserMenuTreeListResponse EndGetUserMenuTreeList(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.VM.ScadaDeviceService.GetUserMenuTreeListResponse _result = ((Scada.Client.VM.ScadaDeviceService.GetUserMenuTreeListResponse)(base.EndInvoke("GetUserMenuTreeList", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginLogIn(Scada.Client.VM.ScadaDeviceService.LogInRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("LogIn", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.VM.ScadaDeviceService.LogInResponse EndLogIn(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.VM.ScadaDeviceService.LogInResponse _result = ((Scada.Client.VM.ScadaDeviceService.LogInResponse)(base.EndInvoke("LogIn", _args, result)));
                 return _result;
             }
         }

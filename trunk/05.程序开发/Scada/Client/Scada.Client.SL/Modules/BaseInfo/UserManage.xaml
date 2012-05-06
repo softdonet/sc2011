@@ -4,8 +4,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="600" d:DesignWidth="800" 
-    xmlns:my="clr-namespace:Scada.Client.SL.Modules.PageTemplate">
+    d:DesignHeight="500" d:DesignWidth="650"  
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation">
 
     <Grid x:Name="LayoutRoot" Background="White">
         <Border Name="content_Border" BorderBrush="#FF4A91BB" BorderThickness="1" Margin="5" CornerRadius="5">
@@ -25,17 +25,52 @@
                     <Border BorderThickness="1" CornerRadius="5" Margin="2">
                         <Grid ShowGridLines="True" Background="AliceBlue">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="300"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="300*"/>
+                                <ColumnDefinition Width="350"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="24"/>
                             </Grid.RowDefinitions>
+                            <telerik:RadGridView AutoGenerateColumns="False" CanUserFreezeColumns="False" IsReadOnly="True"
+                                                 Margin="10,10,18,38" Name="RadGridViewUser" RowIndicatorVisibility="Collapsed"
+                                                 ItemsSource="{Binding UserList}"
+                                                 ShowGroupPanel="False" Height="353" RowActivated="RadGridViewAlarm_RowActivated">
+                                <telerik:RadGridView.Columns>
+                                    <telerik:GridViewDataColumn DataMemberBinding="{Binding UserID, Mode=TwoWay}" Header="UserID" HeaderTextAlignment="Center" IsFilterable="False" IsVisible="False" TextAlignment="Center" Width="80" />
+                                    <telerik:GridViewDataColumn DataMemberBinding="{Binding LoginID, Mode=TwoWay}" Header="登录ID" HeaderTextAlignment="Center" IsFilterable="False" TextAlignment="Center" Width="100" />
+                                    <telerik:GridViewDataColumn DataMemberBinding="{Binding UserName, Mode=TwoWay}" Header="用户名" HeaderTextAlignment="Center" IsFilterable="False" TextAlignment="Center" Width="150" />
+                                    <telerik:GridViewDataColumn DataMemberBinding="{Binding StatusName, Mode=TwoWay}" Header="状态" HeaderTextAlignment="Center" IsFilterable="False" TextAlignment="Center" Width="100*" />
+                                </telerik:RadGridView.Columns>
+                            </telerik:RadGridView>
+                            <TextBlock Height="23" HorizontalAlignment="Left" Margin="19,25,0,0" Name="textBlock1" Text="登录ID：" VerticalAlignment="Top" Grid.Column="1" />
+                            <TextBox Height="23" Text="{Binding LoginID, Mode=TwoWay}" HorizontalAlignment="Left" Margin="71,25,0,0" Name="txtName" VerticalAlignment="Top" Width="160" Grid.Column="1" />
+                            <TextBlock Height="23" HorizontalAlignment="Left" Margin="19,64,0,0" Name="textBlock2" Text="用户名：" VerticalAlignment="Top" Grid.Column="1" />
+                            <TextBox Height="23" Text="{Binding UserName, Mode=TwoWay}"  HorizontalAlignment="Left" Margin="71,64,0,0" Name="textBox1" VerticalAlignment="Top" Width="160" Grid.Column="1" />
+                           
+                            <!--<TextBlock Height="23" HorizontalAlignment="Left" Margin="16,105,0,0" Name="textBlock3" Text="用户密码：" VerticalAlignment="Top" Grid.Column="1" />
+                            <PasswordBox Grid.Column="1" Password="{Binding User.Password}" Height="23" HorizontalAlignment="Left" Margin="71,101,0,0" Name="passwordBox1" VerticalAlignment="Top" Width="160" />
+                            <TextBlock Height="23" HorizontalAlignment="Left" Margin="16,145,0,0" Name="textBlock4" Text="确认密码：" VerticalAlignment="Top" Grid.Column="1" />
+                            <PasswordBox Password="{Binding User.Password}" Height="23" HorizontalAlignment="Left" Margin="71,141,0,0" Name="passwordBox2" VerticalAlignment="Top" Width="160" Grid.Column="1" />-->
+                          
+                            <TextBlock Height="23" HorizontalAlignment="Left" Margin="16,112,0,0" Name="textBlock5" Text="用户状态：" VerticalAlignment="Top" Grid.Column="1" />
+                            <ComboBox Grid.Column="1" ItemsSource="{Binding UserStatus, Mode=TwoWay}" SelectedValuePath="Status" DisplayMemberPath="StatusName" SelectedItem="{Binding SelectUserStatus, Mode=TwoWay}" Height="23" HorizontalAlignment="Left" Margin="71,108,0,0" Name="comboBox1" VerticalAlignment="Top" Width="160"  HorizontalContentAlignment="Center">
+                                <!--<ComboBoxItem Content="启用"  /> 
+                                <ComboBoxItem Content="锁定" />-->
+                            </ComboBox>
+                            <StackPanel Grid.Column="1" Height="35" HorizontalAlignment="Left" Margin="0,286,0,0" Name="stackPanel1" VerticalAlignment="Top" Width="304" Orientation="Horizontal">
+                                <Button Content="增加" Height="23" Name="btnAdd" Width="75" Command="{Binding AddCommand}" />
+                                <Button Content="删除" Height="23" Name="btnDel" Width="75" Command="{Binding DeleteCommand}" />
+                                <Button Content="修改" Height="23" Name="tbtChange" Width="75" Command="{Binding UpdateCommand}" />
+                                <Button Content="查询" Height="23" Name="btnSearch" Width="75" Command="{Binding SearchCommand}" />
+                            </StackPanel>
+                            <Button Content="重置密码" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="0,327,0,0" Name="btnResertPwd" VerticalAlignment="Top" Width="75" Command="{Binding ResertPwdCommand}" />
+                            <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="239,29,0,0" Name="textBlock3" Text="*一旦注册，不能修改" VerticalAlignment="Top" Foreground="Red" />
                         </Grid>
                     </Border>
                 </Border>
             </Grid>
         </Border>
     </Grid>
+
 </UserControl>

@@ -469,6 +469,9 @@
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.ProcessingStepNoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.SetUserMenuTreeListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.UpdateDeviceAlarmInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

@@ -133,7 +133,9 @@ namespace Scada.BLL.Contract
         String GetUserMenuTreeList(String UserKey);
 
         String LogIn(String userName, String userPwd, String userIp);
-          
+
+        Boolean SetUserMenuTreeList(String userKey, String userMenuList);
+
         #endregion
 
 

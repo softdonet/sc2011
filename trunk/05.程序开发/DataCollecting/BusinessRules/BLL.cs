@@ -134,7 +134,7 @@ namespace BusinessRules
                         drt.Electricity = item.Electric;
                         //设备状态
                         drt.Status = 1;
-                        drt.UpdateTime = item.SateTimeMark;
+                        drt.UpdateTime = DateTime.Now;//item.SateTimeMark;
                         DataContext.DeviceRealTimes.InsertOnSubmit(drt);
                         //判断告警的逻辑
                         if (deviceInfor.Temperature1AlarmValid.Value)
@@ -148,7 +148,7 @@ namespace BusinessRules
                                 da.ID = Guid.NewGuid();
                                 da.DeviceID = deviceInfor.ID;
                                 da.DeviceNo = deviceInfor.DeviceNo;
-                                da.StartTime = item.SateTimeMark;
+                                da.StartTime = DateTime.Now;// item.SateTimeMark;
                                 if (drt.Temperature1.Value > deviceInfor.Temperature1HighAlarm.Value)
                                 {
                                     //超高报警

@@ -409,7 +409,13 @@
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.AddMaintenancePeopleResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.AddUserResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.CheckDeviceInfoByDeviceNoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.CheckUserByLoginIDResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.GetAlarmQueryInfoResponse.datasource">
@@ -469,6 +475,9 @@
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.ProcessingStepNoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.SearchUserResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.SetUserMenuTreeListResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -482,6 +491,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.UpdateUserEventInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.UpdateUserResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.ViewDeviceInfoResponse.datasource">

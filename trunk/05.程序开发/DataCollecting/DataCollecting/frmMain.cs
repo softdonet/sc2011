@@ -178,14 +178,14 @@ namespace DataCollecting
                 Comm.UpdateToDB = false;
                 this.toolStripStatusDBMode.Text = "实时入库模式：已关闭";
 
-                Image StopImage = Image.FromFile(System.Windows.Forms.Application.StartupPath + "//STOP.ico");
+                Image StopImage = Image.FromFile(System.Windows.Forms.Application.StartupPath + "\\STOP.ico");
                 this.toolStripStatusDBMode.Image = StopImage;
             }
             else
             {
                 obj.Checked = true;
                 Comm.UpdateToDB = true;
-                Image RunImage = Image.FromFile(System.Windows.Forms.Application.StartupPath + "//RUN.ico");
+                Image RunImage = Image.FromFile(System.Windows.Forms.Application.StartupPath + "\\RUN.ico");
                 this.toolStripStatusDBMode.Image = RunImage;
                 this.toolStripStatusDBMode.Text = "实时入库模式：已开启";
             }

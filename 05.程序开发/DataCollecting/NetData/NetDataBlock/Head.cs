@@ -99,7 +99,10 @@ namespace NetData
             //报文长度(5-6)
             commandCount = BitConverter.ToUInt16(data, 5);
             //设备序列号(7-12)
-            deviceSN = StringHelper.DataToStr(data, 7, 4) + BitConverter.ToUInt16(data, 11).ToString("0000");
+            byte[] arr = new byte[2];
+            arr[0] = data[12];
+            arr[1] = data[11];
+            deviceSN = StringHelper.DataToStr(data, 7, 4) + BitConverter.ToUInt16(arr, 0).ToString("0000");
             //状态(13)
             state = data[13];
             //时间戳(14-20)

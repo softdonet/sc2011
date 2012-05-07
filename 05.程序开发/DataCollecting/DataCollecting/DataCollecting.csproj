@@ -65,11 +65,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comm.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="frmTool.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="frmTool.Designer.cs">
+      <DependentUpon>frmTool.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMonitoring.cs">
       <SubType>Form</SubType>
@@ -86,8 +86,8 @@
     <Compile Include="NetServer\TcpNetServer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="frmTool.resx">
+      <DependentUpon>frmTool.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMonitoring.resx">
       <DependentUpon>frmMonitoring.cs</DependentUpon>

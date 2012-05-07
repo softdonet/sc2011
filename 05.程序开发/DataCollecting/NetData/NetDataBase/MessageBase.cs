@@ -38,6 +38,8 @@ namespace NetData
         /// <returns></returns>
         public bool Verify()
         {
+            //不校验
+            return true;
             byte[] arr = new byte[Header.CommandCount - 2];
             Array.Copy(byteData, 0, arr, 0, arr.Length);
             ushort ver = CRC16Helper.CalculateCrc16(arr);

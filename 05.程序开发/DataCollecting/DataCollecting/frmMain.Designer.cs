@@ -41,6 +41,7 @@
             this.停止ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.实时入库ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.视图ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.监控窗口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.工具ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,13 +49,12 @@
             this.查看日志ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusDBMode = new System.Windows.Forms.ToolStripStatusLabel();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.实时入库ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusDBMode = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -117,19 +117,19 @@
             // 启动ToolStripMenuItem
             // 
             this.启动ToolStripMenuItem.Name = "启动ToolStripMenuItem";
-            this.启动ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.启动ToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
             this.启动ToolStripMenuItem.Text = "启动";
             // 
             // 停止ToolStripMenuItem
             // 
             this.停止ToolStripMenuItem.Name = "停止ToolStripMenuItem";
-            this.停止ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.停止ToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
             this.停止ToolStripMenuItem.Text = "停止";
             // 
             // 退出ToolStripMenuItem1
             // 
             this.退出ToolStripMenuItem1.Name = "退出ToolStripMenuItem1";
-            this.退出ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.退出ToolStripMenuItem1.Size = new System.Drawing.Size(94, 22);
             this.退出ToolStripMenuItem1.Text = "退出";
             this.退出ToolStripMenuItem1.Click += new System.EventHandler(this.退出ToolStripMenuItem1_Click);
             // 
@@ -140,6 +140,13 @@
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
             this.设置ToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.设置ToolStripMenuItem.Text = "设置(&S)";
+            // 
+            // 实时入库ToolStripMenuItem
+            // 
+            this.实时入库ToolStripMenuItem.Name = "实时入库ToolStripMenuItem";
+            this.实时入库ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.实时入库ToolStripMenuItem.Text = "实时入库";
+            this.实时入库ToolStripMenuItem.Click += new System.EventHandler(this.实时入库ToolStripMenuItem_Click);
             // 
             // 视图ToolStripMenuItem
             // 
@@ -168,8 +175,9 @@
             // 客户端模拟器ToolStripMenuItem
             // 
             this.客户端模拟器ToolStripMenuItem.Name = "客户端模拟器ToolStripMenuItem";
-            this.客户端模拟器ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.客户端模拟器ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.客户端模拟器ToolStripMenuItem.Text = "客户端模拟器";
+            this.客户端模拟器ToolStripMenuItem.Click += new System.EventHandler(this.客户端模拟器ToolStripMenuItem_Click);
             // 
             // 查看日志ToolStripMenuItem
             // 
@@ -194,6 +202,26 @@
             this.statusStrip1.Size = new System.Drawing.Size(821, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.AutoSize = false;
+            this.toolStripStatusLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripStatusLabel1.Image")));
+            this.toolStripStatusLabel1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(300, 17);
+            this.toolStripStatusLabel1.Text = "SCADA入库程序--正在等待";
+            this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // toolStripStatusDBMode
+            // 
+            this.toolStripStatusDBMode.AutoSize = false;
+            this.toolStripStatusDBMode.Image = ((System.Drawing.Image)(resources.GetObject("toolStripStatusDBMode.Image")));
+            this.toolStripStatusDBMode.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripStatusDBMode.Name = "toolStripStatusDBMode";
+            this.toolStripStatusDBMode.Size = new System.Drawing.Size(300, 17);
+            this.toolStripStatusDBMode.Text = "实时入库模式：已关闭";
+            this.toolStripStatusDBMode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // listView1
             // 
@@ -226,33 +254,6 @@
             this.columnHeader3.Text = "说明";
             this.columnHeader3.Width = 200;
             // 
-            // 实时入库ToolStripMenuItem
-            // 
-            this.实时入库ToolStripMenuItem.Name = "实时入库ToolStripMenuItem";
-            this.实时入库ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.实时入库ToolStripMenuItem.Text = "实时入库";
-            this.实时入库ToolStripMenuItem.Click += new System.EventHandler(this.实时入库ToolStripMenuItem_Click);
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.AutoSize = false;
-            this.toolStripStatusLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripStatusLabel1.Image")));
-            this.toolStripStatusLabel1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(300, 17);
-            this.toolStripStatusLabel1.Text = "SCADA入库程序--正在等待";
-            this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // toolStripStatusDBMode
-            // 
-            this.toolStripStatusDBMode.AutoSize = false;
-            this.toolStripStatusDBMode.Image = ((System.Drawing.Image)(resources.GetObject("toolStripStatusDBMode.Image")));
-            this.toolStripStatusDBMode.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolStripStatusDBMode.Name = "toolStripStatusDBMode";
-            this.toolStripStatusDBMode.Size = new System.Drawing.Size(300, 17);
-            this.toolStripStatusDBMode.Text = "实时入库模式：已关闭";
-            this.toolStripStatusDBMode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -269,7 +270,6 @@
             this.ShowInTaskbar = false;
             this.Text = "SCADA入库服务程序";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_Test_FormClosing);
-            this.Load += new System.EventHandler(this.frm_Test_Load);
             this.SizeChanged += new System.EventHandler(this.frm_Test_SizeChanged);
             this.contextMenuStrip1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);

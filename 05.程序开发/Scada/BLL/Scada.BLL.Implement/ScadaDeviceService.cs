@@ -1655,9 +1655,13 @@ namespace Scada.BLL.Implement
         public Boolean DelUser(Guid id)
         {
             var obj = sCADADataContext.Users.Where(e => e.UserID == id).SingleOrDefault();
-            sCADADataContext.Users.DeleteOnSubmit(obj);
+            if (obj==null)
+            {
+                return false;
+            }
             try
             {
+                sCADADataContext.Users.DeleteOnSubmit(obj);
                 sCADADataContext.SubmitChanges(ConflictMode.FailOnFirstConflict);
             }
             catch (ChangeConflictException e)
@@ -1733,8 +1737,8 @@ namespace Scada.BLL.Implement
         public Boolean CheckUserByLoginID(string loginID)
         {
             bool flag = false;
-            var obj=sCADADataContext.Users.SingleOrDefault(e=>e.LoginID==loginID);
-            if (obj==null)
+            int obj=sCADADataContext.Users.Where(e=>e.LoginID==loginID).Count();
+            if (obj==0)
             {
                 return false;
             }

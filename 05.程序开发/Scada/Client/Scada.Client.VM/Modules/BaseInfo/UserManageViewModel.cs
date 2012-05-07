@@ -149,7 +149,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
             }
             else
             {
-                MessageBox.Show("删除用户信息失败!");
+                MessageBox.Show("删除用户信息失败或该信息已删除!");
             }
         }
         private void DelUser()
@@ -262,7 +262,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 MessageBox.Show("用户ID不能为空!");
                 return false;
             }
-            else if (User.Status == null)
+            else if (User.Status == '\0')
             {
                 MessageBox.Show("用户状态不能为空!");
                 return false;

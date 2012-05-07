@@ -211,7 +211,7 @@ namespace DataCollecting
             rs.WeatherData = weatherDataBlock;
 
             BroadcastDataBlock broadcastDataBlock = new BroadcastDataBlock();
-            broadcastDataBlock.Msg = "通知：明天下午开会。不要迟到，迟到一分钟扣100元。";
+            broadcastDataBlock.Msg = "通知：明天下午开会,不要迟到。";
 
             rs.BroadcastData = broadcastDataBlock;
             this.textBox1.Text = StringHelper.DataToStr(rs.ToByte());

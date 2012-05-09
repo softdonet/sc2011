@@ -8,7 +8,6 @@ namespace DataCollecting
     public static class Comm
     {
         public static bool UpdateToDB = false;
-        public static bool PrintCmd = true;
     }
 
     /// <summary>

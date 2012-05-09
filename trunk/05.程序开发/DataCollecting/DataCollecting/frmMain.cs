@@ -19,7 +19,10 @@ namespace DataCollecting
 
     public partial class frm_Test : Form
     {
+        //tcp服务
         TcpNetServer tcpserver = new TcpNetServer();
+        //数据解析
+        ConmmandAnalysis commandAnalysis = null;
         public frm_Test()
         {
             InitializeComponent();
@@ -30,6 +33,32 @@ namespace DataCollecting
             };
             LogChanged(litem);
             tcpserver.SystenErrorEvent += new TcpNetServer.SystenErrorHandle(tcpserver_SystenErrorEvent);
+            commandAnalysis = new ConmmandAnalysis(tcpserver);
+            commandAnalysis.OnReceiveMsg += new ConmmandAnalysis.OnReceiveHandle(commandAnalysis_OnReceiveMsg);
+        }
+
+        /// <summary>
+        /// 记录日志
+        /// </summary>
+        /// <param name="str"></param>
+        void commandAnalysis_OnReceiveMsg(string str)
+        {
+            LogHelper.WriteInformationLog(str + Environment.NewLine);
+        }
+
+        /// <summary>
+        /// 通讯事件显示
+        /// </summary>
+        /// <param name="ex"></param>
+        void tcpserver_SystenErrorEvent(Exception ex)
+        {
+            LogItem litem = new LogItem()
+            {
+                Event = "通讯异常",
+                Memo = ex.Message,
+                Time = DateTime.Now
+            };
+            RefreshListView(litem);
         }
 
         /// <summary>
@@ -49,19 +78,6 @@ namespace DataCollecting
             }
         }
 
-
-        void tcpserver_SystenErrorEvent(Exception ex)
-        {
-            LogItem litem = new LogItem()
-              {
-                  Event = "通讯异常",
-                  Memo = ex.Message,
-                  Time = DateTime.Now
-              };
-            RefreshListView(litem);
-        }
-
-
         /// <summary>
         /// 显示日志信息
         /// </summary>
@@ -74,7 +90,7 @@ namespace DataCollecting
             item.SubItems.Add(lTest.Memo);
             this.listView1.Items.Add(item);
         }
-     
+
         #region 窗体通知相关
 
         private void frm_Test_SizeChanged(object sender, EventArgs e)
@@ -127,71 +143,48 @@ namespace DataCollecting
             }
         }
 
-        static frmMonitoring frmMonitor = null;
-
-        private void 监控窗口ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var obj = sender as ToolStripMenuItem;
-            if (obj.Checked)
-            {
-                frmMonitor.Hide();
-                frmMonitor.RemoveEvent();
-                obj.Checked = false;
-            }
-            else
-            {
-                if (frmMonitor == null || frmMonitor.IsDisposed)
-                {
-                    frmMonitor = new frmMonitoring(tcpserver);
-                    frmMonitor.FormClosing += (d, o) =>
-                    {
-                        frmMonitor.RemoveEvent();
-                        frmMonitor.Hide();
-                        o.Cancel = true;
-                        obj.Checked = false;
-                    };
-                }
-                frmMonitor.RegistEvent();
-                frmMonitor.Show();
-                obj.Checked = true;
-            }
-        }
-
-        private void 退出ToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         #endregion
 
-        private void 实时入库ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void 设置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var obj = sender as ToolStripMenuItem;
-            if (obj.Checked)
+            frmSettings frm = new frmSettings();
+            if (frm.ShowDialog() == DialogResult.OK)
             {
-                obj.Checked = false;
-                Comm.UpdateToDB = false;
-                this.toolStripStatusDBMode.Text = "实时入库模式：已关闭";
-
-                Image StopImage = Image.FromFile(System.Windows.Forms.Application.StartupPath + "\\STOP.ico");
-                this.toolStripStatusDBMode.Image = StopImage;
-            }
-            else
-            {
-                obj.Checked = true;
-                Comm.UpdateToDB = true;
-                Image RunImage = Image.FromFile(System.Windows.Forms.Application.StartupPath + "\\RUN.ico");
-                this.toolStripStatusDBMode.Image = RunImage;
-                this.toolStripStatusDBMode.Text = "实时入库模式：已开启";
+                Comm.UpdateToDB = frm.chkWriteToDB.Checked;
+                if (Comm.UpdateToDB)
+                {
+                    Image RunImage = Image.FromFile(System.Windows.Forms.Application.StartupPath + "\\RUN.ico");
+                    this.toolStripStatusDBMode.Image = RunImage;
+                    this.toolStripStatusDBMode.Text = "实时入库：已开启";
+                }
+                else
+                {
+                    this.toolStripStatusDBMode.Text = "实时入库：已关闭";
+                    Image StopImage = Image.FromFile(System.Windows.Forms.Application.StartupPath + "\\STOP.ico");
+                    this.toolStripStatusDBMode.Image = StopImage;
+                }
             }
         }
 
-        private void 查看日志ToolStripMenuItem_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 监控窗口
+        /// </summary>
+        private frmMonitoring frmMonitor = null;
+        private void 视图ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmMonitor == null || frmMonitor.IsDisposed)
+            {
+                frmMonitor = new frmMonitoring(commandAnalysis);
+            }
+            frmMonitor.Show();
+        }
+
+        /// <summary>
+        /// 打开日志
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void 日志ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFileDialog1.Multiselect = false;
             openFileDialog1.Filter = "日志文件|*.txt";
@@ -204,8 +197,11 @@ namespace DataCollecting
             }
         }
 
-        frmTool frm = null;
-        private void 客户端模拟器ToolStripMenuItem_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 客户端模拟工具
+        /// </summary>
+        private frmTool frm = null;
+        private void 工具ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (frm == null || frm.IsDisposed)
             {
@@ -215,3 +211,4 @@ namespace DataCollecting
         }
     }
 }
+

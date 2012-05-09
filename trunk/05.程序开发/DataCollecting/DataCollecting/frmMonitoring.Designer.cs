@@ -51,9 +51,9 @@
             this.Controls.Add(this.textBox1);
             this.Name = "frmMonitoring";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "通讯监控";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.frmMonitoring_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

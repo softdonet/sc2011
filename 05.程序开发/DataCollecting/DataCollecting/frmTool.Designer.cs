@@ -166,6 +166,7 @@
             this.Controls.Add(this.menuStrip2);
             this.Controls.Add(this.menuStrip1);
             this.Name = "frmTool";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "客户端命令生成工具";
             this.TopMost = true;
             this.panel1.ResumeLayout(false);

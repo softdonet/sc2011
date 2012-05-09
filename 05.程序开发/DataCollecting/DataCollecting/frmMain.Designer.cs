@@ -36,20 +36,11 @@
             this.系统设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.系统ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.启动ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.停止ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.退出ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.实时入库ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.视图ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.监控窗口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.工具ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.客户端模拟器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.查看日志ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.日志ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusDBMode = new System.Windows.Forms.ToolStripStatusLabel();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -88,114 +79,51 @@
             this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
             this.退出ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.退出ToolStripMenuItem.Text = "退出";
-            this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.系统ToolStripMenuItem,
             this.设置ToolStripMenuItem,
             this.视图ToolStripMenuItem,
             this.工具ToolStripMenuItem,
-            this.帮助ToolStripMenuItem});
+            this.日志ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(821, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // 系统ToolStripMenuItem
-            // 
-            this.系统ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.启动ToolStripMenuItem,
-            this.停止ToolStripMenuItem,
-            this.退出ToolStripMenuItem1});
-            this.系统ToolStripMenuItem.Name = "系统ToolStripMenuItem";
-            this.系统ToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.系统ToolStripMenuItem.Text = "系统(&S)";
-            // 
-            // 启动ToolStripMenuItem
-            // 
-            this.启动ToolStripMenuItem.Name = "启动ToolStripMenuItem";
-            this.启动ToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
-            this.启动ToolStripMenuItem.Text = "启动";
-            // 
-            // 停止ToolStripMenuItem
-            // 
-            this.停止ToolStripMenuItem.Name = "停止ToolStripMenuItem";
-            this.停止ToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
-            this.停止ToolStripMenuItem.Text = "停止";
-            // 
-            // 退出ToolStripMenuItem1
-            // 
-            this.退出ToolStripMenuItem1.Name = "退出ToolStripMenuItem1";
-            this.退出ToolStripMenuItem1.Size = new System.Drawing.Size(94, 22);
-            this.退出ToolStripMenuItem1.Text = "退出";
-            this.退出ToolStripMenuItem1.Click += new System.EventHandler(this.退出ToolStripMenuItem1_Click);
-            // 
             // 设置ToolStripMenuItem
             // 
-            this.设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.实时入库ToolStripMenuItem});
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
-            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.设置ToolStripMenuItem.Text = "设置(&S)";
-            // 
-            // 实时入库ToolStripMenuItem
-            // 
-            this.实时入库ToolStripMenuItem.Name = "实时入库ToolStripMenuItem";
-            this.实时入库ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
-            this.实时入库ToolStripMenuItem.Text = "实时入库";
-            this.实时入库ToolStripMenuItem.Click += new System.EventHandler(this.实时入库ToolStripMenuItem_Click);
+            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
+            this.设置ToolStripMenuItem.Text = "系统设置(&S)";
+            this.设置ToolStripMenuItem.Click += new System.EventHandler(this.设置ToolStripMenuItem_Click);
             // 
             // 视图ToolStripMenuItem
             // 
-            this.视图ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.监控窗口ToolStripMenuItem});
             this.视图ToolStripMenuItem.Name = "视图ToolStripMenuItem";
-            this.视图ToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.视图ToolStripMenuItem.Text = "视图(&V)";
-            // 
-            // 监控窗口ToolStripMenuItem
-            // 
-            this.监控窗口ToolStripMenuItem.Name = "监控窗口ToolStripMenuItem";
-            this.监控窗口ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
-            this.监控窗口ToolStripMenuItem.Text = "监控窗口";
-            this.监控窗口ToolStripMenuItem.Click += new System.EventHandler(this.监控窗口ToolStripMenuItem_Click);
+            this.视图ToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
+            this.视图ToolStripMenuItem.Text = "监控窗口(&V)";
+            this.视图ToolStripMenuItem.Click += new System.EventHandler(this.视图ToolStripMenuItem_Click);
             // 
             // 工具ToolStripMenuItem
             // 
-            this.工具ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.客户端模拟器ToolStripMenuItem,
-            this.查看日志ToolStripMenuItem});
             this.工具ToolStripMenuItem.Name = "工具ToolStripMenuItem";
-            this.工具ToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.工具ToolStripMenuItem.Text = "工具(&T)";
+            this.工具ToolStripMenuItem.Size = new System.Drawing.Size(107, 20);
+            this.工具ToolStripMenuItem.Text = "客户端模拟器(&T)";
+            this.工具ToolStripMenuItem.Click += new System.EventHandler(this.工具ToolStripMenuItem_Click);
             // 
-            // 客户端模拟器ToolStripMenuItem
+            // 日志ToolStripMenuItem
             // 
-            this.客户端模拟器ToolStripMenuItem.Name = "客户端模拟器ToolStripMenuItem";
-            this.客户端模拟器ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.客户端模拟器ToolStripMenuItem.Text = "客户端模拟器";
-            this.客户端模拟器ToolStripMenuItem.Click += new System.EventHandler(this.客户端模拟器ToolStripMenuItem_Click);
-            // 
-            // 查看日志ToolStripMenuItem
-            // 
-            this.查看日志ToolStripMenuItem.Name = "查看日志ToolStripMenuItem";
-            this.查看日志ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.查看日志ToolStripMenuItem.Text = "查看日志";
-            this.查看日志ToolStripMenuItem.Click += new System.EventHandler(this.查看日志ToolStripMenuItem_Click);
-            // 
-            // 帮助ToolStripMenuItem
-            // 
-            this.帮助ToolStripMenuItem.Name = "帮助ToolStripMenuItem";
-            this.帮助ToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.帮助ToolStripMenuItem.Text = "帮助(&H)";
+            this.日志ToolStripMenuItem.Name = "日志ToolStripMenuItem";
+            this.日志ToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.日志ToolStripMenuItem.Text = "日志(&R)";
+            this.日志ToolStripMenuItem.Click += new System.EventHandler(this.日志ToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
             this.toolStripStatusDBMode});
             this.statusStrip1.Location = new System.Drawing.Point(0, 583);
             this.statusStrip1.Name = "statusStrip1";
@@ -203,24 +131,15 @@
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.AutoSize = false;
-            this.toolStripStatusLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripStatusLabel1.Image")));
-            this.toolStripStatusLabel1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(300, 17);
-            this.toolStripStatusLabel1.Text = "SCADA入库程序--正在等待";
-            this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // toolStripStatusDBMode
             // 
             this.toolStripStatusDBMode.AutoSize = false;
             this.toolStripStatusDBMode.Image = ((System.Drawing.Image)(resources.GetObject("toolStripStatusDBMode.Image")));
             this.toolStripStatusDBMode.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripStatusDBMode.Margin = new System.Windows.Forms.Padding(10, 3, 0, 2);
             this.toolStripStatusDBMode.Name = "toolStripStatusDBMode";
             this.toolStripStatusDBMode.Size = new System.Drawing.Size(300, 17);
-            this.toolStripStatusDBMode.Text = "实时入库模式：已关闭";
+            this.toolStripStatusDBMode.Text = "实时入库：已关闭";
             this.toolStripStatusDBMode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // listView1
@@ -290,25 +209,16 @@
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 视图ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 监控窗口ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 系统ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 启动ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 停止ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 工具ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 帮助ToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ToolStripMenuItem 客户端模拟器ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 查看日志ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 实时入库ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusDBMode;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem 日志ToolStripMenuItem;
     }
 }
 

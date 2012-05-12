@@ -156,12 +156,12 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
 
                 //更改X轴间隔
                 Int32 dateSelMode = this.cmbSelDateMode.SelectedIndex;
+                this.charTemperature.AxesX[0].Title = SetChartAxesValue(dateSelMode);
                 string formatDate = SetChartAxesXFormat(this.charTemperature.AxesX[0], dateSelMode);
-
                 int i = 0;
                 foreach (var item in chartSource)
                 {
-                    this.AddService(String.Empty, this._colorArr[i], item.Value, formatDate);
+                    this.AddService(String.Empty, this._colorArr[i], item.Value, formatDate, dateSelMode);
                     i++;
                 }
             }
@@ -169,7 +169,20 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
                 ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");
         }
 
-        private void AddService(string serviceName, Color color, List<ChartSource> source, string formatdate)
+
+        public static String SetChartAxesValue(Int32 dateSelMode)
+        {
+            String result = String.Empty;
+            if (dateSelMode == 0)
+                result = "x轴按小时分布";
+            else if (dateSelMode == 1)
+                result = "x轴按天分布";
+            else if (dateSelMode == 2)
+                result = "x轴按月分布";
+            return result;
+        }
+
+        private void AddService(string serviceName, Color color, List<ChartSource> source, string formatdate, Int32 dateSelMode)
         {
 
             Visifire.Charts.DataSeries dataSeries = new Visifire.Charts.DataSeries();
@@ -187,7 +200,12 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
                 datapoint = new DataPoint();
                 datapoint.XValue = item.DeviceDate.ToString(formatdate);
                 datapoint.YValue = item.DeviceTemperature;
-                datapoint.ToolTipText = string.Format("{0},{1}", datapoint.XValue, datapoint.YValue);
+                if (dateSelMode == 0)
+                    datapoint.ToolTipText = string.Format("{0},{1}", datapoint.XValue, datapoint.YValue);
+                else if (dateSelMode == 1)
+                    datapoint.ToolTipText = string.Format("{0},{1}", item.DeviceDate.ToString("yyyy-MM-dd"), datapoint.YValue);
+                else if (dateSelMode == 2)
+                    datapoint.ToolTipText = string.Format("{0},{1}", item.DeviceDate.ToString("yyyy-MM"), datapoint.YValue);
                 dataSeries.DataPoints.Add(datapoint);
             }
             this.charTemperature.Series.Add(dataSeries);

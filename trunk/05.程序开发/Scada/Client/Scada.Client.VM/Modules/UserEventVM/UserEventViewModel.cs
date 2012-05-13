@@ -31,11 +31,12 @@ namespace Scada.Client.VM.Modules.UserEventVM
         public UserEventViewModel()
         {
             DeviceRealTimeServiceClient userEventService = ServiceManager.GetDeviceRealTimeService();
-            userEventService.GetCallDataReceived += new EventHandler<GetCallDataReceivedEventArgs>(userEventService_GetCallDataReceived);
-
+            userEventService.GetUserEventDataReceived += new EventHandler<GetUserEventDataReceivedEventArgs>(userEventService_GetUserEventDataReceived);
+            userEventService.GetUserEventDataListCompleted += (sender, e) => { };
+            userEventService.GetUserEventDataListAsync();
         }
 
-        void userEventService_GetCallDataReceived(object sender, GetCallDataReceivedEventArgs e)
+        void userEventService_GetUserEventDataReceived(object sender, GetUserEventDataReceivedEventArgs e)
         {
             if (e.Error == null)
             {
@@ -44,8 +45,6 @@ namespace Scada.Client.VM.Modules.UserEventVM
                 UserEventListTop = result;
             }
         }
-
-
 
         private List<UserEventModel> userEventList;
 

@@ -15,7 +15,7 @@ namespace Scada.Client.Web.WCFServices
     {
         RealTimeMsg = 0,
         AlarmMsg = 1,
-        CallMsg = 2
+        UserEvent = 2
     }
 
     /// <summary>
@@ -79,8 +79,8 @@ namespace Scada.Client.Web.WCFServices
                         case MessageType.AlarmMsg:
                             NoticeClient.GetAlarmData(UsersMessages);
                             break;
-                        case MessageType.CallMsg:
-                            NoticeClient.GetCallData(UsersMessages);
+                        case MessageType.UserEvent:
+                            NoticeClient.GetUserEventData(UsersMessages);
                             break;
                     }
                 }

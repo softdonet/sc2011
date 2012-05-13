@@ -56,9 +56,6 @@
     <Reference Include="Scada.Model.Entity.SL">
       <HintPath>..\..\Model\Scada.Model.Entity\bin\Debug\Scada.Model.Entity.SL.dll</HintPath>
     </Reference>
-    <Reference Include="Scada.Utility.Common.SL">
-      <HintPath>..\..\Utility\Scada.Utility.Common.SL\Bin\Debug\Scada.Utility.Common.SL.dll</HintPath>
-    </Reference>
     <Reference Include="Scada.Utility.Common.SL.Enums">
       <HintPath>..\..\Utility\Scada.Utility.Common.SL.Enums\Bin\Debug\Scada.Utility.Common.SL.Enums.dll</HintPath>
     </Reference>
@@ -110,12 +107,12 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\DeviceRealTimeService\service.wsdl" />
-    <None Include="Service References\DeviceRealTimeService\service.xsd">
+    <None Include="Service References\DeviceRealTimeService\service2.wsdl" />
+    <None Include="Service References\DeviceRealTimeService\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\DeviceRealTimeService\service1.wsdl" />
-    <None Include="Service References\DeviceRealTimeService\service1.xsd">
+    <None Include="Service References\DeviceRealTimeService\service21.wsdl" />
+    <None Include="Service References\DeviceRealTimeService\service21.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.AddDeviceInfoResponse.datasource">

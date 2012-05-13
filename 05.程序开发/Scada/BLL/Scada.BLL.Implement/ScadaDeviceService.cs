@@ -1631,6 +1631,8 @@ namespace Scada.BLL.Implement
 
         #region 用户菜单权限管理
 
+        #region 用户管理
+
         public Boolean AddUser(string user)
         {
             Scada.Model.Entity.User userValue = BinaryObjTransfer.JsonDeserialize<Scada.Model.Entity.User>(user);
@@ -1765,6 +1767,35 @@ namespace Scada.BLL.Implement
             }
             return true;
         }
+        #endregion
+
+        #region 修改密码
+
+        public Boolean ChangePassword(string user)
+        {
+            Scada.Model.Entity.User userValue = BinaryObjTransfer.JsonDeserialize<Scada.Model.Entity.User>(user);
+            var obj = sCADADataContext.Users.SingleOrDefault(e => e.UserID == userValue.UserID);
+            if (obj != null)
+            {
+                //obj.LoginID = userValue.LoginID;
+                //obj.UserName = userValue.UserName;
+                obj.Password = Md5Helper.Hash(userValue.NewPassword);
+                //obj.Status = userValue.Status;
+            }
+            try
+            {
+                sCADADataContext.SubmitChanges(ConflictMode.FailOnFirstConflict);
+            }
+            catch (ChangeConflictException e)
+            {
+                string msg = e.Message;
+                //MessageBox.Show("修改密码失败!");
+                return false;
+            }
+            return true;
+        }
+        #endregion
+
         public String GetUserList()
         {
             List<User> users = new List<User>();

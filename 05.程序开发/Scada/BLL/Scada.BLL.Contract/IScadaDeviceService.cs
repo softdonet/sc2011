@@ -133,6 +133,8 @@ namespace Scada.BLL.Contract
         string SearchUser(string loginID, string userName, char status);
 
         Boolean ResertUserPwd(Guid userID);
+        Boolean ChangePassword(string user);
+
         String GetUserList();
 
         String GetMenuTreeList();

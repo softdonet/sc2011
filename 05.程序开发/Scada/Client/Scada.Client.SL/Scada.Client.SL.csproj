@@ -169,6 +169,9 @@
     <Compile Include="Modules\BaseInfo\SysConfig.xaml.cs">
       <DependentUpon>SysConfig.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\BaseInfo\UserChangePassword.xaml.cs">
+      <DependentUpon>UserChangePassword.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\BaseInfo\UserEventItems.xaml.cs">
       <DependentUpon>UserEventItems.xaml</DependentUpon>
     </Compile>
@@ -299,6 +302,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modules\BaseInfo\SysConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\BaseInfo\UserChangePassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

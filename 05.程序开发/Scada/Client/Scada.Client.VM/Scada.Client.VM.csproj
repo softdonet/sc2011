@@ -56,6 +56,9 @@
     <Reference Include="Scada.Model.Entity.SL">
       <HintPath>..\..\Model\Scada.Model.Entity\bin\Debug\Scada.Model.Entity.SL.dll</HintPath>
     </Reference>
+    <Reference Include="Scada.Utility.Common.SL">
+      <HintPath>..\..\Utility\Scada.Utility.Common.SL\Bin\Debug\Scada.Utility.Common.SL.dll</HintPath>
+    </Reference>
     <Reference Include="Scada.Utility.Common.SL.Enums">
       <HintPath>..\..\Utility\Scada.Utility.Common.SL.Enums\Bin\Debug\Scada.Utility.Common.SL.Enums.dll</HintPath>
     </Reference>

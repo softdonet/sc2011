@@ -57,6 +57,11 @@ namespace Scada.Client.SL
 
             //加载菜单
             this.InitMenu();
+            if (App.CurUser != null)
+            {
+                Header.txtLoginContent.Text = "欢迎 " + App.CurUser.LoginID.ToString() + "(" + App.CurUser.UserName + ")" + " 登录";
+            }
+
 
         }
 

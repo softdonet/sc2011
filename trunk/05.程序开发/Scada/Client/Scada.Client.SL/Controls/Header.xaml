@@ -6,7 +6,7 @@
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
     xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
     mc:Ignorable="d"
-    d:DesignHeight="350" d:DesignWidth="1024">
+    d:DesignHeight="350" d:DesignWidth="1024" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk">
 
     <UserControl.Resources>
         <ImageBrush x:Key="header_bg1" ImageSource="/Scada.Client.SL;component/Images/headerbg.png" />
@@ -465,8 +465,14 @@
             <HyperlinkButton x:Name="btnFull"  ToolTipService.ToolTip="点击放大到全屏"   Click="btnFull_Click"  VerticalAlignment="Center"  Margin="5"  HorizontalAlignment="Center"  Content="全屏模式"  Foreground="White"    />
         </StackPanel>
         
-        <StackPanel HorizontalAlignment="Right" Height="26" Grid.Row="3" VerticalAlignment="Center" Width="90" Margin="0,0,20,0" Orientation="Horizontal">
-            <TextBlock Text="欢迎 管理员 登录 "  Foreground="White"  VerticalAlignment="Center" ></TextBlock>
+        <StackPanel Height="26" Grid.Row="3" VerticalAlignment="Center" Margin="0,0,20,0" Orientation="Horizontal" HorizontalAlignment="Right" MinWidth="90">
+            <!--<ScrollViewer HorizontalAlignment="Left" HorizontalContentAlignment="Left" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto">
+                <ScrollViewer.Content>
+                    <TextBlock Text="欢迎 登录 "  Foreground="White"  VerticalAlignment="Center" Name="txtLoginContent" ></TextBlock>
+                </ScrollViewer.Content>
+            </ScrollViewer>-->
+            <TextBlock Text="欢迎 登录 "  Foreground="White"  VerticalAlignment="Center" Name="txtLoginContent" ></TextBlock>
+<HyperlinkButton Content="注销" Foreground="White" VerticalAlignment="Center" Margin="2" Name="hbtnRefresh" Click="hbtnRefresh_Click" />
         </StackPanel>
         <!--查询子菜单-->
         <Border x:Name="bdSearch" HorizontalAlignment="Right" Height="36" Margin="0,0,267,-4" Grid.Row="3" VerticalAlignment="Bottom" Width="316" Background="{StaticResource header_senmenu}" RenderTransformOrigin="0.5,0.5" Opacity="0" Visibility="Collapsed" >

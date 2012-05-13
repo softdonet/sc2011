@@ -8,6 +8,7 @@ using System.Windows.Controls;
 
 
 using Scada.Model.Entity;
+using System.Windows.Browser;
 
 
 
@@ -186,7 +187,16 @@ namespace Scada.Client.SL.Controls
             }
         }
 
+        #region 重新登录
+
+        private void hbtnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            HtmlPage.Window.Eval("window.location.reload();");
+        }
+
         #endregion
+        #endregion
+
 
     }
 }

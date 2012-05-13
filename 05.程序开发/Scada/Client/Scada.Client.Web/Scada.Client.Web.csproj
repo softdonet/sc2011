@@ -94,7 +94,11 @@
     </Compile>
     <Compile Include="WCFServices\DeviceRealTimeServiceHostFactory.cs" />
     <Compile Include="WCFServices\IDeviceRealTimeService.cs" />
+    <Compile Include="WCFServices\IRealTimeService.cs" />
     <Compile Include="WCFServices\NoticeMessage.cs" />
+    <Compile Include="WCFServices\RealTimeService.svc.cs">
+      <DependentUpon>RealTimeService.svc</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -114,6 +118,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="WCFServices\RealTimeService.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

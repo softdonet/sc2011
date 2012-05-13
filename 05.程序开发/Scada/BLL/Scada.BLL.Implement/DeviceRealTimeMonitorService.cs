@@ -6,21 +6,12 @@ using System.Data;
 using System.Xml.Linq;
 using System.Threading;
 using System.Collections.Generic;
-
-
 using Scada.DAL.Ado;
 using Scada.Model.Entity;
 using Scada.Utility.Common.Transfer;
 
-
-
-
-
 namespace Scada.BLL.Implement
 {
-
-
-    public delegate void DataReceivedHandle(string data);
 
     /// <summary>
     /// 数据库实时数据监控
@@ -29,23 +20,10 @@ namespace Scada.BLL.Implement
     /// <param name="data"></param>
     public class DeviceRealTimeMonitorService
     {
-
-        #region 变量声明
-
-        private Timer timer = null;
-
-        public event DataReceivedHandle ReaTimeDataReceived;
-        public event DataReceivedHandle AlarmDataReceived;
-        public event DataReceivedHandle CallDataReceived;
-
-        #endregion
-
-
         #region 构造函数
 
         public DeviceRealTimeMonitorService()
         {
-            timer = new Timer(new System.Threading.TimerCallback(CheckDBMessages), this, 2000, 5000);
         }
 
         #endregion
@@ -53,39 +31,18 @@ namespace Scada.BLL.Implement
 
         #region 私有方法
 
-        private void CheckDBMessages(object o)
-        {
-
-            //实行刷新
-            this.SendReaTimedata(o);
-
-            //告警数据
-            this.SendAlarmData(o);
-
-            //用户事件
-            this.SendUserEventData(o);
-
-        }
-
         //实行刷新
-        private void SendReaTimedata(object o)
+        public string SendReaTimedata()
         {
-
             //1列出实行数据
             List<DeviceRealTime> readTimeDatas = this.LoadDeviceRealTime();
-
             //2列出树型结构
             List<DeviceRealTimeTree> readlTimeTreeDatas = this.LoadDeviceRealTree();
-
             //3更新实体设备
             this.UpdateEntityDevice(readlTimeTreeDatas, readTimeDatas);
-
             //4序列化数据
             string reaTimedata = BinaryObjTransfer.JsonSerializer<List<DeviceRealTimeTree>>(readlTimeTreeDatas);
-
-            //5回调数据
-            if (ReaTimeDataReceived != null)
-                this.ReaTimeDataReceived(reaTimedata);
+            return reaTimedata;
 
         }
 
@@ -239,20 +196,11 @@ namespace Scada.BLL.Implement
 
 
         //告警数据
-        private void SendAlarmData(object o)
+        public string SendAlarmData()
         {
-            //string alarmData = DateTime.Now.ToString() + "告警数据";
-            //if (AlarmDataReceived != null)
-            //    this.AlarmDataReceived(alarmData);
-
             List<DeviceAlarm> deviceAlarm = GetListDeviceAlarmInfo();
-            //4序列化数据
             string deviceAlarmdata = BinaryObjTransfer.JsonSerializer<List<DeviceAlarm>>(deviceAlarm);
-
-            if (AlarmDataReceived != null)
-            {
-                this.AlarmDataReceived(deviceAlarmdata);
-            }
+            return deviceAlarmdata;
         }
 
         #region 设备告警
@@ -334,16 +282,10 @@ namespace Scada.BLL.Implement
         #endregion
 
         //用户事件
-        private void SendUserEventData(object o)
+        public string SendUserEventData()
         {
-            //string callData = DateTime.Now.ToString() + "用户事件";
-            //if (CallDataReceived != null)
-            //    this.CallDataReceived(callData);
             string userEventData = GetListUserEventInfo();
-            if (CallDataReceived != null)
-            {
-                this.CallDataReceived(userEventData);
-            }
+            return userEventData;
         }
 
         /// <summary>

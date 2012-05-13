@@ -28,7 +28,11 @@ namespace Scada.Client.VM.Modules.Alarm
         {
             DeviceRealTimeServiceClient deviceAlarmService = ServiceManager.GetDeviceRealTimeService();
             deviceAlarmService.GetAlarmDataReceived += new EventHandler<GetAlarmDataReceivedEventArgs>(deviceAlarmService_GetAlarmDataReceived);
+            deviceAlarmService.GetAlarmDataListCompleted += (sender, e) => { };
+            deviceAlarmService.GetAlarmDataListAsync();
         }
+
+
 
         void deviceAlarmService_GetAlarmDataReceived(object sender, GetAlarmDataReceivedEventArgs e)
         {

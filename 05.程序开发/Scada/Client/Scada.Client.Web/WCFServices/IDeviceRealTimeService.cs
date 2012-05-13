@@ -18,6 +18,21 @@ namespace Scada.Client.Web.WCFServices
         /// </summary>
         [OperationContract(IsOneWay = true)]
         void InitData();
+        /// <summary>
+        ///获取实时数据
+        /// </summary>
+        [OperationContract(IsOneWay = true)]
+        void GetRealTimeDataList();
+        /// <summary>
+        /// 获取告警数据
+        /// </summary>
+        [OperationContract(IsOneWay = true)]
+        void GetAlarmDataList();
+        /// <summary>
+        /// 获取用户事件
+        /// </summary>
+        [OperationContract(IsOneWay = true)]
+        void GetUserEventDataList();
     }
 
     [ServiceContract]
@@ -38,10 +53,10 @@ namespace Scada.Client.Web.WCFServices
         void GetAlarmData(string data);
 
         /// <summary>
-        /// 获取呼叫数据
+        /// 获取用户数据
         /// </summary>
         /// <param name="data"></param>
         [OperationContract(IsOneWay = true)]
-        void GetCallData(string data);
+        void GetUserEventData(string data);
     }
 }

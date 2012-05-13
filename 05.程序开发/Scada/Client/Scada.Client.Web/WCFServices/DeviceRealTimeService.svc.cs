@@ -15,42 +15,21 @@ namespace Scada.Client.Web.WCFServices
     /// 实时数据服务
     /// yanghk at 2011-12-4
     /// </summary>
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class DeviceRealTimeService : IDeviceRealTimeService
     {
         public static object LockObject = new object();
         private static List<IDeviceRealTimeServiceCallback> cilents
                                         = new List<IDeviceRealTimeServiceCallback>();
         DeviceRealTimeMonitorService deviceRealTimeMonitorService = new DeviceRealTimeMonitorService();
-
+        public static DeviceRealTimeService deviceRealTimeService = null;
         /// <summary>
         /// 构造函数
         /// </summary>
         public DeviceRealTimeService()
         {
-            deviceRealTimeMonitorService.AlarmDataReceived += new DataReceivedHandle(deviceRealTimeMonitorService_AlarmDataReceived);
-            deviceRealTimeMonitorService.ReaTimeDataReceived += new DataReceivedHandle(deviceRealTimeMonitorService_ReaTimeDataReceived);
-            deviceRealTimeMonitorService.CallDataReceived += new DataReceivedHandle(deviceRealTimeMonitorService_CallDataReceived);
+            deviceRealTimeService = this;
         }
-
-        #region 实时数据到达处理函数
-
-        void deviceRealTimeMonitorService_CallDataReceived(string data)
-        {
-            SentData(data, MessageType.CallMsg);
-        }
-
-        void deviceRealTimeMonitorService_ReaTimeDataReceived(string data)
-        {
-            SentData(data, MessageType.RealTimeMsg);
-        }
-
-        void deviceRealTimeMonitorService_AlarmDataReceived(string data)
-        {
-            SentData(data, MessageType.AlarmMsg);
-        }
-
-
-        #endregion
 
         /// <summary>
         /// 发送数据
@@ -85,6 +64,8 @@ namespace Scada.Client.Web.WCFServices
             }
         }
 
+        #region IDeviceRealTimeService Members
+
         /// <summary>
         /// 登记回调句柄
         /// </summary>
@@ -97,6 +78,33 @@ namespace Scada.Client.Web.WCFServices
                 cilents.Add(OperationContext.Current.GetCallbackChannel<IDeviceRealTimeServiceCallback>());
             }
         }
+
+        /// <summary>
+        /// 获取实时数据
+        /// </summary>
+        public void GetRealTimeDataList()
+        {
+            SentData(deviceRealTimeMonitorService.SendReaTimedata(), MessageType.RealTimeMsg);
+        }
+
+        /// <summary>
+        /// 获取告警数据
+        /// </summary>
+        public void GetAlarmDataList()
+        {
+            SentData(deviceRealTimeMonitorService.SendAlarmData(), MessageType.AlarmMsg);
+        }
+
+        /// <summary>
+        /// 获取用户事件
+        /// </summary>
+        public void GetUserEventDataList()
+        {
+            SentData(deviceRealTimeMonitorService.SendUserEventData(), MessageType.UserEvent);
+        }
+
+        #endregion
+
     }
 }
 

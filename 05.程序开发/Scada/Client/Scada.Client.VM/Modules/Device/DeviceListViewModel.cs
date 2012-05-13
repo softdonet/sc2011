@@ -46,6 +46,9 @@ namespace Scada.Client.VM.Modules.Device
         {
             DeviceRealTimeServiceClient deviceRealTimeService = ServiceManager.GetDeviceRealTimeService();
             deviceRealTimeService.GetRealTimeDataReceived += new EventHandler<GetRealTimeDataReceivedEventArgs>(deviceRealTimeService_GetRealTimeDataReceived);
+            //主动获取数据
+            deviceRealTimeService.GetRealTimeDataListCompleted += (sender, e) => { };
+            deviceRealTimeService.GetRealTimeDataListAsync();
         }
 
         #endregion

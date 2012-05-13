@@ -396,18 +396,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
-    <None Include="Service References\DeviceRealTimeService\configuration91.svcinfo" />
-    <None Include="Service References\DeviceRealTimeService\configuration.svcinfo" />
-    <None Include="Service References\DeviceRealTimeService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Service References\DeviceRealTimeService\service.wsdl" />
-    <None Include="Service References\DeviceRealTimeService\service1.wsdl" />
-    <None Include="Service References\DeviceRealTimeService\service2.xsd">
+    <None Include="Service References\DeviceRealTimeService\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\DeviceRealTimeService\service21.xsd">
+    <None Include="Service References\DeviceRealTimeService\service1.wsdl" />
+    <None Include="Service References\DeviceRealTimeService\service1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.AddDeviceInfoResponse.datasource">
@@ -561,6 +555,12 @@
     <None Include="Service References\ScadaDeviceService\ScadaDeviceService1.disco" />
     <None Include="Service References\SystemManagerService\SystemManagerService1.disco" />
     <Resource Include="Images\Worker.png" />
+    <None Include="Service References\DeviceRealTimeService\configuration91.svcinfo" />
+    <None Include="Service References\DeviceRealTimeService\configuration.svcinfo" />
+    <None Include="Service References\DeviceRealTimeService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="ServiceReferences.ClientConfig">
       <SubType>Designer</SubType>
     </Content>

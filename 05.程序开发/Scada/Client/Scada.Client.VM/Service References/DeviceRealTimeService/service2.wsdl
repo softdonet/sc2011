@@ -9,18 +9,36 @@
   <wsdl:message name="IDeviceRealTimeService_InitData_InputMessage">
     <wsdl:part name="parameters" element="InitData" />
   </wsdl:message>
+  <wsdl:message name="IDeviceRealTimeService_GetRealTimeDataList_InputMessage">
+    <wsdl:part name="parameters" element="GetRealTimeDataList" />
+  </wsdl:message>
+  <wsdl:message name="IDeviceRealTimeService_GetAlarmDataList_InputMessage">
+    <wsdl:part name="parameters" element="GetAlarmDataList" />
+  </wsdl:message>
+  <wsdl:message name="IDeviceRealTimeService_GetUserEventDataList_InputMessage">
+    <wsdl:part name="parameters" element="GetUserEventDataList" />
+  </wsdl:message>
   <wsdl:message name="IDeviceRealTimeService_GetRealTimeData_OutputCallbackMessage">
     <wsdl:part name="parameters" element="GetRealTimeData" />
   </wsdl:message>
   <wsdl:message name="IDeviceRealTimeService_GetAlarmData_OutputCallbackMessage">
     <wsdl:part name="parameters" element="GetAlarmData" />
   </wsdl:message>
-  <wsdl:message name="IDeviceRealTimeService_GetCallData_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="GetCallData" />
+  <wsdl:message name="IDeviceRealTimeService_GetUserEventData_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="GetUserEventData" />
   </wsdl:message>
   <wsdl:portType name="IDeviceRealTimeService">
     <wsdl:operation name="InitData">
       <wsdl:input wsaw:Action="urn:IDeviceRealTimeService/InitData" message="IDeviceRealTimeService_InitData_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRealTimeDataList">
+      <wsdl:input wsaw:Action="urn:IDeviceRealTimeService/GetRealTimeDataList" message="IDeviceRealTimeService_GetRealTimeDataList_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmDataList">
+      <wsdl:input wsaw:Action="urn:IDeviceRealTimeService/GetAlarmDataList" message="IDeviceRealTimeService_GetAlarmDataList_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserEventDataList">
+      <wsdl:input wsaw:Action="urn:IDeviceRealTimeService/GetUserEventDataList" message="IDeviceRealTimeService_GetUserEventDataList_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetRealTimeData">
       <wsdl:output wsaw:Action="urn:IDeviceRealTimeService/GetRealTimeData" message="IDeviceRealTimeService_GetRealTimeData_OutputCallbackMessage" />
@@ -28,8 +46,8 @@
     <wsdl:operation name="GetAlarmData">
       <wsdl:output wsaw:Action="urn:IDeviceRealTimeService/GetAlarmData" message="IDeviceRealTimeService_GetAlarmData_OutputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetCallData">
-      <wsdl:output wsaw:Action="urn:IDeviceRealTimeService/GetCallData" message="IDeviceRealTimeService_GetCallData_OutputCallbackMessage" />
+    <wsdl:operation name="GetUserEventData">
+      <wsdl:output wsaw:Action="urn:IDeviceRealTimeService/GetUserEventData" message="IDeviceRealTimeService_GetUserEventData_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

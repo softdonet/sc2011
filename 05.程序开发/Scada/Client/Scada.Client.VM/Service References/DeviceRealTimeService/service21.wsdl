@@ -19,6 +19,24 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="GetRealTimeDataList">
+      <soap12:operation soapAction="urn:IDeviceRealTimeService/GetRealTimeDataList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmDataList">
+      <soap12:operation soapAction="urn:IDeviceRealTimeService/GetAlarmDataList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserEventDataList">
+      <soap12:operation soapAction="urn:IDeviceRealTimeService/GetUserEventDataList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="GetRealTimeData">
       <soap12:operation soapAction="urn:IDeviceRealTimeService/GetRealTimeData" style="document" />
       <wsdl:output>
@@ -31,8 +49,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetCallData">
-      <soap12:operation soapAction="urn:IDeviceRealTimeService/GetCallData" style="document" />
+    <wsdl:operation name="GetUserEventData">
+      <soap12:operation soapAction="urn:IDeviceRealTimeService/GetUserEventData" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
@@ -40,9 +58,9 @@
   </wsdl:binding>
   <wsdl:service name="DeviceRealTimeService">
     <wsdl:port name="CustomBinding_IDeviceRealTimeService" binding="tns:CustomBinding_IDeviceRealTimeService">
-      <soap12:address location="http://localhost:2793/WCFServices/DeviceRealTimeService.svc" />
+      <soap12:address location="http://yanghongkang:8000/WCFServices/DeviceRealTimeService.svc" />
       <wsa10:EndpointReference>
-        <wsa10:Address>http://localhost:2793/WCFServices/DeviceRealTimeService.svc</wsa10:Address>
+        <wsa10:Address>http://yanghongkang:8000/WCFServices/DeviceRealTimeService.svc</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

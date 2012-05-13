@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using NetData;
 using DataAccess;
+using BusinessRules.RealTimeDataService;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
+
 
 namespace BusinessRules
 {
@@ -14,6 +18,12 @@ namespace BusinessRules
     public class BLL
     {
         SCADADataContext DataContext = new SCADADataContext();
+        RealTimeDataService.RealTimeServiceClient  deviceRealTimeServiceClient = null;
+
+        public BLL()
+        {
+            deviceRealTimeServiceClient = new RealTimeServiceClient();
+        }
         /// <summary>
         /// 更新设备
         /// </summary>
@@ -114,6 +124,7 @@ namespace BusinessRules
             using (SCADADataContext DataContext = new SCADADataContext())
             {
                 DeviceInfo deviceInfor = DataContext.DeviceInfos.SingleOrDefault(e => e.DeviceSN == realTimeData_R.Header.DeviceSN);
+                bool haveAlarm = false;
                 if (deviceInfor != null)
                 {
                     foreach (RealTimeDataBlock item in realTimeData_R.RealTimeDataBlocks)
@@ -161,10 +172,16 @@ namespace BusinessRules
                                 }
                                 da.EventLevel = 1;
                                 DataContext.DeviceAlarms.InsertOnSubmit(da);
+                                haveAlarm = true;
                             }
                         }
                     }
                     DataContext.SubmitChanges();
+                    deviceRealTimeServiceClient.ReaTimeDataReceivedReceive();
+                    if (haveAlarm)
+                    {
+                        deviceRealTimeServiceClient.AlarmDataReceived();
+                    }
                     return true;
                 }
             }
@@ -202,10 +219,30 @@ namespace BusinessRules
                     DataContext.UserEvents.InsertOnSubmit(ue);
                 }
                 DataContext.SubmitChanges();
+                deviceRealTimeServiceClient.UserEventDataReceive();
                 return true;
             }
             return false;
         }
+
+        #region IDeviceRealTimeServiceCallback Members
+
+        public void GetRealTimeData(string data)
+        {
+            //throw new NotImplementedException();
+        }
+
+        public void GetAlarmData(string data)
+        {
+            //throw new NotImplementedException();
+        }
+
+        public void GetCallData(string data)
+        {
+            //throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
 

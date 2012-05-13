@@ -80,7 +80,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
                
                 //if (!FirstMd5)
                 //{
-                    //Md5Pwd = DecEncMd5Util.Hash(user.UserInputOldPassword);
+                    Md5Pwd = DecEncMd5Util.Hash(user.UserInputOldPassword);
                 //    FirstMd5 = true;
 
                 //}

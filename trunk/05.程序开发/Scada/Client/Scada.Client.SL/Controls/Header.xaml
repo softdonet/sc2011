@@ -576,7 +576,7 @@
             </ListBox>
         </Border>
         <!--系统配置子菜单-->
-        <Border x:Name="bdSysSettings" HorizontalAlignment="Right" Height="36" Margin="0,0,240,-4" Grid.Row="3" VerticalAlignment="Bottom" Width="410" Background="{StaticResource header_senmenu}" RenderTransformOrigin="0.5,0.5" Opacity="0" Visibility="Collapsed" >
+        <Border x:Name="bdSysSettings" HorizontalAlignment="Right" Height="36" Margin="0,0,240,-4" Grid.Row="3" VerticalAlignment="Bottom" Width="480" Background="{StaticResource header_senmenu}" RenderTransformOrigin="0.5,0.5" Opacity="0" Visibility="Collapsed" >
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseEnter">
                     <ei:ControlStoryboardAction Storyboard="{StaticResource ShowSysSettingsSecMenuStory}"/>
@@ -631,6 +631,7 @@
 
                 <ListBoxItem x:Name="childMenuUserManage" Content="用户管理" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByUserManage"/>
                 <ListBoxItem x:Name="childMenuManage" Content="菜单管理" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByMenuManage"/>
+                <ListBoxItem x:Name="childMenuUserChangePassword" Content="修改密码" VerticalAlignment="Center" Margin="0" FontSize="13.333" Foreground="White" Cursor="Hand" Tag="lstbiByMenuManage"/>
 
             </ListBox>
         </Border>

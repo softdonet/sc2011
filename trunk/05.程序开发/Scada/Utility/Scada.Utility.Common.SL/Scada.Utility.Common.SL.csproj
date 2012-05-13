@@ -68,6 +68,7 @@
     <Compile Include="ConverNumberToDisplayType.cs" />
     <Compile Include="ConverNumberToText.cs" />
     <Compile Include="ConverNumberToTextAlarm.cs" />
+    <Compile Include="DecEncMd5Util.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -18,7 +18,7 @@ namespace Scada.Client.Web.WCFServices
         {
             if (DeviceRealTimeService.deviceRealTimeService != null)
             {
-                DeviceRealTimeService.deviceRealTimeService.GetUserEventDataList();
+                DeviceRealTimeService.deviceRealTimeService.GetUserEventDataListAll();
             }
         }
 
@@ -29,7 +29,7 @@ namespace Scada.Client.Web.WCFServices
         {
             if (DeviceRealTimeService.deviceRealTimeService != null)
             {
-                DeviceRealTimeService.deviceRealTimeService.GetRealTimeDataList();
+                DeviceRealTimeService.deviceRealTimeService.GetRealTimeDataListAll();
             }
         }
 
@@ -40,7 +40,7 @@ namespace Scada.Client.Web.WCFServices
         {
             if (DeviceRealTimeService.deviceRealTimeService != null)
             {
-                DeviceRealTimeService.deviceRealTimeService.GetAlarmDataList();
+                DeviceRealTimeService.deviceRealTimeService.GetAlarmDataListAll();
             }
         }
     }

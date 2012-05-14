@@ -36,20 +36,31 @@ namespace Scada.Client.Web.WCFServices
         /// </summary>
         /// <param name="data"></param>
         /// <param name="msgType"></param>
-        private void SentData(string data, MessageType msgType)
+        private void SentDataAll(string data, MessageType msgType)
         {
             if (cilents != null && cilents.Count != 0)
             {
                 foreach (IDeviceRealTimeServiceCallback isc in cilents)
                 {
-                    NoticeMessage notice = new NoticeMessage();
-                    notice.NoticeClient = isc;
-                    notice.exceptionDelegate += new ExceptionDelegate(notice_exceptionDelegate);
-                    notice.UsersMessages = data;
-                    notice.MsgType = msgType;
-                    notice.Notifiy();
+                    SendData(isc, data, msgType);
                 }
             }
+        }
+
+        /// <summary>
+        /// 发送数据
+        /// </summary>
+        /// <param name="cilent"></param>
+        /// <param name="data"></param>
+        /// <param name="msgType"></param>
+        private void SendData(IDeviceRealTimeServiceCallback cilent, string data, MessageType msgType)
+        {
+            NoticeMessage notice = new NoticeMessage();
+            notice.NoticeClient = cilent;
+            notice.exceptionDelegate += new ExceptionDelegate(notice_exceptionDelegate);
+            notice.UsersMessages = data;
+            notice.MsgType = msgType;
+            notice.Notifiy();
         }
 
         /// <summary>
@@ -80,11 +91,26 @@ namespace Scada.Client.Web.WCFServices
         }
 
         /// <summary>
+        /// 获取当前客户端
+        /// </summary>
+        /// <returns></returns>
+        private IDeviceRealTimeServiceCallback GetCurrentClient()
+        {
+            IDeviceRealTimeServiceCallback iscCurrent =
+                                      OperationContext.Current.GetCallbackChannel<IDeviceRealTimeServiceCallback>();
+            return iscCurrent;
+        }
+
+        /// <summary>
         /// 获取实时数据
         /// </summary>
         public void GetRealTimeDataList()
         {
-            SentData(deviceRealTimeMonitorService.SendReaTimedata(), MessageType.RealTimeMsg);
+            var client = GetCurrentClient();
+            if (client != null)
+            {
+                SendData(client, deviceRealTimeMonitorService.SendReaTimedata(), MessageType.RealTimeMsg);
+            }
         }
 
         /// <summary>
@@ -92,7 +118,11 @@ namespace Scada.Client.Web.WCFServices
         /// </summary>
         public void GetAlarmDataList()
         {
-            SentData(deviceRealTimeMonitorService.SendAlarmData(), MessageType.AlarmMsg);
+            var client = GetCurrentClient();
+            if (client != null)
+            {
+                SendData(client, deviceRealTimeMonitorService.SendAlarmData(), MessageType.AlarmMsg);
+            }
         }
 
         /// <summary>
@@ -100,9 +130,36 @@ namespace Scada.Client.Web.WCFServices
         /// </summary>
         public void GetUserEventDataList()
         {
-            SentData(deviceRealTimeMonitorService.SendUserEventData(), MessageType.UserEvent);
+            var client = GetCurrentClient();
+            if (client != null)
+            {
+                SendData(client, deviceRealTimeMonitorService.SendUserEventData(), MessageType.UserEvent);
+            }
         }
 
+        /// <summary>
+        /// 获取实时数据
+        /// </summary>
+        public void GetRealTimeDataListAll()
+        {
+            SentDataAll(deviceRealTimeMonitorService.SendReaTimedata(), MessageType.RealTimeMsg);
+        }
+
+        /// <summary>
+        /// 获取告警数据
+        /// </summary>
+        public void GetAlarmDataListAll()
+        {
+            SentDataAll(deviceRealTimeMonitorService.SendAlarmData(), MessageType.AlarmMsg);
+        }
+
+        /// <summary>
+        /// 获取用户事件数据
+        /// </summary>
+        public void GetUserEventDataListAll()
+        {
+            SentDataAll(deviceRealTimeMonitorService.SendUserEventData(), MessageType.UserEvent);
+        }
         #endregion
 
     }

@@ -147,7 +147,7 @@ namespace DataCollecting
         private void 注册命令ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Head h = new Head();
-            h.CmdHeader = Const.UP_HEADER;
+            h.CmdHeader = Const.UP_HEADER;//其实应为Const.DOWN_HEADER,为了测试方便先这样
             h.CmdCommand = Command.cmd_Register_R;
             h.DataContext = 42605;
             h.DeviceSN = "0A5F01CD0001";
@@ -169,6 +169,55 @@ namespace DataCollecting
         }
 
         private void 实时数据回复命令ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Head h = new Head();
+            h.CmdHeader = Const.UP_HEADER;
+            h.CmdCommand = Command.cmd_Reply;
+            h.DataContext = 42605;
+            h.DeviceSN = "0A5F01CD0001";
+            h.State = 0;
+            h.SateTimeMark = DateTime.Now;
+
+            RealTimeData_S rs = new RealTimeData_S();
+            rs.Header = h;
+            rs.HaveBroadcastInfo = false;
+            rs.HaveConfigInfo = false;
+            rs.HaveWeatherInfo = false;
+
+
+            //构造设备配置信息块
+            ConfigDataBlock configDataBlock = new ConfigDataBlock();
+            configDataBlock.RunMode = 1;
+            configDataBlock.Argument1 = 1500;
+            configDataBlock.Argument2 = 1600;
+            configDataBlock.Argument3 = 1700;
+            configDataBlock.DeviceNo = "P-100100";
+            configDataBlock.InstalPlace = "北京市朝阳区双井街道";
+            configDataBlock.DisplayMode = 1;
+            configDataBlock.InstancyBtnEnable = true;
+            configDataBlock.InfoBtnEnable = true;
+            configDataBlock.RepairTel = "13801112222";
+            configDataBlock.MainIP = "202.106.42.1";
+            configDataBlock.ReserveIP = "202.106.42.2";
+
+            configDataBlock.DomainName = "xyz.dddd.com";
+            configDataBlock.Port = 1789;
+            configDataBlock.ConnectionType = 0;
+            configDataBlock.ConnectName = "CMNET";
+            rs.ConfigData = configDataBlock;
+
+            WeatherDataBlock weatherDataBlock = new WeatherDataBlock();
+            weatherDataBlock.TodayWeather = "晴转XXX多云，有阵雨。";
+            rs.WeatherData = weatherDataBlock;
+
+            BroadcastDataBlock broadcastDataBlock = new BroadcastDataBlock();
+            broadcastDataBlock.Msg = "通知：明天下午开会,不要迟到。";
+
+            rs.BroadcastData = broadcastDataBlock;
+            this.textBox1.Text = StringHelper.DataToStr(rs.ToByte());
+        }
+
+        private void 实时回复命令带空格ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Head h = new Head();
             h.CmdHeader = Const.UP_HEADER;
@@ -214,7 +263,7 @@ namespace DataCollecting
             broadcastDataBlock.Msg = "通知：明天下午开会,不要迟到。";
 
             rs.BroadcastData = broadcastDataBlock;
-            this.textBox1.Text = StringHelper.DataToStr(rs.ToByte());
+            this.textBox1.Text = StringHelper.DataToStrV2(rs.ToByte());
         }
     }
 }

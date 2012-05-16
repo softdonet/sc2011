@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Utility;
 
 namespace NetData
 {
@@ -16,11 +17,12 @@ namespace NetData
         public ReplyBase_S(byte[] data)
             : base(data)
         {
-            haveConfigInfo = data[21] == 1 ? true : false;
-            haveWeatherInfo = data[22] == 1 ? true : false;
-            haveBroadcastInfo = data[23] == 1 ? true : false;
+
+            haveConfigInfo = StringHelper.GetTargetBit(0, data[21]) == 1 ? true : false;
+            haveWeatherInfo = StringHelper.GetTargetBit(1, data[21]) == 1 ? true : false;
+            haveBroadcastInfo = StringHelper.GetTargetBit(2, data[21]) == 1 ? true : false;
             //数组指针
-            int index = 24;
+            int index = 22;
             if (haveConfigInfo)
             {
                 byte[] arr = new byte[136];
@@ -104,9 +106,14 @@ namespace NetData
 
         protected override void PushBodyByte(List<byte> result)
         {
-            result.Add((byte)(haveConfigInfo ? 1 : 0));
-            result.Add((byte)(haveWeatherInfo ? 1 : 0));
-            result.Add((byte)(haveBroadcastInfo ? 1 : 0));
+            byte temp = (byte)0;
+            temp = StringHelper.ReplaceTargetBit(0, haveConfigInfo, temp);
+            temp = StringHelper.ReplaceTargetBit(1, haveWeatherInfo, temp);
+            temp = StringHelper.ReplaceTargetBit(2, haveBroadcastInfo, temp);
+            result.Add(temp);
+            //result.Add((byte)(haveConfigInfo ? 1 : 0));
+            //result.Add((byte)(haveWeatherInfo ? 1 : 0));
+            //result.Add((byte)(haveBroadcastInfo ? 1 : 0));
             if (haveConfigInfo)
             {
                 result.AddRange(configData.ToByte());

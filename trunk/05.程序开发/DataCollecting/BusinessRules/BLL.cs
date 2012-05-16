@@ -108,7 +108,7 @@ namespace BusinessRules
 
             //构造广播信息块
             BroadcastDataBlock broadcastDataBlock = new BroadcastDataBlock();
-            broadcastDataBlock.Msg = "通知：明天下午开会。不要迟到，迟到一分钟扣100元。";
+            broadcastDataBlock.Msg = "通知：明天下午开会。不要迟到。";
             rs.BroadcastData = broadcastDataBlock;
 
             return rs;

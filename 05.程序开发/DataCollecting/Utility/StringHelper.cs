@@ -25,11 +25,11 @@ namespace Utility
         }
 
         /// <summary>
-        ///通讯数据转换核心方法
+        ///通讯数据转换核心方法（上发）
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static byte[] ConvertData(byte[] data)
+        public static byte[] ConvertDataUp(byte[] data)
         {
             List<byte> result = new List<byte>();
             for (int i = 0; i < data.Length / 2; i = i + 2)
@@ -53,6 +53,18 @@ namespace Utility
             byte[] newByte = new byte[1024];
             Array.Copy(tempByte, 0, newByte, 0, tempByte.Length);
             return newByte;
+        }
+
+        /// <summary>
+        /// /通讯数据转换核心方法(下发)
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static byte[] ConvertDataDown(byte[] data)
+        {
+            string str=DataToStr(data);
+            byte[] arr = System.Text.Encoding.Default.GetBytes(str);
+            return arr;
         }
 
         /// <summary>

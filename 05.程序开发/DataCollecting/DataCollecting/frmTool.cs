@@ -180,9 +180,9 @@ namespace DataCollecting
 
             RealTimeData_S rs = new RealTimeData_S();
             rs.Header = h;
-            rs.HaveBroadcastInfo = false;
-            rs.HaveConfigInfo = false;
-            rs.HaveWeatherInfo = false;
+            rs.HaveBroadcastInfo = true;
+            rs.HaveConfigInfo = true;
+            rs.HaveWeatherInfo = true;
 
 
             //构造设备配置信息块

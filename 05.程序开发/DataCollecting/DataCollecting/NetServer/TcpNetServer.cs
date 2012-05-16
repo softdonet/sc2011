@@ -42,7 +42,12 @@ namespace DataCollecting.NetServer
         /// <returns></returns>
         public byte[] GetRealByteData()
         {
-            return StringHelper.ConvertData(ByteData);
+            return StringHelper.ConvertDataUp(ByteData);
+        }
+
+        public void Send(byte[] data)
+        {
+            ClientSocket.Send(StringHelper.ConvertDataDown(data));
         }
     }
 
@@ -325,7 +330,7 @@ namespace DataCollecting.NetServer
                     Test_S ts = new Test_S();
                     ts.Header = h;
                     ts.Content = tr.Content;
-                    deviceClient.ClientSocket.Send(ts.ToByte());
+                    deviceClient.Send(ts.ToByte());
                     if (testEvent_S != null)
                     {
                         this.testEvent_S(new Test_S(ts.ToByte()));
@@ -366,7 +371,7 @@ namespace DataCollecting.NetServer
                     }
                     ReplyBase_S replyBase_S_config = bll.GetDeviceInfor(cr.Header.DeviceSN);
                     replyBase_S_config.Header = hconfig;
-                    deviceClient.ClientSocket.Send(replyBase_S_config.ToByte());
+                    deviceClient.Send(replyBase_S_config.ToByte());
                     if (this.realTimeDataEvent_S != null)
                     {
                         this.realTimeDataEvent_S(new RealTimeData_S(replyBase_S_config.ToByte()));
@@ -404,7 +409,7 @@ namespace DataCollecting.NetServer
                     }
                     ReplyBase_S replyBase_S_realTime = bll.GetDeviceInfor(rr.Header.DeviceSN);
                     replyBase_S_realTime.Header = hRealTime;
-                    //clientSocket.Send(replyBase_S_realTime.ToByte());
+                    deviceClient.Send(replyBase_S_realTime.ToByte());
                     if (this.realTimeDataEvent_S != null)
                     {
                         this.realTimeDataEvent_S(new RealTimeData_S(replyBase_S_realTime.ToByte()));
@@ -442,7 +447,7 @@ namespace DataCollecting.NetServer
                     }
                     ReplyBase_S replyBase_S_userEvent = bll.GetDeviceInfor(ur.Header.DeviceSN);
                     replyBase_S_userEvent.Header = hUserEvent;
-                    deviceClient.ClientSocket.Send(replyBase_S_userEvent.ToByte());
+                   deviceClient.Send(replyBase_S_userEvent.ToByte());
                     if (this.realTimeDataEvent_S != null)
                     {
                         this.realTimeDataEvent_S(new RealTimeData_S(replyBase_S_userEvent.ToByte()));

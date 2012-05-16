@@ -145,27 +145,36 @@ namespace DataCollecting
             sb.Append("    是否含有配置信息：" + realTimeData_S.HaveConfigInfo.ToString() + Environment.NewLine);
             sb.Append("    是否含有天气信息：" + realTimeData_S.HaveWeatherInfo.ToString() + Environment.NewLine);
             sb.Append("    是否含有广播信息：" + realTimeData_S.HaveBroadcastInfo.ToString() + Environment.NewLine);
-            sb.Append(Environment.NewLine);
-            sb.Append("    运行模式：" + realTimeData_S.ConfigData.RunMode.ToString() + Environment.NewLine);
-            sb.Append("    参数1：" + realTimeData_S.ConfigData.Argument1.ToString() + Environment.NewLine);
-            sb.Append("    参数2：" + realTimeData_S.ConfigData.Argument2.ToString() + Environment.NewLine);
-            sb.Append("    参数3：" + realTimeData_S.ConfigData.Argument3.ToString() + Environment.NewLine);
-            sb.Append("    设备编号：" + realTimeData_S.ConfigData.DeviceNo.ToString() + Environment.NewLine);
-            sb.Append("    安装地点：" + realTimeData_S.ConfigData.InstalPlace + Environment.NewLine);
-            sb.Append("    默认显示方式：" + realTimeData_S.ConfigData.DisplayMode.ToString() + Environment.NewLine);
-            sb.Append("    是否启用紧急按钮：" + realTimeData_S.ConfigData.InstancyBtnEnable.ToString() + Environment.NewLine);
-            sb.Append("    是否启用信息按钮：" + realTimeData_S.ConfigData.InfoBtnEnable.ToString() + Environment.NewLine);
-            sb.Append("    维护人员手机号码：" + realTimeData_S.ConfigData.RepairTel.ToString() + Environment.NewLine);
-            sb.Append("    主IP：" + realTimeData_S.ConfigData.MainIP.ToString() + Environment.NewLine);
-            sb.Append("    备用IP：" + realTimeData_S.ConfigData.ReserveIP.ToString() + Environment.NewLine);
-            sb.Append("    域名：" + realTimeData_S.ConfigData.DomainName.ToString() + Environment.NewLine);
-            sb.Append("    端口号：" + realTimeData_S.ConfigData.Port.ToString() + Environment.NewLine);
-            sb.Append("    连接方式：" + realTimeData_S.ConfigData.ConnectionType.ToString() + Environment.NewLine);
-            sb.Append("    接入点名称：" + realTimeData_S.ConfigData.ConnectName + Environment.NewLine);
-            sb.Append(Environment.NewLine);
-            sb.Append("    今日天气信息：" + realTimeData_S.WeatherData.TodayWeather + Environment.NewLine);
-            sb.Append(Environment.NewLine);
-            sb.Append("    广播信息：" + realTimeData_S.BroadcastData.Msg + Environment.NewLine);
+            if (realTimeData_S.HaveConfigInfo)
+            {
+                sb.Append(Environment.NewLine);
+                sb.Append("    运行模式：" + realTimeData_S.ConfigData.RunMode.ToString() + Environment.NewLine);
+                sb.Append("    参数1：" + realTimeData_S.ConfigData.Argument1.ToString() + Environment.NewLine);
+                sb.Append("    参数2：" + realTimeData_S.ConfigData.Argument2.ToString() + Environment.NewLine);
+                sb.Append("    参数3：" + realTimeData_S.ConfigData.Argument3.ToString() + Environment.NewLine);
+                sb.Append("    设备编号：" + realTimeData_S.ConfigData.DeviceNo.ToString() + Environment.NewLine);
+                sb.Append("    安装地点：" + realTimeData_S.ConfigData.InstalPlace + Environment.NewLine);
+                sb.Append("    默认显示方式：" + realTimeData_S.ConfigData.DisplayMode.ToString() + Environment.NewLine);
+                sb.Append("    是否启用紧急按钮：" + realTimeData_S.ConfigData.InstancyBtnEnable.ToString() + Environment.NewLine);
+                sb.Append("    是否启用信息按钮：" + realTimeData_S.ConfigData.InfoBtnEnable.ToString() + Environment.NewLine);
+                sb.Append("    维护人员手机号码：" + realTimeData_S.ConfigData.RepairTel.ToString() + Environment.NewLine);
+                sb.Append("    主IP：" + realTimeData_S.ConfigData.MainIP.ToString() + Environment.NewLine);
+                sb.Append("    备用IP：" + realTimeData_S.ConfigData.ReserveIP.ToString() + Environment.NewLine);
+                sb.Append("    域名：" + realTimeData_S.ConfigData.DomainName.ToString() + Environment.NewLine);
+                sb.Append("    端口号：" + realTimeData_S.ConfigData.Port.ToString() + Environment.NewLine);
+                sb.Append("    连接方式：" + realTimeData_S.ConfigData.ConnectionType.ToString() + Environment.NewLine);
+                sb.Append("    接入点名称：" + realTimeData_S.ConfigData.ConnectName + Environment.NewLine);
+            }
+            if (realTimeData_S.HaveWeatherInfo)
+            {
+                sb.Append(Environment.NewLine);
+                sb.Append("    今日天气信息：" + realTimeData_S.WeatherData.TodayWeather + Environment.NewLine);
+            }
+            if (realTimeData_S.HaveBroadcastInfo)
+            {
+                sb.Append(Environment.NewLine);
+                sb.Append("    广播信息：" + realTimeData_S.BroadcastData.Msg + Environment.NewLine);
+            }
             sb.Append(GetVerify(realTimeData_S));
             sb.Append(GetLine());
             SetText(sb.ToString());

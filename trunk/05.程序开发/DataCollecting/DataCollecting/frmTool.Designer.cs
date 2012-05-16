@@ -41,6 +41,7 @@
             this.用户事件命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.固件更新命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.注册命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.实时回复命令带空格ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -69,7 +70,8 @@
             this.menuStrip2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.下行命令ToolStripMenuItem,
-            this.实时数据回复命令ToolStripMenuItem1});
+            this.实时数据回复命令ToolStripMenuItem1,
+            this.实时回复命令带空格ToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 24);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.Size = new System.Drawing.Size(673, 24);
@@ -157,6 +159,13 @@
             this.注册命令ToolStripMenuItem.Text = "注册命令";
             this.注册命令ToolStripMenuItem.Click += new System.EventHandler(this.注册命令ToolStripMenuItem_Click);
             // 
+            // 实时回复命令带空格ToolStripMenuItem
+            // 
+            this.实时回复命令带空格ToolStripMenuItem.Name = "实时回复命令带空格ToolStripMenuItem";
+            this.实时回复命令带空格ToolStripMenuItem.Size = new System.Drawing.Size(137, 20);
+            this.实时回复命令带空格ToolStripMenuItem.Text = "实时回复命令(带空格)";
+            this.实时回复命令带空格ToolStripMenuItem.Click += new System.EventHandler(this.实时回复命令带空格ToolStripMenuItem_Click);
+            // 
             // frmTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -195,5 +204,6 @@
         private System.Windows.Forms.ToolStripMenuItem 固件更新命令ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 注册命令ToolStripMenuItem;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ToolStripMenuItem 实时回复命令带空格ToolStripMenuItem;
     }
 }

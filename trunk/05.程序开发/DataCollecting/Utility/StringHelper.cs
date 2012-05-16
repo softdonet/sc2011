@@ -16,15 +16,13 @@ namespace Utility
         public static byte[] StrToByte(string str)
         {
             List<byte> result = new List<byte>();
-            for (int i = 0; i < str.Length / 2; i+=2)
+            for (int i = 0; i < str.Length / 2; i += 2)
             {
-                byte temp = Convert.ToByte(str.Substring(i,2), 16);
+                byte temp = Convert.ToByte(str.Substring(i, 2), 16);
                 result.Add(temp);
             }
             return result.ToArray();
         }
-
-
 
         /// <summary>
         ///通讯数据转换核心方法
@@ -433,6 +431,70 @@ namespace Utility
                 result.Add(0x00);
             }
             return result.ToArray();
+        }
+
+        #endregion
+
+        #region 位操作
+
+        /// <summary>
+        /// 取byteSource目标位的值
+        /// </summary>
+        /// <param name="location">位置(0-7)</param>
+        /// <param name="byteSource">源字节</param>
+        /// <returns></returns>
+        public static int GetTargetBit(short location, byte byteSource)
+        {
+            Byte baseNum = (byte)(Math.Pow(2, location + 1) / 2);
+            return GetTargetBit(location, byteSource, baseNum);
+        }
+
+        /// <summary>
+        /// 取byteSource目标位的值
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="byteSource"></param>
+        /// <param name="baseNum">与 基数(1,2,4,8,16,32,64,128)</param>
+        /// <returns></returns>
+        private static int GetTargetBit(short location, byte byteSource, byte baseNum)
+        {
+            if (location > 7 || location < 0) return -1000;
+            return (byteSource & baseNum) == baseNum ? 1 : 0;
+        }
+
+        /// <summary>
+        /// 替换byteSource目标位的值
+        /// </summary>
+        /// <param name="location">替换位置(0-7)</param>
+        /// <param name="value">替换的值(1-true,0-false)</param>
+        /// <param name="byteSource">源字节</param>
+        /// <returns>替换后的值</returns>
+        public static byte ReplaceTargetBit(short location, bool value, byte byteSource)
+        {
+            Byte baseNum = (byte)(Math.Pow(2, location + 1) / 2);
+            return ReplaceTargetBit(location, value, byteSource, baseNum);
+        }
+
+        /// <summary>
+        /// 替换byteSource目标位的值
+        /// </summary>
+        /// <param name="location">替换的值(1-true,0-false)</param>
+        /// <param name="value"></param>
+        /// <param name="byteSource"></param>
+        /// <param name="baseNum">与 基数(1,2,4,8,16,32,64,128)</param>
+        /// <returns></returns>
+        private static byte ReplaceTargetBit(short location, bool value, byte byteSource, byte baseNum)
+        {
+            if (location > 7 || location < 0)
+            {
+                throw new FormatException("location params error!type range(0-7)");
+            }
+            bool locationValue = GetTargetBit(location, byteSource) == 1 ? true : false;
+            if (locationValue != value)
+            {
+                return (byte)(value ? byteSource + baseNum : byteSource - baseNum);
+            }
+            return byteSource;
         }
 
         #endregion

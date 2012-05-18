@@ -53,45 +53,24 @@ namespace Scada.Client.SL.Modules.UsersEvent
             return instance;
         }
 
+        UserEventViewModel UserEventViewModel = null;
         public UserEvent()
         {
 
             InitializeComponent();
-
-            UserEventViewModel userEventViewModel = new UserEventViewModel();
-            this.DataContext = userEventViewModel;
-            userEventViewModel.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(userEventViewModel_PropertyChanged);
-
-
+            UserEventViewModel = new UserEventViewModel();
+            this.DataContext = UserEventViewModel;
             MyContent.CloseBtn += new EventHandler(MyContent_CloseBtn);
 
-
-            //this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
-
-            //this._scadaDeviceServiceSoapClient.GetListUserEventInfoCompleted +=
-            //    new EventHandler<GetListUserEventInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_ListUserEventInfoCompleted);
-
-            //this._scadaDeviceServiceSoapClient.GetListUserEventInfoAsync();
-
         }
 
-        void userEventViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            //throw new NotImplementedException();
-        }
 
         void MyContent_CloseBtn(object sender, EventArgs e)
         {
             Storyboard2.Begin();
             ViewHost.Visibility = Visibility.Collapsed;
+            UserEventViewModel.GetData();
         }
-
-        //private void scadaDeviceServiceSoapClient_ListUserEventInfoCompleted(object sender, GetListUserEventInfoCompletedEventArgs e)
-        //{
-        //    List<UserEventTab> userEventTab = BinaryObjTransfer.BinaryDeserialize<List<UserEventTab>>(e.Result);
-        //    this.RadGridView1.ItemsSource = userEventTab;
-        //}
-
 
         #endregion
 
@@ -100,16 +79,9 @@ namespace Scada.Client.SL.Modules.UsersEvent
 
         private void RadGridView1_RowLoaded(object sender, Telerik.Windows.Controls.GridView.RowLoadedEventArgs e)
         {
-            //TextBlock state = (e.Row.Cells[RadGridView1.Columns.Count - 2].Content as FrameworkElement) as TextBlock;
-            //HyperlinkButton hlUrl = (e.Row.Cells[RadGridView1.Columns.Count - 1].Content as FrameworkElement).FindName("hlUrl") as HyperlinkButton;
-            //if (state.Text.Trim() == "未确认")
-            //{
-            //    e.Row.Background = new SolidColorBrush(Colors.Red);
-            //    e.Row.Cells[RadGridView1.Columns.Count - 1].Background = new SolidColorBrush(Colors.White);
-            //    hlUrl.IsEnabled = true;
-            //    AddAlert(e.Row);
-            //}
+      
         }
+
         Dictionary<GridViewRowItem, GridViewRowItem> dicDr = new Dictionary<GridViewRowItem, GridViewRowItem>();
         private void AddAlert(GridViewRowItem dr)
         {
@@ -126,10 +98,10 @@ namespace Scada.Client.SL.Modules.UsersEvent
 
         private void OnClosed(object sender, WindowClosedEventArgs e)
         {
-            //RadWindow.Alert(String.Format("DialogResult: {0}, PromptResult: {1}", e.DialogResult, e.PromptResult));
+           
         }
 
-        private Guid id, deviceid;
+        private Guid id;
         private int? state;
         private void hlBtn_Click(object sender, RoutedEventArgs e)
         {

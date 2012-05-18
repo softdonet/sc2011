@@ -82,16 +82,16 @@
                              AutoGenerateColumns="False"  IsReadOnly="True" 
                              ItemsSource="{Binding UserEventList}">
             <telerik:RadGridView.Columns>
-                <telerik:GridViewDataColumn Header="事件编号" DataMemberBinding="{Binding EventNo}" Width="80"  HeaderTextAlignment="Center"  />
-                <telerik:GridViewDataColumn Header="设备编号" DataMemberBinding="{Binding DeviceNo}" Width="100"   HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn Header="事件类型" DataMemberBinding="{Binding Converter={StaticResource ConvertNumberToText1},ConverterParameter=EventType}" Width="80" HeaderTextAlignment="Center"  />
+                <telerik:GridViewDataColumn IsFilterable="False" Header="事件编号" DataMemberBinding="{Binding EventNo}" Width="80"  HeaderTextAlignment="Center"  />
+                <telerik:GridViewDataColumn IsFilterable="False" Header="设备编号" DataMemberBinding="{Binding DeviceNo}" Width="100"   HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn IsFilterable="False" Header="事件类型" DataMemberBinding="{Binding Converter={StaticResource ConvertNumberToText1},ConverterParameter=EventType}" Width="80" HeaderTextAlignment="Center"  />
 
                 <!--<telerik:GridViewDataColumn Header="状态" DataMemberBinding="{Binding State}" Width="80" HeaderTextAlignment="Center"  />-->
 
-                <telerik:GridViewDataColumn Header="状态" DataMemberBinding="{Binding Converter={StaticResource ConvertNumberToText1},ConverterParameter=State}" Width="80" HeaderTextAlignment="Center"  />
-                <telerik:GridViewDataColumn Header="用户请求次数" DataMemberBinding="{Binding Count}" Width="100" HeaderTextAlignment="Center"  />
-                <telerik:GridViewDataColumn Header="请求时间" DataMemberBinding="{Binding RequestTime}" Width="140" HeaderTextAlignment="Center"  />
-                <telerik:GridViewDataColumn    Width="100" Header="操作" HeaderTextAlignment="Center" TextAlignment="Center" >
+                <telerik:GridViewDataColumn IsFilterable="False" Header="状态" DataMemberBinding="{Binding Converter={StaticResource ConvertNumberToText1},ConverterParameter=State}" Width="80" HeaderTextAlignment="Center"  />
+                <telerik:GridViewDataColumn IsFilterable="False" Header="用户请求次数" DataMemberBinding="{Binding Count}" Width="100" HeaderTextAlignment="Center"  />
+                <telerik:GridViewDataColumn IsFilterable="False" Header="请求时间" DataMemberBinding="{Binding RequestTime}" Width="140" HeaderTextAlignment="Center"  />
+                <telerik:GridViewDataColumn  IsFilterable="False"   Width="100" Header="操作" HeaderTextAlignment="Center" TextAlignment="Center" >
                     <telerik:GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel  Orientation="Horizontal"   HorizontalAlignment="Center">
@@ -100,7 +100,7 @@
                         </DataTemplate>
                     </telerik:GridViewColumn.CellTemplate>
                 </telerik:GridViewDataColumn>
-                <telerik:GridViewDataColumn Header="处理信息" DataMemberBinding="{Binding DealInfo}" Width="*" HeaderTextAlignment="Center"  />
+                <telerik:GridViewDataColumn IsFilterable="False" Header="处理信息" DataMemberBinding="{Binding DealInfo}" Width="*" HeaderTextAlignment="Center"  />
 
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>

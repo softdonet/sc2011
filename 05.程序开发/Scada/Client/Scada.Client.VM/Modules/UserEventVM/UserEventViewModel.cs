@@ -27,13 +27,18 @@ namespace Scada.Client.VM.Modules.UserEventVM
         #endregion
 
         #region Constructor
-
+        DeviceRealTimeServiceClient deviceRealTimeServiceClient = ServiceManager.GetDeviceRealTimeService();
         public UserEventViewModel()
         {
-            DeviceRealTimeServiceClient userEventService = ServiceManager.GetDeviceRealTimeService();
-            userEventService.GetUserEventDataReceived += new EventHandler<GetUserEventDataReceivedEventArgs>(userEventService_GetUserEventDataReceived);
-            userEventService.GetUserEventDataListCompleted += (sender, e) => { };
-            userEventService.GetUserEventDataListAsync();
+             deviceRealTimeServiceClient = ServiceManager.GetDeviceRealTimeService();
+             deviceRealTimeServiceClient.GetUserEventDataReceived += new EventHandler<GetUserEventDataReceivedEventArgs>(userEventService_GetUserEventDataReceived);
+             deviceRealTimeServiceClient.GetUserEventDataListCompleted += (sender, e) => { };
+             deviceRealTimeServiceClient.GetUserEventDataListAsync();
+        }
+
+        public void GetData()
+        {
+            deviceRealTimeServiceClient.GetUserEventDataListAsync();
         }
 
         void userEventService_GetUserEventDataReceived(object sender, GetUserEventDataReceivedEventArgs e)

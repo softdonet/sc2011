@@ -10,14 +10,13 @@
      xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
      xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" 
      xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
-			
-    xmlns:myConvert="clr-namespace:Scada.Utility.Common.SL;assembly=Scada.Utility.Common.SL"   
-    
+			 
+    xmlns:myConvert="clr-namespace:Scada.Client.VM.ConvertDisplay;assembly=Scada.Client.VM"
     mc:Ignorable="d"
     d:DesignHeight="880" d:DesignWidth="1024" Loaded="UserControl_Loaded">
     <UserControl.Resources>
 
-        <myConvert:ConverNumberToTextAlarm x:Key="ConverNumberToTextAlarm1"/>
+        <myConvert:ConvertNumberToTextAlarm x:Key="ConverNumberToTextAlarm1"/>
         <myConvert:ConvertNumberToText x:Key="ConvertNumberToText1"/>
 
         <Style x:Key="ZheDieButtonStyle" TargetType="Button">

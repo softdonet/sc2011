@@ -5,13 +5,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
     xmlns:local="clr-namespace:Scada.Client.SL.Modules.Alarm"
-    xmlns:myConvertAlarm="clr-namespace:Scada.Utility.Common.SL;assembly=Scada.Utility.Common.SL"
+    xmlns:myConvertAlarm="clr-namespace:Scada.Client.VM.ConvertDisplay;assembly=Scada.Client.VM"
     xmlns:local1="clr-namespace:Scada.Client.SL.Controls"
     mc:Ignorable="d"
     d:DesignHeight="768" d:DesignWidth="800" Loaded="UserControl_Loaded">
 
     <UserControl.Resources>
-        <myConvertAlarm:ConverNumberToTextAlarm  x:Key="ConverNumberToTextAlarm1"/>
+        <myConvertAlarm:ConvertNumberToTextAlarm  x:Key="ConverNumberToTextAlarm1"/>
         <Storyboard x:Name="timer" Completed="timer_Completed" />
         <Storyboard x:Name="Storyboard1">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ViewHost">

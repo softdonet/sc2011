@@ -65,17 +65,8 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConverNumberToDisplayType.cs" />
-    <Compile Include="ConverNumberToText.cs" />
-    <Compile Include="ConverNumberToTextAlarm.cs" />
     <Compile Include="DecEncMd5Util.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Client\Scada.Client.VM\Scada.Client.VM.csproj">
-      <Project>{4C77E612-3996-4205-93AF-AC4C143F2173}</Project>
-      <Name>Scada.Client.VM</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

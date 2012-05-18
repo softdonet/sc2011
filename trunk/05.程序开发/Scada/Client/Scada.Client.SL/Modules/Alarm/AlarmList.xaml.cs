@@ -140,8 +140,7 @@ namespace Scada.Client.SL.Modules.Alarm
         {
             if (e.DialogResult != true) { return; }
             string getCommentInfo = e.PromptResult;
-            //TODO: 操作人
-            Guid userGuid = Guid.Parse("3978CBD6-AE73-4F03-A7ED-5A16C059D574");
+            Guid userGuid = App.CurUser.UserID;
             this._scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoAsync(id, DateTime.Now, getCommentInfo,userGuid);
             var obj = AlarmListVM.DeviceAlarmList.SingleOrDefault(x => x.DeviceAlarm.ID == id);
             if (obj != null)

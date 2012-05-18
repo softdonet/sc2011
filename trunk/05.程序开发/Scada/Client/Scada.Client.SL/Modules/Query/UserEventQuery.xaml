@@ -8,11 +8,11 @@
      xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"   
              
     xmlns:my="clr-namespace:Scada.Client.SL.Controls"
-    xmlns:myConvertAlarm="clr-namespace:Scada.Utility.Common.SL;assembly=Scada.Utility.Common.SL"
+    xmlns:myConvertAlarm="clr-namespace:Scada.Client.VM.ConvertDisplay;assembly=Scada.Client.VM"
 
     d:DesignHeight="768" d:DesignWidth="1024">
     <UserControl.Resources>
-        <myConvertAlarm:ConverNumberToTextAlarm  x:Key="ConverNumberToTextAlarm1"/>
+        <myConvertAlarm:ConvertNumberToTextAlarm  x:Key="ConverNumberToTextAlarm1"/>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Background="White">
         <Grid.RowDefinitions>

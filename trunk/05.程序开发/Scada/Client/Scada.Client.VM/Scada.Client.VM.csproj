@@ -78,6 +78,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommClass\BinaryObjTransfer.cs" />
+    <Compile Include="ConvertDisplay\ConvertNumberToDisplayType.cs" />
+    <Compile Include="ConvertDisplay\ConvertNumberToText.cs" />
+    <Compile Include="ConvertDisplay\ConvertNumberToTextAlarm.cs" />
     <Compile Include="Modules\Alarm\DeviceAlarmViewModel.cs" />
     <Compile Include="Modules\Alarm\AlarmListViewModel.cs" />
     <Compile Include="Modules\BaseInfo\DeviceManageViewModel.cs" />

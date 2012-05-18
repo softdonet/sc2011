@@ -3,9 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:myConvertDisplayType="clr-namespace:Scada.Utility.Common.SL;assembly=Scada.Utility.Common.SL"
-    
-    xmlns:DeviceInfoVM="clr-namespace:Scada.Client.VM.Modules.BaseInfo;assembly=Scada.Client.VM"
+    xmlns:myConvertDisplayType="clr-namespace:Scada.Client.VM.ConvertDisplay;assembly=Scada.Client.VM"
+    xmlns:DeviceInfoVM="clr-namespace:Scada.Client.VM.ConvertDisplay;assembly=Scada.Client.VM"
     mc:Ignorable="d"
     d:DesignHeight="500" d:DesignWidth="1024" xmlns:my="clr-namespace:Scada.Client.UC;assembly=Scada.Client.UC" 
              xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
@@ -13,7 +12,7 @@
 
     <UserControl.Resources>
         <!--<DeviceInfoVM:DeviceManageViewModel x:Key="AAA"/>-->
-        <myConvertDisplayType:ConverNumberToDisplayType x:Key="ConverNumberToDisplayType1"/>
+        <myConvertDisplayType:ConvertNumberToDisplayType x:Key="ConverNumberToDisplayType1"/>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Background="White" BindingValidationError="LayoutRoot_BindingValidationError">
         <Border Name="content_Border" BorderBrush="#FF4A91BB" BorderThickness="1" Margin="5" CornerRadius="5">

@@ -9,7 +9,7 @@
     xmlns:local1="clr-namespace:Scada.Client.SL.Modules.Device"
     xmlns:local="clr-namespace:Scada.Client.SL.Controls" 
              
-    xmlns:myConver="clr-namespace:Scada.Utility.Common.SL;assembly=Scada.Utility.Common.SL"         
+    xmlns:myConver="clr-namespace:Scada.Client.VM.ConvertDisplay;assembly=Scada.Client.VM"         
     mc:Ignorable="d"
     d:DesignHeight="768" d:DesignWidth="800">
 

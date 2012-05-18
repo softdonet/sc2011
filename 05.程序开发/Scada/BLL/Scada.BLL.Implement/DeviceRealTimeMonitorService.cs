@@ -210,8 +210,11 @@ namespace Scada.BLL.Implement
 
             List<DeviceAlarm> result = new List<DeviceAlarm>();
             string sSql = @" Select Top 100 ID,DeviceID,DeviceNo,EventType,
-                              EventLevel,StartTime,ConfirmTime,
-                              DealStatus,DealPeopleID,Comment from DeviceAlarm";
+                            EventLevel,StartTime,ConfirmTime,
+                            DealStatus,DealPeopleID,Comment,
+                            [User].LoginID as DealPeopleLoginID,[User].UserName as DealPeopleLoginName from DeviceAlarm
+                            left join  [User]  on DeviceAlarm.DealPeopleID=[User].UserID
+                            order by StartTime desc";
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);
             DeviceAlarm alarm = null;
             foreach (DataRow item in ds.Rows)
@@ -248,6 +251,15 @@ namespace Scada.BLL.Implement
                 if (item["DealPeopleID"] != DBNull.Value)
                 {
                     alarm.DealPeopleID = new Guid(item["DealPeopleID"].ToString());
+                }
+
+                if (item["DealPeopleLoginID"]!=DBNull.Value)
+                {
+                    alarm.DealPeopleLoginID = item["DealPeopleLoginID"].ToString();
+                }
+                if (item["DealPeopleLoginName"]!=DBNull.Value)
+                {
+                    alarm.DealPeopleLoginName = item["DealPeopleLoginName"].ToString();
                 }
                 alarm.Comment = item["Comment"].ToString();
                 result.Add(alarm);

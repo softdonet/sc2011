@@ -24,22 +24,28 @@ namespace Scada.Client.VM.Modules.Alarm
     /// </summary>
     public class AlarmListViewModel : NotificationObject
     {
+        DeviceRealTimeServiceClient deviceAlarmService = ServiceManager.GetDeviceRealTimeService();
         public AlarmListViewModel()
         {
-            DeviceRealTimeServiceClient deviceAlarmService = ServiceManager.GetDeviceRealTimeService();
             deviceAlarmService.GetAlarmDataReceived += new EventHandler<GetAlarmDataReceivedEventArgs>(deviceAlarmService_GetAlarmDataReceived);
             deviceAlarmService.GetAlarmDataListCompleted += (sender, e) => { };
             deviceAlarmService.GetAlarmDataListAsync();
         }
 
-
+        /// <summary>
+        /// 手动获取数据
+        /// </summary>
+        public void GetData()
+        {
+            deviceAlarmService.GetAlarmDataListAsync();
+        }
 
         void deviceAlarmService_GetAlarmDataReceived(object sender, GetAlarmDataReceivedEventArgs e)
         {
             if (e.Error == null)
             {
                 List<DeviceAlarm> result = BinaryObjTransfer.BinaryDeserialize<List<DeviceAlarm>>(e.data);
-                ObservableCollection<DeviceAlarmViewModel> davmList = new ObservableCollection<DeviceAlarmViewModel>();
+                List<DeviceAlarmViewModel> davmList = new List<DeviceAlarmViewModel>();
                 foreach (var item in result)
                 {
                     DeviceAlarmViewModel davm = new DeviceAlarmViewModel();
@@ -55,8 +61,8 @@ namespace Scada.Client.VM.Modules.Alarm
             }
         }
 
-        private ObservableCollection<DeviceAlarmViewModel> deviceAlarmList;
-        public ObservableCollection<DeviceAlarmViewModel> DeviceAlarmList
+        private List<DeviceAlarmViewModel> deviceAlarmList;
+        public List<DeviceAlarmViewModel> DeviceAlarmList
         {
             get { return deviceAlarmList; }
             set
@@ -66,15 +72,14 @@ namespace Scada.Client.VM.Modules.Alarm
             }
         }
 
-        private ObservableCollection<DeviceAlarmViewModel> deviceAlarmListTop;
-        public ObservableCollection<DeviceAlarmViewModel> DeviceAlarmListTop
+        private List<DeviceAlarmViewModel> deviceAlarmListTop;
+        public List<DeviceAlarmViewModel> DeviceAlarmListTop
         {
             get { return deviceAlarmListTop; }
             set
             {
                 deviceAlarmListTop = value;
-               // deviceAlarmListTop = deviceAlarmListTop.OrderBy(e => e.DeviceAlarm.StartTime).Take(4).ToList();
-                deviceAlarmListTop = new ObservableCollection<DeviceAlarmViewModel>(deviceAlarmListTop.OrderBy(e => e.DeviceAlarm.StartTime).Take(4));
+                deviceAlarmListTop = new List<DeviceAlarmViewModel>(deviceAlarmListTop.OrderBy(e => e.DeviceAlarm.StartTime).Take(4));
                 this.RaisePropertyChanged("DeviceAlarmListTop");
             }
         }

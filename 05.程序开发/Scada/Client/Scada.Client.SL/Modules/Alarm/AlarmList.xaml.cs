@@ -150,9 +150,14 @@ namespace Scada.Client.SL.Modules.Alarm
             }
         }
 
+        /// <summary>
+        /// 处理完成后刷新界面
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoCompleted(object sender, UpdateDeviceAlarmInfoCompletedEventArgs e)
         {
-            Boolean result = e.Result;
+            AlarmListVM.GetData();
         }
         #endregion
     }

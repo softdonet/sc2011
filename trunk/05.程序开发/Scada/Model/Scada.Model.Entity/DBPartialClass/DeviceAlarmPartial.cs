@@ -8,5 +8,7 @@ namespace Scada.Model.Entity
    public partial class DeviceAlarm
     {
         public string EventTypeName { get; set; }
+        public string DealPeopleLoginID { get; set; }
+        public string DealPeopleLoginName { get; set; }
     }
 }

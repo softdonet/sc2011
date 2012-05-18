@@ -89,7 +89,7 @@
                 <telerik:GridViewDataColumn IsFilterable="False" Header="开始时间" DataMemberBinding="{Binding DeviceAlarm.StartTime}" Width="140" HeaderTextAlignment="Center" TextAlignment="Center"  />
                 <!--<telerik:GridViewDataColumn Header="完成时间" DataMemberBinding="{Binding EndTime}" Width="140" HeaderTextAlignment="Center"  />-->
                 <telerik:GridViewDataColumn IsFilterable="False" Header="确认时间" DataMemberBinding="{Binding DeviceAlarm.ConfirmTime, Mode=TwoWay}" Width="140" HeaderTextAlignment="Center" TextAlignment="Center"  />
-                <telerik:GridViewDataColumn IsFilterable="False" Header="确认人" DataMemberBinding="{Binding DeviceAlarm.DealPeople, Mode=TwoWay}"  Width="80" HeaderTextAlignment="Center" TextAlignment="Center"  />
+                <telerik:GridViewDataColumn IsFilterable="False" Header="确认人" DataMemberBinding="{Binding DeviceAlarm.DealPeopleLoginID, Mode=TwoWay}"  Width="80" HeaderTextAlignment="Center" TextAlignment="Center"  />
                 <telerik:GridViewDataColumn IsFilterable="False" Header="备注" DataMemberBinding="{Binding DeviceAlarm.Comment}" Width="50*"  HeaderTextAlignment="Center"  />
                 <telerik:GridViewDataColumn IsFilterable="False" Header="处理状态" DataMemberBinding="{Binding DeviceAlarm.DealStatus, Mode=TwoWay}"  Width="90" HeaderTextAlignment="Center" TextAlignment="Center"  />
                 <telerik:GridViewDataColumn  IsFilterable="False"   Width="100"

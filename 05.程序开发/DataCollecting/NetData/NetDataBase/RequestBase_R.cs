@@ -28,7 +28,7 @@ namespace NetData
             //产品型号
             deviveType = System.Text.Encoding.ASCII.GetString(data, 50, deviveTypeLength);
 
-            int index = 50 + deviveTypeLength;
+            int index = 50 + 12;
             //硬件住版本号
             hardwareVersionMain = data[index];
             //硬件子版本号

@@ -84,15 +84,15 @@ namespace DataCollecting
 
             Config_R cr = new Config_R();
             cr.Header = h;
-            cr.MAC = "00-10-30-AF-E1-30-40";
-            cr.SIM = "10303239876321900102";
-            cr.DeviveType = "ICG-P1000-E";
-            cr.HardwareVersionMain = 12;
-            cr.HardwareVersionChild = 25;
-            cr.SoftwareVersionMain = 13;
-            cr.SoftwareVersionChild = 26;
-            cr.WorkstateMain = 14;
-            cr.WorkstateChild = 17;
+            cr.MAC = "00-10-30-AF-E1-30-47";
+            cr.SIM = "10303239876321900107";
+            cr.DeviveType = "ICG-P1000-X";
+            cr.HardwareVersionMain = 10;
+            cr.HardwareVersionChild = 22;
+            cr.SoftwareVersionMain = 33;
+            cr.SoftwareVersionChild = 44;
+            cr.WorkstateMain = 55;
+            cr.WorkstateChild = 66;
             this.textBox1.Text = StringHelper.DataToStr(cr.ToByte());
         }
 

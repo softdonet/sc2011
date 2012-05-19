@@ -154,6 +154,9 @@
     <Compile Include="Modules\Alarm\AlarmList.xaml.cs">
       <DependentUpon>AlarmList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\BaseInfo\BroadcastInfoManage.xaml.cs">
+      <DependentUpon>BroadcastInfoManage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\BaseInfo\DatabaseBackUp.xaml.cs">
       <DependentUpon>DatabaseBackUp.xaml</DependentUpon>
     </Compile>
@@ -282,6 +285,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modules\Alarm\AlarmList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\BaseInfo\BroadcastInfoManage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

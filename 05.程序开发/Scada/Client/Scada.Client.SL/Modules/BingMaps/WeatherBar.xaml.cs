@@ -25,7 +25,7 @@ namespace Scada.Client.SL.Modules.BingMaps
             InitializeComponent();
             scadaDeviceServiceSoapClient = ServiceManager.GetSystemManagerService();
             scadaDeviceServiceSoapClient.GetWeatherCompleted += new EventHandler<GetWeatherCompletedEventArgs>(scadaDeviceServiceSoapClient_GetWeatherCompleted);
-            scadaDeviceServiceSoapClient.GetWeatherAsync("青岛");
+            scadaDeviceServiceSoapClient.GetWeatherAsync("北京");
         }
 
         void scadaDeviceServiceSoapClient_GetWeatherCompleted(object sender, GetWeatherCompletedEventArgs e)

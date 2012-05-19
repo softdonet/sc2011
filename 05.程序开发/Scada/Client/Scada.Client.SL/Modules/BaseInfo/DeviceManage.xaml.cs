@@ -55,7 +55,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
             this.DataContext = deviceManageViewModel;
             deviceManageViewModel.PropertyChanged +=
                 new System.ComponentModel.PropertyChangedEventHandler(deviceManageViewModel_PropertyChanged);
- 
+            
         }
 
         void deviceManageViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

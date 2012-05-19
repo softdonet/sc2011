@@ -570,7 +570,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 return false;
             }
             string split1 = DeviceInfoList.DeviceSN.Trim().Substring(0, 8);
-            string split2 = DeviceInfoList.DeviceSN.Trim().Substring(7, 4);
+            string split2 = DeviceInfoList.DeviceSN.Trim().Substring(8, 4);
             char[] char1 = split1.ToCharArray();
             int isInt = 0;
             int isLetter = 0;

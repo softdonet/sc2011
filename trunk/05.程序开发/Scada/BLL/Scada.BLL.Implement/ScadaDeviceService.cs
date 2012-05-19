@@ -1076,9 +1076,11 @@ namespace Scada.BLL.Implement
         {
             string result = string.Empty;
             List<UserEventDealDetail> dealDetails = new List<UserEventDealDetail>();
-            string sSql = @" Select ID,EventID,Operator,StepNo,StepName,Memo,DealTime
-                                From UserEventDealDetail 
-                                Where EventID='" + EventKey.ToString().ToUpper() + "' Order by StepNo";
+            string sSql = @" Select ID,EventID,StepNo,StepName,Memo,DealTime,
+                             Operator,[User].LoginID as OperatorLoginID,[User].UserName as OperatorLoginName 
+                             From UserEventDealDetail as ud left join [User]
+                             on ud.Operator=[User].UserID 
+                             Where EventID='" + EventKey.ToString().ToUpper() + "' Order by StepNo";
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);
             if (ds.Rows.Count == 0) { return result; }
             UserEventDealDetail detail;
@@ -1088,6 +1090,14 @@ namespace Scada.BLL.Implement
                 detail.ID = new Guid(item["ID"].ToString());
                 detail.EventID = new Guid(item["EventID"].ToString());
                 detail.Operator = new Guid(item["Operator"].ToString());
+                if (item["OperatorLoginID"] != DBNull.Value)
+                {
+                    detail.OperatorLoginID = item["OperatorLoginID"].ToString();
+                }
+                if (item["OperatorLoginName"] != DBNull.Value)
+                {
+                    detail.OperatorLoginName = item["OperatorLoginName"].ToString();
+                }
                 Int32 intValue = 0;
                 if (item["StepNo"] != DBNull.Value)
                     intValue = Convert.ToInt32(item["StepNo"]);

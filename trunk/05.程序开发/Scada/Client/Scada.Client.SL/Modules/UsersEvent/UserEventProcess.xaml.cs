@@ -137,32 +137,32 @@ namespace Scada.Client.SL.Modules.UsersEvent
                         cmbStep1.SelectedIndex = getSelectIndex(item.StepName);
                         txtStep1.Text = item.Memo;
                         //txtblk1.Text = "确认人：" + item.OperatorId + " 确认时间：" + item.DealTime;
-                        txtblk1.Text = "确认人：Admin"  + " 确认时间：" + item.DealTime;
+                        txtblk1.Text = "确认人：" + item.OperatorLoginID + " 确认时间：" + item.DealTime;
                         setStept2State();
                         break;
                     case 2:
                         cmbStep2.SelectedIndex = getSelectIndex(item.StepName);
                         txtStep2.Text = item.Memo;
-                        txtblk2.Text = "确认人：Admin"  + " 确认时间：" + item.DealTime;
+                        txtblk2.Text = "确认人：" + item.OperatorLoginID + " 确认时间：" + item.DealTime;
                         setStept3State();
                         break;
                     case 3:
                         cmbStep3.SelectedIndex = getSelectIndex(item.StepName);
                         txtStep3.Text = item.Memo;
-                        txtblk3.Text = "确认人：Admin" + " 确认时间：" + item.DealTime;
+                        txtblk3.Text = "确认人：" + item.OperatorLoginID + " 确认时间：" + item.DealTime;
                         setStept4State();
 
                         break;
                     case 4:
                         cmbStep4.SelectedIndex = getSelectIndex(item.StepName);
                         txtStep4.Text = item.Memo;
-                        txtblk4.Text = "确认人：Admin"  + " 确认时间：" + item.DealTime;
+                        txtblk4.Text = "确认人：" + item.OperatorLoginID + " 确认时间：" + item.DealTime;
                         setStept5State();
                         break;
                     case 5:
                         cmbStep5.SelectedIndex = getSelectIndex(item.StepName);
                         txtStep5.Text = item.Memo;
-                        txtblk5.Text = "确认人：Admin"  + " 确认时间：" + item.DealTime;
+                        txtblk5.Text = "确认人：" + item.OperatorLoginID + " 确认时间：" + item.DealTime;
                         setSteptState(false);
                         break;
 
@@ -446,7 +446,7 @@ namespace Scada.Client.SL.Modules.UsersEvent
             eventDealDetail.EventID = userEventModel.ID;
 
             //该处先写死，后续再改
-            eventDealDetail.Operator = new Guid("3978CBD6-AE73-4F03-A7ED-5A16C059D574");
+            eventDealDetail.Operator = App.CurUser.UserID;//new Guid("3978CBD6-AE73-4F03-A7ED-5A16C059D574");
             eventDealDetail.DealTime = DateTime.Now;
 
 

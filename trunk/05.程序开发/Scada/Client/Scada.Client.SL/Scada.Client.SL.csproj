@@ -401,7 +401,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\DeviceRealTimeService\service1.wsdl" />
-    <None Include="Service References\DeviceRealTimeService\service1.xsd">
+    <None Include="Service References\DeviceRealTimeService\service2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.AddDeviceInfoResponse.datasource">
@@ -411,6 +411,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.AddUserResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.ChangePasswordResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.SL.ScadaDeviceService.CheckDeviceInfoByDeviceNoResponse.datasource">

@@ -18,7 +18,7 @@ namespace BusinessRules
     public class BLL
     {
         SCADADataContext DataContext = new SCADADataContext();
-        RealTimeDataService.RealTimeServiceClient  deviceRealTimeServiceClient = null;
+        RealTimeDataService.RealTimeServiceClient deviceRealTimeServiceClient = null;
 
         public BLL()
         {
@@ -31,20 +31,21 @@ namespace BusinessRules
         /// <returns></returns>
         public bool RefreshData(RequestBase_R dc_r)
         {
-            //    /*业务逻辑：
-            //    根据设备SN号在数据库中查找进行对比。
-            //           如果有该设备，则更新设备属性
-            //           {
-            //                MAC地址
-            //                SIM地址
-            //                产品型号
-            //                硬件版本
-            //                固件版本
-            //                工作状态
-            //            }
-            //          成功则返回true
-            //          没有找到或者执行失败返回false
-            //    
+                /*业务逻辑：
+                根据设备SN号在数据库中查找进行对比。
+                       如果有该设备，则更新设备属性
+                       {
+                            MAC地址
+                            SIM地址
+                            产品型号
+                            硬件版本
+                            固件版本
+                            工作状态
+                        }
+                      成功则返回true
+                      没有找到或者执行失败返回false
+                 */
+                
             using (SCADADataContext DataContext = new SCADADataContext())
             {
                 DeviceInfo deviceInfor = DataContext.DeviceInfos.SingleOrDefault(e => e.DeviceSN == dc_r.Header.DeviceSN);
@@ -56,7 +57,7 @@ namespace BusinessRules
                     deviceInfor.HardwareVersion = string.Format("{0}.{1}", dc_r.HardwareVersionMain.ToString(),
                         dc_r.HardwareVersionChild);
                     deviceInfor.SoftWareVersion = string.Format("{0}.{1}", dc_r.SoftwareVersionMain.ToString(),
-                        dc_r.SoftwareVersionMain);
+                        dc_r.SoftwareVersionChild);
                     DataContext.SubmitChanges();
                     return true;
                 }
@@ -74,44 +75,107 @@ namespace BusinessRules
             //业务逻辑：
             //如果设备配置、天气预报、广播信息有更新。
             //则回复配置信息+天气预报+广播信息，并标记。
-            //示例代码：
             ReplyBase_S rs = new ReplyBase_S();
-            rs.HaveBroadcastInfo = true;
-            rs.HaveConfigInfo = true;
-            rs.HaveWeatherInfo = true;
+            SCADADataContext DataContext = new SCADADataContext();
+            DeviceInfo deviceInfor = DataContext.DeviceInfos.SingleOrDefault(e => e.DeviceSN == deviceSN);
+            if (deviceInfor != null)
+            {
+                rs.HaveBroadcastInfo = true;
+                rs.HaveConfigInfo = true;
+                rs.HaveWeatherInfo = true;
+                //构造设备配置信息块
+                ConfigDataBlock configDataBlock = new ConfigDataBlock();
+                configDataBlock.RunMode = (byte)deviceInfor.CurrentModel.Value;
+                switch (configDataBlock.RunMode)
+                {
+                    case 1:
+                        configDataBlock.Argument1 = (ushort)deviceInfor.RealTimeParam.Value;
+                        configDataBlock.Argument2 = 0;
+                        configDataBlock.Argument3 = 0;
+                        break;
+                    case 2:
+                        configDataBlock.Argument1 = (ushort)deviceInfor.FullTimeParam1.Value;
+                        configDataBlock.Argument2 = (ushort)deviceInfor.FullTimeParam2.Value;
+                        configDataBlock.Argument3 = 0;
+                        break;
+                    case 3:
+                        configDataBlock.Argument1 = (ushort)deviceInfor.OptimizeParam1.Value;
+                        configDataBlock.Argument2 = (ushort)deviceInfor.OptimizeParam2.Value;
+                        configDataBlock.Argument3 = (ushort)deviceInfor.OptimizeParam3.Value;
+                        break;
+                    default:
+                        configDataBlock.Argument1 = 0;
+                        configDataBlock.Argument2 = 0;
+                        configDataBlock.Argument3 = 0;
+                        break;
+                }
+                configDataBlock.DeviceNo = deviceInfor.DeviceNo;
+                configDataBlock.InstalPlace = deviceInfor.InstallPlace;
+                configDataBlock.DisplayMode = (byte)deviceInfor.LCDScreenDisplayType.Value;
+                configDataBlock.InstancyBtnEnable = deviceInfor.UrgencyBtnEnable.GetValueOrDefault(false);
+                configDataBlock.InfoBtnEnable = deviceInfor.InforBtnEnable.GetValueOrDefault(false);
+                configDataBlock.RepairTel = deviceInfor.MaintenancePeople.Mobile;
+                //系统公共参数
+                PublicParameter objParameter = DataContext.PublicParameters.First();
+                configDataBlock.DomainName = objParameter.Domain;
+                configDataBlock.MainIP = objParameter.MainDNS;
+                configDataBlock.ReserveIP = objParameter.SecondDNS;
+                configDataBlock.Port = (ushort)objParameter.Port.Value;
+                configDataBlock.ConnectionType = (byte)objParameter.ConnectType.Value;
+                configDataBlock.ConnectName = objParameter.ConnectName;
+                rs.ConfigData = configDataBlock;
+                //构造天气预报块
+                WeatherDataBlock weatherDataBlock = new WeatherDataBlock()
+                {
+                    TodayWeather = objParameter.Weather
+                };
+                rs.WeatherData = weatherDataBlock;
 
-            //构造设备配置信息块
-            ConfigDataBlock configDataBlock = new ConfigDataBlock();
-            configDataBlock.RunMode = 1;
-            configDataBlock.Argument1 = 1500;
-            configDataBlock.Argument2 = 1600;
-            configDataBlock.Argument3 = 1700;
-            configDataBlock.DeviceNo = "P-100100";
-            configDataBlock.InstalPlace = "北京市朝阳区双井街道";
-            configDataBlock.DisplayMode = 1;
-            configDataBlock.InstancyBtnEnable = true;
-            configDataBlock.InfoBtnEnable = true;
-            configDataBlock.RepairTel = "13801112222";
-            configDataBlock.MainIP = "202.106.42.1";
-            configDataBlock.ReserveIP = "202.106.42.2";
-
-            configDataBlock.DomainName = "xyz.dddd.com";
-            configDataBlock.Port = 1789;
-            configDataBlock.ConnectionType = 0;
-            configDataBlock.ConnectName = "CMNET";
-            rs.ConfigData = configDataBlock;
-
-            //构造天气预报块
-            WeatherDataBlock weatherDataBlock = new WeatherDataBlock();
-            weatherDataBlock.TodayWeather = "晴转多云，有阵雨。";
-            rs.WeatherData = weatherDataBlock;
-
-            //构造广播信息块
-            BroadcastDataBlock broadcastDataBlock = new BroadcastDataBlock();
-            broadcastDataBlock.Msg = "通知：明天下午开会。不要迟到。";
-            rs.BroadcastData = broadcastDataBlock;
-
+                //构造广播信息块
+                BroadcastDataBlock broadcastDataBlock = new BroadcastDataBlock()
+                {
+                    Msg = objParameter.Broadcast
+                };
+                rs.BroadcastData = broadcastDataBlock;
+            }
             return rs;
+            //示例代码：
+            //ReplyBase_S rs = new ReplyBase_S();
+            //rs.HaveBroadcastInfo = true;
+            //rs.HaveConfigInfo = true;
+            //rs.HaveWeatherInfo = true;
+
+            ////构造设备配置信息块
+            //ConfigDataBlock configDataBlock = new ConfigDataBlock();
+            //configDataBlock.RunMode = 1;
+            //configDataBlock.Argument1 = 1500;
+            //configDataBlock.Argument2 = 1600;
+            //configDataBlock.Argument3 = 1700;
+            //configDataBlock.DeviceNo = "P-100100";
+            //configDataBlock.InstalPlace = "北京市朝阳区双井街道";
+            //configDataBlock.DisplayMode = 1;
+            //configDataBlock.InstancyBtnEnable = true;
+            //configDataBlock.InfoBtnEnable = true;
+            //configDataBlock.RepairTel = "13801112222";
+            //configDataBlock.MainIP = "202.106.42.1";
+            //configDataBlock.ReserveIP = "202.106.42.2";
+
+            //configDataBlock.DomainName = "xyz.dddd.com";
+            //configDataBlock.Port = 1789;
+            //configDataBlock.ConnectionType = 0;
+            //configDataBlock.ConnectName = "CMNET";
+            //rs.ConfigData = configDataBlock;
+
+            ////构造天气预报块
+            //WeatherDataBlock weatherDataBlock = new WeatherDataBlock();
+            //weatherDataBlock.TodayWeather = "晴转多云，有阵雨。";
+            //rs.WeatherData = weatherDataBlock;
+
+            ////构造广播信息块
+            //BroadcastDataBlock broadcastDataBlock = new BroadcastDataBlock();
+            //broadcastDataBlock.Msg = "通知：明天下午开会。不要迟到。";
+            //rs.BroadcastData = broadcastDataBlock;
+            //return rs;
         }
 
         /// <summary>
@@ -127,8 +191,18 @@ namespace BusinessRules
                 bool haveAlarm = false;
                 if (deviceInfor != null)
                 {
+                    //当前时间
+                    DateTime nowTime = DateTime.Now; //item.SateTimeMark;
+                    //当前模式（1实时模式；2整点模式；3逢变则报模式）
+                    int curMode = deviceInfor.CurrentModel.Value;
                     foreach (RealTimeDataBlock item in realTimeData_R.RealTimeDataBlocks)
                     {
+                        //如果是整点模式，计算采集时间 =当前时间-（块序号*整点模式采集频率*60）
+                        if (curMode == 2)
+                        {
+                            double delay = (item.BlockNo + 1) * deviceInfor.FullTimeParam1.Value * 60 * (-1.0);
+                            nowTime = nowTime.AddSeconds(delay);
+                        }
                         DeviceRealTime drt = new DeviceRealTime();
                         drt.ID = Guid.NewGuid();
                         drt.DeviceID = deviceInfor.ID;
@@ -145,7 +219,7 @@ namespace BusinessRules
                         drt.Electricity = item.Electric;
                         //设备状态
                         drt.Status = 1;
-                        drt.UpdateTime = DateTime.Now;//item.SateTimeMark;
+                        drt.UpdateTime = nowTime;
                         DataContext.DeviceRealTimes.InsertOnSubmit(drt);
                         //判断告警的逻辑
                         if (deviceInfor.Temperature1AlarmValid.Value)
@@ -159,7 +233,7 @@ namespace BusinessRules
                                 da.ID = Guid.NewGuid();
                                 da.DeviceID = deviceInfor.ID;
                                 da.DeviceNo = deviceInfor.DeviceNo;
-                                da.StartTime = DateTime.Now;// item.SateTimeMark;
+                                da.StartTime = nowTime;
                                 if (drt.Temperature1.Value > deviceInfor.Temperature1HighAlarm.Value)
                                 {
                                     //超高报警
@@ -209,7 +283,7 @@ namespace BusinessRules
                 {
                     UserEvent ue = new UserEvent();
                     ue.ID = Guid.NewGuid();
-                    ue.EventNo = "eventNo" + DataContext.UserEvents.Count().ToString();
+                    ue.EventNo = DateTime.Now.Date.ToString("yyMMdd") + DataContext.UserEvents.Where(e => e.RequestTime.Value.Date == DateTime.Now.Date).Count().ToString("0000");
                     ue.DeviceID = deviceInfor.ID;
                     ue.DeviceNo = deviceInfor.DeviceNo;
                     ue.RequestTime = DateTime.Now;
@@ -224,25 +298,6 @@ namespace BusinessRules
             }
             return false;
         }
-
-        #region IDeviceRealTimeServiceCallback Members
-
-        public void GetRealTimeData(string data)
-        {
-            //throw new NotImplementedException();
-        }
-
-        public void GetAlarmData(string data)
-        {
-            //throw new NotImplementedException();
-        }
-
-        public void GetCallData(string data)
-        {
-            //throw new NotImplementedException();
-        }
-
-        #endregion
     }
 }
 

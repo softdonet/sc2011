@@ -136,16 +136,6 @@
       <Association Name="Module_RoleModule" Member="RoleModules" ThisKey="ModuleID" OtherKey="ModuleID" Type="RoleModule" />
     </Type>
   </Table>
-  <Table Name="dbo.PublicParameter" Member="PublicParameters">
-    <Type Name="PublicParameter">
-      <Column Name="ConnectType" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ConnectName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="MainDNS" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="SecondDNS" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="Domain" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Port" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Role" Member="Roles">
     <Type Name="Role">
       <Column Name="RoleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -225,6 +215,18 @@
       <Column Name="Remark" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Association Name="MenuTree_UserMenu" Member="MenuTree" ThisKey="MenuId" OtherKey="MenuId" Type="MenuTree" IsForeignKey="true" />
       <Association Name="User_UserMenu" Member="User" ThisKey="UserId" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PublicParameter" Member="PublicParameters">
+    <Type Name="PublicParameter">
+      <Column Name="ConnectType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ConnectName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MainDNS" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="SecondDNS" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Domain" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Port" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Weather" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Broadcast" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

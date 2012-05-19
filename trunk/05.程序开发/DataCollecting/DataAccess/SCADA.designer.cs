@@ -166,14 +166,6 @@ namespace DataAccess
 			}
 		}
 		
-		public System.Data.Linq.Table<PublicParameter> PublicParameters
-		{
-			get
-			{
-				return this.GetTable<PublicParameter>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Role> Roles
 		{
 			get
@@ -235,6 +227,14 @@ namespace DataAccess
 			get
 			{
 				return this.GetTable<UserMenu>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PublicParameter> PublicParameters
+		{
+			get
+			{
+				return this.GetTable<PublicParameter>();
 			}
 		}
 	}
@@ -3217,123 +3217,6 @@ namespace DataAccess
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PublicParameter")]
-	public partial class PublicParameter
-	{
-		
-		private System.Nullable<int> _ConnectType;
-		
-		private string _ConnectName;
-		
-		private string _MainDNS;
-		
-		private string _SecondDNS;
-		
-		private string _Domain;
-		
-		private System.Nullable<int> _Port;
-		
-		public PublicParameter()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConnectType", DbType="Int")]
-		public System.Nullable<int> ConnectType
-		{
-			get
-			{
-				return this._ConnectType;
-			}
-			set
-			{
-				if ((this._ConnectType != value))
-				{
-					this._ConnectType = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConnectName", DbType="VarChar(50)")]
-		public string ConnectName
-		{
-			get
-			{
-				return this._ConnectName;
-			}
-			set
-			{
-				if ((this._ConnectName != value))
-				{
-					this._ConnectName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MainDNS", DbType="NVarChar(20)")]
-		public string MainDNS
-		{
-			get
-			{
-				return this._MainDNS;
-			}
-			set
-			{
-				if ((this._MainDNS != value))
-				{
-					this._MainDNS = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecondDNS", DbType="NVarChar(20)")]
-		public string SecondDNS
-		{
-			get
-			{
-				return this._SecondDNS;
-			}
-			set
-			{
-				if ((this._SecondDNS != value))
-				{
-					this._SecondDNS = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Domain", DbType="NVarChar(50)")]
-		public string Domain
-		{
-			get
-			{
-				return this._Domain;
-			}
-			set
-			{
-				if ((this._Domain != value))
-				{
-					this._Domain = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Port", DbType="Int")]
-		public System.Nullable<int> Port
-		{
-			get
-			{
-				return this._Port;
-			}
-			set
-			{
-				if ((this._Port != value))
-				{
-					this._Port = value;
-				}
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Role")]
 	public partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -4791,6 +4674,159 @@ namespace DataAccess
 				if ((this._Remark != value))
 				{
 					this._Remark = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PublicParameter")]
+	public partial class PublicParameter
+	{
+		
+		private System.Nullable<int> _ConnectType;
+		
+		private string _ConnectName;
+		
+		private string _MainDNS;
+		
+		private string _SecondDNS;
+		
+		private string _Domain;
+		
+		private System.Nullable<int> _Port;
+		
+		private string _Weather;
+		
+		private string _Broadcast;
+		
+		public PublicParameter()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConnectType", DbType="Int")]
+		public System.Nullable<int> ConnectType
+		{
+			get
+			{
+				return this._ConnectType;
+			}
+			set
+			{
+				if ((this._ConnectType != value))
+				{
+					this._ConnectType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConnectName", DbType="VarChar(50)")]
+		public string ConnectName
+		{
+			get
+			{
+				return this._ConnectName;
+			}
+			set
+			{
+				if ((this._ConnectName != value))
+				{
+					this._ConnectName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MainDNS", DbType="NVarChar(20)")]
+		public string MainDNS
+		{
+			get
+			{
+				return this._MainDNS;
+			}
+			set
+			{
+				if ((this._MainDNS != value))
+				{
+					this._MainDNS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecondDNS", DbType="NVarChar(20)")]
+		public string SecondDNS
+		{
+			get
+			{
+				return this._SecondDNS;
+			}
+			set
+			{
+				if ((this._SecondDNS != value))
+				{
+					this._SecondDNS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Domain", DbType="NVarChar(50)")]
+		public string Domain
+		{
+			get
+			{
+				return this._Domain;
+			}
+			set
+			{
+				if ((this._Domain != value))
+				{
+					this._Domain = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Port", DbType="Int")]
+		public System.Nullable<int> Port
+		{
+			get
+			{
+				return this._Port;
+			}
+			set
+			{
+				if ((this._Port != value))
+				{
+					this._Port = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weather", DbType="NVarChar(100)")]
+		public string Weather
+		{
+			get
+			{
+				return this._Weather;
+			}
+			set
+			{
+				if ((this._Weather != value))
+				{
+					this._Weather = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Broadcast", DbType="NVarChar(100)")]
+		public string Broadcast
+		{
+			get
+			{
+				return this._Broadcast;
+			}
+			set
+			{
+				if ((this._Broadcast != value))
+				{
+					this._Broadcast = value;
 				}
 			}
 		}

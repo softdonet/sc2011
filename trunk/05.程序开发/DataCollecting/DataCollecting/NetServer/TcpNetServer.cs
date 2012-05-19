@@ -447,7 +447,7 @@ namespace DataCollecting.NetServer
                     }
                     ReplyBase_S replyBase_S_userEvent = bll.GetDeviceInfor(ur.Header.DeviceSN);
                     replyBase_S_userEvent.Header = hUserEvent;
-                   deviceClient.Send(replyBase_S_userEvent.ToByte());
+                    deviceClient.Send(replyBase_S_userEvent.ToByte());
                     if (this.realTimeDataEvent_S != null)
                     {
                         this.realTimeDataEvent_S(new RealTimeData_S(replyBase_S_userEvent.ToByte()));

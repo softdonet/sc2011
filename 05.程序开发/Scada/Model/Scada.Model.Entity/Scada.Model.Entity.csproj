@@ -66,6 +66,7 @@
     <Compile Include="Common\DeviceRealTimeTree.cs" />
     <Compile Include="Common\DeviceTreeNode.cs" />
     <Compile Include="DBPartialClass\User.cs" />
+    <Compile Include="DBPartialClass\UserEventDealDetail.cs" />
     <Compile Include="DBPartialClass\UserEventModelPartial.cs" />
     <Compile Include="Enums\DisplayType.cs" />
     <Compile Include="Enums\EventTypes.cs" />

@@ -20,13 +20,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8000/WCFServices/DeviceRealTimeService.svc/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:2823/WCFServices/DeviceRealTimeService.svc/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="193b9858-d07c-4cd3-b60d-8ec7a9df7a26" SourceId="1" SourceUrl="http://localhost:8000/WCFServices/DeviceRealTimeService.svc/mex" />
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="c137297c-cce6-403e-9759-734ada2933ee" SourceId="1" SourceUrl="http://localhost:8000/WCFServices/DeviceRealTimeService.svc/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="43d667fe-5448-4098-8f1a-1e7cd192b878" SourceId="1" SourceUrl="http://localhost:8000/WCFServices/DeviceRealTimeService.svc/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="5f918337-911b-40d4-9941-43caeaa55910" SourceId="1" SourceUrl="http://localhost:8000/WCFServices/DeviceRealTimeService.svc/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="193b9858-d07c-4cd3-b60d-8ec7a9df7a26" SourceId="1" SourceUrl="http://localhost:2823/WCFServices/DeviceRealTimeService.svc/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="c137297c-cce6-403e-9759-734ada2933ee" SourceId="1" SourceUrl="http://localhost:2823/WCFServices/DeviceRealTimeService.svc/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="43d667fe-5448-4098-8f1a-1e7cd192b878" SourceId="1" SourceUrl="http://localhost:2823/WCFServices/DeviceRealTimeService.svc/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="e6649491-91fc-4431-9311-aa14d4a611cd" SourceId="1" SourceUrl="http://localhost:2823/WCFServices/DeviceRealTimeService.svc/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

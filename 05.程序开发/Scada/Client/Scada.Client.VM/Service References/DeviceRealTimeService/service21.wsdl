@@ -58,9 +58,9 @@
   </wsdl:binding>
   <wsdl:service name="DeviceRealTimeService">
     <wsdl:port name="CustomBinding_IDeviceRealTimeService" binding="tns:CustomBinding_IDeviceRealTimeService">
-      <soap12:address location="http://yanghongkang:8000/WCFServices/DeviceRealTimeService.svc" />
+      <soap12:address location="http://localhost:2823/WCFServices/DeviceRealTimeService.svc" />
       <wsa10:EndpointReference>
-        <wsa10:Address>http://yanghongkang:8000/WCFServices/DeviceRealTimeService.svc</wsa10:Address>
+        <wsa10:Address>http://localhost:2823/WCFServices/DeviceRealTimeService.svc</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

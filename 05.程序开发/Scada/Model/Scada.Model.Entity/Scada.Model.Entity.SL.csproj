@@ -83,6 +83,7 @@
     <Compile Include="DBPartialClass\DeviceInfoPartial.cs" />
     <Compile Include="DBPartialClass\DeviceRealTimePartial.cs" />
     <Compile Include="DBPartialClass\User.cs" />
+    <Compile Include="DBPartialClass\UserEventDealDetail.cs" />
     <Compile Include="DBPartialClass\UserEventModelPartial.cs" />
     <Compile Include="Enums\DeviceStates.cs" />
     <Compile Include="Enums\EventTypes.cs" />

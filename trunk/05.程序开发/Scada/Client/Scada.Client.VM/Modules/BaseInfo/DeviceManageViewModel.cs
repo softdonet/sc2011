@@ -335,6 +335,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 this.RaisePropertyChanged("Longitude");
                 this.RaisePropertyChanged("Latitude");
                 this.RaisePropertyChanged("MaintenancePeopleID");
+                this.RaisePropertyChanged("RealTimeParam");
             }
         }
 
@@ -518,6 +519,24 @@ namespace Scada.Client.VM.Modules.BaseInfo
             }
         }
 
+        [Required(ErrorMessage = "实时模式参数格式不对!")]
+        public int? RealTimeParam
+        {
+            get
+            {
+                if (DeviceInfoList == null)
+                {
+                    DeviceInfoList = new DeviceInfo();
+                }
+                return DeviceInfoList.RealTimeParam;
+            }
+            set
+            {
+                DeviceInfoList.RealTimeParam = value;
+                this.RaisePropertyChanged("RealTimeParam");
+                Validator.ValidateProperty(value, new ValidationContext(this, null, null) { MemberName = "RealTimeParam" });
+            }
+        }
         /// <summary>
         /// 验证对象中属性不能为空
         /// </summary>
@@ -530,6 +549,76 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 return false;
 
             }
+            if (DeviceInfoList.DeviceNo.Trim().Length != 8)
+            {
+                MessageBox.Show("请输入8位长度的设备编号! 如P-123456");
+                return false;
+            }
+
+            //判断设备SN号：
+            //规则：1 12位长度
+            //      2 前8位必须是数字和字母组合
+            //      3 后四位必须是数组
+            if (string.IsNullOrEmpty( DeviceInfoList.DeviceSN))
+            {
+                MessageBox.Show("设备SN号不能为空!");
+                return false;
+            }
+            if (DeviceInfoList.DeviceSN.Trim().Length!=12)
+            {
+                MessageBox.Show("请输入12位长度的设备SN号! 如P1234567S1234");
+                return false;
+            }
+            string split1 = DeviceInfoList.DeviceSN.Trim().Substring(0, 8);
+            string split2 = DeviceInfoList.DeviceSN.Trim().Substring(7, 4);
+            char[] char1 = split1.ToCharArray();
+            int isInt = 0;
+            int isLetter = 0;
+            foreach (char item in char1)
+            {
+                if (Char.IsLetter(item))
+                {
+                    if (char.IsUpper(item))
+                    {
+                        isLetter++;
+                    }
+                    else
+                    {
+                        MessageBox.Show("设备SN号中不能有小写字母!格式为:P1234567S1234");
+                        return false;
+                    }
+                   
+                }
+                if (Char.IsNumber(item))
+                {
+                    isInt++;
+                }
+            }
+            if (isLetter>0&&isInt>0)
+            {
+                int tryResult;
+                if (int.TryParse(split2, out tryResult))
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("您输入的设备SN号后四位只能是数字", "温馨提示", MessageBoxButton.OK);
+
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("您输入的设备SN号前8位必须是数字和字母组合!如P1234567S1234","温馨提示",MessageBoxButton.OK);
+                return false;
+            }
+            //----------------------------------------------
+            if (DeviceInfoList.InstallPlace.ToString().Length > 20)
+            {
+                MessageBox.Show("安装地点过长，请输入小于20长度!");
+                return false;
+            }
             decimal result;
             if (!decimal.TryParse(DeviceInfoList.Longitude.ToString(), out result))
             {
@@ -541,6 +630,61 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 MessageBox.Show("维度，请填写正确的格式!");
                 return false;
             }
+            if (!DeviceInfoList.LCDScreenDisplayType.HasValue)
+            {
+                MessageBox.Show("请选择液晶屏显示类型!");
+                return false;
+            }
+            if (!DeviceInfoList.CurrentModel.HasValue)
+            {
+                MessageBox.Show("请选择当前模式!");
+                return false;
+            }
+            else
+            {
+                switch (DeviceInfoList.CurrentModel)
+                {
+                    case 1:
+                        if (!DeviceInfoList.RealTimeParam.HasValue)
+                        {
+                            MessageBox.Show("请输入实时模式参数!");
+                            return false;
+                        }
+                        break;
+                    case 2:
+                        if (!DeviceInfoList.FullTimeParam1.HasValue)
+                        {
+                            MessageBox.Show("请输入整点模式参数1!");
+                            return false;
+                        }
+                        if (!DeviceInfoList.FullTimeParam2.HasValue)
+                        {
+                            MessageBox.Show("请输入整点模式参数2!");
+                            return false;
+                        }
+                        break;
+                    case 3:
+                        if (!DeviceInfoList.OptimizeParam1.HasValue)
+                        {
+                            MessageBox.Show("请输入逢变则报模式参数1!");
+                            return false;
+                        }
+                        if (!DeviceInfoList.OptimizeParam2.HasValue)
+                        {
+                            MessageBox.Show("请输入逢变则报模式参数2!");
+                            return false;
+                        }
+                        if (!DeviceInfoList.OptimizeParam3.HasValue)
+                        {
+                            MessageBox.Show("请输入逢变则报模式参数3!");
+                            return false;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+               
+            }
             if (DeviceInfoList.MaintenancePeopleID == new Guid())
             {
                 MessageBox.Show("请选择维护人员!");
@@ -549,20 +693,22 @@ namespace Scada.Client.VM.Modules.BaseInfo
             return true; ;
         }
 
-        /// <summary>
-        /// 判断用户输入的值是否合法
-        /// </summary>
-        private bool ValidateUIValue()
-        {
-            bool ValidationFlag=true;
-            //DeviceInfoList//用这个对象来判断
-            if (string.IsNullOrEmpty(DeviceInfoList.DeviceNo))
-            {
-                ValidationFlag = false;
-            }
+        ///// <summary>
+        ///// 判断用户输入的值是否合法
+        ///// </summary>
+        //private bool ValidateUIValue()
+        //{
+        //    bool ValidationFlag=true;
+        //    //DeviceInfoList//用这个对象来判断
+        //    if (string.IsNullOrEmpty(DeviceInfoList.DeviceNo))
+        //    {
+        //        ValidationFlag = false;
+        //    }
 
-            return ValidationFlag;
-        }
+        //    return ValidationFlag;
+        //}
+
+
         #region 测试方法
 
         //public DeviceInfo DeviceInfoSingleChanged { get; set; }

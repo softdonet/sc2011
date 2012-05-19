@@ -213,15 +213,21 @@ namespace Scada.Client.SL
                 case "childMenuUserManage":
                     this.ViewHost.Child = new UserManage();
                     break;
-               //菜单管理
+                //菜单管理
                 case "childMenuManage":
                     this.ViewHost.Child = new UserMenuManage();
                     break;
 
-              //修改密码
-                case"childMenuUserChangePassword":
+                //修改密码
+                case "childMenuUserChangePassword":
                     this.ViewHost.Child = new UserChangePassword();
                     break;
+                //广播信息
+                case "BroadcastInfoManage":
+                    this.ViewHost.Child = new BroadcastInfoManage();
+                    break;
+
+
             }
         }
 

@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="Scada.Client.SL.Modules.BaseInfo.BroadcastInfoManage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="768">
+
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Border Name="content_Border" BorderBrush="#FF4A91BB" BorderThickness="1" Margin="5" CornerRadius="5">
+            <Border.Background>
+                <LinearGradientBrush StartPoint=".5,0" EndPoint=".5,1">
+                    <GradientStop Color="#FF5BB5E3" Offset="0"/>
+                    <GradientStop Color="#FF2C5273" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <TextBlock Text="广播信息" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,5,0,0" Height="25" FontSize="16" Foreground="White"   TextWrapping="Wrap"  />
+                <Border BorderBrush="#FF4A91BB" BorderThickness="1" Margin="10,35,10,20" CornerRadius="5" >
+                    <Border.Background>
+                        <SolidColorBrush Color="White"/>
+                    </Border.Background>
+                    <Border BorderThickness="1" CornerRadius="5" Margin="2">
+                        <Grid ShowGridLines="True" Background="AliceBlue">
+                      
+                            <TextBlock Height="23" HorizontalAlignment="Left" Margin="33,6,0,0" Name="textBlock4" Text="请输入广播信息：" VerticalAlignment="Top" Width="206" />
+                            <TextBox Height="27" Text="{Binding Infor, Mode=TwoWay}" MaxLength="18" HorizontalAlignment="Left" Margin="33,29,0,0" Name="txtUserName" VerticalAlignment="Top" Width="666"  />
+                            <TextBlock Height="23" HorizontalAlignment="Left" Foreground="Red"  Name="textBlock5" Text="备注：不能超过18个字符（包括标点符号）。" VerticalAlignment="Top" Width="206" Margin="33,62,0,0" />
+                            <Button Content="修改" Command="{Binding ChangePasswordCommand}" Height="23" HorizontalAlignment="Left" Margin="511,73,0,0" Name="btnChange" VerticalAlignment="Top" Width="75" />
+                            <Button Content="清空" Height="23" HorizontalAlignment="Left" Margin="616,73,0,0" Name="btnCancel" VerticalAlignment="Top" Width="75"  />
+                        </Grid>
+                    </Border>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

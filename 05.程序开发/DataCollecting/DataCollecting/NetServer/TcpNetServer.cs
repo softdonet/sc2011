@@ -42,11 +42,13 @@ namespace DataCollecting.NetServer
         /// <returns></returns>
         public byte[] GetRealByteData()
         {
+            LogHelper.WriteInformationLog(DateTime.Now.ToString() + "收到报文：" + Environment.NewLine + StringHelper.DataToStrV2(StringHelper.ConvertDataUp(ByteData)) + Environment.NewLine);
             return StringHelper.ConvertDataUp(ByteData);
         }
 
         public void Send(byte[] data)
         {
+            LogHelper.WriteInformationLog(DateTime.Now.ToString() + "发送报文：" + Environment.NewLine + StringHelper.DataToStrV2(data) + Environment.NewLine);
             ClientSocket.Send(StringHelper.ConvertDataDown(data));
         }
     }

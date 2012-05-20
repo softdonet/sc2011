@@ -42,13 +42,13 @@ namespace DataCollecting.NetServer
         /// <returns></returns>
         public byte[] GetRealByteData()
         {
-            LogHelper.WriteInformationLog(DateTime.Now.ToString() + "收到报文：" + Environment.NewLine + StringHelper.DataToStrV2(StringHelper.ConvertDataUp(ByteData)) + Environment.NewLine);
+            //LogHelper.WriteInformationLog(DateTime.Now.ToString() + "收到报文：" + Environment.NewLine + StringHelper.DataToStrV2(StringHelper.ConvertDataUp(ByteData)) + Environment.NewLine);
             return StringHelper.ConvertDataUp(ByteData);
         }
 
         public void Send(byte[] data)
         {
-            LogHelper.WriteInformationLog(DateTime.Now.ToString() + "发送报文：" + Environment.NewLine + StringHelper.DataToStrV2(data) + Environment.NewLine);
+            //LogHelper.WriteInformationLog(DateTime.Now.ToString() + "发送报文：" + Environment.NewLine + StringHelper.DataToStrV2(data) + Environment.NewLine);
             ClientSocket.Send(StringHelper.ConvertDataDown(data));
         }
     }
@@ -299,9 +299,7 @@ namespace DataCollecting.NetServer
                 {
                     this.systenError(ex);
                 }
-
             }
-
         }
 
         /// <summary>
@@ -352,7 +350,7 @@ namespace DataCollecting.NetServer
                     //begin
                     Head hconfig = new Head();
                     hconfig.CmdHeader = Const.DOWN_HEADER;
-                    hconfig.CmdCommand = Command.cmd_Reply;
+                    hconfig.CmdCommand = Command.cmd_Config_R;
                     hconfig.DataContext = cr.Header.DataContext;
                     hconfig.DeviceSN = cr.Header.DeviceSN;
                     hconfig.SateTimeMark = DateTime.Now;
@@ -390,7 +388,7 @@ namespace DataCollecting.NetServer
                     //begin
                     Head hRealTime = new Head();
                     hRealTime.CmdHeader = Const.DOWN_HEADER;
-                    hRealTime.CmdCommand = Command.cmd_Reply;
+                    hRealTime.CmdCommand = Command.cmd_RealTimeDate_R;
                     hRealTime.DataContext = rr.Header.DataContext;
                     hRealTime.DeviceSN = rr.Header.DeviceSN;
                     hRealTime.SateTimeMark = DateTime.Now;
@@ -428,7 +426,7 @@ namespace DataCollecting.NetServer
                     //begin
                     Head hUserEvent = new Head();
                     hUserEvent.CmdHeader = Const.DOWN_HEADER;
-                    hUserEvent.CmdCommand = Command.cmd_Reply;
+                    hUserEvent.CmdCommand = Command.cmd_UserEvent_R;
                     hUserEvent.DataContext = ur.Header.DataContext;
                     hUserEvent.DeviceSN = ur.Header.DeviceSN;
                     hUserEvent.SateTimeMark = DateTime.Now;

@@ -7,10 +7,22 @@ using DataAccess;
 using BusinessRules.RealTimeDataService;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
+using Utility;
 
 
 namespace BusinessRules
 {
+
+    /// <summary>
+    /// 消息类别
+    /// </summary>
+    public enum MessageType
+    {
+        RealTimeMsg = 0,
+        AlarmMsg = 1,
+        UserEvent = 2
+    }
+
     /// <summary>
     /// 业务逻辑类
     /// yanghk at 2012-2-4
@@ -18,12 +30,49 @@ namespace BusinessRules
     public class BLL
     {
         SCADADataContext DataContext = new SCADADataContext();
-        RealTimeDataService.RealTimeServiceClient deviceRealTimeServiceClient = null;
-
-        public BLL()
+        private RealTimeServiceClient deviceRealTimeServiceClient = null;
+        public RealTimeServiceClient DeviceRealTimeServiceClient
         {
-            deviceRealTimeServiceClient = new RealTimeServiceClient();
+            get
+            {
+                if (deviceRealTimeServiceClient == null ||
+                    deviceRealTimeServiceClient.State != CommunicationState.Opened)
+                {
+                    deviceRealTimeServiceClient = new RealTimeServiceClient();
+                }
+                return deviceRealTimeServiceClient;
+            }
         }
+
+        /// <summary>
+        /// 通知服务器数据更新
+        /// </summary>
+        /// <param name="msgtype"></param>
+        void Notify(MessageType msgtype)
+        {
+            try
+            {
+                switch (msgtype)
+                {
+                    case MessageType.RealTimeMsg:
+                        DeviceRealTimeServiceClient.ReaTimeDataReceivedReceive();
+                        break;
+                    case MessageType.AlarmMsg:
+                        DeviceRealTimeServiceClient.AlarmDataReceived();
+                        break;
+                    case MessageType.UserEvent:
+                        DeviceRealTimeServiceClient.UserEventDataReceive();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteExceptionLog(ex);
+            }
+        }
+
         /// <summary>
         /// 更新设备
         /// </summary>
@@ -31,21 +80,21 @@ namespace BusinessRules
         /// <returns></returns>
         public bool RefreshData(RequestBase_R dc_r)
         {
-                /*业务逻辑：
-                根据设备SN号在数据库中查找进行对比。
-                       如果有该设备，则更新设备属性
-                       {
-                            MAC地址
-                            SIM地址
-                            产品型号
-                            硬件版本
-                            固件版本
-                            工作状态
-                        }
-                      成功则返回true
-                      没有找到或者执行失败返回false
-                 */
-                
+            /*业务逻辑：
+            根据设备SN号在数据库中查找进行对比。
+                   如果有该设备，则更新设备属性
+                   {
+                        MAC地址
+                        SIM地址
+                        产品型号
+                        硬件版本
+                        固件版本
+                        工作状态
+                    }
+                  成功则返回true
+                  没有找到或者执行失败返回false
+             */
+
             using (SCADADataContext DataContext = new SCADADataContext())
             {
                 DeviceInfo deviceInfor = DataContext.DeviceInfos.SingleOrDefault(e => e.DeviceSN == dc_r.Header.DeviceSN);
@@ -139,43 +188,6 @@ namespace BusinessRules
                 rs.BroadcastData = broadcastDataBlock;
             }
             return rs;
-            //示例代码：
-            //ReplyBase_S rs = new ReplyBase_S();
-            //rs.HaveBroadcastInfo = true;
-            //rs.HaveConfigInfo = true;
-            //rs.HaveWeatherInfo = true;
-
-            ////构造设备配置信息块
-            //ConfigDataBlock configDataBlock = new ConfigDataBlock();
-            //configDataBlock.RunMode = 1;
-            //configDataBlock.Argument1 = 1500;
-            //configDataBlock.Argument2 = 1600;
-            //configDataBlock.Argument3 = 1700;
-            //configDataBlock.DeviceNo = "P-100100";
-            //configDataBlock.InstalPlace = "北京市朝阳区双井街道";
-            //configDataBlock.DisplayMode = 1;
-            //configDataBlock.InstancyBtnEnable = true;
-            //configDataBlock.InfoBtnEnable = true;
-            //configDataBlock.RepairTel = "13801112222";
-            //configDataBlock.MainIP = "202.106.42.1";
-            //configDataBlock.ReserveIP = "202.106.42.2";
-
-            //configDataBlock.DomainName = "xyz.dddd.com";
-            //configDataBlock.Port = 1789;
-            //configDataBlock.ConnectionType = 0;
-            //configDataBlock.ConnectName = "CMNET";
-            //rs.ConfigData = configDataBlock;
-
-            ////构造天气预报块
-            //WeatherDataBlock weatherDataBlock = new WeatherDataBlock();
-            //weatherDataBlock.TodayWeather = "晴转多云，有阵雨。";
-            //rs.WeatherData = weatherDataBlock;
-
-            ////构造广播信息块
-            //BroadcastDataBlock broadcastDataBlock = new BroadcastDataBlock();
-            //broadcastDataBlock.Msg = "通知：明天下午开会。不要迟到。";
-            //rs.BroadcastData = broadcastDataBlock;
-            //return rs;
         }
 
         /// <summary>
@@ -251,10 +263,10 @@ namespace BusinessRules
                         }
                     }
                     DataContext.SubmitChanges();
-                    deviceRealTimeServiceClient.ReaTimeDataReceivedReceive();
+                    Notify(MessageType.RealTimeMsg);
                     if (haveAlarm)
                     {
-                        deviceRealTimeServiceClient.AlarmDataReceived();
+                        Notify(MessageType.AlarmMsg);
                     }
                     return true;
                 }
@@ -293,7 +305,7 @@ namespace BusinessRules
                     DataContext.UserEvents.InsertOnSubmit(ue);
                 }
                 DataContext.SubmitChanges();
-                deviceRealTimeServiceClient.UserEventDataReceive();
+                Notify(MessageType.UserEvent);
                 return true;
             }
             return false;

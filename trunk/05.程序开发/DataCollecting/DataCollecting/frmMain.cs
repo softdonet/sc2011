@@ -26,6 +26,7 @@ namespace DataCollecting
         public frm_Test()
         {
             InitializeComponent();
+            RefreshState();
             LogItem litem = new LogItem()
             {
                 Event = "启动SCADA入库程序",
@@ -151,21 +152,27 @@ namespace DataCollecting
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 Comm.UpdateToDB = frm.chkWriteToDB.Checked;
-                if (Comm.UpdateToDB)
-                {
-                    Image RunImage = Image.FromFile(System.Windows.Forms.Application.StartupPath + "\\RUN.ico");
-                    this.toolStripStatusDBMode.Image = RunImage;
-                    this.toolStripStatusDBMode.Text = "实时入库：已开启";
-                }
-                else
-                {
-                    this.toolStripStatusDBMode.Text = "实时入库：已关闭";
-                    Image StopImage = Image.FromFile(System.Windows.Forms.Application.StartupPath + "\\STOP.ico");
-                    this.toolStripStatusDBMode.Image = StopImage;
-                }
+                RefreshState();
             }
         }
-
+        /// <summary>
+        /// 刷新状态栏
+        /// </summary>
+        void RefreshState()
+        {
+            if (Comm.UpdateToDB)
+            {
+                Image RunImage = Image.FromFile(System.Windows.Forms.Application.StartupPath + "\\RUN.ico");
+                this.toolStripStatusDBMode.Image = RunImage;
+                this.toolStripStatusDBMode.Text = "实时入库：已开启";
+            }
+            else
+            {
+                this.toolStripStatusDBMode.Text = "实时入库：已关闭";
+                Image StopImage = Image.FromFile(System.Windows.Forms.Application.StartupPath + "\\STOP.ico");
+                this.toolStripStatusDBMode.Image = StopImage;
+            }
+        }
         /// <summary>
         /// 监控窗口
         /// </summary>
@@ -208,6 +215,21 @@ namespace DataCollecting
                 frm = new frmTool();
             }
             frm.Show();
+        }
+
+        private void 系统设置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSettings frm = new frmSettings();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                Comm.UpdateToDB = frm.chkWriteToDB.Checked;
+                RefreshState();
+            }
+        }
+
+        private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -30,13 +30,16 @@ namespace Scada.Client.SL.CommClass
         {
             if (_deviceRealTimeServiceClient == null)
             {
+                HttpTransportBindingElement httpTransportBindingElement = new HttpTransportBindingElement();
+                httpTransportBindingElement.MaxBufferSize = 2147483647;
+                httpTransportBindingElement.MaxReceivedMessageSize = 2147483647;
                 EndpointAddress address = new EndpointAddress(GetAbsoluteUri(deviceRealTimeServiceEndpointAddress));
                 CustomBinding binding = new CustomBinding(
                     new PollingDuplexBindingElement(),
                     new BinaryMessageEncodingBindingElement(),
-                    new HttpTransportBindingElement());
+                    httpTransportBindingElement);
                 binding.SendTimeout = new TimeSpan(0, 1, 0);
-                binding.ReceiveTimeout  = new TimeSpan(0, 1, 0);
+                binding.ReceiveTimeout = new TimeSpan(0, 1, 0);
                 _deviceRealTimeServiceClient = new DeviceRealTimeServiceClient(binding, address);
                 //初始化连接
                 _deviceRealTimeServiceClient.InitDataAsync();

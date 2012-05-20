@@ -22,7 +22,6 @@
                     </Border.Background>
                     <Border BorderThickness="1" CornerRadius="5" Margin="2">
                         <Grid ShowGridLines="True" Background="AliceBlue">
-                      
                             <TextBlock Height="23" HorizontalAlignment="Left" Margin="33,6,0,0" Name="textBlock4" Text="请输入广播信息：" VerticalAlignment="Top" Width="206" />
                             <TextBox Height="27" Text="{Binding Infor, Mode=TwoWay}" MaxLength="18" HorizontalAlignment="Left" Margin="33,29,0,0" Name="txtUserName" VerticalAlignment="Top" Width="666"  />
                             <TextBlock Height="23" HorizontalAlignment="Left" Foreground="Red"  Name="textBlock5" Text="备注：不能超过18个字符（包括标点符号）。" VerticalAlignment="Top" Width="206" Margin="33,62,0,0" />

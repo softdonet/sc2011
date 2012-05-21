@@ -859,10 +859,10 @@ namespace Scada.BLL.Implement
         private List<DeviceTreeNode> getTreeNodeChild(Guid? nodeKey, String prefix)
         {
             List<DeviceTreeNode> result = new List<DeviceTreeNode>();
-            string sSql = "select id,name,Level from DeviceTree";
+            string sSql = " Select id,name,Level from DeviceTree";
             if (nodeKey != null)
             {
-                sSql = sSql + " where ParentID ='" + nodeKey.ToString().ToUpper() + "'";
+                sSql = sSql + " Where ParentID ='" + nodeKey.ToString().ToUpper() + "' Order by Sort ";
             }
             else
             {

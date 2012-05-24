@@ -230,13 +230,15 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
             else if (scale == 2)
             {
                 axis.ValueFormatString = "MM";
-                axis.IntervalType = IntervalTypes.Months;
+                //axis.IntervalType = IntervalTypes.Months;
                 result = "2001-MM-01";
             }
 
             return result;
 
         }
+
+
 
         #endregion
 
@@ -313,10 +315,6 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
             this._scadaDeviceServiceSoapClient.GetSameDeviceTemperatureDiffDateAsync(deviceTreeNode.NodeType, deviceTreeNode.NodeKey, dateSelMode, jsonDates);
 
         }
-
-
-
-
 
         #endregion
 

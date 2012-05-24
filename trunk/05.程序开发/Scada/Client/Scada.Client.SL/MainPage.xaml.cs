@@ -245,11 +245,11 @@ namespace Scada.Client.SL
             {
                 //按日期对比
                 case "childMenuByDateCompare":
-                    this.ViewHost.Child = CompareByTime.GetInstance();
+                    this.ViewHost.Child = CompareByDevice.GetInstance();
                     break;
                 //按设备对比
                 case "childMenuDeviceCompare":
-                    this.ViewHost.Child = CompareByDevice.GetInstance();
+                    this.ViewHost.Child = CompareByTime.GetInstance();
 
                     break;
                 //统计分析

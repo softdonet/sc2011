@@ -103,9 +103,9 @@
                                 <vc:TrendLine Orientation="Horizontal" StartValue="25" EndValue="32" LineColor="#9FF86D5A"/>
                             </vc:Chart.TrendLines>
                             <vc:Chart.AxesX>
-                                <vc:Axis Title="小时" ValueFormatString="HH" IntervalType="Hours">
+                                <vc:Axis Title="小时" ValueFormatString="MM" IntervalType="Months">
                                     <vc:Axis.Grids>
-                                        <vc:ChartGrid Interval="4" InterlacedColor="#0efCff6e"  />
+                                        <vc:ChartGrid Interval="1" InterlacedColor="#0efCff6e"  />
                                     </vc:Axis.Grids>
                                 </vc:Axis>
                             </vc:Chart.AxesX>
@@ -132,6 +132,19 @@
                                         </LinearGradientBrush>
                                     </vc:DataSeries.Color>
                                     <vc:DataSeries.DataPoints>
+                                        <vc:DataPoint AxisXLabel="1" YValue="16"/>
+                                        <vc:DataPoint AxisXLabel="2" YValue="17.5"/>
+                                        <vc:DataPoint AxisXLabel="3" YValue="18"/>
+                                        <vc:DataPoint AxisXLabel="4" YValue="18.5"/>
+                                        <vc:DataPoint AxisXLabel="5" YValue="18"/>
+                                        <vc:DataPoint AxisXLabel="6" YValue="18.5"/>
+                                        <vc:DataPoint AxisXLabel="7" YValue="19"/>
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        <!--
                                         <vc:DataPoint AxisXLabel="0:00" YValue="16"/>
                                         <vc:DataPoint AxisXLabel="0:15" YValue="17.5"/>
                                         <vc:DataPoint AxisXLabel="0:30" YValue="18"/>
@@ -227,10 +240,11 @@
                                         <vc:DataPoint AxisXLabel="23:00" YValue="20"/>
                                         <vc:DataPoint AxisXLabel="23:15" YValue="21"/>
                                         <vc:DataPoint AxisXLabel="23:30" YValue="22"/>
-                                        <vc:DataPoint AxisXLabel="23:45" YValue="23"/>
+                                        <vc:DataPoint AxisXLabel="23:45" YValue="23"/>-->
 
                                     </vc:DataSeries.DataPoints>
                                 </vc:DataSeries>
+                                <!--
                                 <vc:DataSeries RenderAs="Spline" ShowInLegend="false" LabelEnabled="false" MarkerEnabled="false" LegendText="设备2">
                                     <vc:DataSeries.Color>
                                         <SolidColorBrush Color="DodgerBlue"></SolidColorBrush>
@@ -334,9 +348,9 @@
                                         <vc:DataPoint AxisXLabel="23:45" YValue="23"/>
 
                                     </vc:DataSeries.DataPoints>
-
+                                    
                                 </vc:DataSeries>
-
+                                -->
                             </vc:Chart.Series>
                             <vc:Chart.Legends>
                                 <vc:Legend  />

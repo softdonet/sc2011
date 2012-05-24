@@ -25,7 +25,7 @@ namespace Scada.BLL.Implement
         ScadaDeviceServiceLinq scadaDeviceServiceLinq;
         private Scada.DAL.Linq.SCADADataContext sCADADataContext = null;
 
-        private readonly  string OrientPwd = "123456";
+        private readonly string OrientPwd = "123456";
         public ScadaDeviceService()
         {
             sCADADataContext = new DAL.Linq.SCADADataContext();
@@ -1388,10 +1388,55 @@ namespace Scada.BLL.Implement
                 start = item;
                 string where = GetDevicEntityKey(DeviceType, DeviceID);
                 end = DateDiffTime(ref start, DateSelMode, ref groupType);
-                source.Add(item, GetDeviceDateTemperature(start, end, groupType, where));
+                List<ChartSource> chartSource = GetDeviceDateTemperature(start, end, groupType, where);
+                List<ChartSource> chartIniData = GetChartSourceIniValue(start, end, DateSelMode);
+                if (chartSource != null && chartSource.Count > 0)
+                    this.GetChartSourceCheck(chartIniData, chartSource);
+                source.Add(item, chartIniData);
             }
             return BinaryObjTransfer.JsonSerializer<Dictionary<DateTime, List<ChartSource>>>(source);
         }
+
+        private void GetChartSourceCheck(List<ChartSource> SourceOne, List<ChartSource> SourceTwo)
+        {
+            foreach (ChartSource item in SourceTwo)
+            {
+                ChartSource source = SourceOne.Find(x => x.DeviceDate == item.DeviceDate);
+                source.DeviceTemperature = item.DeviceTemperature;
+            }
+        }
+
+
+        private List<ChartSource> GetChartSourceIniValue(DateTime start, DateTime end, Int32 dateSelMode)
+        {
+            List<ChartSource> result = new List<ChartSource>();
+
+            if (dateSelMode == 0)
+            {
+                for (int i = 0; i < 24; i++)
+                {
+                    result.Add(new ChartSource { DeviceDate = start.AddHours(i), DeviceTemperature = 0 });
+                }
+            }
+            else if (dateSelMode == 1)
+            {
+                Int32 day = DateTime.DaysInMonth(start.Year, start.Month);
+                for (int i = 0; i < day; i++)
+                {
+                    result.Add(new ChartSource { DeviceDate = start.AddDays(i), DeviceTemperature = 0 });
+                }
+            }
+            else if (dateSelMode == 2)
+            {
+                for (int i = 0; i < 12; i++)
+                {
+                    result.Add(new ChartSource { DeviceDate = start.AddMonths(i), DeviceTemperature = 0 });
+                }
+            }
+
+            return result;
+        }
+
 
         private DateTime DateDiffTime(ref DateTime start, Int32 dateSelMode, ref string groupType)
         {
@@ -1399,9 +1444,15 @@ namespace Scada.BLL.Implement
             if (dateSelMode == 0)
             {
                 result = start.AddDays(1);
+
+                /*
                 groupType = @" case when convert(varchar(16),AAA.UpdateTime,120) like '%[0-4]' 
 		                        then convert(varchar(15),AAA.UpdateTime,120)+'0'
 		                        else convert(varchar(15),AAA.UpdateTime,120)+'5' end ";
+                */
+
+                groupType = @" convert(varchar(14), AAA.UpdateTime,120) +'00:00' ";
+
             }
             else if (dateSelMode == 1)
             {
@@ -1667,7 +1718,7 @@ namespace Scada.BLL.Implement
         public Boolean DelUser(Guid id)
         {
             var obj = sCADADataContext.Users.Where(e => e.UserID == id).SingleOrDefault();
-            if (obj==null)
+            if (obj == null)
             {
                 return false;
             }
@@ -1689,11 +1740,11 @@ namespace Scada.BLL.Implement
         {
             Scada.Model.Entity.User userValue = BinaryObjTransfer.JsonDeserialize<Scada.Model.Entity.User>(user);
             var obj = sCADADataContext.Users.SingleOrDefault(e => e.UserID == userValue.UserID);
-            if (obj!=null)
+            if (obj != null)
             {
                 //obj.LoginID = userValue.LoginID;
                 obj.UserName = userValue.UserName;
-               // obj.Password = userValue.Password;
+                // obj.Password = userValue.Password;
                 obj.Status = userValue.Status;
             }
             try
@@ -1715,18 +1766,18 @@ namespace Scada.BLL.Implement
             List<User> userList = new List<User>();
             StringBuilder sb = new StringBuilder();
             sb.Append("select * from [User] where 1=1 ");
-            
+
             string sWhere = string.Empty;
-            
+
             if (!string.IsNullOrEmpty(loginID))
             {
                 sWhere += " and LoginID='" + loginID + "'";
             }
-            if (!string.IsNullOrEmpty( userName))
+            if (!string.IsNullOrEmpty(userName))
             {
                 sWhere += " and UserName= '" + userName + "'";
             }
-            if (!(status=='\0'))
+            if (!(status == '\0'))
             {
                 sWhere += " and Status= '" + status + "'";
             }
@@ -1749,8 +1800,8 @@ namespace Scada.BLL.Implement
         public Boolean CheckUserByLoginID(string loginID)
         {
             bool flag = false;
-            int obj=sCADADataContext.Users.Where(e=>e.LoginID==loginID).Count();
-            if (obj==0)
+            int obj = sCADADataContext.Users.Where(e => e.LoginID == loginID).Count();
+            if (obj == 0)
             {
                 return false;
             }

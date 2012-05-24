@@ -16,5 +16,6 @@ namespace Scada.Model.Entity
         public DateTime DeviceDate { get; set; }
         //平均温度
         public Double DeviceTemperature { get; set; }
+
     }
 }

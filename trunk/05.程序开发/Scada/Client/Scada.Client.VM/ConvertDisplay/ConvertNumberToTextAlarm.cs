@@ -43,7 +43,8 @@ namespace Scada.Client.VM.ConvertDisplay
                 case "eventLevel":
                     break;
                 default:
-                    break;
+                    return "未知";
+                    //break;
             }
 
             return currentText;

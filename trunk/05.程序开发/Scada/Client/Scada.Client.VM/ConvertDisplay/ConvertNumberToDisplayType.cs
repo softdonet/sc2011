@@ -36,6 +36,7 @@ namespace Scada.Client.VM.ConvertDisplay
                     }
                     break;
                 default:
+                    return "未知";
                     break;
             }
             return currentText;

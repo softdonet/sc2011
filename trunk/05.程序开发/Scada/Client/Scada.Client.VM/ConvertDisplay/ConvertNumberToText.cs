@@ -39,14 +39,19 @@ namespace Scada.Client.VM.ConvertDisplay
                         return EnumHelper.Display<UserDealState>(currentValue.State.Value);
                     }
                     break;
-                case "eventtype":
+                case "eventtype"://用户事件类型
                     if (currentValue.EventType.HasValue)
                     {
+                        if (string.IsNullOrEmpty( EnumHelper.Display<UserEventType>(currentValue.EventType.Value)))
+                        {
+                            return "未知";
+                        }
                         return EnumHelper.Display<UserEventType>(currentValue.EventType.Value);
                     }
                     break;
                 default:
-                    break;
+                    return "未知";
+                    //break;
             }
             return currentText;
         }

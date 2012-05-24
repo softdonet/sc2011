@@ -309,7 +309,8 @@ namespace Scada.BLL.Implement
 
             List<UserEventModel> userEvents = new List<UserEventModel>();
             string sSql = @" Select top 100 ID,EventNo,DeviceID,DeviceNo,EventType,
-                                State,Count,RequestTime from UserEvent";
+                                State,Count,RequestTime from UserEvent
+                                Order by RequestTime desc ";
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);
             UserEventModel userEventModel;
             foreach (DataRow item in ds.Rows)

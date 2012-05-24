@@ -25,11 +25,41 @@ namespace Scada.Client.VM.Modules.Alarm
     public class AlarmListViewModel : NotificationObject
     {
         DeviceRealTimeServiceClient deviceAlarmService = ServiceManager.GetDeviceRealTimeService();
-        public AlarmListViewModel()
+
+        private ScadaDeviceServiceSoapClient scadaDeviceServiceSoapClient = null;
+
+        //当用户处理告警事件时，传回到数据库中的四个参数
+        public Guid Pid { get; set; }
+       public DateTime PdateTime { get; set; }
+       public string PgetCommentInfo { get; set; }
+       public Guid PuserGuid { get; set; }
+
+       public AlarmListViewModel()
+       {
+           deviceAlarmService.GetAlarmDataReceived += new EventHandler<GetAlarmDataReceivedEventArgs>(deviceAlarmService_GetAlarmDataReceived);
+           deviceAlarmService.GetAlarmDataListCompleted += (sender, e) => { };
+           deviceAlarmService.GetAlarmDataListAsync();
+
+           scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
+           scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoCompleted += new EventHandler<UpdateDeviceAlarmInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoCompleted);
+           if (Pid != new Guid() && PdateTime != null && !string.IsNullOrEmpty(PgetCommentInfo.Trim()) && PuserGuid != new Guid())
+           {
+               scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoAsync(Pid, PdateTime, PgetCommentInfo, PuserGuid);
+           }
+
+       }
+
+        void scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoCompleted(object sender, UpdateDeviceAlarmInfoCompletedEventArgs e)
         {
-            deviceAlarmService.GetAlarmDataReceived += new EventHandler<GetAlarmDataReceivedEventArgs>(deviceAlarmService_GetAlarmDataReceived);
-            deviceAlarmService.GetAlarmDataListCompleted += (sender, e) => { };
-            deviceAlarmService.GetAlarmDataListAsync();
+            bool flag = e.Result;
+            if (flag)
+            {
+               // MessageBox.Show("修改设备信息成功!");
+            }
+            else
+            {
+                MessageBox.Show("处理失败,请重新操作!");
+            }
         }
 
         /// <summary>
@@ -40,6 +70,13 @@ namespace Scada.Client.VM.Modules.Alarm
             deviceAlarmService.GetAlarmDataListAsync();
         }
 
+        public void UpdateDeviceAlarmInfo()
+        {
+            if (Pid != new Guid() && PdateTime != null && !string.IsNullOrEmpty(PgetCommentInfo) && PuserGuid != new Guid())
+            {
+                scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoAsync(Pid, PdateTime, PgetCommentInfo, PuserGuid);
+            }
+        }
         void deviceAlarmService_GetAlarmDataReceived(object sender, GetAlarmDataReceivedEventArgs e)
         {
             if (e.Error == null)
@@ -79,7 +116,7 @@ namespace Scada.Client.VM.Modules.Alarm
             set
             {
                 deviceAlarmListTop = value;
-                deviceAlarmListTop = new List<DeviceAlarmViewModel>(deviceAlarmListTop.OrderBy(e => e.DeviceAlarm.StartTime).Take(4));
+                deviceAlarmListTop = new List<DeviceAlarmViewModel>(deviceAlarmListTop.OrderByDescending(e => e.DeviceAlarm.StartTime).Take(4));
                 this.RaisePropertyChanged("DeviceAlarmListTop");
             }
         }

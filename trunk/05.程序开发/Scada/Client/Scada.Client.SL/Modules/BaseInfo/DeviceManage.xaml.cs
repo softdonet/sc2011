@@ -271,6 +271,62 @@ namespace Scada.Client.SL.Modules.BaseInfo
                 (e.OriginalSource as Control).Background = new SolidColorBrush(Colors.White);
         }
 
+        private void cmbCurrentModel_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (cmbCurrentModel.SelectedIndex)
+            {
+                case 0://实时模式
+                    txtRealTimeParam.IsReadOnly = false;
+                    cmbFullTimeParam1.IsEnabled = false;
+                    cmbFullTimeParam2.IsEnabled = false;
+                    cmbOptimizeParam1.IsEnabled = false;
+                    cmbOptimizeParam2.IsEnabled = false;
+                    txtOptimizeParam3.IsReadOnly = true;
+
+                    deviceManageViewModel.SelectedFullTimeParam1Item = null;
+                    //deviceManageViewModel.SelectedFullTimeParam2Item = null;
+                    //deviceManageViewModel.SelectedOptimize1Item = null;
+                    //deviceManageViewModel.SelectedOptimize2Item = null;
+                    //deviceManageViewModel.DeviceInfoList.OptimizeParam3 = null;
+                    break;
+                case 1://整点模式
+                    txtRealTimeParam.IsReadOnly = true;
+                    cmbFullTimeParam1.IsEnabled = true;
+                    cmbFullTimeParam2.IsEnabled = true;
+                    cmbOptimizeParam1.IsEnabled = false;
+                    cmbOptimizeParam2.IsEnabled = false;
+                    txtOptimizeParam3.IsReadOnly = true;
+
+                    //deviceManageViewModel.DeviceInfoList.RealTimeParam = null;
+                    //deviceManageViewModel.SelectedOptimize1Item = null;
+                    //deviceManageViewModel.SelectedOptimize2Item = null;
+                    break;
+                case 2://逢变则报模式
+                    txtRealTimeParam.IsReadOnly = true;
+                    cmbFullTimeParam1.IsEnabled = false;
+                    cmbFullTimeParam2.IsEnabled = false;
+                    cmbOptimizeParam1.IsEnabled = true;
+                    cmbOptimizeParam2.IsEnabled = true;
+                    txtOptimizeParam3.IsReadOnly = false;
+
+                    //deviceManageViewModel.DeviceInfoList.RealTimeParam = null;
+                    //deviceManageViewModel.SelectedFullTimeParam1Item = null;
+                    //deviceManageViewModel.SelectedFullTimeParam2Item = null;
+                    //cmbFullTimeParam1.SelectedItem = null;
+                    //cmbFullTimeParam2.SelectedItem = null;
+                   
+                    break;
+                default:
+                    txtRealTimeParam.IsReadOnly = true;
+                    cmbFullTimeParam1.IsEnabled = false;
+                    cmbFullTimeParam2.IsEnabled = false;
+                    cmbOptimizeParam1.IsEnabled = false;
+                    cmbOptimizeParam2.IsEnabled = false;
+                    txtOptimizeParam3.IsReadOnly = true;
+                    break;
+            }
+        }
+
 
 
         #region 私有方法

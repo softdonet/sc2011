@@ -23,11 +23,15 @@ using Scada.Client.VM.Modules.UserEventVM;
 using Scada.Model.Entity;
 using Scada.Client.SL.Modules.UsersEvent;
 using Telerik.Windows.Controls;
+using Telerik.Windows.Controls.GridView;
 
 namespace Scada.Client.SL.Modules.BingMaps
 {
     public partial class MapIndex : UserControl
     {
+        private AlarmListViewModel alarmVM;
+        private UserEventViewModel userEventViewModel;
+
         private static MapIndex instance;
         public static MapIndex GetInstance()
         {
@@ -57,10 +61,10 @@ namespace Scada.Client.SL.Modules.BingMaps
 
             // DeviceAlarmViewModel deviceAlarmViewModel = new DeviceAlarmViewModel();
             //RadGridViewAlarm.DataContext = deviceAlarmViewModel;
-            AlarmListViewModel alarmVM = new AlarmListViewModel();
+            alarmVM = new AlarmListViewModel();
             RadGridViewAlarm.DataContext = alarmVM;
 
-            UserEventViewModel userEventViewModel = new UserEventViewModel();
+            userEventViewModel = new UserEventViewModel();
             RadGridViewUserEvent.DataContext = userEventViewModel;
 
 
@@ -261,8 +265,28 @@ namespace Scada.Client.SL.Modules.BingMaps
             //id = (hlB.DataContext as Scada.Model.Entity.DeviceAlarm).ID;
             id = ((Scada.Client.VM.Modules.Alarm.DeviceAlarmViewModel)(hlB.DataContext)).DeviceAlarm.ID;
 
-            // RadWindow.Prompt("请输入备注：", new EventHandler<WindowClosedEventArgs>(OnClosed));
+            RadWindow.Prompt("请输入备注：", new EventHandler<WindowClosedEventArgs>(OnClosed));
         }
+        private void OnClosed(object sender, WindowClosedEventArgs e)
+        {
+            if (e.DialogResult != true) { return; }
+            string getCommentInfo = e.PromptResult;
+            Guid userGuid = App.CurUser.UserID;
+            //   this._scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoAsync(id, DateTime.Now, getCommentInfo, userGuid);
+            alarmVM.Pid = id;
+            alarmVM.PdateTime = DateTime.Now;
+            alarmVM.PgetCommentInfo = getCommentInfo;
+            alarmVM.PuserGuid = userGuid;
+            alarmVM.UpdateDeviceAlarmInfo();
+            var obj = alarmVM.DeviceAlarmList.SingleOrDefault(p => p.DeviceAlarm.ID == id);//AlarmListVM.DeviceAlarmList.SingleOrDefault(x => x.DeviceAlarm.ID == id);
+            if (obj != null)
+            {
+                obj.Comment = getCommentInfo;
+            }
+
+            alarmVM.GetData();//重新绑定
+        }
+
 
         private void hlBtnUserEvent_Click(object sender, RoutedEventArgs e)
         {
@@ -274,5 +298,26 @@ namespace Scada.Client.SL.Modules.BingMaps
             MyContent.Content = new UserEventProcess(userEventModel);
             MyContent.Title = "用户事件流程";
         }
+
+        private void RadGridViewAlarm_RowLoaded(object sender, Telerik.Windows.Controls.GridView.RowLoadedEventArgs e)
+        {
+            if (e.Row is GridViewHeaderRow) return;
+
+            DeviceAlarmViewModel dav = e.Row.DataContext as DeviceAlarmViewModel;
+            HyperlinkButton HlBtn = (e.Row.Cells[RadGridViewAlarm.Columns.Count - 1].Content as FrameworkElement).FindName("hlBtnAlarm") as HyperlinkButton;
+
+            if (string.IsNullOrEmpty(dav.DeviceAlarm.DealStatus))
+            {
+                HlBtn.IsEnabled = true;
+            }
+            //TextBlock state = (e.Row.Cells[RadGridViewAlarm.Columns.Count - 2].Content as FrameworkElement) as TextBlock;
+            //HyperlinkButton HlBtn = (e.Row.Cells[RadGridViewAlarm.Columns.Count - 1].Content as FrameworkElement).FindName("hlBtnAlarm") as HyperlinkButton;
+            //if (string.IsNullOrEmpty(state.Text.Trim()))
+            //{
+            //    HlBtn.IsEnabled = true;
+            //}
+
+        }
     }
+
 }

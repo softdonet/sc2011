@@ -71,7 +71,7 @@ namespace Scada.Client.VM.Modules.UserEventVM
             set
             {
                 userEventListTop = value;
-                userEventListTop = userEventListTop.OrderBy(e => e.RequestTime).Take(3).ToList();
+                userEventListTop = userEventListTop.OrderByDescending(e => e.RequestTime).Take(3).ToList();
                 this.RaisePropertyChanged("UserEventListTop");
             }
         }

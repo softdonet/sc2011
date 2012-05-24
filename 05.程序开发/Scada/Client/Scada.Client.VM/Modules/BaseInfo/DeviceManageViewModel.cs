@@ -29,11 +29,11 @@ namespace Scada.Client.VM.Modules.BaseInfo
         public DelegateCommand UpdateCommand { get; set; }
         public DelegateCommand DeleteCommand { get; set; }
         private ScadaDeviceServiceSoapClient scadaDeviceServiceSoapClient = null;
-     
+
         public Guid CurrentNodeGuid { get; set; }
         public int CurrentNodeLevel { get; set; }
-        
-         
+
+
         //public List<DeviceTreeNode> DeviceTreeNodeResult { get; set; }
         DeviceInfo deviceInfo;
         string myDeviceId;
@@ -41,6 +41,12 @@ namespace Scada.Client.VM.Modules.BaseInfo
         {
             LoadDisplayType();
             LoadCurrentModel();
+            LoadTemperatureGatherTerm();
+            LoadCommunacationSendTerm();
+            LoadQuickTemperatureGether();
+            LoadMinSendTerm();
+
+
             scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
 
             scadaDeviceServiceSoapClient.ListDeviceTreeViewCompleted += new EventHandler<ListDeviceTreeViewCompletedEventArgs>(scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted);
@@ -52,7 +58,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
             //维护人员
             scadaDeviceServiceSoapClient.GetMaintenancePeopleCompleted += new EventHandler<GetMaintenancePeopleCompletedEventArgs>(scadaDeviceServiceSoapClient_GetMaintenancePeopleCompleted);
             scadaDeviceServiceSoapClient.GetMaintenancePeopleAsync();
-            
+
             //查看设备
             scadaDeviceServiceSoapClient.ViewDeviceInfoCompleted += new EventHandler<ViewDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_ViewDeviceInfoCompleted);
 
@@ -70,12 +76,12 @@ namespace Scada.Client.VM.Modules.BaseInfo
 
         }
 
-       
+
 
         bool flag;
         void scadaDeviceServiceSoapClient_CheckDeviceInfoByDeviceNoCompleted(object sender, CheckDeviceInfoByDeviceNoCompletedEventArgs e)
         {
-            if (e.Error==null)
+            if (e.Error == null)
             {
                 flag = e.Result;
             }
@@ -88,7 +94,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
             {
                 if (DeviceInfoList != null)
                 {
-                    if (CurrentNodeLevel==2)//组
+                    if (CurrentNodeLevel == 2)//组
                     {
                         DeviceInfoList.ManageAreaID = CurrentNodeGuid;
                     }
@@ -131,7 +137,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 MessageBox.Show("添加新设备失败!");
             }
         }
-       
+
         public void ViewDeviceInfoById(Guid myDeviceId)
         {
             scadaDeviceServiceSoapClient.ViewDeviceInfoAsync(myDeviceId);
@@ -143,6 +149,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
             {
                 if (!ValidationProprety()) return;
 
+                CheckChoosedWhichWorkMode();
                 string deviceNo = DeviceInfoList.DeviceNo;
                 this.scadaDeviceServiceSoapClient.CheckDeviceInfoByDeviceNoAsync(deviceNo);
                 //--------------------
@@ -163,7 +170,6 @@ namespace Scada.Client.VM.Modules.BaseInfo
             //}
         }
 
-
         void scadaDeviceServiceSoapClient_UpdateDeviceInfoCompleted(object sender, UpdateDeviceInfoCompletedEventArgs e)
         {
             bool flag = e.Result;
@@ -175,13 +181,15 @@ namespace Scada.Client.VM.Modules.BaseInfo
             {
                 MessageBox.Show("修改设备信息失败!");
             }
+            scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
+
         }
-        
 
         private void UpdateDeviceInfo()
         {
-            string deviceInfo = BinaryObjTransfer.BinarySerialize(DeviceInfoList);
             if (!ValidationProprety()) return;
+            CheckChoosedWhichWorkMode();
+            string deviceInfo = BinaryObjTransfer.BinarySerialize(DeviceInfoList);
 
             scadaDeviceServiceSoapClient.UpdateDeviceInfoAsync(deviceInfo);
         }
@@ -192,6 +200,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
             if (flag)
             {
                 MessageBox.Show("删除设备成功!");
+                DeviceInfoList = null;
             }
             else
             {
@@ -205,7 +214,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
         private void DeleteDeviceInfo()
         {
             scadaDeviceServiceSoapClient.DeleteDeviceInfoAsync(DeviceInfoList.ID);
-           // scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
+            // scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
         }
 
         #region 设备树
@@ -241,7 +250,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
             if (e.Error == null)
             {
                 deviceInfo = BinaryObjTransfer.BinaryDeserialize<DeviceInfo>(e.Result);
-                if (deviceInfo==null)
+                if (deviceInfo == null)
                 {
                     deviceInfo = new DeviceInfo();
                 }
@@ -298,13 +307,13 @@ namespace Scada.Client.VM.Modules.BaseInfo
             {
                 selectedMaintenancePeople = value;
                 this.RaisePropertyChanged("SelectedMaintenancePeople");
-                if (DeviceInfoList != null && selectedMaintenancePeople!=null)
+                if (DeviceInfoList != null && selectedMaintenancePeople != null)
                 {
                     DeviceInfoList.MaintenancePeopleID = selectedMaintenancePeople.ID;
                 }
             }
         }
-        
+
 
         /// <summary>
         /// 设备信息
@@ -312,7 +321,8 @@ namespace Scada.Client.VM.Modules.BaseInfo
         private DeviceInfo deviceInfoList;
         public DeviceInfo DeviceInfoList
         {
-            get {
+            get
+            {
                 //if (selectedItem != null)
                 //{
                 //    deviceInfoList.LCDScreenDisplayType = selectedItem.LCDScreenDisplayType;
@@ -327,19 +337,28 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 SelectedLcdItem = deviceInfoList;
                 SelectedCurrentModelItem = deviceInfoList;
 
+                SelectedFullTimeParam1Item = deviceInfoList;
+                SelectedFullTimeParam2Item = deviceInfoList;
+                SelectedOptimize1Item = deviceInfoList;
+                SelectedOptimize2Item = deviceInfoList;
                 SelectedMaintenancePeople = selectedMaintenancePeople;//用于设置界面上的显示
 
-               // DeviceNo = deviceInfoList.DeviceNo;
+                // DeviceNo = deviceInfoList.DeviceNo;
 
                 this.RaisePropertyChanged("DeviceNo");
                 this.RaisePropertyChanged("Longitude");
                 this.RaisePropertyChanged("Latitude");
                 this.RaisePropertyChanged("MaintenancePeopleID");
                 this.RaisePropertyChanged("RealTimeParam");
+
+                //this.RaisePropertyChanged("SelectedFullTimeParam1Item");
+                //this.RaisePropertyChanged("SelectedFullTimeParam2Item");
+                //this.RaisePropertyChanged("SelectedOptimize1Item");
+                //this.RaisePropertyChanged("SelectedOptimize1Item");
             }
         }
 
-        private List<DeviceInfo>  deviceInfoLcdList;
+        private List<DeviceInfo> deviceInfoLcdList;
         public List<DeviceInfo> DeviceInfoLcdList
         {
             get { return deviceInfoLcdList; }
@@ -350,7 +369,8 @@ namespace Scada.Client.VM.Modules.BaseInfo
             }
         }
         /// <summary>
-        /// 绑定选择的对象
+        /// 当前选择的绑定选择的对象
+        /// LCD
         /// </summary>
         private DeviceInfo selectedLcdItem;
         public DeviceInfo SelectedLcdItem
@@ -367,7 +387,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
             {
                 selectedLcdItem = value;
                 this.RaisePropertyChanged("SelectedLcdItem");
-                if (DeviceInfoList != null && selectedLcdItem!=null)
+                if (DeviceInfoList != null && selectedLcdItem != null)
                 {
                     DeviceInfoList.LCDScreenDisplayType = selectedLcdItem.LCDScreenDisplayType;
                 }
@@ -375,6 +395,10 @@ namespace Scada.Client.VM.Modules.BaseInfo
         }
 
         private List<DeviceInfo> deviceInfoCurrentModelList;
+        /// <summary>
+        /// 当前的工作模式
+        /// CurrentModel
+        /// </summary>
         public List<DeviceInfo> DeviceInfoCurrentModelList
         {
             get { return deviceInfoCurrentModelList; }
@@ -384,10 +408,12 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 this.RaisePropertyChanged("DeviceInfoCurrentModelList");
             }
         }
-        /// <summary>
-        /// 当前选择的项
-        /// </summary>
+
         private DeviceInfo selectedCurrentModelItem;
+        /// <summary>
+        /// 当前选择的工作模式
+        /// CurrentModel
+        /// </summary>
         public DeviceInfo SelectedCurrentModelItem
         {
             get
@@ -396,24 +422,190 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 {
                     selectedCurrentModelItem = DeviceInfoCurrentModelList.Where(e => e.CurrentModel == DeviceInfoList.CurrentModel).SingleOrDefault();
                 }
-                
-                return selectedCurrentModelItem; }
+                return selectedCurrentModelItem;
+            }
             set
             {
                 selectedCurrentModelItem = value;
                 this.RaisePropertyChanged("SelectedCurrentModelItem");
 
-                if (DeviceInfoList != null && selectedCurrentModelItem!=null)
+                if (DeviceInfoList != null && selectedCurrentModelItem != null)
                 {
                     DeviceInfoList.CurrentModel = selectedCurrentModelItem.CurrentModel;
                 }
             }
         }
+        #region 整点模式参数1的值
 
+        private List<DeviceInfo> deviceInfoFullTimeParam1List;
+        /// <summary>
+        /// 温度采集周期
+        /// </summary>
+        public List<DeviceInfo> DeviceInfoFullTimeParam1List
+        {
+            get { return deviceInfoFullTimeParam1List; }
+            set
+            {
+                deviceInfoFullTimeParam1List = value;
+                this.RaisePropertyChanged("DeviceInfoFullTimeParam1List");
+            }
+        }
 
+        private DeviceInfo selectedFullTimeParam1Item;
+        /// <summary>
+        /// 当前选择的整点模式参数1的值
+        /// </summary>
+        public DeviceInfo SelectedFullTimeParam1Item
+        {
+            get
+            {
+                if (DeviceInfoList != null)
+                {
+                    selectedFullTimeParam1Item = DeviceInfoFullTimeParam1List.Where(e => e.FullTimeParam1 == DeviceInfoList.FullTimeParam1).SingleOrDefault();
+                }
+                return selectedFullTimeParam1Item;
+            }
+            set
+            {
+                selectedFullTimeParam1Item = value;
+                this.RaisePropertyChanged("SelectedFullTimeParam1Item");
+                if (DeviceInfoList != null && selectedFullTimeParam1Item != null)
+                {
+                    DeviceInfoList.FullTimeParam1 = selectedFullTimeParam1Item.FullTimeParam1;
+                }
+            }
+        }
+
+        #endregion
+
+        #region 整点模式参数2
+
+        private List<DeviceInfo> deviceInfoFullTimeParam2List;
+        /// <summary>
+        /// 通讯发送周期
+        /// </summary>
+        public List<DeviceInfo> DeviceInfoFullTimeParam2List
+        {
+            get { return deviceInfoFullTimeParam2List; }
+            set
+            {
+                deviceInfoFullTimeParam2List = value;
+                this.RaisePropertyChanged("DeviceInfoFullTimeParam2List");
+            }
+        }
+
+        private DeviceInfo selectedFullTimeParam2Item;
+        /// <summary>
+        /// 当前选择的整点模式参数1的值
+        /// </summary>
+        public DeviceInfo SelectedFullTimeParam2Item
+        {
+            get
+            {
+                if (DeviceInfoList != null)
+                {
+                    selectedFullTimeParam2Item = DeviceInfoFullTimeParam2List.Where(e => e.FullTimeParam2 == DeviceInfoList.FullTimeParam2).SingleOrDefault();
+                }
+                return selectedFullTimeParam2Item;
+            }
+            set
+            {
+                selectedFullTimeParam2Item = value;
+                this.RaisePropertyChanged("SelectedFullTimeParam2Item");
+                if (DeviceInfoList != null && selectedFullTimeParam2Item != null)
+                {
+                    DeviceInfoList.FullTimeParam2 = selectedFullTimeParam2Item.FullTimeParam2;
+                }
+            }
+        }
+
+        #endregion
+
+        #region 优化模式参数1
+
+        private List<DeviceInfo> deviceInfoOptimize1List;
+        /// <summary>
+        /// 快速温度采样
+        /// </summary>
+        public List<DeviceInfo> DeviceInfoOptimize1List
+        {
+            get { return deviceInfoOptimize1List; }
+            set
+            {
+                deviceInfoOptimize1List = value;
+                this.RaisePropertyChanged("DeviceInfoOptimize1List");
+            }
+        }
+        private DeviceInfo selectedOptimize1Item;
+        /// <summary>
+        /// 当前选择的优化模式参数1的值
+        /// </summary>
+        public DeviceInfo SelectedOptimize1Item
+        {
+            get
+            {
+                if (DeviceInfoList != null)
+                {
+                    selectedOptimize1Item = DeviceInfoOptimize1List.Where(e => e.OptimizeParam1 == DeviceInfoList.OptimizeParam1).SingleOrDefault();
+                }
+                return selectedOptimize1Item;
+            }
+            set
+            {
+                selectedOptimize1Item = value;
+                this.RaisePropertyChanged("SelectedOptimize1Item");
+                if (DeviceInfoList != null && selectedOptimize1Item != null)
+                {
+                    DeviceInfoList.OptimizeParam1 = selectedOptimize1Item.OptimizeParam1;
+                }
+            }
+        }
+        #endregion
+
+        #region 优化模式参数2
+
+        private List<DeviceInfo> deviceInfoOptimize2List;
+        /// <summary>
+        /// 快速温度采样
+        /// </summary>
+        public List<DeviceInfo> DeviceInfoOptimize2List
+        {
+            get { return deviceInfoOptimize2List; }
+            set
+            {
+                deviceInfoOptimize2List = value;
+                this.RaisePropertyChanged("DeviceInfoOptimize2List");
+            }
+        }
+
+        private DeviceInfo selectedOptimize2Item;
+        /// <summary>
+        /// 当前选择的优化模式参数2的值
+        /// </summary>
+        public DeviceInfo SelectedOptimize2Item
+        {
+            get
+            {
+                if (DeviceInfoList != null)
+                {
+                    selectedOptimize2Item = DeviceInfoOptimize2List.Where(e => e.OptimizeParam2 == DeviceInfoList.OptimizeParam2).SingleOrDefault();
+                }
+                return selectedOptimize2Item;
+            }
+            set
+            {
+                selectedOptimize2Item = value;
+                this.RaisePropertyChanged("SelectedOptimize2Item");
+                if (DeviceInfoList != null && selectedOptimize2Item != null)
+                {
+                    DeviceInfoList.OptimizeParam2 = selectedOptimize2Item.OptimizeParam2;
+                }
+            }
+        }
+        #endregion
 
         /// <summary>
-        /// 数据源
+        /// 液晶屏显示类型数据源
         /// </summary>
         private void LoadDisplayType()
         {
@@ -425,6 +617,9 @@ namespace Scada.Client.VM.Modules.BaseInfo
             temp.Add(new DeviceInfo() { LCDScreenDisplayType = 4, LCDScreenDisplayTypeName = "不显示" });
             DeviceInfoLcdList = temp;
         }
+        /// <summary>
+        /// 加载工作模式
+        /// </summary>
         private void LoadCurrentModel()
         {
             List<DeviceInfo> temp = new List<DeviceInfo>();
@@ -435,25 +630,81 @@ namespace Scada.Client.VM.Modules.BaseInfo
             DeviceInfoCurrentModelList = temp;
         }
 
+        /// <summary>
+        /// 加载整点模式参数1-温度采集周期--数据源
+        /// FullTimeParam1, FullTimeParam1Name
+        /// </summary>
+        private void LoadTemperatureGatherTerm()
+        {
+            List<DeviceInfo> temp = new List<DeviceInfo>();
+            temp.Clear();
+            temp.Add(new DeviceInfo() { FullTimeParam1 = 1, FullTimeParam1Name = EnumHelper.Display<FullTime1>(1) });
+            temp.Add(new DeviceInfo() { FullTimeParam1 = 2, FullTimeParam1Name = EnumHelper.Display<FullTime1>(2) });
+            temp.Add(new DeviceInfo() { FullTimeParam1 = 3, FullTimeParam1Name = EnumHelper.Display<FullTime1>(3) });
+            temp.Add(new DeviceInfo() { FullTimeParam1 = 4, FullTimeParam1Name = EnumHelper.Display<FullTime1>(4) });
+            temp.Add(new DeviceInfo() { FullTimeParam1 = 5, FullTimeParam1Name = EnumHelper.Display<FullTime1>(5) });
+            DeviceInfoFullTimeParam1List = temp;
+        }
+        /// <summary>
+        /// 加载整点模式参数2-通讯发送周期--数据源
+        /// FullTimeParam2, FullTimeParam2Name
+        /// </summary>
+        private void LoadCommunacationSendTerm()
+        {
+            List<DeviceInfo> temp = new List<DeviceInfo>();
+            temp.Clear();
+            temp.Add(new DeviceInfo() { FullTimeParam2 = 1, FullTimeParam2Name = EnumHelper.Display<FullTime2>(1) });
+            temp.Add(new DeviceInfo() { FullTimeParam2 = 2, FullTimeParam2Name = EnumHelper.Display<FullTime2>(2) });
+            temp.Add(new DeviceInfo() { FullTimeParam2 = 3, FullTimeParam2Name = EnumHelper.Display<FullTime2>(3) });
+            temp.Add(new DeviceInfo() { FullTimeParam2 = 4, FullTimeParam2Name = EnumHelper.Display<FullTime2>(4) });
+            temp.Add(new DeviceInfo() { FullTimeParam2 = 5, FullTimeParam2Name = EnumHelper.Display<FullTime2>(5) });
+            DeviceInfoFullTimeParam2List = temp;
 
-
+        }
+        /// <summary>
+        /// 加载逢变则报模式--参数1-快速温度采样:
+        /// OptimizeParam1--OptimizeParam1Name
+        /// </summary>
+        private void LoadQuickTemperatureGether()
+        {
+            List<DeviceInfo> temp = new List<DeviceInfo>();
+            temp.Clear();
+            temp.Add(new DeviceInfo() { OptimizeParam1 = 1, OptimizeParam1Name = EnumHelper.Display<Optimize1>(1) });
+            temp.Add(new DeviceInfo() { OptimizeParam1 = 2, OptimizeParam1Name = EnumHelper.Display<Optimize1>(2) });
+            temp.Add(new DeviceInfo() { OptimizeParam1 = 3, OptimizeParam1Name = EnumHelper.Display<Optimize1>(3) });
+            DeviceInfoOptimize1List = temp;
+        }
+        /// <summary>
+        /// 加载逢变则报模式--参数1-最小发送间隔
+        /// OptimizeParam2--OptimizeParam2Name
+        /// </summary>
+        private void LoadMinSendTerm()
+        {
+            List<DeviceInfo> temp = new List<DeviceInfo>();
+            temp.Clear();
+            temp.Add(new DeviceInfo() { OptimizeParam2 = 1, OptimizeParam2Name = EnumHelper.Display<Optimize2>(1) });
+            temp.Add(new DeviceInfo() { OptimizeParam2 = 2, OptimizeParam2Name = EnumHelper.Display<Optimize2>(2) });
+            temp.Add(new DeviceInfo() { OptimizeParam2 = 3, OptimizeParam2Name = EnumHelper.Display<Optimize2>(3) });
+            DeviceInfoOptimize2List = temp;
+        }
         //---------------------------------------------------------------
-       // [Required(ErrorMessage = "设备编号不能为空!")]
+        [Required(ErrorMessage = "设备编号不能为空!")]
         public string DeviceNo
         {
-            get {
-                if (DeviceInfoList==null)
+            get
+            {
+                if (DeviceInfoList == null)
                 {
                     DeviceInfoList = new DeviceInfo();
                 }
-                return DeviceInfoList.DeviceNo; 
+                return DeviceInfoList.DeviceNo;
             }
             set
             {
                 if (string.IsNullOrEmpty(value))
                 {
                     throw new Exception("设备编号不能为空!");
-                    
+
                 }
                 DeviceInfoList.DeviceNo = value;
                 //this.RaisePropertyChanged("DeviceNo");
@@ -466,14 +717,14 @@ namespace Scada.Client.VM.Modules.BaseInfo
         {
             get
             {
-                if (DeviceInfoList==null)
+                if (DeviceInfoList == null)
                 {
                     DeviceInfoList = new DeviceInfo();
                 }
                 return DeviceInfoList.Longitude;
             }
 
-            set 
+            set
             {
                 DeviceInfoList.Longitude = value;
                 this.RaisePropertyChanged("Longitude");
@@ -482,7 +733,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
         }
 
         [Required(ErrorMessage = "维度不能为空!")]
-        public decimal Latitude 
+        public decimal Latitude
         {
             get
             {
@@ -519,7 +770,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
             }
         }
 
-        [Required(ErrorMessage = "实时模式参数格式不对!")]
+        [Required(ErrorMessage = "实时采集周期格式不对!")]
         public int? RealTimeParam
         {
             get
@@ -537,12 +788,32 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 Validator.ValidateProperty(value, new ValidationContext(this, null, null) { MemberName = "RealTimeParam" });
             }
         }
+
+
+        public int? FullTimeParam1
+        {
+            get
+            {
+                if (DeviceInfoList == null)
+                {
+                    DeviceInfoList = new DeviceInfo();
+                }
+                return DeviceInfoList.FullTimeParam1;
+            }
+            set
+            {
+                DeviceInfoList.FullTimeParam1 = value;
+                this.RaisePropertyChanged("FullTimeParam1");
+            }
+        }
+
+
         /// <summary>
         /// 验证对象中属性不能为空
         /// </summary>
         private bool ValidationProprety()
         {
-           
+
             if (string.IsNullOrEmpty(DeviceInfoList.DeviceNo))
             {
                 MessageBox.Show("设备编号不能为空!");
@@ -559,12 +830,12 @@ namespace Scada.Client.VM.Modules.BaseInfo
             //规则：1 12位长度
             //      2 前8位必须是数字和字母组合
             //      3 后四位必须是数组
-            if (string.IsNullOrEmpty( DeviceInfoList.DeviceSN))
+            if (string.IsNullOrEmpty(DeviceInfoList.DeviceSN))
             {
                 MessageBox.Show("设备SN号不能为空!");
                 return false;
             }
-            if (DeviceInfoList.DeviceSN.Trim().Length!=12)
+            if (DeviceInfoList.DeviceSN.Trim().Length != 12)
             {
                 MessageBox.Show("请输入12位长度的设备SN号! 如P1234567S1234");
                 return false;
@@ -587,14 +858,14 @@ namespace Scada.Client.VM.Modules.BaseInfo
                         MessageBox.Show("设备SN号中不能有小写字母!格式为:P1234567S1234");
                         return false;
                     }
-                   
+
                 }
                 if (Char.IsNumber(item))
                 {
                     isInt++;
                 }
             }
-            if (isLetter>0&&isInt>0)
+            if (isLetter > 0 && isInt > 0)
             {
                 int tryResult;
                 if (int.TryParse(split2, out tryResult))
@@ -610,11 +881,11 @@ namespace Scada.Client.VM.Modules.BaseInfo
             }
             else
             {
-                MessageBox.Show("您输入的设备SN号前8位必须是数字和字母组合!如P1234567S1234","温馨提示",MessageBoxButton.OK);
+                MessageBox.Show("您输入的设备SN号前8位必须是数字和字母组合!如P1234567S1234", "温馨提示", MessageBoxButton.OK);
                 return false;
             }
             //----------------------------------------------
-            if (DeviceInfoList.InstallPlace.ToString().Length > 20)
+            if (!string.IsNullOrEmpty(deviceInfoList.InstallPlace) && DeviceInfoList.InstallPlace.ToString().Length > 20)
             {
                 MessageBox.Show("安装地点过长，请输入小于20长度!");
                 return false;
@@ -637,7 +908,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
             }
             if (!DeviceInfoList.CurrentModel.HasValue)
             {
-                MessageBox.Show("请选择当前模式!");
+                MessageBox.Show("请选择工作模式!");
                 return false;
             }
             else
@@ -647,43 +918,43 @@ namespace Scada.Client.VM.Modules.BaseInfo
                     case 1:
                         if (!DeviceInfoList.RealTimeParam.HasValue)
                         {
-                            MessageBox.Show("请输入实时模式参数!");
+                            MessageBox.Show("请输入实时采集周期!");
                             return false;
                         }
                         break;
                     case 2:
                         if (!DeviceInfoList.FullTimeParam1.HasValue)
                         {
-                            MessageBox.Show("请输入整点模式参数1!");
+                            MessageBox.Show("请选择温度采集周期!");
                             return false;
                         }
                         if (!DeviceInfoList.FullTimeParam2.HasValue)
                         {
-                            MessageBox.Show("请输入整点模式参数2!");
+                            MessageBox.Show("请选择通讯发送周期!");
                             return false;
                         }
                         break;
                     case 3:
                         if (!DeviceInfoList.OptimizeParam1.HasValue)
                         {
-                            MessageBox.Show("请输入逢变则报模式参数1!");
+                            MessageBox.Show("请选择快速温度采样!");
                             return false;
                         }
                         if (!DeviceInfoList.OptimizeParam2.HasValue)
                         {
-                            MessageBox.Show("请输入逢变则报模式参数2!");
+                            MessageBox.Show("请选择最小发送周期!");
                             return false;
                         }
                         if (!DeviceInfoList.OptimizeParam3.HasValue)
                         {
-                            MessageBox.Show("请输入逢变则报模式参数3!");
+                            MessageBox.Show("请输入温度变化限值!");
                             return false;
                         }
                         break;
                     default:
                         break;
                 }
-               
+
             }
             if (DeviceInfoList.MaintenancePeopleID == new Guid())
             {
@@ -693,600 +964,37 @@ namespace Scada.Client.VM.Modules.BaseInfo
             return true; ;
         }
 
-        ///// <summary>
-        ///// 判断用户输入的值是否合法
-        ///// </summary>
-        //private bool ValidateUIValue()
-        //{
-        //    bool ValidationFlag=true;
-        //    //DeviceInfoList//用这个对象来判断
-        //    if (string.IsNullOrEmpty(DeviceInfoList.DeviceNo))
-        //    {
-        //        ValidationFlag = false;
-        //    }
-
-        //    return ValidationFlag;
-        //}
-
-
-        #region 测试方法
-
-        //public DeviceInfo DeviceInfoSingleChanged { get; set; }
-
-        //public Guid ID
-        //{
-        //    get { return DeviceInfoSingleChanged.ID; }
-
-        //    set
-        //    {
-        //        if (DeviceInfoSingleChanged.ID != value)
-        //        {
-        //            DeviceInfoSingleChanged.ID = value;
-        //            RaisePropertyChanged("ID");
-        //        }
-        //    }
-        //}
-
-        //[Required(ErrorMessage = "设备编号不能为空!")]
-        //public string DeviceNo
-        //{
-        //    get
-        //    {
-        //        if (DeviceInfoSingleChanged == null)
-        //        {
-        //            DeviceInfoSingleChanged = new DeviceInfo();
-        //        }
-        //        return DeviceInfoSingleChanged.DeviceNo;
-        //    }
-        //    set
-        //    {
-        //        DeviceInfoSingleChanged.DeviceNo = value;
-        //        RaisePropertyChanged("DeviceNo");
-        //    }
-        //}
-
-        //public string DeviceMAC
-        //{
-        //    get
-        //    {
-        //        if (DeviceInfoSingleChanged == null)
-        //        {
-        //            DeviceInfoSingleChanged = new DeviceInfo();
-        //        }
-
-        //        return DeviceInfoSingleChanged.DeviceMAC;
-        //    }
-        //    set
-        //    {
-        //        DeviceInfoSingleChanged.DeviceMAC = value;
-        //        RaisePropertyChanged("DeviceMAC");
-
-        //    }
-        //}
-
-        //public string DeviceSN
-        //{
-        //    get
-        //    {
-        //        if (DeviceInfoSingleChanged == null)
-        //        {
-        //            DeviceInfoSingleChanged = new DeviceInfo();
-        //        }
-        //        return DeviceInfoSingleChanged.DeviceSN;
-        //    }
-        //    set
-        //    {
-        //        DeviceInfoSingleChanged.DeviceSN = value;
-        //        RaisePropertyChanged("DeviceSN");
-
-        //    }
-        //}
-
-        #endregion
-
-        //-----------------------
-        #region 设备属性
-
-
-
-        //private Guid id;
-        //public Guid ID
-        //{
-        //    get { return id; }
-        //    set
-        //    {
-        //        id = value;
-        //        this.RaisePropertyChanged("ID");
-        //    }
-        //}
-
-        //private string deviceNo;
-        //[Required(ErrorMessage = "设备编号不能为空!")]
-        //public string DeviceNo
-        //{
-        //    get { return deviceNo; }
-        //    set
-        //    {
-        //        if (deviceNo != value)
-        //        {
-        //            deviceNo = value;
-        //            this.RaisePropertyChanged("DeviceNo");
-
-        //            Validator.ValidateProperty(value, new ValidationContext(this, null, null) { MemberName = "DeviceNo" });
-        //        }
-        //    }
-        //}
-
-        //private string deviceMAC;
-        //public string DeviceMAC
-        //{
-        //    get { return deviceMAC; }
-        //    set
-        //    {
-        //        deviceMAC = value;
-        //        this.RaisePropertyChanged("DeviceMAC");
-        //    }
-        //}
-        ////设备SN号
-        //private string deviceSN;
-        //public string DeviceSN
-        //{
-        //    get { return deviceSN; }
-        //    set
-        //    {
-        //        deviceSN = value;
-        //        this.RaisePropertyChanged("DeviceSN");
-        //    }
-        //}
-
-        ////硬件类型
-        //private string hardType;
-        //public string HardType
-        //{
-        //    get { return hardType; }
-        //    set
-        //    {
-        //        hardType = value;
-        //        this.RaisePropertyChanged("HardType");
-        //    }
-        //}
-        ////生产日期
-        //private DateTime productDate;
-        //public DateTime ProductDate
-        //{
-        //    get { return productDate; }
-        //    set
-        //    {
-        //        productDate = value;
-        //        this.RaisePropertyChanged("ProductDate");
-        //    }
-        //}
-
-        //private string sIMNo;
-        //public string SIMNo
-        //{
-        //    get { return sIMNo; }
-        //    set
-        //    {
-        //        sIMNo = value;
-        //        this.RaisePropertyChanged("SIMNo");
-        //    }
-        //}
-
-        ////管理分区
-        //private Guid manageAreaID;
-        //public Guid ManageAreaID
-        //{
-        //    get { return manageAreaID; }
-        //    set
-        //    {
-        //        manageAreaID = value;
-        //        this.RaisePropertyChanged("ManageAreaID");
-        //    }
-        //}
-
-
-        ////维修人员ID
-        //private Guid maintenancePeopleID;
-        //public Guid MaintenancePeopleID
-        //{
-        //    get { return maintenancePeopleID; }
-        //    set
-        //    {
-        //        maintenancePeopleID = value;
-        //        this.RaisePropertyChanged("MaintenancePeopleID");
-        //    }
-        //}
-
-        ////安装地点
-        //private string installPlace;
-        //public string InstallPlace
-        //{
-        //    get { return installPlace; }
-        //    set
-        //    {
-        //        installPlace = value;
-        //        this.RaisePropertyChanged("InstallPlace");
-        //    }
-        //}
-
-        ////经度
-        //private decimal longitude;
-        //public decimal Longitude
-        //{
-        //    get { return longitude; }
-        //    set
-        //    {
-        //        longitude = value;
-        //        this.RaisePropertyChanged("Longitude");
-        //    }
-        //}
-
-        ////维度
-        //private decimal latitude;
-        //public decimal Latitude
-        //{
-        //    get { return latitude; }
-        //    set
-        //    {
-        //        latitude = value;
-        //        this.RaisePropertyChanged("Latitude");
-        //    }
-        //}
-
-        //private decimal high;
-        //public decimal High
-        //{
-        //    get { return high; }
-        //    set
-        //    {
-        //        high = value;
-        //        this.RaisePropertyChanged("High");
-        //    }
-        //}
-
-        //private string comment;
-        //public string Comment
-        //{
-        //    get { return comment; }
-        //    set
-        //    {
-        //        comment = value;
-        //        this.RaisePropertyChanged("Comment");
-        //    }
-        //}
-
-        ////偏差
-        //private int windage;
-        //public int Windage
-        //{
-        //    get { return windage; }
-        //    set
-        //    {
-        //        windage = value;
-        //        this.RaisePropertyChanged("Windage");
-        //    }
-        //}
-
-        ////硬件版本
-        //private string hardwareVersion;
-        //public string HardwareVersion
-        //{
-        //    get { return hardwareVersion; }
-        //    set
-        //    {
-        //        hardwareVersion = value;
-        //        this.RaisePropertyChanged("HardwareVersion");
-        //    }
-        //}
-
-        ////软件版本
-        //private string softWareVersion;
-        //public string SoftWareVersion
-        //{
-        //    get { return softWareVersion; }
-        //    set
-        //    {
-        //        softWareVersion = value;
-        //        this.RaisePropertyChanged("SoftWareVersion");
-        //    }
-        //}
-
-        ////LCD显示类型
-        //private int lCDScreenDisplayType;
-        //public int LCDScreenDisplayType
-        //{
-        //    get { return lCDScreenDisplayType; }
-        //    set
-        //    {
-        //        lCDScreenDisplayType = value;
-        //        this.RaisePropertyChanged("LCDScreenDisplayType");
-        //    }
-        //}
-
-        //private bool urgencyBtnEnable;
-        //public bool UrgencyBtnEnable
-        //{
-        //    get { return urgencyBtnEnable; }
-        //    set
-        //    {
-        //        urgencyBtnEnable = value;
-        //        this.RaisePropertyChanged("UrgencyBtnEnable");
-        //    }
-        //}
-
-        //private bool inforBtnEnable;
-        //public bool InforBtnEnable
-        //{
-        //    get { return inforBtnEnable; }
-        //    set
-        //    {
-        //        inforBtnEnable = value;
-        //        this.RaisePropertyChanged("InforBtnEnable");
-        //    }
-        //}
-
-        ////主温度设置有效
-
-        //private bool temperature1AlarmValid;
-        //public bool Temperature1AlarmValid
-        //{
-        //    get { return temperature1AlarmValid; }
-        //    set
-        //    {
-        //        temperature1AlarmValid = value;
-        //        this.RaisePropertyChanged("Temperature1AlarmValid");
-        //    }
-        //}
-
-        ////主温度高报警
-        //private decimal temperature1HighAlarm;
-        //public decimal Temperature1HighAlarm
-        //{
-        //    get { return temperature1HighAlarm; }
-        //    set
-        //    {
-        //        temperature1HighAlarm = value;
-        //        this.RaisePropertyChanged("Temperature1HighAlarm");
-        //    }
-        //}
-
-        ////主温度低报警
-        //private decimal temperature1LowAlarm;
-        //public decimal Temperature1LowAlarm
-        //{
-        //    get { return temperature1LowAlarm; }
-        //    set
-        //    {
-        //        temperature1LowAlarm = value;
-        //        this.RaisePropertyChanged("Temperature1LowAlarm");
-        //    }
-        //}
-
-        ////从温度设置有效
-        //private bool temperature2AlarmValid;
-        //public bool Temperature2AlarmValid
-        //{
-        //    get { return temperature2AlarmValid; }
-        //    set
-        //    {
-        //        temperature2AlarmValid = value;
-        //        this.RaisePropertyChanged("Temperature2AlarmValid");
-        //    }
-        //}
-
-        ////从温度高报警
-        //private decimal temperature2HighAlarm;
-        //public decimal Temperature2HighAlarm
-        //{
-        //    get { return temperature2HighAlarm; }
-        //    set
-        //    {
-        //        temperature2HighAlarm = value;
-        //        this.RaisePropertyChanged("Temperature2HighAlarm");
-        //    }
-        //}
-
-        ////从温度低报警
-        //private decimal temperature2LowAlarm;
-        //public decimal Temperature2LowAlarm
-        //{
-        //    get { return temperature2LowAlarm; }
-        //    set
-        //    {
-        //        temperature2LowAlarm = value;
-        //        this.RaisePropertyChanged("Temperature2LowAlarm");
-        //    }
-        //}
-
-        ////湿度设置有效
-        //private bool humidityAlarmValid;
-        //public bool HumidityAlarmValid
-        //{
-        //    get { return humidityAlarmValid; }
-        //    set
-        //    {
-        //        humidityAlarmValid = value;
-        //        this.RaisePropertyChanged("HumidityAlarmValid");
-        //    }
-        //}
-
-        ////湿度高报警
-        //private decimal humidityHighAlarm;
-        //public decimal HumidityHighAlarm
-        //{
-        //    get { return humidityHighAlarm; }
-        //    set
-        //    {
-        //        humidityHighAlarm = value;
-        //        this.RaisePropertyChanged("HumidityHighAlarm");
-        //    }
-        //}
-
-        ////湿度低报警
-        //private decimal humidityLowAlarm;
-        //public decimal HumidityLowAlarm
-        //{
-        //    get { return humidityLowAlarm; }
-        //    set
-        //    {
-        //        humidityLowAlarm = value;
-        //        this.RaisePropertyChanged("HumidityLowAlarm");
-        //    }
-        //}
-
-        ////信号设置有效
-        //private bool signalAlarmValid;
-        //public bool SignalAlarmValid
-        //{
-        //    get { return signalAlarmValid; }
-        //    set
-        //    {
-        //        signalAlarmValid = value;
-        //        this.RaisePropertyChanged("SignalAlarmValid");
-        //    }
-        //}
-        //private int signalHighAlarm;
-        //public int SignalHighAlarm
-        //{
-        //    get { return signalHighAlarm; }
-        //    set
-        //    {
-        //        signalHighAlarm = value;
-        //        this.RaisePropertyChanged("SignalHighAlarm");
-        //    }
-        //}
-
-        //private int signalLowAlarm;
-        //public int SignalLowAlarm
-        //{
-        //    get { return signalLowAlarm; }
-        //    set
-        //    {
-        //        signalLowAlarm = value;
-        //        this.RaisePropertyChanged("SignalLowAlarm");
-        //    }
-        //}
-
-        ////电量设置有效
-        //private bool electricityAlarmValid;
-        //public bool ElectricityAlarmValid
-        //{
-        //    get { return electricityAlarmValid; }
-        //    set
-        //    {
-        //        electricityAlarmValid = value;
-        //        this.RaisePropertyChanged("ElectricityAlarmValid");
-        //    }
-        //}
-
-        //private int electricityHighAlarm;
-        //public int ElectricityHighAlarm
-        //{
-        //    get { return electricityHighAlarm; }
-        //    set
-        //    {
-        //        electricityHighAlarm = value;
-        //        this.RaisePropertyChanged("ElectricityHighAlarm");
-        //    }
-        //}
-
-        //private int electricityLowAlarm;
-        //public int ElectricityLowAlarm
-        //{
-        //    get { return electricityLowAlarm; }
-        //    set
-        //    {
-        //        electricityLowAlarm = value;
-        //        this.RaisePropertyChanged("ElectricityLowAlarm");
-        //    }
-        //}
-
-        ////当前模式
-        //private int currentModel;
-        //public int CurrentModel
-        //{
-        //    get { return currentModel; }
-        //    set
-        //    {
-        //        currentModel = value;
-        //        this.RaisePropertyChanged("CurrentModel");
-        //    }
-        //}
-
-        ////实时模式参数
-        //private int realTimeParam;
-        //public int RealTimeParam
-        //{
-        //    get { return realTimeParam; }
-        //    set
-        //    {
-        //        realTimeParam = value;
-        //        this.RaisePropertyChanged("RealTimeParam");
-        //    }
-        //}
-
-        ////整点模式参数1
-        //private int fullTimeParam1;
-        //public int FullTimeParam1
-        //{
-        //    get { return fullTimeParam1; }
-        //    set
-        //    {
-        //        fullTimeParam1 = value;
-        //        this.RaisePropertyChanged("FullTimeParam1");
-        //    }
-        //}
-
-        ////整点模式参数2
-        //private int fullTimeParam2;
-        //public int FullTimeParam2
-        //{
-        //    get { return fullTimeParam2; }
-        //    set
-        //    {
-        //        fullTimeParam2 = value;
-        //        this.RaisePropertyChanged("FullTimeParam2");
-        //    }
-        //}
-
-        ////逢变则报参数1
-        //private int optimizeParam1;
-        //public int OptimizeParam1
-        //{
-        //    get { return optimizeParam1; }
-        //    set
-        //    {
-        //        optimizeParam1 = value;
-        //        this.RaisePropertyChanged("OptimizeParam1");
-        //    }
-        //}
-
-        ////逢变则报参数1
-        //private int optimizeParam2;
-        //public int OptimizeParam2
-        //{
-        //    get { return optimizeParam2; }
-        //    set
-        //    {
-        //        optimizeParam2 = value;
-        //        this.RaisePropertyChanged("OptimizeParam2");
-        //    }
-        //}
-
-        ////逢变则报参数1
-        //private int optimizeParam3;
-        //public int OptimizeParam3
-        //{
-        //    get { return optimizeParam3; }
-        //    set
-        //    {
-        //        optimizeParam3 = value;
-        //        this.RaisePropertyChanged("OptimizeParam3");
-        //    }
-        //}
-
-        #endregion
-
+        /// <summary>
+        /// 检查选择的是当前的哪种工作模式，选择一种后，其他2种的值清空
+        /// 1.实时采集模式
+        /// 2.整点模式
+        /// 3. 逢变则报模式
+        /// </summary>
+        private void CheckChoosedWhichWorkMode()
+        {
+            switch (DeviceInfoList.CurrentModel)
+            {
+                case 1:
+                    DeviceInfoList.FullTimeParam1 = null;
+                    DeviceInfoList.FullTimeParam2 = null;
+                    DeviceInfoList.OptimizeParam1 = null;
+                    DeviceInfoList.OptimizeParam2 = null;
+                    DeviceInfoList.OptimizeParam3 = null;
+                    break;
+                case 2:
+                    DeviceInfoList.RealTimeParam = null;
+                    DeviceInfoList.OptimizeParam1 = null;
+                    DeviceInfoList.OptimizeParam2 = null;
+                    DeviceInfoList.OptimizeParam3 = null;
+                    break;
+                case 3:
+                    DeviceInfoList.RealTimeParam = null;
+                     DeviceInfoList.FullTimeParam1 = null;
+                    DeviceInfoList.FullTimeParam2 = null;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

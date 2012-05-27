@@ -128,8 +128,7 @@ namespace Scada.BLL.Implement
         public string GetDeviceOnlyDay(String DeviceID)
         {
             List<ChartSource> result = new List<ChartSource>();
-            //DateTime start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-            DateTime start = new DateTime(2012, 3, 24, 0, 0, 0);
+            DateTime start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
             DateTime end = start.AddDays(1);
 
             StringBuilder sSql = new StringBuilder();
@@ -161,6 +160,10 @@ namespace Scada.BLL.Implement
             DateTime start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0);
             DateTime end = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0).AddDays(1);
 
+            //1)创建虚拟日期0值记录
+            List<ChartSource> charTemp = GetVirtualDateValue(start);
+
+            //2)取到本月真实值记录
             StringBuilder sSql = new StringBuilder();
             sSql.Append(@" Select Convert(varchar(10), t.UpdateTime,120) +' 00:00:00' As UpdateDate,
                                 Avg(t.Temperature1) As Temperature from DeviceRealTime t
@@ -182,8 +185,28 @@ namespace Scada.BLL.Implement
                     }
                 );
             }
-            return BinaryObjTransfer.JsonSerializer<List<ChartSource>>(result);
+
+            //3)合并记录
+            this.GetChartSourceCheck(charTemp, result);
+
+            return BinaryObjTransfer.JsonSerializer<List<ChartSource>>(charTemp);
         }
+
+        private List<ChartSource> GetVirtualDateValue(DateTime start)
+        {
+            List<ChartSource> result = new List<ChartSource>();
+            for (int i = 0; i < 30; i++)
+            {
+                result.Add(new ChartSource
+                {
+                    DeviceDate = start.AddDays(i),
+                    DeviceTemperature = 0
+                });
+            }
+            return result;
+        }
+
+
 
         #endregion
 

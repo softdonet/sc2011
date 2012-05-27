@@ -131,12 +131,18 @@ namespace Scada.BLL.Implement
             DateTime start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
             DateTime end = start.AddDays(1);
 
+            //1)创建虚拟日期0值记录
+            List<ChartSource> charTemp = GetChartSourceIniValue(start, 0);
+
+            //2)取到本月真实值记录
             StringBuilder sSql = new StringBuilder();
-            sSql.Append(@" Select t.UpdateTime,t.Temperature1 from DeviceRealTime t
+            sSql.Append(@" Select Convert(varchar(14), t.UpdateTime,120) +'00:00' As UpdateTime,
+                                    Avg(t.Temperature1) As Temperature1 from DeviceRealTime t
                                 Where t.DeviceID='" + DeviceID.ToUpper() + "'");
             sSql.Append(@" And t.UpdateTime >='" + Convert.ToDateTime(start).ToString("yyyy-MM-dd HH:mm:ss") + "'");
             sSql.Append(@" And t.UpdateTime <'" + Convert.ToDateTime(end).ToString("yyyy-MM-dd HH:mm:ss") + "'");
-            sSql.Append(@" Order by t.UpdateTime");
+            sSql.Append(@" Group by Convert(varchar(14), t.UpdateTime,120) +'00:00'");
+            sSql.Append(@" Order by Convert(varchar(14), t.UpdateTime,120) +'00:00'");
 
             DataTable dt = SqlHelper.ExecuteDataTable(sSql.ToString());
             if (dt == null || dt.Rows.Count == 0) { return String.Empty; }
@@ -150,7 +156,11 @@ namespace Scada.BLL.Implement
                     }
                 );
             }
-            return BinaryObjTransfer.JsonSerializer<List<ChartSource>>(result);
+
+            //3)合并记录
+            this.GetChartSourceCheck(charTemp, result);
+
+            return BinaryObjTransfer.JsonSerializer<List<ChartSource>>(charTemp);
         }
 
         //设备历史温度
@@ -161,7 +171,7 @@ namespace Scada.BLL.Implement
             DateTime end = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0).AddDays(1);
 
             //1)创建虚拟日期0值记录
-            List<ChartSource> charTemp = GetVirtualDateValue(start);
+            List<ChartSource> charTemp = GetChartSourceIniValue(start, 1);
 
             //2)取到本月真实值记录
             StringBuilder sSql = new StringBuilder();
@@ -191,22 +201,6 @@ namespace Scada.BLL.Implement
 
             return BinaryObjTransfer.JsonSerializer<List<ChartSource>>(charTemp);
         }
-
-        private List<ChartSource> GetVirtualDateValue(DateTime start)
-        {
-            List<ChartSource> result = new List<ChartSource>();
-            for (int i = 0; i < 30; i++)
-            {
-                result.Add(new ChartSource
-                {
-                    DeviceDate = start.AddDays(i),
-                    DeviceTemperature = 0
-                });
-            }
-            return result;
-        }
-
-
 
         #endregion
 
@@ -1412,7 +1406,7 @@ namespace Scada.BLL.Implement
                 string where = GetDevicEntityKey(DeviceType, DeviceID);
                 end = DateDiffTime(ref start, DateSelMode, ref groupType);
                 List<ChartSource> chartSource = GetDeviceDateTemperature(start, end, groupType, where);
-                List<ChartSource> chartIniData = GetChartSourceIniValue(start, end, DateSelMode);
+                List<ChartSource> chartIniData = GetChartSourceIniValue(start, DateSelMode);
                 if (chartSource != null && chartSource.Count > 0)
                     this.GetChartSourceCheck(chartIniData, chartSource);
                 source.Add(item, chartIniData);
@@ -1430,7 +1424,7 @@ namespace Scada.BLL.Implement
         }
 
 
-        private List<ChartSource> GetChartSourceIniValue(DateTime start, DateTime end, Int32 dateSelMode)
+        private List<ChartSource> GetChartSourceIniValue(DateTime start, Int32 dateSelMode)
         {
             List<ChartSource> result = new List<ChartSource>();
 

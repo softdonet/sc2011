@@ -81,7 +81,7 @@ namespace Scada.BLL.Implement
         public string GetSystemGlobalParameter()
         {
             SystemGlobalParameter result = new SystemGlobalParameter();
-            String sSql = " Select * from SystemGlobalParamete";
+            String sSql = " Select * from PublicParameter";
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);
             if (ds == null || ds.Rows.Count == 0) { return string.Empty; }
             foreach (DataRow item in ds.Rows)
@@ -105,7 +105,7 @@ namespace Scada.BLL.Implement
             if (sysParMan == null || sysParMan.Count == 0) { return result; }
             foreach (SystemParameterManage item in sysParMan)
             {
-                String sSql = String.Format(@" Update SystemParameterManage 
+                String sSql = String.Format(@" Update PublicParameter 
                                                     Set Value ={0} 
                                                     Where ID='{1}' ;",
                                                     item.ParameterValue,
@@ -132,7 +132,7 @@ namespace Scada.BLL.Implement
             Boolean result = false;
             SystemGlobalParameter sysGloPar = BinaryObjTransfer.JsonDeserialize<SystemGlobalParameter>(systemGlobalParameter);
             if (sysGloPar == null) { return result; }
-            string sSql = @" Update SystemGlobalParamete Set ConnectType =@ConnectType,
+            string sSql = @" Update PublicParameter Set ConnectType =@ConnectType,
                                         ConnectName=@ConnectName,MainDNS=@MainDNS,
                                         SecondDNS=@SecondDNS,Domain=@Domain,Port=@Port";
             List<SqlParameter> sSqlWhere = new List<SqlParameter>();

@@ -18,6 +18,7 @@ using Scada.Model.Entity;
 using Scada.Client.SL.ScadaDeviceService;
 using Scada.Client.SL.CommClass;
 using Scada.Client.SL.SystemManagerService;
+using Scada.Utility.Common.SL;
 
 
 
@@ -78,11 +79,58 @@ namespace Scada.Client.SL.Modules.BaseInfo
         private void butOk_Click(object sender, RoutedEventArgs e)
         {
 
+
+            //Check ConnectName
+            string connectName = this.txtConnectName.Text;
+            if (connectName.Length > 0)
+            {
+                if (!RegularValidate.JudgeLetterIsValid(connectName))
+                {
+                    ScadaMessageBox.ShowWarnMessage("您输入的信息必须是字母", "提示信息");
+                    this.txtConnectName.Focus();
+                    return;
+                }
+            }
+
+            //Check DNS
+            string dns = this.txtMainDNS.Text;
+            if (dns.Length > 0)
+            {
+                if (!RegularValidate.JudgeIPAddressIsValid(dns))
+                {
+                    ScadaMessageBox.ShowWarnMessage("您输入的信息不符合IP", "提示信息");
+                    this.txtMainDNS.Focus();
+                    return;
+                }
+            }
+
+            string secdns = this.txtSecondDNS.Text;
+            if (secdns.Length > 0)
+            {
+                if (!RegularValidate.JudgeIPAddressIsValid(secdns))
+                {
+                    ScadaMessageBox.ShowWarnMessage("您输入的信息不符合备用IP", "提示信息");
+                    this.txtSecondDNS.Focus();
+                    return;
+                }
+            }
+
+            string domain = this.txtDomain.Text;
+            if (domain.Length > 0)
+            {
+                if (!RegularValidate.JudgeRealmNameIsValid(domain))
+                {
+                    ScadaMessageBox.ShowWarnMessage("您输入的信息不符合域名", "提示信息");
+                    this.txtDomain.Focus();
+                    return;
+                }
+            }
+
             _sysGlobalPar.ConnectType = this.cmbConnectType.SelectedIndex;
-            _sysGlobalPar.ConnectName = this.txtConnectName.Text;
-            _sysGlobalPar.MainDNS = this.txtMainDNS.Text;
-            _sysGlobalPar.SecondDNS = this.txtSecondDNS.Text;
-            _sysGlobalPar.Domain = this.txtDomain.Text;
+            _sysGlobalPar.ConnectName = connectName;
+            _sysGlobalPar.MainDNS = dns;
+            _sysGlobalPar.SecondDNS = secdns;
+            _sysGlobalPar.Domain = domain;
             _sysGlobalPar.Port = Convert.ToInt32(this.txtPort.Value);
 
             string sysGlobal = BinaryObjTransfer.BinarySerialize(this._sysGlobalPar);

@@ -92,6 +92,7 @@ namespace Scada.BLL.Implement
                 result.SecondDNS = item["SecondDNS"].ToString();
                 result.Domain = item["Domain"].ToString();
                 result.Port = Convert.ToInt32(item["Port"]);
+                result.Broadcast = item["Broadcast"].ToString();
             }
             return BinaryObjTransfer.JsonSerializer<SystemGlobalParameter>(result);
         }
@@ -134,7 +135,7 @@ namespace Scada.BLL.Implement
             if (sysGloPar == null) { return result; }
             string sSql = @" Update PublicParameter Set ConnectType =@ConnectType,
                                         ConnectName=@ConnectName,MainDNS=@MainDNS,
-                                        SecondDNS=@SecondDNS,Domain=@Domain,Port=@Port";
+                                        SecondDNS=@SecondDNS,Domain=@Domain,Port=@Port,Broadcast=@Broadcast";
             List<SqlParameter> sSqlWhere = new List<SqlParameter>();
 
             sSqlWhere.Add(new SqlParameter { ParameterName = "@ConnectType", DbType = DbType.Int32, Value = sysGloPar.ConnectType });
@@ -143,6 +144,7 @@ namespace Scada.BLL.Implement
             sSqlWhere.Add(new SqlParameter { ParameterName = "@SecondDNS", DbType = DbType.String, Value = sysGloPar.SecondDNS });
             sSqlWhere.Add(new SqlParameter { ParameterName = "@Domain", DbType = DbType.String, Value = sysGloPar.Domain });
             sSqlWhere.Add(new SqlParameter { ParameterName = "@Port", DbType = DbType.Int32, Value = sysGloPar.Port });
+            sSqlWhere.Add(new SqlParameter { ParameterName = "@Broadcast", DbType = DbType.String, Value = sysGloPar.Broadcast });
 
             try
             {

@@ -813,7 +813,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
         /// </summary>
         private bool ValidationProprety()
         {
-
+            //设备编号
             if (string.IsNullOrEmpty(DeviceInfoList.DeviceNo))
             {
                 MessageBox.Show("设备编号不能为空!");
@@ -825,6 +825,8 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 MessageBox.Show("请输入8位长度的设备编号! 如P-123456");
                 return false;
             }
+
+            #region 设备SN号
 
             //判断设备SN号：
             //规则：1 12位长度
@@ -858,7 +860,6 @@ namespace Scada.Client.VM.Modules.BaseInfo
                         MessageBox.Show("设备SN号中不能有小写字母!格式为:P1234567S1234");
                         return false;
                     }
-
                 }
                 if (Char.IsNumber(item))
                 {
@@ -884,10 +885,13 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 MessageBox.Show("您输入的设备SN号前8位必须是数字和字母组合!如P1234567S1234", "温馨提示", MessageBoxButton.OK);
                 return false;
             }
+            #endregion
+
             //----------------------------------------------
-            if (!string.IsNullOrEmpty(deviceInfoList.InstallPlace) && DeviceInfoList.InstallPlace.ToString().Length > 20)
+            //安装地点
+            if (!string.IsNullOrEmpty(deviceInfoList.InstallPlace) && DeviceInfoList.InstallPlace.ToString().Length > 15)
             {
-                MessageBox.Show("安装地点过长，请输入小于20长度!");
+                MessageBox.Show("安装地点过长，请输入小于15长度!");
                 return false;
             }
             decimal result;
@@ -901,6 +905,77 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 MessageBox.Show("维度，请填写正确的格式!");
                 return false;
             }
+            if (DeviceInfoList.High != null && !decimal.TryParse(DeviceInfoList.High.ToString(), out result))
+            {
+                MessageBox.Show("高度，请填写正确的格式!");
+                return false;
+            }
+            int value;
+            if (DeviceInfoList.Windage != null && int.TryParse(DeviceInfoList.Windage.ToString(), out value))
+            {
+                MessageBox.Show("偏差，请填写正确的格式!");
+                return false;
+            }
+            //主温度
+            if (DeviceInfoList.Temperature1HighAlarm != null && !decimal.TryParse(DeviceInfoList.Temperature1HighAlarm.ToString(), out result))
+            {
+                MessageBox.Show("主温度高报警值，请填写正确的格式!");
+                return false;
+            }
+            if (DeviceInfoList.Temperature1LowAlarm != null && !decimal.TryParse(DeviceInfoList.Temperature1LowAlarm.ToString(), out result))
+            {
+                MessageBox.Show("主温度低报警值，请填写正确的格式!");
+                return false;
+            }
+            //从温度
+            if (DeviceInfoList.Temperature2HighAlarm != null && !decimal.TryParse(DeviceInfoList.Temperature2HighAlarm.ToString(), out result))
+            {
+                MessageBox.Show("从温度高报警值，请填写正确的格式!");
+                return false;
+            }
+
+            if (DeviceInfoList.Temperature2LowAlarm != null && !decimal.TryParse(DeviceInfoList.Temperature2LowAlarm.ToString(), out result))
+            {
+                MessageBox.Show("从温度低报警值，请填写正确的格式!");
+                return false;
+            }
+            //湿度
+            if (DeviceInfoList.HumidityHighAlarm != null && !decimal.TryParse(DeviceInfoList.HumidityHighAlarm.ToString(), out result))
+            {
+                MessageBox.Show("湿度高报警值，请填写正确的格式!");
+                return false;
+            }
+
+            if (DeviceInfoList.HumidityLowAlarm != null && !decimal.TryParse(DeviceInfoList.HumidityLowAlarm.ToString(), out result))
+            {
+                MessageBox.Show("湿度低报警值，请填写正确的格式!");
+                return false;
+            }
+            //信号
+            if (DeviceInfoList.SignalHighAlarm != null && !decimal.TryParse(DeviceInfoList.SignalHighAlarm.ToString(), out result))
+            {
+                MessageBox.Show("信号高报警值，请填写正确的格式!");
+                return false;
+            }
+
+            if (DeviceInfoList.SignalLowAlarm != null && !decimal.TryParse(DeviceInfoList.SignalLowAlarm.ToString(), out result))
+            {
+                MessageBox.Show("信号低报警值，请填写正确的格式!");
+                return false;
+            }
+            //电量
+            if (DeviceInfoList.ElectricityHighAlarm != null && !decimal.TryParse(DeviceInfoList.ElectricityHighAlarm.ToString(), out result))
+            {
+                MessageBox.Show("电量高报警值，请填写正确的格式!");
+                return false;
+            }
+
+            if (DeviceInfoList.ElectricityLowAlarm != null && !decimal.TryParse(DeviceInfoList.ElectricityLowAlarm.ToString(), out result))
+            {
+                MessageBox.Show("电量低报警值，请填写正确的格式!");
+                return false;
+            }
+
             if (!DeviceInfoList.LCDScreenDisplayType.HasValue)
             {
                 MessageBox.Show("请选择液晶屏显示类型!");
@@ -961,8 +1036,9 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 MessageBox.Show("请选择维护人员!");
                 return false;
             }
-            return true; ;
+            return true;
         }
+        
 
         /// <summary>
         /// 检查选择的是当前的哪种工作模式，选择一种后，其他2种的值清空

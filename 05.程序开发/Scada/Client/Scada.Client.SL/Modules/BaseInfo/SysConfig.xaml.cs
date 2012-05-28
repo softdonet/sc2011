@@ -67,6 +67,9 @@ namespace Scada.Client.SL.Modules.BaseInfo
             //                                    (scadaDeviceServiceSoapClient_GetSystemParameterManageCompleted);
             //this._systemManagerServiceSoapClient.GetSystemParameterManageAsync();
 
+            this._systemManagerServiceSoapClient.UpdateSystemGlobalParameterCompleted
+               += new EventHandler<UpdateSystemGlobalParameterCompletedEventArgs>
+                   (scadaDeviceServiceSoapClient_UpdateSystemGlobalParameterCompleted);
 
         }
 
@@ -117,17 +120,17 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
 
             string domain = this.txtDomain.Text;
-           /*
-           if (domain.Length > 0)
-           {
-               if (!RegularValidate.JudgeRealmNameIsValid(domain))
-               {
-                   ScadaMessageBox.ShowWarnMessage("您输入的信息不符合域名", "提示信息");
-                   this.txtDomain.Focus();
-                   return;
-               }
-           }
-           */
+            /*
+            if (domain.Length > 0)
+            {
+                if (!RegularValidate.JudgeRealmNameIsValid(domain))
+                {
+                    ScadaMessageBox.ShowWarnMessage("您输入的信息不符合域名", "提示信息");
+                    this.txtDomain.Focus();
+                    return;
+                }
+            }
+            */
             _sysGlobalPar.ConnectType = this.cmbConnectType.SelectedIndex;
             _sysGlobalPar.ConnectName = connectName;
             _sysGlobalPar.MainDNS = dns;
@@ -136,9 +139,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
             _sysGlobalPar.Port = Convert.ToInt32(this.txtPort.Value);
 
             string sysGlobal = BinaryObjTransfer.BinarySerialize(this._sysGlobalPar);
-            this._systemManagerServiceSoapClient.UpdateSystemGlobalParameterCompleted
-                += new EventHandler<UpdateSystemGlobalParameterCompletedEventArgs>
-                    (scadaDeviceServiceSoapClient_UpdateSystemGlobalParameterCompleted);
+
             this._systemManagerServiceSoapClient.UpdateSystemGlobalParameterAsync(sysGlobal);
 
         }

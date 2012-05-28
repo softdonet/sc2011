@@ -115,17 +115,19 @@ namespace Scada.Client.SL.Modules.BaseInfo
                 }
             }
 
-            string domain = this.txtDomain.Text;
-            if (domain.Length > 0)
-            {
-                if (!RegularValidate.JudgeRealmNameIsValid(domain))
-                {
-                    ScadaMessageBox.ShowWarnMessage("您输入的信息不符合域名", "提示信息");
-                    this.txtDomain.Focus();
-                    return;
-                }
-            }
 
+            string domain = this.txtDomain.Text;
+           /*
+           if (domain.Length > 0)
+           {
+               if (!RegularValidate.JudgeRealmNameIsValid(domain))
+               {
+                   ScadaMessageBox.ShowWarnMessage("您输入的信息不符合域名", "提示信息");
+                   this.txtDomain.Focus();
+                   return;
+               }
+           }
+           */
             _sysGlobalPar.ConnectType = this.cmbConnectType.SelectedIndex;
             _sysGlobalPar.ConnectName = connectName;
             _sysGlobalPar.MainDNS = dns;

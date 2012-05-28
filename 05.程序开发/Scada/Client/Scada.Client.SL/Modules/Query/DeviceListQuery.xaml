@@ -33,10 +33,10 @@
                 <telerik:GridViewDataColumn Header="设备编号"   IsFilterable="False"   HeaderTextAlignment="Center"  Width="150" DataMemberBinding="{Binding DeviceNo}" />
                 <telerik:GridViewDataColumn Header="安装地点"  IsFilterable="False"  HeaderTextAlignment="Center" Width="15*" DataMemberBinding="{Binding InstallPlace}" />
                 <telerik:GridViewDataColumn Header="更新时间"   IsFilterable="False" HeaderTextAlignment="Center" TextAlignment="Center"   Width="180" DataMemberBinding="{Binding UpdateTime}" />
-                <telerik:GridViewDataColumn Header="温度"   IsFilterable="False" HeaderTextAlignment="Center" TextAlignment="Center" Width="120" DataMemberBinding="{Binding Temperature}" />
-                <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=electricity}"  Width="120" ImageHeight="18" ImageWidth="18"
+                <telerik:GridViewDataColumn Header="温度"   IsFilterable="False" HeaderTextAlignment="Center" TextAlignment="Center" Width="120" DataMemberBinding="{Binding Temperature1}" />
+                <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=electricity}"  Width="100" ImageHeight="18" ImageWidth="18"
 											Header="电量" HeaderTextAlignment="Center"/>
-                <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=signal}"  Width="120" ImageHeight="18" ImageWidth="18"
+                <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=signal}"  Width="100" ImageHeight="18" ImageWidth="18"
 											Header="信号强度" HeaderTextAlignment="Center"/>
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>

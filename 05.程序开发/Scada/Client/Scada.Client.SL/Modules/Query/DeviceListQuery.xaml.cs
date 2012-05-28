@@ -72,45 +72,59 @@ namespace Scada.Client.SL.Modules.Query
                 case "electricity":
                     if (currentValue.Electricity.HasValue)
                     {
-                        switch (currentValue.Electricity.Value)
+                        //电量 0--400 //界面量程(0--4)
+                        if (currentValue.Electricity.Value < 50)
                         {
-                            case 1:
-                                img = "electric1.png";
-                                break;
-                            case 2:
-                                img = "electric2.png";
-                                break;
-                            case 3:
-                                img = "electric3.png";
-                                break;
-                            case 4:
-                                img = "electric4.png";
-                                break;
+                            img = "electric0.png";
                         }
-                        break;
+                        else if (currentValue.Electricity.Value >= 50 && currentValue.Electricity.Value < 100)
+                        {
+                            img = "electric1.png";
+                        }
+                        else if (currentValue.Electricity.Value >= 100 && currentValue.Electricity.Value < 200)
+                        {
+                            img = "electric2.png";
+                        }
+                        else if (currentValue.Electricity.Value >= 200 && currentValue.Electricity.Value < 300)
+                        {
+                            img = "electric3.png";
+                        }
+                        else if (currentValue.Electricity.Value >= 300)
+                        {
+                            img = "electric4.png";
+                        }
+                    }
+                    else
+                    {
+                        img = "electric0.png";
                     }
                     break;
                 case "signal":
                     if (currentValue.Signal.HasValue)
                     {
-                        switch (currentValue.Signal.Value)
+                        if (currentValue.Signal.Value < 50)
                         {
-                            case 1:
-                                img = "signal1.png";
-                                break;
-                            case 2:
-                                img = "signal2.png";
-                                break;
-                            case 3:
-                                img = "signal3.png";
-                                break;
-                            case 4:
-                                img = "signal4.png";
-                                break;
+                            img = "signal1.png";
                         }
-                        break;
+                        else if (currentValue.Signal.Value >= 50 && currentValue.Signal.Value < 200)
+                        {
+                            img = "signal2.png";
+                        }
+                        else if (currentValue.Signal.Value >= 200 && currentValue.Signal.Value < 300)
+                        {
+                            img = "signal3.png";
+                        }
+                        else if (currentValue.Signal.Value >= 300)
+                        {
+                            img = "signal4.png";
+                        }
+                    }
+                    else
+                    {
+                        img = "signal1.png";
                     }
                     break;
+                       
             }
             string resourcePath = "/Scada.Client.SL;component/Images/" + img;
             Uri resourceUri = new Uri(resourcePath, UriKind.Relative);

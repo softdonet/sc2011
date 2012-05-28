@@ -63,7 +63,6 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="CommClass\Feature.cs" />
     <Compile Include="DaysGraph.xaml.cs">
       <DependentUpon>DaysGraph.xaml</DependentUpon>

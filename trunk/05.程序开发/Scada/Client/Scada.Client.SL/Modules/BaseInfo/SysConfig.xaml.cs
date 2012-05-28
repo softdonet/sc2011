@@ -34,7 +34,6 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
         #region 变量声明
 
-        private List<SystemParameterManage> _sysParManage;
 
         private SystemGlobalParameter _sysGlobalPar;
 

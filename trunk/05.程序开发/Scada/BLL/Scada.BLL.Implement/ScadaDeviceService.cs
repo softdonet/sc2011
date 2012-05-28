@@ -1419,6 +1419,7 @@ namespace Scada.BLL.Implement
             foreach (ChartSource item in SourceTwo)
             {
                 ChartSource source = SourceOne.Find(x => x.DeviceDate == item.DeviceDate);
+                if (source == null) { continue; }
                 source.DeviceTemperature = item.DeviceTemperature;
             }
         }

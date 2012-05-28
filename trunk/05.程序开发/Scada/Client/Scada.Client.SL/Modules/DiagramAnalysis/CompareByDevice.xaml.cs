@@ -145,11 +145,23 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
 
         private void LoadChartSource()
         {
-
-            if (_starDate > _endDate)
+            TimeSpan ts = _endDate - _starDate;
+            DateSelMode dateSelMode = (DateSelMode)_dateSelectMode;
+            if (dateSelMode == DateSelMode.天)
             {
-                ScadaMessageBox.ShowWarnMessage("开始时间应小于或等结束时间！！！", "重要提示");
-                return;
+                if (ts.TotalHours < 2)
+                {
+                    ScadaMessageBox.ShowWarnMessage("开始时间应小于或等结束时间！！！", "重要提示");
+                    return;
+                }
+            }
+            else if (dateSelMode == DateSelMode.月)
+            {
+                if (ts.TotalDays < 2)
+                {
+                    ScadaMessageBox.ShowWarnMessage("开始时间应小于或等结束时间！！！", "重要提示");
+                    return;
+                }
             }
 
             string jsonDevices = BinaryObjTransfer.BinarySerialize(_selDeviceTreeNode);

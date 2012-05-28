@@ -145,6 +145,13 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
 
         private void LoadChartSource()
         {
+
+            if (_starDate > _endDate)
+            {
+                ScadaMessageBox.ShowWarnMessage("开始时间应小于或等结束时间！！！", "重要提示");
+                return;
+            }
+
             string jsonDevices = BinaryObjTransfer.BinarySerialize(_selDeviceTreeNode);
             this._scadaDeviceServiceSoapClient.GetSameDateTemperatureDiffDeviceAsync(this._dateSelectMode, this._starDate, this._endDate, jsonDevices);
         }
@@ -203,7 +210,7 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
                     datapoint.ToolTipText = string.Format("{0},{1}", item.DeviceDate.ToString("yyyy-MM-dd"), datapoint.YValue);
                 else if (dateSelMode == 2)
                     datapoint.ToolTipText = string.Format("{0},{1}", item.DeviceDate.ToString("yyyy-MM"), datapoint.YValue);
-                
+
 
                 dataSeries.DataPoints.Add(datapoint);
             }

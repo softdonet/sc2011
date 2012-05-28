@@ -1423,6 +1423,75 @@ namespace Scada.BLL.Implement
             }
         }
 
+        private List<ChartSource> GetChartSourceIniValue(DateTime start, DateTime end, Int32 dateSelMode)
+        {
+            List<ChartSource> result = new List<ChartSource>();
+            Int32 dateDiffNum = 0;
+            TimeSpan ts = end - start;
+            if (dateSelMode == 0)
+            {
+                dateDiffNum = (Int32)ts.TotalHours;
+                for (int i = 0; i < dateDiffNum; i++)
+                {
+                    result.Add(new ChartSource { DeviceDate = start.AddHours(i), DeviceTemperature = 0 });
+                }
+            }
+            else if (dateSelMode == 1)
+            {
+                dateDiffNum = (Int32)ts.TotalDays;
+                for (int i = 0; i < dateDiffNum; i++)
+                {
+                    result.Add(new ChartSource { DeviceDate = start.AddDays(i), DeviceTemperature = 0 });
+                }
+            }
+            else if (dateSelMode == 2)
+            {
+                dateDiffNum = (int)GetMonthSpan(start, end);
+                for (int i = 0; i < 12; i++)
+                {
+                    result.Add(new ChartSource { DeviceDate = start.AddMonths(i), DeviceTemperature = 0 });
+                }
+            }
+
+            return result;
+        }
+
+        public static double GetMonthSpan(DateTime fBeginDateTime, DateTime fEndDateTime)
+        {
+
+            if (fBeginDateTime > fEndDateTime)
+            {
+                throw new Exception("开始时间应小于或等结束时间");
+            }
+
+            // 计算整年的情况
+            int prefullYear = fEndDateTime.Year - fBeginDateTime.Year;
+            int fullYear = (fBeginDateTime.AddYears(prefullYear) > fEndDateTime)
+                ? prefullYear - 1 : prefullYear;
+            int fullMonth = fullYear * 12;
+            DateTime curBeginDate = fBeginDateTime.AddMonths(fullMonth);
+
+            while (curBeginDate < fEndDateTime)
+            {
+                DateTime curEndDate = curBeginDate.AddMonths(1);
+                if (curEndDate > fEndDateTime)
+                {
+                    double days = (fEndDateTime - curBeginDate).TotalDays;
+                    double fullDaysOfMonth = (curBeginDate.AddMonths(1) - curBeginDate).TotalDays;
+                    double p = days / fullDaysOfMonth;
+                    return fullMonth + p;
+                }
+                else
+                {
+                    curBeginDate = curEndDate;
+                    fullMonth++;
+                }
+            }
+
+            return fullMonth;
+        }
+
+
 
         private List<ChartSource> GetChartSourceIniValue(DateTime start, Int32 dateSelMode)
         {
@@ -1553,8 +1622,18 @@ namespace Scada.BLL.Implement
             List<DeviceTree> deviceTrees = BinaryObjTransfer.JsonDeserialize<List<DeviceTree>>(deviceInfo);
             foreach (DeviceTree devTree in deviceTrees)
             {
+
+                //1)创建虚拟日期记录
+                List<ChartSource> charTemp = GetChartSourceIniValue(starDate, endDate, dataSelMode);
+
+                //2)取到真实值记录
                 string where = GetDevicEntityKey((int)devTree.Level, devTree.ID);
-                source.Add(devTree, GetDeviceDateTemperature(starDate, endDate, groupType, where));
+                List<ChartSource> result = GetDeviceDateTemperature(starDate, endDate, groupType, where);
+
+                //3)合并记录
+                this.GetChartSourceCheck(charTemp, result);
+
+                source.Add(devTree, charTemp);
             }
             return BinaryObjTransfer.JsonSerializer<Dictionary<DeviceTree, List<ChartSource>>>(source);
 

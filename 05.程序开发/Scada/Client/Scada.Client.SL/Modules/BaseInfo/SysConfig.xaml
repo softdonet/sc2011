@@ -23,8 +23,8 @@
                     </Border.Background>
 
                     <Border BorderThickness="1" CornerRadius="5" Margin="2">
-                        <Grid Background="AliceBlue">
-                            <Grid Height="196" Width="294"  Background="LightSteelBlue" ShowGridLines="True" HorizontalAlignment="Left" Margin="46,23,0,0" Name="grid1" VerticalAlignment="Top" >
+                        <Grid Background="AliceBlue" >
+                            <!--<Grid Height="196" Width="294"  Background="LightSteelBlue" ShowGridLines="True" HorizontalAlignment="Left" Margin="46,23,0,0" Name="grid1" VerticalAlignment="Top" >
                                 <TextBlock Height="23" HorizontalAlignment="Left" Margin="52,21,0,0" Name="textBlock1" Text="系统预警超时:" VerticalAlignment="Top" />
                                 <telerik:RadMaskedTextBox MaskType="Numeric" Mask="d" Height="23" HorizontalAlignment="Left" Name="txtEarlyTimeOut" VerticalAlignment="Top"  Margin="128,18,0,0" Width="120"/>
                                 
@@ -39,8 +39,8 @@
                                 
                                 <Button Content="保存" Height="23" HorizontalAlignment="Left" Margin="51,157,0,0" Name="btnSave" VerticalAlignment="Top" Width="75" Click="btnSave_Click" />
                                 <Button Content="关闭" Height="23" HorizontalAlignment="Left" Margin="168,157,0,0" Name="btnClose" VerticalAlignment="Top" Width="75" Click="btnClose_Click" />
-                            </Grid>
-                            <Grid Height="196" Width="294"  Background="LightSteelBlue" ShowGridLines="True" HorizontalAlignment="Left" Margin="372,23,0,0" Name="grid2" VerticalAlignment="Top">
+                            </Grid>-->
+                            <Grid Height="196" Width="294"  Background="LightSteelBlue" ShowGridLines="True" HorizontalAlignment="Center" Margin="0,51,0,0" Name="grid2" VerticalAlignment="Top">
 
                                 <TextBlock HorizontalAlignment="Left" Margin="65,20,0,0" Name="textBlock9" Text="连接方式：" Height="18" VerticalAlignment="Top" />
                                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="127,15,0,0" Name="cmbConnectType" SelectedIndex="0" VerticalAlignment="Top" Width="120">

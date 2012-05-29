@@ -65,6 +65,13 @@ namespace Scada.Client.SL.Modules.Device
                     if (detailsPageViewModel.DeviceInfo != null)
                         this.myTemperature.Temperature = detailsPageViewModel.DeviceInfo.RealTimeTemperature;
                 }
+
+                if (e.PropertyName == "MaintenancePeople")
+                {
+                    if (detailsPageViewModel.HeadImg != null)
+                        this.headImg.Source = detailsPageViewModel.HeadImg;
+                }
+
             };
         }
 

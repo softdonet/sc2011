@@ -54,11 +54,8 @@ namespace Scada.Client.SL.CommClass
         static ScadaDeviceServiceSoapClient _sds = null;
         public static ScadaDeviceServiceSoapClient GetScadaDeviceService()
         {
-            if (_sds == null)
-            {
-                System.ServiceModel.EndpointAddress address = new System.ServiceModel.EndpointAddress(GetAbsoluteUri(scadaDeviceServiceEndpointAddress));
-                _sds = new ScadaDeviceServiceSoapClient("ScadaDeviceServiceSoap", address);
-            }
+            System.ServiceModel.EndpointAddress address = new System.ServiceModel.EndpointAddress(GetAbsoluteUri(scadaDeviceServiceEndpointAddress));
+            _sds = new ScadaDeviceServiceSoapClient("ScadaDeviceServiceSoap", address);
             return _sds;
         }
 
@@ -69,11 +66,8 @@ namespace Scada.Client.SL.CommClass
         static SystemManagerServiceSoapClient _sms = null;
         public static SystemManagerServiceSoapClient GetSystemManagerService()
         {
-            if (_sms == null)
-            {
-                System.ServiceModel.EndpointAddress address = new System.ServiceModel.EndpointAddress(GetAbsoluteUri(systemManagerServiceEndpointAddress));
-                _sms = new SystemManagerServiceSoapClient("SystemManagerServiceSoap", address);
-            }
+            System.ServiceModel.EndpointAddress address = new System.ServiceModel.EndpointAddress(GetAbsoluteUri(systemManagerServiceEndpointAddress));
+            _sms = new SystemManagerServiceSoapClient("SystemManagerServiceSoap", address);
             return _sms;
         }
         /// <summary>

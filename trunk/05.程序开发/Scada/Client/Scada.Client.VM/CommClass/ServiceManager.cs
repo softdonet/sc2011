@@ -53,11 +53,8 @@ namespace Scada.Client.VM.CommClass
         static ScadaDeviceServiceSoapClient _sds = null;
         public static ScadaDeviceServiceSoapClient GetScadaDeviceService()
         {
-            if (_sds == null)
-            {
-                System.ServiceModel.EndpointAddress address = new System.ServiceModel.EndpointAddress(GetAbsoluteUri(scadaDeviceServiceEndpointAddress));
-                _sds = new ScadaDeviceServiceSoapClient("ScadaDeviceServiceSoap", address);
-            }
+            System.ServiceModel.EndpointAddress address = new System.ServiceModel.EndpointAddress(GetAbsoluteUri(scadaDeviceServiceEndpointAddress));
+            _sds = new ScadaDeviceServiceSoapClient("ScadaDeviceServiceSoap", address);
             return _sds;
         }
 

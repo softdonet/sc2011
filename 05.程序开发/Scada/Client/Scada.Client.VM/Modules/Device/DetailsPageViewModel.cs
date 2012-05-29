@@ -12,6 +12,8 @@ using Microsoft.Practices.Prism.ViewModel;
 using Scada.Model.Entity;
 using Scada.Client.VM.CommClass;
 using Scada.Client.VM.ScadaDeviceService;
+using System.Windows.Media.Imaging;
+using System.IO;
 
 namespace Scada.Client.VM.Modules.Device
 {
@@ -68,6 +70,22 @@ namespace Scada.Client.VM.Modules.Device
             {
                 maintenancePeople = value;
                 RaisePropertyChanged("MaintenancePeople");
+            }
+        }
+        //设备维护人头像
+        public BitmapImage HeadImg
+        {
+            get
+            {
+                byte[] image = MaintenancePeople.HeadImage;
+                if (image == null)
+                {
+                    return null;
+                }
+                Stream inStream = new MemoryStream(image);
+                BitmapImage imageIn = new BitmapImage();
+                imageIn.SetSource(inStream);
+                return imageIn;
             }
         }
     }

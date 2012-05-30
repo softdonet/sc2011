@@ -102,6 +102,11 @@ namespace Scada.Client.SL
                     login.txbName.Text = string.Empty;
                     login.txtPassWord.Password = string.Empty;
                 }
+                else if (loginResult.loginResultType==LoginResultType.账户已锁定)
+                {
+                    ScadaMessageBox.ShowWarnMessage("此账户已锁定，请与管理员联系！", "警告信息");
+                }
+                
             }
             else
                 ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");

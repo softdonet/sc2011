@@ -2044,9 +2044,10 @@ namespace Scada.BLL.Implement
                     user.LoginID = item["LoginID"].ToString();
                     user.UserName = item["UserName"].ToString();
                     user.Password = item["Password"].ToString();
+                    user.Status = Convert.ToChar(item["Status"]);
                     result.sysUser = user;
                 }
-
+                
                 //3) Check User Locked
 
                 //4) Check IP And User Binding
@@ -2054,7 +2055,19 @@ namespace Scada.BLL.Implement
                 //5)Check User Password
                 String MidPassword = Md5Helper.Hash(userPwd);
                 if (MidPassword.ToUpper() == user.Password.ToUpper())
-                    result.loginResultType = LoginResultType.成功;
+                {
+                    switch (user.Status)
+                    {
+                        case 'A':
+                            result.loginResultType = LoginResultType.成功;
+                            break;
+                        case 'B':
+                            result.loginResultType = LoginResultType.账户已锁定;
+                            break;
+                        default:
+                            break;
+                    }
+                }
                 else
                     result.loginResultType = LoginResultType.密码错误;
 

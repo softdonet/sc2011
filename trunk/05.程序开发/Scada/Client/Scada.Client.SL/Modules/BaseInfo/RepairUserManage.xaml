@@ -32,7 +32,7 @@
 
                             <telerik:RadGridView  x:Name="RadGridViewAlarm"
                                           ShowGroupPanel="False"  HorizontalAlignment="Left"
-                                          AutoGenerateColumns="True" CanUserFreezeColumns="False"
+                                          AutoGenerateColumns="False" CanUserFreezeColumns="False"
                                           IsReadOnly="True" RowIndicatorVisibility="Collapsed" 
                                           Grid.ColumnSpan="1" Margin="0,0,0,0" RowActivated="RadGridViewAlarm_RowActivated">
                                 <telerik:RadGridView.Columns>

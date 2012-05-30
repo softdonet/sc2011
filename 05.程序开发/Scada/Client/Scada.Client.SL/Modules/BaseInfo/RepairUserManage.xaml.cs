@@ -109,7 +109,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
                            new EventHandler<DeleteMaintenancePeopleCompletedEventArgs>
                            (scadaDeviceServiceSoapClient_DeleteMaintenancePeopleCompleted);
             this._scadaDeviceServiceSoapClient.DeleteMaintenancePeopleAsync(this._mainPeopleItem.ID);
-            
+
 
         }
 
@@ -173,10 +173,12 @@ namespace Scada.Client.SL.Modules.BaseInfo
             people.MSN = this.txtMsn.Text;
             people.QQ = this.txtQQ.Text;
             people.Telephone = this.txtTelephone.Text;
-
-            WriteableBitmap wb = new WriteableBitmap(imageInput.Source as BitmapSource);
-            byte[] bytes = Convert.FromBase64String(BitmapImageByte.GetBase64Image(wb));
-            people.HeadImage = bytes;
+            if (imageInput.Source != null)
+            {
+                WriteableBitmap wb = new WriteableBitmap(imageInput.Source as BitmapSource);
+                byte[] bytes = Convert.FromBase64String(BitmapImageByte.GetBase64Image(wb));
+                people.HeadImage = bytes;
+            }
 
         }
 
@@ -229,7 +231,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
             if (e.Error == null)
             {
                 Console.WriteLine(e.Result);
-                this._mainPeopleList.Remove(this._mainPeopleItem); 
+                this._mainPeopleList.Remove(this._mainPeopleItem);
             }
             else
                 ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");

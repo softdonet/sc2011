@@ -911,7 +911,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 return false;
             }
             int value;
-            if (DeviceInfoList.Windage != null && int.TryParse(DeviceInfoList.Windage.ToString(), out value))
+            if (DeviceInfoList.Windage != null && !int.TryParse(DeviceInfoList.Windage.ToString(), out value))
             {
                 MessageBox.Show("偏差，请填写正确的格式!");
                 return false;

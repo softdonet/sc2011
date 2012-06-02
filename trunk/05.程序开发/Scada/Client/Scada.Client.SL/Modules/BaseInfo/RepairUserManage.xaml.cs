@@ -243,17 +243,13 @@ namespace Scada.Client.SL.Modules.BaseInfo
             {
                 string msgInfo = e.Result;
                 List<MaintenancePeople> devicTreeList = BinaryObjTransfer.BinaryDeserialize<List<MaintenancePeople>>(msgInfo);
-                foreach (var item in devicTreeList)
-                {
-                    this._mainPeopleList.Add(item);
-                }
-
+                this._mainPeopleList = new ObservableCollection<MaintenancePeople>(devicTreeList);
                 this.RadGridViewAlarm.ItemsSource = this._mainPeopleList;
 
                 //默认刷新首行数据
-                if (devicTreeList.Count == 0) { return; }
-                this._mainPeopleItem = this._mainPeopleList[0];
-                this.refMaintenancePeople(this._mainPeopleItem);
+                //if (devicTreeList.Count == 0) { return; }
+                //this._mainPeopleItem = this._mainPeopleList[0];
+                //this.refMaintenancePeople(this._mainPeopleItem);
 
             }
             else

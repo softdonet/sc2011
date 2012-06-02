@@ -78,9 +78,9 @@ namespace Scada.BLL.Implement
                 ds = SqlHelper.ExecuteDataTable(sql);
                 if (ds == null || ds.Rows.Count == 0) { return result; }
                 string sqlWhere = string.Empty;
-                foreach (var item in ds.Rows)
+                foreach (DataRow item in ds.Rows)
                 {
-                    sqlWhere = sqlWhere + string.Format("'{0}',", item);
+                    sqlWhere = sqlWhere + string.Format("'{0}',", item[0].ToString());
                 }
                 sqlWhere = sqlWhere.Substring(0, sqlWhere.Length - 1);
                 sSql.Append(" And BB.ManageAreaID In (" + sqlWhere + ")");
@@ -2047,7 +2047,7 @@ namespace Scada.BLL.Implement
                     user.Status = Convert.ToChar(item["Status"]);
                     result.sysUser = user;
                 }
-                
+
                 //3) Check User Locked
 
                 //4) Check IP And User Binding

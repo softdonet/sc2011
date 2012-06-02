@@ -7,6 +7,10 @@ using System.IO;
 
 namespace Scada.Utility.Common.Helper
 {
+    /// <summary>
+    /// 文件存储帮助类
+    /// yanghk ar 2012-6-2
+    /// </summary>
     public class FileServerHelper
     {
         /// <summary>
@@ -19,11 +23,15 @@ namespace Scada.Utility.Common.Helper
         {
             try
             {
-                string tempPath = HttpContext.Current.Request.PhysicalApplicationPath + "UploadFile/HeadImage/11.jpg";
+                string tempPath = HttpContext.Current.Request.PhysicalApplicationPath + "UploadFile/HeadImage/" + fileName;
+                if (File.Exists(tempPath))
+                {
+                    File.Delete(tempPath);
+                }
                 FileStream fs = new FileStream(tempPath, FileMode.OpenOrCreate);
                 fs.Write(data, 0, data.Length);
                 fs.Dispose();
-                return false;
+                return true;
             }
             catch
             {
@@ -38,7 +46,13 @@ namespace Scada.Utility.Common.Helper
         /// <returns></returns>
         public static bool DeleteHeadImage(string fileName)
         {
-            return true;
+            string tempPath = HttpContext.Current.Request.PhysicalApplicationPath + "UploadFile/HeadImage/" + fileName;
+            try
+            {
+                File.Delete(tempPath);
+                return true;
+            }
+            catch { return false; }
         }
 
         /// <summary>
@@ -48,6 +62,10 @@ namespace Scada.Utility.Common.Helper
         /// <returns></returns>
         public static string GetHeadeImageUrl(string fileName)
         {
+            if (string.IsNullOrEmpty(fileName))
+            {
+                fileName = "Default.jpg";
+            }
             string fileUrl = string.Format("http://{0}:{1}/UploadFile/HeadImage/{2}",
                        HttpContext.Current.Request.Url.Host,
                        HttpContext.Current.Request.Url.Port,

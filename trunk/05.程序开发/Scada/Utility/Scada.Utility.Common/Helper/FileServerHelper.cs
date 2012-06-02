@@ -8,11 +8,22 @@ namespace Scada.Utility.Common.Helper
     public class FileServerHelper
     {
         /// <summary>
+        /// 获取文件扩展名
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static string GetFileExtendName(string fileName)
+        {
+            return ".jpg";
+ 
+        }
+        /// <summary>
         /// 保存图片
         /// </summary>
         /// <param name="fileName">文件名</param>
+        /// <param name="data">字节数据</param>
         /// <returns></returns>
-        public static bool SaveHeadImage(string fileName)
+        public static bool SaveHeadImage(string fileName, byte[] data)
         {
             return false;
         }

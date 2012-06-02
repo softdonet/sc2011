@@ -18,6 +18,7 @@ namespace Scada.Model.Entity
         public string MSN { get; set; }
         public string Email { get; set; }
         public string ImagePath { get; set; }
+        public string ImageUrl { get; set; }
         public byte[] HeadImage { get; set; }
     }
 }

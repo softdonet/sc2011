@@ -104,12 +104,13 @@ namespace Scada.BLL.Implement
             string sSql = "select id,name,Level from DeviceTree";
             if (nodeKey != null)
             {
-                sSql = sSql + " where ParentID ='" + nodeKey.ToString().ToUpper() + "'";
+                sSql = sSql + " Where ParentID ='" + nodeKey.ToString().ToUpper() + "'";
             }
             else
             {
                 sSql = sSql + " Where ParentID Is Null";
             }
+            sSql = sSql + " Order by Sort";
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);
             foreach (DataRow item in ds.Rows)
             {
@@ -126,7 +127,8 @@ namespace Scada.BLL.Implement
         private List<DeviceRealTimeTree> getTreeNodeDevice(Guid nodeKey)
         {
             List<DeviceRealTimeTree> result = new List<DeviceRealTimeTree>();
-            string sSql = "select id,DeviceNo from DeviceInfo Where ManageAreaID ='" + nodeKey.ToString().ToUpper() + "'";
+            string sSql = @" Select id,DeviceNo from DeviceInfo 
+                                Where ManageAreaID ='" + nodeKey.ToString().ToUpper() + "' Order by DeviceNo";
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);
             foreach (DataRow item in ds.Rows)
             {

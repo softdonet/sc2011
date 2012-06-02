@@ -1695,6 +1695,7 @@ namespace Scada.BLL.Implement
                 people.Email = item["Email"].ToString();
                 //if (item["HeadImage"] != DBNull.Value)
                 //    people.HeadImage = (byte[])item["HeadImage"];
+                //获取头像
                 people.ImagePath = FileServerHelper.GetHeadeImageUrl(item[" ImagePath"].ToString());
                 mainPeople.Add(people);
             }
@@ -1706,7 +1707,7 @@ namespace Scada.BLL.Implement
             Boolean result = false;
             string sSql = @" Insert Into MaintenancePeople(ID,Name,Address,Telephone,
                                     Mobile,QQ,MSN,Email,HeadImage) Values (@ID,@Name,@Address,@Telephone,
-                                    @Mobile,@QQ,@MSN,@Email,@HeadImage)";
+                                    @Mobile,@QQ,@MSN,@Email,@ImagePath)";
             List<SqlParameter> sSqlWhere = new List<SqlParameter>();
             try
             {
@@ -1719,8 +1720,11 @@ namespace Scada.BLL.Implement
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@QQ", DbType = DbType.String, Value = mainPeople.QQ });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@MSN", DbType = DbType.String, Value = mainPeople.MSN });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@Email", DbType = DbType.String, Value = mainPeople.Email });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@HeadImage", DbType = DbType.Binary, Value = mainPeople.HeadImage });
+                string filName = Guid.NewGuid().ToString() + FileServerHelper.GetFileExtendName(mainPeople.ImagePath);
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@ImagePath", DbType = DbType.String, Value = filName });
                 int rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql, sSqlWhere.ToArray());
+                //保存头像数据
+                FileServerHelper.SaveHeadImage(filName, mainPeople.HeadImage);
                 result = true;
             }
             catch (Exception ex)
@@ -1750,6 +1754,7 @@ namespace Scada.BLL.Implement
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@HeadImage", DbType = DbType.Binary, Value = mainPeople.HeadImage });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@ID", DbType = DbType.Guid, Value = mainPeople.ID });
                 int rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql, sSqlWhere.ToArray());
+                // TODO：修改头像
                 result = true;
             }
             catch (Exception ex)
@@ -1769,6 +1774,9 @@ namespace Scada.BLL.Implement
             {
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@ID", DbType = DbType.Guid, Value = peopleKey });
                 int rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql, sSqlWhere.ToArray());
+                //TODO:获取头像文件名
+                string imageFileName = string.Empty;
+                FileServerHelper.DeleteHeadImage(imageFileName);
                 result = true;
             }
             catch (Exception ex)

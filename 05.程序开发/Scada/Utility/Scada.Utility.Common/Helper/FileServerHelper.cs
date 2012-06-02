@@ -10,6 +10,7 @@ namespace Scada.Utility.Common.Helper
         /// <summary>
         /// 保存图片
         /// </summary>
+        /// <param name="fileName">文件名</param>
         /// <returns></returns>
         public static bool SaveHeadImage(string fileName)
         {
@@ -19,13 +20,18 @@ namespace Scada.Utility.Common.Helper
         /// <summary>
         /// 删除图片
         /// </summary>
-        /// <param name="fileName"></param>
+        /// <param name="fileName">文件名</param>
         /// <returns></returns>
         public static bool DeleteHeadImage(string fileName)
         {
             return false;
         }
 
+        /// <summary>
+        /// 获取图片Url
+        /// </summary>
+        /// <param name="fileName">文件名</param>
+        /// <returns></returns>
         public static string GetHeadeImageUrl(string fileName)
         {
             return "http://res1.pic.766.com/img1/824/46/5/31272614626350.jpg";

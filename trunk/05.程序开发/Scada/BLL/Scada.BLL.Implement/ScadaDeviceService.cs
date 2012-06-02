@@ -1664,8 +1664,8 @@ namespace Scada.BLL.Implement
                 people.QQ = item["QQ"].ToString();
                 people.MSN = item["MSN"].ToString();
                 people.Email = item["Email"].ToString();
-                if (item["HeadImage"] != DBNull.Value)
-                    people.HeadImage = (byte[])item["HeadImage"];
+                //if (item["HeadImage"] != DBNull.Value)
+                //    people.HeadImage = (byte[])item["HeadImage"];
                 people.ImagePath = FileServerHelper.GetHeadeImageUrl(item[" ImagePath"].ToString());
                 mainPeople.Add(people);
             }
@@ -1693,8 +1693,9 @@ namespace Scada.BLL.Implement
                 people.QQ = item["QQ"].ToString();
                 people.MSN = item["MSN"].ToString();
                 people.Email = item["Email"].ToString();
-                if (item["HeadImage"] != DBNull.Value)
-                    people.HeadImage = (byte[])item["HeadImage"];
+                //if (item["HeadImage"] != DBNull.Value)
+                //    people.HeadImage = (byte[])item["HeadImage"];
+                people.ImagePath = FileServerHelper.GetHeadeImageUrl(item[" ImagePath"].ToString());
                 mainPeople.Add(people);
             }
             return BinaryObjTransfer.JsonSerializer<List<MaintenancePeople>>(mainPeople);

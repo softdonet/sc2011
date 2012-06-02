@@ -20,6 +20,7 @@ using Scada.Model.Entity.Enums;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using Scada.Utility.Common.SL.Enums;
+using System.Text.RegularExpressions;
 
 namespace Scada.Client.VM.Modules.BaseInfo
 {
@@ -56,8 +57,8 @@ namespace Scada.Client.VM.Modules.BaseInfo
             this.scadaDeviceServiceSoapClient.CheckDeviceInfoByDeviceNoCompleted += new EventHandler<CheckDeviceInfoByDeviceNoCompletedEventArgs>(scadaDeviceServiceSoapClient_CheckDeviceInfoByDeviceNoCompleted);
 
             //维护人员
-            scadaDeviceServiceSoapClient.GetMaintenancePeopleCompleted += new EventHandler<GetMaintenancePeopleCompletedEventArgs>(scadaDeviceServiceSoapClient_GetMaintenancePeopleCompleted);
-            scadaDeviceServiceSoapClient.GetMaintenancePeopleAsync();
+            scadaDeviceServiceSoapClient.GetMaintenancePeopleInfoCompleted += new EventHandler<GetMaintenancePeopleInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_GetMaintenancePeopleInfoCompleted);
+            scadaDeviceServiceSoapClient.GetMaintenancePeopleInfoAsync();
 
             //查看设备
             scadaDeviceServiceSoapClient.ViewDeviceInfoCompleted += new EventHandler<ViewDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_ViewDeviceInfoCompleted);
@@ -75,6 +76,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
             this.DeleteCommand = new DelegateCommand(new Action(this.DeleteDeviceInfo));
 
         }
+
 
 
 
@@ -109,7 +111,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
             }
         }
 
-        void scadaDeviceServiceSoapClient_GetMaintenancePeopleCompleted(object sender, GetMaintenancePeopleCompletedEventArgs e)
+        void scadaDeviceServiceSoapClient_GetMaintenancePeopleInfoCompleted(object sender, GetMaintenancePeopleInfoCompletedEventArgs e)
         {
             string result = e.Result;
             if (e.Error == null)
@@ -306,11 +308,11 @@ namespace Scada.Client.VM.Modules.BaseInfo
             set
             {
                 selectedMaintenancePeople = value;
-                this.RaisePropertyChanged("SelectedMaintenancePeople");
                 if (DeviceInfoList != null && selectedMaintenancePeople != null)
                 {
                     DeviceInfoList.MaintenancePeopleID = selectedMaintenancePeople.ID;
                 }
+                this.RaisePropertyChanged("SelectedMaintenancePeople");
             }
         }
 
@@ -332,29 +334,32 @@ namespace Scada.Client.VM.Modules.BaseInfo
             set
             {
                 deviceInfoList = value;
-                this.RaisePropertyChanged("DeviceInfoList");
 
                 SelectedLcdItem = deviceInfoList;
                 SelectedCurrentModelItem = deviceInfoList;
 
-                SelectedFullTimeParam1Item = deviceInfoList;
-                SelectedFullTimeParam2Item = deviceInfoList;
-                SelectedOptimize1Item = deviceInfoList;
-                SelectedOptimize2Item = deviceInfoList;
-                SelectedMaintenancePeople = selectedMaintenancePeople;//用于设置界面上的显示
+                //SelectedFullTimeParam1Item = deviceInfoList;
+                //SelectedFullTimeParam2Item = deviceInfoList;
+                //SelectedOptimize1Item = deviceInfoList;
+                //SelectedOptimize2Item = deviceInfoList;
+                //-----------------------
 
                 // DeviceNo = deviceInfoList.DeviceNo;
 
                 this.RaisePropertyChanged("DeviceNo");
-                this.RaisePropertyChanged("Longitude");
-                this.RaisePropertyChanged("Latitude");
-                this.RaisePropertyChanged("MaintenancePeopleID");
-                this.RaisePropertyChanged("RealTimeParam");
+                //this.RaisePropertyChanged("Longitude");
+                //this.RaisePropertyChanged("Latitude");
+                //this.RaisePropertyChanged("MaintenancePeopleID");
+                //this.RaisePropertyChanged("RealTimeParam");
 
-                //this.RaisePropertyChanged("SelectedFullTimeParam1Item");
-                //this.RaisePropertyChanged("SelectedFullTimeParam2Item");
-                //this.RaisePropertyChanged("SelectedOptimize1Item");
-                //this.RaisePropertyChanged("SelectedOptimize1Item");
+                this.RaisePropertyChanged("SelectedMaintenancePeople");
+                this.RaisePropertyChanged("SelectedFullTimeParam1Item");
+                this.RaisePropertyChanged("SelectedFullTimeParam2Item");
+                this.RaisePropertyChanged("SelectedOptimize1Item");
+                this.RaisePropertyChanged("SelectedOptimize2Item");
+
+                this.RaisePropertyChanged("DeviceInfoList");
+
             }
         }
 
@@ -386,11 +391,11 @@ namespace Scada.Client.VM.Modules.BaseInfo
             set
             {
                 selectedLcdItem = value;
-                this.RaisePropertyChanged("SelectedLcdItem");
                 if (DeviceInfoList != null && selectedLcdItem != null)
                 {
                     DeviceInfoList.LCDScreenDisplayType = selectedLcdItem.LCDScreenDisplayType;
                 }
+                this.RaisePropertyChanged("SelectedLcdItem");
             }
         }
 
@@ -427,12 +432,12 @@ namespace Scada.Client.VM.Modules.BaseInfo
             set
             {
                 selectedCurrentModelItem = value;
-                this.RaisePropertyChanged("SelectedCurrentModelItem");
-
                 if (DeviceInfoList != null && selectedCurrentModelItem != null)
                 {
                     DeviceInfoList.CurrentModel = selectedCurrentModelItem.CurrentModel;
                 }
+                this.RaisePropertyChanged("SelectedCurrentModelItem");
+
             }
         }
         #region 整点模式参数1的值
@@ -468,11 +473,11 @@ namespace Scada.Client.VM.Modules.BaseInfo
             set
             {
                 selectedFullTimeParam1Item = value;
-                this.RaisePropertyChanged("SelectedFullTimeParam1Item");
                 if (DeviceInfoList != null && selectedFullTimeParam1Item != null)
                 {
                     DeviceInfoList.FullTimeParam1 = selectedFullTimeParam1Item.FullTimeParam1;
                 }
+                this.RaisePropertyChanged("SelectedFullTimeParam1Item");
             }
         }
 
@@ -496,7 +501,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
 
         private DeviceInfo selectedFullTimeParam2Item;
         /// <summary>
-        /// 当前选择的整点模式参数1的值
+        /// 当前选择的整点模式参数2的值
         /// </summary>
         public DeviceInfo SelectedFullTimeParam2Item
         {
@@ -511,11 +516,11 @@ namespace Scada.Client.VM.Modules.BaseInfo
             set
             {
                 selectedFullTimeParam2Item = value;
-                this.RaisePropertyChanged("SelectedFullTimeParam2Item");
                 if (DeviceInfoList != null && selectedFullTimeParam2Item != null)
                 {
                     DeviceInfoList.FullTimeParam2 = selectedFullTimeParam2Item.FullTimeParam2;
                 }
+                this.RaisePropertyChanged("SelectedFullTimeParam2Item");
             }
         }
 
@@ -553,11 +558,11 @@ namespace Scada.Client.VM.Modules.BaseInfo
             set
             {
                 selectedOptimize1Item = value;
-                this.RaisePropertyChanged("SelectedOptimize1Item");
                 if (DeviceInfoList != null && selectedOptimize1Item != null)
                 {
                     DeviceInfoList.OptimizeParam1 = selectedOptimize1Item.OptimizeParam1;
                 }
+                this.RaisePropertyChanged("SelectedOptimize1Item");
             }
         }
         #endregion
@@ -595,11 +600,11 @@ namespace Scada.Client.VM.Modules.BaseInfo
             set
             {
                 selectedOptimize2Item = value;
-                this.RaisePropertyChanged("SelectedOptimize2Item");
                 if (DeviceInfoList != null && selectedOptimize2Item != null)
                 {
                     DeviceInfoList.OptimizeParam2 = selectedOptimize2Item.OptimizeParam2;
                 }
+                this.RaisePropertyChanged("SelectedOptimize2Item");
             }
         }
         #endregion
@@ -638,11 +643,11 @@ namespace Scada.Client.VM.Modules.BaseInfo
         {
             List<DeviceInfo> temp = new List<DeviceInfo>();
             temp.Clear();
-            temp.Add(new DeviceInfo() { FullTimeParam1 = 1, FullTimeParam1Name = EnumHelper.Display<FullTime1>(1) });
-            temp.Add(new DeviceInfo() { FullTimeParam1 = 2, FullTimeParam1Name = EnumHelper.Display<FullTime1>(2) });
-            temp.Add(new DeviceInfo() { FullTimeParam1 = 3, FullTimeParam1Name = EnumHelper.Display<FullTime1>(3) });
-            temp.Add(new DeviceInfo() { FullTimeParam1 = 4, FullTimeParam1Name = EnumHelper.Display<FullTime1>(4) });
             temp.Add(new DeviceInfo() { FullTimeParam1 = 5, FullTimeParam1Name = EnumHelper.Display<FullTime1>(5) });
+            temp.Add(new DeviceInfo() { FullTimeParam1 = 15, FullTimeParam1Name = EnumHelper.Display<FullTime1>(15) });
+            temp.Add(new DeviceInfo() { FullTimeParam1 = 30, FullTimeParam1Name = EnumHelper.Display<FullTime1>(30) });
+            temp.Add(new DeviceInfo() { FullTimeParam1 = 45, FullTimeParam1Name = EnumHelper.Display<FullTime1>(45) });
+            temp.Add(new DeviceInfo() { FullTimeParam1 = 60, FullTimeParam1Name = EnumHelper.Display<FullTime1>(60) });
             DeviceInfoFullTimeParam1List = temp;
         }
         /// <summary>
@@ -653,13 +658,12 @@ namespace Scada.Client.VM.Modules.BaseInfo
         {
             List<DeviceInfo> temp = new List<DeviceInfo>();
             temp.Clear();
-            temp.Add(new DeviceInfo() { FullTimeParam2 = 1, FullTimeParam2Name = EnumHelper.Display<FullTime2>(1) });
-            temp.Add(new DeviceInfo() { FullTimeParam2 = 2, FullTimeParam2Name = EnumHelper.Display<FullTime2>(2) });
-            temp.Add(new DeviceInfo() { FullTimeParam2 = 3, FullTimeParam2Name = EnumHelper.Display<FullTime2>(3) });
-            temp.Add(new DeviceInfo() { FullTimeParam2 = 4, FullTimeParam2Name = EnumHelper.Display<FullTime2>(4) });
-            temp.Add(new DeviceInfo() { FullTimeParam2 = 5, FullTimeParam2Name = EnumHelper.Display<FullTime2>(5) });
+            temp.Add(new DeviceInfo() { FullTimeParam2 = 30, FullTimeParam2Name = EnumHelper.Display<FullTime2>(30) });
+            temp.Add(new DeviceInfo() { FullTimeParam2 = 60, FullTimeParam2Name = EnumHelper.Display<FullTime2>(60) });
+            temp.Add(new DeviceInfo() { FullTimeParam2 = 120, FullTimeParam2Name = EnumHelper.Display<FullTime2>(120) });
+            temp.Add(new DeviceInfo() { FullTimeParam2 = 180, FullTimeParam2Name = EnumHelper.Display<FullTime2>(180) });
+            temp.Add(new DeviceInfo() { FullTimeParam2 = 240, FullTimeParam2Name = EnumHelper.Display<FullTime2>(240) });
             DeviceInfoFullTimeParam2List = temp;
-
         }
         /// <summary>
         /// 加载逢变则报模式--参数1-快速温度采样:
@@ -671,7 +675,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
             temp.Clear();
             temp.Add(new DeviceInfo() { OptimizeParam1 = 1, OptimizeParam1Name = EnumHelper.Display<Optimize1>(1) });
             temp.Add(new DeviceInfo() { OptimizeParam1 = 2, OptimizeParam1Name = EnumHelper.Display<Optimize1>(2) });
-            temp.Add(new DeviceInfo() { OptimizeParam1 = 3, OptimizeParam1Name = EnumHelper.Display<Optimize1>(3) });
+            temp.Add(new DeviceInfo() { OptimizeParam1 = 5, OptimizeParam1Name = EnumHelper.Display<Optimize1>(5) });
             DeviceInfoOptimize1List = temp;
         }
         /// <summary>
@@ -682,9 +686,9 @@ namespace Scada.Client.VM.Modules.BaseInfo
         {
             List<DeviceInfo> temp = new List<DeviceInfo>();
             temp.Clear();
-            temp.Add(new DeviceInfo() { OptimizeParam2 = 1, OptimizeParam2Name = EnumHelper.Display<Optimize2>(1) });
-            temp.Add(new DeviceInfo() { OptimizeParam2 = 2, OptimizeParam2Name = EnumHelper.Display<Optimize2>(2) });
-            temp.Add(new DeviceInfo() { OptimizeParam2 = 3, OptimizeParam2Name = EnumHelper.Display<Optimize2>(3) });
+            temp.Add(new DeviceInfo() { OptimizeParam2 = 30, OptimizeParam2Name = EnumHelper.Display<Optimize2>(30) });
+            temp.Add(new DeviceInfo() { OptimizeParam2 = 60, OptimizeParam2Name = EnumHelper.Display<Optimize2>(60) });
+            temp.Add(new DeviceInfo() { OptimizeParam2 = 120, OptimizeParam2Name = EnumHelper.Display<Optimize2>(120) });
             DeviceInfoOptimize2List = temp;
         }
         //---------------------------------------------------------------
@@ -704,7 +708,6 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 if (string.IsNullOrEmpty(value))
                 {
                     throw new Exception("设备编号不能为空!");
-
                 }
                 DeviceInfoList.DeviceNo = value;
                 //this.RaisePropertyChanged("DeviceNo");
@@ -723,7 +726,6 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 }
                 return DeviceInfoList.Longitude;
             }
-
             set
             {
                 DeviceInfoList.Longitude = value;
@@ -933,7 +935,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 MessageBox.Show("从温度高报警值，请填写正确的格式!");
                 return false;
             }
-
+         
             if (DeviceInfoList.Temperature2LowAlarm != null && !decimal.TryParse(DeviceInfoList.Temperature2LowAlarm.ToString(), out result))
             {
                 MessageBox.Show("从温度低报警值，请填写正确的格式!");
@@ -945,11 +947,32 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 MessageBox.Show("湿度高报警值，请填写正确的格式!");
                 return false;
             }
+            string pattern = @"^((0\.\d+)?|0)$";//大于等于0小于1-----------=== @"^((0\.\d+)?|0|1)$"  ===大于等于0小于等于1的表达式
+            Regex regex = new Regex(pattern);
+            if (DeviceInfoList.HumidityHighAlarm != null | DeviceInfoList.HumidityHighAlarm != 0)
+            {
+                Match match = regex.Match(DeviceInfoList.HumidityHighAlarm.Value.ToString());
+                if (!match.Success)
+                {
+                    MessageBox.Show("湿度高报警值，请输入大于等于0小于1的数值");
+                    return false;
+                }
+            }
+
 
             if (DeviceInfoList.HumidityLowAlarm != null && !decimal.TryParse(DeviceInfoList.HumidityLowAlarm.ToString(), out result))
             {
                 MessageBox.Show("湿度低报警值，请填写正确的格式!");
                 return false;
+            }
+            if (DeviceInfoList.HumidityLowAlarm != null | DeviceInfoList.HumidityLowAlarm != 0)
+            {
+                Match match = regex.Match(DeviceInfoList.HumidityLowAlarm.Value.ToString());
+                if (!match.Success)
+                {
+                    MessageBox.Show("湿度低报警值，请输入大于等于0小于1的数值");
+                    return false;
+                }
             }
             //信号
             if (DeviceInfoList.SignalHighAlarm != null && !decimal.TryParse(DeviceInfoList.SignalHighAlarm.ToString(), out result))

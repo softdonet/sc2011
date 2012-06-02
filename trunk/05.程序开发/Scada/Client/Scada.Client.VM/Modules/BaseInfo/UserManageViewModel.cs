@@ -135,6 +135,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
         private void UpdateUser()
         {
             if (!CheckInputTextValue()) return;
+            //MessageBox.Show("修改前的值 "+User.Status.ToString()+"----"+User.StatusName);
             string userInfo = BinaryObjTransfer.BinarySerialize(User);
             scadaDeviceServiceSoapClient.UpdateUserAsync(userInfo);
         }
@@ -330,11 +331,12 @@ namespace Scada.Client.VM.Modules.BaseInfo
             set
             {
                 selectUserStatus = value;
-                this.RaisePropertyChanged("SelectUserStatus");
-                if (User!=null&&selectUserStatus!=null)
+                if (User != null && selectUserStatus != null)
+                //if (User != null)
                 {
                     User.Status = selectUserStatus.Status;
                 }
+                this.RaisePropertyChanged("SelectUserStatus");
             }
         }
 

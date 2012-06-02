@@ -31,7 +31,7 @@
                     </Border.Background>
 
                     <Border BorderThickness="1" CornerRadius="5" Margin="2">
-                        <Grid ShowGridLines="False" Background="AliceBlue">
+                        <Grid ShowGridLines="False" Background="AliceBlue" DataContext="{Binding}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="246"/>
                                 <ColumnDefinition Width="313"/>
@@ -56,7 +56,7 @@
                                 <sdk:Label Content="硬件型号：" HorizontalAlignment="Left" Margin="8,125,0,0" Name="label5" VerticalAlignment="Top" Width="62" Grid.Column="1" />
                                 <TextBox Name="txtHardType" Text="{Binding DeviceInfoList.HardType, Mode=TwoWay}"  Height="23" HorizontalAlignment="Left" Margin="86,121,0,0"  VerticalAlignment="Top" Width="204" Grid.Column="1" IsReadOnly="True" />
                                 <sdk:Label Content="生产日期：" HorizontalAlignment="Left" Margin="8,151,0,0" Name="label6" VerticalAlignment="Top" Width="62" Grid.Column="1" />
-                                <sdk:DatePicker Text="{Binding DeviceInfoList.ProductDate, Mode=TwoWay}" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="86,147,0,0" Name="dpProductDate" VerticalAlignment="Top" Width="204" />
+                                <sdk:DatePicker Text="{Binding DeviceInfoList.ProductDate, Mode=TwoWay,StringFormat=yyyy-MM-dd}"  Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="86,147,0,0" Name="dpProductDate" VerticalAlignment="Top" Width="204" />
                                 <sdk:Label Content="管理分区：" Grid.Column="1"  HorizontalAlignment="Left" Margin="8,178,0,0" x:Name="label3" VerticalAlignment="Top" Width="62"  />
                                 <TextBox x:Name="txtManageArea" Text="{Binding DeviceInfoList.ManageAreaName, Mode=TwoWay}" Height="23" HorizontalAlignment="Left" Margin="86,176,0,0"  VerticalAlignment="Top" Width="204" IsReadOnly="True" Grid.Column="1" />
 

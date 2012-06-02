@@ -324,6 +324,16 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetMaintenancePeopleInfo">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMaintenancePeopleInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMaintenancePeopleInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="ListDeviceMaintenancePeople">
         <s:complexType>
           <s:sequence>
@@ -695,6 +705,12 @@
   <wsdl:message name="GetMaintenancePeopleSoapOut">
     <wsdl:part name="parameters" element="tns:GetMaintenancePeopleResponse" />
   </wsdl:message>
+  <wsdl:message name="GetMaintenancePeopleInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMaintenancePeopleInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetMaintenancePeopleInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMaintenancePeopleInfoResponse" />
+  </wsdl:message>
   <wsdl:message name="ListDeviceMaintenancePeopleSoapIn">
     <wsdl:part name="parameters" element="tns:ListDeviceMaintenancePeople" />
   </wsdl:message>
@@ -883,6 +899,10 @@
     <wsdl:operation name="GetMaintenancePeople">
       <wsdl:input message="tns:GetMaintenancePeopleSoapIn" />
       <wsdl:output message="tns:GetMaintenancePeopleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMaintenancePeopleInfo">
+      <wsdl:input message="tns:GetMaintenancePeopleInfoSoapIn" />
+      <wsdl:output message="tns:GetMaintenancePeopleInfoSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="ListDeviceMaintenancePeople">
       <wsdl:input message="tns:ListDeviceMaintenancePeopleSoapIn" />
@@ -1151,6 +1171,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetMaintenancePeople">
       <soap:operation soapAction="http://tempuri.org/GetMaintenancePeople" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMaintenancePeopleInfo">
+      <soap:operation soapAction="http://tempuri.org/GetMaintenancePeopleInfo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1505,6 +1534,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetMaintenancePeople">
       <soap12:operation soapAction="http://tempuri.org/GetMaintenancePeople" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMaintenancePeopleInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetMaintenancePeopleInfo" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

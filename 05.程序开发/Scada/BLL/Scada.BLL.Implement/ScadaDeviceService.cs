@@ -1671,6 +1671,33 @@ namespace Scada.BLL.Implement
             return BinaryObjTransfer.JsonSerializer<List<MaintenancePeople>>(mainPeople);
         }
         /// <summary>
+        /// 获取不带头像的维护人员信息
+        /// </summary>
+        /// <returns></returns>
+        public string GetMaintenancePeopleInfo()
+        {
+            List<MaintenancePeople> mainPeople = new List<MaintenancePeople>();
+            string sSql = " Select  ID, Name, Address, Telephone, Mobile, QQ, MSN, Email from MaintenancePeople ";
+            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            MaintenancePeople people = null;
+            foreach (DataRow item in ds.Rows)
+            {
+                people = new MaintenancePeople();
+                people.ID = new Guid(item["ID"].ToString());
+                people.Name = item["Name"].ToString();
+                people.Address = item["Address"].ToString();
+                people.Telephone = item["Telephone"].ToString();
+                people.Mobile = item["Mobile"].ToString();
+                people.QQ = item["QQ"].ToString();
+                people.MSN = item["MSN"].ToString();
+                people.Email = item["Email"].ToString();
+               
+                mainPeople.Add(people);
+            }
+            return BinaryObjTransfer.JsonSerializer<List<MaintenancePeople>>(mainPeople);
+        }
+
+        /// <summary>
         /// 传人维护人员ID，获取维护人员详细信息
         /// </summary>
         /// <param name="MainPeopleId"></param>

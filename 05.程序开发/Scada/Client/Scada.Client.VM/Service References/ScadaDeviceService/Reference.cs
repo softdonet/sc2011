@@ -133,6 +133,11 @@ namespace Scada.Client.VM.ScadaDeviceService {
         
         Scada.Client.VM.ScadaDeviceService.GetMaintenancePeopleResponse EndGetMaintenancePeople(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/GetMaintenancePeopleInfo", ReplyAction="*")]
+        System.IAsyncResult BeginGetMaintenancePeopleInfo(Scada.Client.VM.ScadaDeviceService.GetMaintenancePeopleInfoRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.VM.ScadaDeviceService.GetMaintenancePeopleInfoResponse EndGetMaintenancePeopleInfo(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ListDeviceMaintenancePeople", ReplyAction="*")]
         System.IAsyncResult BeginListDeviceMaintenancePeople(Scada.Client.VM.ScadaDeviceService.ListDeviceMaintenancePeopleRequest request, System.AsyncCallback callback, object asyncState);
         
@@ -1611,6 +1616,67 @@ namespace Scada.Client.VM.ScadaDeviceService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetMaintenancePeopleInfoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetMaintenancePeopleInfo", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.GetMaintenancePeopleInfoRequestBody Body;
+        
+        public GetMaintenancePeopleInfoRequest() {
+        }
+        
+        public GetMaintenancePeopleInfoRequest(Scada.Client.VM.ScadaDeviceService.GetMaintenancePeopleInfoRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class GetMaintenancePeopleInfoRequestBody {
+        
+        public GetMaintenancePeopleInfoRequestBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetMaintenancePeopleInfoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetMaintenancePeopleInfoResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.GetMaintenancePeopleInfoResponseBody Body;
+        
+        public GetMaintenancePeopleInfoResponse() {
+        }
+        
+        public GetMaintenancePeopleInfoResponse(Scada.Client.VM.ScadaDeviceService.GetMaintenancePeopleInfoResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetMaintenancePeopleInfoResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetMaintenancePeopleInfoResult;
+        
+        public GetMaintenancePeopleInfoResponseBody() {
+        }
+        
+        public GetMaintenancePeopleInfoResponseBody(string GetMaintenancePeopleInfoResult) {
+            this.GetMaintenancePeopleInfoResult = GetMaintenancePeopleInfoResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class ListDeviceMaintenancePeopleRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="ListDeviceMaintenancePeople", Namespace="http://tempuri.org/", Order=0)]
@@ -2940,6 +3006,25 @@ namespace Scada.Client.VM.ScadaDeviceService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetMaintenancePeopleInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetMaintenancePeopleInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class ListDeviceMaintenancePeopleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -3384,6 +3469,12 @@ namespace Scada.Client.VM.ScadaDeviceService {
         
         private System.Threading.SendOrPostCallback onGetMaintenancePeopleCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetMaintenancePeopleInfoDelegate;
+        
+        private EndOperationDelegate onEndGetMaintenancePeopleInfoDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetMaintenancePeopleInfoCompletedDelegate;
+        
         private BeginOperationDelegate onBeginListDeviceMaintenancePeopleDelegate;
         
         private EndOperationDelegate onEndListDeviceMaintenancePeopleDelegate;
@@ -3578,6 +3669,8 @@ namespace Scada.Client.VM.ScadaDeviceService {
         public event System.EventHandler<GetSameDateTemperatureDiffDeviceCompletedEventArgs> GetSameDateTemperatureDiffDeviceCompleted;
         
         public event System.EventHandler<GetMaintenancePeopleCompletedEventArgs> GetMaintenancePeopleCompleted;
+        
+        public event System.EventHandler<GetMaintenancePeopleInfoCompletedEventArgs> GetMaintenancePeopleInfoCompleted;
         
         public event System.EventHandler<ListDeviceMaintenancePeopleCompletedEventArgs> ListDeviceMaintenancePeopleCompleted;
         
@@ -4994,6 +5087,63 @@ namespace Scada.Client.VM.ScadaDeviceService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.BeginGetMaintenancePeopleInfo(Scada.Client.VM.ScadaDeviceService.GetMaintenancePeopleInfoRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetMaintenancePeopleInfo(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginGetMaintenancePeopleInfo(System.AsyncCallback callback, object asyncState) {
+            Scada.Client.VM.ScadaDeviceService.GetMaintenancePeopleInfoRequest inValue = new Scada.Client.VM.ScadaDeviceService.GetMaintenancePeopleInfoRequest();
+            inValue.Body = new Scada.Client.VM.ScadaDeviceService.GetMaintenancePeopleInfoRequestBody();
+            return ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginGetMaintenancePeopleInfo(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.VM.ScadaDeviceService.GetMaintenancePeopleInfoResponse Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.EndGetMaintenancePeopleInfo(System.IAsyncResult result) {
+            return base.Channel.EndGetMaintenancePeopleInfo(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private string EndGetMaintenancePeopleInfo(System.IAsyncResult result) {
+            Scada.Client.VM.ScadaDeviceService.GetMaintenancePeopleInfoResponse retVal = ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndGetMaintenancePeopleInfo(result);
+            return retVal.Body.GetMaintenancePeopleInfoResult;
+        }
+        
+        private System.IAsyncResult OnBeginGetMaintenancePeopleInfo(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetMaintenancePeopleInfo(callback, asyncState);
+        }
+        
+        private object[] OnEndGetMaintenancePeopleInfo(System.IAsyncResult result) {
+            string retVal = this.EndGetMaintenancePeopleInfo(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetMaintenancePeopleInfoCompleted(object state) {
+            if ((this.GetMaintenancePeopleInfoCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetMaintenancePeopleInfoCompleted(this, new GetMaintenancePeopleInfoCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetMaintenancePeopleInfoAsync() {
+            this.GetMaintenancePeopleInfoAsync(null);
+        }
+        
+        public void GetMaintenancePeopleInfoAsync(object userState) {
+            if ((this.onBeginGetMaintenancePeopleInfoDelegate == null)) {
+                this.onBeginGetMaintenancePeopleInfoDelegate = new BeginOperationDelegate(this.OnBeginGetMaintenancePeopleInfo);
+            }
+            if ((this.onEndGetMaintenancePeopleInfoDelegate == null)) {
+                this.onEndGetMaintenancePeopleInfoDelegate = new EndOperationDelegate(this.OnEndGetMaintenancePeopleInfo);
+            }
+            if ((this.onGetMaintenancePeopleInfoCompletedDelegate == null)) {
+                this.onGetMaintenancePeopleInfoCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetMaintenancePeopleInfoCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetMaintenancePeopleInfoDelegate, null, this.onEndGetMaintenancePeopleInfoDelegate, this.onGetMaintenancePeopleInfoCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.IAsyncResult Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.BeginListDeviceMaintenancePeople(Scada.Client.VM.ScadaDeviceService.ListDeviceMaintenancePeopleRequest request, System.AsyncCallback callback, object asyncState) {
             return base.Channel.BeginListDeviceMaintenancePeople(request, callback, asyncState);
         }
@@ -6294,6 +6444,19 @@ namespace Scada.Client.VM.ScadaDeviceService {
             public Scada.Client.VM.ScadaDeviceService.GetMaintenancePeopleResponse EndGetMaintenancePeople(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 Scada.Client.VM.ScadaDeviceService.GetMaintenancePeopleResponse _result = ((Scada.Client.VM.ScadaDeviceService.GetMaintenancePeopleResponse)(base.EndInvoke("GetMaintenancePeople", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetMaintenancePeopleInfo(Scada.Client.VM.ScadaDeviceService.GetMaintenancePeopleInfoRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("GetMaintenancePeopleInfo", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.VM.ScadaDeviceService.GetMaintenancePeopleInfoResponse EndGetMaintenancePeopleInfo(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.VM.ScadaDeviceService.GetMaintenancePeopleInfoResponse _result = ((Scada.Client.VM.ScadaDeviceService.GetMaintenancePeopleInfoResponse)(base.EndInvoke("GetMaintenancePeopleInfo", _args, result)));
                 return _result;
             }
             

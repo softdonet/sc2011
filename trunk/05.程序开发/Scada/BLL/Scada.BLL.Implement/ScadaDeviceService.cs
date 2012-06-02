@@ -1664,7 +1664,7 @@ namespace Scada.BLL.Implement
                 people.QQ = item["QQ"].ToString();
                 people.MSN = item["MSN"].ToString();
                 people.Email = item["Email"].ToString();
-                people.ImagePath = item["ImagePath"] != DBNull.Value ? item[" ImagePath"].ToString() : null;
+                people.ImagePath = item["ImagePath"].ToString();
                 people.ImageUrl = FileServerHelper.GetHeadeImageUrl(people.ImagePath);
                 mainPeople.Add(people);
             }
@@ -1693,7 +1693,7 @@ namespace Scada.BLL.Implement
                 people.MSN = item["MSN"].ToString();
                 people.Email = item["Email"].ToString();
                 //获取头像数据
-                people.ImagePath = item["ImagePath"] != DBNull.Value ? item[" ImagePath"].ToString() : null;
+                people.ImagePath = item["ImagePath"].ToString();
                 people.ImageUrl = FileServerHelper.GetHeadeImageUrl(people.ImagePath);
                 mainPeople.Add(people);
             }

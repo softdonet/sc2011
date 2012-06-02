@@ -1666,7 +1666,7 @@ namespace Scada.BLL.Implement
                 people.Email = item["Email"].ToString();
                 //if (item["HeadImage"] != DBNull.Value)
                 //    people.HeadImage = (byte[])item["HeadImage"];
-                people.ImagePath = FileServerHelper.GetHeadeImageUrl(item[" ImagePath"].ToString());
+                //people.ImagePath = FileServerHelper.GetHeadeImageUrl(item[" ImagePath"].ToString());
                 mainPeople.Add(people);
             }
             return BinaryObjTransfer.JsonSerializer<List<MaintenancePeople>>(mainPeople);
@@ -1706,7 +1706,7 @@ namespace Scada.BLL.Implement
         {
             Boolean result = false;
             string sSql = @" Insert Into MaintenancePeople(ID,Name,Address,Telephone,
-                                    Mobile,QQ,MSN,Email,HeadImage) Values (@ID,@Name,@Address,@Telephone,
+                                    Mobile,QQ,MSN,Email,ImagePath) Values (@ID,@Name,@Address,@Telephone,
                                     @Mobile,@QQ,@MSN,@Email,@ImagePath)";
             List<SqlParameter> sSqlWhere = new List<SqlParameter>();
             try
@@ -1720,7 +1720,7 @@ namespace Scada.BLL.Implement
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@QQ", DbType = DbType.String, Value = mainPeople.QQ });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@MSN", DbType = DbType.String, Value = mainPeople.MSN });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@Email", DbType = DbType.String, Value = mainPeople.Email });
-                string filName = Guid.NewGuid().ToString() + FileServerHelper.GetFileExtendName(mainPeople.ImagePath);
+                string filName = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(mainPeople.ImagePath);
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@ImagePath", DbType = DbType.String, Value = filName });
                 int rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql, sSqlWhere.ToArray());
                 //保存头像数据

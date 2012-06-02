@@ -79,6 +79,7 @@
     </Content>
     <Content Include="ClientBin\Scada.Client.SL.xap" />
     <Content Include="JavaScript\Silverlight.js" />
+    <Content Include="UploadFile\HeadImage\Default.jpg" />
     <Content Include="WCFServices\DeviceRealTimeService.svc" />
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <Content Include="SpringConfig\CommonService.xml">
@@ -128,9 +129,7 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UploadFile\HeadImage\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

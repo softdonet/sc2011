@@ -42,7 +42,7 @@ namespace DataCollecting
             h.CmdHeader = Const.UP_HEADER;
             h.CmdCommand = Command.cmd_RealTimeDate_R;
             h.DataContext = 42605;
-            h.DeviceSN = "0A5F01CD0001";
+            h.DeviceSN = "0A5F01CD0003";
             h.State = 0;
             h.SateTimeMark = DateTime.Now;
             RealTimeData_R rr = new RealTimeData_R();
@@ -58,7 +58,7 @@ namespace DataCollecting
             block.Signal = (ushort)RandomHelper.GetRandom(0, 400);
 
             RealTimeDataBlock block1 = new RealTimeDataBlock();
-            block1.BlockNo = 1;
+            block1.BlockNo = 2;
             block1.SateTimeMark = DateTime.Now;
             block1.Temperature1 = RandomHelper.GetRandom(15, 60) + 0.5M;
             block1.Temperature2 = RandomHelper.GetRandom(15, 60) + 0.5M;

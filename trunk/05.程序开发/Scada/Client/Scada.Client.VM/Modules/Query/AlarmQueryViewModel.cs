@@ -31,7 +31,7 @@ namespace Scada.Client.VM.Modules.Query
 
         public AlarmQueryViewModel()
         {
-            this.StartDate = DateTime.Now.AddDays(-1);
+            this.StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0).AddDays(-1);
             this.EndDate = DateTime.Now;
 
             scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();

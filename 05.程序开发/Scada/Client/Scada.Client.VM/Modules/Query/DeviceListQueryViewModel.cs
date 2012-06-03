@@ -97,6 +97,12 @@ namespace Scada.Client.VM.Modules.Query
             set
             {
                 endDate = value;
+                if (value != null)
+                {
+                    endDate = new DateTime(Convert.ToDateTime(endDate).Year,
+                                            Convert.ToDateTime(endDate).Month,
+                                            Convert.ToDateTime(endDate).Day, 23, 59, 59);
+                }
                 this.RaisePropertyChanged("EndDate");
             }
         }
@@ -104,7 +110,7 @@ namespace Scada.Client.VM.Modules.Query
         public DeviceListQueryViewModel()
         {
             this.StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-            this.EndDate = DateTime.Now;
+            this.EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
             this.QueryCommand = new DelegateCommand(new Action(this.Query));
             scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
             scadaDeviceServiceSoapClient.GetListDeviceInfoCompleted += new EventHandler<GetListDeviceInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_GetListDeviceInfoCompleted);

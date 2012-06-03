@@ -29,7 +29,7 @@ namespace Scada.Client.VM.Modules.Query
         public UserEventQueryViewModel()
         {
             StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0).AddDays(-1);
-            EndDate = DateTime.Now;
+            EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
 
             scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
             scadaDeviceServiceSoapClient.ListDeviceTreeViewCompleted += new EventHandler<ListDeviceTreeViewCompletedEventArgs>(scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted);
@@ -140,7 +140,11 @@ namespace Scada.Client.VM.Modules.Query
         public DateTime EndDate
         {
             get { return endDate; }
-            set { endDate = value; }
+            set
+            {
+                endDate = value;
+                endDate = new DateTime(endDate.Year, endDate.Month, endDate.Day, 23, 59, 59);
+            }
         }
 
 

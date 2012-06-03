@@ -32,7 +32,7 @@ namespace Scada.Client.VM.Modules.Query
         public AlarmQueryViewModel()
         {
             this.StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0).AddDays(-1);
-            this.EndDate = DateTime.Now;
+            this.EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
 
             scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
             scadaDeviceServiceSoapClient.ListDeviceTreeViewCompleted += new EventHandler<ListDeviceTreeViewCompletedEventArgs>(scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted);
@@ -151,6 +151,7 @@ namespace Scada.Client.VM.Modules.Query
             set
             {
                 endDate = value;
+                endDate = new DateTime(endDate.Year, endDate.Month, endDate.Day, 23, 59, 59);
                 this.RaisePropertyChanged("EndDate");
             }
         }

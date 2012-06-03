@@ -39,9 +39,6 @@ namespace Scada.DAL.Linq
     partial void InsertDeviceRealTime(DeviceRealTime instance);
     partial void UpdateDeviceRealTime(DeviceRealTime instance);
     partial void DeleteDeviceRealTime(DeviceRealTime instance);
-    partial void InsertDeviceTree(DeviceTree instance);
-    partial void UpdateDeviceTree(DeviceTree instance);
-    partial void DeleteDeviceTree(DeviceTree instance);
     partial void InsertMaintenancePeople(MaintenancePeople instance);
     partial void UpdateMaintenancePeople(MaintenancePeople instance);
     partial void DeleteMaintenancePeople(MaintenancePeople instance);
@@ -78,10 +75,12 @@ namespace Scada.DAL.Linq
     partial void InsertDeviceInfo(DeviceInfo instance);
     partial void UpdateDeviceInfo(DeviceInfo instance);
     partial void DeleteDeviceInfo(DeviceInfo instance);
+    partial void InsertDeviceTree(DeviceTree instance);
+    partial void UpdateDeviceTree(DeviceTree instance);
+    partial void DeleteDeviceTree(DeviceTree instance);
     #endregion
 		
 
-		
 		public SCADADataContext(string connection) : 
 				base(connection, mappingSource)
 		{
@@ -127,14 +126,6 @@ namespace Scada.DAL.Linq
 			get
 			{
 				return this.GetTable<DeviceRealTime>();
-			}
-		}
-		
-		public System.Data.Linq.Table<DeviceTree> DeviceTrees
-		{
-			get
-			{
-				return this.GetTable<DeviceTree>();
 			}
 		}
 		
@@ -239,6 +230,14 @@ namespace Scada.DAL.Linq
 			get
 			{
 				return this.GetTable<DeviceInfo>();
+			}
+		}
+		
+		public System.Data.Linq.Table<DeviceTree> DeviceTrees
+		{
+			get
+			{
+				return this.GetTable<DeviceTree>();
 			}
 		}
 	}
@@ -1111,216 +1110,6 @@ namespace Scada.DAL.Linq
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DeviceTree")]
-	public partial class DeviceTree : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _ID;
-		
-		private string _Name;
-		
-		private System.Nullable<System.Guid> _ParentID;
-		
-		private System.Nullable<int> _Level;
-		
-		private System.Nullable<System.Guid> _AdminID;
-		
-		private System.Nullable<int> _Sort;
-		
-		private EntitySet<DeviceInfo> _DeviceInfos;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(System.Guid value);
-    partial void OnIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnParentIDChanging(System.Nullable<System.Guid> value);
-    partial void OnParentIDChanged();
-    partial void OnLevelChanging(System.Nullable<int> value);
-    partial void OnLevelChanged();
-    partial void OnAdminIDChanging(System.Nullable<System.Guid> value);
-    partial void OnAdminIDChanged();
-    partial void OnSortChanging(System.Nullable<int> value);
-    partial void OnSortChanged();
-    #endregion
-		
-		public DeviceTree()
-		{
-			this._DeviceInfos = new EntitySet<DeviceInfo>(new Action<DeviceInfo>(this.attach_DeviceInfos), new Action<DeviceInfo>(this.detach_DeviceInfos));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(20)")]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> ParentID
-		{
-			get
-			{
-				return this._ParentID;
-			}
-			set
-			{
-				if ((this._ParentID != value))
-				{
-					this.OnParentIDChanging(value);
-					this.SendPropertyChanging();
-					this._ParentID = value;
-					this.SendPropertyChanged("ParentID");
-					this.OnParentIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Level]", Storage="_Level", DbType="Int")]
-		public System.Nullable<int> Level
-		{
-			get
-			{
-				return this._Level;
-			}
-			set
-			{
-				if ((this._Level != value))
-				{
-					this.OnLevelChanging(value);
-					this.SendPropertyChanging();
-					this._Level = value;
-					this.SendPropertyChanged("Level");
-					this.OnLevelChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AdminID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> AdminID
-		{
-			get
-			{
-				return this._AdminID;
-			}
-			set
-			{
-				if ((this._AdminID != value))
-				{
-					this.OnAdminIDChanging(value);
-					this.SendPropertyChanging();
-					this._AdminID = value;
-					this.SendPropertyChanged("AdminID");
-					this.OnAdminIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sort", DbType="Int")]
-		public System.Nullable<int> Sort
-		{
-			get
-			{
-				return this._Sort;
-			}
-			set
-			{
-				if ((this._Sort != value))
-				{
-					this.OnSortChanging(value);
-					this.SendPropertyChanging();
-					this._Sort = value;
-					this.SendPropertyChanged("Sort");
-					this.OnSortChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DeviceTree_DeviceInfo", Storage="_DeviceInfos", ThisKey="ID", OtherKey="ManageAreaID")]
-		public EntitySet<DeviceInfo> DeviceInfos
-		{
-			get
-			{
-				return this._DeviceInfos;
-			}
-			set
-			{
-				this._DeviceInfos.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_DeviceInfos(DeviceInfo entity)
-		{
-			this.SendPropertyChanging();
-			entity.DeviceTree = this;
-		}
-		
-		private void detach_DeviceInfos(DeviceInfo entity)
-		{
-			this.SendPropertyChanging();
-			entity.DeviceTree = null;
 		}
 	}
 	
@@ -4895,6 +4684,240 @@ namespace Scada.DAL.Linq
 		{
 			this.SendPropertyChanging();
 			entity.DeviceInfo = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DeviceTree")]
+	public partial class DeviceTree : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ID;
+		
+		private string _Name;
+		
+		private System.Nullable<System.Guid> _ParentID;
+		
+		private System.Nullable<int> _Level;
+		
+		private System.Nullable<System.Guid> _AdminID;
+		
+		private System.Nullable<int> _Sort;
+		
+		private string _KinshipCode;
+		
+		private EntitySet<DeviceInfo> _DeviceInfos;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(System.Guid value);
+    partial void OnIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnParentIDChanging(System.Nullable<System.Guid> value);
+    partial void OnParentIDChanged();
+    partial void OnLevelChanging(System.Nullable<int> value);
+    partial void OnLevelChanged();
+    partial void OnAdminIDChanging(System.Nullable<System.Guid> value);
+    partial void OnAdminIDChanged();
+    partial void OnSortChanging(System.Nullable<int> value);
+    partial void OnSortChanged();
+    partial void OnKinshipCodeChanging(string value);
+    partial void OnKinshipCodeChanged();
+    #endregion
+		
+		public DeviceTree()
+		{
+			this._DeviceInfos = new EntitySet<DeviceInfo>(new Action<DeviceInfo>(this.attach_DeviceInfos), new Action<DeviceInfo>(this.detach_DeviceInfos));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(20)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> ParentID
+		{
+			get
+			{
+				return this._ParentID;
+			}
+			set
+			{
+				if ((this._ParentID != value))
+				{
+					this.OnParentIDChanging(value);
+					this.SendPropertyChanging();
+					this._ParentID = value;
+					this.SendPropertyChanged("ParentID");
+					this.OnParentIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Level]", Storage="_Level", DbType="Int")]
+		public System.Nullable<int> Level
+		{
+			get
+			{
+				return this._Level;
+			}
+			set
+			{
+				if ((this._Level != value))
+				{
+					this.OnLevelChanging(value);
+					this.SendPropertyChanging();
+					this._Level = value;
+					this.SendPropertyChanged("Level");
+					this.OnLevelChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AdminID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> AdminID
+		{
+			get
+			{
+				return this._AdminID;
+			}
+			set
+			{
+				if ((this._AdminID != value))
+				{
+					this.OnAdminIDChanging(value);
+					this.SendPropertyChanging();
+					this._AdminID = value;
+					this.SendPropertyChanged("AdminID");
+					this.OnAdminIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sort", DbType="Int")]
+		public System.Nullable<int> Sort
+		{
+			get
+			{
+				return this._Sort;
+			}
+			set
+			{
+				if ((this._Sort != value))
+				{
+					this.OnSortChanging(value);
+					this.SendPropertyChanging();
+					this._Sort = value;
+					this.SendPropertyChanged("Sort");
+					this.OnSortChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KinshipCode", DbType="NVarChar(1000)")]
+		public string KinshipCode
+		{
+			get
+			{
+				return this._KinshipCode;
+			}
+			set
+			{
+				if ((this._KinshipCode != value))
+				{
+					this.OnKinshipCodeChanging(value);
+					this.SendPropertyChanging();
+					this._KinshipCode = value;
+					this.SendPropertyChanged("KinshipCode");
+					this.OnKinshipCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DeviceTree_DeviceInfo", Storage="_DeviceInfos", ThisKey="ID", OtherKey="ManageAreaID")]
+		public EntitySet<DeviceInfo> DeviceInfos
+		{
+			get
+			{
+				return this._DeviceInfos;
+			}
+			set
+			{
+				this._DeviceInfos.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_DeviceInfos(DeviceInfo entity)
+		{
+			this.SendPropertyChanging();
+			entity.DeviceTree = this;
+		}
+		
+		private void detach_DeviceInfos(DeviceInfo entity)
+		{
+			this.SendPropertyChanging();
+			entity.DeviceTree = null;
 		}
 	}
 }

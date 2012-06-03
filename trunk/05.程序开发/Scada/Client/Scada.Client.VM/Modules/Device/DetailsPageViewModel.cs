@@ -72,21 +72,5 @@ namespace Scada.Client.VM.Modules.Device
                 RaisePropertyChanged("MaintenancePeople");
             }
         }
-        //设备维护人头像
-        public BitmapImage HeadImg
-        {
-            get
-            {
-                byte[] image = MaintenancePeople.HeadImage;
-                if (image == null)
-                {
-                    return null;
-                }
-                Stream inStream = new MemoryStream(image);
-                BitmapImage imageIn = new BitmapImage();
-                imageIn.SetSource(inStream);
-                return imageIn;
-            }
-        }
     }
 }

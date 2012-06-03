@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SCADA_DEV_NEW" Class="SCADADataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=112.125.33.194;Initial Catalog=SCADA_DEV_NEW;Persist Security Info=True;User ID=sa" SettingsObjectName="Scada.DAL.Linq.Properties.Settings" SettingsPropertyName="SCADA_DEV_NEWConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=112.125.33.194;Initial Catalog=SCADA_DEV_NEW;User ID=sa" SettingsObjectName="Scada.DAL.Linq.Properties.Settings" SettingsPropertyName="SCADA_DEV_NEWConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.DeviceAlarm" Member="DeviceAlarms">
     <Type Name="DeviceAlarm">
       <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -98,10 +98,8 @@
       <Column Name="ParentID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="[Level]" Member="Level" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="AdminID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Sort" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="DeviceTree_DeviceInfo" Member="DeviceInfos" ThisKey="ID" OtherKey="ManageAreaID" Type="DeviceInfo" />
-      <Association Name="DeviceTree_DeviceTree" Member="DeviceTrees" ThisKey="ID" OtherKey="ParentID" Type="DeviceTree" />
-      <Association Name="DeviceTree_DeviceTree" Member="DeviceTree1" ThisKey="ParentID" OtherKey="ID" Type="DeviceTree" IsForeignKey="true" />
-      <Association Name="User_DeviceTree" Member="User" ThisKey="AdminID" OtherKey="UserID" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.MaintenancePeople" Member="MaintenancePeoples">
@@ -114,7 +112,7 @@
       <Column Name="QQ" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="MSN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HeadImage" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ImagePath" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="MaintenancePeople_DeviceInfo" Member="DeviceInfos" ThisKey="ID" OtherKey="MaintenancePeopleID" Type="DeviceInfo" />
     </Type>
   </Table>
@@ -142,6 +140,8 @@
       <Column Name="SecondDNS" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="Domain" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Port" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Weather" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Broadcast" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Role" Member="Roles">
@@ -183,7 +183,6 @@
       <Column Name="Status" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
       <Association Name="User_DeviceAlarm" Member="DeviceAlarms" ThisKey="UserID" OtherKey="DealPeopleID" Type="DeviceAlarm" />
       <Association Name="User_UserRole" Member="UserRoles" ThisKey="UserID" OtherKey="UserID" Type="UserRole" />
-      <Association Name="User_DeviceTree" Member="DeviceTrees" ThisKey="UserID" OtherKey="AdminID" Type="DeviceTree" />
       <Association Name="User_UserEventDealDetail" Member="UserEventDealDetails" ThisKey="UserID" OtherKey="Operator" Type="UserEventDealDetail" />
       <Association Name="User_UserMenu" Member="UserMenus" ThisKey="UserID" OtherKey="UserId" Type="UserMenu" />
     </Type>

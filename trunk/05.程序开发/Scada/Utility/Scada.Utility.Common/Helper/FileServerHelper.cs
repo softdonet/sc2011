@@ -23,15 +23,19 @@ namespace Scada.Utility.Common.Helper
         {
             try
             {
-                string tempPath = HttpContext.Current.Request.PhysicalApplicationPath + "UploadFile/HeadImage/" + fileName;
-                if (File.Exists(tempPath))
+                if (data != null && data.Any())
                 {
-                    File.Delete(tempPath);
+                    string tempPath = HttpContext.Current.Request.PhysicalApplicationPath + "UploadFile/HeadImage/" + fileName;
+                    if (File.Exists(tempPath))
+                    {
+                        File.Delete(tempPath);
+                    }
+                    FileStream fs = new FileStream(tempPath, FileMode.OpenOrCreate);
+                    fs.Write(data, 0, data.Length);
+                    fs.Dispose();
+                    return true;
                 }
-                FileStream fs = new FileStream(tempPath, FileMode.OpenOrCreate);
-                fs.Write(data, 0, data.Length);
-                fs.Dispose();
-                return true;
+                return false;
             }
             catch
             {

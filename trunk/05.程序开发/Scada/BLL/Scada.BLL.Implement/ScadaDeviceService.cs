@@ -841,10 +841,7 @@ namespace Scada.BLL.Implement
             {
                 //return BinaryObjTransfer.JsonSerializer<MaintenancePeople>(obj.MaintenancePeople.ConvertTo<MaintenancePeople>());
 
-                Scada.Model.Entity.MaintenancePeople maintenancePeople = obj.MaintenancePeople.ConvertTo<Scada.Model.Entity.MaintenancePeople>(d =>
-                {
-                    d.HeadImage = obj.MaintenancePeople.HeadImage.ToArray();
-                });
+                Scada.Model.Entity.MaintenancePeople maintenancePeople = obj.MaintenancePeople.ConvertTo<Scada.Model.Entity.MaintenancePeople>();
 
                 var result = BinaryObjTransfer.JsonSerializer<Scada.Model.Entity.MaintenancePeople>(maintenancePeople);
                 return result;

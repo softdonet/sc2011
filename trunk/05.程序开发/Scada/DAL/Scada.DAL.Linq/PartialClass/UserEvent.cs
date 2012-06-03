@@ -9,24 +9,22 @@ namespace Scada.DAL.Linq
     {
         public string Memo
         {
-            get {
+            get
+            {
                 string result = UserEventDealDetails.OrderBy(e => e.StepNo).Select(e => e.StepName + "=>").ToString();
-                //result=result.Remove(
-
-                //return this.UserEventDealDetails
                 return "报告维护人员==》到达==》";
-              }
+            }
         }
         public string Step1
         {
             get
             {
-                var obj1 = UserEventDealDetails.SingleOrDefault(e => e.StepNo == 1).ToString();
-                if (obj1!=null)
+                var obj = this.UserEventDealDetails.Where(e => e.StepNo == 1);
+                if (obj.Any())
                 {
-                    return obj1;
+                    return obj.First().StepName;
                 }
-                return null;
+                return string.Empty;
             }
         }
 
@@ -34,25 +32,26 @@ namespace Scada.DAL.Linq
         {
             get
             {
-                var obj2 = UserEventDealDetails.SingleOrDefault(e => e.StepNo == 1).ToString();
-                if (obj2 != null)
+                var obj = this.UserEventDealDetails.Where(e => e.StepNo ==2);
+                if (obj.Any())
                 {
-                    return obj2;
+                    return obj.First().StepName;
                 }
-                return null;
+                return string.Empty;
             }
         }
+
 
         public string Step3
         {
             get
             {
-                var obj3 = UserEventDealDetails.SingleOrDefault(e => e.StepNo == 1).ToString();
-                if (obj3 != null)
+                var obj = this.UserEventDealDetails.Where(e => e.StepNo ==3);
+                if (obj.Any())
                 {
-                    return obj3;
+                    return obj.First().StepName;
                 }
-                return null;
+                return string.Empty;
             }
         }
 
@@ -60,12 +59,12 @@ namespace Scada.DAL.Linq
         {
             get
             {
-                var obj4 = UserEventDealDetails.SingleOrDefault(e => e.StepNo == 1).ToString();
-                if (obj4 != null)
+                var obj = this.UserEventDealDetails.Where(e => e.StepNo == 4);
+                if (obj.Any())
                 {
-                    return obj4;
+                    return obj.First().StepName;
                 }
-                return null;
+                return string.Empty;
             }
         }
 
@@ -73,17 +72,13 @@ namespace Scada.DAL.Linq
         {
             get
             {
-                var obj5 = UserEventDealDetails.SingleOrDefault(e => e.StepNo == 1).ToString();
-                if (obj5 != null)
+                var obj = this.UserEventDealDetails.Where(e => e.StepNo ==5);
+                if (obj.Any())
                 {
-                    return obj5;
+                    return obj.First().StepName;
                 }
-                return null;
+                return string.Empty;
             }
         }
-
-
-
-
     }
 }

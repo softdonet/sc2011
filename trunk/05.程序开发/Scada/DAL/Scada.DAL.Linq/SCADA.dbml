@@ -40,17 +40,6 @@
       <Association Name="DeviceInfo_DeviceRealTime" Member="DeviceInfo" ThisKey="DeviceID" OtherKey="ID" Type="DeviceInfo" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.DeviceTree" Member="DeviceTrees">
-    <Type Name="DeviceTree">
-      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="ParentID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="[Level]" Member="Level" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="AdminID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Sort" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="DeviceTree_DeviceInfo" Member="DeviceInfos" ThisKey="ID" OtherKey="ManageAreaID" Type="DeviceInfo" />
-    </Type>
-  </Table>
   <Table Name="dbo.MaintenancePeople" Member="MaintenancePeoples">
     <Type Name="MaintenancePeople">
       <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -224,6 +213,18 @@
       <Association Name="DeviceInfo_UserEvent" Member="UserEvents" ThisKey="ID" OtherKey="DeviceID" Type="UserEvent" />
       <Association Name="MaintenancePeople_DeviceInfo" Member="MaintenancePeople" ThisKey="MaintenancePeopleID" OtherKey="ID" Type="MaintenancePeople" IsForeignKey="true" />
       <Association Name="DeviceTree_DeviceInfo" Member="DeviceTree" ThisKey="ManageAreaID" OtherKey="ID" Type="DeviceTree" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DeviceTree" Member="DeviceTrees">
+    <Type Name="DeviceTree">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="ParentID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="[Level]" Member="Level" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AdminID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Sort" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="KinshipCode" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Association Name="DeviceTree_DeviceInfo" Member="DeviceInfos" ThisKey="ID" OtherKey="ManageAreaID" Type="DeviceInfo" />
     </Type>
   </Table>
 </Database>

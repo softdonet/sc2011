@@ -33,15 +33,15 @@
         <telerik:RadGridView x:Name="RadGridView1" Grid.Row="1"   ShowGroupPanel="False" IsReadOnly="True"  
                              ItemsSource="{Binding UserEventModelList}" CanUserFreezeColumns="False" AutoGenerateColumns="False" >
             <telerik:RadGridView.Columns>
-                <telerik:GridViewDataColumn Header="用户事件ID" DataMemberBinding="{Binding EventNo, Mode=TwoWay}" Width="100" HeaderTextAlignment="Center"  />
-                <telerik:GridViewDataColumn Header="设备编号" DataMemberBinding="{Binding DeviceNo, Mode=TwoWay}" Width="100"   HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn Header="请求时间" DataMemberBinding="{Binding RequestTime, Mode=TwoWay}" Width="140" HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn Header="用户请求次数" DataMemberBinding="{Binding Count}" Width="60" HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn Header="步骤1" DataMemberBinding="{Binding Step1}" Width="100" HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn Header="步骤2" DataMemberBinding="{Binding Step2}" Width="100" HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn Header="步骤3" DataMemberBinding="{Binding Step3}" Width="100" HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn Header="步骤4" DataMemberBinding="{Binding Step4}" Width="100" HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn Header="步骤5" DataMemberBinding="{Binding Step5}" Width="100" HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn IsFilterable="False"  Header="用户事件ID" DataMemberBinding="{Binding EventNo, Mode=TwoWay}" Width="100" HeaderTextAlignment="Center"  />
+                <telerik:GridViewDataColumn IsFilterable="False"  Header="设备编号" DataMemberBinding="{Binding DeviceNo, Mode=TwoWay}" Width="100"   HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn IsFilterable="False"  Header="请求时间" DataMemberBinding="{Binding RequestTime, Mode=TwoWay}" Width="140" HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn IsFilterable="False"  Header="请求次数" DataMemberBinding="{Binding Count}" Width="100" HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn IsFilterable="False"  Header="步骤1" DataMemberBinding="{Binding Step1}" Width="100" HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn IsFilterable="False"  Header="步骤2" DataMemberBinding="{Binding Step2}" Width="100" HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn IsFilterable="False"  Header="步骤3" DataMemberBinding="{Binding Step3}" Width="100" HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn IsFilterable="False"  Header="步骤4" DataMemberBinding="{Binding Step4}" Width="100" HeaderTextAlignment="Center"/>
+                <telerik:GridViewDataColumn IsFilterable="False"  Header="步骤5" DataMemberBinding="{Binding Step5}" Width="100" HeaderTextAlignment="Center"/>
 
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>

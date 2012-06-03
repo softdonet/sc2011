@@ -206,8 +206,15 @@ namespace Scada.Client.SL.Modules.BaseInfo
         {
             if (e.Error == null)
             {
-                this._mainPeopleList.Add(this._mainPeopleItem);
-                Console.WriteLine(e.Result);
+                string result = e.Result;
+                if (result.Length > 0)
+                {
+                    ScadaMessageBox.ShowWarnMessage("添加维护人员成功！", "提示信息");
+                    this._mainPeopleItem = BinaryObjTransfer.BinaryDeserialize<MaintenancePeople>(result); ;
+                    this._mainPeopleList.Add(this._mainPeopleItem);
+                }
+                else
+                    ScadaMessageBox.ShowWarnMessage("添加维护人员失败！", "提示信息");
             }
             else
                 ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");
@@ -217,7 +224,17 @@ namespace Scada.Client.SL.Modules.BaseInfo
         {
             if (e.Error == null)
             {
-                Console.WriteLine(e.Result);
+                string result = e.Result;
+                if (result.Length > 0)
+                {
+                    ScadaMessageBox.ShowWarnMessage("修改维护人员成功！", "提示信息");
+                    MaintenancePeople people = BinaryObjTransfer.BinaryDeserialize<MaintenancePeople>(result); ;
+                    this._mainPeopleItem.ImagePath = people.ImagePath;
+                    this._mainPeopleItem.ImageUrl = people.ImageUrl;
+
+                }
+                else
+                    ScadaMessageBox.ShowWarnMessage("修改维护人员失败！", "提示信息");
             }
             else
                 ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");

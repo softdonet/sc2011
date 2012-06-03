@@ -1653,6 +1653,7 @@ namespace Scada.BLL.Implement
 
         #region 维护人员
 
+
         public string GetMaintenancePeople()
         {
             List<MaintenancePeople> mainPeople = new List<MaintenancePeople>();
@@ -1676,6 +1677,8 @@ namespace Scada.BLL.Implement
             }
             return BinaryObjTransfer.JsonSerializer<List<MaintenancePeople>>(mainPeople);
         }
+
+
         /// <summary>
         /// 获取不带头像的维护人员信息
         /// </summary>
@@ -1732,78 +1735,96 @@ namespace Scada.BLL.Implement
             return BinaryObjTransfer.JsonSerializer<List<MaintenancePeople>>(mainPeople);
         }
 
-        public Boolean AddMaintenancePeople(string people)
+        public string AddMaintenancePeople(string people)
         {
-            Boolean result = false;
-            string sSql = @" Insert Into MaintenancePeople(ID,Name,Address,Telephone,
-                                    Mobile,QQ,MSN,Email,ImagePath) Values (@ID,@Name,@Address,@Telephone,
-                                    @Mobile,@QQ,@MSN,@Email,@ImagePath)";
+            string result = string.Empty;
+            StringBuilder sb = new StringBuilder();
+            sb.Append(@" Insert Into MaintenancePeople(ID,Name,Address,Telephone,
+                                    Mobile,QQ,MSN,Email");
+
+            MaintenancePeople mainPeople = BinaryObjTransfer.JsonDeserialize<MaintenancePeople>(people);
+            if (mainPeople.HeadImage != null)
+            {
+                sb.Append(",ImagePath");
+            }
+            sb.Append(@" ) Values (@ID,@Name,@Address,@Telephone,@Mobile,@QQ,@MSN,@Email");
+            if (mainPeople.HeadImage != null)
+            {
+                sb.Append(",@ImagePath");
+            }
+            sb.Append(")");
+
             List<SqlParameter> sSqlWhere = new List<SqlParameter>();
+            sSqlWhere.Add(new SqlParameter() { ParameterName = "@ID", DbType = DbType.Guid, Value = mainPeople.ID });
+            sSqlWhere.Add(new SqlParameter() { ParameterName = "@Name", DbType = DbType.String, Value = mainPeople.Name });
+            sSqlWhere.Add(new SqlParameter() { ParameterName = "@Address", DbType = DbType.String, Value = mainPeople.Address });
+            sSqlWhere.Add(new SqlParameter() { ParameterName = "@Telephone", DbType = DbType.String, Value = mainPeople.Telephone });
+            sSqlWhere.Add(new SqlParameter() { ParameterName = "@Mobile", DbType = DbType.String, Value = mainPeople.Mobile });
+            sSqlWhere.Add(new SqlParameter() { ParameterName = "@QQ", DbType = DbType.String, Value = mainPeople.QQ });
+            sSqlWhere.Add(new SqlParameter() { ParameterName = "@MSN", DbType = DbType.String, Value = mainPeople.MSN });
+            sSqlWhere.Add(new SqlParameter() { ParameterName = "@Email", DbType = DbType.String, Value = mainPeople.Email });
+            if (mainPeople.HeadImage != null)
+            {
+                string filName = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(mainPeople.ImagePath);
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@ImagePath", DbType = DbType.String, Value = filName });
+                FileServerHelper.SaveHeadImage(filName, mainPeople.HeadImage);
+                mainPeople.HeadImage = null;
+                mainPeople.ImagePath = filName;
+                mainPeople.ImageUrl = FileServerHelper.GetHeadeImageUrl(mainPeople.ImagePath);
+            }
             try
             {
-                MaintenancePeople mainPeople = BinaryObjTransfer.JsonDeserialize<MaintenancePeople>(people);
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@ID", DbType = DbType.Guid, Value = mainPeople.ID });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Name", DbType = DbType.String, Value = mainPeople.Name });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Address", DbType = DbType.String, Value = mainPeople.Address });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Telephone", DbType = DbType.String, Value = mainPeople.Telephone });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Mobile", DbType = DbType.String, Value = mainPeople.Mobile });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@QQ", DbType = DbType.String, Value = mainPeople.QQ });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@MSN", DbType = DbType.String, Value = mainPeople.MSN });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Email", DbType = DbType.String, Value = mainPeople.Email });
-                if (mainPeople.ImagePath != null && mainPeople.ImagePath.Length > 0)
-                {
-                    string filName = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(mainPeople.ImagePath);
-                    sSqlWhere.Add(new SqlParameter() { ParameterName = "@ImagePath", DbType = DbType.String, Value = filName });
-                    FileServerHelper.SaveHeadImage(filName, mainPeople.HeadImage);
-                }
-                else
-                    sSqlWhere.Add(new SqlParameter() { ParameterName = "@ImagePath", DbType = DbType.String, Value = String.Empty });
 
-                int rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql, sSqlWhere.ToArray());
-                result = true;
+                int rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sb.ToString(), sSqlWhere.ToArray());
+                result = BinaryObjTransfer.JsonSerializer<MaintenancePeople>(mainPeople);
             }
             catch (Exception ex)
             {
+                result = string.Empty;
                 Console.WriteLine(ex.Message);
-                result = false;
             }
             return result;
         }
 
-        public Boolean UpdateMaintenancePeople(string people)
+        public string UpdateMaintenancePeople(string people)
         {
-            Boolean result = false;
-            string sSql = @" Update MaintenancePeople Set Name=@Name,Address=@Address,Telephone=@Telephone,
-                                    Mobile=@Mobile,QQ=@QQ,MSN=@MSN,Email=@Email,HeadImage=@HeadImage Where ID=@ID";
+            string result = string.Empty;
+            StringBuilder sb = new StringBuilder();
+            sb.Append(@" Update MaintenancePeople Set Name=@Name,Address=@Address,Telephone=@Telephone,
+                                    Mobile=@Mobile,QQ=@QQ,MSN=@MSN,Email=@Email");
+            MaintenancePeople mainPeople = BinaryObjTransfer.JsonDeserialize<MaintenancePeople>(people);
+            if (mainPeople.HeadImage != null)
+                sb.Append(" ,ImagePath=@ImagePath ");
+            sb.Append(" Where ID=@ID");
+
             List<SqlParameter> sSqlWhere = new List<SqlParameter>();
+            sSqlWhere.Add(new SqlParameter() { ParameterName = "@Name", DbType = DbType.String, Value = mainPeople.Name });
+            sSqlWhere.Add(new SqlParameter() { ParameterName = "@Address", DbType = DbType.String, Value = mainPeople.Address });
+            sSqlWhere.Add(new SqlParameter() { ParameterName = "@Telephone", DbType = DbType.String, Value = mainPeople.Telephone });
+            sSqlWhere.Add(new SqlParameter() { ParameterName = "@Mobile", DbType = DbType.String, Value = mainPeople.Mobile });
+            sSqlWhere.Add(new SqlParameter() { ParameterName = "@QQ", DbType = DbType.String, Value = mainPeople.QQ });
+            sSqlWhere.Add(new SqlParameter() { ParameterName = "@MSN", DbType = DbType.String, Value = mainPeople.MSN });
+            sSqlWhere.Add(new SqlParameter() { ParameterName = "@Email", DbType = DbType.String, Value = mainPeople.Email });
+
+            if (mainPeople.HeadImage != null)
+            {
+                string filName = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(mainPeople.ImagePath);
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@ImagePath", DbType = DbType.String, Value = filName });
+                FileServerHelper.SaveHeadImage(filName, mainPeople.HeadImage);
+                mainPeople.HeadImage = null;
+                mainPeople.ImagePath = filName;
+                mainPeople.ImageUrl = FileServerHelper.GetHeadeImageUrl(mainPeople.ImagePath);
+            }
+            sSqlWhere.Add(new SqlParameter() { ParameterName = "@ID", DbType = DbType.Guid, Value = mainPeople.ID });
             try
             {
-                MaintenancePeople mainPeople = BinaryObjTransfer.JsonDeserialize<MaintenancePeople>(people);
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Name", DbType = DbType.String, Value = mainPeople.Name });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Address", DbType = DbType.String, Value = mainPeople.Address });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Telephone", DbType = DbType.String, Value = mainPeople.Telephone });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Mobile", DbType = DbType.String, Value = mainPeople.Mobile });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@QQ", DbType = DbType.String, Value = mainPeople.QQ });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@MSN", DbType = DbType.String, Value = mainPeople.MSN });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@Email", DbType = DbType.String, Value = mainPeople.Email });
-
-                if (mainPeople.ImagePath != null && mainPeople.ImagePath.Length > 0)
-                {
-                    string filName = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(mainPeople.ImagePath);
-                    sSqlWhere.Add(new SqlParameter() { ParameterName = "@ImagePath", DbType = DbType.String, Value = filName });
-                    FileServerHelper.SaveHeadImage(filName, mainPeople.HeadImage);
-                }
-                else
-                    sSqlWhere.Add(new SqlParameter() { ParameterName = "@ImagePath", DbType = DbType.String, Value = String.Empty });
-
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@ID", DbType = DbType.Guid, Value = mainPeople.ID });
-                int rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql, sSqlWhere.ToArray());
-                result = true;
+                int rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sb.ToString(), sSqlWhere.ToArray());
+                result = BinaryObjTransfer.JsonSerializer<MaintenancePeople>(mainPeople);
             }
             catch (Exception ex)
             {
+                result = string.Empty;
                 Console.WriteLine(ex.Message);
-                result = false;
             }
             return result;
         }

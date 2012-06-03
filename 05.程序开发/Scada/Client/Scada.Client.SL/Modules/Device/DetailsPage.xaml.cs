@@ -17,6 +17,7 @@ using Scada.Model.Entity;
 using Scada.Client.SL.CommClass;
 using Scada.Client.SL.ScadaDeviceService;
 using Scada.Client.VM.Modules.Device;
+using System.Windows.Media.Imaging;
 
 
 
@@ -68,10 +69,12 @@ namespace Scada.Client.SL.Modules.Device
 
                 if (e.PropertyName == "MaintenancePeople")
                 {
-                    if (detailsPageViewModel.HeadImg != null)
-                        this.headImg.Source = detailsPageViewModel.HeadImg;
+                    if (!string.IsNullOrEmpty(detailsPageViewModel.MaintenancePeople.ImageUrl))
+                    {
+                        BitmapImage bitImg = new BitmapImage(new Uri(detailsPageViewModel.MaintenancePeople.ImageUrl, UriKind.Absolute));
+                        this.headImg.Source = bitImg;
+                    }
                 }
-
             };
         }
 

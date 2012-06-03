@@ -28,7 +28,7 @@ namespace Scada.Client.VM.Modules.Query
         #region Constructor
         public UserEventQueryViewModel()
         {
-            StartDate = DateTime.Now.AddDays(-1);
+            StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0).AddDays(-1);
             EndDate = DateTime.Now;
 
             scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
@@ -37,10 +37,10 @@ namespace Scada.Client.VM.Modules.Query
 
             this.queryCommand = new DelegateCommand(this.Query);
             scadaDeviceServiceSoapClient.GetUserEventQueryInfoCompleted += new EventHandler<GetUserEventQueryInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_GetUserEventQueryInfoCompleted);
-        
-        
+
+
         }
-  #endregion
+        #endregion
 
         void scadaDeviceServiceSoapClient_GetUserEventQueryInfoCompleted(object sender, GetUserEventQueryInfoCompletedEventArgs e)
         {
@@ -72,11 +72,11 @@ namespace Scada.Client.VM.Modules.Query
                 MessageBox.Show("获取数据失败！");
             }
         }
-      
+
 
         private void Query()
         {
-            if (SelectDeviceTreeNode == null || SelectDeviceTreeNode.NodeKey==Guid.Empty)
+            if (SelectDeviceTreeNode == null || SelectDeviceTreeNode.NodeKey == Guid.Empty)
             {
                 UserEventModelList = new List<UserEventModel>();
                 return;
@@ -116,7 +116,8 @@ namespace Scada.Client.VM.Modules.Query
         public List<UserEventModel> UserEventModelList
         {
             get { return userEventModelList; }
-            set {
+            set
+            {
                 userEventModelList = value;
                 this.RaisePropertyChanged("UserEventModelList");
             }
@@ -130,6 +131,7 @@ namespace Scada.Client.VM.Modules.Query
             set
             {
                 startDate = value;
+                startDate = new DateTime(startDate.Year, startDate.Month, startDate.Day, 0, 0, 0);
                 this.RaisePropertyChanged("StartDate");
             }
         }

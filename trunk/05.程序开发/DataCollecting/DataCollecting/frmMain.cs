@@ -20,24 +20,48 @@ namespace DataCollecting
     public partial class frm_Test : Form
     {
         //tcp服务
-        TcpNetServer tcpserver = new TcpNetServer();
+        TcpNetServer tcpserver = null;
         //数据解析
         ConmmandAnalysis commandAnalysis = null;
         public frm_Test()
         {
             InitializeComponent();
-            RefreshState();
-            LogItem litem = new LogItem()
+            if (!StartServer())
             {
-                Event = "启动SCADA入库程序",
-                Time = DateTime.Now
-            };
-            LogChanged(litem);
+                return;
+            }
+            RefreshState();
             tcpserver.SystenErrorEvent += new TcpNetServer.SystenErrorHandle(tcpserver_SystenErrorEvent);
             commandAnalysis = new ConmmandAnalysis(tcpserver);
             commandAnalysis.OnReceiveMsg += new ConmmandAnalysis.OnReceiveHandle(commandAnalysis_OnReceiveMsg);
         }
 
+        //启动服务
+        bool StartServer()
+        {
+            try
+            {
+                tcpserver = new TcpNetServer();
+                LogItem litem = new LogItem()
+                {
+                    Event = "启动SCADA入库程序成功！",
+                    Time = DateTime.Now
+                };
+                LogChanged(litem);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                LogItem item = new LogItem()
+                {
+                    Event = "启动SCADA入库程序失败！",
+                    Time = DateTime.Now,
+                    Memo = ex.Message
+                };
+                LogChanged(item);
+                return false;
+            }
+        }
         /// <summary>
         /// 记录日志
         /// </summary>
@@ -121,18 +145,19 @@ namespace DataCollecting
 
         private void frm_Test_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult res = MessageBox.Show("您确定退出系统吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (res == DialogResult.Yes)
-            {
-                this.Hide();
-                this.notifyIcon1.Visible = false;
-                this.Dispose();
-                Application.Exit();
-            }
-            else
-            {
-                e.Cancel = true;
-            }
+
+            //DialogResult res = MessageBox.Show("您确定退出系统吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //if (res == DialogResult.Yes)
+            //{
+            //    this.Hide();
+            //    this.notifyIcon1.Visible = false;
+            //    this.Dispose();
+            //    Application.Exit();
+            //}
+            //else
+            //{
+            //    e.Cancel = true;
+            //}
         }
 
         private void notifyIcon1_Click(object sender, EventArgs e)

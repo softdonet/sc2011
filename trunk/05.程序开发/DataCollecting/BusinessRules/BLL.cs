@@ -35,11 +35,7 @@ namespace BusinessRules
         {
             get
             {
-                if (deviceRealTimeServiceClient == null ||
-                    deviceRealTimeServiceClient.State != CommunicationState.Opened)
-                {
-                    deviceRealTimeServiceClient = new RealTimeServiceClient();
-                }
+                deviceRealTimeServiceClient = new RealTimeServiceClient();
                 return deviceRealTimeServiceClient;
             }
         }
@@ -122,7 +118,8 @@ namespace BusinessRules
         public ReplyBase_S GetDeviceInfor(string deviceSN)
         {
             //业务逻辑：
-            //如果设备配置、天气预报、广播信息有更新。
+            //如果设备配置有更新。责回复
+            //天气预报和广播每次都回复
             //则回复配置信息+天气预报+广播信息，并标记。
             ReplyBase_S rs = new ReplyBase_S();
             SCADADataContext DataContext = new SCADADataContext();
@@ -130,49 +127,55 @@ namespace BusinessRules
             if (deviceInfor != null)
             {
                 rs.HaveBroadcastInfo = true;
-                rs.HaveConfigInfo = true;
                 rs.HaveWeatherInfo = true;
-                //构造设备配置信息块
-                ConfigDataBlock configDataBlock = new ConfigDataBlock();
-                configDataBlock.RunMode = (byte)deviceInfor.CurrentModel.Value;
-                switch (configDataBlock.RunMode)
-                {
-                    case 1:
-                        configDataBlock.Argument1 = (ushort)deviceInfor.RealTimeParam.Value;
-                        configDataBlock.Argument2 = 0;
-                        configDataBlock.Argument3 = 0;
-                        break;
-                    case 2:
-                        configDataBlock.Argument1 = (ushort)deviceInfor.FullTimeParam1.Value;
-                        configDataBlock.Argument2 = (ushort)deviceInfor.FullTimeParam2.Value;
-                        configDataBlock.Argument3 = 0;
-                        break;
-                    case 3:
-                        configDataBlock.Argument1 = (ushort)deviceInfor.OptimizeParam1.Value;
-                        configDataBlock.Argument2 = (ushort)deviceInfor.OptimizeParam2.Value;
-                        configDataBlock.Argument3 = (ushort)deviceInfor.OptimizeParam3.Value;
-                        break;
-                    default:
-                        configDataBlock.Argument1 = 0;
-                        configDataBlock.Argument2 = 0;
-                        configDataBlock.Argument3 = 0;
-                        break;
-                }
-                configDataBlock.DeviceNo = deviceInfor.DeviceNo;
-                configDataBlock.InstalPlace = deviceInfor.InstallPlace;
-                configDataBlock.DisplayMode = (byte)deviceInfor.LCDScreenDisplayType.Value;
-                configDataBlock.InstancyBtnEnable = deviceInfor.UrgencyBtnEnable.GetValueOrDefault(false);
-                configDataBlock.InfoBtnEnable = deviceInfor.InforBtnEnable.GetValueOrDefault(false);
-                configDataBlock.RepairTel = deviceInfor.MaintenancePeople.Mobile;
+                rs.HaveConfigInfo = deviceInfor.IsNew;
                 //系统公共参数
                 PublicParameter objParameter = DataContext.PublicParameters.First();
-                configDataBlock.DomainName = objParameter.Domain;
-                configDataBlock.MainIP = objParameter.MainDNS;
-                configDataBlock.ReserveIP = objParameter.SecondDNS;
-                configDataBlock.Port = (ushort)objParameter.Port.Value;
-                configDataBlock.ConnectionType = (byte)objParameter.ConnectType.Value;
-                configDataBlock.ConnectName = objParameter.ConnectName;
-                rs.ConfigData = configDataBlock;
+                if (deviceInfor.IsNew)
+                {
+                    //构造设备配置信息块
+                    ConfigDataBlock configDataBlock = new ConfigDataBlock();
+                    configDataBlock.RunMode = (byte)deviceInfor.CurrentModel.Value;
+                    switch (configDataBlock.RunMode)
+                    {
+                        case 1:
+                            configDataBlock.Argument1 = (ushort)deviceInfor.RealTimeParam.Value;
+                            configDataBlock.Argument2 = 0;
+                            configDataBlock.Argument3 = 0;
+                            break;
+                        case 2:
+                            configDataBlock.Argument1 = (ushort)deviceInfor.FullTimeParam1.Value;
+                            configDataBlock.Argument2 = (ushort)deviceInfor.FullTimeParam2.Value;
+                            configDataBlock.Argument3 = 0;
+                            break;
+                        case 3:
+                            configDataBlock.Argument1 = (ushort)deviceInfor.OptimizeParam1.Value;
+                            configDataBlock.Argument2 = (ushort)deviceInfor.OptimizeParam2.Value;
+                            configDataBlock.Argument3 = (ushort)deviceInfor.OptimizeParam3.Value;
+                            break;
+                        default:
+                            configDataBlock.Argument1 = 0;
+                            configDataBlock.Argument2 = 0;
+                            configDataBlock.Argument3 = 0;
+                            break;
+                    }
+                    configDataBlock.DeviceNo = deviceInfor.DeviceNo;
+                    configDataBlock.InstalPlace = deviceInfor.InstallPlace;
+                    configDataBlock.DisplayMode = (byte)deviceInfor.LCDScreenDisplayType.Value;
+                    configDataBlock.InstancyBtnEnable = deviceInfor.UrgencyBtnEnable.GetValueOrDefault(false);
+                    configDataBlock.InfoBtnEnable = deviceInfor.InforBtnEnable.GetValueOrDefault(false);
+                    configDataBlock.RepairTel = deviceInfor.MaintenancePeople.Mobile;
+                    configDataBlock.DomainName = objParameter.Domain;
+                    configDataBlock.MainIP = objParameter.MainDNS;
+                    configDataBlock.ReserveIP = objParameter.SecondDNS;
+                    configDataBlock.Port = (ushort)objParameter.Port.Value;
+                    configDataBlock.ConnectionType = (byte)objParameter.ConnectType.Value;
+                    configDataBlock.ConnectName = objParameter.ConnectName;
+                    rs.ConfigData = configDataBlock;
+                    //将设备更新标记置为false
+                    deviceInfor.IsNew = false;
+                    DataContext.SubmitChanges();
+                }
                 //构造天气预报块
                 WeatherDataBlock weatherDataBlock = new WeatherDataBlock()
                 {
@@ -204,16 +207,21 @@ namespace BusinessRules
                 if (deviceInfor != null)
                 {
                     //当前时间
-                    DateTime nowTime = DateTime.Now; //item.SateTimeMark;
+                    DateTime curTime = DateTime.Now; //item.SateTimeMark;
                     //当前模式（1实时模式；2整点模式；3逢变则报模式）
                     int curMode = deviceInfor.CurrentModel.Value;
                     foreach (RealTimeDataBlock item in realTimeData_R.RealTimeDataBlocks)
                     {
+                        DateTime nowTime;
                         //如果是整点模式，计算采集时间 =当前时间-（块序号*整点模式采集频率*60）
                         if (curMode == 2)
                         {
-                            double delay = (item.BlockNo + 1) * deviceInfor.FullTimeParam1.Value * 60 * (-1.0);
-                            nowTime = nowTime.AddSeconds(delay);
+                            double delay = (item.BlockNo - 1) * deviceInfor.FullTimeParam1.Value * 60 * (-1.0);
+                            nowTime = curTime.AddSeconds(delay);
+                        }
+                        else
+                        {
+                            nowTime = curTime;
                         }
                         DeviceRealTime drt = new DeviceRealTime();
                         drt.ID = Guid.NewGuid();

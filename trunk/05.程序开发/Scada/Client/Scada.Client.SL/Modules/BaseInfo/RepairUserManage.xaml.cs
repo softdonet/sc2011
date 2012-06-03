@@ -65,6 +65,15 @@ namespace Scada.Client.SL.Modules.BaseInfo
                                                 (scadaDeviceServiceSoapClient_GetMaintenancePeopleCompleted);
             this._scadaDeviceServiceSoapClient.GetMaintenancePeopleAsync();
 
+
+            this._scadaDeviceServiceSoapClient.AddMaintenancePeopleCompleted +=
+                             new EventHandler<AddMaintenancePeopleCompletedEventArgs>
+                             (scadaDeviceServiceSoapClient_AddMaintenancePeopleCompleted);
+
+            this._scadaDeviceServiceSoapClient.UpdateMaintenancePeopleCompleted +=
+                                new EventHandler<UpdateMaintenancePeopleCompletedEventArgs>
+                                    (scadaDeviceServiceSoapClient_UpdateMaintenancePeopleCompleted);
+
         }
 
         #endregion
@@ -110,7 +119,6 @@ namespace Scada.Client.SL.Modules.BaseInfo
                            (scadaDeviceServiceSoapClient_DeleteMaintenancePeopleCompleted);
             this._scadaDeviceServiceSoapClient.DeleteMaintenancePeopleAsync(this._mainPeopleItem.ID);
 
-
         }
 
         private void butSave_Click(object sender, RoutedEventArgs e)
@@ -122,24 +130,14 @@ namespace Scada.Client.SL.Modules.BaseInfo
                 this._mainPeopleItem = new MaintenancePeople();
                 this._mainPeopleItem.ID = Guid.NewGuid();
                 this.SetValuePeople(this._mainPeopleItem);
-
-                this._scadaDeviceServiceSoapClient.AddMaintenancePeopleCompleted +=
-                                new EventHandler<AddMaintenancePeopleCompletedEventArgs>
-                                (scadaDeviceServiceSoapClient_AddMaintenancePeopleCompleted);
                 peppleValue = BinaryObjTransfer.BinarySerialize(this._mainPeopleItem);
                 this._scadaDeviceServiceSoapClient.AddMaintenancePeopleAsync(peppleValue);
-
             }
             else
             {
                 this.SetValuePeople(this._mainPeopleItem);
-
-                this._scadaDeviceServiceSoapClient.UpdateMaintenancePeopleCompleted +=
-                                new EventHandler<UpdateMaintenancePeopleCompletedEventArgs>
-                                    (scadaDeviceServiceSoapClient_UpdateMaintenancePeopleCompleted);
                 peppleValue = BinaryObjTransfer.BinarySerialize(this._mainPeopleItem);
                 this._scadaDeviceServiceSoapClient.UpdateMaintenancePeopleAsync(peppleValue);
-
             }
 
             this._isAddUpdate = false;
@@ -178,8 +176,8 @@ namespace Scada.Client.SL.Modules.BaseInfo
                 WriteableBitmap wb = new WriteableBitmap(imageInput.Source as BitmapSource);
                 byte[] bytes = Convert.FromBase64String(BitmapImageByte.GetBase64Image(wb));
                 people.HeadImage = bytes;
+                people.ImagePath = this._ofd.File.Name;
             }
-
         }
 
         private void refMaintenancePeople(MaintenancePeople people)
@@ -192,16 +190,15 @@ namespace Scada.Client.SL.Modules.BaseInfo
             this.txtQQ.Text = people.QQ;
             this.txtTelephone.Text = people.Telephone;
 
-            byte[] image = people.HeadImage;
-            if (image == null)
+            if (people.ImageUrl != null)
             {
                 this.imageInput.Source = null;
-                return;
+                string filePath = people.ImageUrl;
+                if (filePath.Length > 0)
+                {
+                    this.imageInput.Source = new BitmapImage(new Uri(filePath, UriKind.Absolute));
+                }
             }
-            Stream inStream = new MemoryStream(image);
-            BitmapImage imageIn = new BitmapImage();
-            imageIn.SetSource(inStream);
-            this.imageInput.Source = imageIn;
 
         }
 
@@ -247,9 +244,9 @@ namespace Scada.Client.SL.Modules.BaseInfo
                 this.RadGridViewAlarm.ItemsSource = this._mainPeopleList;
 
                 //默认刷新首行数据
-                //if (devicTreeList.Count == 0) { return; }
-                //this._mainPeopleItem = this._mainPeopleList[0];
-                //this.refMaintenancePeople(this._mainPeopleItem);
+                if (devicTreeList.Count == 0) { return; }
+                this._mainPeopleItem = this._mainPeopleList[0];
+                this.refMaintenancePeople(this._mainPeopleItem);
 
             }
             else

@@ -112,17 +112,14 @@ namespace Scada.BLL.Contract
         #region 维护人员
 
         string GetMaintenancePeople();
-        /// <summary>
-        /// 不带头像的维护人员信息
-        /// </summary>
-        /// <returns></returns>
+
         string GetMaintenancePeopleInfo();
 
         string ListDeviceMaintenancePeople(Guid deviceID);
 
-        Boolean AddMaintenancePeople(string people);
+        string AddMaintenancePeople(string people);
 
-        Boolean UpdateMaintenancePeople(string people);
+        string UpdateMaintenancePeople(string people);
 
         Boolean DeleteMaintenancePeople(Guid peopleKey);
 

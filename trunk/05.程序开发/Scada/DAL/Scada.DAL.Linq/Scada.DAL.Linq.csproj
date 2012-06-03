@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PartialClass\DeviceAlarm.cs" />
     <Compile Include="PartialClass\MaintenancePeople.cs" />
     <Compile Include="PartialClass\UserEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,6 +81,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Model\Scada.Model.Entity\Scada.Model.Entity.csproj">
+      <Project>{185CF734-5C46-4496-A65C-1210607D53F4}</Project>
+      <Name>Scada.Model.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Utility\Scada.Utility.Common\Scada.Utility.Common.csproj">
       <Project>{FF2691F8-CBCF-4615-9232-9A4495CE4E5D}</Project>
       <Name>Scada.Utility.Common</Name>

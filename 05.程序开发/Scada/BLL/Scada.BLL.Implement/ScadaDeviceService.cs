@@ -1331,6 +1331,18 @@ namespace Scada.BLL.Implement
 
         public string GetUserEventQueryInfo(Guid id, DateTime startDate, DateTime endDate)
         {
+
+
+
+
+
+
+
+
+
+
+
+
             string result = string.Empty;
             try
             {

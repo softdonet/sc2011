@@ -21,7 +21,10 @@ namespace Scada.BLL.Implement
         {
             sCADADataContext = new SCADADataContext();
             Scada.Model.Entity.DeviceInfo deviceValue = BinaryObjTransfer.JsonDeserialize<Scada.Model.Entity.DeviceInfo>(deviceInfo);
-            Scada.DAL.Linq.DeviceInfo linDeviceInfor = deviceValue.ConvertTo<Scada.DAL.Linq.DeviceInfo>();
+            Scada.DAL.Linq.DeviceInfo linDeviceInfor = deviceValue.ConvertTo<Scada.DAL.Linq.DeviceInfo>(d =>
+            {
+                d.IsNew = true;
+            });
             sCADADataContext.DeviceInfos.InsertOnSubmit(linDeviceInfor);
             sCADADataContext.SubmitChanges();
             return true;
@@ -99,7 +102,7 @@ namespace Scada.BLL.Implement
                 obj.OptimizeParam1 = deviceValue.OptimizeParam1;
                 obj.OptimizeParam2 = deviceValue.OptimizeParam2;
                 obj.OptimizeParam3 = deviceValue.OptimizeParam3;
-
+                obj.IsNew = true;
                 //Todo:其他属性
             }
             sCADADataContext.SubmitChanges();

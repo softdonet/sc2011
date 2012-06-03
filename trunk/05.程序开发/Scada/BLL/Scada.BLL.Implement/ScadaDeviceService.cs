@@ -839,10 +839,7 @@ namespace Scada.BLL.Implement
             var obj = sCADADataContext.DeviceInfos.SingleOrDefault(e => e.ID == deviceID);
             if (obj != null && obj.MaintenancePeople != null)
             {
-                //return BinaryObjTransfer.JsonSerializer<MaintenancePeople>(obj.MaintenancePeople.ConvertTo<MaintenancePeople>());
-
                 Scada.Model.Entity.MaintenancePeople maintenancePeople = obj.MaintenancePeople.ConvertTo<Scada.Model.Entity.MaintenancePeople>();
-
                 var result = BinaryObjTransfer.JsonSerializer<Scada.Model.Entity.MaintenancePeople>(maintenancePeople);
                 return result;
             }

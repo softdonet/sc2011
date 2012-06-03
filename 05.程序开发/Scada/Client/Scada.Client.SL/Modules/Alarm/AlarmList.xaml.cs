@@ -71,7 +71,6 @@ namespace Scada.Client.SL.Modules.Alarm
 
         #endregion
 
-
         #region 事件处理
 
         private void RadGridView1_RowLoaded(object sender, Telerik.Windows.Controls.GridView.RowLoadedEventArgs e)
@@ -159,5 +158,6 @@ namespace Scada.Client.SL.Modules.Alarm
             AlarmListVM.GetData();
         }
         #endregion
+
     }
 }

@@ -163,7 +163,7 @@ namespace Scada.Client.SL
                     break;
                 //系统告警日志
                 case "childMenuAlertSearch":
-                    this.ViewHost.Child = AlarmQuery.GetInstance();//new AlarmQuery();
+                    this.ViewHost.Child = AlarmQuery.GetInstance();
                     break;
                 //用户事件查询
                 case "childMenuUserEventSearch":

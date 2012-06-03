@@ -1688,7 +1688,7 @@ namespace Scada.BLL.Implement
                 people.QQ = item["QQ"].ToString();
                 people.MSN = item["MSN"].ToString();
                 people.Email = item["Email"].ToString();
-               
+
                 mainPeople.Add(people);
             }
             return BinaryObjTransfer.JsonSerializer<List<MaintenancePeople>>(mainPeople);
@@ -1716,7 +1716,6 @@ namespace Scada.BLL.Implement
                 people.QQ = item["QQ"].ToString();
                 people.MSN = item["MSN"].ToString();
                 people.Email = item["Email"].ToString();
-                //获取头像数据
                 people.ImagePath = item["ImagePath"].ToString();
                 people.ImageUrl = FileServerHelper.GetHeadeImageUrl(people.ImagePath);
                 mainPeople.Add(people);
@@ -1742,11 +1741,16 @@ namespace Scada.BLL.Implement
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@QQ", DbType = DbType.String, Value = mainPeople.QQ });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@MSN", DbType = DbType.String, Value = mainPeople.MSN });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@Email", DbType = DbType.String, Value = mainPeople.Email });
-                string filName = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(mainPeople.ImagePath);
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@ImagePath", DbType = DbType.String, Value = filName });
+                if (mainPeople.ImagePath != null && mainPeople.ImagePath.Length > 0)
+                {
+                    string filName = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(mainPeople.ImagePath);
+                    sSqlWhere.Add(new SqlParameter() { ParameterName = "@ImagePath", DbType = DbType.String, Value = filName });
+                    FileServerHelper.SaveHeadImage(filName, mainPeople.HeadImage);
+                }
+                else
+                    sSqlWhere.Add(new SqlParameter() { ParameterName = "@ImagePath", DbType = DbType.String, Value = String.Empty });
+
                 int rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql, sSqlWhere.ToArray());
-                //保存头像数据
-                FileServerHelper.SaveHeadImage(filName, mainPeople.HeadImage);
                 result = true;
             }
             catch (Exception ex)
@@ -1773,10 +1777,18 @@ namespace Scada.BLL.Implement
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@QQ", DbType = DbType.String, Value = mainPeople.QQ });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@MSN", DbType = DbType.String, Value = mainPeople.MSN });
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@Email", DbType = DbType.String, Value = mainPeople.Email });
-                sSqlWhere.Add(new SqlParameter() { ParameterName = "@HeadImage", DbType = DbType.Binary, Value = mainPeople.HeadImage });
+
+                if (mainPeople.ImagePath != null && mainPeople.ImagePath.Length > 0)
+                {
+                    string filName = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(mainPeople.ImagePath);
+                    sSqlWhere.Add(new SqlParameter() { ParameterName = "@ImagePath", DbType = DbType.String, Value = filName });
+                    FileServerHelper.SaveHeadImage(filName, mainPeople.HeadImage);
+                }
+                else
+                    sSqlWhere.Add(new SqlParameter() { ParameterName = "@ImagePath", DbType = DbType.String, Value = String.Empty });
+
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@ID", DbType = DbType.Guid, Value = mainPeople.ID });
                 int rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql, sSqlWhere.ToArray());
-                // TODO：修改头像
                 result = true;
             }
             catch (Exception ex)
@@ -1796,7 +1808,6 @@ namespace Scada.BLL.Implement
             {
                 sSqlWhere.Add(new SqlParameter() { ParameterName = "@ID", DbType = DbType.Guid, Value = peopleKey });
                 int rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql, sSqlWhere.ToArray());
-                //TODO:获取头像文件名
                 string imageFileName = string.Empty;
                 FileServerHelper.DeleteHeadImage(imageFileName);
                 result = true;

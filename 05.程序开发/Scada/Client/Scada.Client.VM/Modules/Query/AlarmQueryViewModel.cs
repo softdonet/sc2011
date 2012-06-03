@@ -82,7 +82,12 @@ namespace Scada.Client.VM.Modules.Query
                 DeviceAlarmList = new List<DeviceAlarm>();
                 return;
             }
-            scadaDeviceServiceSoapClient.GetAlarmQueryInfoAsync(SelectDeviceTreeNode.NodeKey, SelectDeviceTreeNode.NodeType, StartDate, EndDate);
+            int eventType = 0;
+            if (SelectedEventType != null)
+            {
+                eventType = SelectedEventType.EventType.Value;
+            }
+            scadaDeviceServiceSoapClient.GetAlarmQueryInfoAsync(SelectDeviceTreeNode.NodeKey, eventType, StartDate, EndDate);
         }
 
         /// <summary>
@@ -124,6 +129,23 @@ namespace Scada.Client.VM.Modules.Query
             {
                 deviceAlarmList = value;
                 this.RaisePropertyChanged("DeviceAlarmList");
+            }
+        }
+
+        /// <summary>
+        /// 当前选择的事件类型
+        /// </summary>
+        private DeviceAlarm selectedEventType;
+        public DeviceAlarm SelectedEventType
+        {
+            get
+            {
+                return selectedEventType;
+            }
+            set
+            {
+                selectedEventType = value;
+                this.RaisePropertyChanged("SelectedEventType");
             }
         }
 

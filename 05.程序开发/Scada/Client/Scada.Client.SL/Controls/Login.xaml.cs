@@ -21,7 +21,7 @@ namespace Scada.Client.SL.Controls
         public Login()
         {
             InitializeComponent();
-            txtTile.Text = "CiC-T2000智能室温监测系统";
+            txtTile.Text = "ICS-T2000室温监测服务系统";
             this.Loaded += new RoutedEventHandler(Login_Loaded);
         }
 

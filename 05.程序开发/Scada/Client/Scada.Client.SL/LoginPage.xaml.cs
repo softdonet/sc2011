@@ -19,6 +19,7 @@ using Scada.Client.SL.Controls;
 using Scada.Client.SL.CommClass;
 using Scada.Client.SL.ScadaDeviceService;
 using Scada.Model.Entity.Common;
+using Scada.Client.SL.SystemManagerService;
 
 
 
@@ -35,7 +36,7 @@ namespace Scada.Client.SL
         #region 变量声明
 
         private ScadaDeviceServiceSoapClient _scadaDeviceServiceSoapClient;
-
+        private SystemManagerServiceSoapClient _systemManagerServiceSoapClient;
         private Login login;
 
         #endregion
@@ -45,6 +46,7 @@ namespace Scada.Client.SL
         public LoginPage()
         {
             InitializeComponent();
+            InitSysGlobalPar();
             this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
             this._scadaDeviceServiceSoapClient.LogInCompleted += new EventHandler<LogInCompletedEventArgs>(scadaDeviceServiceSoapClient_LogInCompleted);
 
@@ -72,7 +74,28 @@ namespace Scada.Client.SL
 
         }
 
-
+        /// <summary>
+        /// 初始化全局参数
+        /// </summary>
+        void InitSysGlobalPar()
+        {
+            //全局访问参数
+            this._systemManagerServiceSoapClient = ServiceManager.GetSystemManagerService();
+            this._systemManagerServiceSoapClient.GetSystemGlobalParameterCompleted += (sender, e) =>
+            {
+                if (e.Error == null)
+                {
+                    App.SysGlobalPar = BinaryObjTransfer.BinaryDeserialize<SystemGlobalParameter>(e.Result);
+                    if (App.SysGlobalPar == null)
+                    {
+                        ScadaMessageBox.ShowWarnMessage("系统参数获取失败！", "警告信息");
+                    }
+                }
+                else
+                    ScadaMessageBox.ShowWarnMessage("系统参数获取失败！", "警告信息");
+            };
+            this._systemManagerServiceSoapClient.GetSystemGlobalParameterAsync();
+        }
         #endregion
 
         #region 事件处理
@@ -138,6 +161,7 @@ namespace Scada.Client.SL
         }
 
         #endregion
+
 
 
     }

@@ -93,6 +93,7 @@ namespace Scada.BLL.Implement
                 result.Domain = item["Domain"].ToString();
                 result.Port = Convert.ToInt32(item["Port"]);
                 result.Broadcast = item["Broadcast"].ToString();
+                result.WeatherCity = item["WeatherCity"].ToString();
             }
             return BinaryObjTransfer.JsonSerializer<SystemGlobalParameter>(result);
         }

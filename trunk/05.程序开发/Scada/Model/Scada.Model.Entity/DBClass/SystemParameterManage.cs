@@ -35,6 +35,7 @@ namespace Scada.Model.Entity
         public Int32 Port { get; set; }
 
         public string Broadcast { get; set; }
+        public string WeatherCity { get; set; }
 
     }
 

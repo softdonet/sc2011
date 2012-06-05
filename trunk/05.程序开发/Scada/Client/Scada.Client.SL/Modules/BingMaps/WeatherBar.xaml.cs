@@ -23,9 +23,7 @@ namespace Scada.Client.SL.Modules.BingMaps
         public WeatherBar()
         {
             InitializeComponent();
-            scadaDeviceServiceSoapClient = ServiceManager.GetSystemManagerService();
-            scadaDeviceServiceSoapClient.GetWeatherCompleted += new EventHandler<GetWeatherCompletedEventArgs>(scadaDeviceServiceSoapClient_GetWeatherCompleted);
-            scadaDeviceServiceSoapClient.GetWeatherAsync("北京");
+            scadaDeviceServiceSoapClient = ServiceManager.GetSystemManagerService(); 
         }
 
         void scadaDeviceServiceSoapClient_GetWeatherCompleted(object sender, GetWeatherCompletedEventArgs e)
@@ -64,7 +62,8 @@ namespace Scada.Client.SL.Modules.BingMaps
 
         private void StackPanel_Loaded(object sender, RoutedEventArgs e)
         {
-         
+            scadaDeviceServiceSoapClient.GetWeatherCompleted += new EventHandler<GetWeatherCompletedEventArgs>(scadaDeviceServiceSoapClient_GetWeatherCompleted);
+            scadaDeviceServiceSoapClient.GetWeatherAsync(App.SysGlobalPar.WeatherCity);
         }
     }
 }

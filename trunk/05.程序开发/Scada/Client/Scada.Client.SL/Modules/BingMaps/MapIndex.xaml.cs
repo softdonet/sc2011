@@ -55,6 +55,9 @@ namespace Scada.Client.SL.Modules.BingMaps
             map.Children.Add(myMapLayerDevice);
             map.Children.Add(myMapLayerDeviceGroup);
             map.Children.Add(myMapLayerDeviceArea);
+            map.Children.Remove(this.spPositionInfor);
+            map.Children.Add(this.spPositionInfor);
+
             mapVM = new MapIndexViewModel();
             mapVM.BaseDataResviceEvent += new EventHandler(mapVM_BaseDataResviceEvent);
             mapVM.RealTimeDataResviceEvent += new EventHandler(mapVM_RealTimeDataResviceEvent);
@@ -66,7 +69,24 @@ namespace Scada.Client.SL.Modules.BingMaps
 
             userEventViewModel = new UserEventViewModel();
             RadGridViewUserEvent.DataContext = userEventViewModel;
+            map.ViewChangeOnFrame += new EventHandler<MapEventArgs>(map_ViewChangeOnFrame);
+            map.MouseClick += new EventHandler<MapMouseEventArgs>(map_MouseClick);
+        }
 
+        void map_MouseClick(object sender, MapMouseEventArgs e)
+        {
+           Location loc =　map.ViewportPointToLocation(e.ViewportPoint);
+           this.txtlongitude.Text= loc.Longitude.ToString();
+           this.txtLatitude.Text = loc.Latitude.ToString();
+        }
+
+        
+
+        void map_ViewChangeOnFrame(object sender, MapEventArgs e)
+        {
+            this.lblZool.Content = "缩放：" + (int)this.map.ZoomLevel;
+            this.lbllongitude.Content = "经度：" + this.map.Center.Longitude.ToString();
+            this.lblLatitude.Content = "纬度：" + this.map.Center.Latitude.ToString();
 
         }
 
@@ -318,6 +338,11 @@ namespace Scada.Client.SL.Modules.BingMaps
             //}
 
         }
-    }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+
+        }
+    }
 }

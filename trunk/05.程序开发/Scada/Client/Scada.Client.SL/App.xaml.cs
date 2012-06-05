@@ -20,6 +20,7 @@ namespace Scada.Client.SL
         /// </summary>
         public static User CurUser = null;
         public static List<MenuTree> CurrMenu = null;
+        public static SystemGlobalParameter SysGlobalPar = null;
 
         public App()
         {

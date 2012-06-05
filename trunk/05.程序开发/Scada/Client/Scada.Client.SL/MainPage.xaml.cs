@@ -17,6 +17,7 @@ using Scada.Client.SL.Modules.DiagramAnalysis;
 using Scada.Client.SL.ScadaDeviceService;
 using Scada.Client.SL.CommClass;
 using Scada.Model.Entity;
+using Scada.Client.SL.SystemManagerService;
 
 
 
@@ -32,7 +33,7 @@ namespace Scada.Client.SL
         #region 变量声明
 
         private ScadaDeviceServiceSoapClient _scadaDeviceServiceSoapClient;
-
+     
         #endregion
 
 
@@ -42,9 +43,7 @@ namespace Scada.Client.SL
         {
 
             InitializeComponent();
-
             this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
-
             this._scadaDeviceServiceSoapClient.GetUserMenuTreeListCompleted +=
                                             new EventHandler<GetUserMenuTreeListCompletedEventArgs>(scadaDeviceServiceSoapClient_GetUserMenuTreeListCompleted);
 
@@ -64,9 +63,6 @@ namespace Scada.Client.SL
 
 
         }
-
-
-
 
         private void InitMenu()
         {

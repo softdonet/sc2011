@@ -75,12 +75,12 @@ namespace Scada.Client.SL.Modules.BingMaps
 
         void map_MouseClick(object sender, MapMouseEventArgs e)
         {
-           Location loc =　map.ViewportPointToLocation(e.ViewportPoint);
-           this.txtlongitude.Text= loc.Longitude.ToString();
-           this.txtLatitude.Text = loc.Latitude.ToString();
+            Location loc = map.ViewportPointToLocation(e.ViewportPoint);
+            this.txtlongitude.Text = loc.Longitude.ToString();
+            this.txtLatitude.Text = loc.Latitude.ToString();
         }
 
-        
+
 
         void map_ViewChangeOnFrame(object sender, MapEventArgs e)
         {
@@ -235,13 +235,11 @@ namespace Scada.Client.SL.Modules.BingMaps
         MapLayer myMapLayerDeviceArea = null;
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            map.ZoomLevel = 12;
-            double weidu = (39.9487 + 39.90705 + 39.98698 + 39.96754 + 39.88405) / 5.0;
-            double jindu = (116.45072 + 116.37995 + 116.36773 + 116.36932 + 116.33072) / 5.0;
+            map.ZoomLevel = Convert.ToDouble(App.SysGlobalPar.DefaultZoomLevel);
+            double weidu = Convert.ToDouble(App.SysGlobalPar.DefaultLatitude);
+            double jindu = Convert.ToDouble(App.SysGlobalPar.DefaultLongitude);
             map.Center = new Location(weidu, jindu);
         }
-
-
 
         /// <summary>
         /// 图例折叠效果

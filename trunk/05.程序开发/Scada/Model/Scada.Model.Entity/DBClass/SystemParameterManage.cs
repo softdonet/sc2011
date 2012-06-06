@@ -36,6 +36,10 @@ namespace Scada.Model.Entity
 
         public string Broadcast { get; set; }
         public string WeatherCity { get; set; }
+        public int? DefaultZoomLevel { get; set; }
+        public decimal? DefaultLongitude { get; set; }
+        public decimal? DefaultLatitude { get; set; }
+
 
     }
 

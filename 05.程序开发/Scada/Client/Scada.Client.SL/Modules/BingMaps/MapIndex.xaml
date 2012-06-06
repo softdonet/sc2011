@@ -284,20 +284,20 @@
 			 <Border Background="Black" x:Name="spPositionInfor" VerticalAlignment="Bottom" HorizontalAlignment="Left" Opacity="0.8" BorderBrush="White" BorderThickness="2" CornerRadius="5">
 			 	<StackPanel>
     
-	  	<sdk:Label x:Name="lblZool" HorizontalAlignment="Left" Foreground="#008800" FontSize="12"  Content="缩放："  Margin="0" VerticalAlignment="Bottom" />
-				<sdk:Label x:Name="lbllongitude" Foreground="#008800" FontSize="12"  HorizontalAlignment="Left" Content="经度："  Margin="0" VerticalAlignment="Bottom" />
-				<sdk:Label x:Name="lblLatitude" Foreground="#008800" FontSize="12" HorizontalAlignment="Left" Content="纬度："  Margin="0" VerticalAlignment="Bottom" />
-					<Button   Height="25"   Content="设为默认视图"   />
-				<sdk:Label HorizontalAlignment="Left" Foreground="#008800" FontSize="12" Content="鼠标点击地图获取地理坐标"  Margin="0" VerticalAlignment="Bottom" />
+	  	<sdk:Label x:Name="lblZool" HorizontalAlignment="Left" Foreground="#008800" FontSize="12"  Content="缩放："  Margin="2,0,0,0" VerticalAlignment="Bottom" />
+				<sdk:Label x:Name="lbllongitude" Foreground="#008800" FontSize="12"  HorizontalAlignment="Left" Content="经度："  Margin="2,0,0,0" VerticalAlignment="Bottom" />
+				<sdk:Label x:Name="lblLatitude" Foreground="#008800" FontSize="12" HorizontalAlignment="Left" Content="纬度："  Margin="2,0,0,0" VerticalAlignment="Bottom" />
+					<Button   Height="25"   Content="设为默认视图" Margin="5,0"   />
+				<sdk:Label HorizontalAlignment="Left" Foreground="#008800" FontSize="12" Content="鼠标点击地图获取地理坐标"  Margin="2,0,0,0" VerticalAlignment="Bottom" />
 				
 	
 					
 					<StackPanel    Orientation="Horizontal" VerticalAlignment="Bottom"  Margin="0"  Width="200">
-					<sdk:Label  Foreground="#008800" FontSize="12"  HorizontalAlignment="Left" Content="经度："  Margin="0" VerticalAlignment="Bottom"/>
+					<sdk:Label  Foreground="#008800" FontSize="12"  HorizontalAlignment="Left" Content="经度："  Margin="2,0,0,0" VerticalAlignment="Bottom"/>
 					<TextBox HorizontalAlignment="Left"  x:Name="txtlongitude" Height="20" Margin="0"  Text="" Width="157"/>
 					</StackPanel>
 				<StackPanel HorizontalAlignment="Left"   Orientation="Horizontal" VerticalAlignment="Bottom"  Margin="0"  Width="200">
-					<sdk:Label Foreground="#008800" FontSize="12"  HorizontalAlignment="Left" Content="纬度："  Margin="0" VerticalAlignment="Bottom"/>
+					<sdk:Label Foreground="#008800" FontSize="12"  HorizontalAlignment="Left" Content="纬度："  Margin="2,0,0,0" VerticalAlignment="Bottom"/>
 				<TextBox x:Name="txtLatitude" HorizontalAlignment="Left" Height="20" Margin="0"  Text="" Width="157"/>
 				
 				</StackPanel>

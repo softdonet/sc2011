@@ -94,6 +94,10 @@ namespace Scada.BLL.Implement
                 result.Port = Convert.ToInt32(item["Port"]);
                 result.Broadcast = item["Broadcast"].ToString();
                 result.WeatherCity = item["WeatherCity"].ToString();
+                result.DefaultZoomLevel = Convert.ToInt32(item["DefaultZoomLevel"]);
+                result.DefaultLongitude = Convert.ToDecimal(item["DefaultLongitude"]);
+                result.DefaultLatitude = Convert.ToDecimal(item["DefaultLatitude"]);
+
             }
             return BinaryObjTransfer.JsonSerializer<SystemGlobalParameter>(result);
         }

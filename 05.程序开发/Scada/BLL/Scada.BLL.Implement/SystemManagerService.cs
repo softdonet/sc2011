@@ -142,7 +142,7 @@ namespace Scada.BLL.Implement
             if (sysGloPar == null) { return result; }
             string sSql = @" Update PublicParameter Set ConnectType =@ConnectType,
                                         ConnectName=@ConnectName,MainDNS=@MainDNS,
-                                        SecondDNS=@SecondDNS,Domain=@Domain,Port=@Port,Broadcast=@Broadcast";
+                                        SecondDNS=@SecondDNS,Domain=@Domain,Port=@Port,Broadcast=@Broadcast,WeatherCity=@WeatherCity,DefaultLongitude=@DefaultLongitude,DefaultLatitude=@DefaultLatitude,DefaultZoomLevel=@DefaultZoomLevel,IsShowTool=@IsShowTool";
             List<SqlParameter> sSqlWhere = new List<SqlParameter>();
 
             sSqlWhere.Add(new SqlParameter { ParameterName = "@ConnectType", DbType = DbType.Int32, Value = sysGloPar.ConnectType });
@@ -152,6 +152,13 @@ namespace Scada.BLL.Implement
             sSqlWhere.Add(new SqlParameter { ParameterName = "@Domain", DbType = DbType.String, Value = sysGloPar.Domain });
             sSqlWhere.Add(new SqlParameter { ParameterName = "@Port", DbType = DbType.Int32, Value = sysGloPar.Port });
             sSqlWhere.Add(new SqlParameter { ParameterName = "@Broadcast", DbType = DbType.String, Value = sysGloPar.Broadcast });
+
+            sSqlWhere.Add(new SqlParameter { ParameterName = "@WeatherCity", DbType = DbType.String, Value = sysGloPar.WeatherCity });
+            sSqlWhere.Add(new SqlParameter { ParameterName = "@DefaultLongitude", DbType = DbType.Decimal, Value = sysGloPar.DefaultLongitude });
+            sSqlWhere.Add(new SqlParameter { ParameterName = "@DefaultLatitude", DbType = DbType.Decimal, Value = sysGloPar.DefaultLatitude });
+            sSqlWhere.Add(new SqlParameter { ParameterName = "@DefaultZoomLevel", DbType = DbType.Int32, Value = sysGloPar.DefaultZoomLevel });
+            sSqlWhere.Add(new SqlParameter { ParameterName = "@IsShowTool", DbType = DbType.Byte, Value = sysGloPar.IsShowTool });
+        
 
             try
             {

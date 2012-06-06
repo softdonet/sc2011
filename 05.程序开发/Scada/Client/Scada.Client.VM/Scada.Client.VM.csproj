@@ -108,6 +108,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\SystemManagerService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -230,12 +235,39 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\SystemManagerService\Scada.Client.VM.SystemManagerService.GetLoginResultTypeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SystemManagerService\Scada.Client.VM.SystemManagerService.GetSystemGlobalParameterResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SystemManagerService\Scada.Client.VM.SystemManagerService.GetSystemParameterManageResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SystemManagerService\Scada.Client.VM.SystemManagerService.GetWeatherResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SystemManagerService\Scada.Client.VM.SystemManagerService.UpdateSystemGlobalParameterResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SystemManagerService\Scada.Client.VM.SystemManagerService.UpdateSystemParameterManageResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SystemManagerService\SystemManagerService.disco" />
+    <None Include="Service References\SystemManagerService\configuration91.svcinfo" />
+    <None Include="Service References\SystemManagerService\configuration.svcinfo" />
+    <None Include="Service References\SystemManagerService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="ServiceReferences.ClientConfig" />
     <None Include="Service References\ScadaDeviceService\ScadaDeviceService.wsdl" />
+    <None Include="Service References\SystemManagerService\SystemManagerService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\DeviceRealTimeService\" />
     <WCFMetadataStorage Include="Service References\ScadaDeviceService\" />
+    <WCFMetadataStorage Include="Service References\SystemManagerService\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\DeviceRealTimeService\configuration91.svcinfo" />

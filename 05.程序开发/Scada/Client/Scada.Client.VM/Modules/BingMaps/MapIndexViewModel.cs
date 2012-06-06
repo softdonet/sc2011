@@ -16,13 +16,15 @@ using System.Collections.Generic;
 using System.Linq;
 using Scada.Client.VM.DeviceRealTimeService;
 using Scada.Model.Entity.Enums;
+using Scada.Client.VM.SystemManagerService;
 
 namespace Scada.Client.VM.Modules.BingMaps
 {
     public class MapIndexViewModel : NotificationObject
     {
         ScadaDeviceServiceSoapClient scadaDeviceServiceSoapClient = null;
-
+        public SystemGlobalParameter _sysGlobalPar;
+        private SystemManagerServiceSoapClient _systemManagerServiceSoapClient;
         /// <summary>
         /// 基础设备数据
         /// </summary>
@@ -81,6 +83,50 @@ namespace Scada.Client.VM.Modules.BingMaps
             deviceRealTimeService.GetRealTimeDataListAsync();
             deviceRealTimeService.GetAlarmDataListAsync();
             deviceRealTimeService.GetUserEventDataListAsync();
+
+            InitSysConfig();
+        }
+
+        /// <summary>
+        /// 初始化系统配置
+        /// </summary>
+        void InitSysConfig()
+        {
+            //获取设备服务
+            this._systemManagerServiceSoapClient = ServiceManager.GetSystemManagerService();
+            //全局参数
+            this._systemManagerServiceSoapClient.GetSystemGlobalParameterCompleted += (obj, e) =>
+            {
+                if (e.Error == null)
+                    _sysGlobalPar = BinaryObjTransfer.BinaryDeserialize<SystemGlobalParameter>(e.Result);
+            };
+            this._systemManagerServiceSoapClient.GetSystemGlobalParameterAsync();
+            this._systemManagerServiceSoapClient.UpdateSystemGlobalParameterCompleted += (obj, e) =>
+            {
+                if (e.Error == null)
+                {
+                    Boolean result = Convert.ToBoolean(e.Result);
+                    if (result)
+                        MessageBox.Show("修改成功,重启浏览器生效！");
+                }
+                else
+                    MessageBox.Show("修改失败！");
+            };
+        }
+
+        /// <summary>
+        /// 修改系统配置
+        /// </summary>
+        /// <param name="longitude"></param>
+        /// <param name="latitude"></param>
+        /// <param name="zoomLevel"></param>
+        public void UpdataConfig(decimal longitude, decimal latitude, int zoomLevel)
+        {
+            _sysGlobalPar.DefaultLongitude = longitude;
+            _sysGlobalPar.DefaultLatitude = latitude;
+            _sysGlobalPar.DefaultZoomLevel = zoomLevel;
+            string sysGlobal = BinaryObjTransfer.BinarySerialize(this._sysGlobalPar);
+            this._systemManagerServiceSoapClient.UpdateSystemGlobalParameterAsync(sysGlobal);
         }
 
         public event EventHandler RealTimeDataResviceEvent;

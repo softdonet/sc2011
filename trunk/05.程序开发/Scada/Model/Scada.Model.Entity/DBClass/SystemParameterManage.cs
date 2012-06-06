@@ -39,8 +39,7 @@ namespace Scada.Model.Entity
         public int? DefaultZoomLevel { get; set; }
         public decimal? DefaultLongitude { get; set; }
         public decimal? DefaultLatitude { get; set; }
-
-
+        public bool? IsShowTool { get; set; }
     }
 
 }

@@ -340,8 +340,7 @@ namespace Scada.Client.SL.Modules.BingMaps
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-
+            mapVM.UpdataConfig(Convert.ToDecimal(map.Center.Longitude), Convert.ToDecimal(map.Center.Latitude), (int)map.ZoomLevel);
         }
     }
 }

@@ -287,7 +287,7 @@
 	  	<sdk:Label x:Name="lblZool" HorizontalAlignment="Left" Foreground="#008800" FontSize="12"  Content="缩放："  Margin="2,0,0,0" VerticalAlignment="Bottom" />
 				<sdk:Label x:Name="lbllongitude" Foreground="#008800" FontSize="12"  HorizontalAlignment="Left" Content="经度："  Margin="2,0,0,0" VerticalAlignment="Bottom" />
 				<sdk:Label x:Name="lblLatitude" Foreground="#008800" FontSize="12" HorizontalAlignment="Left" Content="纬度："  Margin="2,0,0,0" VerticalAlignment="Bottom" />
-					<Button   Height="25"   Content="设为默认视图" Margin="5,0"   />
+					<Button   Height="25"   Content="设为默认视图" Margin="5,0"  Click="Button_Click"   />
 				<sdk:Label HorizontalAlignment="Left" Foreground="#008800" FontSize="12" Content="鼠标点击地图获取地理坐标"  Margin="2,0,0,0" VerticalAlignment="Bottom" />
 				
 	

@@ -12,6 +12,7 @@ using System.ServiceModel;
 using System.ServiceModel.Channels;
 using Scada.Client.VM.DeviceRealTimeService;
 using Scada.Client.VM.ScadaDeviceService;
+using Scada.Client.VM.SystemManagerService;
 
 
 namespace Scada.Client.VM.CommClass
@@ -56,6 +57,18 @@ namespace Scada.Client.VM.CommClass
             System.ServiceModel.EndpointAddress address = new System.ServiceModel.EndpointAddress(GetAbsoluteUri(scadaDeviceServiceEndpointAddress));
             _sds = new ScadaDeviceServiceSoapClient("ScadaDeviceServiceSoap", address);
             return _sds;
+        }
+
+        /// <summary>
+        /// 系统管理WebService服务
+        /// </summary>
+        static string systemManagerServiceEndpointAddress = "WebServices/SystemManagerService.asmx";
+        static SystemManagerServiceSoapClient _sms = null;
+        public static SystemManagerServiceSoapClient GetSystemManagerService()
+        {
+            System.ServiceModel.EndpointAddress address = new System.ServiceModel.EndpointAddress(GetAbsoluteUri(systemManagerServiceEndpointAddress));
+            _sms = new SystemManagerServiceSoapClient("SystemManagerServiceSoap", address);
+            return _sms;
         }
 
         /// <summary>

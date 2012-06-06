@@ -46,6 +46,7 @@ namespace Scada.Client.SL.Modules.BingMaps
         public MapIndex()
         {
             InitializeComponent();
+            spPositionInfor.Visibility = App.SysGlobalPar.IsShowTool.GetValueOrDefault(false) ? Visibility.Visible : Visibility.Collapsed;
             InitMap();
             MyContent.CloseBtn += new EventHandler(MyContent_CloseBtn);
 

@@ -97,6 +97,8 @@ namespace Scada.BLL.Implement
                 result.DefaultZoomLevel = Convert.ToInt32(item["DefaultZoomLevel"]);
                 result.DefaultLongitude = Convert.ToDecimal(item["DefaultLongitude"]);
                 result.DefaultLatitude = Convert.ToDecimal(item["DefaultLatitude"]);
+                result.IsShowTool = Convert.ToBoolean(item["IsShowTool"]);
+                
 
             }
             return BinaryObjTransfer.JsonSerializer<SystemGlobalParameter>(result);

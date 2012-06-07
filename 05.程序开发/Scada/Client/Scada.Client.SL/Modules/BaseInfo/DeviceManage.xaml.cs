@@ -71,8 +71,6 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
         #region 加载树型结构
 
-
-
         private void treeViewList1_OnTreeSelectItemClick(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             if (sender == null) { return; }
@@ -83,7 +81,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
                 {
                     case 0:
                     case 1:
-                        return;
+                        break;
                     // break;
                     case 2:
                     case 3:
@@ -99,7 +97,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
                 //this.btnExport.IsEnabled = true;
 
-                if (node.NodeType == 1)
+                if (node.NodeType == 0 || node.NodeType == 1)
                 {
                     this.butAdd.IsEnabled = false;
                     this.butDel.IsEnabled = false;
@@ -326,7 +324,6 @@ namespace Scada.Client.SL.Modules.BaseInfo
                     break;
             }
         }
-
 
 
         #region 私有方法

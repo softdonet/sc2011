@@ -1798,13 +1798,13 @@ namespace Scada.Client.VM.ScadaDeviceService {
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
     public partial class AddMaintenancePeopleResponseBody {
         
-        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
-        public bool AddMaintenancePeopleResult;
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string AddMaintenancePeopleResult;
         
         public AddMaintenancePeopleResponseBody() {
         }
         
-        public AddMaintenancePeopleResponseBody(bool AddMaintenancePeopleResult) {
+        public AddMaintenancePeopleResponseBody(string AddMaintenancePeopleResult) {
             this.AddMaintenancePeopleResult = AddMaintenancePeopleResult;
         }
     }
@@ -1866,13 +1866,13 @@ namespace Scada.Client.VM.ScadaDeviceService {
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
     public partial class UpdateMaintenancePeopleResponseBody {
         
-        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
-        public bool UpdateMaintenancePeopleResult;
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string UpdateMaintenancePeopleResult;
         
         public UpdateMaintenancePeopleResponseBody() {
         }
         
-        public UpdateMaintenancePeopleResponseBody(bool UpdateMaintenancePeopleResult) {
+        public UpdateMaintenancePeopleResponseBody(string UpdateMaintenancePeopleResult) {
             this.UpdateMaintenancePeopleResult = UpdateMaintenancePeopleResult;
         }
     }
@@ -3053,10 +3053,10 @@ namespace Scada.Client.VM.ScadaDeviceService {
             this.results = results;
         }
         
-        public bool Result {
+        public string Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((bool)(this.results[0]));
+                return ((string)(this.results[0]));
             }
         }
     }
@@ -3072,10 +3072,10 @@ namespace Scada.Client.VM.ScadaDeviceService {
             this.results = results;
         }
         
-        public bool Result {
+        public string Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((bool)(this.results[0]));
+                return ((string)(this.results[0]));
             }
         }
     }
@@ -5222,7 +5222,7 @@ namespace Scada.Client.VM.ScadaDeviceService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        private bool EndAddMaintenancePeople(System.IAsyncResult result) {
+        private string EndAddMaintenancePeople(System.IAsyncResult result) {
             Scada.Client.VM.ScadaDeviceService.AddMaintenancePeopleResponse retVal = ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndAddMaintenancePeople(result);
             return retVal.Body.AddMaintenancePeopleResult;
         }
@@ -5233,7 +5233,7 @@ namespace Scada.Client.VM.ScadaDeviceService {
         }
         
         private object[] OnEndAddMaintenancePeople(System.IAsyncResult result) {
-            bool retVal = this.EndAddMaintenancePeople(result);
+            string retVal = this.EndAddMaintenancePeople(result);
             return new object[] {
                     retVal};
         }
@@ -5282,7 +5282,7 @@ namespace Scada.Client.VM.ScadaDeviceService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        private bool EndUpdateMaintenancePeople(System.IAsyncResult result) {
+        private string EndUpdateMaintenancePeople(System.IAsyncResult result) {
             Scada.Client.VM.ScadaDeviceService.UpdateMaintenancePeopleResponse retVal = ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndUpdateMaintenancePeople(result);
             return retVal.Body.UpdateMaintenancePeopleResult;
         }
@@ -5293,7 +5293,7 @@ namespace Scada.Client.VM.ScadaDeviceService {
         }
         
         private object[] OnEndUpdateMaintenancePeople(System.IAsyncResult result) {
-            bool retVal = this.EndUpdateMaintenancePeople(result);
+            string retVal = this.EndUpdateMaintenancePeople(result);
             return new object[] {
                     retVal};
         }

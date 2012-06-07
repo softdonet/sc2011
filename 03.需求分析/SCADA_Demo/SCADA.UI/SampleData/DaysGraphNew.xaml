@@ -69,7 +69,7 @@
                         <vc:DataPoint XValue="2011-11-11 5:15:00" YValue="20"/>
                         <vc:DataPoint XValue="2011-11-11 5:30:00" YValue="21"/>
                         <vc:DataPoint XValue="2011-11-11 5:45:00" YValue="21"/>
-                        <vc:DataPoint XValue="2011-11-11 6:00:00" YValue="22"/>
+                        <!--<vc:DataPoint XValue="2011-11-11 6:00:00" YValue="22"/>
                         <vc:DataPoint XValue="2011-11-11 6:15:00" YValue="22"/>
                         <vc:DataPoint XValue="2011-11-11 6:30:00" YValue="22"/>
                         <vc:DataPoint XValue="2011-11-11 6:45:00" YValue="22"/>
@@ -104,28 +104,28 @@
                         <vc:DataPoint XValue="2011-11-11 14:00:00" YValue="23"/>
                         <vc:DataPoint XValue="2011-11-11 14:15:00" YValue="23"/>
                         <vc:DataPoint XValue="2011-11-11 14:30:00" YValue="23"/>
-                        <vc:DataPoint XValue="2011-11-11 14:45:00" YValue="23"/>
-                        <vc:DataPoint XValue="2011-11-11 15:00:00" YValue="24"/>
+                        <vc:DataPoint XValue="2011-11-11 14:45:00" YValue="23"/>-->
+                        <!--<vc:DataPoint XValue="2011-11-11 15:00:00" YValue="24"/>
                         <vc:DataPoint XValue="2011-11-11 15:15:00" YValue="24"/>
                         <vc:DataPoint XValue="2011-11-11 15:30:00" YValue="24.7"/>
                         <vc:DataPoint XValue="2011-11-11 15:45:00" YValue="25"/>
                         <vc:DataPoint XValue="2011-11-11 16:00:00" YValue="25"/>
                         <vc:DataPoint XValue="2011-11-11 16:15:00" YValue="25"/>
                         <vc:DataPoint XValue="2011-11-11 16:30:00" YValue="25.5"/>
-                        <vc:DataPoint XValue="2011-11-11 16:45:00" YValue="26"/>
-                        <vc:DataPoint XValue="2011-11-11 17:00:00" YValue="26"/>
+                        <vc:DataPoint XValue="2011-11-11 16:45:00" YValue="26"/>-->
+                        <!--<vc:DataPoint XValue="2011-11-11 17:00:00" YValue="26"/>
                         <vc:DataPoint XValue="2011-11-11 17:15:00" YValue="26.7"/>
                         <vc:DataPoint XValue="2011-11-11 17:30:00" YValue="26"/>
-                        <vc:DataPoint XValue="2011-11-11 17:45:00" YValue="27"/>
-                        <vc:DataPoint XValue="2011-11-11 18:00:00" YValue="26"/>
-                        <vc:DataPoint XValue="2011-11-11 18:15:00" YValue="25"/>
+                        <vc:DataPoint XValue="2011-11-11 17:45:00" YValue="27"/>-->
+                        <!--<vc:DataPoint XValue="2011-11-11 18:00:00" YValue="26"/>-->
+                        <!--<vc:DataPoint XValue="2011-11-11 18:15:00" YValue="25"/>
                         <vc:DataPoint XValue="2011-11-11 18:30:00" YValue="24"/>
                         <vc:DataPoint XValue="2011-11-11 18:45:00" YValue="24"/>
                         <vc:DataPoint XValue="2011-11-11 19:00:00" YValue="24"/>
                         <vc:DataPoint XValue="2011-11-11 19:15:00" YValue="23"/>
                         <vc:DataPoint XValue="2011-11-11 19:30:00" YValue="23"/>
-                        <vc:DataPoint XValue="2011-11-11 19:45:00" YValue="23"/>
-                        <vc:DataPoint XValue="2011-11-11 20:00:00" YValue="23"/>
+                        <vc:DataPoint XValue="2011-11-11 19:45:00" YValue="23"/>-->
+                        <!--<vc:DataPoint XValue="2011-11-11 20:00:00" YValue="23"/>
                         <vc:DataPoint XValue="2011-11-11 20:15:00" YValue="22"/>
                         <vc:DataPoint XValue="2011-11-11 20:30:00" YValue="23"/>
                         <vc:DataPoint XValue="2011-11-11 20:45:00" YValue="23"/>
@@ -134,13 +134,13 @@
                         <vc:DataPoint XValue="2011-11-11 21:30:00" YValue="22"/>
                         <vc:DataPoint XValue="2011-11-11 21:45:00" YValue="22"/>
                         <vc:DataPoint XValue="2011-11-11 22:00:00" YValue="22"/>
-                        <vc:DataPoint XValue="2011-11-11 22:15:00" YValue="22"/>
-                        <vc:DataPoint XValue="2011-11-11 22:30:00" YValue="21"/>
+                        <vc:DataPoint XValue="2011-11-11 22:15:00" YValue="22"/>-->
+                        <!--<vc:DataPoint XValue="2011-11-11 22:30:00" YValue="21"/>
                         <vc:DataPoint XValue="2011-11-11 22:45:00" YValue="20"/>
                         <vc:DataPoint XValue="2011-11-11 23:00:00" YValue="20"/>
                         <vc:DataPoint XValue="2011-11-11 23:15:00" YValue="21"/>
                         <vc:DataPoint XValue="2011-11-11 23:30:00" YValue="22"/>
-                        <vc:DataPoint XValue="2011-11-11 23:45:00" YValue="23"/>
+                        <vc:DataPoint XValue="2011-11-11 23:45:00" YValue="23"/>-->
                   
 
                     </vc:DataSeries.DataPoints>

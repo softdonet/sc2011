@@ -19,6 +19,8 @@ using Scada.Client.SL.CommClass;
 using Scada.Model.Entity;
 using Scada.Client.VM;
 using Scada.Client.VM.Modules.Query;
+using Telerik.Windows.Controls;
+using System.IO;
 
 namespace Scada.Client.SL.Modules.Query
 {
@@ -49,6 +51,47 @@ namespace Scada.Client.SL.Modules.Query
             if (e.PropertyName == "DeviceTreeSource")
             {
                 this.comboBoxTreeView1.Source = dlqvm.DeviceTreeSource;
+            }
+        }
+
+        private void btnExport_Click(object sender, RoutedEventArgs e)
+        {
+            this.RadGridView1.Columns[4].IsVisible = true;
+            this.RadGridView1.Columns[5].IsVisible = true;
+            this.RadGridView1.Columns[6].IsVisible = false;
+            this.RadGridView1.Columns[7].IsVisible = false;
+
+            string extension = "xls"; ;
+            ExportFormat format = ExportFormat.Html;
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.DefaultExt = extension;
+            dialog.Filter = String.Format("{1} files (*.{0})|*.{0}|All files (*.*)|*.*", extension, "Excel");
+            dialog.FilterIndex = 1;
+            if (dialog.ShowDialog() == true)
+            {
+                using (Stream stream = dialog.OpenFile())
+                {
+                    GridViewExportOptions exportOptions = new GridViewExportOptions();
+                    exportOptions.Format = format;
+                    exportOptions.ShowColumnFooters = false;
+                    exportOptions.ShowColumnHeaders = true;
+                    exportOptions.ShowGroupFooters = true;
+                    RadGridView1.Export(stream, exportOptions);
+                }
+            }
+            this.RadGridView1.Columns[4].IsVisible = false;
+            this.RadGridView1.Columns[5].IsVisible = false;
+            this.RadGridView1.Columns[6].IsVisible = true;
+            this.RadGridView1.Columns[7].IsVisible = true;
+        }
+
+        private void RadGridView1_Exporting(object sender, GridViewExportEventArgs e)
+        {
+            if (e.Element == ExportElement.HeaderRow)
+            {
+                e.FontWeight = FontWeights.Bold;
+                e.TextAlignment = TextAlignment.Center;
+                e.Background = Colors.Gray;
             }
         }
     }
@@ -124,7 +167,7 @@ namespace Scada.Client.SL.Modules.Query
                         img = "signal1.png";
                     }
                     break;
-                       
+
             }
             string resourcePath = "/Scada.Client.SL;component/Images/" + img;
             Uri resourceUri = new Uri(resourcePath, UriKind.Relative);

@@ -89,10 +89,10 @@
             <ComboBox Grid.Column="7" Height="23"   Name="cmbEventType"  Width="120" SelectedItem="{Binding SelectedEventType}" DisplayMemberPath="EventTypeName" SelectedValuePath="EventType" />
 
             <Button Content="查询"  Height="23" Margin="20,0,0,0"  Name="btnCheck"  Width="75" Command="{Binding queryCommand}" />
-            <Button Content="导出"  Height="23"  Margin="20,0,0,0"  Name="btnExport"  Width="75" />
+            <Button Content="导出"  Height="23"  Margin="20,0,0,0"  Name="btnExport"  Width="75" Click="btnExport_Click" />
         </StackPanel>
         <telerik:RadGridView x:Name="RadGridView1" 
-							ShowGroupPanel="False" AutoGenerateColumns="False"  IsReadOnly="True"  ItemsSource="{Binding DeviceAlarmList}"  Grid.Row="1">
+							ShowGroupPanel="False" AutoGenerateColumns="False"  IsReadOnly="True"  ItemsSource="{Binding DeviceAlarmList}"  Grid.Row="1" Exporting="RadGridView1_Exporting">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn IsFilterable="False" Header="设备名" DataMemberBinding="{Binding DeviceNo}" Width="100"   HeaderTextAlignment="Center" DisplayIndex="0"/>
                 <telerik:GridViewDataColumn IsFilterable="False" Header="事件类型" DataMemberBinding="{Binding EventTypeName}" Width="80" HeaderTextAlignment="Center" TextAlignment="Center"   />

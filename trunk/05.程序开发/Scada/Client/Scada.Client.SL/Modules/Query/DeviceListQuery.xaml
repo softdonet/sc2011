@@ -26,14 +26,16 @@
             <sdk:Label Content="结束时间:" Margin="20,0,0,0" Height="28"   Name="lblEnd" Width="50"   />
             <sdk:DatePicker  Height="23"  Name="datePicker2"  Width="120" SelectedDate="{Binding EndDate, Mode=TwoWay}"/>
             <Button Content="查询" Margin="20,0,0,0" Height="23" Name="btnQuery"  Command="{Binding QueryCommand}" Width="75" />
-            <Button Content="导出" Margin="20,0,0,0"  Height="23" Name="btnExport"  Width="75" />
+            <Button Content="导出" Margin="20,0,0,0"  Height="23" Name="btnExport"  Width="75" Click="btnExport_Click" />
         </StackPanel>
-        <telerik:RadGridView x:Name="RadGridView1" Grid.Row="1"     ItemsSource="{Binding DeviceRealTimeList}" ShowGroupPanel="False" IsReadOnly="True"   CanUserFreezeColumns="False" AutoGenerateColumns="False" >
+        <telerik:RadGridView x:Name="RadGridView1" Grid.Row="1"     ItemsSource="{Binding DeviceRealTimeList}" ShowGroupPanel="False" IsReadOnly="True"   CanUserFreezeColumns="False" AutoGenerateColumns="False" Exporting="RadGridView1_Exporting">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Header="设备编号"   IsFilterable="False"   HeaderTextAlignment="Center"  Width="150" DataMemberBinding="{Binding DeviceNo}" />
                 <telerik:GridViewDataColumn Header="安装地点"  IsFilterable="False"  HeaderTextAlignment="Center" Width="260" DataMemberBinding="{Binding InstallPlace}" />
                 <telerik:GridViewDataColumn Header="更新时间"   IsFilterable="False" HeaderTextAlignment="Center" TextAlignment="Center"   Width="150" DataMemberBinding="{Binding UpdateTime}" />
                 <telerik:GridViewDataColumn Header="温度"   IsFilterable="False" HeaderTextAlignment="Center" TextAlignment="Center" Width="150" DataMemberBinding="{Binding Temperature1}" />
+                <telerik:GridViewDataColumn Header="电量"  IsVisible="False" IsFilterable="False" HeaderTextAlignment="Center" TextAlignment="Center" Width="150" DataMemberBinding="{Binding Electricity}" />
+                <telerik:GridViewDataColumn Header="信号强度"   IsVisible="False"  IsFilterable="False" HeaderTextAlignment="Center" TextAlignment="Center" Width="150" DataMemberBinding="{Binding Signal}" />
                 <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=electricity}"  Width="100" ImageHeight="18" ImageWidth="18"
 											Header="电量" HeaderTextAlignment="Center"/>
                 <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=signal}"  Width="100" ImageHeight="18" ImageWidth="18"

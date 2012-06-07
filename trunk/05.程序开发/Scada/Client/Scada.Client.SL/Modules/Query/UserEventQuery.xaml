@@ -28,10 +28,10 @@
             <sdk:Label Content="结束时间:" Margin="20,0,0,0" Height="28"   Name="lblEnd" Width="50"   />
             <sdk:DatePicker  Height="23"  Name="datePicker2"  Width="120" SelectedDate="{Binding EndDate, Mode=TwoWay}" />
             <Button Content="查询" Margin="20,0,0,0" Height="23" Name="btnCheck"  Width="75" Command="{Binding queryCommand}" />
-            <!--<Button Content="导出" Margin="20,0,0,0"  Height="23" Name="btnExport"  Width="75" />-->
+            <Button Content="导出" Margin="20,0,0,0"  Height="23" Name="btnExport"  Width="75" Click="btnExport_Click" />
         </StackPanel>
         <telerik:RadGridView x:Name="RadGridView1" Grid.Row="1"   ShowGroupPanel="False" IsReadOnly="True"  
-                             ItemsSource="{Binding UserEventModelList}" CanUserFreezeColumns="False" AutoGenerateColumns="False" >
+                             ItemsSource="{Binding UserEventModelList}" CanUserFreezeColumns="False" AutoGenerateColumns="False" Exporting="RadGridView1_Exporting">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn IsFilterable="False"  Header="用户事件ID" DataMemberBinding="{Binding EventNo, Mode=TwoWay}" Width="100" HeaderTextAlignment="Center"  />
                 <telerik:GridViewDataColumn IsFilterable="False"  Header="设备编号" DataMemberBinding="{Binding DeviceNo, Mode=TwoWay}" Width="100"   HeaderTextAlignment="Center"/>

@@ -66,10 +66,10 @@ namespace Scada.Utility.Common.Helper
         /// <returns></returns>
         public static string GetHeadeImageUrl(string fileName)
         {
-            if (string.IsNullOrEmpty(fileName))
-            {
-                fileName = "Default.jpg";
-            }
+            //if (string.IsNullOrEmpty(fileName))
+            //{
+            //    fileName = "Default.jpg";
+            //}
             string fileUrl = string.Format("http://{0}:{1}/UploadFile/HeadImage/{2}",
                        HttpContext.Current.Request.Url.Host,
                        HttpContext.Current.Request.Url.Port,

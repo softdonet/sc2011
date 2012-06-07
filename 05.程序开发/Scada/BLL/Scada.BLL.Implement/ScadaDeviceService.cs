@@ -132,35 +132,54 @@ namespace Scada.BLL.Implement
             DateTime end = start.AddDays(1);
 
             //1)创建虚拟日期0值记录
-            List<ChartSource> charTemp = GetChartSourceIniValue(start, 0);
+            /*
+            Dictionary<Int32, Boolean> charTemp = new Dictionary<Int32, Boolean>();
+            for (int i = 0; i < 24; i++)
+            {
+                charTemp.Add(i, false);
+            }
+            */
 
             //2)取到本月真实值记录
             StringBuilder sSql = new StringBuilder();
-            sSql.Append(@" Select Convert(varchar(14), t.UpdateTime,120) +'00:00' As UpdateTime,
-                                    Avg(t.Temperature1) As Temperature1 from DeviceRealTime t
+            sSql.Append(@" Select t.UpdateTime,t.Temperature1
+                                from DeviceRealTime t
                                 Where t.DeviceID='" + DeviceID.ToUpper() + "'");
             sSql.Append(@" And t.UpdateTime >='" + Convert.ToDateTime(start).ToString("yyyy-MM-dd HH:mm:ss") + "'");
             sSql.Append(@" And t.UpdateTime <'" + Convert.ToDateTime(end).ToString("yyyy-MM-dd HH:mm:ss") + "'");
-            sSql.Append(@" Group by Convert(varchar(14), t.UpdateTime,120) +'00:00'");
-            sSql.Append(@" Order by Convert(varchar(14), t.UpdateTime,120) +'00:00'");
+            sSql.Append(@" Order by t.UpdateTime");
 
             DataTable dt = SqlHelper.ExecuteDataTable(sSql.ToString());
             if (dt == null || dt.Rows.Count == 0) { return String.Empty; }
             foreach (DataRow dr in dt.Rows)
             {
+                DateTime upTime = Convert.ToDateTime(dr["UpdateTime"]);
+
+                //if (charTemp.ContainsKey(upTime.Hour))
+                //    charTemp[upTime.Hour] = true;
                 result.Add(
                     new ChartSource
                     {
-                        DeviceDate = Convert.ToDateTime(dr["UpdateTime"]),
+                        DeviceDate = upTime,
                         DeviceTemperature = Convert.ToDouble(dr["Temperature1"])
                     }
                 );
             }
 
-            //3)合并记录
-            this.GetChartSourceCheck(charTemp, result);
+            ////3)合并记录
+            //var keyValue = charTemp.Where(x => x.Value == false);
+            //foreach (var item in keyValue)
+            //{
+            //    result.Add(
+            //        new ChartSource
+            //        {
+            //            DeviceDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, item.Key, 0, 0),
+            //            DeviceTemperature = 0
+            //        });
+            //}
+            //return BinaryObjTransfer.JsonSerializer<List<ChartSource>>(result.OrderBy(x => x.DeviceDate).ToList());
 
-            return BinaryObjTransfer.JsonSerializer<List<ChartSource>>(charTemp);
+            return BinaryObjTransfer.JsonSerializer<List<ChartSource>>(result);
         }
 
         //设备历史温度
@@ -1256,7 +1275,7 @@ namespace Scada.BLL.Implement
             source = source.Where(e => e.StartTime >= startdDate && e.StartTime < endDate).OrderByDescending(e => e.StartTime);
             if (DeviceType != 0)
             {
-                source = source.Where(e => e.EventType == DeviceType).OrderByDescending(e=>e.StartTime);
+                source = source.Where(e => e.EventType == DeviceType).OrderByDescending(e => e.StartTime);
             }
             List<DeviceAlarm> deviceAlarmList = source.Select(e => e.ConvertTo<DeviceAlarm>()).ToList();
             string result = BinaryObjTransfer.JsonSerializer<List<DeviceAlarm>>(deviceAlarmList);
@@ -2108,5 +2127,7 @@ namespace Scada.BLL.Implement
         #endregion
 
     }
+
+
 
 }

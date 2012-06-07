@@ -55,7 +55,7 @@ namespace Scada.Client.UC
         }
 
         #endregion
-
+        //
 
         #region 界面初期化
 
@@ -89,9 +89,13 @@ namespace Scada.Client.UC
             foreach (ChartSource item in _chartSource)
             {
                 datapoint = new DataPoint();
-                datapoint.XValue = item.DeviceDate.ToString("HH:mm");
-                datapoint.YValue = Math.Round(item.DeviceTemperature, 2);
-                datapoint.ToolTipText = string.Format("{0},{1}", datapoint.XValue, datapoint.YValue);
+                //datapoint.XValue = item.DeviceDate.ToString("HH:mm");
+                datapoint.XValue = item.DeviceDate;
+                if (item.DeviceTemperature > 0)
+                {
+                    datapoint.YValue = Math.Round(item.DeviceTemperature, 2);
+                    datapoint.ToolTipText = string.Format("{0},{1}", datapoint.XValue, datapoint.YValue);
+                }
                 dataSeries.DataPoints.Add(datapoint);
             }
             this.charTemperature.Series.Add(dataSeries);

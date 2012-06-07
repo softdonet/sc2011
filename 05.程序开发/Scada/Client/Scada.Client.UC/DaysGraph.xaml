@@ -21,7 +21,7 @@
                 <vc:TrendLine Orientation="Horizontal" StartValue="25" EndValue="32" LineColor="#9FF86D5A"/>
             </vc:Chart.TrendLines>
             <vc:Chart.AxesX>
-                <vc:Axis ValueFormatString="HH" IntervalType="Hours" Interval="1">
+                <vc:Axis ValueFormatString="HH" IntervalType="Hours">
                     <vc:Axis.Grids>
                         <vc:ChartGrid Interval="1" InterlacedColor="#0efCff6e"  />
                     </vc:Axis.Grids>
@@ -65,10 +65,10 @@
                         <vc:DataPoint XValue="2011-11-11 17:00:00" YValue=""/>
                         <vc:DataPoint XValue="2011-11-11 18:00:00" YValue="26"/>
                         <vc:DataPoint XValue="2011-11-11 19:00:00" YValue="24"/>-->
-                        <vc:DataPoint XValue="2011-11-11 23:00:00" YValue="23"/>
-                        <vc:DataPoint XValue="2011-11-11 23:15:00" YValue="23"/>
-                        <vc:DataPoint XValue="2011-11-11 23:30:00" YValue="22"/>
-                        <vc:DataPoint XValue="2011-11-11 23:45:00" YValue="20"/>
+                        <vc:DataPoint XValue="2011-11-11 11:00:00" YValue="23"/>
+                        <vc:DataPoint XValue="2011-11-11 11:15:00" YValue="23"/>
+                        <vc:DataPoint XValue="2011-11-11 11:30:00" YValue="22"/>
+                        <vc:DataPoint XValue="2011-11-11 11:45:00" YValue="20"/>
                         
                     </vc:DataSeries.DataPoints>
                 </vc:DataSeries>

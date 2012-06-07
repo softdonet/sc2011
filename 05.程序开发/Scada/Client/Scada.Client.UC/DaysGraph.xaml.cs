@@ -55,7 +55,7 @@ namespace Scada.Client.UC
         }
 
         #endregion
-        //
+
 
         #region 界面初期化
 
@@ -75,7 +75,13 @@ namespace Scada.Client.UC
             //1)Clear Chart Source
             this.charTemperature.Series.Clear();
 
-            //2)Add Chart Source
+            //2)Setting AxesX Min Max
+            DateTime start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+            DateTime end = start.AddDays(1);
+            this.charTemperature.AxesX[0].AxisMinimum = start;
+            this.charTemperature.AxesX[0].AxisMaximum = end;
+
+            //3)Add Chart Source
             Visifire.Charts.DataSeries dataSeries = new Visifire.Charts.DataSeries();
             dataSeries.RenderAs = Visifire.Charts.RenderAs.Spline;
             dataSeries.ShowInLegend = false;
@@ -89,7 +95,6 @@ namespace Scada.Client.UC
             foreach (ChartSource item in _chartSource)
             {
                 datapoint = new DataPoint();
-                //datapoint.XValue = item.DeviceDate.ToString("HH:mm");
                 datapoint.XValue = item.DeviceDate;
                 if (item.DeviceTemperature > 0)
                 {

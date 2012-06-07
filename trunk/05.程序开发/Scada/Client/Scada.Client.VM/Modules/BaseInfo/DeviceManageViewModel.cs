@@ -132,7 +132,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
             if (flag)
             {
                 MessageBox.Show("添加新设备成功!");
-                //scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
+                scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
             }
             else
             {
@@ -161,15 +161,6 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 //scadaDeviceServiceSoapClient.AddDeviceInfoAsync(deviceInfo);
                 //scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
             }
-            //else
-            //{
-            //    DeviceInfoList = new DeviceInfo();
-
-            //    DeviceInfoList.ID = Guid.NewGuid();
-            //    DeviceInfoList.DeviceNo = DeviceNo;
-            //    DeviceInfoList.DeviceSN = DeviceSN;
-
-            //}
         }
 
         void scadaDeviceServiceSoapClient_UpdateDeviceInfoCompleted(object sender, UpdateDeviceInfoCompletedEventArgs e)
@@ -347,8 +338,8 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 // DeviceNo = deviceInfoList.DeviceNo;
 
                 this.RaisePropertyChanged("DeviceNo");
-                //this.RaisePropertyChanged("Longitude");
-                //this.RaisePropertyChanged("Latitude");
+                this.RaisePropertyChanged("Longitude");
+                this.RaisePropertyChanged("Latitude");
                 //this.RaisePropertyChanged("MaintenancePeopleID");
                 //this.RaisePropertyChanged("RealTimeParam");
 
@@ -949,7 +940,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
             }
             string pattern = @"^((0\.\d+)?|0)$";//大于等于0小于1-----------=== @"^((0\.\d+)?|0|1)$"  ===大于等于0小于等于1的表达式
             Regex regex = new Regex(pattern);
-            if (DeviceInfoList.HumidityHighAlarm != null | DeviceInfoList.HumidityHighAlarm != 0)
+            if (DeviceInfoList.HumidityHighAlarm != null && DeviceInfoList.HumidityHighAlarm != 0)
             {
                 Match match = regex.Match(DeviceInfoList.HumidityHighAlarm.Value.ToString());
                 if (!match.Success)
@@ -965,7 +956,7 @@ namespace Scada.Client.VM.Modules.BaseInfo
                 MessageBox.Show("湿度低报警值，请填写正确的格式!");
                 return false;
             }
-            if (DeviceInfoList.HumidityLowAlarm != null | DeviceInfoList.HumidityLowAlarm != 0)
+            if (DeviceInfoList.HumidityLowAlarm != null && DeviceInfoList.HumidityLowAlarm != 0)
             {
                 Match match = regex.Match(DeviceInfoList.HumidityLowAlarm.Value.ToString());
                 if (!match.Success)

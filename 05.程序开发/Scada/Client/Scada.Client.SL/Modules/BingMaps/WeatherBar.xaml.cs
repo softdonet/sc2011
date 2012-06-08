@@ -14,23 +14,26 @@ using Scada.Client.SL.CommClass;
 using Scada.Client.SL.ScadaDeviceService;
 using Scada.Client.SL.SystemManagerService;
 using Scada.Model.Entity;
+using Scada.Client.SL.DeviceRealTimeService;
+
 
 namespace Scada.Client.SL.Modules.BingMaps
 {
     public partial class WeatherBar : UserControl
     {
-        SystemManagerServiceSoapClient scadaDeviceServiceSoapClient = null;
+        DeviceRealTimeServiceClient deviceRealTimeService = ServiceManager.GetDeviceRealTimeService();
+
         public WeatherBar()
         {
             InitializeComponent();
-            scadaDeviceServiceSoapClient = ServiceManager.GetSystemManagerService(); 
         }
 
-        void scadaDeviceServiceSoapClient_GetWeatherCompleted(object sender, GetWeatherCompletedEventArgs e)
+        void deviceRealTimeService_GetWeatherDataReceived(object sender, GetWeatherDataReceivedEventArgs e)
         {
             if (e.Error == null)
             {
-                Weather result = BinaryObjTransfer.BinaryDeserialize<Weather>(e.Result);
+                MessageBox.Show("天气预报实时");
+                Weather result = BinaryObjTransfer.BinaryDeserialize<Weather>(e.data);
                 this.City.Text = result.City;
 
                 this.TodayTemp.Text = result.TodayCurTemp;
@@ -62,8 +65,8 @@ namespace Scada.Client.SL.Modules.BingMaps
 
         private void StackPanel_Loaded(object sender, RoutedEventArgs e)
         {
-            scadaDeviceServiceSoapClient.GetWeatherCompleted += new EventHandler<GetWeatherCompletedEventArgs>(scadaDeviceServiceSoapClient_GetWeatherCompleted);
-            scadaDeviceServiceSoapClient.GetWeatherAsync(App.SysGlobalPar.WeatherCity);
+            deviceRealTimeService.GetWeatherDataReceived += new EventHandler<GetWeatherDataReceivedEventArgs>(deviceRealTimeService_GetWeatherDataReceived);
+            deviceRealTimeService.GetWeatherDataMsgAsync();
         }
     }
 }

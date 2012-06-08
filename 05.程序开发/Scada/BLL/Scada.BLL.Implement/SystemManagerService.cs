@@ -47,10 +47,13 @@ namespace Scada.BLL.Implement
         /// </summary>
         /// <param name="cityName">城市名称</param>
         /// <returns></returns>
-        public string GetWeather(string cityName)
+        public string GetWeather()
         {
+            //TODO:此处获取天气预报城市名
+            string cityName = "西安"; 
             var service = new WeatherWebServiceSoapClient();
             string[] ws = service.getWeatherbyCityName(cityName);
+            // TODO:此处保存天气预报信息到数据库
             return BinaryObjTransfer.JsonSerializer<Weather>(WeatherHelper.GetWeather(ws));
         }
 

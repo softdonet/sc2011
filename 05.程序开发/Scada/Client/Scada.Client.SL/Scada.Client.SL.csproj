@@ -532,19 +532,13 @@
     <None Include="Service References\SystemManagerService\Scada.Client.SL.SystemManagerService.UpdateSystemParameterManageResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\SystemManagerService\SystemManagerService1.wsdl" />
+    <None Include="Service References\SystemManagerService\SystemManagerService.wsdl" />
     <Resource Include="Modules\DiagramAnalysis\Images\d1.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\d2.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\d3.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\d4.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\lastPage.jpg" />
     <Resource Include="Modules\DiagramAnalysis\Images\nextPage.jpg" />
-    <None Include="Service References\SystemManagerService\configuration91.svcinfo" />
-    <None Include="Service References\SystemManagerService\configuration.svcinfo" />
-    <None Include="Service References\SystemManagerService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Service References\ScadaDeviceService\configuration91.svcinfo" />
     <None Include="Service References\ScadaDeviceService\configuration.svcinfo" />
     <None Include="Service References\ScadaDeviceService\Reference.svcmap">
@@ -566,11 +560,17 @@
     <Resource Include="Modules\Device\Images\signal2.png" />
     <Resource Include="Modules\Device\Images\signal3.png" />
     <None Include="Service References\ScadaDeviceService\ScadaDeviceService1.disco" />
-    <None Include="Service References\SystemManagerService\SystemManagerService1.disco" />
     <Resource Include="Images\Worker.png" />
     <None Include="Service References\DeviceRealTimeService\configuration91.svcinfo" />
     <None Include="Service References\DeviceRealTimeService\configuration.svcinfo" />
     <None Include="Service References\DeviceRealTimeService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\SystemManagerService\SystemManagerService.disco" />
+    <None Include="Service References\SystemManagerService\configuration91.svcinfo" />
+    <None Include="Service References\SystemManagerService\configuration.svcinfo" />
+    <None Include="Service References\SystemManagerService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

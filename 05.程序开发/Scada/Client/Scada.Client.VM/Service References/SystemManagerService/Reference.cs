@@ -146,17 +146,10 @@ namespace Scada.Client.VM.SystemManagerService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    [System.Runtime.Serialization.DataContractAttribute()]
     public partial class GetWeatherRequestBody {
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string cityName;
-        
         public GetWeatherRequestBody() {
-        }
-        
-        public GetWeatherRequestBody(string cityName) {
-            this.cityName = cityName;
         }
     }
     
@@ -823,10 +816,9 @@ namespace Scada.Client.VM.SystemManagerService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        private System.IAsyncResult BeginGetWeather(string cityName, System.AsyncCallback callback, object asyncState) {
+        private System.IAsyncResult BeginGetWeather(System.AsyncCallback callback, object asyncState) {
             Scada.Client.VM.SystemManagerService.GetWeatherRequest inValue = new Scada.Client.VM.SystemManagerService.GetWeatherRequest();
             inValue.Body = new Scada.Client.VM.SystemManagerService.GetWeatherRequestBody();
-            inValue.Body.cityName = cityName;
             return ((Scada.Client.VM.SystemManagerService.SystemManagerServiceSoap)(this)).BeginGetWeather(inValue, callback, asyncState);
         }
         
@@ -842,8 +834,7 @@ namespace Scada.Client.VM.SystemManagerService {
         }
         
         private System.IAsyncResult OnBeginGetWeather(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            string cityName = ((string)(inValues[0]));
-            return this.BeginGetWeather(cityName, callback, asyncState);
+            return this.BeginGetWeather(callback, asyncState);
         }
         
         private object[] OnEndGetWeather(System.IAsyncResult result) {
@@ -859,11 +850,11 @@ namespace Scada.Client.VM.SystemManagerService {
             }
         }
         
-        public void GetWeatherAsync(string cityName) {
-            this.GetWeatherAsync(cityName, null);
+        public void GetWeatherAsync() {
+            this.GetWeatherAsync(null);
         }
         
-        public void GetWeatherAsync(string cityName, object userState) {
+        public void GetWeatherAsync(object userState) {
             if ((this.onBeginGetWeatherDelegate == null)) {
                 this.onBeginGetWeatherDelegate = new BeginOperationDelegate(this.OnBeginGetWeather);
             }
@@ -873,8 +864,7 @@ namespace Scada.Client.VM.SystemManagerService {
             if ((this.onGetWeatherCompletedDelegate == null)) {
                 this.onGetWeatherCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetWeatherCompleted);
             }
-            base.InvokeAsync(this.onBeginGetWeatherDelegate, new object[] {
-                        cityName}, this.onEndGetWeatherDelegate, this.onGetWeatherCompletedDelegate, userState);
+            base.InvokeAsync(this.onBeginGetWeatherDelegate, null, this.onEndGetWeatherDelegate, this.onGetWeatherCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

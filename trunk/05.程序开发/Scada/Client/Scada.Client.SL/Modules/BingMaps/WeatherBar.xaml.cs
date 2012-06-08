@@ -32,7 +32,6 @@ namespace Scada.Client.SL.Modules.BingMaps
         {
             if (e.Error == null)
             {
-                MessageBox.Show("天气预报实时");
                 Weather result = BinaryObjTransfer.BinaryDeserialize<Weather>(e.data);
                 this.City.Text = result.City;
 

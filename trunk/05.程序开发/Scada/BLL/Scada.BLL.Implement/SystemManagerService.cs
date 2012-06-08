@@ -9,6 +9,7 @@ using Scada.BLL.Implement.WeatherWebService;
 using Scada.Utility.Common.Helper;
 using Scada.DAL.Ado;
 using System.Data.SqlClient;
+using System.Linq;
 
 
 
@@ -49,14 +50,28 @@ namespace Scada.BLL.Implement
         /// <returns></returns>
         public string GetWeather()
         {
-            //TODO:此处获取天气预报城市名
-            string cityName = "西安"; 
+            Scada.DAL.Linq.SCADADataContext sCADADataContext = new DAL.Linq.SCADADataContext();
+            var obj = sCADADataContext.PublicParameters.First();
+            string cityName = obj.WeatherCity;
             var service = new WeatherWebServiceSoapClient();
             string[] ws = service.getWeatherbyCityName(cityName);
-            // TODO:此处保存天气预报信息到数据库
-            return BinaryObjTransfer.JsonSerializer<Weather>(WeatherHelper.GetWeather(ws));
+            Weather w = WeatherHelper.GetWeather(ws);
+            string msg = string.Format("{0}：{1}，{2}/{3}。", w.City, w.TodayWeather, w.TomorrowMinTemp, w.TomorrowMaxTemp);
+            SaveWeather(msg);
+            return BinaryObjTransfer.JsonSerializer<Weather>(w);
         }
 
+        /// <summary>
+        /// 保存天气预报
+        /// </summary>
+        /// <param name="msg"></param>
+        private void SaveWeather(string msg)
+        {
+            string sSql = @" Update PublicParameter Set Weather=@Weather";
+            List<SqlParameter> sSqlWhere = new List<SqlParameter>();
+            sSqlWhere.Add(new SqlParameter { ParameterName = "@Weather", DbType = DbType.String, Value = msg });
+            SqlHelper.ExecuteNonQuery(CommandType.Text, sSql.ToString(), sSqlWhere.ToArray());
+        }
         #endregion
 
 
@@ -101,7 +116,7 @@ namespace Scada.BLL.Implement
                 result.DefaultLongitude = Convert.ToDecimal(item["DefaultLongitude"]);
                 result.DefaultLatitude = Convert.ToDecimal(item["DefaultLatitude"]);
                 result.IsShowTool = Convert.ToBoolean(item["IsShowTool"]);
-                
+
 
             }
             return BinaryObjTransfer.JsonSerializer<SystemGlobalParameter>(result);
@@ -161,7 +176,7 @@ namespace Scada.BLL.Implement
             sSqlWhere.Add(new SqlParameter { ParameterName = "@DefaultLatitude", DbType = DbType.Decimal, Value = sysGloPar.DefaultLatitude });
             sSqlWhere.Add(new SqlParameter { ParameterName = "@DefaultZoomLevel", DbType = DbType.Int32, Value = sysGloPar.DefaultZoomLevel });
             sSqlWhere.Add(new SqlParameter { ParameterName = "@IsShowTool", DbType = DbType.Byte, Value = sysGloPar.IsShowTool });
-        
+
 
             try
             {

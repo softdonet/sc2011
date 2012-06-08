@@ -81,6 +81,7 @@ namespace Scada.DAL.Linq
     #endregion
 		
 
+		
 		public SCADADataContext(string connection) : 
 				base(connection, mappingSource)
 		{
@@ -150,14 +151,6 @@ namespace Scada.DAL.Linq
 			get
 			{
 				return this.GetTable<Module>();
-			}
-		}
-		
-		public System.Data.Linq.Table<PublicParameter> PublicParameters
-		{
-			get
-			{
-				return this.GetTable<PublicParameter>();
 			}
 		}
 		
@@ -238,6 +231,14 @@ namespace Scada.DAL.Linq
 			get
 			{
 				return this.GetTable<DeviceTree>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PublicParameter> PublicParameters
+		{
+			get
+			{
+				return this.GetTable<PublicParameter>();
 			}
 		}
 	}
@@ -1668,159 +1669,6 @@ namespace Scada.DAL.Linq
 		{
 			this.SendPropertyChanging();
 			entity.Module = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PublicParameter")]
-	public partial class PublicParameter
-	{
-		
-		private System.Nullable<int> _ConnectType;
-		
-		private string _ConnectName;
-		
-		private string _MainDNS;
-		
-		private string _SecondDNS;
-		
-		private string _Domain;
-		
-		private System.Nullable<int> _Port;
-		
-		private string _Weather;
-		
-		private string _Broadcast;
-		
-		public PublicParameter()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConnectType", DbType="Int")]
-		public System.Nullable<int> ConnectType
-		{
-			get
-			{
-				return this._ConnectType;
-			}
-			set
-			{
-				if ((this._ConnectType != value))
-				{
-					this._ConnectType = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConnectName", DbType="VarChar(50)")]
-		public string ConnectName
-		{
-			get
-			{
-				return this._ConnectName;
-			}
-			set
-			{
-				if ((this._ConnectName != value))
-				{
-					this._ConnectName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MainDNS", DbType="NVarChar(20)")]
-		public string MainDNS
-		{
-			get
-			{
-				return this._MainDNS;
-			}
-			set
-			{
-				if ((this._MainDNS != value))
-				{
-					this._MainDNS = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecondDNS", DbType="NVarChar(20)")]
-		public string SecondDNS
-		{
-			get
-			{
-				return this._SecondDNS;
-			}
-			set
-			{
-				if ((this._SecondDNS != value))
-				{
-					this._SecondDNS = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Domain", DbType="NVarChar(50)")]
-		public string Domain
-		{
-			get
-			{
-				return this._Domain;
-			}
-			set
-			{
-				if ((this._Domain != value))
-				{
-					this._Domain = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Port", DbType="Int")]
-		public System.Nullable<int> Port
-		{
-			get
-			{
-				return this._Port;
-			}
-			set
-			{
-				if ((this._Port != value))
-				{
-					this._Port = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weather", DbType="NVarChar(100)")]
-		public string Weather
-		{
-			get
-			{
-				return this._Weather;
-			}
-			set
-			{
-				if ((this._Weather != value))
-				{
-					this._Weather = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Broadcast", DbType="NVarChar(100)")]
-		public string Broadcast
-		{
-			get
-			{
-				return this._Broadcast;
-			}
-			set
-			{
-				if ((this._Broadcast != value))
-				{
-					this._Broadcast = value;
-				}
-			}
 		}
 	}
 	
@@ -4918,6 +4766,249 @@ namespace Scada.DAL.Linq
 		{
 			this.SendPropertyChanging();
 			entity.DeviceTree = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PublicParameter")]
+	public partial class PublicParameter
+	{
+		
+		private System.Nullable<int> _ConnectType;
+		
+		private string _ConnectName;
+		
+		private string _MainDNS;
+		
+		private string _SecondDNS;
+		
+		private string _Domain;
+		
+		private System.Nullable<int> _Port;
+		
+		private string _Weather;
+		
+		private string _Broadcast;
+		
+		private string _WeatherCity;
+		
+		private System.Nullable<int> _DefaultZoomLevel;
+		
+		private System.Nullable<decimal> _DefaultLongitude;
+		
+		private System.Nullable<decimal> _DefaultLatitude;
+		
+		private System.Nullable<bool> _IsShowTool;
+		
+		public PublicParameter()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConnectType", DbType="Int")]
+		public System.Nullable<int> ConnectType
+		{
+			get
+			{
+				return this._ConnectType;
+			}
+			set
+			{
+				if ((this._ConnectType != value))
+				{
+					this._ConnectType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConnectName", DbType="VarChar(50)")]
+		public string ConnectName
+		{
+			get
+			{
+				return this._ConnectName;
+			}
+			set
+			{
+				if ((this._ConnectName != value))
+				{
+					this._ConnectName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MainDNS", DbType="NVarChar(20)")]
+		public string MainDNS
+		{
+			get
+			{
+				return this._MainDNS;
+			}
+			set
+			{
+				if ((this._MainDNS != value))
+				{
+					this._MainDNS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecondDNS", DbType="NVarChar(20)")]
+		public string SecondDNS
+		{
+			get
+			{
+				return this._SecondDNS;
+			}
+			set
+			{
+				if ((this._SecondDNS != value))
+				{
+					this._SecondDNS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Domain", DbType="NVarChar(50)")]
+		public string Domain
+		{
+			get
+			{
+				return this._Domain;
+			}
+			set
+			{
+				if ((this._Domain != value))
+				{
+					this._Domain = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Port", DbType="Int")]
+		public System.Nullable<int> Port
+		{
+			get
+			{
+				return this._Port;
+			}
+			set
+			{
+				if ((this._Port != value))
+				{
+					this._Port = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weather", DbType="NVarChar(100)")]
+		public string Weather
+		{
+			get
+			{
+				return this._Weather;
+			}
+			set
+			{
+				if ((this._Weather != value))
+				{
+					this._Weather = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Broadcast", DbType="NVarChar(100)")]
+		public string Broadcast
+		{
+			get
+			{
+				return this._Broadcast;
+			}
+			set
+			{
+				if ((this._Broadcast != value))
+				{
+					this._Broadcast = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WeatherCity", DbType="NVarChar(50)")]
+		public string WeatherCity
+		{
+			get
+			{
+				return this._WeatherCity;
+			}
+			set
+			{
+				if ((this._WeatherCity != value))
+				{
+					this._WeatherCity = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DefaultZoomLevel", DbType="Int")]
+		public System.Nullable<int> DefaultZoomLevel
+		{
+			get
+			{
+				return this._DefaultZoomLevel;
+			}
+			set
+			{
+				if ((this._DefaultZoomLevel != value))
+				{
+					this._DefaultZoomLevel = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DefaultLongitude", DbType="Decimal(20,15)")]
+		public System.Nullable<decimal> DefaultLongitude
+		{
+			get
+			{
+				return this._DefaultLongitude;
+			}
+			set
+			{
+				if ((this._DefaultLongitude != value))
+				{
+					this._DefaultLongitude = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DefaultLatitude", DbType="Decimal(20,15)")]
+		public System.Nullable<decimal> DefaultLatitude
+		{
+			get
+			{
+				return this._DefaultLatitude;
+			}
+			set
+			{
+				if ((this._DefaultLatitude != value))
+				{
+					this._DefaultLatitude = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsShowTool", DbType="Bit")]
+		public System.Nullable<bool> IsShowTool
+		{
+			get
+			{
+				return this._IsShowTool;
+			}
+			set
+			{
+				if ((this._IsShowTool != value))
+				{
+					this._IsShowTool = value;
+				}
+			}
 		}
 	}
 }

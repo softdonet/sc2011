@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SCADA_DEV_NEW" Class="SCADADataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=112.125.33.194;Initial Catalog=SCADA_DEV_NEW;User ID=sa" SettingsObjectName="Scada.DAL.Linq.Properties.Settings" SettingsPropertyName="SCADA_DEV_NEWConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=112.125.33.194;Initial Catalog=SCADA_DEV_NEW;Persist Security Info=True;User ID=sa" SettingsObjectName="Scada.DAL.Linq.Properties.Settings" SettingsPropertyName="SCADA_DEV_NEWConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="dbo.DeviceAlarm" Member="DeviceAlarms">
     <Type Name="DeviceAlarm">
       <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -68,18 +68,6 @@
       <Column Name="ModuleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="ModuleName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="Module_RoleModule" Member="RoleModules" ThisKey="ModuleID" OtherKey="ModuleID" Type="RoleModule" />
-    </Type>
-  </Table>
-  <Table Name="dbo.PublicParameter" Member="PublicParameters">
-    <Type Name="PublicParameter">
-      <Column Name="ConnectType" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ConnectName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="MainDNS" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="SecondDNS" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="Domain" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Port" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Weather" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="Broadcast" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Role" Member="Roles">
@@ -225,6 +213,23 @@
       <Column Name="Sort" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="KinshipCode" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
       <Association Name="DeviceTree_DeviceInfo" Member="DeviceInfos" ThisKey="ID" OtherKey="ManageAreaID" Type="DeviceInfo" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PublicParameter" Member="PublicParameters">
+    <Type Name="PublicParameter">
+      <Column Name="ConnectType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ConnectName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MainDNS" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="SecondDNS" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Domain" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Port" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Weather" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Broadcast" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="WeatherCity" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DefaultZoomLevel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DefaultLongitude" Type="System.Decimal" DbType="Decimal(20,15)" CanBeNull="true" />
+      <Column Name="DefaultLatitude" Type="System.Decimal" DbType="Decimal(20,15)" CanBeNull="true" />
+      <Column Name="IsShowTool" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

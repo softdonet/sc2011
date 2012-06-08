@@ -33,6 +33,12 @@ namespace Scada.Client.Web.WCFServices
         /// </summary>
         [OperationContract(IsOneWay = true)]
         void GetUserEventDataList();
+
+        /// <summary>
+        /// 获取用户事件
+        /// </summary>
+        [OperationContract(IsOneWay = true)]
+        void GetWeatherDataMsg();
     }
 
     [ServiceContract]
@@ -58,5 +64,11 @@ namespace Scada.Client.Web.WCFServices
         /// <param name="data"></param>
         [OperationContract(IsOneWay = true)]
         void GetUserEventData(string data);
+
+        /// <summary>
+        /// 获取天气预报
+        /// </summary>
+        [OperationContract(IsOneWay = true)]
+        void GetWeatherData(string data);
     }
 }

@@ -1,16 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
+using System.Web;
+using System.Web.Services;
 
 namespace Scada.Client.Web.WCFServices
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "RealTimeService" in code, svc and config file together.
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
-    public class RealTimeService : IRealTimeService
+    /// <summary>
+    /// 入库程序调用
+    /// 通知客户端有数据到达
+    /// yanghk at 2012-6-8
+    /// </summary>
+    [WebService(Namespace = "http://tempuri.org/")]
+    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [System.ComponentModel.ToolboxItem(false)]
+    // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
+    // [System.Web.Script.Services.ScriptService]
+    public class RealTimeNotifyService : System.Web.Services.WebService
     {
+
+        [WebMethod]
         /// <summary>
         /// 用户事件到达
         /// </summary>
@@ -22,6 +31,7 @@ namespace Scada.Client.Web.WCFServices
             }
         }
 
+        [WebMethod]
         /// <summary>
         /// 实时信息到达
         /// </summary>
@@ -33,6 +43,7 @@ namespace Scada.Client.Web.WCFServices
             }
         }
 
+        [WebMethod]
         /// <summary>
         /// 告警数据到达
         /// </summary>

@@ -95,10 +95,10 @@
     </Compile>
     <Compile Include="WCFServices\DeviceRealTimeServiceHostFactory.cs" />
     <Compile Include="WCFServices\IDeviceRealTimeService.cs" />
-    <Compile Include="WCFServices\IRealTimeService.cs" />
     <Compile Include="WCFServices\NoticeMessage.cs" />
-    <Compile Include="WCFServices\RealTimeService.svc.cs">
-      <DependentUpon>RealTimeService.svc</DependentUpon>
+    <Compile Include="WCFServices\RealTimeNotifyService.asmx.cs">
+      <DependentUpon>RealTimeNotifyService.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -119,7 +119,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="WCFServices\RealTimeService.svc" />
+    <Content Include="WCFServices\RealTimeNotifyService.asmx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

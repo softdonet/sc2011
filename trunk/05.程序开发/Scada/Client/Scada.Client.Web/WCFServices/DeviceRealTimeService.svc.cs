@@ -18,17 +18,30 @@ namespace Scada.Client.Web.WCFServices
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class DeviceRealTimeService : IDeviceRealTimeService
     {
+        private Timer timer = null;
         public static object LockObject = new object();
         private static List<IDeviceRealTimeServiceCallback> cilents
                                         = new List<IDeviceRealTimeServiceCallback>();
         DeviceRealTimeMonitorService deviceRealTimeMonitorService = new DeviceRealTimeMonitorService();
         public static DeviceRealTimeService deviceRealTimeService = null;
+        SystemManagerService systemManagerService = new SystemManagerService();
         /// <summary>
         /// 构造函数
         /// </summary>
         public DeviceRealTimeService()
         {
             deviceRealTimeService = this;
+            int span = 10000;//天气预报更新间隔
+            timer = new Timer(new System.Threading.TimerCallback(SendWeather), this, 2000, span);
+        }
+
+        /// <summary>
+        /// 发送天气预报数据
+        /// </summary>
+        /// <param name="o"></param>
+        private void SendWeather(object o)
+        {
+            SentDataAll(systemManagerService.GetWeather(), MessageType.Weather);
         }
 
         /// <summary>
@@ -100,6 +113,19 @@ namespace Scada.Client.Web.WCFServices
                                       OperationContext.Current.GetCallbackChannel<IDeviceRealTimeServiceCallback>();
             return iscCurrent;
         }
+
+        /// <summary>
+        /// 获取天气预报
+        /// </summary>
+        public void GetWeatherDataMsg()
+        {
+            var client = GetCurrentClient();
+            if (client != null)
+            {
+                SendData(client, systemManagerService.GetWeather(), MessageType.Weather);
+            }
+        }
+
 
         /// <summary>
         /// 获取实时数据

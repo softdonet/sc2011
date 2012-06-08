@@ -18,7 +18,7 @@ namespace Scada.BLL.Contract
         /// </summary>
         /// <param name="cityName">城市名称</param>
         /// <returns></returns>
-        string GetWeather(string cityName);
+        string GetWeather();
 
         #region 系统参数
 

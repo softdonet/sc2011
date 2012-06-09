@@ -31,8 +31,8 @@ namespace Scada.Client.Web.WCFServices
         public DeviceRealTimeService()
         {
             deviceRealTimeService = this;
-            int span = 3600000;//天气预报更新间隔(1小时)
-            timer = new Timer(new System.Threading.TimerCallback(SendWeather), this, 2000, span);
+            int span = 1;//天气预报更新间隔(1小时)
+            timer = new Timer(new System.Threading.TimerCallback(SendWeather), this, 2000, span * 3600000);
         }
 
         /// <summary>

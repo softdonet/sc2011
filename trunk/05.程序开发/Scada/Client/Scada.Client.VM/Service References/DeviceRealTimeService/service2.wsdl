@@ -18,6 +18,9 @@
   <wsdl:message name="IDeviceRealTimeService_GetUserEventDataList_InputMessage">
     <wsdl:part name="parameters" element="GetUserEventDataList" />
   </wsdl:message>
+  <wsdl:message name="IDeviceRealTimeService_GetWeatherDataMsg_InputMessage">
+    <wsdl:part name="parameters" element="GetWeatherDataMsg" />
+  </wsdl:message>
   <wsdl:message name="IDeviceRealTimeService_GetRealTimeData_OutputCallbackMessage">
     <wsdl:part name="parameters" element="GetRealTimeData" />
   </wsdl:message>
@@ -26,6 +29,9 @@
   </wsdl:message>
   <wsdl:message name="IDeviceRealTimeService_GetUserEventData_OutputCallbackMessage">
     <wsdl:part name="parameters" element="GetUserEventData" />
+  </wsdl:message>
+  <wsdl:message name="IDeviceRealTimeService_GetWeatherData_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="GetWeatherData" />
   </wsdl:message>
   <wsdl:portType name="IDeviceRealTimeService">
     <wsdl:operation name="InitData">
@@ -40,6 +46,9 @@
     <wsdl:operation name="GetUserEventDataList">
       <wsdl:input wsaw:Action="urn:IDeviceRealTimeService/GetUserEventDataList" message="IDeviceRealTimeService_GetUserEventDataList_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetWeatherDataMsg">
+      <wsdl:input wsaw:Action="urn:IDeviceRealTimeService/GetWeatherDataMsg" message="IDeviceRealTimeService_GetWeatherDataMsg_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetRealTimeData">
       <wsdl:output wsaw:Action="urn:IDeviceRealTimeService/GetRealTimeData" message="IDeviceRealTimeService_GetRealTimeData_OutputCallbackMessage" />
     </wsdl:operation>
@@ -48,6 +57,9 @@
     </wsdl:operation>
     <wsdl:operation name="GetUserEventData">
       <wsdl:output wsaw:Action="urn:IDeviceRealTimeService/GetUserEventData" message="IDeviceRealTimeService_GetUserEventData_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWeatherData">
+      <wsdl:output wsaw:Action="urn:IDeviceRealTimeService/GetWeatherData" message="IDeviceRealTimeService_GetWeatherData_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

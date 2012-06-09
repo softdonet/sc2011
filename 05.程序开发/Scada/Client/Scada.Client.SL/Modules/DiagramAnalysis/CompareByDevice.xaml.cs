@@ -123,7 +123,6 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
             this._colorArr.Clear();
             this._selDeviceTreeNode.Clear();
 
-
             //选择基础信息
             this.QueryDeviceTemperature();
 
@@ -139,31 +138,16 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
                 return;
             }
 
+            //+-<>
+            DateSelMode dateSelMode = (DateSelMode)_dateSelectMode;
+            DeviceComaprePageTurn.getInstance().AddPrepaid(this._starDate, this._endDate, dateSelMode);
+
             this.LoadChartSource();
 
         }
 
         private void LoadChartSource()
         {
-            TimeSpan ts = _endDate - _starDate;
-            DateSelMode dateSelMode = (DateSelMode)_dateSelectMode;
-            if (dateSelMode == DateSelMode.天)
-            {
-                if (ts.TotalHours < 2)
-                {
-                    ScadaMessageBox.ShowWarnMessage("开始时间应小于或等结束时间！！！", "重要提示");
-                    return;
-                }
-            }
-            else if (dateSelMode == DateSelMode.月)
-            {
-                if (ts.TotalDays < 2)
-                {
-                    ScadaMessageBox.ShowWarnMessage("开始时间应小于或等结束时间！！！", "重要提示");
-                    return;
-                }
-            }
-
             string jsonDevices = BinaryObjTransfer.BinarySerialize(_selDeviceTreeNode);
             this._scadaDeviceServiceSoapClient.GetSameDateTemperatureDiffDeviceAsync(this._dateSelectMode, this._starDate, this._endDate, jsonDevices);
         }
@@ -183,7 +167,7 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
 
                 //更改X轴间隔
                 Int32 dateSelMode = this.cmbSelDateMode.SelectedIndex;
-                this.charTemperature.AxesX[0].Title = CompareByTime.SetChartAxesValue(dateSelMode);
+                this.charTemperature.AxesX[0].Title = String.Format("起止时间:  {0}---{1}", this._starDate, this._endDate);
                 CompareByTime.SetChartAxesXFormat(this.charTemperature.AxesX[0], dateSelMode);
 
                 int i = 0;
@@ -220,9 +204,6 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
                     datapoint.ToolTipText = string.Format("{0},{1}", datapoint.XValue, datapoint.YValue);
                 else if (dateSelMode == 1)
                     datapoint.ToolTipText = string.Format("{0},{1}", item.DeviceDate.ToString("yyyy-MM-dd"), datapoint.YValue);
-                else if (dateSelMode == 2)
-                    datapoint.ToolTipText = string.Format("{0},{1}", item.DeviceDate.ToString("yyyy-MM"), datapoint.YValue);
-
 
                 dataSeries.DataPoints.Add(datapoint);
             }
@@ -234,13 +215,10 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
         //上一周期
         private void butFast_Click(object sender, RoutedEventArgs e)
         {
-            DateSelMode dateSelMode = (DateSelMode)_dateSelectMode;
-            if (dateSelMode == DateSelMode.天)
-                this._endDate = this._endDate.AddDays(-1);
-            else if (dateSelMode == DateSelMode.月)
-                this._endDate = this._endDate.AddMonths(-1);
-            else if (dateSelMode == DateSelMode.年)
-                this._endDate = this._endDate.AddYears(-1);
+
+            DeviceComaprePageTurn.getInstance().Forth();
+            this._starDate = DeviceComaprePageTurn.getInstance().StarDate;
+            this._endDate = DeviceComaprePageTurn.getInstance().EndDate;
             this.LoadChartSource();
 
         }
@@ -248,39 +226,34 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
         //增加刻度
         private void butUNext_Click(object sender, RoutedEventArgs e)
         {
-            DateSelMode dateSelMode = (DateSelMode)_dateSelectMode;
-            if (dateSelMode == DateSelMode.天)
-                this._endDate = this._endDate.AddHours(1);
-            else if (dateSelMode == DateSelMode.月)
-                this._endDate = this._endDate.AddDays(1);
-            else if (dateSelMode == DateSelMode.年)
-                this._endDate = this._endDate.AddMonths(1);
+            DeviceComaprePageTurn.getInstance().Add();
+            this._starDate = DeviceComaprePageTurn.getInstance().StarDate;
+            this._endDate = DeviceComaprePageTurn.getInstance().EndDate;
             this.LoadChartSource();
         }
 
         //减少刻度
         private void butDNext_Click(object sender, RoutedEventArgs e)
         {
-            DateSelMode dateSelMode = (DateSelMode)_dateSelectMode;
-            if (dateSelMode == DateSelMode.天)
-                this._endDate = this._endDate.AddHours(-1);
-            else if (dateSelMode == DateSelMode.月)
-                this._endDate = this._endDate.AddDays(-1);
-            else if (dateSelMode == DateSelMode.年)
-                this._endDate = this._endDate.AddMonths(-1);
-            this.LoadChartSource();
+            try
+            {
+                DeviceComaprePageTurn.getInstance().Remove();
+            }
+            catch (Exception ex)
+            {
+                ScadaMessageBox.ShowWarnMessage(ex.Message, "重要提示");
+                return;
+            }
+            this._starDate = DeviceComaprePageTurn.getInstance().StarDate;
+            this._endDate = DeviceComaprePageTurn.getInstance().EndDate;
         }
 
         //下一周期
         private void butLast_Click(object sender, RoutedEventArgs e)
         {
-            DateSelMode dateSelMode = (DateSelMode)_dateSelectMode;
-            if (dateSelMode == DateSelMode.天)
-                this._endDate = this._endDate.AddDays(1);
-            else if (dateSelMode == DateSelMode.月)
-                this._endDate = this._endDate.AddMonths(1);
-            else if (dateSelMode == DateSelMode.年)
-                this._endDate = this._endDate.AddYears(1);
+            DeviceComaprePageTurn.getInstance().Back();
+            this._starDate = DeviceComaprePageTurn.getInstance().StarDate;
+            this._endDate = DeviceComaprePageTurn.getInstance().EndDate;
             this.LoadChartSource();
         }
 
@@ -294,8 +267,9 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
 
             //选择日期模式
             _dateSelectMode = this.cmbSelDateMode.SelectedIndex;
+            DateSelMode dateSelMode = (DateSelMode)_dateSelectMode;
             _starDate = this.dateFrist.DisplayDate;
-            _endDate = CompareByTime.GetEndDateTime(ref _starDate, (DateSelMode)_dateSelectMode);
+            _endDate = CompareByTime.GetEndDateTime(ref _starDate, dateSelMode);
 
             //选择设备信息
             this.AddDeviceTreeNode(this.chkFrist, this.cmbDevFrist);

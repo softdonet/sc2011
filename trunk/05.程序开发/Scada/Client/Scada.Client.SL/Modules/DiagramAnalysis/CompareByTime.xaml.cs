@@ -62,16 +62,11 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
         {
             DateTime result;
             if (dateSelMode == DateSelMode.天)
-                result = starDate.AddDays(1).AddSeconds(-1);
+                result = starDate.AddDays(1);
             else if (dateSelMode == DateSelMode.月)
             {
                 starDate = new DateTime(starDate.Year, starDate.Month, 1, 0, 0, 0);
-                result = starDate.AddMonths(1).AddSeconds(-1);
-            }
-            else if (dateSelMode == DateSelMode.年)
-            {
-                starDate = new DateTime(starDate.Year, 1, 1, 0, 0, 0);
-                result = starDate.AddYears(1).AddSeconds(-1);
+                result = starDate.AddMonths(1);
             }
             else
                 result = DateTime.Now;
@@ -323,9 +318,7 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
     public enum DateSelMode
     {
         天 = 0,
-        月 = 1,
-        年 = 2,
-
+        月 = 1
     }
 
 }

@@ -206,6 +206,7 @@
     <Compile Include="Modules\DiagramAnalysis\CompareByTime.xaml.cs">
       <DependentUpon>CompareByTime.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\DiagramAnalysis\DeviceComaprePageTurn.cs" />
     <Compile Include="Modules\DiagramAnalysis\StatisticsAnalyse.xaml.cs">
       <DependentUpon>StatisticsAnalyse.xaml</DependentUpon>
     </Compile>

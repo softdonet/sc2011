@@ -20,6 +20,11 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetWeatherDataMsg">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetRealTimeData">
     <xs:complexType>
       <xs:sequence>
@@ -35,6 +40,13 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="GetUserEventData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="data" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWeatherData">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="data" nillable="true" type="xs:string" />

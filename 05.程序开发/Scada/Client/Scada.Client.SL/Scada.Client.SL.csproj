@@ -569,12 +569,12 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Service References\SystemManagerService\SystemManagerService.disco" />
-    <None Include="Service References\SystemManagerService\configuration91.svcinfo" />
-    <None Include="Service References\SystemManagerService\configuration.svcinfo" />
     <None Include="Service References\SystemManagerService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\SystemManagerService\configuration91.svcinfo" />
+    <None Include="Service References\SystemManagerService\configuration.svcinfo" />
     <Content Include="ServiceReferences.ClientConfig">
       <SubType>Designer</SubType>
     </Content>

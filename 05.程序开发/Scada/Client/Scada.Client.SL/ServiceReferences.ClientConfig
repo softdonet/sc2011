@@ -10,6 +10,14 @@
                     maxReceivedMessageSize="2147483647">
                     <security mode="None" />
                 </binding>
+                <binding name="SystemManagerServiceSoap1" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+                <binding name="SystemManagerServiceSoap2" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
             </basicHttpBinding>
         </bindings>
         <client>
@@ -19,6 +27,12 @@
             <endpoint address="http://localhost:2823/WebServices/SystemManagerService.asmx"
                 binding="basicHttpBinding" bindingConfiguration="SystemManagerServiceSoap"
                 contract="SystemManagerService.SystemManagerServiceSoap" name="SystemManagerServiceSoap" />
+            <endpoint address="http://localhost:2823/WebServices/SystemManagerService.asmx"
+                binding="basicHttpBinding" bindingConfiguration="SystemManagerServiceSoap1"
+                contract="SystemManagerService.SystemManagerServiceSoap" name="SystemManagerServiceSoap1" />
+            <endpoint address="http://localhost:2823/WebServices/SystemManagerService.asmx"
+                binding="basicHttpBinding" bindingConfiguration="SystemManagerServiceSoap2"
+                contract="SystemManagerService.SystemManagerServiceSoap" name="SystemManagerServiceSoap2" />
         </client>
     </system.serviceModel>
 </configuration>

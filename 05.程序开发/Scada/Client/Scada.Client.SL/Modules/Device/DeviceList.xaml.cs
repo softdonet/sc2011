@@ -159,7 +159,7 @@ namespace Scada.Client.SL.Modules.Device
                     }
                     else
                     {
-                        img = "electric0.png";
+                        img = string.Empty;
                     }
                     break;
                 case "signal":
@@ -167,9 +167,13 @@ namespace Scada.Client.SL.Modules.Device
                     {
                         if (currentValue.Signal.Value < 50)
                         {
+                            img = "signal0.png";
+                        }
+                        else if (currentValue.Signal.Value >= 50 && currentValue.Signal.Value < 100)
+                        {
                             img = "signal1.png";
                         }
-                        else if (currentValue.Signal.Value >= 50 && currentValue.Signal.Value < 200)
+                        else if (currentValue.Signal.Value >= 100 && currentValue.Signal.Value < 200)
                         {
                             img = "signal2.png";
                         }
@@ -184,7 +188,7 @@ namespace Scada.Client.SL.Modules.Device
                     }
                     else
                     {
-                        img = "signal1.png";
+                        img = string.Empty;
                     }
                     break;
                 case "status":

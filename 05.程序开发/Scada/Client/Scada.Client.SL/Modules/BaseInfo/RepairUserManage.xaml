@@ -72,7 +72,6 @@
                             <TextBox Height="23" HorizontalAlignment="Left" Margin="79,160,0,0" Name="txtAddress" VerticalAlignment="Top" Width="160" Grid.Column="1" />
 
                             <Canvas Background="#CDFCAE" Grid.Column="2" Height="130" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Margin="76,188,0,0">
-                                <!--<Image  Name="imageInput" Stretch="Fill"  Height="130" Width="160" Source="/Scada.Client.SL;component/Images/whry.jpg" />-->
                                 <Image  Name="imageInput" Stretch="Fill"  Height="130" Width="160" Source="/Scada.Client.SL;component/Images/whry.jpg" />
 
                             </Canvas>

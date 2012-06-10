@@ -248,13 +248,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Style\DataGridViewSampleDataSource.xaml.cs">
-      <DependentUpon>DataGridViewSampleDataSource.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Style\SilverlightControl1.xaml.cs">
-      <DependentUpon>SilverlightControl1.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -388,14 +381,6 @@
     <Page Include="Modules\UsersEvent\UserEventProcess.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Style\DataGridViewSampleDataSource.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Style\SilverlightControl1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -550,19 +535,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Resource Include="Modules\DiagramAnalysis\Images\tuli.JPG" />
-    <Resource Include="Modules\Device\Images\electric0.png" />
-    <Resource Include="Modules\Device\Images\electric1.png" />
-    <Resource Include="Modules\Device\Images\electric2.png" />
-    <Resource Include="Modules\Device\Images\electric3.png" />
-    <Resource Include="Modules\Device\Images\electric4.png" />
-    <Resource Include="Modules\Device\Images\grayer.png" />
-    <Resource Include="Modules\Device\Images\green.png" />
-    <Resource Include="Modules\Device\Images\ldevice.png" />
-    <Resource Include="Modules\Device\Images\pDevice.png" />
-    <Resource Include="Modules\Device\Images\red.png" />
-    <Resource Include="Modules\Device\Images\signal1.png" />
-    <Resource Include="Modules\Device\Images\signal2.png" />
-    <Resource Include="Modules\Device\Images\signal3.png" />
     <None Include="Service References\ScadaDeviceService\ScadaDeviceService1.disco" />
     <Resource Include="Images\Worker.png" />
     <None Include="Service References\DeviceRealTimeService\configuration91.svcinfo" />
@@ -578,6 +550,9 @@
     </None>
     <None Include="Service References\SystemManagerService\configuration91.svcinfo" />
     <None Include="Service References\SystemManagerService\configuration.svcinfo" />
+    <Resource Include="Images\ldevice.png" />
+    <Resource Include="Images\pDevice.png" />
+    <Resource Include="Images\signal0.png" />
     <Content Include="ServiceReferences.ClientConfig">
       <SubType>Designer</SubType>
     </Content>
@@ -592,9 +567,7 @@
     <Resource Include="Images\electric2.png" />
     <Resource Include="Images\electric3.png" />
     <Resource Include="Images\electric4.png" />
-    <Resource Include="Images\fj.jpg" />
     <Resource Include="Images\grayer.png" />
-    <Resource Include="Images\green.gif" />
     <Resource Include="Images\green.png" />
     <Resource Include="Images\headerbg.png" />
     <Resource Include="Images\headerbg2.png" />
@@ -609,7 +582,6 @@
     <Resource Include="Images\menu4.png" />
     <Resource Include="Images\menu5.png" />
     <Resource Include="Images\Money.png" />
-    <Resource Include="Images\red.gif" />
     <Resource Include="Images\red.png" />
     <Resource Include="Images\senmenu.png" />
     <Resource Include="Images\senmenu1.png" />
@@ -618,7 +590,6 @@
     <Resource Include="Images\signal3.png" />
     <Resource Include="Images\temp.jpg" />
     <Resource Include="Images\whry.jpg" />
-    <Resource Include="Images\xh4.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Modules\BingMaps\Image\ALERT-base1.PNG" />

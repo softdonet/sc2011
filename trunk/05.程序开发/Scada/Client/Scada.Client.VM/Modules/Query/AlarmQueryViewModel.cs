@@ -14,7 +14,9 @@ using Scada.Model.Entity;
 using Microsoft.Practices.Prism.Commands;
 using Scada.Client.VM.ScadaDeviceService;
 using Scada.Client.VM.CommClass;
-
+using Scada.Utility.Common.SL.Enums;
+using Scada.Model.Entity.Enums;
+using System.Linq;
 
 namespace Scada.Client.VM.Modules.Query
 {
@@ -31,6 +33,8 @@ namespace Scada.Client.VM.Modules.Query
 
         public AlarmQueryViewModel()
         {
+            LoadEventType();
+
             this.StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0).AddDays(-1);
             this.EndDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
 
@@ -90,6 +94,16 @@ namespace Scada.Client.VM.Modules.Query
             scadaDeviceServiceSoapClient.GetAlarmQueryInfoAsync(SelectDeviceTreeNode.NodeKey, eventType, StartDate, EndDate);
         }
 
+        private void LoadEventType()
+        {
+            List<DeviceAlarm> AlarmTypeList = new List<DeviceAlarm>();
+            //故障，超高，超低
+            AlarmTypeList.Add(new DeviceAlarm() { EventType = 1, EventTypeName = EnumHelper.Display<EventTypes>(1) });
+            AlarmTypeList.Add(new DeviceAlarm() { EventType = 2, EventTypeName = EnumHelper.Display<EventTypes>(2) });
+            AlarmTypeList.Add(new DeviceAlarm() { EventType = 3, EventTypeName = EnumHelper.Display<EventTypes>(3) });
+            DeviceEventTypeList = AlarmTypeList;
+        }
+
         /// <summary>
         /// 设备树数据源
         /// </summary>
@@ -132,6 +146,18 @@ namespace Scada.Client.VM.Modules.Query
             }
         }
 
+        private List<DeviceAlarm> deviceEventTypeList;
+        public List<DeviceAlarm> DeviceEventTypeList
+        {
+            get { return deviceEventTypeList; }
+            set
+            {
+                deviceEventTypeList = value;
+              //  this.RaisePropertyChanged("DeviceEventTypeList");
+              //  this.RaisePropertyChanged("SelectedEventType");
+            }
+        }
+
         /// <summary>
         /// 当前选择的事件类型
         /// </summary>
@@ -145,7 +171,7 @@ namespace Scada.Client.VM.Modules.Query
             set
             {
                 selectedEventType = value;
-                this.RaisePropertyChanged("SelectedEventType");
+              //  this.RaisePropertyChanged("SelectedEventType");
             }
         }
 

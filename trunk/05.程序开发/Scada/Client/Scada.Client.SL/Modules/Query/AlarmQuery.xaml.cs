@@ -35,7 +35,7 @@ namespace Scada.Client.SL.Modules.Query
         {
             InitializeComponent();
 
-            LoadEventType();
+            //LoadEventType();
 
             alarmQueryViewModel = new AlarmQueryViewModel();
             this.DataContext = alarmQueryViewModel;
@@ -51,16 +51,16 @@ namespace Scada.Client.SL.Modules.Query
         }
 
         #region 初始化基本信息
-        private void LoadEventType()
-        {
-            cmbEventType.Items.Clear();
-            List<DeviceAlarm> deviceAlarmList = new List<DeviceAlarm>();
-            //故障，超高，超低
-            deviceAlarmList.Add(new DeviceAlarm() { EventType=1, EventTypeName=EnumHelper.Display<EventTypes>(1)});
-            deviceAlarmList.Add(new DeviceAlarm() { EventType = 2, EventTypeName = EnumHelper.Display<EventTypes>(2) });
-            deviceAlarmList.Add(new DeviceAlarm() { EventType = 3, EventTypeName = EnumHelper.Display<EventTypes>(3) });
-            cmbEventType.ItemsSource = deviceAlarmList;
-        }
+        //private void LoadEventType()
+        //{
+        //    cmbEventType.Items.Clear();
+        //    List<DeviceAlarm> deviceAlarmList = new List<DeviceAlarm>();
+        //    //故障，超高，超低
+        //    deviceAlarmList.Add(new DeviceAlarm() { EventType=1, EventTypeName=EnumHelper.Display<EventTypes>(1)});
+        //    deviceAlarmList.Add(new DeviceAlarm() { EventType = 2, EventTypeName = EnumHelper.Display<EventTypes>(2) });
+        //    deviceAlarmList.Add(new DeviceAlarm() { EventType = 3, EventTypeName = EnumHelper.Display<EventTypes>(3) });
+        //    cmbEventType.ItemsSource = deviceAlarmList;
+        //}
         #endregion
 
         private void btnExport_Click(object sender, RoutedEventArgs e)

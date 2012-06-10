@@ -100,7 +100,7 @@
 											Header="信号强度" HeaderTextAlignment="Center"/>
                 <telerik:GridViewImageColumn DataMemberBinding="{Binding Converter={StaticResource ItemImageSourceValueConverter1}, ConverterParameter=status}"  Width="100" ImageHeight="18" ImageWidth="18"
 											Header="状态" HeaderTextAlignment="Center"/>
-                <telerik:GridViewDataColumn    Width="100"
+                <telerik:GridViewDataColumn    Width="100" 
 											Header="详情" HeaderTextAlignment="Center" TextAlignment="Center" >
                     <telerik:GridViewColumn.CellTemplate>
                         <DataTemplate>

@@ -78,18 +78,23 @@ namespace Scada.Client.SL.Modules.Device
         private void RadTreeListView1_RowLoaded(object sender, Telerik.Windows.Controls.GridView.RowLoadedEventArgs e)
         {
             DeviceRealTimeTree currentValue = e.DataElement as DeviceRealTimeTree;
-            var obj = e.Row.Cells[0].Content as FrameworkElement;
-            var imgL = obj.FindName("lDevice") as Image;
-            var imgP = obj.FindName("pDevice") as Image;
-            if (obj != null && currentValue != null)
+            //设备图表的处理
+            var objImg = e.Row.Cells[0].Content as FrameworkElement;
+            var imgL = objImg.FindName("lDevice") as Image;
+            var imgP = objImg.FindName("pDevice") as Image;
+
+            if (currentValue != null)
             {
-                if (currentValue.NodeType == 3)
+                if (objImg != null)
                 {
-                    imgL.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    imgP.Visibility = Visibility.Collapsed;
+                    if (currentValue.NodeType == 3)
+                    {
+                        imgL.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        imgP.Visibility = Visibility.Collapsed;
+                    }
                 }
             }
         }
@@ -107,10 +112,13 @@ namespace Scada.Client.SL.Modules.Device
         private void hlUrl_Click(object sender, RoutedEventArgs e)
         {
             HyperlinkButton hlB = sender as HyperlinkButton;
-            Guid id = (hlB.DataContext as DeviceRealTimeTree).NodeKey;
-            Storyboard1.Begin();
-            MyContent.Content = new DetailsPage(id);
-            MyContent.Title = "设备详细信息";
+            var obj = hlB.DataContext as DeviceRealTimeTree;
+            if (obj.NodeType == 3)
+            {
+                Storyboard1.Begin();
+                MyContent.Content = new DetailsPage(obj.NodeKey);
+                MyContent.Title = "设备详细信息";
+            }
         }
 
         #endregion

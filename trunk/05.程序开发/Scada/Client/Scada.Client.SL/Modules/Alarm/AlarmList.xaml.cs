@@ -90,10 +90,11 @@ namespace Scada.Client.SL.Modules.Alarm
             {
                 //e.Row.Background = new SolidColorBrush(Colors.Red);
                 //e.Row.Cells[RadGridView1.Columns.Count - 2].Background = new SolidColorBrush(Colors.White);
-                e.Row.Background = new SolidColorBrush(Colors.Orange);
-                e.Row.Cells[RadGridView1.Columns.Count - 2].Background = new SolidColorBrush(Colors.White);
+
+              //  e.Row.Background = new SolidColorBrush(Colors.Orange);
+              //  e.Row.Cells[RadGridView1.Columns.Count - 2].Background = new SolidColorBrush(Colors.White);
                 hlBtn.IsEnabled = true;
-                AddAlert(currentRow.ID, e.Row);
+               // AddAlert(currentRow.ID, e.Row);
             }
 
         }
@@ -129,8 +130,8 @@ namespace Scada.Client.SL.Modules.Alarm
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            timer.Duration = new TimeSpan(0, 0, 0, 0, 500);
-            timer.Begin();
+            //timer.Duration = new TimeSpan(0, 0, 0, 0, 500);
+            //timer.Begin();
         }
 
         private Guid id;

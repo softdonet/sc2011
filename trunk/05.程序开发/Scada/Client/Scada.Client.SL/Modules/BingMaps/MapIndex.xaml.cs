@@ -298,11 +298,11 @@ namespace Scada.Client.SL.Modules.BingMaps
             alarmVM.PgetCommentInfo = getCommentInfo;
             alarmVM.PuserGuid = userGuid;
             alarmVM.UpdateDeviceAlarmInfo();
-            var obj = alarmVM.DeviceAlarmList.SingleOrDefault(p => p.ID == id);//AlarmListVM.DeviceAlarmList.SingleOrDefault(x => x.DeviceAlarm.ID == id);
-            if (obj != null)
-            {
-                obj.Comment = getCommentInfo;
-            }
+            //var obj = alarmVM.DeviceAlarmList.SingleOrDefault(p => p.ID == id);//AlarmListVM.DeviceAlarmList.SingleOrDefault(x => x.DeviceAlarm.ID == id);
+            //if (obj != null)
+            //{
+            //    obj.Comment = getCommentInfo;
+            //}
 
             alarmVM.GetData();//重新绑定
         }

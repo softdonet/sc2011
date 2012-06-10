@@ -1348,10 +1348,7 @@ namespace Scada.BLL.Implement
                 string where = GetDevicEntityKey(DeviceType, DeviceID);
                 end = DateDiffTime(ref start, DateSelMode, ref groupType);
                 List<ChartSource> chartSource = GetDeviceDateTemperature(start, end, groupType, where);
-                List<ChartSource> chartIniData = GetChartSourceIniValue(start, DateSelMode);
-                if (chartSource != null && chartSource.Count > 0)
-                    this.GetChartSourceCheck(chartIniData, chartSource);
-                source.Add(item, chartIniData);
+                source.Add(item, chartSource);
             }
             return BinaryObjTransfer.JsonSerializer<Dictionary<DateTime, List<ChartSource>>>(source);
         }
@@ -1537,11 +1534,11 @@ namespace Scada.BLL.Implement
         private List<ChartSource> GetDeviceDateTemperature(DateTime start, DateTime end, string groupType, string whereType)
         {
             List<ChartSource> result = new List<ChartSource>();
-            string sSql = @" Select " + groupType + @" As DeviceDate ,Round(Avg(AAA.Temperature1),2) As DeviceTemperature
+            string sSql = @" Select UpdateTime As DeviceDate ,Round(AAA.Temperature1,2) As DeviceTemperature
                                 from DeviceRealTime AAA  
                                 Where 1=1 And AAA.Temperature1 >0 " + whereType + @"
                                 And AAA.UpdateTime >='" + start.ToString("yyyy-MM-dd HH:mm:ss") + @"'
-                                And AAA.UpdateTime <'" + end.ToString("yyyy-MM-dd HH:mm:ss") + "' Group by " + groupType + " Order by DeviceDate";
+                                And AAA.UpdateTime <'" + end.ToString("yyyy-MM-dd HH:mm:ss") + "' Order by UpdateTime";
             DataTable ds = SqlHelper.ExecuteDataTable(sSql);
             if (ds == null || ds.Rows.Count == 0) { return result; }
             foreach (DataRow dr in ds.Rows)
@@ -1565,18 +1562,9 @@ namespace Scada.BLL.Implement
             List<DeviceTree> deviceTrees = BinaryObjTransfer.JsonDeserialize<List<DeviceTree>>(deviceInfo);
             foreach (DeviceTree devTree in deviceTrees)
             {
-
-                //1)创建虚拟日期记录
-                List<ChartSource> charTemp = GetChartSourceIniValue(starDate, endDate, dataSelMode);
-
-                //2)取到真实值记录
                 string where = GetDevicEntityKey((int)devTree.Level, devTree.ID);
                 List<ChartSource> result = GetDeviceDateTemperature(starDate, endDate, groupType, where);
-
-                //3)合并记录
-                this.GetChartSourceCheck(charTemp, result);
-
-                source.Add(devTree, charTemp);
+                source.Add(devTree, result);
             }
             return BinaryObjTransfer.JsonSerializer<Dictionary<DeviceTree, List<ChartSource>>>(source);
 

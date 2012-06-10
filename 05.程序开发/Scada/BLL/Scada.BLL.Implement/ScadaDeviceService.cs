@@ -1311,10 +1311,10 @@ namespace Scada.BLL.Implement
             {
                 source = sCADADataContext.DeviceAlarms.Where(e => e.DeviceInfo.DeviceTree.KinshipCode.ToLower().StartsWith(node.KinshipCode.ToLower()));
             }
-            source = source.Where(e => e.StartTime >= startdDate && e.StartTime < endDate).OrderByDescending(e => e.StartTime);
+            source = source.Where(e => e.StartTime >= startdDate && e.StartTime < endDate).OrderBy(e => e.DeviceInfo.DeviceNo).ThenByDescending(e => e.StartTime);
             if (DeviceType != 0)
             {
-                source = source.Where(e => e.EventType == DeviceType).OrderByDescending(e => e.StartTime);
+                source = source.Where(e => e.EventType == DeviceType).OrderBy(e => e.DeviceInfo.DeviceNo).ThenByDescending(e=>e.StartTime);
             }
             List<DeviceAlarm> deviceAlarmList = source.Select(e => e.ConvertTo<DeviceAlarm>()).ToList();
             string result = BinaryObjTransfer.JsonSerializer<List<DeviceAlarm>>(deviceAlarmList);
@@ -1336,7 +1336,7 @@ namespace Scada.BLL.Implement
             {
                 source = sCADADataContext.UserEvents.Where(e => e.DeviceInfo.DeviceTree.KinshipCode.ToLower().StartsWith(node.KinshipCode.ToLower()));
             }
-            source = source.Where(e => e.RequestTime >= startDate && e.RequestTime < endDate).OrderByDescending(e => e.RequestTime);
+            source = source.Where(e => e.RequestTime >= startDate && e.RequestTime < endDate).OrderBy(e=>e.DeviceInfo.DeviceNo).OrderByDescending(e => e.RequestTime);
             List<UserEventModel> userEventModelList = source.Select(e => e.ConvertTo<UserEventModel>()).ToList();
             string result = BinaryObjTransfer.JsonSerializer<List<UserEventModel>>(userEventModelList);
             return result;

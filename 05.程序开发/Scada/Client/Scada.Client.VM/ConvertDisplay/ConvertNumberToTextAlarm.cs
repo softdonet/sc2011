@@ -26,18 +26,18 @@ namespace Scada.Client.VM.ConvertDisplay
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string currentText = string.Empty;
-            DeviceAlarmViewModel currentValue = value as DeviceAlarmViewModel;
-            if (currentValue.DeviceAlarm == null)
+            DeviceAlarm currentValue = value as DeviceAlarm;
+            if (currentValue == null)
             {
                 return DependencyProperty.UnsetValue;
             }
-            DeviceAlarm item = currentValue.DeviceAlarm;
+            //DeviceAlarm item = currentValue;
             switch (parameter.ToString().ToLower())
             {
                 case "eventtype":
-                    if (item.EventType.HasValue)
+                    if (currentValue.EventType.HasValue)
                     {
-                        return EnumHelper.Display<EventTypes>(item.EventType.Value);
+                        return EnumHelper.Display<EventTypes>(currentValue.EventType.Value);
                     }
                     break;
                 case "eventLevel":

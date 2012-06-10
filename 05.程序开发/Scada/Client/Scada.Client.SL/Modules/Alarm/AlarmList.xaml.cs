@@ -42,6 +42,7 @@ namespace Scada.Client.SL.Modules.Alarm
         #region 变量声明
 
         private ScadaDeviceServiceSoapClient _scadaDeviceServiceSoapClient;
+        private readonly int UpdateCount = 100;
 
         #endregion
 
@@ -67,7 +68,10 @@ namespace Scada.Client.SL.Modules.Alarm
             this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
             this._scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoCompleted +=
                 new EventHandler<UpdateDeviceAlarmInfoCompletedEventArgs>(scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoCompleted);
+
+            this._scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoBatchCompleted += new EventHandler<UpdateDeviceAlarmInfoBatchCompletedEventArgs>(_scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoBatchCompleted);
         }
+
 
         #endregion
 
@@ -75,13 +79,13 @@ namespace Scada.Client.SL.Modules.Alarm
 
         private void RadGridView1_RowLoaded(object sender, Telerik.Windows.Controls.GridView.RowLoadedEventArgs e)
         {
-
             if (e.Row is GridViewHeaderRow)
                 return;
-
+            DeviceAlarm al = e.Row.DataContext as DeviceAlarm;
+            string statetext = al.DealStatus;
             TextBlock state = (e.Row.Cells[RadGridView1.Columns.Count - 3].Content as FrameworkElement) as TextBlock;
             HyperlinkButton hlBtn = (e.Row.Cells[RadGridView1.Columns.Count - 2].Content as FrameworkElement).FindName("hlBtn") as HyperlinkButton;
-            if (string.IsNullOrEmpty(state.Text.Trim()))//未处理的数据
+            if (string.IsNullOrEmpty(statetext))//if (string.IsNullOrEmpty(state.Text.Trim()))//未处理的数据
             {
                 //e.Row.Background = new SolidColorBrush(Colors.Red);
                 //e.Row.Cells[RadGridView1.Columns.Count - 2].Background = new SolidColorBrush(Colors.White);
@@ -89,6 +93,10 @@ namespace Scada.Client.SL.Modules.Alarm
                 e.Row.Cells[RadGridView1.Columns.Count - 2].Background = new SolidColorBrush(Colors.White);
                 hlBtn.IsEnabled = true;
                 AddAlert(e.Row);
+            }
+            else
+            {
+                RemoveAlert(e.Row);
             }
 
         }
@@ -104,6 +112,18 @@ namespace Scada.Client.SL.Modules.Alarm
         {
             dicDr.Remove(dr);
         }
+        //---------
+        //private Dictionary<Guid, GridViewRowItem> dicGr = new Dictionary<Guid, GridViewRowItem>();
+        //private void AddAlert(Guid guid,GridViewRowItem dr)
+        //{
+        //    if (!dicGr.ContainsKey(guid))
+        //    {
+        //        dicGr.Add(guid, dr);
+        //    }
+        //}
+
+        //-------------
+
         private bool flag = false;
         private void timer_Completed(object sender, EventArgs e)
         {
@@ -131,20 +151,30 @@ namespace Scada.Client.SL.Modules.Alarm
         private Guid id;
         private void hlBtn_Click(object sender, RoutedEventArgs e)
         {
+            DealAllFlag=false;
             HyperlinkButton hlB = sender as HyperlinkButton;
-            id = (hlB.DataContext as DeviceAlarmViewModel).DeviceAlarm.ID;
+            id = (hlB.DataContext as DeviceAlarm).ID;
             RadWindow.Prompt("请输入备注：", new EventHandler<WindowClosedEventArgs>(OnClosed));
         }
         private void OnClosed(object sender, WindowClosedEventArgs e)
         {
             if (e.DialogResult != true) { return; }
+            if (string.IsNullOrEmpty(e.PromptResult.ToString().Trim()))
+            {
+                MessageBox.Show("请输入确认信息!");
+                return;
+            }
             string getCommentInfo = e.PromptResult;
             Guid userGuid = App.CurUser.UserID;
-            this._scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoAsync(id, DateTime.Now, getCommentInfo,userGuid);
-            var obj = AlarmListVM.DeviceAlarmList.SingleOrDefault(x => x.DeviceAlarm.ID == id);
-            if (obj != null)
+
+            if (!DealAllFlag)
             {
-                obj.Comment = getCommentInfo;
+                this._scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoAsync(id, DateTime.Now, getCommentInfo, userGuid);
+                var obj = AlarmListVM.DeviceAlarmList.SingleOrDefault(x => x.ID == id);
+            }
+            else//处理全部告警信息
+            {
+                this._scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoBatchAsync(UpdateCount, DateTime.Now, getCommentInfo, userGuid);
             }
         }
 
@@ -157,7 +187,26 @@ namespace Scada.Client.SL.Modules.Alarm
         {
             AlarmListVM.GetData();
         }
+        /// <summary>
+        /// 批量修改，刷新页面
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void _scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoBatchCompleted(object sender, UpdateDeviceAlarmInfoBatchCompletedEventArgs e)
+        {
+            AlarmListVM.GetData();
+        }
+
         #endregion
+        /// <summary>
+        /// 处理全部告警
+        /// </summary>
+        private bool DealAllFlag = true;
+        private void btnDealAll_Click(object sender, RoutedEventArgs e)
+        {
+            DealAllFlag = true;
+            RadWindow.Prompt("请输入备注：", new EventHandler<WindowClosedEventArgs>(OnClosed));
+        }
 
     }
 }

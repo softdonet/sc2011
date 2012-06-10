@@ -78,6 +78,11 @@ namespace Scada.Client.VM.ScadaDeviceService {
         
         Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoResponse EndUpdateDeviceAlarmInfo(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/UpdateDeviceAlarmInfoBatch", ReplyAction="*")]
+        System.IAsyncResult BeginUpdateDeviceAlarmInfoBatch(Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoBatchRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoBatchResponse EndUpdateDeviceAlarmInfoBatch(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/GetUserEventDetailInfo", ReplyAction="*")]
         System.IAsyncResult BeginGetUserEventDetailInfo(Scada.Client.VM.ScadaDeviceService.GetUserEventDetailInfoRequest request, System.AsyncCallback callback, object asyncState);
         
@@ -906,6 +911,86 @@ namespace Scada.Client.VM.ScadaDeviceService {
         
         public UpdateDeviceAlarmInfoResponseBody(bool UpdateDeviceAlarmInfoResult) {
             this.UpdateDeviceAlarmInfoResult = UpdateDeviceAlarmInfoResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UpdateDeviceAlarmInfoBatchRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UpdateDeviceAlarmInfoBatch", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoBatchRequestBody Body;
+        
+        public UpdateDeviceAlarmInfoBatchRequest() {
+        }
+        
+        public UpdateDeviceAlarmInfoBatchRequest(Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoBatchRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class UpdateDeviceAlarmInfoBatchRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public int count;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public System.DateTime ConfirmTime;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string Comment;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=3)]
+        public System.Guid DealPeopleId;
+        
+        public UpdateDeviceAlarmInfoBatchRequestBody() {
+        }
+        
+        public UpdateDeviceAlarmInfoBatchRequestBody(int count, System.DateTime ConfirmTime, string Comment, System.Guid DealPeopleId) {
+            this.count = count;
+            this.ConfirmTime = ConfirmTime;
+            this.Comment = Comment;
+            this.DealPeopleId = DealPeopleId;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UpdateDeviceAlarmInfoBatchResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UpdateDeviceAlarmInfoBatchResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoBatchResponseBody Body;
+        
+        public UpdateDeviceAlarmInfoBatchResponse() {
+        }
+        
+        public UpdateDeviceAlarmInfoBatchResponse(Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoBatchResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class UpdateDeviceAlarmInfoBatchResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool UpdateDeviceAlarmInfoBatchResult;
+        
+        public UpdateDeviceAlarmInfoBatchResponseBody() {
+        }
+        
+        public UpdateDeviceAlarmInfoBatchResponseBody(bool UpdateDeviceAlarmInfoBatchResult) {
+            this.UpdateDeviceAlarmInfoBatchResult = UpdateDeviceAlarmInfoBatchResult;
         }
     }
     
@@ -2797,6 +2882,25 @@ namespace Scada.Client.VM.ScadaDeviceService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UpdateDeviceAlarmInfoBatchCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UpdateDeviceAlarmInfoBatchCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class GetUserEventDetailInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -3403,6 +3507,12 @@ namespace Scada.Client.VM.ScadaDeviceService {
         
         private System.Threading.SendOrPostCallback onUpdateDeviceAlarmInfoCompletedDelegate;
         
+        private BeginOperationDelegate onBeginUpdateDeviceAlarmInfoBatchDelegate;
+        
+        private EndOperationDelegate onEndUpdateDeviceAlarmInfoBatchDelegate;
+        
+        private System.Threading.SendOrPostCallback onUpdateDeviceAlarmInfoBatchCompletedDelegate;
+        
         private BeginOperationDelegate onBeginGetUserEventDetailInfoDelegate;
         
         private EndOperationDelegate onEndGetUserEventDetailInfoDelegate;
@@ -3647,6 +3757,8 @@ namespace Scada.Client.VM.ScadaDeviceService {
         public event System.EventHandler<ListDeviceTreeViewCompletedEventArgs> ListDeviceTreeViewCompleted;
         
         public event System.EventHandler<UpdateDeviceAlarmInfoCompletedEventArgs> UpdateDeviceAlarmInfoCompleted;
+        
+        public event System.EventHandler<UpdateDeviceAlarmInfoBatchCompletedEventArgs> UpdateDeviceAlarmInfoBatchCompleted;
         
         public event System.EventHandler<GetUserEventDetailInfoCompletedEventArgs> GetUserEventDetailInfoCompleted;
         
@@ -4412,6 +4524,75 @@ namespace Scada.Client.VM.ScadaDeviceService {
                         ConfirmTime,
                         Comment,
                         DealPeopleId}, this.onEndUpdateDeviceAlarmInfoDelegate, this.onUpdateDeviceAlarmInfoCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.BeginUpdateDeviceAlarmInfoBatch(Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoBatchRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateDeviceAlarmInfoBatch(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private System.IAsyncResult BeginUpdateDeviceAlarmInfoBatch(int count, System.DateTime ConfirmTime, string Comment, System.Guid DealPeopleId, System.AsyncCallback callback, object asyncState) {
+            Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoBatchRequest inValue = new Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoBatchRequest();
+            inValue.Body = new Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoBatchRequestBody();
+            inValue.Body.count = count;
+            inValue.Body.ConfirmTime = ConfirmTime;
+            inValue.Body.Comment = Comment;
+            inValue.Body.DealPeopleId = DealPeopleId;
+            return ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginUpdateDeviceAlarmInfoBatch(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoBatchResponse Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.EndUpdateDeviceAlarmInfoBatch(System.IAsyncResult result) {
+            return base.Channel.EndUpdateDeviceAlarmInfoBatch(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        private bool EndUpdateDeviceAlarmInfoBatch(System.IAsyncResult result) {
+            Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoBatchResponse retVal = ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndUpdateDeviceAlarmInfoBatch(result);
+            return retVal.Body.UpdateDeviceAlarmInfoBatchResult;
+        }
+        
+        private System.IAsyncResult OnBeginUpdateDeviceAlarmInfoBatch(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int count = ((int)(inValues[0]));
+            System.DateTime ConfirmTime = ((System.DateTime)(inValues[1]));
+            string Comment = ((string)(inValues[2]));
+            System.Guid DealPeopleId = ((System.Guid)(inValues[3]));
+            return this.BeginUpdateDeviceAlarmInfoBatch(count, ConfirmTime, Comment, DealPeopleId, callback, asyncState);
+        }
+        
+        private object[] OnEndUpdateDeviceAlarmInfoBatch(System.IAsyncResult result) {
+            bool retVal = this.EndUpdateDeviceAlarmInfoBatch(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUpdateDeviceAlarmInfoBatchCompleted(object state) {
+            if ((this.UpdateDeviceAlarmInfoBatchCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UpdateDeviceAlarmInfoBatchCompleted(this, new UpdateDeviceAlarmInfoBatchCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UpdateDeviceAlarmInfoBatchAsync(int count, System.DateTime ConfirmTime, string Comment, System.Guid DealPeopleId) {
+            this.UpdateDeviceAlarmInfoBatchAsync(count, ConfirmTime, Comment, DealPeopleId, null);
+        }
+        
+        public void UpdateDeviceAlarmInfoBatchAsync(int count, System.DateTime ConfirmTime, string Comment, System.Guid DealPeopleId, object userState) {
+            if ((this.onBeginUpdateDeviceAlarmInfoBatchDelegate == null)) {
+                this.onBeginUpdateDeviceAlarmInfoBatchDelegate = new BeginOperationDelegate(this.OnBeginUpdateDeviceAlarmInfoBatch);
+            }
+            if ((this.onEndUpdateDeviceAlarmInfoBatchDelegate == null)) {
+                this.onEndUpdateDeviceAlarmInfoBatchDelegate = new EndOperationDelegate(this.OnEndUpdateDeviceAlarmInfoBatch);
+            }
+            if ((this.onUpdateDeviceAlarmInfoBatchCompletedDelegate == null)) {
+                this.onUpdateDeviceAlarmInfoBatchCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateDeviceAlarmInfoBatchCompleted);
+            }
+            base.InvokeAsync(this.onBeginUpdateDeviceAlarmInfoBatchDelegate, new object[] {
+                        count,
+                        ConfirmTime,
+                        Comment,
+                        DealPeopleId}, this.onEndUpdateDeviceAlarmInfoBatchDelegate, this.onUpdateDeviceAlarmInfoBatchCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -6300,6 +6481,19 @@ namespace Scada.Client.VM.ScadaDeviceService {
             public Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoResponse EndUpdateDeviceAlarmInfo(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoResponse _result = ((Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoResponse)(base.EndInvoke("UpdateDeviceAlarmInfo", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginUpdateDeviceAlarmInfoBatch(Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoBatchRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("UpdateDeviceAlarmInfoBatch", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoBatchResponse EndUpdateDeviceAlarmInfoBatch(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoBatchResponse _result = ((Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoBatchResponse)(base.EndInvoke("UpdateDeviceAlarmInfoBatch", _args, result)));
                 return _result;
             }
             

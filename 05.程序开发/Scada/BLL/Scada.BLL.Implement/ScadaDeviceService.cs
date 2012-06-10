@@ -1040,7 +1040,14 @@ namespace Scada.BLL.Implement
 
         //        }
 
-
+        /// <summary>
+        /// 更新单条告警信息
+        /// </summary>
+        /// <param name="AlarmId"></param>
+        /// <param name="ConfirmTime"></param>
+        /// <param name="Comment"></param>
+        /// <param name="DealPeopleId"></param>
+        /// <returns></returns>
         public Boolean UpdateDeviceAlarmInfo(Guid AlarmId, DateTime ConfirmTime, String Comment, Guid DealPeopleId)
         {
             string sSql = @" Update DeviceAlarm 
@@ -1060,6 +1067,38 @@ namespace Scada.BLL.Implement
             }
             return result;
         }
+        
+        /// <summary>
+        /// 批量更新
+        /// </summary>
+        /// <param name="count">批量更新的条数</param>
+        /// <param name="ConfirmTime"></param>
+        /// <param name="Comment"></param>
+        /// <param name="DealPeopleId"></param>
+        /// <returns></returns>
+        public Boolean UpdateDeviceAlarmInfoBatch(int count, DateTime ConfirmTime, String Comment, Guid DealPeopleId)
+        {
+            string sSql = @" Update DeviceAlarm 
+                            Set ConfirmTime='" + ConfirmTime.ToString("yyyy-MM-dd HH:mm:ss") + @"',
+                                   DealStatus='已确认', DealPeopleID='" + DealPeopleId + "',Comment='" + Comment + @"' ";
+            string sSqlWhere = " where id in (SELECT TOP " + count + " ID FROM DeviceAlarm ORDER BY StartTime DESC)" +
+                             " and  ConfirmTime is null and DealPeopleID is null and DealStatus is null and Comment is null";
+            
+            sSql = sSql + sSqlWhere;
+            Boolean result = false;
+            try
+            {
+                Int32 intQuery = SqlHelper.ExecuteNonQuery(sSql);
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                result = false;
+                Console.WriteLine(ex.Message);
+            }
+            return result;
+        }
+
 
         #endregion
 

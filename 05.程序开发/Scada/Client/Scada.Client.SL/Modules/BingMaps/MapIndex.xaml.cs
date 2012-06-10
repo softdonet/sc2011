@@ -282,7 +282,8 @@ namespace Scada.Client.SL.Modules.BingMaps
         {
             HyperlinkButton hlB = sender as HyperlinkButton;
             //id = (hlB.DataContext as Scada.Model.Entity.DeviceAlarm).ID;
-            id = ((Scada.Client.VM.Modules.Alarm.DeviceAlarmViewModel)(hlB.DataContext)).DeviceAlarm.ID;
+            //id = ((Scada.Client.VM.Modules.Alarm.DeviceAlarmViewModel)(hlB.DataContext)).DeviceAlarm.ID;
+            id = ((Scada.Model.Entity.DeviceAlarm)(hlB.DataContext)).ID;
 
             RadWindow.Prompt("请输入备注：", new EventHandler<WindowClosedEventArgs>(OnClosed));
         }
@@ -297,7 +298,7 @@ namespace Scada.Client.SL.Modules.BingMaps
             alarmVM.PgetCommentInfo = getCommentInfo;
             alarmVM.PuserGuid = userGuid;
             alarmVM.UpdateDeviceAlarmInfo();
-            var obj = alarmVM.DeviceAlarmList.SingleOrDefault(p => p.DeviceAlarm.ID == id);//AlarmListVM.DeviceAlarmList.SingleOrDefault(x => x.DeviceAlarm.ID == id);
+            var obj = alarmVM.DeviceAlarmList.SingleOrDefault(p => p.ID == id);//AlarmListVM.DeviceAlarmList.SingleOrDefault(x => x.DeviceAlarm.ID == id);
             if (obj != null)
             {
                 obj.Comment = getCommentInfo;
@@ -322,10 +323,11 @@ namespace Scada.Client.SL.Modules.BingMaps
         {
             if (e.Row is GridViewHeaderRow) return;
 
-            DeviceAlarmViewModel dav = e.Row.DataContext as DeviceAlarmViewModel;
+            //DeviceAlarmViewModel dav = e.Row.DataContext as DeviceAlarmViewModel;
+            DeviceAlarm al = e.Row.DataContext as DeviceAlarm;
             HyperlinkButton HlBtn = (e.Row.Cells[RadGridViewAlarm.Columns.Count - 1].Content as FrameworkElement).FindName("hlBtnAlarm") as HyperlinkButton;
 
-            if (string.IsNullOrEmpty(dav.DeviceAlarm.DealStatus))
+            if (string.IsNullOrEmpty(al.DealStatus))//if (string.IsNullOrEmpty(dav.DeviceAlarm.DealStatus))
             {
                 HlBtn.IsEnabled = true;
             }

@@ -46,7 +46,8 @@
   <ItemGroup>
     <Compile Include="BLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\RealTimeDataService\Reference.cs">
+    <Compile Include="RealTimeNotify.cs" />
+    <Compile Include="Service References\RealTimeNotifyService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -75,25 +76,22 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Service References\RealTimeDataService\RealTimeService.wsdl" />
-    <None Include="Service References\RealTimeDataService\RealTimeService.xsd">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Service References\RealTimeNotifyService\RealTimeNotifyService.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\RealTimeDataService\" />
+    <WCFMetadataStorage Include="Service References\RealTimeNotifyService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\RealTimeDataService\RealTimeService.disco" />
+    <None Include="Service References\RealTimeNotifyService\RealTimeNotifyService.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\RealTimeDataService\configuration91.svcinfo" />
+    <None Include="Service References\RealTimeNotifyService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\RealTimeDataService\configuration.svcinfo" />
+    <None Include="Service References\RealTimeNotifyService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\RealTimeDataService\Reference.svcmap">
+    <None Include="Service References\RealTimeNotifyService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

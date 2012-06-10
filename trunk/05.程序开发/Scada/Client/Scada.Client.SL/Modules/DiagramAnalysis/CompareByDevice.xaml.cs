@@ -244,6 +244,7 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
             }
             this._starDate = DeviceComaprePageTurn.getInstance().StarDate;
             this._endDate = DeviceComaprePageTurn.getInstance().EndDate;
+            this.LoadChartSource();
         }
 
         //下一周期

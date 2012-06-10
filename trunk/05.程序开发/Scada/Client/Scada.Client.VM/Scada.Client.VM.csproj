@@ -81,7 +81,6 @@
     <Compile Include="ConvertDisplay\ConvertNumberToDisplayType.cs" />
     <Compile Include="ConvertDisplay\ConvertNumberToText.cs" />
     <Compile Include="ConvertDisplay\ConvertNumberToTextAlarm.cs" />
-    <Compile Include="Modules\Alarm\DeviceAlarmViewModel.cs" />
     <Compile Include="Modules\Alarm\AlarmListViewModel.cs" />
     <Compile Include="Modules\BaseInfo\DeviceManageViewModel.cs" />
     <Compile Include="Modules\BaseInfo\UserChangePasswordViewModel.cs" />
@@ -208,6 +207,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.SetUserMenuTreeListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoBatchResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ScadaDeviceService\Scada.Client.VM.ScadaDeviceService.UpdateDeviceAlarmInfoResponse.datasource">

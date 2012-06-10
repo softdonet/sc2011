@@ -16,6 +16,7 @@ using Scada.Client.VM.CommClass;
 using Scada.Client.VM.DeviceRealTimeService;
 using System.Linq;
 using System.Collections.ObjectModel;
+using Microsoft.Practices.Prism.Commands;
 
 namespace Scada.Client.VM.Modules.Alarm
 {
@@ -28,8 +29,11 @@ namespace Scada.Client.VM.Modules.Alarm
 
         private ScadaDeviceServiceSoapClient scadaDeviceServiceSoapClient = null;
 
+        private DelegateCommand UpdateBatchCommand { get; set; }
+
         //当用户处理告警事件时，传回到数据库中的四个参数
         public Guid Pid { get; set; }
+        public int Count { get; set; }
        public DateTime PdateTime { get; set; }
        public string PgetCommentInfo { get; set; }
        public Guid PuserGuid { get; set; }
@@ -46,7 +50,28 @@ namespace Scada.Client.VM.Modules.Alarm
            {
                scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoAsync(Pid, PdateTime, PgetCommentInfo, PuserGuid);
            }
+           scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoBatchCompleted += new EventHandler<UpdateDeviceAlarmInfoBatchCompletedEventArgs>(scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoBatchCompleted);
+           this.UpdateBatchCommand = new DelegateCommand(new Action(this.UpdateBatch));
+       }
 
+       void scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoBatchCompleted(object sender, UpdateDeviceAlarmInfoBatchCompletedEventArgs e)
+       {
+           bool flag = e.Result;
+           if (flag)
+           {
+               MessageBox.Show("批量处理告警成功!");
+           }
+           else
+           {
+               MessageBox.Show("批量处理失败,请重新操作!");
+           }
+       }
+       private void UpdateBatch()
+       {
+           if (Count != null && PdateTime != null && PgetCommentInfo != null && PuserGuid != new Guid())
+           {
+               scadaDeviceServiceSoapClient.UpdateDeviceAlarmInfoBatchAsync(Count, PdateTime, PgetCommentInfo, PuserGuid);
+           }
        }
 
         void scadaDeviceServiceSoapClient_UpdateDeviceAlarmInfoCompleted(object sender, UpdateDeviceAlarmInfoCompletedEventArgs e)
@@ -82,15 +107,18 @@ namespace Scada.Client.VM.Modules.Alarm
             if (e.Error == null)
             {
                 List<DeviceAlarm> result = BinaryObjTransfer.BinaryDeserialize<List<DeviceAlarm>>(e.data);
-                List<DeviceAlarmViewModel> davmList = new List<DeviceAlarmViewModel>();
-                foreach (var item in result)
-                {
-                    DeviceAlarmViewModel davm = new DeviceAlarmViewModel();
-                    davm.DeviceAlarm = item;
-                    davmList.Add(davm);
-                }
-                DeviceAlarmList = davmList;
-                DeviceAlarmListTop = davmList;
+                //List<DeviceAlarmViewModel> davmList = new List<DeviceAlarmViewModel>();
+                //foreach (var item in result)
+                //{
+                //    DeviceAlarmViewModel davm = new DeviceAlarmViewModel();
+                //    davm.DeviceAlarm = item;
+                //    davmList.Add(davm);
+                //}
+                //DeviceAlarmList = davmList;
+                //DeviceAlarmListTop = davmList;
+
+                DeviceAlarmList = result;
+                DeviceAlarmListTop = result;
             }
             else
             {
@@ -98,25 +126,27 @@ namespace Scada.Client.VM.Modules.Alarm
             }
         }
 
-        private List<DeviceAlarmViewModel> deviceAlarmList;
-        public List<DeviceAlarmViewModel> DeviceAlarmList
+        private List<DeviceAlarm> deviceAlarmList;
+        public List<DeviceAlarm> DeviceAlarmList
         {
             get { return deviceAlarmList; }
             set
             {
                 deviceAlarmList = value;
+                //测试代码
+                //deviceAlarmList = new List<DeviceAlarm>(deviceAlarmList.OrderByDescending(e => e.StartTime).Take(10));
                 this.RaisePropertyChanged("DeviceAlarmList");
             }
         }
 
-        private List<DeviceAlarmViewModel> deviceAlarmListTop;
-        public List<DeviceAlarmViewModel> DeviceAlarmListTop
+        private List<DeviceAlarm> deviceAlarmListTop;
+        public List<DeviceAlarm> DeviceAlarmListTop
         {
             get { return deviceAlarmListTop; }
             set
             {
                 deviceAlarmListTop = value;
-                deviceAlarmListTop = new List<DeviceAlarmViewModel>(deviceAlarmListTop.OrderByDescending(e => e.DeviceAlarm.StartTime).Take(4));
+                deviceAlarmListTop = new List<DeviceAlarm>(deviceAlarmListTop.OrderByDescending(e => e.StartTime).Take(4));
                 this.RaisePropertyChanged("DeviceAlarmListTop");
             }
         }

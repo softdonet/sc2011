@@ -72,26 +72,26 @@
         </Storyboard>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Background="White">
-        <telerik:RadGridView x:Name="RadGridView1"
+        <telerik:RadGridView x:Name="RadGridView1" Margin="0,30,0,0" 
 							ShowGroupPanel="False" 
                              AutoGenerateColumns="False"  
                              IsReadOnly="True"  
                              ItemsSource="{Binding DeviceAlarmList}"
                              RowLoaded="RadGridView1_RowLoaded">
             <telerik:RadGridView.Columns>
-                <telerik:GridViewDataColumn IsFilterable="False" Header="设备标识" DataMemberBinding="{Binding DeviceAlarm.ID}" IsVisible="False" HeaderTextAlignment="Center"  />
-                <telerik:GridViewDataColumn IsFilterable="False" Header="设备名" DataMemberBinding="{Binding DeviceAlarm.DeviceNo}" Width="100"   HeaderTextAlignment="Center" DisplayIndex="0"/>
+                <telerik:GridViewDataColumn IsFilterable="False" Header="设备标识" DataMemberBinding="{Binding DeviceAlarmList.ID}" IsVisible="False" HeaderTextAlignment="Center"  />
+                <telerik:GridViewDataColumn IsFilterable="False" Header="设备名" DataMemberBinding="{Binding DeviceNo}" Width="100"   HeaderTextAlignment="Center" DisplayIndex="0"/>
                 <!--<telerik:GridViewDataColumn Header="事件类型" DataMemberBinding="{Binding EventType}" Width="60" HeaderTextAlignment="Center"  />-->
 
                 <telerik:GridViewDataColumn IsFilterable="False" Header="事件类型" DataMemberBinding="{Binding Converter={StaticResource ConverNumberToTextAlarm1},ConverterParameter=EventType}" Width="80" HeaderTextAlignment="Center" TextAlignment="Center"   />
 
-                <telerik:GridViewDataColumn IsFilterable="False" Header="事件等级" DataMemberBinding="{Binding DeviceAlarm.EventLevel}" Width="80" HeaderTextAlignment="Center" TextAlignment="Center"   />
-                <telerik:GridViewDataColumn IsFilterable="False" Header="开始时间" DataMemberBinding="{Binding DeviceAlarm.StartTime}" Width="140" HeaderTextAlignment="Center" TextAlignment="Center"  />
+                <telerik:GridViewDataColumn IsFilterable="False" Header="事件等级" DataMemberBinding="{Binding EventLevel}" Width="80" HeaderTextAlignment="Center" TextAlignment="Center"   />
+                <telerik:GridViewDataColumn IsFilterable="False" Header="开始时间" DataMemberBinding="{Binding StartTime}" Width="140" HeaderTextAlignment="Center" TextAlignment="Center"  />
                 <!--<telerik:GridViewDataColumn Header="完成时间" DataMemberBinding="{Binding EndTime}" Width="140" HeaderTextAlignment="Center"  />-->
-                <telerik:GridViewDataColumn IsFilterable="False" Header="确认时间" DataMemberBinding="{Binding DeviceAlarm.ConfirmTime, Mode=TwoWay}" Width="140" HeaderTextAlignment="Center" TextAlignment="Center"  />
-                <telerik:GridViewDataColumn IsFilterable="False" Header="确认人" DataMemberBinding="{Binding DeviceAlarm.DealPeopleLoginID, Mode=TwoWay}"  Width="80" HeaderTextAlignment="Center" TextAlignment="Center"  />
-                <telerik:GridViewDataColumn IsFilterable="False" Header="备注" DataMemberBinding="{Binding DeviceAlarm.Comment}" Width="50*"  HeaderTextAlignment="Center"  />
-                <telerik:GridViewDataColumn IsFilterable="False" Header="处理状态" DataMemberBinding="{Binding DeviceAlarm.DealStatus, Mode=TwoWay}"  Width="90" HeaderTextAlignment="Center" TextAlignment="Center"  />
+                <telerik:GridViewDataColumn IsFilterable="False" Header="确认时间" DataMemberBinding="{Binding ConfirmTime, Mode=TwoWay}" Width="140" HeaderTextAlignment="Center" TextAlignment="Center"  />
+                <telerik:GridViewDataColumn IsFilterable="False" Header="确认人" DataMemberBinding="{Binding DealPeopleLoginID, Mode=TwoWay}"  Width="80" HeaderTextAlignment="Center" TextAlignment="Center"  />
+                <telerik:GridViewDataColumn IsFilterable="False" Header="备注" DataMemberBinding="{Binding Comment}" Width="50*"  HeaderTextAlignment="Center"  />
+                <telerik:GridViewDataColumn IsFilterable="False" Header="处理状态" DataMemberBinding="{Binding DealStatus, Mode=TwoWay}"  Width="90" HeaderTextAlignment="Center" TextAlignment="Center"  />
                 <telerik:GridViewDataColumn  IsFilterable="False"   Width="100"
 											Header="操作" HeaderTextAlignment="Center" TextAlignment="Center" >
                     <telerik:GridViewColumn.CellTemplate>
@@ -111,6 +111,7 @@
             </Border.RenderTransform>
             <!--<local:MyContent x:Name="MyContent" Content="MyContent"/>-->
         </Border>
+        <Button Content="批量处理" Height="25" Margin="0,3,20,0" Name="btnDealAll" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="btnDealAll_Click" />
     </Grid>
 
 </UserControl>

@@ -63,10 +63,10 @@ namespace Scada.BLL.Contract
 
         ////列出告警信息
         //string GetListDeviceAlarmInfo();
-        ////更秘诀告警状态
+        ////更新告警状态
         Boolean UpdateDeviceAlarmInfo(Guid AlarmId, DateTime ConfirmTime,
                                             String Comment, Guid DealPeopleId);
-
+        Boolean UpdateDeviceAlarmInfoBatch(int count, DateTime ConfirmTime, String Comment, Guid DealPeopleId);
         #endregion
 
 

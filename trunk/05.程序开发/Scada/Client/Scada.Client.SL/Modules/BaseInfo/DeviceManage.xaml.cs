@@ -63,6 +63,13 @@ namespace Scada.Client.SL.Modules.BaseInfo
             if (e.PropertyName == "DeviceTreeNodeList")
             {
                 this.treeViewList1.Source = deviceManageViewModel.DeviceTreeNodeList;
+                TreeViewItem tv = treeViewList1.myTree.GetSelectedContainer();//.SelectedItem as TreeViewItem;
+                if (tv != null)
+                {
+                    tv.IsExpanded = true;
+                }
+               // treeViewList1.myTree.SelectedItem = _userSelTreeNode;
+                
             }
         }
 
@@ -130,132 +137,6 @@ namespace Scada.Client.SL.Modules.BaseInfo
             this.butAdd.IsEnabled = flag;
             this.butDel.IsEnabled = flag;
             this.butSave.IsEnabled = flag;
-        }
-
-        private void scadaDeviceServiceSoapClient_ViewDeviceInfoCompleted(object sender, ViewDeviceInfoCompletedEventArgs e)
-        {
-            //string result = e.Result;
-            //if (string.IsNullOrEmpty(result)) { return; }
-            //_userSelDeviceInfo = BinaryObjTransfer.BinaryDeserialize<DeviceInfo>(result);
-            //if (_userSelDeviceInfo == null) { return; }
-
-            ////设备编号
-            //this.txtDeviceNo.Text = _userSelDeviceInfo.DeviceNo;
-            ////设备MAC
-            //this.txtDeviceMac.Text = _userSelDeviceInfo.DeviceMAC;
-            //this.txtSIM.Text = _userSelDeviceInfo.SIMNo;
-
-            //this.txtHardType.Text = _userSelDeviceInfo.HardType;
-            //this.dpProductDate.Text = _userSelDeviceInfo.ProductDate.ToString();
-            ////管理分区
-            //this.txtManageArea.Text = _userSelTreeNode.NodeValue;
-            ////this.txtManageArea.Text = _userSelTreeNode.NodeParent.NodeValue; ;
-            //this.cmbMaintenancePeople.SelectedValue = _userSelDeviceInfo.MaintenancePeopleID;
-
-            //this.txtInstallPlace.Text = _userSelDeviceInfo.InstallPlace;
-            //this.txtComment.Text = _userSelDeviceInfo.Comment;
-
-            //this.txtLongitude.Text = _userSelDeviceInfo.Longitude.ToString();
-            //this.txtLatitude.Text = _userSelDeviceInfo.Latitude.ToString();
-            //this.txtHigh.Text = _userSelDeviceInfo.High.ToString();
-
-            ////this.txtConnType.Text = "";
-            ////if (_userSelDeviceInfo.ConnectType != null)
-            ////    this.txtConnType.Text = _userSelDeviceInfo.ConnectType.ToString();
-
-
-            //this.txtComment.Text = _userSelDeviceInfo.Comment;
-
-            //this.txtWindage.Text = _userSelDeviceInfo.Windage.ToString();
-
-            //this.txtHardwareVersion.Text = _userSelDeviceInfo.HardwareVersion;
-            //this.txtSoftVersion.Text = _userSelDeviceInfo.SoftWareVersion;
-
-            ////是否启用紧急按钮
-            //this.chkUrgencyBtnEnable.IsChecked = _userSelDeviceInfo.UrgencyBtnEnable;
-            //// 主温度报警
-            //this.chkHighTemp1Alarm.IsChecked = _userSelDeviceInfo.Temperature1AlarmValid;
-            //if (_userSelDeviceInfo.Temperature1HighAlarm!=null)
-            //{
-            //    this.txtHighTemp1Alarm.Text = _userSelDeviceInfo.Temperature1HighAlarm.ToString();
-            //}
-            //if (_userSelDeviceInfo.Temperature1LowAlarm!=null)
-            //{
-            //    this.txtLowTemp1Alarm.Text = _userSelDeviceInfo.Temperature1LowAlarm.ToString();
-
-            //}
-            ////从温度报警
-            //this.chkHighTemp2Alarm.IsChecked = _userSelDeviceInfo.Temperature2AlarmValid;
-            //if (_userSelDeviceInfo.Temperature2HighAlarm!=null)
-            //{
-            //    this.txtHighTemp2Alarm.Text = _userSelDeviceInfo.Temperature2HighAlarm.ToString();
-            //}
-            //if ( _userSelDeviceInfo.Temperature2LowAlarm!=null)
-            //{
-            //    this.txtLowTemp2Alarm.Text = _userSelDeviceInfo.Temperature2LowAlarm.ToString();
-            //}
-
-            ////湿度报警
-            //this.chkHumidityAlarm.IsChecked = _userSelDeviceInfo.HumidityAlarmValid;
-            //if (_userSelDeviceInfo.HumidityHighAlarm!=null)
-            //{
-            //    this.txtHumidityHighAlarm.Text = _userSelDeviceInfo.HumidityHighAlarm.ToString();
-            //}
-            //if (_userSelDeviceInfo.HumidityLowAlarm!=null)
-            //{
-            //    this.txtHumidityLowAlarm.Text = _userSelDeviceInfo.HumidityLowAlarm.ToString();
-            //}
-
-            ////信号报警
-            //this.chkSignalAlarm.IsChecked = _userSelDeviceInfo.SignalAlarmValid;
-            //if (_userSelDeviceInfo.SignalHighAlarm!=null)
-            //{
-            //    this.txtSignalHighAlarm.Text = _userSelDeviceInfo.SignalHighAlarm.ToString();
-            //}
-            //if (_userSelDeviceInfo.SignalLowAlarm!=null)
-            //{
-            //    this.txtSignalLowAlarm.Text = _userSelDeviceInfo.SignalLowAlarm.ToString();
-            //}
-
-            ////电量报警
-            //this.chkElectricityAlarm.IsChecked = _userSelDeviceInfo.ElectricityAlarmValid;
-            //if (_userSelDeviceInfo.ElectricityHighAlarm!=null)
-            //{
-            //    this.txtElectricityHighAlarm.Text = _userSelDeviceInfo.ElectricityHighAlarm.ToString();
-            //}
-            //if (_userSelDeviceInfo.ElectricityLowAlarm!=null)
-            //{
-            //    this.txtElectricityLowAlarm.Text = _userSelDeviceInfo.ElectricityLowAlarm.ToString();
-            //}
-            ////实时模式参数
-            //if (_userSelDeviceInfo.RealTimeParam!=null)
-            //{
-            //    this.txtRealTimeParam.Text = _userSelDeviceInfo.RealTimeParam.ToString();
-            //}
-            ////整点模式参数1,2
-            //if (_userSelDeviceInfo.FullTimeParam1!=null)
-            //{
-            //    this.txtFullTimeParam1.Text = _userSelDeviceInfo.FullTimeParam1.ToString();
-            //}
-            //if (_userSelDeviceInfo.FullTimeParam2!=null)
-            //{
-            //    this.txtFullTimeParam2.Text = _userSelDeviceInfo.FullTimeParam2.ToString();
-            //}
-
-            ////逢变则报模式
-            //if (_userSelDeviceInfo.OptimizeParam1!=null)
-            //{
-            //    this.txtOptimizeParam1.Text = _userSelDeviceInfo.OptimizeParam1.ToString();
-            //}
-            //if (_userSelDeviceInfo.OptimizeParam2!=null)
-            //{
-            //    this.txtOptimizeParam2.Text = _userSelDeviceInfo.OptimizeParam2.ToString();
-            //}
-            //if (_userSelDeviceInfo.OptimizeParam3!=null)
-            //{
-            //    this.txtOptimizeParam3.Text = _userSelDeviceInfo.OptimizeParam3.ToString();
-            //}
-
         }
 
         #endregion

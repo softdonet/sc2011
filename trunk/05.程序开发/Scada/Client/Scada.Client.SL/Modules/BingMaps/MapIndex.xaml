@@ -335,8 +335,8 @@
                                           IsReadOnly="True"
                                           ItemsSource="{Binding DeviceAlarmListTop}"  RowIndicatorVisibility="Collapsed" RowLoaded="RadGridViewAlarm_RowLoaded">
                         <telerik:RadGridView.Columns>
-                            <telerik:GridViewDataColumn Header="设备名称" DataMemberBinding="{Binding DeviceAlarm.DeviceNo}" Width="80" HeaderTextAlignment="Center" TextAlignment="Center" IsFilterable="False"  />
-                            <telerik:GridViewDataColumn Header="告警类型" DataMemberBinding="{Binding Converter={StaticResource ConverNumberToTextAlarm1},ConverterParameter=EventType}" Width="75" HeaderTextAlignment="Center" TextAlignment="Center" />
+                            <telerik:GridViewDataColumn Header="设备名称" DataMemberBinding="{Binding DeviceNo, Mode=TwoWay}" Width="80" HeaderTextAlignment="Center" TextAlignment="Center" IsFilterable="False"  />
+                            <telerik:GridViewDataColumn Header="告警类型" DataMemberBinding="{Binding Converter={StaticResource ConverNumberToTextAlarm1},ConverterParameter=EventType, Mode=TwoWay}" Width="75" HeaderTextAlignment="Center" TextAlignment="Center" />
                             <telerik:GridViewDataColumn    Width="70" Header="操作" HeaderTextAlignment="Center" TextAlignment="Center" >
                                 <telerik:GridViewColumn.CellTemplate>
                                     <DataTemplate>

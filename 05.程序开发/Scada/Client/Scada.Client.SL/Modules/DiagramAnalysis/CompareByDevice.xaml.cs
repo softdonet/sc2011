@@ -170,6 +170,9 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
                 this.charTemperature.AxesX[0].Title = String.Format("起止时间:  {0}---{1}", this._starDate, this._endDate);
                 CompareByTime.SetChartAxesXFormat(this.charTemperature.AxesX[0], dateSelMode);
 
+                this.charTemperature.AxesX[0].AxisMinimum = this._starDate;
+                this.charTemperature.AxesX[0].AxisMaximum = this._endDate;
+
                 int i = 0;
                 foreach (var item in chartSource)
                 {
@@ -199,12 +202,7 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
                 datapoint = new DataPoint();
                 datapoint.XValue = item.DeviceDate;
                 datapoint.YValue = item.DeviceTemperature;
-
-                if (dateSelMode == 0)
-                    datapoint.ToolTipText = string.Format("{0},{1}", datapoint.XValue, datapoint.YValue);
-                else if (dateSelMode == 1)
-                    datapoint.ToolTipText = string.Format("{0},{1}", item.DeviceDate.ToString("yyyy-MM-dd"), datapoint.YValue);
-
+                datapoint.ToolTipText = string.Format("{0},{1}", datapoint.XValue, datapoint.YValue);
                 dataSeries.DataPoints.Add(datapoint);
             }
             this.charTemperature.Series.Add(dataSeries);

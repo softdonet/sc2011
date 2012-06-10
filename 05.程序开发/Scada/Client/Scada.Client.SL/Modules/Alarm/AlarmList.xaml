@@ -72,7 +72,7 @@
         </Storyboard>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Background="White">
-        <telerik:RadGridView x:Name="RadGridView1" Margin="0,30,0,0" 
+        <telerik:RadGridView x:Name="RadGridView1" Margin="0,30,0,0"  GridLinesVisibility="Both"
 							ShowGroupPanel="False" 
                              AutoGenerateColumns="False"  
                              IsReadOnly="True"  

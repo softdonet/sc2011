@@ -30,7 +30,7 @@
             <Button Content="查询" Margin="20,0,0,0" Height="23" Name="btnCheck"  Width="75" Command="{Binding queryCommand}" />
             <Button Content="导出" Margin="20,0,0,0"  Height="23" Name="btnExport"  Width="75" Click="btnExport_Click" />
         </StackPanel>
-        <telerik:RadGridView x:Name="RadGridView1" Grid.Row="1"   ShowGroupPanel="False" IsReadOnly="True"  
+        <telerik:RadGridView x:Name="RadGridView1" Grid.Row="1"   ShowGroupPanel="False" IsReadOnly="True"  GridLinesVisibility="Both"
                              ItemsSource="{Binding UserEventModelList}" CanUserFreezeColumns="False" AutoGenerateColumns="False" Exporting="RadGridView1_Exporting">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn IsFilterable="False"  Header="用户事件ID" DataMemberBinding="{Binding EventNo, Mode=TwoWay}" Width="100" HeaderTextAlignment="Center"  />

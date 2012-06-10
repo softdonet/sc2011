@@ -28,7 +28,7 @@
             <Button Content="查询" Margin="20,0,0,0" Height="23" Name="btnQuery"  Command="{Binding QueryCommand}" Width="75" />
             <Button Content="导出" Margin="20,0,0,0"  Height="23" Name="btnExport"  Width="75" Click="btnExport_Click" />
         </StackPanel>
-        <telerik:RadGridView x:Name="RadGridView1" Grid.Row="1"     ItemsSource="{Binding DeviceRealTimeList}" ShowGroupPanel="False" IsReadOnly="True"   CanUserFreezeColumns="False" AutoGenerateColumns="False" Exporting="RadGridView1_Exporting">
+        <telerik:RadGridView x:Name="RadGridView1" Grid.Row="1"   GridLinesVisibility="Both"  ItemsSource="{Binding DeviceRealTimeList}" ShowGroupPanel="False" IsReadOnly="True"   CanUserFreezeColumns="False" AutoGenerateColumns="False" Exporting="RadGridView1_Exporting">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Header="设备编号"   IsFilterable="False"   HeaderTextAlignment="Center"  Width="150" DataMemberBinding="{Binding DeviceNo}" />
                 <telerik:GridViewDataColumn Header="安装地点"  IsFilterable="False"  HeaderTextAlignment="Center" Width="260" DataMemberBinding="{Binding InstallPlace}" />

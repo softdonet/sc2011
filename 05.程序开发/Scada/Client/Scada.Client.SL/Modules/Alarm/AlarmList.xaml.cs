@@ -60,7 +60,7 @@ namespace Scada.Client.SL.Modules.Alarm
         AlarmListViewModel AlarmListVM = null;
         public AlarmList()
         {
-
+            
             InitializeComponent();
 
             AlarmListVM = new AlarmListViewModel();
@@ -79,10 +79,11 @@ namespace Scada.Client.SL.Modules.Alarm
 
         private void RadGridView1_RowLoaded(object sender, Telerik.Windows.Controls.GridView.RowLoadedEventArgs e)
         {
-            if (e.Row is GridViewHeaderRow)
-                return;
-            DeviceAlarm al = e.Row.DataContext as DeviceAlarm;
-            string statetext = al.DealStatus;
+            if (e.Row is GridViewHeaderRow) return;
+            //---------------------
+            //--------------------------
+            DeviceAlarm currentRow = e.Row.DataContext as DeviceAlarm;
+            string statetext = currentRow.DealStatus;
             TextBlock state = (e.Row.Cells[RadGridView1.Columns.Count - 3].Content as FrameworkElement) as TextBlock;
             HyperlinkButton hlBtn = (e.Row.Cells[RadGridView1.Columns.Count - 2].Content as FrameworkElement).FindName("hlBtn") as HyperlinkButton;
             if (string.IsNullOrEmpty(statetext))//if (string.IsNullOrEmpty(state.Text.Trim()))//未处理的数据
@@ -92,38 +93,22 @@ namespace Scada.Client.SL.Modules.Alarm
                 e.Row.Background = new SolidColorBrush(Colors.Orange);
                 e.Row.Cells[RadGridView1.Columns.Count - 2].Background = new SolidColorBrush(Colors.White);
                 hlBtn.IsEnabled = true;
-                AddAlert(e.Row);
-            }
-            else
-            {
-                RemoveAlert(e.Row);
+                AddAlert(currentRow.ID, e.Row);
             }
 
         }
-        private Dictionary<GridViewRowItem, GridViewRowItem> dicDr = new Dictionary<GridViewRowItem, GridViewRowItem>();
-        private void AddAlert(GridViewRowItem dr)
+        private Dictionary<Guid, GridViewRowItem> dicDr = new Dictionary<Guid, GridViewRowItem>();
+        private void AddAlert(Guid id,GridViewRowItem dr)
         {
-            if (!dicDr.ContainsKey(dr))
+            if (!dicDr.ContainsKey(id))
             {
-                dicDr.Add(dr, dr);
+                dicDr.Add(id, dr);
             }
         }
-        private void RemoveAlert(GridViewRowItem dr)
+        private void RemoveAlert(Guid id,GridViewRowItem dr)
         {
-            dicDr.Remove(dr);
+            dicDr.Remove(id);
         }
-        //---------
-        //private Dictionary<Guid, GridViewRowItem> dicGr = new Dictionary<Guid, GridViewRowItem>();
-        //private void AddAlert(Guid guid,GridViewRowItem dr)
-        //{
-        //    if (!dicGr.ContainsKey(guid))
-        //    {
-        //        dicGr.Add(guid, dr);
-        //    }
-        //}
-
-        //-------------
-
         private bool flag = false;
         private void timer_Completed(object sender, EventArgs e)
         {
@@ -135,7 +120,7 @@ namespace Scada.Client.SL.Modules.Alarm
             if (flag)
                 col = new SolidColorBrush(Colors.White);
 
-            foreach (GridViewRowItem dgr in dicDr.Keys)
+            foreach (GridViewRowItem dgr in dicDr.Values)
             {
                 dgr.Background = col;
             }
@@ -204,9 +189,16 @@ namespace Scada.Client.SL.Modules.Alarm
         private bool DealAllFlag = true;
         private void btnDealAll_Click(object sender, RoutedEventArgs e)
         {
-            DealAllFlag = true;
-            RadWindow.Prompt("请输入备注：", new EventHandler<WindowClosedEventArgs>(OnClosed));
+            if (RadGridView1.ItemsSource == null)
+            {
+                MessageBox.Show("没有需要更新的数据!");
+                return;
+            }
+            else
+            {
+                DealAllFlag = true;
+                RadWindow.Prompt("请输入备注：", new EventHandler<WindowClosedEventArgs>(OnClosed));
+            }
         }
-
     }
 }

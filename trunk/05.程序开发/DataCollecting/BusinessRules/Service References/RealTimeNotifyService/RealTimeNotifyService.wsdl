@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="UserEventDataReceive">
+        <s:complexType />
+      </s:element>
+      <s:element name="UserEventDataReceiveResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ReaTimeDataReceivedReceive">
+        <s:complexType />
+      </s:element>
+      <s:element name="ReaTimeDataReceivedReceiveResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AlarmDataReceived">
+        <s:complexType />
+      </s:element>
+      <s:element name="AlarmDataReceivedResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="UserEventDataReceiveSoapIn">
+    <wsdl:part name="parameters" element="tns:UserEventDataReceive" />
+  </wsdl:message>
+  <wsdl:message name="UserEventDataReceiveSoapOut">
+    <wsdl:part name="parameters" element="tns:UserEventDataReceiveResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReaTimeDataReceivedReceiveSoapIn">
+    <wsdl:part name="parameters" element="tns:ReaTimeDataReceivedReceive" />
+  </wsdl:message>
+  <wsdl:message name="ReaTimeDataReceivedReceiveSoapOut">
+    <wsdl:part name="parameters" element="tns:ReaTimeDataReceivedReceiveResponse" />
+  </wsdl:message>
+  <wsdl:message name="AlarmDataReceivedSoapIn">
+    <wsdl:part name="parameters" element="tns:AlarmDataReceived" />
+  </wsdl:message>
+  <wsdl:message name="AlarmDataReceivedSoapOut">
+    <wsdl:part name="parameters" element="tns:AlarmDataReceivedResponse" />
+  </wsdl:message>
+  <wsdl:portType name="RealTimeNotifyServiceSoap">
+    <wsdl:operation name="UserEventDataReceive">
+      <wsdl:input message="tns:UserEventDataReceiveSoapIn" />
+      <wsdl:output message="tns:UserEventDataReceiveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReaTimeDataReceivedReceive">
+      <wsdl:input message="tns:ReaTimeDataReceivedReceiveSoapIn" />
+      <wsdl:output message="tns:ReaTimeDataReceivedReceiveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AlarmDataReceived">
+      <wsdl:input message="tns:AlarmDataReceivedSoapIn" />
+      <wsdl:output message="tns:AlarmDataReceivedSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RealTimeNotifyServiceSoap" type="tns:RealTimeNotifyServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UserEventDataReceive">
+      <soap:operation soapAction="http://tempuri.org/UserEventDataReceive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReaTimeDataReceivedReceive">
+      <soap:operation soapAction="http://tempuri.org/ReaTimeDataReceivedReceive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlarmDataReceived">
+      <soap:operation soapAction="http://tempuri.org/AlarmDataReceived" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RealTimeNotifyServiceSoap12" type="tns:RealTimeNotifyServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UserEventDataReceive">
+      <soap12:operation soapAction="http://tempuri.org/UserEventDataReceive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReaTimeDataReceivedReceive">
+      <soap12:operation soapAction="http://tempuri.org/ReaTimeDataReceivedReceive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlarmDataReceived">
+      <soap12:operation soapAction="http://tempuri.org/AlarmDataReceived" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RealTimeNotifyService">
+    <wsdl:port name="RealTimeNotifyServiceSoap" binding="tns:RealTimeNotifyServiceSoap">
+      <soap:address location="http://l:8000/WCFServices/RealTimeNotifyService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="RealTimeNotifyServiceSoap12" binding="tns:RealTimeNotifyServiceSoap12">
+      <soap12:address location="http://l:8000/WCFServices/RealTimeNotifyService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

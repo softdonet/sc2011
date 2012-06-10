@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using NetData;
 using DataAccess;
-using BusinessRules.RealTimeDataService;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using Utility;
@@ -30,45 +29,8 @@ namespace BusinessRules
     public class BLL
     {
         SCADADataContext DataContext = new SCADADataContext();
-        private RealTimeServiceClient deviceRealTimeServiceClient = null;
-        public RealTimeServiceClient DeviceRealTimeServiceClient
-        {
-            get
-            {
-                deviceRealTimeServiceClient = new RealTimeServiceClient();
-                return deviceRealTimeServiceClient;
-            }
-        }
-
-        /// <summary>
-        /// 通知服务器数据更新
-        /// </summary>
-        /// <param name="msgtype"></param>
-        void Notify(MessageType msgtype)
-        {
-            try
-            {
-                switch (msgtype)
-                {
-                    case MessageType.RealTimeMsg:
-                        DeviceRealTimeServiceClient.ReaTimeDataReceivedReceive();
-                        break;
-                    case MessageType.AlarmMsg:
-                        DeviceRealTimeServiceClient.AlarmDataReceived();
-                        break;
-                    case MessageType.UserEvent:
-                        DeviceRealTimeServiceClient.UserEventDataReceive();
-                        break;
-                    default:
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                LogHelper.WriteExceptionLog(ex);
-            }
-        }
-
+        private RealTimeNotify realTimeNotify = new RealTimeNotify();
+      
         /// <summary>
         /// 更新设备
         /// </summary>
@@ -271,10 +233,10 @@ namespace BusinessRules
                         }
                     }
                     DataContext.SubmitChanges();
-                    Notify(MessageType.RealTimeMsg);
+                    realTimeNotify.Notify(MessageType.RealTimeMsg);
                     if (haveAlarm)
                     {
-                        Notify(MessageType.AlarmMsg);
+                        realTimeNotify.Notify(MessageType.AlarmMsg);
                     }
                     return true;
                 }
@@ -313,7 +275,7 @@ namespace BusinessRules
                     DataContext.UserEvents.InsertOnSubmit(ue);
                 }
                 DataContext.SubmitChanges();
-                Notify(MessageType.UserEvent);
+                realTimeNotify.Notify(MessageType.UserEvent);
                 return true;
             }
             return false;

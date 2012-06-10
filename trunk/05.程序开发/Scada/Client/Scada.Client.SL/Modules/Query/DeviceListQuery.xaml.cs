@@ -147,9 +147,13 @@ namespace Scada.Client.SL.Modules.Query
                     {
                         if (currentValue.Signal.Value < 50)
                         {
+                            img = "signal0.png";
+                        }
+                        else if (currentValue.Signal.Value >= 50 && currentValue.Signal.Value < 100)
+                        {
                             img = "signal1.png";
                         }
-                        else if (currentValue.Signal.Value >= 50 && currentValue.Signal.Value < 200)
+                        else if (currentValue.Signal.Value >= 100 && currentValue.Signal.Value < 200)
                         {
                             img = "signal2.png";
                         }

@@ -56,7 +56,7 @@ namespace Scada.BLL.Implement
             var service = new WeatherWebServiceSoapClient();
             string[] ws = service.getWeatherbyCityName(cityName);
             Weather w = WeatherHelper.GetWeather(ws);
-            string msg = string.Format("{0}：{1}，{2}/{3}。", w.City, w.TodayWeather, w.TomorrowMinTemp, w.TomorrowMaxTemp);
+            string msg = string.Format("{0} {1} {2}/{3}。", w.City, w.TodayWeather, w.TodayMinTemp, w.TodayMaxTemp);
             SaveWeather(msg);
             return BinaryObjTransfer.JsonSerializer<Weather>(w);
         }

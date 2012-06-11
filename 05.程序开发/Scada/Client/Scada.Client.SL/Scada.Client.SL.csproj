@@ -553,6 +553,7 @@
     <Resource Include="Images\ldevice.png" />
     <Resource Include="Images\pDevice.png" />
     <Resource Include="Images\signal0.png" />
+    <Resource Include="Images\signal4.png" />
     <Content Include="ServiceReferences.ClientConfig">
       <SubType>Designer</SubType>
     </Content>

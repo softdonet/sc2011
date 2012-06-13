@@ -179,7 +179,7 @@ namespace Scada.BLL.Implement
             //}
             //return BinaryObjTransfer.JsonSerializer<List<ChartSource>>(result.OrderBy(x => x.DeviceDate).ToList());
 
-            return BinaryObjTransfer.JsonSerializer<List<ChartSource>>(result);
+            return BinaryObjTransfer.JsonSerializer<List<ChartSource>>(result.Distinct(new RealTimeDataComparer()).ToList());
         }
 
         //设备历史温度
@@ -1386,7 +1386,7 @@ namespace Scada.BLL.Implement
                 start = item;
                 string where = GetDevicEntityKey(DeviceType, DeviceID);
                 end = DateDiffTime(ref start, DateSelMode, ref groupType);
-                List<ChartSource> chartSource = GetDeviceDateTemperature(start, end, groupType, where);
+                List<ChartSource> chartSource = GetDeviceDateTemperature(start, end, groupType, where).Distinct(new RealTimeDataComparer()).ToList();
                 source.Add(item, chartSource);
             }
             return BinaryObjTransfer.JsonSerializer<Dictionary<DateTime, List<ChartSource>>>(source);
@@ -1602,7 +1602,7 @@ namespace Scada.BLL.Implement
             foreach (DeviceTree devTree in deviceTrees)
             {
                 string where = GetDevicEntityKey((int)devTree.Level, devTree.ID);
-                List<ChartSource> result = GetDeviceDateTemperature(starDate, endDate, groupType, where);
+                List<ChartSource> result = GetDeviceDateTemperature(starDate, endDate, groupType, where).Distinct(new RealTimeDataComparer()).ToList();
                 source.Add(devTree, result);
             }
             return BinaryObjTransfer.JsonSerializer<Dictionary<DeviceTree, List<ChartSource>>>(source);

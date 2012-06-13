@@ -83,7 +83,7 @@ namespace Scada.Client.UC
 
             //3)Add Chart Source
             Visifire.Charts.DataSeries dataSeries = new Visifire.Charts.DataSeries();
-            dataSeries.RenderAs = Visifire.Charts.RenderAs.Spline;
+            dataSeries.RenderAs = Visifire.Charts.RenderAs.Line;
             dataSeries.ShowInLegend = false;
             dataSeries.SelectionEnabled = true;
             dataSeries.MarkerEnabled = false;

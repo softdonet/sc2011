@@ -76,7 +76,7 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
         #endregion
 
 
-        #region 构造函数
+          #region 构造函数
 
         public CompareByTime()
         {
@@ -198,7 +198,7 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
         {
 
             Visifire.Charts.DataSeries dataSeries = new Visifire.Charts.DataSeries();
-            dataSeries.RenderAs = Visifire.Charts.RenderAs.Spline;
+            dataSeries.RenderAs = Visifire.Charts.RenderAs.Line ;
             dataSeries.ShowInLegend = false;
             dataSeries.SelectionEnabled = true;
             dataSeries.MarkerEnabled = false;

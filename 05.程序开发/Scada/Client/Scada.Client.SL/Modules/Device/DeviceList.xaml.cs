@@ -143,26 +143,26 @@ namespace Scada.Client.SL.Modules.Device
                 case "electricity":
                     if (currentValue.Electricity.HasValue)
                     {
-                        //电量 0--400 //界面量程(0--4)
-                        if (currentValue.Electricity.Value < 50)
+                        switch (currentValue.Electricity.Value)
                         {
-                            img = "electric0.png";
-                        }
-                        else if (currentValue.Electricity.Value >= 50 && currentValue.Electricity.Value < 100)
-                        {
-                            img = "electric1.png";
-                        }
-                        else if (currentValue.Electricity.Value >= 100 && currentValue.Electricity.Value < 200)
-                        {
-                            img = "electric2.png";
-                        }
-                        else if (currentValue.Electricity.Value >= 200 && currentValue.Electricity.Value < 300)
-                        {
-                            img = "electric3.png";
-                        }
-                        else if (currentValue.Electricity.Value >= 300)
-                        {
-                            img = "electric4.png";
+                            case 0:
+                                img = "electric0.png";
+                                break;
+                            case 1:
+                                img = "electric1.png";
+                                break;
+                            case 2:
+                                img = "electric2.png";
+                                break;
+                            case 3:
+                                img = "electric3.png";
+                                break;
+                            case 4:
+                                img = "electric4.png";
+                                break;
+                            default:
+                                img = string.Empty;
+                                break;
                         }
                     }
                     else
@@ -173,25 +173,26 @@ namespace Scada.Client.SL.Modules.Device
                 case "signal":
                     if (currentValue.Signal.HasValue)
                     {
-                        if (currentValue.Signal.Value < 50)
+                        switch (currentValue.Signal.Value)
                         {
-                            img = "signal0.png";
-                        }
-                        else if (currentValue.Signal.Value >= 50 && currentValue.Signal.Value < 100)
-                        {
-                            img = "signal1.png";
-                        }
-                        else if (currentValue.Signal.Value >= 100 && currentValue.Signal.Value < 200)
-                        {
-                            img = "signal2.png";
-                        }
-                        else if (currentValue.Signal.Value >= 200 && currentValue.Signal.Value < 300)
-                        {
-                            img = "signal3.png";
-                        }
-                        else if (currentValue.Signal.Value >= 300)
-                        {
-                            img = "signal4.png";
+                            case 0:
+                                img = "signal0.png";
+                                break;
+                            case 1:
+                                img = "signal1.png";
+                                break;
+                            case 2:
+                                img = "signal2.png";
+                                break;
+                            case 3:
+                                img = "signal3.png";
+                                break;
+                            case 4:
+                                img = "signal4.png";
+                                break;
+                            default:
+                                img = string.Empty;
+                                break;
                         }
                     }
                     else

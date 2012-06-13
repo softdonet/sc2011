@@ -107,7 +107,7 @@ namespace Scada.Client.VM.Modules.BingMaps
                 {
                     Boolean result = Convert.ToBoolean(e.Result);
                     if (result)
-                        MessageBox.Show("修改成功,重启浏览器生效！");
+                        MessageBox.Show("修改成功,下次登录后生效！");
                 }
                 else
                     MessageBox.Show("修改失败！");

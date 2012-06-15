@@ -182,6 +182,8 @@ namespace Scada.Client.VM.Modules.BingMaps
                                 tem.Longitude = item4.Longitude;
                                 tem.Dimensionality = item4.Dimensionality;
                                 tem.InstallPlace = item4.InstallPlace;
+                                tem.Temperature = item4.Temperature1;
+                                tem.Electricity = item4.Electricity;
                                 tempList.Add(tem);
                             }
                         }
@@ -236,6 +238,10 @@ namespace Scada.Client.VM.Modules.BingMaps
                                 tem.Longitude = item4.Longitude;
                                 tem.Dimensionality = item4.Latitude;
                                 tem.InstallPlace = item4.InstallPlace;
+                                tem.High = item4.High;
+                                tem.Comment = item4.Comment;
+                                tem.MaintenanceName = item4.MaintenanceName;
+                                tem.Mobile = item4.Mobile;
                                 if (tem.Longitude.HasValue && tem.Dimensionality.HasValue)
                                 {
                                     tempList.Add(tem);

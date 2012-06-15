@@ -118,5 +118,16 @@ namespace Scada.Client.VM.Modules.BingMaps
         }
 
 
+
+  
+        //高度
+        public float? High { get; set; }
+        //维护人员
+        public string MaintenanceName { get; set; }
+        //联系方式
+        public string Mobile { get; set; }
+        //备注
+        public string Comment { get; set; }
+
     }
 }

@@ -63,6 +63,47 @@ namespace Scada.Client.SL.Modules.BingMaps
             {
                 deviceTemp = value;
                 this.txtTemp.Text = deviceTemp;
+                this.txtTemperature.Text = deviceTemp;
+            }
+        }
+
+        /// <summary>
+        /// 设备电量
+        /// </summary>
+        private string deviceElectric;
+        public string DeviceElectric
+        {
+            get
+            {
+                return deviceElectric;
+            }
+            set
+            {
+                string img = string.Empty;
+                switch (value)
+                {
+                    case "0":
+                        img = "electric0.png";
+                        break;
+                    case "1":
+                        img = "electric1.png";
+                        break;
+                    case "2":
+                        img = "electric2.png";
+                        break;
+                    case "3":
+                        img = "electric3.png";
+                        break;
+                    case "4":
+                        img = "electric4.png";
+                        break;
+                    default:
+                        img = string.Empty;
+                        break;
+                }
+                string resourcePath = "/Scada.Client.SL;component/Images/" + img;
+                Uri resourceUri = new Uri(resourcePath, UriKind.Relative);
+                this.imgElectric.Source = new BitmapImage(resourceUri);
             }
         }
 
@@ -91,12 +132,9 @@ namespace Scada.Client.SL.Modules.BingMaps
                         break;
                     case DeviceStates.Alert:
                         brush.ImageSource = new BitmapImage(new Uri("Image/ALERT-base1.png", UriKind.Relative));
-
                         break;
 
                 }
-
-
                 this.LayoutRoot.Background = brush;
                 devState = value;
             }

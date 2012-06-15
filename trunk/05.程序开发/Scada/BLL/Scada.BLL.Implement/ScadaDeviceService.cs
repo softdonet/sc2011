@@ -917,23 +917,40 @@ namespace Scada.BLL.Implement
 
         private List<DeviceTreeNode> getTreeNodeDevice(Guid nodeKey, String prefix)
         {
-            List<DeviceTreeNode> result = new List<DeviceTreeNode>();
-            string sSql = @"select id,DeviceNo,Longitude,Latitude,InstallPlace from DeviceInfo 
-                                Where ManageAreaID ='" + nodeKey.ToString().ToUpper() + "'";
-            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
-            foreach (DataRow item in ds.Rows)
+            var devList = sCADADataContext.DeviceInfos.Where(e => e.ManageAreaID == nodeKey);
+            List<DeviceTreeNode> result = devList.Select(e => new DeviceTreeNode()
             {
-                result.Add(new DeviceTreeNode
-                {
-                    NodeType = 3,
-                    NodeValue = prefix + item["DeviceNo"].ToString(),
-                    NodeKey = new Guid(item["id"].ToString()),
-                    Longitude = float.Parse(item["Longitude"].ToString()),
-                    Latitude = float.Parse(item["Latitude"].ToString()),
-                    InstallPlace = item["InstallPlace"].ToString(),
-                });
-            }
+                NodeType = 3,
+                NodeValue = prefix + e.DeviceNo,
+                NodeKey = e.ID,
+                Longitude = float.Parse(e.Longitude.HasValue ? e.Longitude.Value.ToString() : "0"),
+                Latitude = float.Parse(e.Latitude.HasValue ? e.Latitude.Value.ToString() : "0"),
+                InstallPlace = e.InstallPlace,
+                Comment = e.Comment,
+                High = float.Parse(e.High.HasValue ? e.High.Value.ToString() : "0"),
+                MaintenanceName = e.MaintenancePeople == null ? string.Empty : e.MaintenancePeople.Name,
+                Mobile = e.MaintenancePeople == null ? string.Empty : e.MaintenancePeople.Mobile
+
+            }).ToList();
+
             return result;
+            //            List<DeviceTreeNode> result = new List<DeviceTreeNode>();
+            //            string sSql = @"select id,DeviceNo,Longitude,Latitude,InstallPlace from DeviceInfo 
+            //                                Where ManageAreaID ='" + nodeKey.ToString().ToUpper() + "'";
+            //            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            //            foreach (DataRow item in ds.Rows)
+            //            {
+            //                result.Add(new DeviceTreeNode
+            //                {
+            //                    NodeType = 3,
+            //                    NodeValue = prefix + item["DeviceNo"].ToString(),
+            //                    NodeKey = new Guid(item["id"].ToString()),
+            //                    Longitude = float.Parse(item["Longitude"].ToString()),
+            //                    Latitude = float.Parse(item["Latitude"].ToString()),
+            //                    InstallPlace = item["InstallPlace"].ToString(),
+            //                });
+            //            }
+            //            return result;
         }
 
         private Boolean UpdateDevicePeople(Guid deviceId, List<MaintenancePeople> devicePeples)
@@ -1067,7 +1084,7 @@ namespace Scada.BLL.Implement
             }
             return result;
         }
-        
+
         /// <summary>
         /// 批量更新
         /// </summary>
@@ -1083,7 +1100,7 @@ namespace Scada.BLL.Implement
                                    DealStatus='已确认', DealPeopleID='" + DealPeopleId + "',Comment='" + Comment + @"' ";
             string sSqlWhere = " where id in (SELECT TOP " + count + " ID FROM DeviceAlarm ORDER BY StartTime DESC)" +
                              " and  ConfirmTime is null and DealPeopleID is null and DealStatus is null and Comment is null";
-            
+
             sSql = sSql + sSqlWhere;
             Boolean result = false;
             try
@@ -1314,7 +1331,7 @@ namespace Scada.BLL.Implement
             source = source.Where(e => e.StartTime >= startdDate && e.StartTime < endDate).OrderBy(e => e.DeviceInfo.DeviceNo).ThenByDescending(e => e.StartTime);
             if (DeviceType != 0)
             {
-                source = source.Where(e => e.EventType == DeviceType).OrderBy(e => e.DeviceInfo.DeviceNo).ThenByDescending(e=>e.StartTime);
+                source = source.Where(e => e.EventType == DeviceType).OrderBy(e => e.DeviceInfo.DeviceNo).ThenByDescending(e => e.StartTime);
             }
             List<DeviceAlarm> deviceAlarmList = source.Select(e => e.ConvertTo<DeviceAlarm>()).ToList();
             string result = BinaryObjTransfer.JsonSerializer<List<DeviceAlarm>>(deviceAlarmList);
@@ -1336,7 +1353,7 @@ namespace Scada.BLL.Implement
             {
                 source = sCADADataContext.UserEvents.Where(e => e.DeviceInfo.DeviceTree.KinshipCode.ToLower().StartsWith(node.KinshipCode.ToLower()));
             }
-            source = source.Where(e => e.RequestTime >= startDate && e.RequestTime < endDate).OrderBy(e=>e.DeviceInfo.DeviceNo).OrderByDescending(e => e.RequestTime);
+            source = source.Where(e => e.RequestTime >= startDate && e.RequestTime < endDate).OrderBy(e => e.DeviceInfo.DeviceNo).OrderByDescending(e => e.RequestTime);
             List<UserEventModel> userEventModelList = source.Select(e => e.ConvertTo<UserEventModel>()).ToList();
             string result = BinaryObjTransfer.JsonSerializer<List<UserEventModel>>(userEventModelList);
             return result;

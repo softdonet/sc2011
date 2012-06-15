@@ -87,17 +87,38 @@ Storyboard.TargetProperty="(UIElement.Visibility)">
                     <StackPanel Margin="0,0,0,0"  >
                         <StackPanel x:Name="sp" Orientation="Vertical" Margin="21,0,110,0"  >
                             <StackPanel Orientation="Horizontal" >
-                                <TextBlock  x:Name="txtTitle"   Text="{Binding NodeValue}"  FontSize="12"  HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18" VerticalAlignment="Center"/>
-                                <HyperlinkButton x:Name="hlUrl"     Content="查看详情" FontSize="10" TargetName = "_blank" Foreground="#FF0000CC"   Margin="100,0,0,0"  Click="hlUrl_Click"   HorizontalAlignment="Center" Height="13" Width="50"    />
+                                <TextBlock  x:Name="txtTitle"   Text="{Binding NodeValue}"  FontSize="13"   HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18" VerticalAlignment="Center"/>
+                                <HyperlinkButton x:Name="hlUrl"     Content="查看详情" FontSize="11" TargetName = "_blank" Foreground="#FF0000CC"   Margin="90,0,0,0"  Click="hlUrl_Click"   HorizontalAlignment="Center" Height="13" Width="50"  />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,1,0,0" >
-                                <TextBlock  x:Name="txtProjectCode"   TextWrapping="Wrap" Text ="安装地点："  FontSize="10"  Margin="5,0,0,0"  VerticalAlignment="Center"/>
-                                <TextBlock  x:Name="txtInstallPlace"   TextWrapping="Wrap" Text ="{Binding InstallPlace}"  FontSize="10" Foreground="Black" Margin="0,0,0,0"  VerticalAlignment="Center"/>
+                                <TextBlock  x:Name="txtProjectCode"   TextWrapping="Wrap" Text ="安装地点："  FontSize="11"  Margin="5,0,0,0"  VerticalAlignment="Center"/>
+                                <TextBlock  x:Name="txtInstallPlace"   TextWrapping="Wrap" Text ="{Binding InstallPlace}"  FontSize="11" Foreground="Black" Margin="0,0,0,0"  VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,1,0,0" >
+                                <TextBlock  x:Name="lblHeight"   TextWrapping="Wrap" Text ="高度："  FontSize="11"  Margin="5,0,0,0"  VerticalAlignment="Center"/>
+                                <TextBlock  x:Name="txtHeight"   TextWrapping="Wrap" Text ="{Binding High}"  FontSize="11" Foreground="Black" Margin="0,0,0,0"  VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,1,0,0" >
+                                <TextBlock  x:Name="lblTemperature"   TextWrapping="Wrap" Text ="当前温度："  FontSize="11"  Margin="5,0,0,0"  VerticalAlignment="Center"/>
+                                <TextBlock  x:Name="txtTemperature"   TextWrapping="Wrap" Text ="{Binding Temperature}"  FontSize="11" Foreground="Black" Margin="0,0,0,0"  VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,1,0,0" >
+                                <TextBlock  x:Name="lblElectric"   TextWrapping="Wrap" Text ="剩余电量："  FontSize="11"  Margin="5,0,0,0"  VerticalAlignment="Center"/>
+                                <Image x:Name="imgElectric"  Height="18"    Margin="2,0,0,0" HorizontalAlignment="Left">
+                                </Image>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,1,0,0" >
+                                <TextBlock  x:Name="lblMaintenance"   TextWrapping="Wrap" Text ="维护人员："  FontSize="11"  Margin="5,0,0,0"  VerticalAlignment="Center"/>
+                                <TextBlock  x:Name="txtMaintenance"   TextWrapping="Wrap" Text ="{Binding MaintenanceName}"  FontSize="11" Foreground="Black" Margin="0,0,0,0"  VerticalAlignment="Center"/>
+                                <TextBlock  x:Name="txtMobile"  Margin="5,0,0,0" TextWrapping="Wrap" Text ="{Binding Mobile}"  FontSize="11" Foreground="Black"   VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,1,0,0" >
+                                <TextBlock  x:Name="lblMemo"   TextWrapping="Wrap" Text ="备注："  FontSize="11"  Margin="5,0,0,0"  VerticalAlignment="Center"/>
+                                <TextBlock  x:Name="txtMemo"   TextWrapping="Wrap" Text ="{Binding Comment}"  FontSize="11" Foreground="Black" Margin="0,0,0,0"  VerticalAlignment="Center"/>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Margin="0,0,91,0" >
-                            <Image Source="/Scada.Client.SL;component/Images/temp.jpg" Margin="17,0,13,0" Height="97"></Image>
-                            <!--<local:DaysGraphNew  x:Name="chart1"   Margin="17,0,13,0" Height="105"></local:DaysGraphNew>-->
+
                         </StackPanel>
                     </StackPanel>
 

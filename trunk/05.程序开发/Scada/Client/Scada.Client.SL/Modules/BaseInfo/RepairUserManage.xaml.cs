@@ -75,7 +75,9 @@ namespace Scada.Client.SL.Modules.BaseInfo
             this._scadaDeviceServiceSoapClient.ClearMaintenancePeopleHeadFaceCompleted +=
                                 new EventHandler<ClearMaintenancePeopleHeadFaceCompletedEventArgs>
                                     (scadaDeviceServiceSoapClient_ClearMaintenancePeopleHeadFaceCompleted);
-
+            this._scadaDeviceServiceSoapClient.DeleteMaintenancePeopleCompleted +=
+                                new EventHandler<DeleteMaintenancePeopleCompletedEventArgs>
+                                  (scadaDeviceServiceSoapClient_DeleteMaintenancePeopleCompleted);
 
         }
 
@@ -139,9 +141,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
         {
             string msgInfo = string.Format("是否删除维护人员:{0}的信息", this._mainPeopleItem.Name);
             if (ScadaMessageBox.ShowOKCancelMessage(msgInfo, "删除维护人") == MessageBoxResult.Cancel) { return; }
-            this._scadaDeviceServiceSoapClient.DeleteMaintenancePeopleCompleted +=
-                           new EventHandler<DeleteMaintenancePeopleCompletedEventArgs>
-                           (scadaDeviceServiceSoapClient_DeleteMaintenancePeopleCompleted);
+           
             this._scadaDeviceServiceSoapClient.DeleteMaintenancePeopleAsync(this._mainPeopleItem.ID);
 
         }
@@ -274,8 +274,16 @@ namespace Scada.Client.SL.Modules.BaseInfo
         {
             if (e.Error == null)
             {
-                Console.WriteLine(e.Result);
-                this._mainPeopleList.Remove(this._mainPeopleItem);
+                if (e.Result)
+                {
+                    MessageBox.Show("删除成功!");
+                    Console.WriteLine(e.Result);
+                    this._mainPeopleList.Remove(this._mainPeopleItem);
+                }
+                else
+                {
+                    MessageBox.Show("删除信息失败或者维护人员信息不能被删除!");
+                }
             }
             else
                 ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");

@@ -407,6 +407,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="ClearMaintenancePeopleHeadFace">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="peopleKey" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClearMaintenancePeopleHeadFaceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ClearMaintenancePeopleHeadFaceResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="CheckUserByLoginID">
         <s:complexType>
           <s:sequence>
@@ -758,6 +772,12 @@
   <wsdl:message name="DeleteMaintenancePeopleSoapOut">
     <wsdl:part name="parameters" element="tns:DeleteMaintenancePeopleResponse" />
   </wsdl:message>
+  <wsdl:message name="ClearMaintenancePeopleHeadFaceSoapIn">
+    <wsdl:part name="parameters" element="tns:ClearMaintenancePeopleHeadFace" />
+  </wsdl:message>
+  <wsdl:message name="ClearMaintenancePeopleHeadFaceSoapOut">
+    <wsdl:part name="parameters" element="tns:ClearMaintenancePeopleHeadFaceResponse" />
+  </wsdl:message>
   <wsdl:message name="CheckUserByLoginIDSoapIn">
     <wsdl:part name="parameters" element="tns:CheckUserByLoginID" />
   </wsdl:message>
@@ -946,6 +966,10 @@
     <wsdl:operation name="DeleteMaintenancePeople">
       <wsdl:input message="tns:DeleteMaintenancePeopleSoapIn" />
       <wsdl:output message="tns:DeleteMaintenancePeopleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearMaintenancePeopleHeadFace">
+      <wsdl:input message="tns:ClearMaintenancePeopleHeadFaceSoapIn" />
+      <wsdl:output message="tns:ClearMaintenancePeopleHeadFaceSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="CheckUserByLoginID">
       <wsdl:input message="tns:CheckUserByLoginIDSoapIn" />
@@ -1252,6 +1276,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteMaintenancePeople">
       <soap:operation soapAction="http://tempuri.org/DeleteMaintenancePeople" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearMaintenancePeopleHeadFace">
+      <soap:operation soapAction="http://tempuri.org/ClearMaintenancePeopleHeadFace" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1624,6 +1657,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteMaintenancePeople">
       <soap12:operation soapAction="http://tempuri.org/DeleteMaintenancePeople" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearMaintenancePeopleHeadFace">
+      <soap12:operation soapAction="http://tempuri.org/ClearMaintenancePeopleHeadFace" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -21,9 +21,6 @@
             </basicHttpBinding>
         </bindings>
         <client>
-            <endpoint address="http://localhost:2823/WebServices/ScadaDeviceService.asmx"
-                binding="basicHttpBinding" bindingConfiguration="ScadaDeviceServiceSoap"
-                contract="ScadaDeviceService.ScadaDeviceServiceSoap" name="ScadaDeviceServiceSoap" />
             <endpoint address="http://localhost:2823/WebServices/SystemManagerService.asmx"
                 binding="basicHttpBinding" bindingConfiguration="SystemManagerServiceSoap"
                 contract="SystemManagerService.SystemManagerServiceSoap" name="SystemManagerServiceSoap" />
@@ -33,6 +30,9 @@
             <endpoint address="http://localhost:2823/WebServices/SystemManagerService.asmx"
                 binding="basicHttpBinding" bindingConfiguration="SystemManagerServiceSoap2"
                 contract="SystemManagerService.SystemManagerServiceSoap" name="SystemManagerServiceSoap2" />
+            <endpoint address="http://localhost:2823/WebServices/ScadaDeviceService.asmx"
+                binding="basicHttpBinding" bindingConfiguration="ScadaDeviceServiceSoap"
+                contract="ScadaDeviceService.ScadaDeviceServiceSoap" name="ScadaDeviceServiceSoap" />
         </client>
     </system.serviceModel>
 </configuration>

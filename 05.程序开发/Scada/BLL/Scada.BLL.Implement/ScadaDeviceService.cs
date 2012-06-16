@@ -517,6 +517,7 @@ namespace Scada.BLL.Implement
             }
             catch (Exception ex)
             {
+                //DELETE 语句与 REFERENCE 约束"FK_DEVICEAL_REFERENCE_DEVICEIN"冲突。该冲突发生于数据库"SCADA_DEV_NEW"，表"dbo.DeviceAlarm", column 'DeviceID'。语句已终止。
                 Console.WriteLine(ex.Message);
                 return false;
             }

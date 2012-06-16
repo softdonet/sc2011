@@ -262,7 +262,9 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Service References\SystemManagerService\SystemManagerService1.disco" />
-    <Content Include="ServiceReferences.ClientConfig" />
+    <Content Include="ServiceReferences.ClientConfig">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Service References\ScadaDeviceService\ScadaDeviceService.wsdl" />
     <None Include="Service References\SystemManagerService\SystemManagerService1.wsdl" />
   </ItemGroup>

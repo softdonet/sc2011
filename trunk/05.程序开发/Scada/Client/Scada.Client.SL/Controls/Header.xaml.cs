@@ -9,6 +9,7 @@ using System.Windows.Controls;
 
 using Scada.Model.Entity;
 using System.Windows.Browser;
+using System.Windows.Media.Imaging;
 
 
 
@@ -34,7 +35,9 @@ namespace Scada.Client.SL.Controls
             InitializeComponent();
 
             Application.Current.Host.Content.FullScreenChanged += new EventHandler(Content_FullScreenChanged);
-
+            this.txtTitle.Text = App.SysGlobalPar.Title;
+            BitmapImage bitImg = new BitmapImage(new Uri(App.SysGlobalPar.LogImgUrl, UriKind.Absolute));
+            this.imgLogin.Source = bitImg;
         }
 
 

@@ -118,7 +118,7 @@
             <Canvas.Background>
                 <ImageBrush ImageSource="/Scada.Client.SL;component/Images/Login.png" />
             </Canvas.Background>
-            <TextBlock x:Name="txtTile"  Foreground="Black"  Text="ICS-T2000室温监测服务系统"  FontSize="30" Margin="0"  Canvas.Left="155" Canvas.Top="80"  />
+            <TextBlock x:Name="txtTile"  Foreground="Black"  Text="XXX系统"  FontSize="30" Margin="0"  Canvas.Left="155" Canvas.Top="80"  />
             <Grid Canvas.Left="508" Canvas.Top="145" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>

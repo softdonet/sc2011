@@ -24,47 +24,53 @@
 
                     <Border BorderThickness="1" CornerRadius="5" Margin="2">
                         <Grid Background="AliceBlue" >
-                            <!--<Grid Height="196" Width="294"  Background="LightSteelBlue" ShowGridLines="True" HorizontalAlignment="Left" Margin="46,23,0,0" Name="grid1" VerticalAlignment="Top" >
-                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="52,21,0,0" Name="textBlock1" Text="系统预警超时:" VerticalAlignment="Top" />
-                                <telerik:RadMaskedTextBox MaskType="Numeric" Mask="d" Height="23" HorizontalAlignment="Left" Name="txtEarlyTimeOut" VerticalAlignment="Top"  Margin="128,18,0,0" Width="120"/>
-                                
-                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="52,0,0,122" Name="textBlock2" Text="系统预警报警:" VerticalAlignment="Bottom" />
-                                <telerik:RadMaskedTextBox MaskType="Numeric" Mask="d" Height="23" HorizontalAlignment="Left" Name="txtEarlyAlarm" VerticalAlignment="Top"  Margin="128,48,0,0" Width="120"/>
-                                
-                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="52,81,0,0" Name="textBlock3" Text="系统预警正常:" VerticalAlignment="Top" />
-                                <telerik:RadMaskedTextBox MaskType="Numeric" Mask="d" Height="23" HorizontalAlignment="Left" Name="txtEarlyNormal" VerticalAlignment="Top"  Margin="128,78,0,0" Width="120"/>
-
-                                <TextBlock Height="23" HorizontalAlignment="Left" Margin="52,114,0,0" Name="textBlock4" Text="设备默认DNS:" VerticalAlignment="Top" />
-                                <telerik:RadMaskedTextBox MaskType="Numeric" Mask="d" Height="23" HorizontalAlignment="Left" Name="txtDefDns" VerticalAlignment="Top"  Margin="128,110,0,0" Width="120"/>
-                                
-                                <Button Content="保存" Height="23" HorizontalAlignment="Left" Margin="51,157,0,0" Name="btnSave" VerticalAlignment="Top" Width="75" Click="btnSave_Click" />
-                                <Button Content="关闭" Height="23" HorizontalAlignment="Left" Margin="168,157,0,0" Name="btnClose" VerticalAlignment="Top" Width="75" Click="btnClose_Click" />
-                            </Grid>-->
-                            <Grid Height="196" Width="294"  Background="LightSteelBlue" ShowGridLines="True" HorizontalAlignment="Center" Margin="0,51,0,0" Name="grid2" VerticalAlignment="Top">
-
-                                <TextBlock HorizontalAlignment="Left" Margin="65,20,0,0" Name="textBlock9" Text="连接方式：" Height="18" VerticalAlignment="Top" />
-                                <ComboBox Height="23" HorizontalAlignment="Left" Margin="127,15,0,0" Name="cmbConnectType" SelectedIndex="0" VerticalAlignment="Top" Width="120">
+                            <Grid Width="600" Background="LightSteelBlue" ShowGridLines="false" Name="grid1" Height="250" Margin="0,50,0,0" VerticalAlignment="Top">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="150" />
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="150" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" Name="textBlock21" Text="系统标题：" VerticalAlignment="Center" />
+                                <TextBox  Grid.Column="1" Grid.ColumnSpan="3" Name="txtTitle" MaxLength="30" VerticalAlignment="Center" Margin="0,4,30,4" />
+                                <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" Name="textBlock1" Text="图表温度最大值：" VerticalAlignment="Center" />
+                                <telerik:RadMaskedTextBox Grid.Column="1" Grid.Row="1" MaskType="Numeric" Mask="d" Height="23" HorizontalAlignment="Left" Name="txtChartMaxTemp" Width="120" />
+                                <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Name="textBlock11" Text="图表温度高报警值：" VerticalAlignment="Center" />
+                                <telerik:RadMaskedTextBox Grid.Column="1" Grid.Row="2" MaskType="Numeric" Mask="d" Height="23" HorizontalAlignment="Left" Name="txtChartHighTemp" Width="120" />
+                                <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Name="textBlock3" Text="图表温度低报警值：" VerticalAlignment="Center" />
+                                <telerik:RadMaskedTextBox Grid.Row="3" Grid.Column="1" MaskType="Numeric" Mask="d" Height="23" HorizontalAlignment="Left" Name="txtChartLowTemp" Width="120" />
+                                <TextBlock Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Name="textBlock4" Text="图表温度最小值：" VerticalAlignment="Center" />
+                                <telerik:RadMaskedTextBox Grid.Row="4" Grid.Column="1" Height="23" Mask="d" MaskType="Numeric" HorizontalAlignment="Left" Name="txtChartMinTemp" Width="120" />
+                                <TextBlock Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Name="textBlock2" Text="天气预报城市：" VerticalAlignment="Center" />
+                                <TextBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Name="txtWeatherCity" MaxLength="30" VerticalAlignment="Center" Width="120" />
+                                <TextBlock Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" Name="textBlock12" Text="是否显示地图工具：" VerticalAlignment="Center" />
+                                <CheckBox Grid.Row="6" Grid.Column="1" Height="16" Name="chkShowTool" VerticalAlignment="Center"></CheckBox>
+                                <TextBlock HorizontalAlignment="Right"   Grid.Column="2"   Grid.Row="1"  Name="textBlock9" Text="连接方式：" VerticalAlignment="Center" />
+                                <ComboBox  Grid.Column="3"   Grid.Row="1"  HorizontalAlignment="Left" Name="cmbConnectType" SelectedIndex="0" VerticalAlignment="Center" Width="120">
                                     <ComboBoxItem Content="IP连接" />
                                     <ComboBoxItem Content="域名连接" />
                                 </ComboBox>
-                                <TextBlock Height="18" HorizontalAlignment="Left" Margin="55,44,0,0" Name="textBlock10" Text="接入点名称：" VerticalAlignment="Top" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,40,0,0" Name="txtConnectName" VerticalAlignment="Top" Width="120" />
-
-                                <TextBlock HorizontalAlignment="Left" Margin="77,70,0,108" Name="textBlock5" Text="主机IP:" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,65,0,0" Name="txtMainDNS" VerticalAlignment="Top" Width="120" />
-                                
-                                <TextBlock Height="18" HorizontalAlignment="Left" Margin="77,93,0,0" Name="textBlock6" Text="备用IP：" VerticalAlignment="Top" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,90,0,0" Name="txtSecondDNS" VerticalAlignment="Top" Width="120" />
-                                
-                                <TextBlock HorizontalAlignment="Left" Margin="77,119,0,59" Name="textBlock7" Text="域   名：" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="127,115,0,0" Name="txtDomain" MaxLength="30" VerticalAlignment="Top" Width="120" />
-
-                                <TextBlock Height="18" HorizontalAlignment="Left" Margin="77,144,0,0" Name="textBlock8" Text="端   口：" VerticalAlignment="Top" />
-                                <telerik:RadMaskedTextBox MaskType="Numeric" Mask="d" Height="23" HorizontalAlignment="Left" Name="txtPort" VerticalAlignment="Top"  Margin="127,140,0,0" Width="120" />
-                                
-                                
-                                <Button Content="保存" Height="23" HorizontalAlignment="Left" Margin="59,170,0,0" Name="butOk" VerticalAlignment="Top" Width="75" Click="butOk_Click" />
-                                <Button Content="关闭" Height="23" HorizontalAlignment="Left" Margin="172,169,0,0" Name="butOff" VerticalAlignment="Top" Width="75" Click="btnClose_Click" />
+                                <TextBlock HorizontalAlignment="Right"  Grid.Column="2"   Grid.Row="2"  Name="textBlock10" Text="接入点名称：" VerticalAlignment="Center" />
+                                <TextBox  HorizontalAlignment="Left"  Grid.Column="3"   Grid.Row="2" Name="txtConnectName" VerticalAlignment="Center" Width="120" />
+                                <TextBlock Grid.Column="2"   Grid.Row="3"  HorizontalAlignment="Right"  Name="textBlock5" Text="主机IP：" VerticalAlignment="Center" />
+                                <TextBox Grid.Column="3"   Grid.Row="3"  HorizontalAlignment="Left"  Name="txtMainDNS" VerticalAlignment="Center" Width="120" />
+                                <TextBlock  HorizontalAlignment="Right" Grid.Column="2"   Grid.Row="4"  Name="textBlock6" Text="备用IP：" VerticalAlignment="Center" />
+                                <TextBox  HorizontalAlignment="Left" Grid.Column="3"   Grid.Row="4" Name="txtSecondDNS" VerticalAlignment="Center" Width="120" />
+                                <TextBlock HorizontalAlignment="Right" Grid.Column="2"   Grid.Row="5"  Name="textBlock7" Text="域   名：" VerticalAlignment="Center" />
+                                <TextBox  Grid.Column="3"   Grid.Row="5"  HorizontalAlignment="Left"  Name="txtDomain" MaxLength="30" VerticalAlignment="Center" Width="120" />
+                                <TextBlock  HorizontalAlignment="Right" Grid.Column="2"   Grid.Row="6" Name="textBlock8" Text="端   口：" VerticalAlignment="Center" />
+                                <telerik:RadMaskedTextBox Grid.Column="3"   Grid.Row="6" MaskType="Numeric" Mask="d"  HorizontalAlignment="Left" Name="txtPort" VerticalAlignment="Center"  Width="120" />
+                                <Button Content="保存" Grid.Column="3"   Grid.Row="7" Height="23" HorizontalAlignment="Center"  Name="butOk" VerticalAlignment="Center" Width="75" Click="butOk_Click" />
                             </Grid>
                         </Grid>
                     </Border>

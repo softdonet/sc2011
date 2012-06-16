@@ -57,55 +57,32 @@ namespace Scada.Model.Entity
         /// 首页是否显示地图工具
         /// </summary>
         public bool? IsShowTool { get; set; }
-
         /// <summary>
         /// 图表最大温度值
         /// </summary>
-        public int ChartMaxTemp
-        {
-            get
-            {
-                return 40;
-            }
-            set { }
-        }
-
+        public int ChartMaxTemp { get; set; }
         /// <summary>
         /// 图表最小温度值
         /// </summary>
-        public int ChartMinTemp
-        {
-            get
-            {
-                return 10;
-            }
-            set{}
-        }
+        public int ChartMinTemp { get; set; }
+
         /// <summary>
         /// 图表高温分界线
         /// </summary>
-        public int ChartHighTemp
-        {
-            get
-            {
-                return 30;
-            }
-            set { }
-        }
-
+        public int ChartHighTemp { get; set; }
         /// <summary>
         /// 图表低温分界线
         /// </summary>
-        public int ChartLowTemp
-        {
-            get
-            {
-                return 20;
-            }
-            set { }
-        }
+        public int ChartLowTemp { get; set; }
+        /// <summary>
+        /// 系统名称
+        /// </summary>
+        public string Title { get; set; }
 
-
+        /// <summary>
+        /// 首页login
+        /// </summary>
+        public string LogImgUrl { get;set; }
+        
     }
-
 }

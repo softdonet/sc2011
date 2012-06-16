@@ -116,8 +116,12 @@ namespace Scada.BLL.Implement
                 result.DefaultLongitude = Convert.ToDecimal(item["DefaultLongitude"]);
                 result.DefaultLatitude = Convert.ToDecimal(item["DefaultLatitude"]);
                 result.IsShowTool = Convert.ToBoolean(item["IsShowTool"]);
-
-
+                result.Title = item["Title"].ToString();
+                result.ChartMaxTemp = Convert.ToInt32(item["ChartMaxTemp"]);
+                result.ChartHighTemp = Convert.ToInt32(item["ChartHighTemp"]);
+                result.ChartLowTemp = Convert.ToInt32(item["ChartLowTemp"]);
+                result.ChartMinTemp = Convert.ToInt32(item["ChartMinTemp"]);
+                result.LogImgUrl = FileServerHelper.GetLoginImg();
             }
             return BinaryObjTransfer.JsonSerializer<SystemGlobalParameter>(result);
         }
@@ -160,7 +164,7 @@ namespace Scada.BLL.Implement
             if (sysGloPar == null) { return result; }
             string sSql = @" Update PublicParameter Set ConnectType =@ConnectType,
                                         ConnectName=@ConnectName,MainDNS=@MainDNS,
-                                        SecondDNS=@SecondDNS,Domain=@Domain,Port=@Port,Broadcast=@Broadcast,WeatherCity=@WeatherCity,DefaultLongitude=@DefaultLongitude,DefaultLatitude=@DefaultLatitude,DefaultZoomLevel=@DefaultZoomLevel,IsShowTool=@IsShowTool";
+                                        SecondDNS=@SecondDNS,Domain=@Domain,Port=@Port,Broadcast=@Broadcast,WeatherCity=@WeatherCity,DefaultLongitude=@DefaultLongitude,DefaultLatitude=@DefaultLatitude,DefaultZoomLevel=@DefaultZoomLevel,IsShowTool=@IsShowTool,ChartMaxTemp=@ChartMaxTemp,ChartHighTemp=@ChartHighTemp,ChartLowTemp=@ChartLowTemp,ChartMinTemp=@ChartMinTemp,Title=@Title";
             List<SqlParameter> sSqlWhere = new List<SqlParameter>();
 
             sSqlWhere.Add(new SqlParameter { ParameterName = "@ConnectType", DbType = DbType.Int32, Value = sysGloPar.ConnectType });
@@ -177,6 +181,11 @@ namespace Scada.BLL.Implement
             sSqlWhere.Add(new SqlParameter { ParameterName = "@DefaultZoomLevel", DbType = DbType.Int32, Value = sysGloPar.DefaultZoomLevel });
             sSqlWhere.Add(new SqlParameter { ParameterName = "@IsShowTool", DbType = DbType.Byte, Value = sysGloPar.IsShowTool });
 
+            sSqlWhere.Add(new SqlParameter { ParameterName = "@ChartMaxTemp", DbType = DbType.Int32, Value = sysGloPar.ChartMaxTemp });
+            sSqlWhere.Add(new SqlParameter { ParameterName = "@ChartHighTemp", DbType = DbType.Int32, Value = sysGloPar.ChartHighTemp });
+            sSqlWhere.Add(new SqlParameter { ParameterName = "@ChartLowTemp", DbType = DbType.Int32, Value = sysGloPar.ChartLowTemp });
+            sSqlWhere.Add(new SqlParameter { ParameterName = "@ChartMinTemp", DbType = DbType.Int32, Value = sysGloPar.ChartMinTemp });
+            sSqlWhere.Add(new SqlParameter { ParameterName = "@Title", DbType = DbType.String, Value = sysGloPar.Title });
 
             try
             {

@@ -20,11 +20,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8000/WebServices/SystemManagerService.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:2823/WebServices/SystemManagerService.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SystemManagerService.disco" MetadataType="Disco" ID="f07997fd-a179-4bb4-8c35-9ff4bcdd9d43" SourceId="1" SourceUrl="http://localhost:8000/WebServices/SystemManagerService.asmx?disco" />
-    <MetadataFile FileName="SystemManagerService.wsdl" MetadataType="Wsdl" ID="f4add1bd-f63f-4671-b515-b605cd371ae0" SourceId="1" SourceUrl="http://localhost:8000/WebServices/SystemManagerService.asmx?wsdl" />
+    <MetadataFile FileName="SystemManagerService1.wsdl" MetadataType="Wsdl" ID="356cf3ed-8dc9-4327-bc95-6beeacf7040b" SourceId="1" SourceUrl="http://localhost:2823/WebServices/SystemManagerService.asmx?wsdl" />
+    <MetadataFile FileName="SystemManagerService1.disco" MetadataType="Disco" ID="75844f96-b364-471e-bb4a-652ab44d10b4" SourceId="1" SourceUrl="http://localhost:2823/WebServices/SystemManagerService.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

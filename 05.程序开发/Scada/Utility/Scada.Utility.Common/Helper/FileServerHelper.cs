@@ -13,6 +13,19 @@ namespace Scada.Utility.Common.Helper
     /// </summary>
     public class FileServerHelper
     {
+
+        /// <summary>
+        /// 获取首页login
+        /// </summary>
+        /// <returns></returns>
+        public static string GetLoginImg()
+        {
+            string fileUrl = string.Format("http://{0}:{1}/UploadFile/LoginImage/logo.png",
+                     HttpContext.Current.Request.Url.Host,
+                     HttpContext.Current.Request.Url.Port
+                     );
+            return fileUrl;
+        }
         /// <summary>
         /// 保存图片
         /// </summary>

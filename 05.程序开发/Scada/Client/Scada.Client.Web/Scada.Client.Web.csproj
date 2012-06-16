@@ -80,6 +80,7 @@
     <Content Include="ClientBin\Scada.Client.SL.xap" />
     <Content Include="JavaScript\Silverlight.js" />
     <Content Include="UploadFile\HeadImage\Default.jpg" />
+    <Content Include="UploadFile\LoginImage\logo.png" />
     <Content Include="WCFServices\DeviceRealTimeService.svc" />
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <Content Include="SpringConfig\CommonService.xml">

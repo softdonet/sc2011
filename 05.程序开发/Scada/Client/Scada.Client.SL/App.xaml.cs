@@ -10,6 +10,9 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Scada.Model.Entity;
+using Scada.Client.SL.CommClass;
+using Scada.Client.SL.ScadaDeviceService;
+using Scada.Client.SL.SystemManagerService;
 
 namespace Scada.Client.SL
 {
@@ -21,19 +24,21 @@ namespace Scada.Client.SL
         public static User CurUser = null;
         public static List<MenuTree> CurrMenu = null;
         public static SystemGlobalParameter SysGlobalPar = null;
+        private SystemManagerServiceSoapClient _systemManagerServiceSoapClient;
 
         public App()
         {
             this.Startup += this.Application_Startup;
             this.Exit += this.Application_Exit;
             this.UnhandledException += this.Application_UnhandledException;
-
             InitializeComponent();
+           
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            this.RootVisual = new LoginPage();
+            //初始化系统参数
+            InitSysGlobalPar();
         }
 
         private void Application_Exit(object sender, EventArgs e)
@@ -70,6 +75,30 @@ namespace Scada.Client.SL
             catch (Exception)
             {
             }
+        }
+
+        /// <summary>
+        /// 初始化全局参数
+        /// </summary>
+        void InitSysGlobalPar()
+        {
+            //全局访问参数
+            this._systemManagerServiceSoapClient = ServiceManager.GetSystemManagerService();
+            this._systemManagerServiceSoapClient.GetSystemGlobalParameterCompleted += (sender, e) =>
+            {
+                if (e.Error == null)
+                {
+                    App.SysGlobalPar = BinaryObjTransfer.BinaryDeserialize<SystemGlobalParameter>(e.Result);
+                    if (App.SysGlobalPar == null)
+                    {
+                        ScadaMessageBox.ShowWarnMessage("系统参数获取失败！", "警告信息");
+                    }
+                    else { this.RootVisual = new LoginPage(); }
+                }
+                else
+                    ScadaMessageBox.ShowWarnMessage("系统参数获取失败！", "警告信息");
+            };
+            this._systemManagerServiceSoapClient.GetSystemGlobalParameterAsync();
         }
     }
 }

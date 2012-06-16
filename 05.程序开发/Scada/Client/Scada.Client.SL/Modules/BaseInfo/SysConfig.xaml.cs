@@ -59,13 +59,6 @@ namespace Scada.Client.SL.Modules.BaseInfo
                                                 (scadaDeviceServiceSoapClient_GetSystemGlobalParameterCompleted);
             this._systemManagerServiceSoapClient.GetSystemGlobalParameterAsync();
 
-
-            //系统参数
-            //this._systemManagerServiceSoapClient.GetSystemParameterManageCompleted
-            //                        += new EventHandler<GetSystemParameterManageCompletedEventArgs>
-            //                                    (scadaDeviceServiceSoapClient_GetSystemParameterManageCompleted);
-            //this._systemManagerServiceSoapClient.GetSystemParameterManageAsync();
-
             this._systemManagerServiceSoapClient.UpdateSystemGlobalParameterCompleted
                += new EventHandler<UpdateSystemGlobalParameterCompletedEventArgs>
                    (scadaDeviceServiceSoapClient_UpdateSystemGlobalParameterCompleted);
@@ -117,30 +110,23 @@ namespace Scada.Client.SL.Modules.BaseInfo
                 }
             }
 
-
             string domain = this.txtDomain.Text;
-            /*
-            if (domain.Length > 0)
-            {
-                if (!RegularValidate.JudgeRealmNameIsValid(domain))
-                {
-                    ScadaMessageBox.ShowWarnMessage("您输入的信息不符合域名", "提示信息");
-                    this.txtDomain.Focus();
-                    return;
-                }
-            }
-            */
             _sysGlobalPar.ConnectType = this.cmbConnectType.SelectedIndex;
             _sysGlobalPar.ConnectName = connectName;
             _sysGlobalPar.MainDNS = dns;
             _sysGlobalPar.SecondDNS = secdns;
             _sysGlobalPar.Domain = domain;
             _sysGlobalPar.Port = Convert.ToInt32(this.txtPort.Value);
+            _sysGlobalPar.Title = this.txtTitle.Text;
+            _sysGlobalPar.ChartMaxTemp = Convert.ToInt32(this.txtChartMaxTemp.Value);
+            _sysGlobalPar.ChartHighTemp = Convert.ToInt32(this.txtChartHighTemp.Value);
+            _sysGlobalPar.ChartLowTemp = Convert.ToInt32(this.txtChartLowTemp.Value);
+            _sysGlobalPar.ChartMinTemp = Convert.ToInt32(this.txtChartMinTemp.Value);
+            _sysGlobalPar.IsShowTool = this.chkShowTool.IsChecked;
+            _sysGlobalPar.WeatherCity = this.txtWeatherCity.Text;
 
             string sysGlobal = BinaryObjTransfer.BinarySerialize(this._sysGlobalPar);
-
             this._systemManagerServiceSoapClient.UpdateSystemGlobalParameterAsync(sysGlobal);
-
         }
 
 
@@ -151,40 +137,11 @@ namespace Scada.Client.SL.Modules.BaseInfo
             {
                 Boolean result = Convert.ToBoolean(e.Result);
                 if (result)
-                    ScadaMessageBox.ShowWarnMessage("修改成功", "提示信息");
+                    ScadaMessageBox.ShowWarnMessage("修改成功，下次登录生效！", "提示信息");
             }
             else
                 ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");
         }
-
-
-        //private void btnSave_Click(object sender, RoutedEventArgs e)
-        //{
-
-        //    object obj = this.txtEarlyTimeOut.Value;
-        //    if (obj != null)
-        //        this._sysParManage[0].ParameterValue = Convert.ToSingle(obj);
-
-        //    obj = this.txtEarlyAlarm.Value;
-        //    if (obj != null)
-        //        this._sysParManage[1].ParameterValue = Convert.ToSingle(obj);
-
-        //    obj = this.txtEarlyNormal.Value;
-        //    if (obj != null)
-        //        this._sysParManage[2].ParameterValue = Convert.ToSingle(obj);
-
-        //    obj = this.txtDefDns.Value;
-        //    if (obj != null)
-        //        this._sysParManage[3].ParameterValue = Convert.ToSingle(obj);
-
-        //    string sysManage = BinaryObjTransfer.BinarySerialize(this._sysParManage);
-        //    this._systemManagerServiceSoapClient.UpdateSystemParameterManageCompleted
-        //        += new EventHandler<UpdateSystemParameterManageCompletedEventArgs>
-        //            (scadaDeviceServiceSoapClient_UpdateSystemParameterManageCompleted);
-        //    this._systemManagerServiceSoapClient.UpdateSystemParameterManageAsync(sysManage);
-
-
-        //}
 
         private void scadaDeviceServiceSoapClient_UpdateSystemParameterManageCompleted(object sender,
                                                                             UpdateSystemParameterManageCompletedEventArgs e)
@@ -201,11 +158,6 @@ namespace Scada.Client.SL.Modules.BaseInfo
         }
 
 
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         #endregion
 
 
@@ -215,7 +167,6 @@ namespace Scada.Client.SL.Modules.BaseInfo
         private void scadaDeviceServiceSoapClient_GetSystemGlobalParameterCompleted(object sender,
                                                                                 GetSystemGlobalParameterCompletedEventArgs e)
         {
-
             if (e.Error == null)
             {
                 _sysGlobalPar = BinaryObjTransfer.BinaryDeserialize<SystemGlobalParameter>(e.Result);
@@ -226,42 +177,18 @@ namespace Scada.Client.SL.Modules.BaseInfo
                 this.txtSecondDNS.Text = _sysGlobalPar.SecondDNS;
                 this.txtDomain.Text = _sysGlobalPar.Domain;
                 this.txtPort.Value = _sysGlobalPar.Port;
-
+                this.txtTitle.Text = _sysGlobalPar.Title;
+                this.txtChartMaxTemp.Value = _sysGlobalPar.ChartMaxTemp;
+                this.txtChartHighTemp.Value = _sysGlobalPar.ChartHighTemp;
+                this.txtChartLowTemp.Value = _sysGlobalPar.ChartLowTemp;
+                this.txtChartMinTemp.Value = _sysGlobalPar.ChartMinTemp;
+                this.txtWeatherCity.Text = _sysGlobalPar.WeatherCity;
+                this.chkShowTool.IsChecked = _sysGlobalPar.IsShowTool.GetValueOrDefault(false);
             }
             else
                 ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");
-
         }
 
-        //private void scadaDeviceServiceSoapClient_GetSystemParameterManageCompleted(object sender,
-        //                                                                    GetSystemParameterManageCompletedEventArgs e)
-        //{
-        //    if (e.Error == null)
-        //    {
-        //        _sysParManage = BinaryObjTransfer.BinaryDeserialize<List<SystemParameterManage>>(e.Result);
-        //        if (_sysParManage == null) { return; }
-
-        //        this.txtEarlyTimeOut.Value = _sysParManage[0].ParameterValue;
-        //        this.txtEarlyTimeOut.Tag = _sysParManage[0].ParameterID;
-
-        //        this.txtEarlyAlarm.Value = _sysParManage[1].ParameterValue;
-        //        this.txtEarlyAlarm.Tag = _sysParManage[1].ParameterID;
-
-        //        this.txtEarlyNormal.Value = _sysParManage[2].ParameterValue;
-        //        this.txtEarlyNormal.Tag = _sysParManage[2].ParameterID;
-
-        //        this.txtDefDns.Value = _sysParManage[3].ParameterValue;
-        //        this.txtDefDns.Tag = _sysParManage[3].ParameterID;
-
-        //    }
-        //    else
-        //        ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");
-        //}
-
-
         #endregion
-
-
-
     }
 }

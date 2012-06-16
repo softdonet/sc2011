@@ -398,7 +398,10 @@
             <RowDefinition Height="38"/>
         </Grid.RowDefinitions>
         <Border BorderBrush="Black" Background="{StaticResource header_bg1}" Grid.RowSpan="4"></Border>
-        <Image HorizontalAlignment="Left" Grid.Row="2" Source="/Scada.Client.SL;component/Images/logo.png" Stretch="Fill" Width="456" Height="56" VerticalAlignment="Center" Margin="6,6,0,0"/>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Image x:Name="imgLogin" HorizontalAlignment="Left"  Source="/Scada.Client.SL;component/Images/logo.png" Stretch="Fill" Width="56" Height="56" VerticalAlignment="Center" Margin="6,6,0,0"/>
+            <TextBlock x:Name="txtTitle" Text="XXX系统"  TextAlignment="Center" Foreground="WhiteSmoke"      FontSize="24"  Height="33" />
+        </StackPanel>
         <StackPanel Grid.Row="2" HorizontalAlignment="Right" Width="545" Height="60" Margin="0,0,6,0" Orientation="Horizontal">
 
             <RadioButton x:Name="menuMap" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MenuBtnStyle}" Height="57" Margin="6,0" Tag="信息地图" Width="65" Cursor="Hand" GroupName="menu" IsChecked="True">

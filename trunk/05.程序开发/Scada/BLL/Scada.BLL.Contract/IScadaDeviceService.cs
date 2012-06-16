@@ -123,6 +123,8 @@ namespace Scada.BLL.Contract
 
         Boolean DeleteMaintenancePeople(Guid peopleKey);
 
+        Boolean ClearMaintenancePeopleHeadFace(Guid peopleKey);
+
         #endregion
 
 

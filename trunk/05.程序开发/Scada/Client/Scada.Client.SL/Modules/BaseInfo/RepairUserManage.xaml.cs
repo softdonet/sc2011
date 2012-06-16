@@ -41,8 +41,6 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
         private OpenFileDialog _ofd;
 
-        private Boolean _isAddUpdate = false;
-
         private MaintenancePeople _mainPeopleItem;
 
         private ObservableCollection<MaintenancePeople> _mainPeopleList;
@@ -74,6 +72,11 @@ namespace Scada.Client.SL.Modules.BaseInfo
                                 new EventHandler<UpdateMaintenancePeopleCompletedEventArgs>
                                     (scadaDeviceServiceSoapClient_UpdateMaintenancePeopleCompleted);
 
+            this._scadaDeviceServiceSoapClient.ClearMaintenancePeopleHeadFaceCompleted +=
+                                new EventHandler<ClearMaintenancePeopleHeadFaceCompletedEventArgs>
+                                    (scadaDeviceServiceSoapClient_ClearMaintenancePeopleHeadFaceCompleted);
+
+
         }
 
         #endregion
@@ -93,7 +96,11 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
         private void butClear_Click(object sender, RoutedEventArgs e)
         {
+            if (this._mainPeopleItem == null) { return; }
             this.imageInput.Source = null;
+            this._mainPeopleItem.ImagePath = String.Empty;
+            this._mainPeopleItem.ImageUrl = String.Empty;
+            this._scadaDeviceServiceSoapClient.ClearMaintenancePeopleHeadFaceAsync(this._mainPeopleItem.ID);
         }
 
         private void RadGridViewAlarm_RowActivated(object sender, Telerik.Windows.Controls.GridView.RowEventArgs e)
@@ -105,9 +112,27 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
         private void butAdd_Click(object sender, RoutedEventArgs e)
         {
-            this._isAddUpdate = true;
-            this.butDel.IsEnabled = false;
-            this.ClearPeople();
+
+            //校验姓名
+            string checkName = this.txtName.Text;
+            if (string.IsNullOrEmpty(checkName))
+            {
+                ScadaMessageBox.ShowWarnMessage("维护人员名称不允许为空！", "警告信息");
+                return;
+            }
+            IEnumerable<MaintenancePeople> people = _mainPeopleList.Where(x => x.Name == checkName);
+            if (people.Count() > 0)
+            {
+                ScadaMessageBox.ShowWarnMessage("维护人员名称存在重复！", "警告信息");
+                return;
+            }
+
+            this._mainPeopleItem = new MaintenancePeople();
+            this._mainPeopleItem.ID = Guid.NewGuid();
+            this.SetValuePeople(this._mainPeopleItem);
+            string peppleValue = BinaryObjTransfer.BinarySerialize(this._mainPeopleItem);
+            this._scadaDeviceServiceSoapClient.AddMaintenancePeopleAsync(peppleValue);
+
         }
 
         private void butDel_Click(object sender, RoutedEventArgs e)
@@ -121,28 +146,11 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
         }
 
-        private void butSave_Click(object sender, RoutedEventArgs e)
+        private void butUpdate_Click(object sender, RoutedEventArgs e)
         {
-
-            string peppleValue = string.Empty;
-            if (_isAddUpdate)
-            {
-                this._mainPeopleItem = new MaintenancePeople();
-                this._mainPeopleItem.ID = Guid.NewGuid();
-                this.SetValuePeople(this._mainPeopleItem);
-                peppleValue = BinaryObjTransfer.BinarySerialize(this._mainPeopleItem);
-                this._scadaDeviceServiceSoapClient.AddMaintenancePeopleAsync(peppleValue);
-            }
-            else
-            {
-                this.SetValuePeople(this._mainPeopleItem);
-                peppleValue = BinaryObjTransfer.BinarySerialize(this._mainPeopleItem);
-                this._scadaDeviceServiceSoapClient.UpdateMaintenancePeopleAsync(peppleValue);
-            }
-
-            this._isAddUpdate = false;
-            this.butDel.IsEnabled = true;
-
+            this.SetValuePeople(this._mainPeopleItem);
+            string peppleValue = BinaryObjTransfer.BinarySerialize(this._mainPeopleItem);
+            this._scadaDeviceServiceSoapClient.UpdateMaintenancePeopleAsync(peppleValue);
         }
 
         #endregion
@@ -173,10 +181,18 @@ namespace Scada.Client.SL.Modules.BaseInfo
             people.Telephone = this.txtTelephone.Text;
             if (imageInput.Source != null)
             {
-                WriteableBitmap wb = new WriteableBitmap(imageInput.Source as BitmapSource);
-                byte[] bytes = Convert.FromBase64String(BitmapImageByte.GetBase64Image(wb));
-                people.HeadImage = bytes;
-                people.ImagePath = this._ofd.File.Name;
+                try
+                {
+                    WriteableBitmap wb = new WriteableBitmap(imageInput.Source as BitmapSource);
+                    byte[] bytes = Convert.FromBase64String(BitmapImageByte.GetBase64Image(wb));
+                    people.HeadImage = bytes;
+                    if (this._ofd.File != null)
+                        people.ImagePath = this._ofd.File.Name;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
 
@@ -189,7 +205,7 @@ namespace Scada.Client.SL.Modules.BaseInfo
             this.txtMsn.Text = people.MSN;
             this.txtQQ.Text = people.QQ;
             this.txtTelephone.Text = people.Telephone;
-
+            this.imageInput.Source = null;
             if (people.ImageUrl != null)
             {
                 this.imageInput.Source = null;
@@ -220,6 +236,18 @@ namespace Scada.Client.SL.Modules.BaseInfo
                 ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");
         }
 
+
+        private void scadaDeviceServiceSoapClient_ClearMaintenancePeopleHeadFaceCompleted(object sender, ClearMaintenancePeopleHeadFaceCompletedEventArgs e)
+        {
+            if (e.Error == null)
+            {
+                Boolean result = e.Result;
+            }
+            else
+                ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");
+        }
+
+
         private void scadaDeviceServiceSoapClient_UpdateMaintenancePeopleCompleted(object sender, UpdateMaintenancePeopleCompletedEventArgs e)
         {
             if (e.Error == null)
@@ -232,6 +260,8 @@ namespace Scada.Client.SL.Modules.BaseInfo
                     this._mainPeopleItem.ImagePath = people.ImagePath;
                     this._mainPeopleItem.ImageUrl = people.ImageUrl;
 
+                    //刷新界面
+                    this._scadaDeviceServiceSoapClient.GetMaintenancePeopleAsync();
                 }
                 else
                     ScadaMessageBox.ShowWarnMessage("修改维护人员失败！", "提示信息");

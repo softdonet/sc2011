@@ -1767,7 +1767,7 @@ namespace Scada.BLL.Implement
         {
             string result = string.Empty;
             StringBuilder sb = new StringBuilder();
-            sb.Append(@" Update MaintenancePeople Set Name=@Name,Address=@Address,Telephone=@Telephone,
+            sb.Append(@" Update MaintenancePeople Set Address=@Address,Telephone=@Telephone,
                                     Mobile=@Mobile,QQ=@QQ,MSN=@MSN,Email=@Email");
             MaintenancePeople mainPeople = BinaryObjTransfer.JsonDeserialize<MaintenancePeople>(people);
             if (mainPeople.HeadImage != null)
@@ -1775,7 +1775,7 @@ namespace Scada.BLL.Implement
             sb.Append(" Where ID=@ID");
 
             List<SqlParameter> sSqlWhere = new List<SqlParameter>();
-            sSqlWhere.Add(new SqlParameter() { ParameterName = "@Name", DbType = DbType.String, Value = mainPeople.Name });
+            //sSqlWhere.Add(new SqlParameter() { ParameterName = "@Name", DbType = DbType.String, Value = mainPeople.Name });
             sSqlWhere.Add(new SqlParameter() { ParameterName = "@Address", DbType = DbType.String, Value = mainPeople.Address });
             sSqlWhere.Add(new SqlParameter() { ParameterName = "@Telephone", DbType = DbType.String, Value = mainPeople.Telephone });
             sSqlWhere.Add(new SqlParameter() { ParameterName = "@Mobile", DbType = DbType.String, Value = mainPeople.Mobile });
@@ -1835,6 +1835,27 @@ namespace Scada.BLL.Implement
         private string ByteToString(byte[] bytes)
         {
             return System.Text.Encoding.Default.GetString(bytes);
+        }
+
+        public Boolean ClearMaintenancePeopleHeadFace(Guid peopleKey)
+        {
+            Boolean result = false;
+            string sSql = @" Update MaintenancePeople Set ImagePath=Null Where ID=@ID";
+            List<SqlParameter> sSqlWhere = new List<SqlParameter>();
+            try
+            {
+                sSqlWhere.Add(new SqlParameter() { ParameterName = "@ID", DbType = DbType.Guid, Value = peopleKey });
+                int rowNum = SqlHelper.ExecuteNonQuery(CommandType.Text, sSql, sSqlWhere.ToArray());
+                string imageFileName = string.Empty;
+                FileServerHelper.DeleteHeadImage(imageFileName);
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                result = false;
+            }
+            return result;
         }
 
         #endregion

@@ -86,9 +86,9 @@
                                     <vc:Title Text="同一时段不同设备温度对比" FontFamily="Arial" FontSize="14"/>
                                 </vc:Chart.Titles>
                                 <vc:Chart.TrendLines>
-                                    <vc:TrendLine Orientation="Horizontal" StartValue="15" EndValue="18" LineColor="#9FEAF451"/>
+                                    <!--<vc:TrendLine Orientation="Horizontal" StartValue="15" EndValue="18" LineColor="#9FEAF451"/>
                                     <vc:TrendLine Orientation="Horizontal" StartValue="18" EndValue="25" LineColor="#9F9AD846"/>
-                                    <vc:TrendLine Orientation="Horizontal" StartValue="25" EndValue="32" LineColor="#9FF86D5A"/>
+                                    <vc:TrendLine Orientation="Horizontal" StartValue="25" EndValue="32" LineColor="#9FF86D5A"/>-->
                                 </vc:Chart.TrendLines>
                                 <vc:Chart.AxesX>
                                     <vc:Axis Title="小时"  ValueFormatString="HH" IntervalType="Hours">
@@ -120,7 +120,7 @@
                                             </LinearGradientBrush>
                                         </vc:DataSeries.Color>
                                         <vc:DataSeries.DataPoints>
-                                            <vc:DataPoint XValue="2011/08/08 00:15:35" YValue="19"  Cursor="Hand"/>
+                                            <!--<vc:DataPoint XValue="2011/08/08 00:15:35" YValue="19"  Cursor="Hand"/>
                                             <vc:DataPoint XValue="2011/08/08 02:15:35" YValue="19"  Cursor="Hand"/>
                                             <vc:DataPoint XValue="2011/08/08 03:15:35" YValue="20"  Cursor="Hand"/>
                                             <vc:DataPoint XValue="2011/08/08 04:15:35" YValue="20"  Cursor="Hand"/>
@@ -142,7 +142,7 @@
                                             <vc:DataPoint XValue="2011/08/08 20:15:35" YValue="25"  Cursor="Hand"/>
                                             <vc:DataPoint XValue="2011/08/08 21:15:35" YValue="26"  Cursor="Hand"/>
                                             <vc:DataPoint XValue="2011/08/08 22:15:35" YValue="27"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 23:15:35" YValue="28"  Cursor="Hand"/>
+                                            <vc:DataPoint XValue="2011/08/08 23:15:35" YValue="28"  Cursor="Hand"/>-->
                                         </vc:DataSeries.DataPoints>
                                     </vc:DataSeries>
                                     <vc:DataSeries RenderAs="Spline" ShowInLegend="false" XValueFormatString="yyyy/MM/dd HH:mm:ss"  XValueType="DateTime"  LabelEnabled="false"  MarkerEnabled="false" LegendText="设备2">
@@ -150,7 +150,7 @@
                                             <SolidColorBrush Color="DodgerBlue"></SolidColorBrush>
                                         </vc:DataSeries.Color>
                                         <vc:DataSeries.DataPoints>
-                                            <vc:DataPoint XValue="2011/08/08 00:15:35" YValue="17"  Cursor="Hand"/>
+                                            <!--<vc:DataPoint XValue="2011/08/08 00:15:35" YValue="17"  Cursor="Hand"/>
                                             <vc:DataPoint XValue="2011/08/08 02:15:35" YValue="17"  Cursor="Hand"/>
                                             <vc:DataPoint XValue="2011/08/08 03:15:35" YValue="17"  Cursor="Hand"/>
                                             <vc:DataPoint XValue="2011/08/08 04:15:35" YValue="18"  Cursor="Hand"/>
@@ -172,7 +172,7 @@
                                             <vc:DataPoint XValue="2011/08/08 20:15:35" YValue="23"  Cursor="Hand"/>
                                             <vc:DataPoint XValue="2011/08/08 21:15:35" YValue="23"  Cursor="Hand"/>
                                             <vc:DataPoint XValue="2011/08/08 22:15:35" YValue="25"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 23:15:35" YValue="25"  Cursor="Hand"/>
+                                            <vc:DataPoint XValue="2011/08/08 23:15:35" YValue="25"  Cursor="Hand"/>-->
                                         </vc:DataSeries.DataPoints>
 
                                     </vc:DataSeries>
@@ -184,7 +184,7 @@
                                             </LinearGradientBrush>
                                         </vc:DataSeries.Color>
                                         <vc:DataSeries.DataPoints>
-                                            <vc:DataPoint XValue="2011/08/08 00:15:35" YValue="17"  Cursor="Hand"/>
+                                            <!--<vc:DataPoint XValue="2011/08/08 00:15:35" YValue="17"  Cursor="Hand"/>
                                             <vc:DataPoint XValue="2011/08/08 02:15:35" YValue="18"  Cursor="Hand"/>
                                             <vc:DataPoint XValue="2011/08/08 03:15:35" YValue="19"  Cursor="Hand"/>
                                             <vc:DataPoint XValue="2011/08/08 04:15:35" YValue="19"  Cursor="Hand"/>
@@ -206,7 +206,7 @@
                                             <vc:DataPoint XValue="2011/08/08 20:15:35" YValue="27"  Cursor="Hand"/>
                                             <vc:DataPoint XValue="2011/08/08 21:15:35" YValue="27"  Cursor="Hand"/>
                                             <vc:DataPoint XValue="2011/08/08 22:15:35" YValue="28"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 23:15:35" YValue="29"  Cursor="Hand"/>
+                                            <vc:DataPoint XValue="2011/08/08 23:15:35" YValue="29"  Cursor="Hand"/>-->
                                         </vc:DataSeries.DataPoints>
 
                                     </vc:DataSeries>
@@ -215,7 +215,7 @@
                                             <SolidColorBrush Color="Silver"></SolidColorBrush>
                                         </vc:DataSeries.Color>
                                         <vc:DataSeries.DataPoints>
-                                            <vc:DataPoint XValue="2011/08/08 00:15:35" YValue="16"  Cursor="Hand"/>
+                                            <!--<vc:DataPoint XValue="2011/08/08 00:15:35" YValue="16"  Cursor="Hand"/>
                                             <vc:DataPoint XValue="2011/08/08 02:15:35" YValue="17"  Cursor="Hand"/>
                                             <vc:DataPoint XValue="2011/08/08 03:15:35" YValue="18"  Cursor="Hand"/>
                                             <vc:DataPoint XValue="2011/08/08 04:15:35" YValue="19"  Cursor="Hand"/>
@@ -237,7 +237,7 @@
                                             <vc:DataPoint XValue="2011/08/08 20:15:35" YValue="23"  Cursor="Hand"/>
                                             <vc:DataPoint XValue="2011/08/08 21:15:35" YValue="22"  Cursor="Hand"/>
                                             <vc:DataPoint XValue="2011/08/08 22:15:35" YValue="25"  Cursor="Hand"/>
-                                            <vc:DataPoint XValue="2011/08/08 23:15:35" YValue="27"  Cursor="Hand"/>
+                                            <vc:DataPoint XValue="2011/08/08 23:15:35" YValue="27"  Cursor="Hand"/>-->
                                         </vc:DataSeries.DataPoints>
 
                                     </vc:DataSeries>

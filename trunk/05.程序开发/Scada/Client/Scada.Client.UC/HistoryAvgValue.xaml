@@ -32,7 +32,7 @@
                     </vc:DataSeries.Color>
                     <vc:DataSeries.DataPoints>
                         
-                        <vc:DataPoint AxisXLabel="1" YValue="24"  Cursor="Hand"/>
+                        <!--<vc:DataPoint AxisXLabel="1" YValue="24"  Cursor="Hand"/>
                         <vc:DataPoint AxisXLabel="2" YValue="13" Cursor="Hand" />
                         <vc:DataPoint AxisXLabel="3" YValue="18" Cursor="Hand" />
                         <vc:DataPoint AxisXLabel="4" YValue="21" Cursor="Hand" />
@@ -54,7 +54,7 @@
                         <vc:DataPoint AxisXLabel="20" YValue="-3" Cursor="Hand" Color="limeGreen"/>
                         <vc:DataPoint AxisXLabel="21" YValue="30"  Cursor="Hand"/>
                         <vc:DataPoint AxisXLabel="22" YValue="-4" Cursor="Hand" Color="limeGreen"/>
-                        <vc:DataPoint AxisXLabel="23" YValue="23" Cursor="Hand" />
+                        <vc:DataPoint AxisXLabel="23" YValue="23" Cursor="Hand" />-->
                     </vc:DataSeries.DataPoints>
                 </vc:DataSeries>
 

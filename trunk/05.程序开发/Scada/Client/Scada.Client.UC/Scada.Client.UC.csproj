@@ -109,6 +109,10 @@
       <Project>{66B7D2F9-31D1-4C6A-A1DC-C5523A8CF27D}</Project>
       <Name>Scada.Model.Entity.SL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Utility\Scada.Utility.Common.SL\Scada.Utility.Common.SL.csproj">
+      <Project>{5A5A12C8-9B18-4B86-A5B2-CCA2AC85EE81}</Project>
+      <Name>Scada.Utility.Common.SL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

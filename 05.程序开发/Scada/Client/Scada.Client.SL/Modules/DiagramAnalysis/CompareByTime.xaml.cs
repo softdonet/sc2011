@@ -18,7 +18,7 @@ using Scada.Client.SL.ScadaDeviceService;
 
 using Visifire.Charts;
 using Telerik.Windows.Controls.Calendar;
-
+using Scada.Utility.Common.SL;
 
 
 
@@ -82,7 +82,7 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
         {
 
             InitializeComponent();
-
+            SetColorArea();
 
             //选择网元
             this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
@@ -117,12 +117,49 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
             //初期化图表
             this.charTemperature.Series.Clear();
 
+       
+
+
         }
 
         #endregion
+       
 
 
         #region 私有方法
+
+        /// <summary>
+        /// 设置颜色区域
+        /// </summary>
+        void SetColorArea()
+        {
+            //0))Clear Chart TrendLines
+            this.charTemperature.TrendLines.Clear();
+
+            TrendLine t1 = new TrendLine();
+            t1.Orientation = Orientation.Horizontal;
+            t1.StartValue = App.SysGlobalPar.ChartMinTemp;
+            t1.EndValue = App.SysGlobalPar.ChartLowTemp;
+            t1.LineColor = new SolidColorBrush("#9FEAF451".ToColor());
+
+            TrendLine t2 = new TrendLine();
+            t2.Orientation = Orientation.Horizontal;
+            t2.StartValue = App.SysGlobalPar.ChartLowTemp;
+            t2.EndValue = App.SysGlobalPar.ChartHighTemp;
+            t2.LineColor = new SolidColorBrush("#9F9AD846".ToColor());
+
+            TrendLine t3 = new TrendLine();
+            t3.Orientation = Orientation.Horizontal;
+            t3.StartValue = App.SysGlobalPar.ChartHighTemp;
+            t3.EndValue = App.SysGlobalPar.ChartMaxTemp;
+            t3.LineColor = new SolidColorBrush("#9FF86D5A".ToColor());
+
+            this.charTemperature.TrendLines.Add(t1);
+            this.charTemperature.TrendLines.Add(t2);
+            this.charTemperature.TrendLines.Add(t3);
+            this.charTemperature.AxesY[0].AxisMaximum = App.SysGlobalPar.ChartMaxTemp;
+            this.charTemperature.AxesY[0].AxisMinimum = App.SysGlobalPar.ChartMinTemp;
+        }
 
         private void scadaDeviceServiceSoapClient_GetDeviceTreeListCompleted(object sender, GetDeviceTreeListCompletedEventArgs e)
         {
@@ -198,7 +235,7 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
         {
 
             Visifire.Charts.DataSeries dataSeries = new Visifire.Charts.DataSeries();
-            dataSeries.RenderAs = Visifire.Charts.RenderAs.Line ;
+            dataSeries.RenderAs = Visifire.Charts.RenderAs.Line;
             dataSeries.ShowInLegend = false;
             dataSeries.SelectionEnabled = true;
             dataSeries.MarkerEnabled = false;
@@ -206,6 +243,7 @@ namespace Scada.Client.SL.Modules.DiagramAnalysis
             dataSeries.XValueType = ChartValueTypes.DateTime;
             dataSeries.XValueFormatString = "yyyy-MM-dd HH:mm:ss";
             dataSeries.Color = new SolidColorBrush(color);
+            dataSeries.LineThickness = 1.5;
 
             DataPoint datapoint;
             foreach (ChartSource item in source)

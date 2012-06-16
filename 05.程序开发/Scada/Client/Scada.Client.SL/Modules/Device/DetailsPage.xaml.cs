@@ -64,7 +64,10 @@ namespace Scada.Client.SL.Modules.Device
                 if (e.PropertyName == "DeviceInfo")
                 {
                     if (detailsPageViewModel.DeviceInfo != null)
+                    {
                         this.myTemperature.Temperature = detailsPageViewModel.DeviceInfo.RealTimeTemperature;
+                        this.myTemperature.Init();
+                    }
                 }
 
                 if (e.PropertyName == "MaintenancePeople")
@@ -85,7 +88,9 @@ namespace Scada.Client.SL.Modules.Device
 
         private void Init()
         {
-
+            this.chartDayTemperature.SysGlobalPar = App.SysGlobalPar;
+            chartMonthTemperature.SysGlobalPar = App.SysGlobalPar;
+            this.myTemperature.SysGlobalPar = App.SysGlobalPar;
             //获取设备服务
             this._scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
 

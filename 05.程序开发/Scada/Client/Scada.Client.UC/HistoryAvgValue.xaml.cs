@@ -16,7 +16,7 @@ using System.Windows.Media.Animation;
 using Visifire.Charts;
 using Scada.Model.Entity;
 
-
+using Scada.Utility.Common.SL;
 
 namespace Scada.Client.UC
 {
@@ -30,6 +30,14 @@ namespace Scada.Client.UC
         #region 变量声明
 
         private List<ChartSource> _chartSource;
+
+
+        SystemGlobalParameter _sysGlobalPar = null;
+        public SystemGlobalParameter SysGlobalPar
+        {
+            get { return _sysGlobalPar; }
+            set { _sysGlobalPar = value; }
+        }
 
         #endregion
 
@@ -54,7 +62,32 @@ namespace Scada.Client.UC
 
         public void SetDeviceTemperature()
         {
+            //0))Clear Chart TrendLines
+            this.charTemperature.TrendLines.Clear();
 
+            TrendLine t1 = new TrendLine();
+            t1.Orientation = Orientation.Horizontal;
+            t1.StartValue = _sysGlobalPar.ChartMinTemp;
+            t1.EndValue = _sysGlobalPar.ChartLowTemp;
+            t1.LineColor = new SolidColorBrush("#9FEAF451".ToColor());
+
+            TrendLine t2 = new TrendLine();
+            t2.Orientation = Orientation.Horizontal;
+            t2.StartValue = _sysGlobalPar.ChartLowTemp;
+            t2.EndValue = _sysGlobalPar.ChartHighTemp;
+            t2.LineColor = new SolidColorBrush("#9F9AD846".ToColor());
+
+            TrendLine t3 = new TrendLine();
+            t3.Orientation = Orientation.Horizontal;
+            t3.StartValue = _sysGlobalPar.ChartHighTemp;
+            t3.EndValue = _sysGlobalPar.ChartMaxTemp;
+            t3.LineColor = new SolidColorBrush("#9FF86D5A".ToColor());
+
+            this.charTemperature.TrendLines.Add(t1);
+            this.charTemperature.TrendLines.Add(t2);
+            this.charTemperature.TrendLines.Add(t3);
+            this.charTemperature.AxesY[0].AxisMaximum = _sysGlobalPar.ChartMaxTemp;
+            this.charTemperature.AxesY[0].AxisMinimum = _sysGlobalPar.ChartMinTemp;
             //1)Clear Chart Source
             this.charTemperature.Series.Clear();
 

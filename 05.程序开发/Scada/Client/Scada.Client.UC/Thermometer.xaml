@@ -83,7 +83,6 @@
                         </LinearGradientBrush>
                     </vg:Range.Background>
                 </vg:Range>
-
                 <vg:Range StartValue="40" EndValue="60" StartWidth="0.6" EndWidth="0.6" BorderThickness="1"  
                 BorderBrush="#753226" ShadowEnabled="True">
                     <vg:Range.Background>

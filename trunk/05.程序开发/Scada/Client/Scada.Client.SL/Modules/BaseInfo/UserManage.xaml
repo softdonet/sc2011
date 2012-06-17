@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="500" d:DesignWidth="650"  
+    d:DesignHeight="500" d:DesignWidth="700"  
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation">
 
     <Grid x:Name="LayoutRoot" Background="White">
@@ -23,7 +23,7 @@
                     </Border.Background>
 
                     <Border BorderThickness="1" CornerRadius="5" Margin="2">
-                        <Grid ShowGridLines="True" Background="AliceBlue">
+                        <Grid ShowGridLines="False" Background="AliceBlue">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="300*"/>
                                 <ColumnDefinition Width="350"/>
@@ -33,9 +33,9 @@
                                 <RowDefinition Height="24"/>
                             </Grid.RowDefinitions>
                             <telerik:RadGridView AutoGenerateColumns="False" CanUserFreezeColumns="False" IsReadOnly="True"
-                                                 Margin="10,10,18,38" Name="RadGridViewUser" RowIndicatorVisibility="Collapsed"
+                                                 Margin="5,0,9,0" Name="RadGridViewUser" RowIndicatorVisibility="Collapsed"
                                                  ItemsSource="{Binding UserList}"
-                                                 ShowGroupPanel="False" Height="353" RowActivated="RadGridViewAlarm_RowActivated">
+                                                 ShowGroupPanel="False"  RowActivated="RadGridViewAlarm_RowActivated">
                                 <telerik:RadGridView.Columns>
                                     <telerik:GridViewDataColumn DataMemberBinding="{Binding UserID, Mode=TwoWay}" Header="UserID" HeaderTextAlignment="Center" IsFilterable="False" IsVisible="False" TextAlignment="Center" Width="80" />
                                     <telerik:GridViewDataColumn DataMemberBinding="{Binding LoginID, Mode=TwoWay}" Header="登录ID" HeaderTextAlignment="Center" IsFilterable="False" TextAlignment="Center" Width="100" />
@@ -58,13 +58,14 @@
                                 <!--<ComboBoxItem Content="启用"  /> 
                                 <ComboBoxItem Content="锁定" />-->
                             </ComboBox>
-                            <StackPanel Grid.Column="1" Height="35" HorizontalAlignment="Left" Margin="0,286,0,0" Name="stackPanel1" VerticalAlignment="Top" Width="304" Orientation="Horizontal">
+                            <StackPanel Grid.Column="1" Height="35" HorizontalAlignment="Left" Margin="0,291,0,0" Name="stackPanel1" VerticalAlignment="Top" Width="304" Orientation="Horizontal">
                                 <Button Content="增加" Height="23" Name="btnAdd" Width="75" Command="{Binding AddCommand}" />
                                 <Button Content="删除" Height="23" Name="btnDel" Width="75" Command="{Binding DeleteCommand}" />
                                 <Button Content="修改" Height="23" Name="tbtChange" Width="75" Command="{Binding UpdateCommand}" />
                                 <Button Content="查询" Height="23" Name="btnSearch" Width="75" Command="{Binding SearchCommand}" />
                             </StackPanel>
-                            <Button Content="重置密码" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="0,327,0,0" Name="btnResertPwd" VerticalAlignment="Top" Width="75" Command="{Binding ResertPwdCommand}" />
+                          
+                            <Button Content="重置密码" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="0,332,0,0" Name="btnResertPwd" VerticalAlignment="Top" Width="75" Command="{Binding ResertPwdCommand}" />
                             <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="239,29,0,0" Name="textBlock3" Text="*一旦注册，不能修改" VerticalAlignment="Top" Foreground="Red" />
                         </Grid>
                     </Border>

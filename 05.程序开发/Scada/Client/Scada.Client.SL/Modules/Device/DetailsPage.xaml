@@ -39,8 +39,8 @@
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock  Text="安装地点：" Margin="3" Foreground="#FFE8F3F3"></TextBlock>
-                            <TextBlock   Text="{Binding DeviceInfo.InstallPlace}"  Margin="3" Foreground="#FFE8F3F3"></TextBlock>
+                            <TextBlock  Text="安装地点：" Margin="3" Foreground="#FFE8F3F3" ></TextBlock>
+                            <TextBlock   Text="{Binding DeviceInfo.InstallPlace}" TextWrapping="Wrap" Width="100" Margin="3" Foreground="#FFE8F3F3"></TextBlock>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock  Text="所属片区：" Margin="3" Foreground="#FFEFF5F5"></TextBlock>

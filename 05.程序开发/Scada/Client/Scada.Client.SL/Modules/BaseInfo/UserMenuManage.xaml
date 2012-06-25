@@ -26,7 +26,7 @@
                     </Border.Background>
 
                     <Border BorderThickness="1" CornerRadius="5" Margin="2">
-                        <Grid ShowGridLines="True" Background="AliceBlue">
+                        <Grid ShowGridLines="False" Background="AliceBlue">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="300"/>
                                 <ColumnDefinition Width="*"/>
@@ -64,8 +64,9 @@
                                     <telerik:RadTreeViewItem Header="维护人员" Name="childMenuRepairUserManage"/>
                                     <telerik:RadTreeViewItem Header="系统参数" Name="childMenuSysConfig"/>
                                     <telerik:RadTreeViewItem Header="用户管理" Name="childMenuUserManage"/>
-                                    <telerik:RadTreeViewItem Header="权限管理" Name="childMenuManage"/>
-                                    
+                                    <telerik:RadTreeViewItem Header="菜单管理" Name="childMenuManage"/>
+                                    <telerik:RadTreeViewItem Header="密码修改" Name="childMenuUserChangePassword"/>
+                                    <telerik:RadTreeViewItem Header="广播信息" Name="BroadcastInfoManage"/>
                                 </telerik:RadTreeViewItem>
 
                             </telerik:RadTreeView>

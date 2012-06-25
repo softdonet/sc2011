@@ -26,26 +26,29 @@ namespace Scada.Utility.Common.Helper
             wt.City = array[1];
             int index = array[10].IndexOf("气温");
             //当天气温
-            wt.TodayCurTemp = array[10].Substring(index).Split('；')[0].Split('：')[1].Trim();
-            wt.ImageName = GetBigImageByString(array[6].Split(' ')[1]);
+            if (!string.IsNullOrEmpty(array[10]))
+            {
+                wt.TodayCurTemp = array[10].Substring(index).Split('；')[0].Split('：')[1].Trim();
+                wt.ImageName = GetBigImageByString(array[6].Split(' ')[1]);
 
-            wt.TodayDate = array[6].Split(' ')[0];
-            wt.TodayMaxTemp = array[5].Split('/')[1];
-            wt.TodayMinTemp = array[5].Split('/')[0];
-            wt.TodayWeather = array[6].Split(' ')[1];
-            wt.TodaySmallImage = GetImageByString(array[6].Split(' ')[1]);
+                wt.TodayDate = array[6].Split(' ')[0];
+                wt.TodayMaxTemp = array[5].Split('/')[1];
+                wt.TodayMinTemp = array[5].Split('/')[0];
+                wt.TodayWeather = array[6].Split(' ')[1];
+                wt.TodaySmallImage = GetImageByString(array[6].Split(' ')[1]);
 
-            wt.TomorrowDate = array[13].Split(' ')[0];
-            wt.TomorrowMaxTemp = array[12].Split('/')[1];
-            wt.TomorrowMinTemp = array[12].Split('/')[0];
-            wt.TomorrowWeather = array[13].Split(' ')[1] ;
-            wt.TomorrowSmallImage = GetImageByString(array[13].Split(' ')[1]);
+                wt.TomorrowDate = array[13].Split(' ')[0];
+                wt.TomorrowMaxTemp = array[12].Split('/')[1];
+                wt.TomorrowMinTemp = array[12].Split('/')[0];
+                wt.TomorrowWeather = array[13].Split(' ')[1];
+                wt.TomorrowSmallImage = GetImageByString(array[13].Split(' ')[1]);
 
-            wt.AfterTomorrowDate = array[18].Split(' ')[0];
-            wt.AfterTomorrowMaxTemp = array[17].Split('/')[1];
-            wt.AfterTomorrowMinTemp = array[17].Split('/')[0];
-            wt.AfterTomorrowWeather = array[18].Split(' ')[1];
-            wt.AfterTomorrowSmallImage = GetImageByString(array[18].Split(' ')[1]);
+                wt.AfterTomorrowDate = array[18].Split(' ')[0];
+                wt.AfterTomorrowMaxTemp = array[17].Split('/')[1];
+                wt.AfterTomorrowMinTemp = array[17].Split('/')[0];
+                wt.AfterTomorrowWeather = array[18].Split(' ')[1];
+                wt.AfterTomorrowSmallImage = GetImageByString(array[18].Split(' ')[1]);
+            }
             return wt;
         }
 
@@ -54,6 +57,7 @@ namespace Scada.Utility.Common.Helper
         /// </summary>
         private static void InitData()
         {
+            dicWeather.Clear();
             dicWeather.Add("未知	", "29.png");
             dicWeather.Add("晴", "31.png");
             dicWeather.Add("多云", "29.png");

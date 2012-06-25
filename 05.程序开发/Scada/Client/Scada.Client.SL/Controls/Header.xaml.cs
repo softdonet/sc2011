@@ -127,7 +127,8 @@ namespace Scada.Client.SL.Controls
 
             this.childMenuUserManage.IsEnabled = isEnable;
             this.childMenuManage.IsEnabled = isEnable;
-
+            this.BroadcastInfoManage.IsEnabled = isEnable;
+            this.childMenuUserChangePassword.IsEnabled = isEnable;
 
         }
 
@@ -170,7 +171,10 @@ namespace Scada.Client.SL.Controls
                 this.childMenuUserManage.IsEnabled = true;
             else if (menuKey == "childMenuManage")
                 this.childMenuManage.IsEnabled = true;
-
+            else if (menuKey == "BroadcastInfoManage")
+                this.BroadcastInfoManage.IsEnabled = true;
+            else if (menuKey == "childMenuUserChangePassword")
+                this.childMenuUserChangePassword.IsEnabled = true;
         }
 
         private void SetMenuItemEnable()

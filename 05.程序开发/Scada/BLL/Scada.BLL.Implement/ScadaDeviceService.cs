@@ -918,7 +918,7 @@ namespace Scada.BLL.Implement
 
         private List<DeviceTreeNode> getTreeNodeDevice(Guid nodeKey, String prefix)
         {
-            var devList = sCADADataContext.DeviceInfos.Where(e => e.ManageAreaID == nodeKey);
+            var devList = sCADADataContext.DeviceInfos.Where(e => e.ManageAreaID == nodeKey).OrderBy(e=>e.DeviceNo);
             List<DeviceTreeNode> result = devList.Select(e => new DeviceTreeNode()
             {
                 NodeType = 3,

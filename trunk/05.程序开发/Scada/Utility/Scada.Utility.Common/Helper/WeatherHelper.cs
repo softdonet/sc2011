@@ -26,8 +26,8 @@ namespace Scada.Utility.Common.Helper
             wt.City = array[1];
             int index = array[10].IndexOf("气温");
             //当天气温
-            if (!string.IsNullOrEmpty(array[10]))
-            {
+            //if (!string.IsNullOrEmpty(array[10]))
+            //{
                 wt.TodayCurTemp = array[10].Substring(index).Split('；')[0].Split('：')[1].Trim();
                 wt.ImageName = GetBigImageByString(array[6].Split(' ')[1]);
 
@@ -48,7 +48,7 @@ namespace Scada.Utility.Common.Helper
                 wt.AfterTomorrowMinTemp = array[17].Split('/')[0];
                 wt.AfterTomorrowWeather = array[18].Split(' ')[1];
                 wt.AfterTomorrowSmallImage = GetImageByString(array[18].Split(' ')[1]);
-            }
+            //}
             return wt;
         }
 
@@ -57,7 +57,7 @@ namespace Scada.Utility.Common.Helper
         /// </summary>
         private static void InitData()
         {
-            dicWeather.Clear();
+            //dicWeather.Clear();
             dicWeather.Add("未知	", "29.png");
             dicWeather.Add("晴", "31.png");
             dicWeather.Add("多云", "29.png");

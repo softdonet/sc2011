@@ -126,9 +126,9 @@ namespace Scada.BLL.Implement
                     if (obj.DeviceRealTimes.Any())
                     {
                         d.RealTimeTemperature = obj.DeviceRealTimes.OrderByDescending(e => e.UpdateTime).First().Temperature1;
-                        var pTree = sCADADataContext.DeviceTrees.SingleOrDefault(e => e.ID == obj.DeviceTree.ParentID);
-                        d.ManageAreaName = pTree.Name + "->" + obj.DeviceTree.Name;
                     }
+                    var pTree = sCADADataContext.DeviceTrees.SingleOrDefault(e => e.ID == obj.DeviceTree.ParentID);
+                    d.ManageAreaName = pTree.Name + "->" + obj.DeviceTree.Name;
                 });
                 var result = BinaryObjTransfer.JsonSerializer<Scada.Model.Entity.DeviceInfo>(deviceInfo);
                 return result;

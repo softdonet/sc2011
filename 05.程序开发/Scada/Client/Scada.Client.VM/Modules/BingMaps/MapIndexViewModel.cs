@@ -67,24 +67,30 @@ namespace Scada.Client.VM.Modules.BingMaps
             }
         }
 
-
+        DeviceRealTimeServiceClient deviceRealTimeService = null;
 
         public MapIndexViewModel()
         {
             scadaDeviceServiceSoapClient = ServiceManager.GetScadaDeviceService();
             scadaDeviceServiceSoapClient.ListDeviceTreeViewCompleted += new EventHandler<ListDeviceTreeViewCompletedEventArgs>(scadaDeviceServiceSoapClient_ListDeviceTreeViewCompleted);
             scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
-            DeviceRealTimeServiceClient deviceRealTimeService = ServiceManager.GetDeviceRealTimeService();
+            deviceRealTimeService = ServiceManager.GetDeviceRealTimeService();
             deviceRealTimeService.GetRealTimeDataReceived += new EventHandler<GetRealTimeDataReceivedEventArgs>(deviceRealTimeService_GetRealTimeDataReceived);
             //主动获取数据
             deviceRealTimeService.GetAlarmDataListCompleted += (sender, e) => { };
             deviceRealTimeService.GetRealTimeDataListCompleted += (sender, e) => { };
             deviceRealTimeService.GetUserEventDataListCompleted += (sender, e) => { };
-            deviceRealTimeService.GetRealTimeDataListAsync();
-            deviceRealTimeService.GetAlarmDataListAsync();
-            deviceRealTimeService.GetUserEventDataListAsync();
+           
 
             InitSysConfig();
+        }
+
+        public void GetData()
+        {
+            scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
+            //deviceRealTimeService.GetRealTimeDataListAsync();
+            //deviceRealTimeService.GetAlarmDataListAsync();
+            //deviceRealTimeService.GetUserEventDataListAsync();
         }
 
         /// <summary>
@@ -254,6 +260,9 @@ namespace Scada.Client.VM.Modules.BingMaps
                 if (BaseDataResviceEvent != null)
                 {
                     this.BaseDataResviceEvent(this, EventArgs.Empty);
+                    deviceRealTimeService.GetRealTimeDataListAsync();
+                    deviceRealTimeService.GetAlarmDataListAsync();
+                    deviceRealTimeService.GetUserEventDataListAsync();
                 }
             }
             else

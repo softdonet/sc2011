@@ -123,6 +123,10 @@ namespace Scada.Client.SL.Modules.BingMaps
         void mapVM_BaseDataResviceEvent(object sender, EventArgs e)
         {
             dicPin.Clear();
+            myMapLayerDeviceArea.Children.Clear();
+            myMapLayerDeviceGroup.Children.Clear();
+            myMapLayerDevice.Children.Clear();
+
             foreach (var item in mapVM.DeviceRealTimeTree)
             {
                 pushPinDevice myPushPin = new pushPinDevice();
@@ -139,6 +143,7 @@ namespace Scada.Client.SL.Modules.BingMaps
                     MyContent.Content = new DetailsPage(e1.ID);
                     MyContent.Title = "设备详细信息";
                 };
+
 
                 switch (item.NodeType)
                 {
@@ -344,6 +349,11 @@ namespace Scada.Client.SL.Modules.BingMaps
         private void btnSetDefault_Click(object sender, RoutedEventArgs e)
         {
             mapVM.UpdataConfig(Convert.ToDecimal(map.Center.Longitude), Convert.ToDecimal(map.Center.Latitude), (int)map.ZoomLevel);
+        }
+
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            mapVM.GetData();
         }
     }
 }

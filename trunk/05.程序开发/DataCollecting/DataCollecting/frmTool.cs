@@ -42,7 +42,7 @@ namespace DataCollecting
             h.CmdHeader = Const.UP_HEADER;
             h.CmdCommand = Command.cmd_RealTimeDate_R;
             h.DataContext = 42605;
-            h.DeviceSN = "0A5F01CD0003";
+            h.DeviceSN = "370201CD0100";
             h.State = 0;
             h.SateTimeMark = DateTime.Now;
             RealTimeData_R rr = new RealTimeData_R();
@@ -102,7 +102,7 @@ namespace DataCollecting
             h.CmdHeader = Const.UP_HEADER;
             h.CmdCommand = Command.cmd_UserEvent_R;
             h.DataContext = 42605;
-            h.DeviceSN = "0A5F01CD0001";
+            h.DeviceSN = "370201CD0102";
             h.State = 0;
             h.SateTimeMark = DateTime.Now;
 

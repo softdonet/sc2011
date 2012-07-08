@@ -96,7 +96,9 @@
     <None Include="Service References\WeatherWebService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\WeatherWebService\configuration.svcinfo" />
+    <None Include="Service References\WeatherWebService\configuration.svcinfo">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\WeatherWebService\Reference.svcmap">

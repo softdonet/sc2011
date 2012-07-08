@@ -99,9 +99,11 @@ namespace NetData
             //报文长度(5-6)
             commandCount = BitConverter.ToUInt16(data, 5);
             //设备序列号(7-12)
-            byte[] arr = new byte[2];
-            Array.Copy(data, 11, arr, 0, 2);
-            deviceSN = StringHelper.DataToStr(data, 7, 4) + BitConverter.ToUInt16(arr.Reverse().ToArray(), 0).ToString("0000");
+            //byte[] arr = new byte[2];
+            //Array.Copy(data, 11, arr, 0, 2);
+            //BitConverter.ToUInt16(arr.Reverse().ToArray(), 0).ToString("0000");
+            deviceSN = StringHelper.DataToStr(data, 7, 4) + StringHelper.DataToStr(data[11]) + StringHelper.DataToStr(data[12]);
+
             //状态(13)
             state = data[13];
             //时间戳(14-20)
@@ -128,15 +130,17 @@ namespace NetData
             //压入设备序列号
             //-----------------------------------------------
             //省级
-            result.Add(Convert.ToByte((deviceSN.Substring(0, 2)),16));
+            result.Add(Convert.ToByte((deviceSN.Substring(0, 2)), 16));
             //市级
             result.Add(Convert.ToByte((deviceSN.Substring(2, 2)), 16));
             //区县
             result.Add(Convert.ToByte((deviceSN.Substring(4, 2)), 16));
             //公司编号及设备类型
             result.Add(Convert.ToByte((deviceSN.Substring(6, 2)), 16));
-            //公司编号及设备类型
-            result.AddRange(BitConverter.GetBytes(Convert.ToUInt16(deviceSN.Substring(8, 4))).Reverse());
+            //流水号（按两个独立的字节处理，不按整形处理）
+            result.Add(Convert.ToByte((deviceSN.Substring(8, 2)), 16));
+            result.Add(Convert.ToByte((deviceSN.Substring(10, 2)), 16));
+            //result.AddRange(BitConverter.GetBytes(Convert.ToUInt16(deviceSN.Substring(8, 4))).Reverse());
             //-------------------------------------------------
             //压入状态
             result.Add(state);

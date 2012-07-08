@@ -30,7 +30,7 @@ namespace BusinessRules
     {
         SCADADataContext DataContext = new SCADADataContext();
         private RealTimeNotify realTimeNotify = new RealTimeNotify();
-      
+
         /// <summary>
         /// 更新设备
         /// </summary>
@@ -126,7 +126,7 @@ namespace BusinessRules
                     configDataBlock.DisplayMode = (byte)deviceInfor.LCDScreenDisplayType.Value;
                     configDataBlock.InstancyBtnEnable = deviceInfor.UrgencyBtnEnable.GetValueOrDefault(false);
                     configDataBlock.InfoBtnEnable = deviceInfor.InforBtnEnable.GetValueOrDefault(false);
-                    configDataBlock.RepairTel = deviceInfor.MaintenancePeople.Mobile;
+                    configDataBlock.RepairTel = (!string.IsNullOrEmpty(deviceInfor.MaintenancePeople.Mobile) && deviceInfor.MaintenancePeople.Mobile.Length == 11) ? deviceInfor.MaintenancePeople.Mobile : "00000000000";
                     configDataBlock.DomainName = objParameter.Domain;
                     configDataBlock.MainIP = objParameter.MainDNS;
                     configDataBlock.ReserveIP = objParameter.SecondDNS;
@@ -282,9 +282,3 @@ namespace BusinessRules
         }
     }
 }
-
-//需要讨论的问题2012-2-4
-/*
-天气预报信息和广播信息往哪里存储
-设备属性如果有更新，该如何标记
-*/

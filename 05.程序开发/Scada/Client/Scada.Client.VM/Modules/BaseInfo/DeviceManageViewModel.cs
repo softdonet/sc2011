@@ -206,6 +206,8 @@ namespace Scada.Client.VM.Modules.BaseInfo
 
         private void DeleteDeviceInfo()
         {
+            string strMessage = string.Format("是否删除设备：{0} ?", DeviceInfoList.DeviceNo);
+            if (MessageBox.Show(strMessage, "提示", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel) { return; }
             scadaDeviceServiceSoapClient.DeleteDeviceInfoAsync(DeviceInfoList.ID);
             // scadaDeviceServiceSoapClient.ListDeviceTreeViewAsync();
         }

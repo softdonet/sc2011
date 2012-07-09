@@ -41,13 +41,13 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
         }
 
-        private void scadaDeviceServiceSoapClient_UpdateSystemGlobalParameterCompleted(object sender,                                                           UpdateSystemGlobalParameterCompletedEventArgs e)
+        private void scadaDeviceServiceSoapClient_UpdateSystemGlobalParameterCompleted(object sender, UpdateSystemGlobalParameterCompletedEventArgs e)
         {
             if (e.Error == null)
             {
                 Boolean result = Convert.ToBoolean(e.Result);
                 if (result)
-                    ScadaMessageBox.ShowWarnMessage("修改成功", "提示信息");
+                    ScadaMessageBox.ShowWarnMessage("发送成功", "提示信息");
             }
             else
                 ScadaMessageBox.ShowWarnMessage("获取数据失败！", "警告信息");
@@ -93,6 +93,13 @@ namespace Scada.Client.SL.Modules.BaseInfo
 
         private void btnChange_Click(object sender, RoutedEventArgs e)
         {
+            if (!System.Windows.Browser.HtmlPage.Window.Confirm("确认发送广播信息吗？"))
+            {
+                return;
+            }
+
+            //System.Windows.Browser.HtmlPage.Window.Alert("X，Y坐标不能为空");
+            // if (ScadaMessageBox.ShowOKCancelMessage("确认发送广播信息吗？", "提示") == MessageBoxResult.Cancel) { return; }
             _sysGlobalPar.Broadcast = this.txtBroadcast.Text.Trim();
             string sysGlobal = BinaryObjTransfer.BinarySerialize(this._sysGlobalPar);
             this._systemManagerServiceSoapClient.UpdateSystemGlobalParameterAsync(sysGlobal);

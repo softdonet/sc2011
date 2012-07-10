@@ -24,7 +24,7 @@
             </Border.Background>
             <ScrollViewer VerticalScrollBarVisibility="Auto">
             <Grid>
-                <TextBlock Text="设备信息管理" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,5,0,0" Height="25" FontSize="16" Foreground="White"   TextWrapping="Wrap"  />
+                <TextBlock Text="设备管理" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,5,0,0" Height="25" FontSize="16" Foreground="White"   TextWrapping="Wrap"  />
                 <Border BorderBrush="#FF4A91BB" BorderThickness="1" Margin="10,30,10,20" CornerRadius="5" >
                     <Border.Background>
                         <SolidColorBrush Color="White"/>

@@ -117,7 +117,7 @@ namespace Scada.Client.SL.Modules.Device
             {
                 Storyboard1.Begin();
                 MyContent.Content = new DetailsPage(obj.NodeKey);
-                MyContent.Title = "设备详细信息";
+                MyContent.Title = "设备信息及当前温度";
             }
         }
 

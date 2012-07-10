@@ -10,7 +10,7 @@
         <vc:Chart  Watermark="False" xmlns:vc="clr-namespace:Visifire.Charts;assembly=SLVisifire.Charts" Theme="Theme2" 
                               ScrollingEnabled="False" Name="charTemperature" ShadowEnabled="True" BorderThickness="0.5" Grid.Row="1" BorderBrush="Gray"   >
             <vc:Chart.Titles>
-                <vc:Title Text="历史平均温度统计图 " FontFamily="Arial" FontSize="14"/>
+                <vc:Title Text="当月日平均温度趋势图" FontFamily="Arial" FontSize="14"/>
             </vc:Chart.Titles>
             <vc:Chart.PlotArea>
                 <vc:PlotArea BorderThickness="0,1,1,0" BorderColor="LightGray" />

@@ -202,6 +202,8 @@ namespace Scada.Client.SL.Controls
         }
 
         #endregion
+
+
         #endregion
 
 

@@ -141,7 +141,7 @@ namespace Scada.Client.SL.Modules.BingMaps
                 {
                     Storyboard1.Begin();
                     MyContent.Content = new DetailsPage(e1.ID);
-                    MyContent.Title = "设备详细信息";
+                    MyContent.Title = "设备信息及当前温度";
                 };
 
 

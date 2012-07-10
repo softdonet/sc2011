@@ -56,7 +56,7 @@
         }
     </script>
 </head>
-<body onbeforeunload="return '您确定要离开“ICS-T2000”吗？'">
+<body onbeforeunload="return '请确认您是否要求退出ICS-T2000监测服务系统吗？'">
     <form id="form1" runat="server" style="height:100%">
     <div id="silverlightControlHost">
         <object data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="100%" height="100%">

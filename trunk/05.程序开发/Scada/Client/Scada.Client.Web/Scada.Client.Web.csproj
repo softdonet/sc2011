@@ -78,6 +78,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="ClientBin\Scada.Client.SL.xap" />
+    <Content Include="Global.asax" />
     <Content Include="JavaScript\Silverlight.js" />
     <Content Include="UploadFile\HeadImage\Default.jpg" />
     <Content Include="UploadFile\LoginImage\logo.png" />
@@ -90,6 +91,9 @@
     <Content Include="Scada.html" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WCFServices\DeviceRealTimeService.svc.cs">
       <DependentUpon>DeviceRealTimeService.svc</DependentUpon>

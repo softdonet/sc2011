@@ -94,10 +94,10 @@ Storyboard.TargetProperty="(UIElement.Visibility)">
                                 <TextBlock  x:Name="txtProjectCode"   TextWrapping="Wrap" Text ="安装地点："  FontSize="11"  Margin="5,0,0,0"  VerticalAlignment="Center"/>
                                 <TextBlock  x:Name="txtInstallPlace"   TextWrapping="Wrap" Text ="{Binding InstallPlace}"  FontSize="11" Foreground="Black" Margin="0,0,0,0"  VerticalAlignment="Center"/>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0,1,0,0" >
+                            <!--<StackPanel Orientation="Horizontal" Margin="0,1,0,0" >
                                 <TextBlock  x:Name="lblHeight"   TextWrapping="Wrap" Text ="高度："  FontSize="11"  Margin="5,0,0,0"  VerticalAlignment="Center"/>
                                 <TextBlock  x:Name="txtHeight"   TextWrapping="Wrap" Text ="{Binding High}"  FontSize="11" Foreground="Black" Margin="0,0,0,0"  VerticalAlignment="Center"/>
-                            </StackPanel>
+                            </StackPanel>-->
                             <StackPanel Orientation="Horizontal" Margin="0,1,0,0" >
                                 <TextBlock  x:Name="lblTemperature"   TextWrapping="Wrap" Text ="当前温度："  FontSize="11"  Margin="5,0,0,0"  VerticalAlignment="Center"/>
                                 <TextBlock  x:Name="txtTemperature"   TextWrapping="Wrap" Text ="{Binding Temperature}"  FontSize="11" Foreground="Black" Margin="0,0,0,0"  VerticalAlignment="Center"/>

@@ -185,7 +185,7 @@ namespace Scada.Client.SL.Modules.BingMaps
                     NavigationBar navBar = map.MapForeground.NavigationBar;
                     navBar.HorizontalPanel.Children.Clear();
                     //添加自定义导航菜单项
-                    ChangeMapModeButton btnRoad = new ChangeMapModeButton(new RoadMode(), "路况模式", "点击导航到路况模式");
+                    ChangeMapModeButton btnRoad = new ChangeMapModeButton(new RoadMode(), "地图模式", "点击导航到地图模式");
                     btnRoad.IsChecked = false;
                     navBar.HorizontalPanel.Children.Add(btnRoad);
                     ChangeMapModeButton btnAerial = new ChangeMapModeButton(new AerialMode(true), "卫星模式", "点击导航到卫星模式");

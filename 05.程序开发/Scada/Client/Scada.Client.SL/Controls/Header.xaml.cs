@@ -198,6 +198,10 @@ namespace Scada.Client.SL.Controls
 
         private void hbtnRefresh_Click(object sender, RoutedEventArgs e)
         {
+            if (!System.Windows.Browser.HtmlPage.Window.Confirm("请确认您是否要求退出ICS-T2000监测服务系统？"))
+            {
+                return;
+            }
             HtmlPage.Window.Eval("window.location.reload();");
         }
 

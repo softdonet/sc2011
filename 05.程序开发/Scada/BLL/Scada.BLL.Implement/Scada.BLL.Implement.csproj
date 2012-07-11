@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DeviceRealTimeMonitorService.cs" />
+    <Compile Include="RealDeviceTreeCache.cs" />
     <Compile Include="RealTimeDataComparer.cs" />
     <Compile Include="ScadaDeviceService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

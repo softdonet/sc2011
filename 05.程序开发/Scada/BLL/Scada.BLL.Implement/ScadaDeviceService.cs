@@ -15,6 +15,7 @@ using Scada.Model.Entity.Common;
 using Scada.Utility.Common.Helper;
 using System.Windows;
 using System.Data.Linq;
+using System.Threading;
 
 
 namespace Scada.BLL.Implement
@@ -841,8 +842,6 @@ namespace Scada.BLL.Implement
                 peoples.QQ = item["QQ"].ToString();
                 peoples.MSN = item["MSN"].ToString();
                 peoples.Email = item["Email"].ToString();
-
-                //people.MaintenancePeopleInfo = peoples;
                 result.Add(people);
             }
             return result;
@@ -868,26 +867,40 @@ namespace Scada.BLL.Implement
 
         public string ListDeviceTreeView()
         {
-            List<DeviceTreeNode> treeList = new List<DeviceTreeNode>();
-            List<DeviceTreeNode> areaTable = this.getTreeNodeChild(null, string.Empty);
-            foreach (DeviceTreeNode area in areaTable)
+
+            return RealDeviceTreeCache.getInstance().GetDeviceTreeCache();
+
+            /*
+            List<DeviceTreeNode> treeList = null;
+            try
             {
-                List<DeviceTreeNode> ManageTable = this.getTreeNodeChild(area.NodeKey, string.Empty);
-                foreach (DeviceTreeNode manage in ManageTable)
+                treeList = new List<DeviceTreeNode>();
+                List<DeviceTreeNode> areaTable = this.getTreeNodeChild(null, string.Empty);
+                foreach (DeviceTreeNode area in areaTable)
                 {
-                    List<DeviceTreeNode> ManTable = this.getTreeNodeChild(manage.NodeKey, string.Empty);
-                    for (int i = 0; i < ManTable.Count; i++)
+                    List<DeviceTreeNode> ManageTable = this.getTreeNodeChild(area.NodeKey, string.Empty);
+                    foreach (DeviceTreeNode manage in ManageTable)
                     {
-                        DeviceTreeNode man = ManTable[i];
-                        man.NodeChild = getTreeNodeDevice(man.NodeKey, string.Empty);
-                        //man.NodeParent = manage;
-                        manage.AddNodeKey(man);
+                        List<DeviceTreeNode> ManTable = this.getTreeNodeChild(manage.NodeKey, string.Empty);
+                        for (int i = 0; i < ManTable.Count; i++)
+                        {
+                            DeviceTreeNode man = ManTable[i];
+                            man.NodeChild = getTreeNodeDevice(man.NodeKey, string.Empty);
+                            manage.AddNodeKey(man);
+                        }
+                        area.AddNodeKey(manage);
                     }
-                    area.AddNodeKey(manage);
+                    treeList.Add(area);
                 }
-                treeList.Add(area);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
             return BinaryObjTransfer.JsonSerializer<List<DeviceTreeNode>>(treeList);
+
+            */
+
         }
 
         private List<DeviceTreeNode> getTreeNodeChild(Guid? nodeKey, String prefix)
@@ -918,7 +931,7 @@ namespace Scada.BLL.Implement
 
         private List<DeviceTreeNode> getTreeNodeDevice(Guid nodeKey, String prefix)
         {
-            var devList = sCADADataContext.DeviceInfos.Where(e => e.ManageAreaID == nodeKey).OrderBy(e=>e.DeviceNo);
+            var devList = sCADADataContext.DeviceInfos.Where(e => e.ManageAreaID == nodeKey).OrderBy(e => e.DeviceNo);
             List<DeviceTreeNode> result = devList.Select(e => new DeviceTreeNode()
             {
                 NodeType = 3,
@@ -2093,6 +2106,11 @@ namespace Scada.BLL.Implement
 
         public String LogIn(String userName, String userPwd, String userIp)
         {
+
+            //add by zgj 20120711 登录加载设备树
+            var t1 = new Thread(LoadDeviceTreeCache);
+            t1.Start();
+
             LoginResult result = new LoginResult();
 
             //1)Check Lock IPList
@@ -2145,6 +2163,12 @@ namespace Scada.BLL.Implement
                 return BinaryObjTransfer.JsonSerializer<LoginResult>(result);
 
             }
+        }
+
+
+        static void LoadDeviceTreeCache()
+        {
+            RealDeviceTreeCache.getInstance().LoadDeviceTreeCache();
         }
 
         public Boolean SetUserMenuTreeList(String userKey, String userMenuList)

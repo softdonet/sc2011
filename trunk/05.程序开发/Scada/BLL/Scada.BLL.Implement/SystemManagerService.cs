@@ -98,30 +98,38 @@ namespace Scada.BLL.Implement
 
         public string GetSystemGlobalParameter()
         {
-            SystemGlobalParameter result = new SystemGlobalParameter();
-            String sSql = " Select * from PublicParameter";
-            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
-            if (ds == null || ds.Rows.Count == 0) { return string.Empty; }
-            foreach (DataRow item in ds.Rows)
+            SystemGlobalParameter result = null;
+            try
             {
-                result.ConnectType = Convert.ToInt32(item["ConnectType"]);
-                result.ConnectName = item["ConnectName"].ToString();
-                result.MainDNS = item["MainDNS"].ToString();
-                result.SecondDNS = item["SecondDNS"].ToString();
-                result.Domain = item["Domain"].ToString();
-                result.Port = Convert.ToInt32(item["Port"]);
-                result.Broadcast = item["Broadcast"].ToString();
-                result.WeatherCity = item["WeatherCity"].ToString();
-                result.DefaultZoomLevel = Convert.ToInt32(item["DefaultZoomLevel"]);
-                result.DefaultLongitude = Convert.ToDecimal(item["DefaultLongitude"]);
-                result.DefaultLatitude = Convert.ToDecimal(item["DefaultLatitude"]);
-                result.IsShowTool = Convert.ToBoolean(item["IsShowTool"]);
-                result.Title = item["Title"].ToString();
-                result.ChartMaxTemp = Convert.ToInt32(item["ChartMaxTemp"]);
-                result.ChartHighTemp = Convert.ToInt32(item["ChartHighTemp"]);
-                result.ChartLowTemp = Convert.ToInt32(item["ChartLowTemp"]);
-                result.ChartMinTemp = Convert.ToInt32(item["ChartMinTemp"]);
-                result.LogImgUrl = FileServerHelper.GetLoginImg();
+                result = new SystemGlobalParameter();
+                String sSql = " Select * from PublicParameter";
+                DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+                if (ds == null || ds.Rows.Count == 0) { return string.Empty; }
+                foreach (DataRow item in ds.Rows)
+                {
+                    result.ConnectType = Convert.ToInt32(item["ConnectType"]);
+                    result.ConnectName = item["ConnectName"].ToString();
+                    result.MainDNS = item["MainDNS"].ToString();
+                    result.SecondDNS = item["SecondDNS"].ToString();
+                    result.Domain = item["Domain"].ToString();
+                    result.Port = Convert.ToInt32(item["Port"]);
+                    result.Broadcast = item["Broadcast"].ToString();
+                    result.WeatherCity = item["WeatherCity"].ToString();
+                    result.DefaultZoomLevel = Convert.ToInt32(item["DefaultZoomLevel"]);
+                    result.DefaultLongitude = Convert.ToDecimal(item["DefaultLongitude"]);
+                    result.DefaultLatitude = Convert.ToDecimal(item["DefaultLatitude"]);
+                    result.IsShowTool = Convert.ToBoolean(item["IsShowTool"]);
+                    result.Title = item["Title"].ToString();
+                    result.ChartMaxTemp = Convert.ToInt32(item["ChartMaxTemp"]);
+                    result.ChartHighTemp = Convert.ToInt32(item["ChartHighTemp"]);
+                    result.ChartLowTemp = Convert.ToInt32(item["ChartLowTemp"]);
+                    result.ChartMinTemp = Convert.ToInt32(item["ChartMinTemp"]);
+                    result.LogImgUrl = FileServerHelper.GetLoginImg();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
             return BinaryObjTransfer.JsonSerializer<SystemGlobalParameter>(result);
         }

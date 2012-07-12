@@ -23,8 +23,6 @@ namespace Scada.BLL.Implement
 
         private List<DeviceTreeNode> _treeList = null;
 
-        private Scada.DAL.Linq.SCADADataContext sCADADataContext = null;
-
         #endregion
 
 
@@ -48,7 +46,6 @@ namespace Scada.BLL.Implement
 
         public RealDeviceTreeCache()
         {
-            sCADADataContext = new DAL.Linq.SCADADataContext();
             this._treeList = new List<DeviceTreeNode>();
         }
 
@@ -64,6 +61,13 @@ namespace Scada.BLL.Implement
         {
             if (string.IsNullOrEmpty(_jsonTreeList))
                 this.GetDeviceTreeList();
+        }
+
+        public void ReLoadDeviceTreeCache()
+        {
+            this._jsonTreeList = String.Empty;
+            this._treeList.Clear();
+            this.GetDeviceTreeList();
         }
 
         public string GetDeviceTreeCache()
@@ -82,6 +86,8 @@ namespace Scada.BLL.Implement
 
         private void GetDeviceTreeList()
         {
+            //_treeList = new List<DeviceTreeNode>();
+            _treeList.Clear();
             List<DeviceTreeNode> areaTable = this.getTreeNodeChild(null, string.Empty);
             foreach (DeviceTreeNode area in areaTable)
             {
@@ -131,21 +137,30 @@ namespace Scada.BLL.Implement
 
         private List<DeviceTreeNode> getTreeNodeDevice(Guid nodeKey, String prefix)
         {
-            var devList = sCADADataContext.DeviceInfos.Where(e => e.ManageAreaID == nodeKey).OrderBy(e => e.DeviceNo);
-            List<DeviceTreeNode> result = devList.Select(e => new DeviceTreeNode()
+            List<DeviceTreeNode> result = new List<DeviceTreeNode>();
+            string sSql = @" Select AA.ID,AA.DeviceNo,Isnull(AA.Longitude,0) As Longitude, IsNull(AA.Latitude,0) As Latitude ,
+                                AA.InstallPlace,AA.Comment,IsNull(AA.High,0) As High ,
+                                BB.Name,BB.Mobile
+                                from DeviceInfo AA 
+                                Left JOIN  MaintenancePeople BB On AA.MaintenancePeopleID=BB.ID
+                                WHere AA.ManageAreaID ='" + nodeKey.ToString().ToUpper() + "' Order by AA.DeviceNo";
+            DataTable ds = SqlHelper.ExecuteDataTable(sSql);
+            foreach (DataRow item in ds.Rows)
             {
-                NodeType = 3,
-                NodeValue = prefix + e.DeviceNo,
-                NodeKey = e.ID,
-                Longitude = float.Parse(e.Longitude.HasValue ? e.Longitude.Value.ToString() : "0"),
-                Latitude = float.Parse(e.Latitude.HasValue ? e.Latitude.Value.ToString() : "0"),
-                InstallPlace = e.InstallPlace,
-                Comment = e.Comment,
-                High = float.Parse(e.High.HasValue ? e.High.Value.ToString() : "0"),
-                MaintenanceName = e.MaintenancePeople == null ? string.Empty : e.MaintenancePeople.Name,
-                Mobile = e.MaintenancePeople == null ? string.Empty : e.MaintenancePeople.Mobile
-
-            }).ToList();
+                result.Add(new DeviceTreeNode
+                {
+                    NodeType = 3,
+                    NodeValue = prefix + item["DeviceNo"].ToString(),
+                    NodeKey = new Guid(item["ID"].ToString()),
+                    Longitude = float.Parse(item["Longitude"].ToString()),
+                    Latitude = float.Parse(item["Latitude"].ToString()),
+                    InstallPlace = item["InstallPlace"].ToString(),
+                    Comment = item["Comment"].ToString(),
+                    High = float.Parse(item["High"].ToString()),
+                    MaintenanceName = item["Name"].ToString(),
+                    Mobile = item["Mobile"].ToString()
+                });
+            }
             return result;
         }
 

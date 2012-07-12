@@ -163,6 +163,11 @@ namespace Scada.Client.VM.ScadaDeviceService {
         
         bool EndDeleteMaintenancePeople(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ClearMaintenancePeopleHeadFace", ReplyAction="*")]
+        System.IAsyncResult BeginClearMaintenancePeopleHeadFace(System.Guid peopleKey, System.AsyncCallback callback, object asyncState);
+        
+        bool EndClearMaintenancePeopleHeadFace(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/CheckUserByLoginID", ReplyAction="*")]
         System.IAsyncResult BeginCheckUserByLoginID(Scada.Client.VM.ScadaDeviceService.CheckUserByLoginIDRequest request, System.AsyncCallback callback, object asyncState);
         
@@ -3205,6 +3210,25 @@ namespace Scada.Client.VM.ScadaDeviceService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ClearMaintenancePeopleHeadFaceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public ClearMaintenancePeopleHeadFaceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class CheckUserByLoginIDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -3609,6 +3633,12 @@ namespace Scada.Client.VM.ScadaDeviceService {
         
         private System.Threading.SendOrPostCallback onDeleteMaintenancePeopleCompletedDelegate;
         
+        private BeginOperationDelegate onBeginClearMaintenancePeopleHeadFaceDelegate;
+        
+        private EndOperationDelegate onEndClearMaintenancePeopleHeadFaceDelegate;
+        
+        private System.Threading.SendOrPostCallback onClearMaintenancePeopleHeadFaceCompletedDelegate;
+        
         private BeginOperationDelegate onBeginCheckUserByLoginIDDelegate;
         
         private EndOperationDelegate onEndCheckUserByLoginIDDelegate;
@@ -3791,6 +3821,8 @@ namespace Scada.Client.VM.ScadaDeviceService {
         public event System.EventHandler<UpdateMaintenancePeopleCompletedEventArgs> UpdateMaintenancePeopleCompleted;
         
         public event System.EventHandler<DeleteMaintenancePeopleCompletedEventArgs> DeleteMaintenancePeopleCompleted;
+        
+        public event System.EventHandler<ClearMaintenancePeopleHeadFaceCompletedEventArgs> ClearMaintenancePeopleHeadFaceCompleted;
         
         public event System.EventHandler<CheckUserByLoginIDCompletedEventArgs> CheckUserByLoginIDCompleted;
         
@@ -5551,6 +5583,52 @@ namespace Scada.Client.VM.ScadaDeviceService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.BeginClearMaintenancePeopleHeadFace(System.Guid peopleKey, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginClearMaintenancePeopleHeadFace(peopleKey, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        bool Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.EndClearMaintenancePeopleHeadFace(System.IAsyncResult result) {
+            return base.Channel.EndClearMaintenancePeopleHeadFace(result);
+        }
+        
+        private System.IAsyncResult OnBeginClearMaintenancePeopleHeadFace(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            System.Guid peopleKey = ((System.Guid)(inValues[0]));
+            return ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).BeginClearMaintenancePeopleHeadFace(peopleKey, callback, asyncState);
+        }
+        
+        private object[] OnEndClearMaintenancePeopleHeadFace(System.IAsyncResult result) {
+            bool retVal = ((Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap)(this)).EndClearMaintenancePeopleHeadFace(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnClearMaintenancePeopleHeadFaceCompleted(object state) {
+            if ((this.ClearMaintenancePeopleHeadFaceCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.ClearMaintenancePeopleHeadFaceCompleted(this, new ClearMaintenancePeopleHeadFaceCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void ClearMaintenancePeopleHeadFaceAsync(System.Guid peopleKey) {
+            this.ClearMaintenancePeopleHeadFaceAsync(peopleKey, null);
+        }
+        
+        public void ClearMaintenancePeopleHeadFaceAsync(System.Guid peopleKey, object userState) {
+            if ((this.onBeginClearMaintenancePeopleHeadFaceDelegate == null)) {
+                this.onBeginClearMaintenancePeopleHeadFaceDelegate = new BeginOperationDelegate(this.OnBeginClearMaintenancePeopleHeadFace);
+            }
+            if ((this.onEndClearMaintenancePeopleHeadFaceDelegate == null)) {
+                this.onEndClearMaintenancePeopleHeadFaceDelegate = new EndOperationDelegate(this.OnEndClearMaintenancePeopleHeadFace);
+            }
+            if ((this.onClearMaintenancePeopleHeadFaceCompletedDelegate == null)) {
+                this.onClearMaintenancePeopleHeadFaceCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnClearMaintenancePeopleHeadFaceCompleted);
+            }
+            base.InvokeAsync(this.onBeginClearMaintenancePeopleHeadFaceDelegate, new object[] {
+                        peopleKey}, this.onEndClearMaintenancePeopleHeadFaceDelegate, this.onClearMaintenancePeopleHeadFaceCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.IAsyncResult Scada.Client.VM.ScadaDeviceService.ScadaDeviceServiceSoap.BeginCheckUserByLoginID(Scada.Client.VM.ScadaDeviceService.CheckUserByLoginIDRequest request, System.AsyncCallback callback, object asyncState) {
             return base.Channel.BeginCheckUserByLoginID(request, callback, asyncState);
         }
@@ -6703,6 +6781,19 @@ namespace Scada.Client.VM.ScadaDeviceService {
             public bool EndDeleteMaintenancePeople(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 bool _result = ((bool)(base.EndInvoke("DeleteMaintenancePeople", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginClearMaintenancePeopleHeadFace(System.Guid peopleKey, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = peopleKey;
+                System.IAsyncResult _result = base.BeginInvoke("ClearMaintenancePeopleHeadFace", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public bool EndClearMaintenancePeopleHeadFace(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                bool _result = ((bool)(base.EndInvoke("ClearMaintenancePeopleHeadFace", _args, result)));
                 return _result;
             }
             

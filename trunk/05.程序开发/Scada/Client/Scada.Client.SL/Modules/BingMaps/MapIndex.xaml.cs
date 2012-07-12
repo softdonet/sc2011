@@ -130,7 +130,11 @@ namespace Scada.Client.SL.Modules.BingMaps
             foreach (var item in mapVM.DeviceRealTimeTree)
             {
                 pushPinDevice myPushPin = new pushPinDevice();
-                dicPin.Add(item.NodeKey, myPushPin);
+                if (!dicPin.ContainsKey(item.NodeKey))
+                {
+                    dicPin.Add(item.NodeKey, myPushPin);
+                }
+                
                 myPushPin.DataContext = item;
                 if (item.Longitude != null || item.Dimensionality != null)
                 {

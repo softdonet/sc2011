@@ -232,11 +232,12 @@ namespace Scada.BLL.Implement
             try
             {
                 scadaDeviceServiceLinq.AddDeviceInfo(deviceInfo);
-                //RealDeviceTreeCache.getInstance().LoadDeviceTreeCache();
+                RealDeviceTreeCache.getInstance().ReLoadDeviceTreeCache();
                 return true;
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return false;
             }
 
@@ -515,7 +516,7 @@ namespace Scada.BLL.Implement
             try
             {
                 scadaDeviceServiceLinq.Del(deviceGuid);
-                //RealDeviceTreeCache.getInstance().LoadDeviceTreeCache();
+                RealDeviceTreeCache.getInstance().ReLoadDeviceTreeCache();
                 return true;
             }
             catch (Exception ex)

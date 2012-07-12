@@ -57,6 +57,9 @@ namespace Scada.BLL.Implement
 
         #region 开放方法
 
+        /// <summary>
+        /// 开放方法
+        /// </summary>
         public void LoadDeviceTreeCache()
         {
             if (string.IsNullOrEmpty(_jsonTreeList))

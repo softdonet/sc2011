@@ -232,6 +232,7 @@ namespace Scada.BLL.Implement
             try
             {
                 scadaDeviceServiceLinq.AddDeviceInfo(deviceInfo);
+                //RealDeviceTreeCache.getInstance().LoadDeviceTreeCache();
                 return true;
             }
             catch (Exception ex)
@@ -514,6 +515,7 @@ namespace Scada.BLL.Implement
             try
             {
                 scadaDeviceServiceLinq.Del(deviceGuid);
+                //RealDeviceTreeCache.getInstance().LoadDeviceTreeCache();
                 return true;
             }
             catch (Exception ex)
@@ -2165,7 +2167,9 @@ namespace Scada.BLL.Implement
             }
         }
 
-
+        /// <summary>
+        /// 登录时，缓存设备树
+        /// </summary>
         static void LoadDeviceTreeCache()
         {
             RealDeviceTreeCache.getInstance().LoadDeviceTreeCache();

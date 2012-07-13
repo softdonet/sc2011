@@ -220,8 +220,6 @@ namespace Scada.Client.VM.Modules.BaseInfo
             {
                 List<DeviceTreeNode> result = BinaryObjTransfer.BinaryDeserialize<List<DeviceTreeNode>>(e.Result);
                 DeviceTreeNodeList = result;
-
-                //DeviceTreeNodeResult = result;
             }
         }
 

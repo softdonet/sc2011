@@ -404,7 +404,7 @@
         </StackPanel>
         <StackPanel Grid.Row="2" HorizontalAlignment="Right" Width="545" Height="60" Margin="0,0,6,0" Orientation="Horizontal">
 
-            <RadioButton x:Name="menuMap" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MenuBtnStyle}" Height="57" Margin="6,0" Tag="信息地图" Width="65" Cursor="Hand" GroupName="menu" IsChecked="True">
+            <RadioButton x:Name="menuMap" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MenuBtnStyle}" Height="57" Margin="6,0" Tag="地图浏览" Width="65" Cursor="Hand" GroupName="menu" IsChecked="True">
                 <Image Height="27" Source="/Scada.Client.SL;component/Images/menu4.png" Stretch="Fill" Width="28"/>
             </RadioButton>
             <Image Source="/Scada.Client.SL;component/Images/line.png" Stretch="Fill" Width="2" Height="38"/>
@@ -412,10 +412,10 @@
                 <Image Height="26" Source="/Scada.Client.SL;component/Images/Money.png" Stretch="Fill" Width="27"/>
             </RadioButton>
             <Image Source="/Scada.Client.SL;component/Images/line.png" Stretch="Fill" Width="2" Height="38" Margin="0,9.5"/>
-            <RadioButton x:Name="menuAlertList" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="设备告警" Width="65" Cursor="Hand" GroupName="menu">
+            <RadioButton x:Name="menuAlertList" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="报警汇总" Width="65" Cursor="Hand" GroupName="menu">
                 <Image Height="27" Source="/Scada.Client.SL;component/Images/menu2.png" Stretch="Fill" Width="25"/>
             </RadioButton>
-            <RadioButton x:Name="menuUserEvent" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="用户事件" Width="65" Cursor="Hand" GroupName="menu">
+            <RadioButton x:Name="menuUserEvent" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="服务请求" Width="65" Cursor="Hand" GroupName="menu">
                 <Image Height="27" Source="/Scada.Client.SL;component/Images/menu3.png" Stretch="Fill" Width="25"/>
             </RadioButton>
 
@@ -432,7 +432,7 @@
                 <Image Height="34" Source="/Scada.Client.SL;component/Images/menu1.png" Stretch="Fill" Width="31"/>
             </RadioButton>
             <Image Source="/Scada.Client.SL;component/Images/line.png" Stretch="Fill" Width="2" Height="38" Margin="0,9.5"/>
-            <RadioButton x:Name="menuCompare" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="图表分析" Width="65" Cursor="Hand" GroupName="menu">
+            <RadioButton x:Name="menuCompare" VerticalAlignment="Center" Style="{StaticResource MenuBtnStyle}" HorizontalAlignment="Center" Height="57" Margin="6,0" Tag="数据分析" Width="65" Cursor="Hand" GroupName="menu">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseEnter">
                         <ei:ControlStoryboardAction Storyboard="{StaticResource ShowCompareSecMenuStory}"/>

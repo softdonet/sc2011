@@ -1022,6 +1022,12 @@ namespace Scada.Client.VM.Modules.BaseInfo
                             MessageBox.Show("请选择通讯发送周期!");
                             return false;
                         }
+                        //整点模式的发送频率除以采集频率小与等于六
+                        if (DeviceInfoList.FullTimeParam2 / Convert.ToDecimal(DeviceInfoList.FullTimeParam1.Value) > 6)
+                        {
+                            MessageBox.Show(string.Format("通信发送周期:[{0}] 与温度采集周期:[{1}] 的比值必须<=6", DeviceInfoList.FullTimeParam2.Value, DeviceInfoList.FullTimeParam1.Value));
+                            return false;
+                        }
                         break;
                     case 3:
                         if (!DeviceInfoList.OptimizeParam1.HasValue)

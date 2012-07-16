@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SCADA_DEV_NEW" Class="SCADADataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=112.125.33.194;Initial Catalog=SCADA_DEV_NEW;User ID=sa" SettingsObjectName="DataAccess.Properties.Settings" SettingsPropertyName="SCADA_DEV_NEWConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SCADA" Class="SCADADataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=SCADA;Integrated Security=True" SettingsObjectName="DataAccess.Properties.Settings" SettingsPropertyName="SCADAConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="dbo.DeviceAlarm" Member="DeviceAlarms">
     <Type Name="DeviceAlarm">
       <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -12,8 +12,8 @@
       <Column Name="DealPeopleID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="DealStatus" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="Comment" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Association Name="DeviceInfo_DeviceAlarm" Member="DeviceInfo" ThisKey="DeviceID" OtherKey="ID" Type="DeviceInfo" IsForeignKey="true" />
       <Association Name="User_DeviceAlarm" Member="User" ThisKey="DealPeopleID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="DeviceInfo_DeviceAlarm" Member="DeviceInfo" ThisKey="DeviceID" OtherKey="ID" Type="DeviceInfo" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.UserRole" Member="UserRoles">
@@ -23,58 +23,6 @@
       <Column Name="RoleID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Association Name="Role_UserRole" Member="Role" ThisKey="RoleID" OtherKey="RoleID" Type="Role" IsForeignKey="true" />
       <Association Name="User_UserRole" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.DeviceInfo" Member="DeviceInfos">
-    <Type Name="DeviceInfo">
-      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="DeviceNo" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="DeviceSN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HardType" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="ProductDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeviceMAC" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="SIMNo" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="ManageAreaID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="MaintenancePeopleID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="InstallPlace" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="Longitude" Type="System.Decimal" DbType="Decimal(20,15)" CanBeNull="true" />
-      <Column Name="Latitude" Type="System.Decimal" DbType="Decimal(20,15)" CanBeNull="true" />
-      <Column Name="High" Type="System.Decimal" DbType="Decimal(20,4)" CanBeNull="true" />
-      <Column Name="Comment" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Column Name="Windage" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="HardwareVersion" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="SoftWareVersion" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="LCDScreenDisplayType" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="UrgencyBtnEnable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="InforBtnEnable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Temperature1AlarmValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Temperature1HighAlarm" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
-      <Column Name="Temperature1LowAlarm" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
-      <Column Name="Temperature2AlarmValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Temperature2HighAlarm" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
-      <Column Name="Temperature2LowAlarm" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
-      <Column Name="HumidityAlarmValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="HumidityHighAlarm" Type="System.Decimal" DbType="Decimal(2,2)" CanBeNull="true" />
-      <Column Name="HumidityLowAlarm" Type="System.Decimal" DbType="Decimal(2,2)" CanBeNull="true" />
-      <Column Name="SignalAlarmValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="SignalHighAlarm" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SignalLowAlarm" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ElectricityAlarmValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="ElectricityHighAlarm" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ElectricityLowAlarm" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CurrentModel" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RealTimeParam" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FullTimeParam1" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FullTimeParam2" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="OptimizeParam1" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="OptimizeParam2" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="OptimizeParam3" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IsNew" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="DeviceInfo_DeviceAlarm" Member="DeviceAlarms" ThisKey="ID" OtherKey="DeviceID" Type="DeviceAlarm" />
-      <Association Name="DeviceInfo_DeviceRealTime" Member="DeviceRealTimes" ThisKey="ID" OtherKey="DeviceID" Type="DeviceRealTime" />
-      <Association Name="DeviceInfo_UserEvent" Member="UserEvents" ThisKey="ID" OtherKey="DeviceID" Type="UserEvent" />
-      <Association Name="DeviceTree_DeviceInfo" Member="DeviceTree" ThisKey="ManageAreaID" OtherKey="ID" Type="DeviceTree" IsForeignKey="true" />
-      <Association Name="MaintenancePeople_DeviceInfo" Member="MaintenancePeople" ThisKey="MaintenancePeopleID" OtherKey="ID" Type="MaintenancePeople" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.DeviceRealTime" Member="DeviceRealTimes">
@@ -225,6 +173,60 @@
       <Column Name="Remark" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Association Name="MenuTree_UserMenu" Member="MenuTree" ThisKey="MenuId" OtherKey="MenuId" Type="MenuTree" IsForeignKey="true" />
       <Association Name="User_UserMenu" Member="User" ThisKey="UserId" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DeviceInfo" Member="DeviceInfos">
+    <Type Name="DeviceInfo">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DeviceNo" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="DeviceSN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HardType" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="ProductDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeviceMAC" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="SIMNo" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="ManageAreaID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="MaintenancePeopleID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="InstallPlace" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Longitude" Type="System.Decimal" DbType="Decimal(20,15)" CanBeNull="true" />
+      <Column Name="Latitude" Type="System.Decimal" DbType="Decimal(20,15)" CanBeNull="true" />
+      <Column Name="High" Type="System.Decimal" DbType="Decimal(20,4)" CanBeNull="true" />
+      <Column Name="Comment" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Windage" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HardwareVersion" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="SoftWareVersion" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="LCDScreenDisplayType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UrgencyBtnEnable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="InforBtnEnable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Temperature1AlarmValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Temperature1HighAlarm" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="Temperature1LowAlarm" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="Temperature2AlarmValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Temperature2HighAlarm" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="Temperature2LowAlarm" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="HumidityAlarmValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="HumidityHighAlarm" Type="System.Decimal" DbType="Decimal(2,2)" CanBeNull="true" />
+      <Column Name="HumidityLowAlarm" Type="System.Decimal" DbType="Decimal(2,2)" CanBeNull="true" />
+      <Column Name="SignalAlarmValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SignalHighAlarm" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SignalLowAlarm" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ElectricityAlarmValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ElectricityHighAlarm" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ElectricityLowAlarm" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CurrentModel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RealTimeParam" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FullTimeParam1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FullTimeParam2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OptimizeParam1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OptimizeParam2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OptimizeParam3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsNew" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Broadcast" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Weather" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="DeviceInfo_DeviceAlarm" Member="DeviceAlarms" ThisKey="ID" OtherKey="DeviceID" Type="DeviceAlarm" />
+      <Association Name="DeviceInfo_DeviceRealTime" Member="DeviceRealTimes" ThisKey="ID" OtherKey="DeviceID" Type="DeviceRealTime" />
+      <Association Name="DeviceInfo_UserEvent" Member="UserEvents" ThisKey="ID" OtherKey="DeviceID" Type="UserEvent" />
+      <Association Name="MaintenancePeople_DeviceInfo" Member="MaintenancePeople" ThisKey="MaintenancePeopleID" OtherKey="ID" Type="MaintenancePeople" IsForeignKey="true" />
+      <Association Name="DeviceTree_DeviceInfo" Member="DeviceTree" ThisKey="ManageAreaID" OtherKey="ID" Type="DeviceTree" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

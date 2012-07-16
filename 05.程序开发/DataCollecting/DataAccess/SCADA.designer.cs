@@ -22,7 +22,7 @@ namespace DataAccess
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="SCADA_DEV_NEW")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="SCADA")]
 	public partial class SCADADataContext : System.Data.Linq.DataContext
 	{
 		
@@ -36,9 +36,6 @@ namespace DataAccess
     partial void InsertUserRole(UserRole instance);
     partial void UpdateUserRole(UserRole instance);
     partial void DeleteUserRole(UserRole instance);
-    partial void InsertDeviceInfo(DeviceInfo instance);
-    partial void UpdateDeviceInfo(DeviceInfo instance);
-    partial void DeleteDeviceInfo(DeviceInfo instance);
     partial void InsertDeviceRealTime(DeviceRealTime instance);
     partial void UpdateDeviceRealTime(DeviceRealTime instance);
     partial void DeleteDeviceRealTime(DeviceRealTime instance);
@@ -78,9 +75,10 @@ namespace DataAccess
     partial void InsertUserMenu(UserMenu instance);
     partial void UpdateUserMenu(UserMenu instance);
     partial void DeleteUserMenu(UserMenu instance);
+    partial void InsertDeviceInfo(DeviceInfo instance);
+    partial void UpdateDeviceInfo(DeviceInfo instance);
+    partial void DeleteDeviceInfo(DeviceInfo instance);
     #endregion
-		
-
 		
 		public SCADADataContext(string connection) : 
 				base(connection, mappingSource)
@@ -119,14 +117,6 @@ namespace DataAccess
 			get
 			{
 				return this.GetTable<UserRole>();
-			}
-		}
-		
-		public System.Data.Linq.Table<DeviceInfo> DeviceInfos
-		{
-			get
-			{
-				return this.GetTable<DeviceInfo>();
 			}
 		}
 		
@@ -241,6 +231,14 @@ namespace DataAccess
 				return this.GetTable<UserMenu>();
 			}
 		}
+		
+		public System.Data.Linq.Table<DeviceInfo> DeviceInfos
+		{
+			get
+			{
+				return this.GetTable<DeviceInfo>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DeviceAlarm")]
@@ -269,9 +267,9 @@ namespace DataAccess
 		
 		private string _Comment;
 		
-		private EntityRef<DeviceInfo> _DeviceInfo;
-		
 		private EntityRef<User> _User;
+		
+		private EntityRef<DeviceInfo> _DeviceInfo;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -301,8 +299,8 @@ namespace DataAccess
 		
 		public DeviceAlarm()
 		{
-			this._DeviceInfo = default(EntityRef<DeviceInfo>);
 			this._User = default(EntityRef<User>);
+			this._DeviceInfo = default(EntityRef<DeviceInfo>);
 			OnCreated();
 		}
 		
@@ -514,40 +512,6 @@ namespace DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DeviceInfo_DeviceAlarm", Storage="_DeviceInfo", ThisKey="DeviceID", OtherKey="ID", IsForeignKey=true)]
-		public DeviceInfo DeviceInfo
-		{
-			get
-			{
-				return this._DeviceInfo.Entity;
-			}
-			set
-			{
-				DeviceInfo previousValue = this._DeviceInfo.Entity;
-				if (((previousValue != value) 
-							|| (this._DeviceInfo.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DeviceInfo.Entity = null;
-						previousValue.DeviceAlarms.Remove(this);
-					}
-					this._DeviceInfo.Entity = value;
-					if ((value != null))
-					{
-						value.DeviceAlarms.Add(this);
-						this._DeviceID = value.ID;
-					}
-					else
-					{
-						this._DeviceID = default(Nullable<System.Guid>);
-					}
-					this.SendPropertyChanged("DeviceInfo");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_DeviceAlarm", Storage="_User", ThisKey="DealPeopleID", OtherKey="UserID", IsForeignKey=true)]
 		public User User
 		{
@@ -578,6 +542,40 @@ namespace DataAccess
 						this._DealPeopleID = default(Nullable<System.Guid>);
 					}
 					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DeviceInfo_DeviceAlarm", Storage="_DeviceInfo", ThisKey="DeviceID", OtherKey="ID", IsForeignKey=true)]
+		public DeviceInfo DeviceInfo
+		{
+			get
+			{
+				return this._DeviceInfo.Entity;
+			}
+			set
+			{
+				DeviceInfo previousValue = this._DeviceInfo.Entity;
+				if (((previousValue != value) 
+							|| (this._DeviceInfo.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DeviceInfo.Entity = null;
+						previousValue.DeviceAlarms.Remove(this);
+					}
+					this._DeviceInfo.Entity = value;
+					if ((value != null))
+					{
+						value.DeviceAlarms.Add(this);
+						this._DeviceID = value.ID;
+					}
+					else
+					{
+						this._DeviceID = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("DeviceInfo");
 				}
 			}
 		}
@@ -792,1242 +790,6 @@ namespace DataAccess
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DeviceInfo")]
-	public partial class DeviceInfo : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _ID;
-		
-		private string _DeviceNo;
-		
-		private string _DeviceSN;
-		
-		private string _HardType;
-		
-		private System.Nullable<System.DateTime> _ProductDate;
-		
-		private string _DeviceMAC;
-		
-		private string _SIMNo;
-		
-		private System.Nullable<System.Guid> _ManageAreaID;
-		
-		private System.Nullable<System.Guid> _MaintenancePeopleID;
-		
-		private string _InstallPlace;
-		
-		private System.Nullable<decimal> _Longitude;
-		
-		private System.Nullable<decimal> _Latitude;
-		
-		private System.Nullable<decimal> _High;
-		
-		private string _Comment;
-		
-		private System.Nullable<int> _Windage;
-		
-		private string _HardwareVersion;
-		
-		private string _SoftWareVersion;
-		
-		private System.Nullable<int> _LCDScreenDisplayType;
-		
-		private System.Nullable<bool> _UrgencyBtnEnable;
-		
-		private System.Nullable<bool> _InforBtnEnable;
-		
-		private System.Nullable<bool> _Temperature1AlarmValid;
-		
-		private System.Nullable<decimal> _Temperature1HighAlarm;
-		
-		private System.Nullable<decimal> _Temperature1LowAlarm;
-		
-		private System.Nullable<bool> _Temperature2AlarmValid;
-		
-		private System.Nullable<decimal> _Temperature2HighAlarm;
-		
-		private System.Nullable<decimal> _Temperature2LowAlarm;
-		
-		private System.Nullable<bool> _HumidityAlarmValid;
-		
-		private System.Nullable<decimal> _HumidityHighAlarm;
-		
-		private System.Nullable<decimal> _HumidityLowAlarm;
-		
-		private System.Nullable<bool> _SignalAlarmValid;
-		
-		private System.Nullable<int> _SignalHighAlarm;
-		
-		private System.Nullable<int> _SignalLowAlarm;
-		
-		private System.Nullable<bool> _ElectricityAlarmValid;
-		
-		private System.Nullable<int> _ElectricityHighAlarm;
-		
-		private System.Nullable<int> _ElectricityLowAlarm;
-		
-		private System.Nullable<int> _CurrentModel;
-		
-		private System.Nullable<int> _RealTimeParam;
-		
-		private System.Nullable<int> _FullTimeParam1;
-		
-		private System.Nullable<int> _FullTimeParam2;
-		
-		private System.Nullable<int> _OptimizeParam1;
-		
-		private System.Nullable<int> _OptimizeParam2;
-		
-		private System.Nullable<int> _OptimizeParam3;
-		
-		private bool _IsNew;
-		
-		private EntitySet<DeviceAlarm> _DeviceAlarms;
-		
-		private EntitySet<DeviceRealTime> _DeviceRealTimes;
-		
-		private EntitySet<UserEvent> _UserEvents;
-		
-		private EntityRef<DeviceTree> _DeviceTree;
-		
-		private EntityRef<MaintenancePeople> _MaintenancePeople;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(System.Guid value);
-    partial void OnIDChanged();
-    partial void OnDeviceNoChanging(string value);
-    partial void OnDeviceNoChanged();
-    partial void OnDeviceSNChanging(string value);
-    partial void OnDeviceSNChanged();
-    partial void OnHardTypeChanging(string value);
-    partial void OnHardTypeChanged();
-    partial void OnProductDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnProductDateChanged();
-    partial void OnDeviceMACChanging(string value);
-    partial void OnDeviceMACChanged();
-    partial void OnSIMNoChanging(string value);
-    partial void OnSIMNoChanged();
-    partial void OnManageAreaIDChanging(System.Nullable<System.Guid> value);
-    partial void OnManageAreaIDChanged();
-    partial void OnMaintenancePeopleIDChanging(System.Nullable<System.Guid> value);
-    partial void OnMaintenancePeopleIDChanged();
-    partial void OnInstallPlaceChanging(string value);
-    partial void OnInstallPlaceChanged();
-    partial void OnLongitudeChanging(System.Nullable<decimal> value);
-    partial void OnLongitudeChanged();
-    partial void OnLatitudeChanging(System.Nullable<decimal> value);
-    partial void OnLatitudeChanged();
-    partial void OnHighChanging(System.Nullable<decimal> value);
-    partial void OnHighChanged();
-    partial void OnCommentChanging(string value);
-    partial void OnCommentChanged();
-    partial void OnWindageChanging(System.Nullable<int> value);
-    partial void OnWindageChanged();
-    partial void OnHardwareVersionChanging(string value);
-    partial void OnHardwareVersionChanged();
-    partial void OnSoftWareVersionChanging(string value);
-    partial void OnSoftWareVersionChanged();
-    partial void OnLCDScreenDisplayTypeChanging(System.Nullable<int> value);
-    partial void OnLCDScreenDisplayTypeChanged();
-    partial void OnUrgencyBtnEnableChanging(System.Nullable<bool> value);
-    partial void OnUrgencyBtnEnableChanged();
-    partial void OnInforBtnEnableChanging(System.Nullable<bool> value);
-    partial void OnInforBtnEnableChanged();
-    partial void OnTemperature1AlarmValidChanging(System.Nullable<bool> value);
-    partial void OnTemperature1AlarmValidChanged();
-    partial void OnTemperature1HighAlarmChanging(System.Nullable<decimal> value);
-    partial void OnTemperature1HighAlarmChanged();
-    partial void OnTemperature1LowAlarmChanging(System.Nullable<decimal> value);
-    partial void OnTemperature1LowAlarmChanged();
-    partial void OnTemperature2AlarmValidChanging(System.Nullable<bool> value);
-    partial void OnTemperature2AlarmValidChanged();
-    partial void OnTemperature2HighAlarmChanging(System.Nullable<decimal> value);
-    partial void OnTemperature2HighAlarmChanged();
-    partial void OnTemperature2LowAlarmChanging(System.Nullable<decimal> value);
-    partial void OnTemperature2LowAlarmChanged();
-    partial void OnHumidityAlarmValidChanging(System.Nullable<bool> value);
-    partial void OnHumidityAlarmValidChanged();
-    partial void OnHumidityHighAlarmChanging(System.Nullable<decimal> value);
-    partial void OnHumidityHighAlarmChanged();
-    partial void OnHumidityLowAlarmChanging(System.Nullable<decimal> value);
-    partial void OnHumidityLowAlarmChanged();
-    partial void OnSignalAlarmValidChanging(System.Nullable<bool> value);
-    partial void OnSignalAlarmValidChanged();
-    partial void OnSignalHighAlarmChanging(System.Nullable<int> value);
-    partial void OnSignalHighAlarmChanged();
-    partial void OnSignalLowAlarmChanging(System.Nullable<int> value);
-    partial void OnSignalLowAlarmChanged();
-    partial void OnElectricityAlarmValidChanging(System.Nullable<bool> value);
-    partial void OnElectricityAlarmValidChanged();
-    partial void OnElectricityHighAlarmChanging(System.Nullable<int> value);
-    partial void OnElectricityHighAlarmChanged();
-    partial void OnElectricityLowAlarmChanging(System.Nullable<int> value);
-    partial void OnElectricityLowAlarmChanged();
-    partial void OnCurrentModelChanging(System.Nullable<int> value);
-    partial void OnCurrentModelChanged();
-    partial void OnRealTimeParamChanging(System.Nullable<int> value);
-    partial void OnRealTimeParamChanged();
-    partial void OnFullTimeParam1Changing(System.Nullable<int> value);
-    partial void OnFullTimeParam1Changed();
-    partial void OnFullTimeParam2Changing(System.Nullable<int> value);
-    partial void OnFullTimeParam2Changed();
-    partial void OnOptimizeParam1Changing(System.Nullable<int> value);
-    partial void OnOptimizeParam1Changed();
-    partial void OnOptimizeParam2Changing(System.Nullable<int> value);
-    partial void OnOptimizeParam2Changed();
-    partial void OnOptimizeParam3Changing(System.Nullable<int> value);
-    partial void OnOptimizeParam3Changed();
-    partial void OnIsNewChanging(bool value);
-    partial void OnIsNewChanged();
-    #endregion
-		
-		public DeviceInfo()
-		{
-			this._DeviceAlarms = new EntitySet<DeviceAlarm>(new Action<DeviceAlarm>(this.attach_DeviceAlarms), new Action<DeviceAlarm>(this.detach_DeviceAlarms));
-			this._DeviceRealTimes = new EntitySet<DeviceRealTime>(new Action<DeviceRealTime>(this.attach_DeviceRealTimes), new Action<DeviceRealTime>(this.detach_DeviceRealTimes));
-			this._UserEvents = new EntitySet<UserEvent>(new Action<UserEvent>(this.attach_UserEvents), new Action<UserEvent>(this.detach_UserEvents));
-			this._DeviceTree = default(EntityRef<DeviceTree>);
-			this._MaintenancePeople = default(EntityRef<MaintenancePeople>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceNo", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
-		public string DeviceNo
-		{
-			get
-			{
-				return this._DeviceNo;
-			}
-			set
-			{
-				if ((this._DeviceNo != value))
-				{
-					this.OnDeviceNoChanging(value);
-					this.SendPropertyChanging();
-					this._DeviceNo = value;
-					this.SendPropertyChanged("DeviceNo");
-					this.OnDeviceNoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceSN", DbType="NVarChar(50)")]
-		public string DeviceSN
-		{
-			get
-			{
-				return this._DeviceSN;
-			}
-			set
-			{
-				if ((this._DeviceSN != value))
-				{
-					this.OnDeviceSNChanging(value);
-					this.SendPropertyChanging();
-					this._DeviceSN = value;
-					this.SendPropertyChanged("DeviceSN");
-					this.OnDeviceSNChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HardType", DbType="NVarChar(20)")]
-		public string HardType
-		{
-			get
-			{
-				return this._HardType;
-			}
-			set
-			{
-				if ((this._HardType != value))
-				{
-					this.OnHardTypeChanging(value);
-					this.SendPropertyChanging();
-					this._HardType = value;
-					this.SendPropertyChanged("HardType");
-					this.OnHardTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ProductDate
-		{
-			get
-			{
-				return this._ProductDate;
-			}
-			set
-			{
-				if ((this._ProductDate != value))
-				{
-					this.OnProductDateChanging(value);
-					this.SendPropertyChanging();
-					this._ProductDate = value;
-					this.SendPropertyChanged("ProductDate");
-					this.OnProductDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceMAC", DbType="NVarChar(20)")]
-		public string DeviceMAC
-		{
-			get
-			{
-				return this._DeviceMAC;
-			}
-			set
-			{
-				if ((this._DeviceMAC != value))
-				{
-					this.OnDeviceMACChanging(value);
-					this.SendPropertyChanging();
-					this._DeviceMAC = value;
-					this.SendPropertyChanged("DeviceMAC");
-					this.OnDeviceMACChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SIMNo", DbType="NVarChar(20)")]
-		public string SIMNo
-		{
-			get
-			{
-				return this._SIMNo;
-			}
-			set
-			{
-				if ((this._SIMNo != value))
-				{
-					this.OnSIMNoChanging(value);
-					this.SendPropertyChanging();
-					this._SIMNo = value;
-					this.SendPropertyChanged("SIMNo");
-					this.OnSIMNoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageAreaID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> ManageAreaID
-		{
-			get
-			{
-				return this._ManageAreaID;
-			}
-			set
-			{
-				if ((this._ManageAreaID != value))
-				{
-					if (this._DeviceTree.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnManageAreaIDChanging(value);
-					this.SendPropertyChanging();
-					this._ManageAreaID = value;
-					this.SendPropertyChanged("ManageAreaID");
-					this.OnManageAreaIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaintenancePeopleID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> MaintenancePeopleID
-		{
-			get
-			{
-				return this._MaintenancePeopleID;
-			}
-			set
-			{
-				if ((this._MaintenancePeopleID != value))
-				{
-					if (this._MaintenancePeople.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMaintenancePeopleIDChanging(value);
-					this.SendPropertyChanging();
-					this._MaintenancePeopleID = value;
-					this.SendPropertyChanged("MaintenancePeopleID");
-					this.OnMaintenancePeopleIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstallPlace", DbType="NVarChar(20)")]
-		public string InstallPlace
-		{
-			get
-			{
-				return this._InstallPlace;
-			}
-			set
-			{
-				if ((this._InstallPlace != value))
-				{
-					this.OnInstallPlaceChanging(value);
-					this.SendPropertyChanging();
-					this._InstallPlace = value;
-					this.SendPropertyChanged("InstallPlace");
-					this.OnInstallPlaceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Longitude", DbType="Decimal(20,15)")]
-		public System.Nullable<decimal> Longitude
-		{
-			get
-			{
-				return this._Longitude;
-			}
-			set
-			{
-				if ((this._Longitude != value))
-				{
-					this.OnLongitudeChanging(value);
-					this.SendPropertyChanging();
-					this._Longitude = value;
-					this.SendPropertyChanged("Longitude");
-					this.OnLongitudeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Latitude", DbType="Decimal(20,15)")]
-		public System.Nullable<decimal> Latitude
-		{
-			get
-			{
-				return this._Latitude;
-			}
-			set
-			{
-				if ((this._Latitude != value))
-				{
-					this.OnLatitudeChanging(value);
-					this.SendPropertyChanging();
-					this._Latitude = value;
-					this.SendPropertyChanged("Latitude");
-					this.OnLatitudeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_High", DbType="Decimal(20,4)")]
-		public System.Nullable<decimal> High
-		{
-			get
-			{
-				return this._High;
-			}
-			set
-			{
-				if ((this._High != value))
-				{
-					this.OnHighChanging(value);
-					this.SendPropertyChanging();
-					this._High = value;
-					this.SendPropertyChanged("High");
-					this.OnHighChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comment", DbType="VarChar(500)")]
-		public string Comment
-		{
-			get
-			{
-				return this._Comment;
-			}
-			set
-			{
-				if ((this._Comment != value))
-				{
-					this.OnCommentChanging(value);
-					this.SendPropertyChanging();
-					this._Comment = value;
-					this.SendPropertyChanged("Comment");
-					this.OnCommentChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Windage", DbType="Int")]
-		public System.Nullable<int> Windage
-		{
-			get
-			{
-				return this._Windage;
-			}
-			set
-			{
-				if ((this._Windage != value))
-				{
-					this.OnWindageChanging(value);
-					this.SendPropertyChanging();
-					this._Windage = value;
-					this.SendPropertyChanged("Windage");
-					this.OnWindageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HardwareVersion", DbType="NVarChar(10)")]
-		public string HardwareVersion
-		{
-			get
-			{
-				return this._HardwareVersion;
-			}
-			set
-			{
-				if ((this._HardwareVersion != value))
-				{
-					this.OnHardwareVersionChanging(value);
-					this.SendPropertyChanging();
-					this._HardwareVersion = value;
-					this.SendPropertyChanged("HardwareVersion");
-					this.OnHardwareVersionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoftWareVersion", DbType="NVarChar(10)")]
-		public string SoftWareVersion
-		{
-			get
-			{
-				return this._SoftWareVersion;
-			}
-			set
-			{
-				if ((this._SoftWareVersion != value))
-				{
-					this.OnSoftWareVersionChanging(value);
-					this.SendPropertyChanging();
-					this._SoftWareVersion = value;
-					this.SendPropertyChanged("SoftWareVersion");
-					this.OnSoftWareVersionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LCDScreenDisplayType", DbType="Int")]
-		public System.Nullable<int> LCDScreenDisplayType
-		{
-			get
-			{
-				return this._LCDScreenDisplayType;
-			}
-			set
-			{
-				if ((this._LCDScreenDisplayType != value))
-				{
-					this.OnLCDScreenDisplayTypeChanging(value);
-					this.SendPropertyChanging();
-					this._LCDScreenDisplayType = value;
-					this.SendPropertyChanged("LCDScreenDisplayType");
-					this.OnLCDScreenDisplayTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UrgencyBtnEnable", DbType="Bit")]
-		public System.Nullable<bool> UrgencyBtnEnable
-		{
-			get
-			{
-				return this._UrgencyBtnEnable;
-			}
-			set
-			{
-				if ((this._UrgencyBtnEnable != value))
-				{
-					this.OnUrgencyBtnEnableChanging(value);
-					this.SendPropertyChanging();
-					this._UrgencyBtnEnable = value;
-					this.SendPropertyChanged("UrgencyBtnEnable");
-					this.OnUrgencyBtnEnableChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InforBtnEnable", DbType="Bit")]
-		public System.Nullable<bool> InforBtnEnable
-		{
-			get
-			{
-				return this._InforBtnEnable;
-			}
-			set
-			{
-				if ((this._InforBtnEnable != value))
-				{
-					this.OnInforBtnEnableChanging(value);
-					this.SendPropertyChanging();
-					this._InforBtnEnable = value;
-					this.SendPropertyChanged("InforBtnEnable");
-					this.OnInforBtnEnableChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Temperature1AlarmValid", DbType="Bit")]
-		public System.Nullable<bool> Temperature1AlarmValid
-		{
-			get
-			{
-				return this._Temperature1AlarmValid;
-			}
-			set
-			{
-				if ((this._Temperature1AlarmValid != value))
-				{
-					this.OnTemperature1AlarmValidChanging(value);
-					this.SendPropertyChanging();
-					this._Temperature1AlarmValid = value;
-					this.SendPropertyChanged("Temperature1AlarmValid");
-					this.OnTemperature1AlarmValidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Temperature1HighAlarm", DbType="Decimal(5,2)")]
-		public System.Nullable<decimal> Temperature1HighAlarm
-		{
-			get
-			{
-				return this._Temperature1HighAlarm;
-			}
-			set
-			{
-				if ((this._Temperature1HighAlarm != value))
-				{
-					this.OnTemperature1HighAlarmChanging(value);
-					this.SendPropertyChanging();
-					this._Temperature1HighAlarm = value;
-					this.SendPropertyChanged("Temperature1HighAlarm");
-					this.OnTemperature1HighAlarmChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Temperature1LowAlarm", DbType="Decimal(5,2)")]
-		public System.Nullable<decimal> Temperature1LowAlarm
-		{
-			get
-			{
-				return this._Temperature1LowAlarm;
-			}
-			set
-			{
-				if ((this._Temperature1LowAlarm != value))
-				{
-					this.OnTemperature1LowAlarmChanging(value);
-					this.SendPropertyChanging();
-					this._Temperature1LowAlarm = value;
-					this.SendPropertyChanged("Temperature1LowAlarm");
-					this.OnTemperature1LowAlarmChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Temperature2AlarmValid", DbType="Bit")]
-		public System.Nullable<bool> Temperature2AlarmValid
-		{
-			get
-			{
-				return this._Temperature2AlarmValid;
-			}
-			set
-			{
-				if ((this._Temperature2AlarmValid != value))
-				{
-					this.OnTemperature2AlarmValidChanging(value);
-					this.SendPropertyChanging();
-					this._Temperature2AlarmValid = value;
-					this.SendPropertyChanged("Temperature2AlarmValid");
-					this.OnTemperature2AlarmValidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Temperature2HighAlarm", DbType="Decimal(5,2)")]
-		public System.Nullable<decimal> Temperature2HighAlarm
-		{
-			get
-			{
-				return this._Temperature2HighAlarm;
-			}
-			set
-			{
-				if ((this._Temperature2HighAlarm != value))
-				{
-					this.OnTemperature2HighAlarmChanging(value);
-					this.SendPropertyChanging();
-					this._Temperature2HighAlarm = value;
-					this.SendPropertyChanged("Temperature2HighAlarm");
-					this.OnTemperature2HighAlarmChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Temperature2LowAlarm", DbType="Decimal(5,2)")]
-		public System.Nullable<decimal> Temperature2LowAlarm
-		{
-			get
-			{
-				return this._Temperature2LowAlarm;
-			}
-			set
-			{
-				if ((this._Temperature2LowAlarm != value))
-				{
-					this.OnTemperature2LowAlarmChanging(value);
-					this.SendPropertyChanging();
-					this._Temperature2LowAlarm = value;
-					this.SendPropertyChanged("Temperature2LowAlarm");
-					this.OnTemperature2LowAlarmChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HumidityAlarmValid", DbType="Bit")]
-		public System.Nullable<bool> HumidityAlarmValid
-		{
-			get
-			{
-				return this._HumidityAlarmValid;
-			}
-			set
-			{
-				if ((this._HumidityAlarmValid != value))
-				{
-					this.OnHumidityAlarmValidChanging(value);
-					this.SendPropertyChanging();
-					this._HumidityAlarmValid = value;
-					this.SendPropertyChanged("HumidityAlarmValid");
-					this.OnHumidityAlarmValidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HumidityHighAlarm", DbType="Decimal(2,2)")]
-		public System.Nullable<decimal> HumidityHighAlarm
-		{
-			get
-			{
-				return this._HumidityHighAlarm;
-			}
-			set
-			{
-				if ((this._HumidityHighAlarm != value))
-				{
-					this.OnHumidityHighAlarmChanging(value);
-					this.SendPropertyChanging();
-					this._HumidityHighAlarm = value;
-					this.SendPropertyChanged("HumidityHighAlarm");
-					this.OnHumidityHighAlarmChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HumidityLowAlarm", DbType="Decimal(2,2)")]
-		public System.Nullable<decimal> HumidityLowAlarm
-		{
-			get
-			{
-				return this._HumidityLowAlarm;
-			}
-			set
-			{
-				if ((this._HumidityLowAlarm != value))
-				{
-					this.OnHumidityLowAlarmChanging(value);
-					this.SendPropertyChanging();
-					this._HumidityLowAlarm = value;
-					this.SendPropertyChanged("HumidityLowAlarm");
-					this.OnHumidityLowAlarmChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SignalAlarmValid", DbType="Bit")]
-		public System.Nullable<bool> SignalAlarmValid
-		{
-			get
-			{
-				return this._SignalAlarmValid;
-			}
-			set
-			{
-				if ((this._SignalAlarmValid != value))
-				{
-					this.OnSignalAlarmValidChanging(value);
-					this.SendPropertyChanging();
-					this._SignalAlarmValid = value;
-					this.SendPropertyChanged("SignalAlarmValid");
-					this.OnSignalAlarmValidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SignalHighAlarm", DbType="Int")]
-		public System.Nullable<int> SignalHighAlarm
-		{
-			get
-			{
-				return this._SignalHighAlarm;
-			}
-			set
-			{
-				if ((this._SignalHighAlarm != value))
-				{
-					this.OnSignalHighAlarmChanging(value);
-					this.SendPropertyChanging();
-					this._SignalHighAlarm = value;
-					this.SendPropertyChanged("SignalHighAlarm");
-					this.OnSignalHighAlarmChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SignalLowAlarm", DbType="Int")]
-		public System.Nullable<int> SignalLowAlarm
-		{
-			get
-			{
-				return this._SignalLowAlarm;
-			}
-			set
-			{
-				if ((this._SignalLowAlarm != value))
-				{
-					this.OnSignalLowAlarmChanging(value);
-					this.SendPropertyChanging();
-					this._SignalLowAlarm = value;
-					this.SendPropertyChanged("SignalLowAlarm");
-					this.OnSignalLowAlarmChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ElectricityAlarmValid", DbType="Bit")]
-		public System.Nullable<bool> ElectricityAlarmValid
-		{
-			get
-			{
-				return this._ElectricityAlarmValid;
-			}
-			set
-			{
-				if ((this._ElectricityAlarmValid != value))
-				{
-					this.OnElectricityAlarmValidChanging(value);
-					this.SendPropertyChanging();
-					this._ElectricityAlarmValid = value;
-					this.SendPropertyChanged("ElectricityAlarmValid");
-					this.OnElectricityAlarmValidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ElectricityHighAlarm", DbType="Int")]
-		public System.Nullable<int> ElectricityHighAlarm
-		{
-			get
-			{
-				return this._ElectricityHighAlarm;
-			}
-			set
-			{
-				if ((this._ElectricityHighAlarm != value))
-				{
-					this.OnElectricityHighAlarmChanging(value);
-					this.SendPropertyChanging();
-					this._ElectricityHighAlarm = value;
-					this.SendPropertyChanged("ElectricityHighAlarm");
-					this.OnElectricityHighAlarmChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ElectricityLowAlarm", DbType="Int")]
-		public System.Nullable<int> ElectricityLowAlarm
-		{
-			get
-			{
-				return this._ElectricityLowAlarm;
-			}
-			set
-			{
-				if ((this._ElectricityLowAlarm != value))
-				{
-					this.OnElectricityLowAlarmChanging(value);
-					this.SendPropertyChanging();
-					this._ElectricityLowAlarm = value;
-					this.SendPropertyChanged("ElectricityLowAlarm");
-					this.OnElectricityLowAlarmChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentModel", DbType="Int")]
-		public System.Nullable<int> CurrentModel
-		{
-			get
-			{
-				return this._CurrentModel;
-			}
-			set
-			{
-				if ((this._CurrentModel != value))
-				{
-					this.OnCurrentModelChanging(value);
-					this.SendPropertyChanging();
-					this._CurrentModel = value;
-					this.SendPropertyChanged("CurrentModel");
-					this.OnCurrentModelChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RealTimeParam", DbType="Int")]
-		public System.Nullable<int> RealTimeParam
-		{
-			get
-			{
-				return this._RealTimeParam;
-			}
-			set
-			{
-				if ((this._RealTimeParam != value))
-				{
-					this.OnRealTimeParamChanging(value);
-					this.SendPropertyChanging();
-					this._RealTimeParam = value;
-					this.SendPropertyChanged("RealTimeParam");
-					this.OnRealTimeParamChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullTimeParam1", DbType="Int")]
-		public System.Nullable<int> FullTimeParam1
-		{
-			get
-			{
-				return this._FullTimeParam1;
-			}
-			set
-			{
-				if ((this._FullTimeParam1 != value))
-				{
-					this.OnFullTimeParam1Changing(value);
-					this.SendPropertyChanging();
-					this._FullTimeParam1 = value;
-					this.SendPropertyChanged("FullTimeParam1");
-					this.OnFullTimeParam1Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullTimeParam2", DbType="Int")]
-		public System.Nullable<int> FullTimeParam2
-		{
-			get
-			{
-				return this._FullTimeParam2;
-			}
-			set
-			{
-				if ((this._FullTimeParam2 != value))
-				{
-					this.OnFullTimeParam2Changing(value);
-					this.SendPropertyChanging();
-					this._FullTimeParam2 = value;
-					this.SendPropertyChanged("FullTimeParam2");
-					this.OnFullTimeParam2Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OptimizeParam1", DbType="Int")]
-		public System.Nullable<int> OptimizeParam1
-		{
-			get
-			{
-				return this._OptimizeParam1;
-			}
-			set
-			{
-				if ((this._OptimizeParam1 != value))
-				{
-					this.OnOptimizeParam1Changing(value);
-					this.SendPropertyChanging();
-					this._OptimizeParam1 = value;
-					this.SendPropertyChanged("OptimizeParam1");
-					this.OnOptimizeParam1Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OptimizeParam2", DbType="Int")]
-		public System.Nullable<int> OptimizeParam2
-		{
-			get
-			{
-				return this._OptimizeParam2;
-			}
-			set
-			{
-				if ((this._OptimizeParam2 != value))
-				{
-					this.OnOptimizeParam2Changing(value);
-					this.SendPropertyChanging();
-					this._OptimizeParam2 = value;
-					this.SendPropertyChanged("OptimizeParam2");
-					this.OnOptimizeParam2Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OptimizeParam3", DbType="Int")]
-		public System.Nullable<int> OptimizeParam3
-		{
-			get
-			{
-				return this._OptimizeParam3;
-			}
-			set
-			{
-				if ((this._OptimizeParam3 != value))
-				{
-					this.OnOptimizeParam3Changing(value);
-					this.SendPropertyChanging();
-					this._OptimizeParam3 = value;
-					this.SendPropertyChanged("OptimizeParam3");
-					this.OnOptimizeParam3Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsNew", DbType="Bit NOT NULL")]
-		public bool IsNew
-		{
-			get
-			{
-				return this._IsNew;
-			}
-			set
-			{
-				if ((this._IsNew != value))
-				{
-					this.OnIsNewChanging(value);
-					this.SendPropertyChanging();
-					this._IsNew = value;
-					this.SendPropertyChanged("IsNew");
-					this.OnIsNewChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DeviceInfo_DeviceAlarm", Storage="_DeviceAlarms", ThisKey="ID", OtherKey="DeviceID")]
-		public EntitySet<DeviceAlarm> DeviceAlarms
-		{
-			get
-			{
-				return this._DeviceAlarms;
-			}
-			set
-			{
-				this._DeviceAlarms.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DeviceInfo_DeviceRealTime", Storage="_DeviceRealTimes", ThisKey="ID", OtherKey="DeviceID")]
-		public EntitySet<DeviceRealTime> DeviceRealTimes
-		{
-			get
-			{
-				return this._DeviceRealTimes;
-			}
-			set
-			{
-				this._DeviceRealTimes.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DeviceInfo_UserEvent", Storage="_UserEvents", ThisKey="ID", OtherKey="DeviceID")]
-		public EntitySet<UserEvent> UserEvents
-		{
-			get
-			{
-				return this._UserEvents;
-			}
-			set
-			{
-				this._UserEvents.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DeviceTree_DeviceInfo", Storage="_DeviceTree", ThisKey="ManageAreaID", OtherKey="ID", IsForeignKey=true)]
-		public DeviceTree DeviceTree
-		{
-			get
-			{
-				return this._DeviceTree.Entity;
-			}
-			set
-			{
-				DeviceTree previousValue = this._DeviceTree.Entity;
-				if (((previousValue != value) 
-							|| (this._DeviceTree.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DeviceTree.Entity = null;
-						previousValue.DeviceInfos.Remove(this);
-					}
-					this._DeviceTree.Entity = value;
-					if ((value != null))
-					{
-						value.DeviceInfos.Add(this);
-						this._ManageAreaID = value.ID;
-					}
-					else
-					{
-						this._ManageAreaID = default(Nullable<System.Guid>);
-					}
-					this.SendPropertyChanged("DeviceTree");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MaintenancePeople_DeviceInfo", Storage="_MaintenancePeople", ThisKey="MaintenancePeopleID", OtherKey="ID", IsForeignKey=true)]
-		public MaintenancePeople MaintenancePeople
-		{
-			get
-			{
-				return this._MaintenancePeople.Entity;
-			}
-			set
-			{
-				MaintenancePeople previousValue = this._MaintenancePeople.Entity;
-				if (((previousValue != value) 
-							|| (this._MaintenancePeople.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MaintenancePeople.Entity = null;
-						previousValue.DeviceInfos.Remove(this);
-					}
-					this._MaintenancePeople.Entity = value;
-					if ((value != null))
-					{
-						value.DeviceInfos.Add(this);
-						this._MaintenancePeopleID = value.ID;
-					}
-					else
-					{
-						this._MaintenancePeopleID = default(Nullable<System.Guid>);
-					}
-					this.SendPropertyChanged("MaintenancePeople");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_DeviceAlarms(DeviceAlarm entity)
-		{
-			this.SendPropertyChanging();
-			entity.DeviceInfo = this;
-		}
-		
-		private void detach_DeviceAlarms(DeviceAlarm entity)
-		{
-			this.SendPropertyChanging();
-			entity.DeviceInfo = null;
-		}
-		
-		private void attach_DeviceRealTimes(DeviceRealTime entity)
-		{
-			this.SendPropertyChanging();
-			entity.DeviceInfo = this;
-		}
-		
-		private void detach_DeviceRealTimes(DeviceRealTime entity)
-		{
-			this.SendPropertyChanging();
-			entity.DeviceInfo = null;
-		}
-		
-		private void attach_UserEvents(UserEvent entity)
-		{
-			this.SendPropertyChanging();
-			entity.DeviceInfo = this;
-		}
-		
-		private void detach_UserEvents(UserEvent entity)
-		{
-			this.SendPropertyChanging();
-			entity.DeviceInfo = null;
 		}
 	}
 	
@@ -4913,6 +3675,1290 @@ namespace DataAccess
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DeviceInfo")]
+	public partial class DeviceInfo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ID;
+		
+		private string _DeviceNo;
+		
+		private string _DeviceSN;
+		
+		private string _HardType;
+		
+		private System.Nullable<System.DateTime> _ProductDate;
+		
+		private string _DeviceMAC;
+		
+		private string _SIMNo;
+		
+		private System.Nullable<System.Guid> _ManageAreaID;
+		
+		private System.Nullable<System.Guid> _MaintenancePeopleID;
+		
+		private string _InstallPlace;
+		
+		private System.Nullable<decimal> _Longitude;
+		
+		private System.Nullable<decimal> _Latitude;
+		
+		private System.Nullable<decimal> _High;
+		
+		private string _Comment;
+		
+		private System.Nullable<int> _Windage;
+		
+		private string _HardwareVersion;
+		
+		private string _SoftWareVersion;
+		
+		private System.Nullable<int> _LCDScreenDisplayType;
+		
+		private System.Nullable<bool> _UrgencyBtnEnable;
+		
+		private System.Nullable<bool> _InforBtnEnable;
+		
+		private System.Nullable<bool> _Temperature1AlarmValid;
+		
+		private System.Nullable<decimal> _Temperature1HighAlarm;
+		
+		private System.Nullable<decimal> _Temperature1LowAlarm;
+		
+		private System.Nullable<bool> _Temperature2AlarmValid;
+		
+		private System.Nullable<decimal> _Temperature2HighAlarm;
+		
+		private System.Nullable<decimal> _Temperature2LowAlarm;
+		
+		private System.Nullable<bool> _HumidityAlarmValid;
+		
+		private System.Nullable<decimal> _HumidityHighAlarm;
+		
+		private System.Nullable<decimal> _HumidityLowAlarm;
+		
+		private System.Nullable<bool> _SignalAlarmValid;
+		
+		private System.Nullable<int> _SignalHighAlarm;
+		
+		private System.Nullable<int> _SignalLowAlarm;
+		
+		private System.Nullable<bool> _ElectricityAlarmValid;
+		
+		private System.Nullable<int> _ElectricityHighAlarm;
+		
+		private System.Nullable<int> _ElectricityLowAlarm;
+		
+		private System.Nullable<int> _CurrentModel;
+		
+		private System.Nullable<int> _RealTimeParam;
+		
+		private System.Nullable<int> _FullTimeParam1;
+		
+		private System.Nullable<int> _FullTimeParam2;
+		
+		private System.Nullable<int> _OptimizeParam1;
+		
+		private System.Nullable<int> _OptimizeParam2;
+		
+		private System.Nullable<int> _OptimizeParam3;
+		
+		private bool _IsNew;
+		
+		private string _Broadcast;
+		
+		private string _Weather;
+		
+		private EntitySet<DeviceAlarm> _DeviceAlarms;
+		
+		private EntitySet<DeviceRealTime> _DeviceRealTimes;
+		
+		private EntitySet<UserEvent> _UserEvents;
+		
+		private EntityRef<MaintenancePeople> _MaintenancePeople;
+		
+		private EntityRef<DeviceTree> _DeviceTree;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(System.Guid value);
+    partial void OnIDChanged();
+    partial void OnDeviceNoChanging(string value);
+    partial void OnDeviceNoChanged();
+    partial void OnDeviceSNChanging(string value);
+    partial void OnDeviceSNChanged();
+    partial void OnHardTypeChanging(string value);
+    partial void OnHardTypeChanged();
+    partial void OnProductDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnProductDateChanged();
+    partial void OnDeviceMACChanging(string value);
+    partial void OnDeviceMACChanged();
+    partial void OnSIMNoChanging(string value);
+    partial void OnSIMNoChanged();
+    partial void OnManageAreaIDChanging(System.Nullable<System.Guid> value);
+    partial void OnManageAreaIDChanged();
+    partial void OnMaintenancePeopleIDChanging(System.Nullable<System.Guid> value);
+    partial void OnMaintenancePeopleIDChanged();
+    partial void OnInstallPlaceChanging(string value);
+    partial void OnInstallPlaceChanged();
+    partial void OnLongitudeChanging(System.Nullable<decimal> value);
+    partial void OnLongitudeChanged();
+    partial void OnLatitudeChanging(System.Nullable<decimal> value);
+    partial void OnLatitudeChanged();
+    partial void OnHighChanging(System.Nullable<decimal> value);
+    partial void OnHighChanged();
+    partial void OnCommentChanging(string value);
+    partial void OnCommentChanged();
+    partial void OnWindageChanging(System.Nullable<int> value);
+    partial void OnWindageChanged();
+    partial void OnHardwareVersionChanging(string value);
+    partial void OnHardwareVersionChanged();
+    partial void OnSoftWareVersionChanging(string value);
+    partial void OnSoftWareVersionChanged();
+    partial void OnLCDScreenDisplayTypeChanging(System.Nullable<int> value);
+    partial void OnLCDScreenDisplayTypeChanged();
+    partial void OnUrgencyBtnEnableChanging(System.Nullable<bool> value);
+    partial void OnUrgencyBtnEnableChanged();
+    partial void OnInforBtnEnableChanging(System.Nullable<bool> value);
+    partial void OnInforBtnEnableChanged();
+    partial void OnTemperature1AlarmValidChanging(System.Nullable<bool> value);
+    partial void OnTemperature1AlarmValidChanged();
+    partial void OnTemperature1HighAlarmChanging(System.Nullable<decimal> value);
+    partial void OnTemperature1HighAlarmChanged();
+    partial void OnTemperature1LowAlarmChanging(System.Nullable<decimal> value);
+    partial void OnTemperature1LowAlarmChanged();
+    partial void OnTemperature2AlarmValidChanging(System.Nullable<bool> value);
+    partial void OnTemperature2AlarmValidChanged();
+    partial void OnTemperature2HighAlarmChanging(System.Nullable<decimal> value);
+    partial void OnTemperature2HighAlarmChanged();
+    partial void OnTemperature2LowAlarmChanging(System.Nullable<decimal> value);
+    partial void OnTemperature2LowAlarmChanged();
+    partial void OnHumidityAlarmValidChanging(System.Nullable<bool> value);
+    partial void OnHumidityAlarmValidChanged();
+    partial void OnHumidityHighAlarmChanging(System.Nullable<decimal> value);
+    partial void OnHumidityHighAlarmChanged();
+    partial void OnHumidityLowAlarmChanging(System.Nullable<decimal> value);
+    partial void OnHumidityLowAlarmChanged();
+    partial void OnSignalAlarmValidChanging(System.Nullable<bool> value);
+    partial void OnSignalAlarmValidChanged();
+    partial void OnSignalHighAlarmChanging(System.Nullable<int> value);
+    partial void OnSignalHighAlarmChanged();
+    partial void OnSignalLowAlarmChanging(System.Nullable<int> value);
+    partial void OnSignalLowAlarmChanged();
+    partial void OnElectricityAlarmValidChanging(System.Nullable<bool> value);
+    partial void OnElectricityAlarmValidChanged();
+    partial void OnElectricityHighAlarmChanging(System.Nullable<int> value);
+    partial void OnElectricityHighAlarmChanged();
+    partial void OnElectricityLowAlarmChanging(System.Nullable<int> value);
+    partial void OnElectricityLowAlarmChanged();
+    partial void OnCurrentModelChanging(System.Nullable<int> value);
+    partial void OnCurrentModelChanged();
+    partial void OnRealTimeParamChanging(System.Nullable<int> value);
+    partial void OnRealTimeParamChanged();
+    partial void OnFullTimeParam1Changing(System.Nullable<int> value);
+    partial void OnFullTimeParam1Changed();
+    partial void OnFullTimeParam2Changing(System.Nullable<int> value);
+    partial void OnFullTimeParam2Changed();
+    partial void OnOptimizeParam1Changing(System.Nullable<int> value);
+    partial void OnOptimizeParam1Changed();
+    partial void OnOptimizeParam2Changing(System.Nullable<int> value);
+    partial void OnOptimizeParam2Changed();
+    partial void OnOptimizeParam3Changing(System.Nullable<int> value);
+    partial void OnOptimizeParam3Changed();
+    partial void OnIsNewChanging(bool value);
+    partial void OnIsNewChanged();
+    partial void OnBroadcastChanging(string value);
+    partial void OnBroadcastChanged();
+    partial void OnWeatherChanging(string value);
+    partial void OnWeatherChanged();
+    #endregion
+		
+		public DeviceInfo()
+		{
+			this._DeviceAlarms = new EntitySet<DeviceAlarm>(new Action<DeviceAlarm>(this.attach_DeviceAlarms), new Action<DeviceAlarm>(this.detach_DeviceAlarms));
+			this._DeviceRealTimes = new EntitySet<DeviceRealTime>(new Action<DeviceRealTime>(this.attach_DeviceRealTimes), new Action<DeviceRealTime>(this.detach_DeviceRealTimes));
+			this._UserEvents = new EntitySet<UserEvent>(new Action<UserEvent>(this.attach_UserEvents), new Action<UserEvent>(this.detach_UserEvents));
+			this._MaintenancePeople = default(EntityRef<MaintenancePeople>);
+			this._DeviceTree = default(EntityRef<DeviceTree>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceNo", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string DeviceNo
+		{
+			get
+			{
+				return this._DeviceNo;
+			}
+			set
+			{
+				if ((this._DeviceNo != value))
+				{
+					this.OnDeviceNoChanging(value);
+					this.SendPropertyChanging();
+					this._DeviceNo = value;
+					this.SendPropertyChanged("DeviceNo");
+					this.OnDeviceNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceSN", DbType="NVarChar(50)")]
+		public string DeviceSN
+		{
+			get
+			{
+				return this._DeviceSN;
+			}
+			set
+			{
+				if ((this._DeviceSN != value))
+				{
+					this.OnDeviceSNChanging(value);
+					this.SendPropertyChanging();
+					this._DeviceSN = value;
+					this.SendPropertyChanged("DeviceSN");
+					this.OnDeviceSNChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HardType", DbType="NVarChar(20)")]
+		public string HardType
+		{
+			get
+			{
+				return this._HardType;
+			}
+			set
+			{
+				if ((this._HardType != value))
+				{
+					this.OnHardTypeChanging(value);
+					this.SendPropertyChanging();
+					this._HardType = value;
+					this.SendPropertyChanged("HardType");
+					this.OnHardTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ProductDate
+		{
+			get
+			{
+				return this._ProductDate;
+			}
+			set
+			{
+				if ((this._ProductDate != value))
+				{
+					this.OnProductDateChanging(value);
+					this.SendPropertyChanging();
+					this._ProductDate = value;
+					this.SendPropertyChanged("ProductDate");
+					this.OnProductDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceMAC", DbType="NVarChar(20)")]
+		public string DeviceMAC
+		{
+			get
+			{
+				return this._DeviceMAC;
+			}
+			set
+			{
+				if ((this._DeviceMAC != value))
+				{
+					this.OnDeviceMACChanging(value);
+					this.SendPropertyChanging();
+					this._DeviceMAC = value;
+					this.SendPropertyChanged("DeviceMAC");
+					this.OnDeviceMACChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SIMNo", DbType="NVarChar(20)")]
+		public string SIMNo
+		{
+			get
+			{
+				return this._SIMNo;
+			}
+			set
+			{
+				if ((this._SIMNo != value))
+				{
+					this.OnSIMNoChanging(value);
+					this.SendPropertyChanging();
+					this._SIMNo = value;
+					this.SendPropertyChanged("SIMNo");
+					this.OnSIMNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManageAreaID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> ManageAreaID
+		{
+			get
+			{
+				return this._ManageAreaID;
+			}
+			set
+			{
+				if ((this._ManageAreaID != value))
+				{
+					if (this._DeviceTree.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnManageAreaIDChanging(value);
+					this.SendPropertyChanging();
+					this._ManageAreaID = value;
+					this.SendPropertyChanged("ManageAreaID");
+					this.OnManageAreaIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaintenancePeopleID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> MaintenancePeopleID
+		{
+			get
+			{
+				return this._MaintenancePeopleID;
+			}
+			set
+			{
+				if ((this._MaintenancePeopleID != value))
+				{
+					if (this._MaintenancePeople.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMaintenancePeopleIDChanging(value);
+					this.SendPropertyChanging();
+					this._MaintenancePeopleID = value;
+					this.SendPropertyChanged("MaintenancePeopleID");
+					this.OnMaintenancePeopleIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstallPlace", DbType="NVarChar(20)")]
+		public string InstallPlace
+		{
+			get
+			{
+				return this._InstallPlace;
+			}
+			set
+			{
+				if ((this._InstallPlace != value))
+				{
+					this.OnInstallPlaceChanging(value);
+					this.SendPropertyChanging();
+					this._InstallPlace = value;
+					this.SendPropertyChanged("InstallPlace");
+					this.OnInstallPlaceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Longitude", DbType="Decimal(20,15)")]
+		public System.Nullable<decimal> Longitude
+		{
+			get
+			{
+				return this._Longitude;
+			}
+			set
+			{
+				if ((this._Longitude != value))
+				{
+					this.OnLongitudeChanging(value);
+					this.SendPropertyChanging();
+					this._Longitude = value;
+					this.SendPropertyChanged("Longitude");
+					this.OnLongitudeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Latitude", DbType="Decimal(20,15)")]
+		public System.Nullable<decimal> Latitude
+		{
+			get
+			{
+				return this._Latitude;
+			}
+			set
+			{
+				if ((this._Latitude != value))
+				{
+					this.OnLatitudeChanging(value);
+					this.SendPropertyChanging();
+					this._Latitude = value;
+					this.SendPropertyChanged("Latitude");
+					this.OnLatitudeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_High", DbType="Decimal(20,4)")]
+		public System.Nullable<decimal> High
+		{
+			get
+			{
+				return this._High;
+			}
+			set
+			{
+				if ((this._High != value))
+				{
+					this.OnHighChanging(value);
+					this.SendPropertyChanging();
+					this._High = value;
+					this.SendPropertyChanged("High");
+					this.OnHighChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comment", DbType="VarChar(500)")]
+		public string Comment
+		{
+			get
+			{
+				return this._Comment;
+			}
+			set
+			{
+				if ((this._Comment != value))
+				{
+					this.OnCommentChanging(value);
+					this.SendPropertyChanging();
+					this._Comment = value;
+					this.SendPropertyChanged("Comment");
+					this.OnCommentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Windage", DbType="Int")]
+		public System.Nullable<int> Windage
+		{
+			get
+			{
+				return this._Windage;
+			}
+			set
+			{
+				if ((this._Windage != value))
+				{
+					this.OnWindageChanging(value);
+					this.SendPropertyChanging();
+					this._Windage = value;
+					this.SendPropertyChanged("Windage");
+					this.OnWindageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HardwareVersion", DbType="NVarChar(10)")]
+		public string HardwareVersion
+		{
+			get
+			{
+				return this._HardwareVersion;
+			}
+			set
+			{
+				if ((this._HardwareVersion != value))
+				{
+					this.OnHardwareVersionChanging(value);
+					this.SendPropertyChanging();
+					this._HardwareVersion = value;
+					this.SendPropertyChanged("HardwareVersion");
+					this.OnHardwareVersionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoftWareVersion", DbType="NVarChar(10)")]
+		public string SoftWareVersion
+		{
+			get
+			{
+				return this._SoftWareVersion;
+			}
+			set
+			{
+				if ((this._SoftWareVersion != value))
+				{
+					this.OnSoftWareVersionChanging(value);
+					this.SendPropertyChanging();
+					this._SoftWareVersion = value;
+					this.SendPropertyChanged("SoftWareVersion");
+					this.OnSoftWareVersionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LCDScreenDisplayType", DbType="Int")]
+		public System.Nullable<int> LCDScreenDisplayType
+		{
+			get
+			{
+				return this._LCDScreenDisplayType;
+			}
+			set
+			{
+				if ((this._LCDScreenDisplayType != value))
+				{
+					this.OnLCDScreenDisplayTypeChanging(value);
+					this.SendPropertyChanging();
+					this._LCDScreenDisplayType = value;
+					this.SendPropertyChanged("LCDScreenDisplayType");
+					this.OnLCDScreenDisplayTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UrgencyBtnEnable", DbType="Bit")]
+		public System.Nullable<bool> UrgencyBtnEnable
+		{
+			get
+			{
+				return this._UrgencyBtnEnable;
+			}
+			set
+			{
+				if ((this._UrgencyBtnEnable != value))
+				{
+					this.OnUrgencyBtnEnableChanging(value);
+					this.SendPropertyChanging();
+					this._UrgencyBtnEnable = value;
+					this.SendPropertyChanged("UrgencyBtnEnable");
+					this.OnUrgencyBtnEnableChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InforBtnEnable", DbType="Bit")]
+		public System.Nullable<bool> InforBtnEnable
+		{
+			get
+			{
+				return this._InforBtnEnable;
+			}
+			set
+			{
+				if ((this._InforBtnEnable != value))
+				{
+					this.OnInforBtnEnableChanging(value);
+					this.SendPropertyChanging();
+					this._InforBtnEnable = value;
+					this.SendPropertyChanged("InforBtnEnable");
+					this.OnInforBtnEnableChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Temperature1AlarmValid", DbType="Bit")]
+		public System.Nullable<bool> Temperature1AlarmValid
+		{
+			get
+			{
+				return this._Temperature1AlarmValid;
+			}
+			set
+			{
+				if ((this._Temperature1AlarmValid != value))
+				{
+					this.OnTemperature1AlarmValidChanging(value);
+					this.SendPropertyChanging();
+					this._Temperature1AlarmValid = value;
+					this.SendPropertyChanged("Temperature1AlarmValid");
+					this.OnTemperature1AlarmValidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Temperature1HighAlarm", DbType="Decimal(5,2)")]
+		public System.Nullable<decimal> Temperature1HighAlarm
+		{
+			get
+			{
+				return this._Temperature1HighAlarm;
+			}
+			set
+			{
+				if ((this._Temperature1HighAlarm != value))
+				{
+					this.OnTemperature1HighAlarmChanging(value);
+					this.SendPropertyChanging();
+					this._Temperature1HighAlarm = value;
+					this.SendPropertyChanged("Temperature1HighAlarm");
+					this.OnTemperature1HighAlarmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Temperature1LowAlarm", DbType="Decimal(5,2)")]
+		public System.Nullable<decimal> Temperature1LowAlarm
+		{
+			get
+			{
+				return this._Temperature1LowAlarm;
+			}
+			set
+			{
+				if ((this._Temperature1LowAlarm != value))
+				{
+					this.OnTemperature1LowAlarmChanging(value);
+					this.SendPropertyChanging();
+					this._Temperature1LowAlarm = value;
+					this.SendPropertyChanged("Temperature1LowAlarm");
+					this.OnTemperature1LowAlarmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Temperature2AlarmValid", DbType="Bit")]
+		public System.Nullable<bool> Temperature2AlarmValid
+		{
+			get
+			{
+				return this._Temperature2AlarmValid;
+			}
+			set
+			{
+				if ((this._Temperature2AlarmValid != value))
+				{
+					this.OnTemperature2AlarmValidChanging(value);
+					this.SendPropertyChanging();
+					this._Temperature2AlarmValid = value;
+					this.SendPropertyChanged("Temperature2AlarmValid");
+					this.OnTemperature2AlarmValidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Temperature2HighAlarm", DbType="Decimal(5,2)")]
+		public System.Nullable<decimal> Temperature2HighAlarm
+		{
+			get
+			{
+				return this._Temperature2HighAlarm;
+			}
+			set
+			{
+				if ((this._Temperature2HighAlarm != value))
+				{
+					this.OnTemperature2HighAlarmChanging(value);
+					this.SendPropertyChanging();
+					this._Temperature2HighAlarm = value;
+					this.SendPropertyChanged("Temperature2HighAlarm");
+					this.OnTemperature2HighAlarmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Temperature2LowAlarm", DbType="Decimal(5,2)")]
+		public System.Nullable<decimal> Temperature2LowAlarm
+		{
+			get
+			{
+				return this._Temperature2LowAlarm;
+			}
+			set
+			{
+				if ((this._Temperature2LowAlarm != value))
+				{
+					this.OnTemperature2LowAlarmChanging(value);
+					this.SendPropertyChanging();
+					this._Temperature2LowAlarm = value;
+					this.SendPropertyChanged("Temperature2LowAlarm");
+					this.OnTemperature2LowAlarmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HumidityAlarmValid", DbType="Bit")]
+		public System.Nullable<bool> HumidityAlarmValid
+		{
+			get
+			{
+				return this._HumidityAlarmValid;
+			}
+			set
+			{
+				if ((this._HumidityAlarmValid != value))
+				{
+					this.OnHumidityAlarmValidChanging(value);
+					this.SendPropertyChanging();
+					this._HumidityAlarmValid = value;
+					this.SendPropertyChanged("HumidityAlarmValid");
+					this.OnHumidityAlarmValidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HumidityHighAlarm", DbType="Decimal(2,2)")]
+		public System.Nullable<decimal> HumidityHighAlarm
+		{
+			get
+			{
+				return this._HumidityHighAlarm;
+			}
+			set
+			{
+				if ((this._HumidityHighAlarm != value))
+				{
+					this.OnHumidityHighAlarmChanging(value);
+					this.SendPropertyChanging();
+					this._HumidityHighAlarm = value;
+					this.SendPropertyChanged("HumidityHighAlarm");
+					this.OnHumidityHighAlarmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HumidityLowAlarm", DbType="Decimal(2,2)")]
+		public System.Nullable<decimal> HumidityLowAlarm
+		{
+			get
+			{
+				return this._HumidityLowAlarm;
+			}
+			set
+			{
+				if ((this._HumidityLowAlarm != value))
+				{
+					this.OnHumidityLowAlarmChanging(value);
+					this.SendPropertyChanging();
+					this._HumidityLowAlarm = value;
+					this.SendPropertyChanged("HumidityLowAlarm");
+					this.OnHumidityLowAlarmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SignalAlarmValid", DbType="Bit")]
+		public System.Nullable<bool> SignalAlarmValid
+		{
+			get
+			{
+				return this._SignalAlarmValid;
+			}
+			set
+			{
+				if ((this._SignalAlarmValid != value))
+				{
+					this.OnSignalAlarmValidChanging(value);
+					this.SendPropertyChanging();
+					this._SignalAlarmValid = value;
+					this.SendPropertyChanged("SignalAlarmValid");
+					this.OnSignalAlarmValidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SignalHighAlarm", DbType="Int")]
+		public System.Nullable<int> SignalHighAlarm
+		{
+			get
+			{
+				return this._SignalHighAlarm;
+			}
+			set
+			{
+				if ((this._SignalHighAlarm != value))
+				{
+					this.OnSignalHighAlarmChanging(value);
+					this.SendPropertyChanging();
+					this._SignalHighAlarm = value;
+					this.SendPropertyChanged("SignalHighAlarm");
+					this.OnSignalHighAlarmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SignalLowAlarm", DbType="Int")]
+		public System.Nullable<int> SignalLowAlarm
+		{
+			get
+			{
+				return this._SignalLowAlarm;
+			}
+			set
+			{
+				if ((this._SignalLowAlarm != value))
+				{
+					this.OnSignalLowAlarmChanging(value);
+					this.SendPropertyChanging();
+					this._SignalLowAlarm = value;
+					this.SendPropertyChanged("SignalLowAlarm");
+					this.OnSignalLowAlarmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ElectricityAlarmValid", DbType="Bit")]
+		public System.Nullable<bool> ElectricityAlarmValid
+		{
+			get
+			{
+				return this._ElectricityAlarmValid;
+			}
+			set
+			{
+				if ((this._ElectricityAlarmValid != value))
+				{
+					this.OnElectricityAlarmValidChanging(value);
+					this.SendPropertyChanging();
+					this._ElectricityAlarmValid = value;
+					this.SendPropertyChanged("ElectricityAlarmValid");
+					this.OnElectricityAlarmValidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ElectricityHighAlarm", DbType="Int")]
+		public System.Nullable<int> ElectricityHighAlarm
+		{
+			get
+			{
+				return this._ElectricityHighAlarm;
+			}
+			set
+			{
+				if ((this._ElectricityHighAlarm != value))
+				{
+					this.OnElectricityHighAlarmChanging(value);
+					this.SendPropertyChanging();
+					this._ElectricityHighAlarm = value;
+					this.SendPropertyChanged("ElectricityHighAlarm");
+					this.OnElectricityHighAlarmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ElectricityLowAlarm", DbType="Int")]
+		public System.Nullable<int> ElectricityLowAlarm
+		{
+			get
+			{
+				return this._ElectricityLowAlarm;
+			}
+			set
+			{
+				if ((this._ElectricityLowAlarm != value))
+				{
+					this.OnElectricityLowAlarmChanging(value);
+					this.SendPropertyChanging();
+					this._ElectricityLowAlarm = value;
+					this.SendPropertyChanged("ElectricityLowAlarm");
+					this.OnElectricityLowAlarmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentModel", DbType="Int")]
+		public System.Nullable<int> CurrentModel
+		{
+			get
+			{
+				return this._CurrentModel;
+			}
+			set
+			{
+				if ((this._CurrentModel != value))
+				{
+					this.OnCurrentModelChanging(value);
+					this.SendPropertyChanging();
+					this._CurrentModel = value;
+					this.SendPropertyChanged("CurrentModel");
+					this.OnCurrentModelChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RealTimeParam", DbType="Int")]
+		public System.Nullable<int> RealTimeParam
+		{
+			get
+			{
+				return this._RealTimeParam;
+			}
+			set
+			{
+				if ((this._RealTimeParam != value))
+				{
+					this.OnRealTimeParamChanging(value);
+					this.SendPropertyChanging();
+					this._RealTimeParam = value;
+					this.SendPropertyChanged("RealTimeParam");
+					this.OnRealTimeParamChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullTimeParam1", DbType="Int")]
+		public System.Nullable<int> FullTimeParam1
+		{
+			get
+			{
+				return this._FullTimeParam1;
+			}
+			set
+			{
+				if ((this._FullTimeParam1 != value))
+				{
+					this.OnFullTimeParam1Changing(value);
+					this.SendPropertyChanging();
+					this._FullTimeParam1 = value;
+					this.SendPropertyChanged("FullTimeParam1");
+					this.OnFullTimeParam1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullTimeParam2", DbType="Int")]
+		public System.Nullable<int> FullTimeParam2
+		{
+			get
+			{
+				return this._FullTimeParam2;
+			}
+			set
+			{
+				if ((this._FullTimeParam2 != value))
+				{
+					this.OnFullTimeParam2Changing(value);
+					this.SendPropertyChanging();
+					this._FullTimeParam2 = value;
+					this.SendPropertyChanged("FullTimeParam2");
+					this.OnFullTimeParam2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OptimizeParam1", DbType="Int")]
+		public System.Nullable<int> OptimizeParam1
+		{
+			get
+			{
+				return this._OptimizeParam1;
+			}
+			set
+			{
+				if ((this._OptimizeParam1 != value))
+				{
+					this.OnOptimizeParam1Changing(value);
+					this.SendPropertyChanging();
+					this._OptimizeParam1 = value;
+					this.SendPropertyChanged("OptimizeParam1");
+					this.OnOptimizeParam1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OptimizeParam2", DbType="Int")]
+		public System.Nullable<int> OptimizeParam2
+		{
+			get
+			{
+				return this._OptimizeParam2;
+			}
+			set
+			{
+				if ((this._OptimizeParam2 != value))
+				{
+					this.OnOptimizeParam2Changing(value);
+					this.SendPropertyChanging();
+					this._OptimizeParam2 = value;
+					this.SendPropertyChanged("OptimizeParam2");
+					this.OnOptimizeParam2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OptimizeParam3", DbType="Int")]
+		public System.Nullable<int> OptimizeParam3
+		{
+			get
+			{
+				return this._OptimizeParam3;
+			}
+			set
+			{
+				if ((this._OptimizeParam3 != value))
+				{
+					this.OnOptimizeParam3Changing(value);
+					this.SendPropertyChanging();
+					this._OptimizeParam3 = value;
+					this.SendPropertyChanged("OptimizeParam3");
+					this.OnOptimizeParam3Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsNew", DbType="Bit NOT NULL")]
+		public bool IsNew
+		{
+			get
+			{
+				return this._IsNew;
+			}
+			set
+			{
+				if ((this._IsNew != value))
+				{
+					this.OnIsNewChanging(value);
+					this.SendPropertyChanging();
+					this._IsNew = value;
+					this.SendPropertyChanged("IsNew");
+					this.OnIsNewChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Broadcast", DbType="NVarChar(100)")]
+		public string Broadcast
+		{
+			get
+			{
+				return this._Broadcast;
+			}
+			set
+			{
+				if ((this._Broadcast != value))
+				{
+					this.OnBroadcastChanging(value);
+					this.SendPropertyChanging();
+					this._Broadcast = value;
+					this.SendPropertyChanged("Broadcast");
+					this.OnBroadcastChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weather", DbType="NVarChar(100)")]
+		public string Weather
+		{
+			get
+			{
+				return this._Weather;
+			}
+			set
+			{
+				if ((this._Weather != value))
+				{
+					this.OnWeatherChanging(value);
+					this.SendPropertyChanging();
+					this._Weather = value;
+					this.SendPropertyChanged("Weather");
+					this.OnWeatherChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DeviceInfo_DeviceAlarm", Storage="_DeviceAlarms", ThisKey="ID", OtherKey="DeviceID")]
+		public EntitySet<DeviceAlarm> DeviceAlarms
+		{
+			get
+			{
+				return this._DeviceAlarms;
+			}
+			set
+			{
+				this._DeviceAlarms.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DeviceInfo_DeviceRealTime", Storage="_DeviceRealTimes", ThisKey="ID", OtherKey="DeviceID")]
+		public EntitySet<DeviceRealTime> DeviceRealTimes
+		{
+			get
+			{
+				return this._DeviceRealTimes;
+			}
+			set
+			{
+				this._DeviceRealTimes.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DeviceInfo_UserEvent", Storage="_UserEvents", ThisKey="ID", OtherKey="DeviceID")]
+		public EntitySet<UserEvent> UserEvents
+		{
+			get
+			{
+				return this._UserEvents;
+			}
+			set
+			{
+				this._UserEvents.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MaintenancePeople_DeviceInfo", Storage="_MaintenancePeople", ThisKey="MaintenancePeopleID", OtherKey="ID", IsForeignKey=true)]
+		public MaintenancePeople MaintenancePeople
+		{
+			get
+			{
+				return this._MaintenancePeople.Entity;
+			}
+			set
+			{
+				MaintenancePeople previousValue = this._MaintenancePeople.Entity;
+				if (((previousValue != value) 
+							|| (this._MaintenancePeople.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MaintenancePeople.Entity = null;
+						previousValue.DeviceInfos.Remove(this);
+					}
+					this._MaintenancePeople.Entity = value;
+					if ((value != null))
+					{
+						value.DeviceInfos.Add(this);
+						this._MaintenancePeopleID = value.ID;
+					}
+					else
+					{
+						this._MaintenancePeopleID = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("MaintenancePeople");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DeviceTree_DeviceInfo", Storage="_DeviceTree", ThisKey="ManageAreaID", OtherKey="ID", IsForeignKey=true)]
+		public DeviceTree DeviceTree
+		{
+			get
+			{
+				return this._DeviceTree.Entity;
+			}
+			set
+			{
+				DeviceTree previousValue = this._DeviceTree.Entity;
+				if (((previousValue != value) 
+							|| (this._DeviceTree.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DeviceTree.Entity = null;
+						previousValue.DeviceInfos.Remove(this);
+					}
+					this._DeviceTree.Entity = value;
+					if ((value != null))
+					{
+						value.DeviceInfos.Add(this);
+						this._ManageAreaID = value.ID;
+					}
+					else
+					{
+						this._ManageAreaID = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("DeviceTree");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_DeviceAlarms(DeviceAlarm entity)
+		{
+			this.SendPropertyChanging();
+			entity.DeviceInfo = this;
+		}
+		
+		private void detach_DeviceAlarms(DeviceAlarm entity)
+		{
+			this.SendPropertyChanging();
+			entity.DeviceInfo = null;
+		}
+		
+		private void attach_DeviceRealTimes(DeviceRealTime entity)
+		{
+			this.SendPropertyChanging();
+			entity.DeviceInfo = this;
+		}
+		
+		private void detach_DeviceRealTimes(DeviceRealTime entity)
+		{
+			this.SendPropertyChanging();
+			entity.DeviceInfo = null;
+		}
+		
+		private void attach_UserEvents(UserEvent entity)
+		{
+			this.SendPropertyChanging();
+			entity.DeviceInfo = this;
+		}
+		
+		private void detach_UserEvents(UserEvent entity)
+		{
+			this.SendPropertyChanging();
+			entity.DeviceInfo = null;
 		}
 	}
 }

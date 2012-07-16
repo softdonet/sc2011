@@ -61,16 +61,15 @@ namespace Scada.BLL.Implement
             if (dtInfo.Rows.Count == 0) { return result; }
             foreach (DataRow dr in dtInfo.Rows)
             {
-                result.Add(new DeviceRealTime
-                {
-                    DeviceID = new Guid(dr["DeviceID"].ToString()),
-                    InstallPlace = dr["InstallPlace"].ToString(),
-                    UpdateTime = Convert.ToDateTime(dr["UpdateTime"]),
-                    Temperature1 = Convert.ToDecimal(dr["Temperature1"]),
-                    Electricity = Convert.ToInt32(dr["Electricity"]),
-                    Signal = Convert.ToInt32(dr["Signal"]),
-                    Status = Convert.ToInt32(dr["Status"])
-                });
+                DeviceRealTime drt = new DeviceRealTime();
+                drt.DeviceID = new Guid(dr["DeviceID"].ToString());
+                drt.InstallPlace = dr["InstallPlace"].ToString();
+                drt.UpdateTime = Convert.ToDateTime(dr["UpdateTime"]);
+                drt.Temperature1 = Convert.ToDecimal(dr["Temperature1"]);
+                drt.Electricity = Convert.ToInt32(dr["Electricity"]);
+                drt.Signal = Convert.ToInt32(dr["Signal"]);
+                drt.Status = DeviceStateHelper.CheckOffLineState(drt.DeviceID) ? 2 : Convert.ToInt32(dr["Status"]);
+                result.Add(drt);
             }
             return result;
         }
@@ -162,7 +161,8 @@ namespace Scada.BLL.Implement
                             realFou.Temperature1 = realTime.Temperature1;
                             realFou.Electricity = realTime.Electricity;
                             realFou.Signal = realTime.Signal;
-                            realFou.Status = realTime.Status;
+                            realFou.Status = DeviceStateHelper.CheckOffLineState(realTime.DeviceID) ? 2 : realTime.Status;
+                         
                             realFou.UpdateTime = realTime.UpdateTime;
                         }
                         this.UpdateVirtualDevice(realThi);
@@ -255,11 +255,11 @@ namespace Scada.BLL.Implement
                     alarm.DealPeopleID = new Guid(item["DealPeopleID"].ToString());
                 }
 
-                if (item["DealPeopleLoginID"]!=DBNull.Value)
+                if (item["DealPeopleLoginID"] != DBNull.Value)
                 {
                     alarm.DealPeopleLoginID = item["DealPeopleLoginID"].ToString();
                 }
-                if (item["DealPeopleLoginName"]!=DBNull.Value)
+                if (item["DealPeopleLoginName"] != DBNull.Value)
                 {
                     alarm.DealPeopleLoginName = item["DealPeopleLoginName"].ToString();
                 }

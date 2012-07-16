@@ -63,11 +63,12 @@ namespace Scada.BLL.Implement
                 this.GetDeviceTreeList();
         }
 
-        public void ReLoadDeviceTreeCache()
+        public string ReLoadDeviceTreeCache()
         {
             this._jsonTreeList = String.Empty;
             this._treeList.Clear();
             this.GetDeviceTreeList();
+            return _jsonTreeList;
         }
 
         public string GetDeviceTreeCache()

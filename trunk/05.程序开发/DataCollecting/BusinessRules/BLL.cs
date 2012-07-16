@@ -136,21 +136,36 @@ namespace BusinessRules
                     rs.ConfigData = configDataBlock;
                     //将设备更新标记置为false
                     deviceInfor.IsNew = false;
-                    DataContext.SubmitChanges();
+                   
                 }
                 //构造天气预报块
                 WeatherDataBlock weatherDataBlock = new WeatherDataBlock()
                 {
                     TodayWeather = objParameter.Weather
                 };
+                //如果上次记录的天气预报和当前一样，则不发送
+                if (objParameter.Weather == deviceInfor.Weather)
+                {
+                    rs.HaveWeatherInfo = false;
+                }
                 rs.WeatherData = weatherDataBlock;
+                //记录当前天气预报
+                deviceInfor.Weather = objParameter.Weather;
 
                 //构造广播信息块
                 BroadcastDataBlock broadcastDataBlock = new BroadcastDataBlock()
                 {
                     Msg = objParameter.Broadcast
                 };
+                //如果上次记录的广播数据和当前一样，则不发送
+                if (objParameter.Broadcast  == deviceInfor.Broadcast)
+                {
+                    rs.HaveWeatherInfo = false;
+                }
                 rs.BroadcastData = broadcastDataBlock;
+                //记录当前天气预报
+                deviceInfor.Broadcast  = objParameter.Broadcast;
+                DataContext.SubmitChanges();
             }
             return rs;
         }

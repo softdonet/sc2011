@@ -432,6 +432,7 @@ namespace Scada.BLL.Implement
             try
             {
                 scadaDeviceServiceLinq.Update(deviceInfo);
+                RealDeviceTreeCache.getInstance().ReLoadDeviceTreeCache();
                 return true;
             }
             catch (Exception ex)

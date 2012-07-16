@@ -232,7 +232,7 @@ namespace Scada.BLL.Implement
             try
             {
                 scadaDeviceServiceLinq.AddDeviceInfo(deviceInfo);
-                RealDeviceTreeCache.getInstance().ReLoadDeviceTreeCache();
+                //RealDeviceTreeCache.getInstance().ReLoadDeviceTreeCache();
                 return true;
             }
             catch (Exception ex)
@@ -516,7 +516,7 @@ namespace Scada.BLL.Implement
             try
             {
                 scadaDeviceServiceLinq.Del(deviceGuid);
-                RealDeviceTreeCache.getInstance().ReLoadDeviceTreeCache();
+                //RealDeviceTreeCache.getInstance().ReLoadDeviceTreeCache();
                 return true;
             }
             catch (Exception ex)
@@ -870,8 +870,8 @@ namespace Scada.BLL.Implement
 
         public string ListDeviceTreeView()
         {
-
-            return RealDeviceTreeCache.getInstance().GetDeviceTreeCache();
+            RealDeviceTreeCache realDeviceTree = new RealDeviceTreeCache();
+            return realDeviceTree.ReLoadDeviceTreeCache();
 
             /*
             List<DeviceTreeNode> treeList = null;
@@ -2111,8 +2111,8 @@ namespace Scada.BLL.Implement
         {
 
             //add by zgj 20120711 登录加载设备树
-            var t1 = new Thread(LoadDeviceTreeCache);
-            t1.Start();
+            //var t1 = new Thread(LoadDeviceTreeCache);
+            //t1.Start();
 
             LoginResult result = new LoginResult();
 
@@ -2171,10 +2171,10 @@ namespace Scada.BLL.Implement
         /// <summary>
         /// 登录时，缓存设备树
         /// </summary>
-        static void LoadDeviceTreeCache()
-        {
-            RealDeviceTreeCache.getInstance().LoadDeviceTreeCache();
-        }
+        //static void LoadDeviceTreeCache()
+        //{
+        //    RealDeviceTreeCache.getInstance().LoadDeviceTreeCache();
+        //}
 
         public Boolean SetUserMenuTreeList(String userKey, String userMenuList)
         {

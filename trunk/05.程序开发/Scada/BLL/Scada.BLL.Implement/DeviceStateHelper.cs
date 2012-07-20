@@ -9,7 +9,7 @@ namespace Scada.BLL.Implement
     /// <summary>
     /// 设备状态帮助类
     /// </summary>
-    public class DeviceStateHelper
+    public class DeviceStateHelper1
     {
         private static SCADADataContext sCADtADataContext = new SCADADataContext();
         public static bool CheckOffLineState(Guid devID)
@@ -18,11 +18,21 @@ namespace Scada.BLL.Implement
             var item = sCADtADataContext.DeviceInfos.SingleOrDefault(e => e.ID == devID);
             bool isOffLine = false;
             float precision = 1.1f;//误差倍率
+
             if (item.DeviceRealTimes.Any())
             {
-                DateTime? maxdt = item.DeviceRealTimes.Max(e => e.UpdateTime);
+                DateTime maxur = DateTime.Now;
+                var maxdt = item.DeviceRealTimes.Max(e => e.UpdateTime).Value;
                 var maxRealtimeDev = item.DeviceRealTimes.Where(e => e.UpdateTime == maxdt).First();
-                TimeSpan ts = DateTime.Now - maxRealtimeDev.UpdateTime.Value;
+                bool havaUR = false;
+                //如果有用户事件，则找到用户时间的最新请求时间
+                if (item.UserEvents.Any())
+                {
+                    havaUR = true;
+                    maxur = item.UserEvents.Max(e => e.RequestTime).Value;
+                }
+                DateTime lastDataTime = havaUR ? (maxdt > maxur ? maxdt : maxur) : maxdt;
+                TimeSpan ts = DateTime.Now - lastDataTime;
                 //获取当前设备的运行模式
                 int model = item.CurrentModel.GetValueOrDefault(1);
                 switch (model)

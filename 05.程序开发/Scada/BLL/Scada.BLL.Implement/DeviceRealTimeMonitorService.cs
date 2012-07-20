@@ -68,7 +68,7 @@ namespace Scada.BLL.Implement
                 drt.Temperature1 = Convert.ToDecimal(dr["Temperature1"]);
                 drt.Electricity = Convert.ToInt32(dr["Electricity"]);
                 drt.Signal = Convert.ToInt32(dr["Signal"]);
-                drt.Status = DeviceStateHelper.CheckOffLineState(drt.DeviceID) ? 2 : Convert.ToInt32(dr["Status"]);
+                drt.Status =  Convert.ToInt32(dr["Status"]);
                 result.Add(drt);
             }
             return result;
@@ -161,7 +161,7 @@ namespace Scada.BLL.Implement
                             realFou.Temperature1 = realTime.Temperature1;
                             realFou.Electricity = realTime.Electricity;
                             realFou.Signal = realTime.Signal;
-                            realFou.Status = DeviceStateHelper.CheckOffLineState(realTime.DeviceID) ? 2 : realTime.Status;
+                            realFou.Status = realTime.Status;
                          
                             realFou.UpdateTime = realTime.UpdateTime;
                         }

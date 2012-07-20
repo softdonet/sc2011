@@ -275,6 +275,7 @@ namespace BusinessRules
                 {
                     obj.Count = obj.Count.GetValueOrDefault(0) + 1;
                     obj.RequestTime = DateTime.Now;
+
                 }
                 else
                 {
@@ -289,6 +290,15 @@ namespace BusinessRules
                     ue.EventType = userEvent_R.WorkstateChild;
                     DataContext.UserEvents.InsertOnSubmit(ue);
                 }
+                //更新设备状态为在线
+                //--------------------------
+                if (deviceInfor.DeviceRealTimes.Any())
+                {
+                    var maxdt = deviceInfor.DeviceRealTimes.Max(e => e.UpdateTime).Value;
+                    var maxRealtimeDev = deviceInfor.DeviceRealTimes.Where(e => e.UpdateTime == maxdt).First();
+                    maxRealtimeDev.Status = 2;
+                }
+                //--------------------------
                 DataContext.SubmitChanges();
                 realTimeNotify.Notify(MessageType.UserEvent);
                 return true;

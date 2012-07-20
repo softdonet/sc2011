@@ -17,95 +17,58 @@ namespace BusinessRules
         private RealTimeNotify realTimeNotify = new RealTimeNotify();
         public void OffLineCheck()
         {
+            float precision = 1.1f;//误差倍率
             //设备状态：1：正常 2：离线 3：告警
             foreach (var item in DataContext.DeviceInfos)
             {
                 bool isOffLine = false;
-                float precision = 1.5f;//误差倍率
-                if (item.DeviceRealTimes.Where(e => e.Status.Value != 2).OrderByDescending(e => e.UpdateTime).Any())
+                if (item.DeviceRealTimes.Any())
                 {
-                    var maxRealtimeDev = item.DeviceRealTimes.Where(e => e.Status.Value != 2).OrderByDescending(e => e.UpdateTime).First();
-                    if (maxRealtimeDev != null)
+                    DateTime maxur = DateTime.Now;
+                    var maxdt = item.DeviceRealTimes.Max(e => e.UpdateTime).Value;
+                    var maxRealtimeDev = item.DeviceRealTimes.Where(e => e.UpdateTime == maxdt).First();
+                    bool havaUR = false;
+                    //如果有用户事件，则找到用户时间的最新请求时间
+                    if (item.UserEvents.Any())
                     {
-                        TimeSpan ts = DateTime.Now - maxRealtimeDev.UpdateTime.Value;
-                        //获取当前设备的运行模式
-                        int model = item.CurrentModel.GetValueOrDefault(1);
-                        switch (model)
-                        {
-                            case 1:
-                                //实时模式
-                                //如果时间差>实时采集周期,则表示离线
-                                if (ts.TotalSeconds > item.RealTimeParam.GetValueOrDefault(0) * precision)
-                                {
-                                    LogHelper.WriteInformationLog(
-                                        string.Format("编号:{0},模式：实时，间隔{1}秒，{2}", item.DeviceNo, ts.TotalSeconds.ToString(),maxRealtimeDev.UpdateTime.Value.ToString()));
-                                    isOffLine = true;
-                                }
-                                break;
-                            case 2:
-                                //整点模式
-                                //如果时间差>通讯发送周期周期,则表示离线
-                                if (ts.TotalMinutes > item.FullTimeParam2.GetValueOrDefault(0) * precision)
-                                {
-                                    LogHelper.WriteInformationLog(
-                                      string.Format("编号:{0},模式：整点，间隔{1}分钟，{2}", item.DeviceNo, ts.TotalMinutes.ToString(), maxRealtimeDev.UpdateTime.Value.ToString()));
-                                    isOffLine = true;
-                                }
-                                break;
-                            case 3:
-                                //整点模式
-                                //如果时间差>最小发送间隔,则表示离线
-                                if (ts.TotalMinutes > item.OptimizeParam2.GetValueOrDefault(0) * precision)
-                                {
-                                    LogHelper.WriteInformationLog(
-                                      string.Format("编号:{0},模式：优化，间隔{1}分钟，{2}", item.DeviceNo, ts.TotalMinutes.ToString(), maxRealtimeDev.UpdateTime.Value.ToString()));
-                                    isOffLine = true;
-                                }
-                                break;
-                            default:
-                                //没有配置模式，则默认为实时模式
-                                if (ts.TotalSeconds > item.RealTimeParam.GetValueOrDefault(0) * precision)
-                                {
-                                    isOffLine = true;
-                                }
-                                break;
-                        };
+                        havaUR = true;
+                        maxur = item.UserEvents.Max(e => e.RequestTime).Value;
                     }
-                    else
+                    DateTime lastDataTime = havaUR ? (maxdt > maxur ? maxdt : maxur) : maxdt;
+                    TimeSpan ts = DateTime.Now - lastDataTime;
+                    //获取当前设备的运行模式
+                    int model = item.CurrentModel.GetValueOrDefault(1);
+                    switch (model)
                     {
-                        //如果没有实时数据，则直接标记为离线
-                        isOffLine = true;
+                        case 1:
+                            //实时模式
+                            //如果时间差>实时采集周期,则表示离线
+                            if (ts.TotalSeconds > item.RealTimeParam.GetValueOrDefault(0) * precision)
+                            {
+                                isOffLine = true;
+                            }
+                            break;
+                        case 2:
+                            //整点模式
+                            //如果时间差>通讯发送周期周期,则表示离线
+                            if (ts.TotalMinutes > item.FullTimeParam2.GetValueOrDefault(0) * precision)
+                            {
+                                isOffLine = true;
+                            }
+                            break;
+                        case 3:
+                            //优化模式
+                            //如果时间差>最小发送间隔,则表示离线
+                            if (ts.TotalMinutes > item.OptimizeParam2.GetValueOrDefault(0) * precision)
+                            {
+                                isOffLine = true;
+                            }
+                            break;
+                    };
+                    if (isOffLine)
+                    {
+                        maxRealtimeDev.Status = 2;
                     }
-                }
-                else
-                {
-                    //如果没有实时数据，则直接标记为离线
-                    isOffLine = true;
-                }
-
-                if (isOffLine)
-                {
-
-                    //写入一条离线数据
-                    DeviceRealTime drt = new DeviceRealTime();
-                    drt.ID = Guid.NewGuid();
-                    drt.DeviceID = item.ID;
-                    drt.DeviceNo = item.DeviceNo;
-
-                    //温度1
-                    drt.Temperature1 = 0;
-                    //温度2
-                    drt.Temperature2 = 0;
-                    //信号
-                    drt.Signal = 0;
-                    //湿度
-                    drt.Humidity = 0;
-                    //电量
-                    drt.Electricity = 0;
-                    //设备状态离线
-                    drt.Status = 2;
-                    drt.UpdateTime = DateTime.Now;
-                    DataContext.DeviceRealTimes.InsertOnSubmit(drt);
                 }
             }
             DataContext.SubmitChanges();

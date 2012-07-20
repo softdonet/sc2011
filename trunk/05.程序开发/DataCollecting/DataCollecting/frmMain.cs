@@ -27,6 +27,7 @@ namespace DataCollecting
         public frm_Test()
         {
             InitializeComponent();
+            this.timer1.Interval = 5 * 60 * 1000;
             if (!StartServer())
             {
                 return;
@@ -256,6 +257,19 @@ namespace DataCollecting
         private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        TimingTask timingTask = new TimingTask();
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                timingTask.OffLineCheck();
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteExceptionLog(ex);
+            }
         }
     }
 }
